@@ -3,7 +3,7 @@ import urllib2
 from urlparse import urlparse
 
 # add function names to __all__ in order to expose them in the
-# pythredds.util namespace
+# pyudl.tds namespace
 __all__ = ["get_latest_dods_url",
            "get_service_endpoint",
            "get_resolver_xml_url",
