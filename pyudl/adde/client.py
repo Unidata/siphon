@@ -10,6 +10,12 @@ from copy import deepcopy
 from pprint import pprint
 from functools import partial
 
+import projection
+from projection import Mercator
+
+reload(projection)
+from projection import Mercator
+
 ADDE_HOST = "adde.ucar.edu"
 
 DEGREES_TO_RADIANS = np.pi/180.
@@ -49,9 +55,6 @@ class mysocket:
         return ''.join(total_data)
 
 class Metadata(object):
-    pass
-
-class Mercator(object):
     pass
 
 def get_local_ip():
@@ -96,66 +99,11 @@ def create_msg():
     # "LMAG=-2 EMAG=-2 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X "
     # "TIME=X X I CAL=X VERSION=1")
     # observation = bytearray("GINICOMP GSN8KPW -1 EC 49.70000 105.00000 X 1000 1000  BAND=17 LMAG=1 EMAG=1 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
-    observation = bytearray("GINIEAST GPR1KVIS -10 AC  960 960 X 640 640  BAND=1 LMAG=-3 EMAG=-3 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
+    # observation = bytearray("GINIEAST GPR1KVIS -10 AC  960 960 X 640 640  BAND=1 LMAG=-3 EMAG=-3 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
+    observation = bytearray("GINIWEST GHR1KVIS 0 AC  1040 1120 X 682 746  BAND=1 LMAG=-3 EMAG=-3 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
     msg = version + ipa + port + service + ipa + port + ipa2 + user \
     + empty_byte + project + passwd + service + a + b + zero_pad + observation 
     return msg
-
-
-def int_latlon_to_float(value):
-    '''Convert integer lat/lon to float'''
-    val = 0
-
-    if (value < 0):
-        val = int(-value)
-    else:
-        val = int(value)
-
-    deg = float(val / 10000) 
-    min = (float((val / 100) % 100)) / 60.0 
-    sec = float(val % 100) / 3600.0
-    value = deg + min + sec
-    
-    if (value < 0):
-        result = -value
-    else:
-        result = value
-    return result
-
-
-def nav_mercator_parse(data, navLoc, navbytes):
-    '''Parse the Mercator navigation block coming back from ADDE '''
-    nav = [0] *  (navbytes/4)
-    for i in range(navbytes/4):
-        nav[i] = struct.unpack('i', data[3 + i*4] + data[2 + i*4] 
-                                + data[1 + i*4] + data[0 + i*4])[0]
-
-    xrow = nav[2]
-    xcol = nav[3]
-    xlat1 = int_latlon_to_float(nav[4])
-    xspace = nav[5]/1000.
-    xqlon = int_latlon_to_float(nav[6])
-    r = nav[7]/1000.
-    iwest = nav[10];
-    if (iwest >= 0):
-        iwest = 1
-    xblat = r * np.cos(xlat1 * DEGREES_TO_RADIANS)/xspace
-    xblon = DEGREES_TO_RADIANS * r/xspace
-    leftlon = int(xqlon - 180 * iwest)
-
-    m = Mercator()
-    m.xrow = xrow
-    m.xcol = xcol
-    m.xlat1 = xlat1
-    m.xspace = xspace
-    m.xqlon = xqlon
-    m.r = r
-    m.iwest = iwest
-    m.xblat = xblat
-    m.xblon = xblon
-    m.leftlon = leftlon
-    return m
-
 
 def area_coord_to_image_coord(m,coords):
     '''Convert ADDDE area cordinated to image coordinates '''
@@ -194,20 +142,24 @@ def to_lat_lon(merc,coord):
         xlon = -xlon
     return xlat,xlon
 
-
-def calc_extents(m,merc):
+def calc_extents(m,proj):
     '''Convert ADDE cordinates to lat/lon'''
     # I need lisp!
-    extents = ((0,0),(m.num_line,0),(0,m.num_ele),(m.num_ele,m.num_line))
+    extents = ((0,0),(m.num_ele,0),(0,m.num_line),(m.num_line,m.num_ele))
     area_coord_to_image_coordp = partial(area_coord_to_image_coord,m)
     imagec =  map(area_coord_to_image_coordp,extents)
-    to_lat_lonp = partial(to_lat_lon,merc)
-    latlons = map(to_lat_lonp,imagec)
+    latlons = map(proj.to_lat_lon,imagec)
     return tuple(latlons)
 
 
-def parse_metadata(meta):
+def parse_metadata(data):
     '''Parse ADDE metadata'''
+
+    meta = [0] * 65
+    for i in range(65):
+        meta[i] = struct.unpack('i', data[3 + i*4] + data[2 + i*4] 
+                                + data[1+ i*4] + data[0 + i*4])[0]
+
     m = Metadata()
     m.num_bytes = meta[0]
     m.year_day = meta[4]
@@ -232,18 +184,17 @@ def parse_metadata(meta):
 
 def display_data(data):
     '''Unpack the data and display the image'''
-    meta = [0] * 65
-    for i in range(65):
-        meta[i] = struct.unpack('i', data[3 + i*4] + data[2 + i*4] 
-                                + data[1+ i*4] + data[0 + i*4])[0]
 
-    m = parse_metadata(meta)
+    m = parse_metadata(data)
     pprint(vars(m))    
 
     #compressedDataStart = num_comments * 80 + data_loc
     nav_bytes = m.data_loc - m.nav_loc
-    nav = nav_mercator_parse(data[m.nav_loc:(m.nav_loc + nav_bytes)], m.nav_loc, nav_bytes)
-    ll,ul,lr,ul = calc_extents(m,nav)
+    #Going to need polymorphism here eventually
+    proj = Mercator(data,m)
+    
+    ll,ul,lr,ul = calc_extents(m,proj)
+    print(ll,ul,lr,ul)
     position = m.nav_loc + nav_bytes
     #startdata = compressedDataStart - position + 10
     image = data[m.data_loc:(m.data_loc + m.num_line * m.num_ele)]
@@ -262,7 +213,7 @@ def display_data(data):
     img_extents = (extents[0][0], extents[1][0], extents[0][1], extents[1][1] ) 
 
     ax = plt.axes(projection=merc)
-    ax.set_extent([-80, -50.5, 5, 30], ccrs.Geodetic())
+    ax.set_extent([ll[1] - 3 , ul[1] + 3, ll[0] - 3, ul[0] + 3], ccrs.Geodetic())
 
     # image data coming from server, code not shown
     ax.imshow(img2, origin='upper', extent=img_extents, transform=merc, cmap='gray')
@@ -272,9 +223,6 @@ def display_data(data):
 
     ax.coastlines(resolution='50m', color='black', linewidth=1)
     ax.gridlines()
-
-    savefig("/tmp/sat.png")
-
     plt.show() 
 
 
