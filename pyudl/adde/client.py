@@ -11,14 +11,21 @@ from pprint import pprint
 from functools import partial
 
 import projection
-from projection import Mercator
+from projection import *
 
 reload(projection)
-from projection import Mercator
+from projection import *
 
 ADDE_HOST = "adde.ucar.edu"
 
 DEGREES_TO_RADIANS = np.pi/180.
+
+# projections coming back from ADDE
+MERC =  0x4D455243
+TANC =  0x54414E43
+
+projections = {MERC : (Mercator, ccrs.Mercator), \
+               TANC : (Tangent_Cone, ccrs.LambertConformal)}
 
 class mysocket:
     '''Socket class'''
@@ -100,9 +107,11 @@ def create_msg():
     # "TIME=X X I CAL=X VERSION=1")
     # observation = bytearray("GINICOMP GSN8KPW -1 EC 49.70000 105.00000 X 1000 1000  BAND=17 LMAG=1 EMAG=1 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
     # observation = bytearray("GINIEAST GPR1KVIS -10 AC  960 960 X 640 640  BAND=1 LMAG=-3 EMAG=-3 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
-    observation = bytearray("GINIWEST GHR1KVIS 0 AC  1040 1120 X 682 746  BAND=1 LMAG=-3 EMAG=-3 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
+    # observation = bytearray("GINIWEST GHR1KVIS -20 AC  1040 1120 X 682 746  BAND=1 LMAG=-3 EMAG=-3 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
+    observation = bytearray("GINIEAST GE1KVIS -30 AC  2560 2560 X 854 854  BAND=1 LMAG=-6 EMAG=-6 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
     msg = version + ipa + port + service + ipa + port + ipa2 + user \
-    + empty_byte + project + passwd + service + a + b + zero_pad + observation 
+    + empty_byte + project + passwd + service + a + b + zero_pad \
+    + observation 
     return msg
 
 def area_coord_to_image_coord(m,coords):
@@ -115,37 +124,16 @@ def area_coord_to_image_coord(m,coords):
     else:
         line = x
 
-    u = m.start_img_line + (m.res_line * (line - m.start_line))/m.mag_line
+    u = m.start_img_line \
+    + (m.res_line * (line - m.start_line))/m.mag_line
     v = m.start_img_ele + (m.res_ele * (y - m.start_ele))/m.mag_ele
     return u,v
-
-
-def to_lat_lon(merc,coord):
-    '''Convert image coordinates to lat/lon'''
-    x,y = coord
-    xldif = merc.xrow - x
-    xedif = merc.xcol - y
-    xrlon = merc.iwest * xedif/merc.xblon
-    xlon = xrlon + merc.xqlon
-    xrlat = np.arctan(np.exp(xldif/merc.xblat))
-    xlat = (xrlat/DEGREES_TO_RADIANS - 45.) * 2. + merc.xlat1
-    if (xlon > (360. + merc.leftlon) or xlon < merc.leftlon):
-        lat = np.nan
-        lon = np.nan
-    else:
-        lat = xlat
-        if (xlon > 180.0):
-            xlon = xlon - 360.0
-        if (xlon < -180.0):
-            xlon = xlon + 360.0        
-    if (merc.iwest == 1):
-        xlon = -xlon
-    return xlat,xlon
 
 def calc_extents(m,proj):
     '''Convert ADDE cordinates to lat/lon'''
     # I need lisp!
-    extents = ((0,0),(m.num_ele,0),(0,m.num_line),(m.num_line,m.num_ele))
+    extents = ((0,0),(m.num_ele,0),(0,m.num_line),
+               (m.num_line,m.num_ele))
     area_coord_to_image_coordp = partial(area_coord_to_image_coord,m)
     imagec =  map(area_coord_to_image_coordp,extents)
     latlons = map(proj.to_lat_lon,imagec)
@@ -191,32 +179,46 @@ def display_data(data):
     #compressedDataStart = num_comments * 80 + data_loc
     nav_bytes = m.data_loc - m.nav_loc
     #Going to need polymorphism here eventually
-    proj = Mercator(data,m)
+
+    d = data[m.nav_loc:(m.nav_loc + nav_bytes)]
+
+    nav = [0] *  (nav_bytes/4)
+    for i in range(nav_bytes/4):
+        nav[i] = struct.unpack('i', d[3 + i*4] + d[2 + i*4] 
+                               + d[1 + i*4] + d[0 + i*4])[0]
+
+    print("nav[0] " + str(nav[0]))
+    print("nav[1] " + str(nav[1]))
+
+    constr1,constr2 = projections[nav[1]]
+
+    proj = constr1(nav)      
     
     ll,ul,lr,ul = calc_extents(m,proj)
     print(ll,ul,lr,ul)
-    position = m.nav_loc + nav_bytes
+    # position = m.nav_loc + nav_bytes
     #startdata = compressedDataStart - position + 10
     image = data[m.data_loc:(m.data_loc + m.num_line * m.num_ele)]
     image2 = np.fromstring(image, dtype='uint8')
     img = np.reshape(image2, (m.num_line,m.num_ele))
     img2 = toimage(img)
 
-    merc = ccrs.Mercator()
-    lamb = ccrs.LambertConformal()
-    pc = ccrs.PlateCarree()
+    myproj = constr2()
     fig = plt.figure(figsize=(12, 12))
-    extents = merc.transform_points(ccrs.Geodetic(),
+    extents = myproj.transform_points(ccrs.Geodetic(),
                                     np.array([ll[1], ul[1]]),
                                     np.array([ll[0], ul[0]]))
 
-    img_extents = (extents[0][0], extents[1][0], extents[0][1], extents[1][1] ) 
+    img_extents = (extents[0][0], extents[1][0], extents[0][1], 
+                   extents[1][1] ) 
 
-    ax = plt.axes(projection=merc)
-    ax.set_extent([ll[1] - 3 , ul[1] + 3, ll[0] - 3, ul[0] + 3], ccrs.Geodetic())
+    ax = plt.axes(projection=myproj)
+    ax.set_extent([ll[1] - 3 , ul[1] + 3, ll[0] - 3, ul[0] + 3],
+                  ccrs.Geodetic())
 
     # image data coming from server, code not shown
-    ax.imshow(img2, origin='upper', extent=img_extents, transform=merc, cmap='gray')
+    ax.imshow(img2, origin='upper', extent=img_extents, 
+              transform=myproj, cmap='gray')
 
     ax.set_xmargin(0.05)
     ax.set_ymargin(0.10)
