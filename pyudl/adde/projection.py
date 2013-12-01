@@ -80,8 +80,11 @@ class Tangent_Cone:
         self.lin0  = nav[2]/10000.
         self.ele0  = nav[3]/10000.
         self.scale = nav[4]/10000.
+        # tangent point (standard lat/lon)
         self.lat0  = nav[5]/10000.
         self.lon0  = -nav[6]/10000 * DEGREES_TO_RADIANS
+
+        print("tanc " +  str(self.lat0) + " " + str(self.lon0))
 
         if (self.lat0 < 0):
             self.colat0 = np.pi/2. + self.lat0*DEGREES_TO_RADIANS

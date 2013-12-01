@@ -106,9 +106,9 @@ def create_msg():
     # "LMAG=-2 EMAG=-2 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X "
     # "TIME=X X I CAL=X VERSION=1")
     # observation = bytearray("GINICOMP GSN8KPW -1 EC 49.70000 105.00000 X 1000 1000  BAND=17 LMAG=1 EMAG=1 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
-    # observation = bytearray("GINIEAST GPR1KVIS -10 AC  960 960 X 640 640  BAND=1 LMAG=-3 EMAG=-3 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
-    # observation = bytearray("GINIWEST GHR1KVIS -20 AC  1040 1120 X 682 746  BAND=1 LMAG=-3 EMAG=-3 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
-    observation = bytearray("GINIEAST GE1KVIS -30 AC  2560 2560 X 854 854  BAND=1 LMAG=-6 EMAG=-6 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
+    #observation = bytearray("GINIEAST GPR1KVIS -40 AC  960 960 X 640 640  BAND=1 LMAG=-3 EMAG=-3 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
+    observation = bytearray("GINIWEST GHR1KVIS -40 AC  1040 1120 X 682 746  BAND=1 LMAG=-3 EMAG=-3 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
+    # observation = bytearray("GINIEAST GE1KVIS -40 AC  2560 2560 X 854 854  BAND=1 LMAG=-6 EMAG=-6 TRACE=0 SPAC=1 UNIT=BRIT NAV=X AUX=YES TRACKING=0 DOC=X TIME=X X I CAL=X VERSION=1")
     msg = version + ipa + port + service + ipa + port + ipa2 + user \
     + empty_byte + project + passwd + service + a + b + zero_pad \
     + observation 
@@ -132,11 +132,14 @@ def area_coord_to_image_coord(m,coords):
 def calc_extents(m,proj):
     '''Convert ADDE cordinates to lat/lon'''
     # I need lisp!
-    extents = ((0,0),(m.num_ele,0),(0,m.num_line),
+    extents = ((0,0),(m.num_line,0),(0,m.num_ele),
                (m.num_line,m.num_ele))
     area_coord_to_image_coordp = partial(area_coord_to_image_coord,m)
+    print(extents)
     imagec =  map(area_coord_to_image_coordp,extents)
+    print(imagec)
     latlons = map(proj.to_lat_lon,imagec)
+    print(latlons)
     return tuple(latlons)
 
 
@@ -203,6 +206,7 @@ def display_data(data):
     img = np.reshape(image2, (m.num_line,m.num_ele))
     img2 = toimage(img)
 
+#    myproj = constr2(secant_latitudes=(25, 25) )
     myproj = constr2()
     fig = plt.figure(figsize=(12, 12))
     extents = myproj.transform_points(ccrs.Geodetic(),
