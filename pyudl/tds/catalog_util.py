@@ -11,7 +11,10 @@ __all__ = ["get_latest_dods_url",
            "get_element_root_from_url",
            "get_url_path"]
 
-xmlns_prefix = "{http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0}"
+
+xmlns_prefix = ("{http://www.unidata.ucar.edu/namespaces/thredds"
+                "/InvCatalog/v1.0}")
+
 
 def get_url_path(url):
     """Return a URL with path only (no file name)"""
@@ -52,10 +55,11 @@ def get_resolver_xml_url(dataset_url):
         if (s.get("serviceType") == "Resolver"):
             latest = s.get("name")
             latest_base = s.get("base")
-    ds = find_dataset(root,latest)
+    ds = find_dataset(root, latest)
     if (ds is not None):
-        # TODO: generalize this to handle relatives paths starting with a '/'       
-        latest_url = get_url_path(dataset_url) + latest_base + '/' + ds.get('urlPath')
+        # TODO: generalize this to handle relatives paths starting with a '/'
+        latest_url = get_url_path(
+            dataset_url) + latest_base + '/' + ds.get('urlPath')
     return latest_url
 
 
@@ -63,7 +67,7 @@ def get_service_endpoint(root, service):
     """
     Given an element root and a service, return the end point relative path.
     """
-    #TODO: Deal with suffix
+    # TODO: Deal with suffix
     service_dict = {}
     for s in root.findall(xmlns_prefix + 'service'):
         if (s.get("serviceType") == "Compound"):
@@ -80,5 +84,6 @@ def get_latest_dods_url(dataset_url):
     if (resolver is not None):
         root = get_element_root_from_url(resolver)
         ds = root.find(xmlns_prefix + 'dataset')
-        latest = o.scheme + "://" + o.netloc + get_service_endpoint(root,'OPENDAP') + ds.get('urlPath')
+        latest = o.scheme + "://" + o.netloc + \
+            get_service_endpoint(root, 'OPENDAP') + ds.get('urlPath')
     return latest
