@@ -79,7 +79,11 @@ class Dataset():
             resolverXml = basic_http_request(resolverUrl, return_response=True)
             tree = ET.parse(resolverXml)
             root = tree.getroot()
-            self.catalog_name = root.attrib["name"]
+            if "name" in root.attrib:
+                self.catalog_name = root.attrib["name"]
+            else:
+                self.catalog_name = "No name found"
+
             found = False
             for child in root.iter():
                 if not found:
@@ -152,3 +156,42 @@ def basic_http_request(full_url, return_response=False):
         else:
             print 'error not caught!'
             raise
+
+def get_latest_cat(cat):
+    for service in cat.services:
+        if (service.name.lower() == "latest" and service.serviceType.lower() == "resolver"):
+            return TDSCatalog(cat.catalogUrl.replace("catalog.xml","latest.xml"))
+
+    print "ERROR: Latest Dataset Not Found!"
+
+def get_latest_access_url(catalog, access_method):
+    """
+    Get the data access url, using a specified method, to the latest data
+    available from a top level dataset TDSCatalog object.
+
+    Parameters
+    ----------
+    catalog : TDSCatalog
+        Instance of TDSCatalog - the THREDDS Data Server Catalog Object. The
+        URL of the top level data catalog from a dataset should be used to
+        create the object.
+
+    access_method : String
+        desired data access method (i.e. OPENDAP)
+
+    Returns
+    -------
+    String
+        String representation of the URL to be used to access the latest
+        data available from a given catalog
+
+    """
+
+    latestCat = get_latest_cat(catalog)
+    if latestCat != "":
+        if len(latestCat.datasets.keys()) == 1:
+            latestDs = latestCat.datasets[latestCat.datasets.keys()[0]]
+            return latestDs.accessUrls[access_method]
+        else:
+            print "ERROR: More than one access url matching the requested access method...clearly this is an error"
+
