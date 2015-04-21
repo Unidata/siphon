@@ -1,6 +1,12 @@
 import xml.etree.ElementTree as ET
-import urllib2
-from urlparse import urlparse
+try:
+    from urllib2 import urlopen
+except ImportError:
+    from urllib.request import urlopen
+try:
+    from urlparse import urlparse
+except ImportError:
+    from urllib.parse import urlparse
 
 # add function names to __all__ in order to expose them in the
 # pyudl.tds namespace

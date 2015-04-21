@@ -1,3 +1,4 @@
+from __future__ import print_function
 import xml.etree.ElementTree as ET
 
 userAgent = "pyudl"
@@ -69,8 +70,8 @@ class Dataset():
                 self.resolverUrl = self.urlPath
                 self.urlPath = self.resolveUrl(catalogUrl)
             else:
-                print "Must pass along the catalog URL to resolve the "
-                print "latest.xml dataset!"
+                print("Must pass along the catalog URL to resolve the "
+                      "latest.xml dataset!")
 
     def resolveUrl(self, catalogUrl):
         if catalogUrl != "":
@@ -96,7 +97,7 @@ class Dataset():
             if found:
                 return resolvedUrl
             else:
-                print "no dataset url path found in latest.xml!"
+                print("no dataset url path found in latest.xml!")
 
     def makeAccessUrls(self, catalogUrl, services):
         accessUrls = {}
@@ -131,30 +132,33 @@ class CompoundService():
 
 
 def basic_http_request(full_url, return_response=False):
-    import urllib2
+    try:
+        from urllib2 import urlopen, Request
+    except ImportError:
+        from urllib.request import urlopen, Request
 
-    url_request = urllib2.Request(full_url)
+    url_request = Request(full_url)
     url_request.add_header('User-agent', userAgent)
     try:
-        response = urllib2.urlopen(url_request)
+        response = urlopen(url_request)
         if return_response:
             return response
         else:
             del response
-    except IOError, e:
+    except IOError as e:
         if hasattr(e, 'reason'):
-            print 'We failed to reach a server.'
-            print 'Reason: {}'.format(e.reason)
-            print 'Full  url: {}'.format(full_url)
+            print('We failed to reach a server.')
+            print('Reason: {}'.format(e.reason))
+            print('Full  url: {}'.format(full_url))
             raise
         elif hasattr(e, 'code'):
-            print 'The server couldn\'t fulfill the request.'
-            print 'Error code: {}'.format(e.code)
-            print 'TDS response: {}'.format(e.read())
-            print 'Full  url: {}'.format(full_url)
+            print('The server couldn\'t fulfill the request.')
+            print('Error code: {}'.format(e.code))
+            print('TDS response: {}'.format(e.read()))
+            print('Full  url: {}'.format(full_url))
             raise
         else:
-            print 'error not caught!'
+            print('error not caught!')
             raise
 
 def get_latest_cat(cat):
@@ -162,7 +166,7 @@ def get_latest_cat(cat):
         if (service.name.lower() == "latest" and service.serviceType.lower() == "resolver"):
             return TDSCatalog(cat.catalogUrl.replace("catalog.xml","latest.xml"))
 
-    print "ERROR: Latest Dataset Not Found!"
+    print("ERROR: Latest Dataset Not Found!")
 
 def get_latest_access_url(catalog, access_method):
     """
@@ -193,5 +197,5 @@ def get_latest_access_url(catalog, access_method):
             latestDs = latestCat.datasets[latestCat.datasets.keys()[0]]
             return latestDs.accessUrls[access_method]
         else:
-            print "ERROR: More than one access url matching the requested access method...clearly this is an error"
+            print("ERROR: More than one access url matching the requested access method...clearly this is an error")
 
