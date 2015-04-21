@@ -7,28 +7,28 @@ sudo: false
 matrix:
   include:
     - python: 2.7
-      env: PEP8=false
+      env: LINT=false
     - python: 3.3
-      env: PEP8=false
+      env: LINT=false
     - python: 3.4
-      env: PEP8=false
+      env: LINT=false
     - python: 3.4
-      env: PEP8=true
+      env: LINT=true
 
 notifications:
   email: false
 
 before_install:
-  - if [[ $PEP8 == true ]]; then
-      pip install pep8;
+  - if [[ $LINT == true ]]; then
+      pip install flake8;
     fi
 
 install:
   - python setup.py install
 
 script:
-  - if [[ $PEP8 == true ]]; then
-      pep8 pyudl;
+  - if [[ $LINT == true ]]; then
+      flake8 pyudl;
     else
       nosetests;
     fi
