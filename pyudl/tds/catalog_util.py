@@ -31,7 +31,7 @@ def get_url_path(url):
 
 def get_element_root_from_url(url):
     """Given a XML URL, return an element root"""
-    data = urllib2.urlopen(url)
+    data = urlopen(url)
     root = ET.parse(data).getroot()
     data.close()
     return root
