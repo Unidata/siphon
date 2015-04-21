@@ -161,12 +161,15 @@ def basic_http_request(full_url, return_response=False):
             print('error not caught!')
             raise
 
+
 def get_latest_cat(cat):
     for service in cat.services:
-        if (service.name.lower() == "latest" and service.serviceType.lower() == "resolver"):
-            return TDSCatalog(cat.catalogUrl.replace("catalog.xml","latest.xml"))
+        if (service.name.lower() == "latest" and
+                service.serviceType.lower() == "resolver"):
+            return TDSCatalog(cat.catalogUrl.replace("catalog.xml", "latest.xml"))
 
     print("ERROR: Latest Dataset Not Found!")
+
 
 def get_latest_access_url(catalog, access_method):
     """
@@ -197,5 +200,5 @@ def get_latest_access_url(catalog, access_method):
             latestDs = latestCat.datasets[latestCat.datasets.keys()[0]]
             return latestDs.accessUrls[access_method]
         else:
-            print("ERROR: More than one access url matching the requested access method...clearly this is an error")
-
+            print('ERROR: More than one access url matching the requested '
+                  'access method...clearly this is an error')
