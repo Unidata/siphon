@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 userAgent = "pyudl"
 
 
-class TDSCatalog():
+class TDSCatalog(object):
 
     def __init__(self, catalogUrl):
         # top level server url
@@ -46,7 +46,7 @@ class TDSCatalog():
                 self.base_tds_url, self.services)
 
 
-class CatalogRef():
+class CatalogRef(object):
 
     def __init__(self, elementNode):
         self.name = elementNode.attrib["name"]
@@ -56,7 +56,7 @@ class CatalogRef():
         self.title = elementNode.attrib["{http://www.w3.org/1999/xlink}title"]
 
 
-class Dataset():
+class Dataset(object):
 
     def __init__(self, elementNode, catalogUrl=""):
         self.name = elementNode.attrib['name']
@@ -110,7 +110,7 @@ class Dataset():
         self.accessUrls = accessUrls
 
 
-class SimpleService():
+class SimpleService(object):
 
     def __init__(self, serviceNode):
         self.name = serviceNode.attrib['name']
@@ -118,7 +118,7 @@ class SimpleService():
         self.base = serviceNode.attrib['base']
 
 
-class CompoundService():
+class CompoundService(object):
 
     def __init__(self, serviceNode):
         self.name = serviceNode.attrib['name']
