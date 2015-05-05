@@ -5,12 +5,12 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name = "pyudl",
-    version = "0.1",
+    name = "pudl",
+    version = "0.2",
     packages = find_packages(),
     author = "Unidata Development Team",
     license = read('LICENSE'),
-    url = "https://github.com/Unidata/pyudl",
+    url = "https://github.com/Unidata/pudl",
     test_suite = "nose.collector",
     description = ("A collection of Python utilities for interacting with the"
                                    "Unidata technology stack."),

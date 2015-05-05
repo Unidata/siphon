@@ -1,4 +1,4 @@
-from pyudl.tds import get_latest_dods_url
+from pudl.tds import get_latest_dods_url
 import unittest
 
 class Tests(unittest.TestCase):

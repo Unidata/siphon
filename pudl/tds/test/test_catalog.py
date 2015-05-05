@@ -1,4 +1,4 @@
-from pyudl.tds import TDSCatalog
+from pudl.tds import TDSCatalog
 
 
 class TestCatalog(object):
