@@ -8,6 +8,7 @@ Thumbs.db
 *.swp
 *.*~
 ._*
+.idea/
 
 ###################
 # python #
