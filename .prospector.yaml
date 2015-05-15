@@ -1,0 +1,14 @@
+ignore-paths:
+  - doc
+  - build
+  - versioneer.py
+  - siphon/_version.py
+  - examples
+
+pylint:
+  disable:
+    - unbalanced-tuple-unpacking
+
+pep8:
+  options:
+    max-line-length: 90
