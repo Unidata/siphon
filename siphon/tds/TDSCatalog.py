@@ -6,12 +6,12 @@ userAgent = "siphon"
 
 class TDSCatalog(object):
 
-    def __init__(self, catalogUrl):
+    def __init__(self, catalog_url):
         # top level server url
-        self.catalogUrl = catalogUrl
-        self.base_tds_url = catalogUrl.split('/thredds/')[0]
+        self.catalogUrl = catalog_url
+        self.base_tds_url = catalog_url.split('/thredds/')[0]
         # get catalog.xml file
-        xml_data = basic_http_request(catalogUrl, return_response=True)
+        xml_data = basic_http_request(catalog_url, return_response=True)
         # begin parsing the xml doc
         tree = ET.parse(xml_data)
         root = tree.getroot()
@@ -24,61 +24,59 @@ class TDSCatalog(object):
         self.services = []
         self.catalogRefs = {}
         for child in root.iter():
-            tagType = child.tag.split('}')[-1]
+            tag_type = child.tag.split('}')[-1]
 
-            if tagType == "service":
+            if tag_type == "service":
                 if child.attrib["serviceType"] != "Compound":
                     self.services.append(SimpleService(child))
-            elif tagType == "dataset":
+            elif tag_type == "dataset":
                 if "urlPath" in child.attrib:
                     if child.attrib["urlPath"] == "latest.xml":
-                        ds = Dataset(child, catalogUrl)
+                        ds = Dataset(child, catalog_url)
                     else:
                         ds = Dataset(child)
                     self.datasets[ds.name] = ds
-            elif tagType == "catalogRef":
-                catalogRef = CatalogRef(child)
-                self.catalogRefs[catalogRef.title] = catalogRef
+            elif tag_type == "catalogRef":
+                catalog_ref = CatalogRef(child)
+                self.catalogRefs[catalog_ref.title] = catalog_ref
 
         self.numberOfDatasets = len(self.datasets.keys())
         for dsName in self.datasets.keys():
-            self.datasets[dsName].makeAccessUrls(
+            self.datasets[dsName].make_access_urls(
                 self.base_tds_url, self.services)
 
 
 class CatalogRef(object):
-
-    def __init__(self, elementNode):
-        self.name = elementNode.attrib["name"]
-        self.href = elementNode.attrib["{http://www.w3.org/1999/xlink}href"]
+    def __init__(self, element_node):
+        self.name = element_node.attrib["name"]
+        self.href = element_node.attrib["{http://www.w3.org/1999/xlink}href"]
         if self.href[0] == '/':
             self.href = self.href[1:]
-        self.title = elementNode.attrib["{http://www.w3.org/1999/xlink}title"]
+        self.title = element_node.attrib["{http://www.w3.org/1999/xlink}title"]
 
 
 class Dataset(object):
-
-    def __init__(self, elementNode, catalogUrl=""):
-        self.name = elementNode.attrib['name']
-        self.urlPath = elementNode.attrib['urlPath']
+    def __init__(self, element_node, catalog_url=""):
+        self.name = element_node.attrib['name']
+        self.urlPath = element_node.attrib['urlPath']
         self.resolved = False
         self.resolverUrl = None
         # if latest.xml, resolve the latest url
         if self.urlPath == "latest.xml":
-            if catalogUrl != "":
+            if catalog_url != "":
                 self.resolved = True
                 self.resolverUrl = self.urlPath
-                self.urlPath = self.resolveUrl(catalogUrl)
+                self.urlPath = self.resolve_url(catalog_url)
             else:
                 print("Must pass along the catalog URL to resolve the "
                       "latest.xml dataset!")
 
-    def resolveUrl(self, catalogUrl):
-        if catalogUrl != "":
-            resolverBase = catalogUrl.split("catalog.xml")[0]
-            resolverUrl = resolverBase + self.urlPath
-            resolverXml = basic_http_request(resolverUrl, return_response=True)
-            tree = ET.parse(resolverXml)
+    def resolve_url(self, catalog_url):
+        if catalog_url != "":
+            resolver_base = catalog_url.split("catalog.xml")[0]
+            resolver_url = resolver_base + self.urlPath
+            resolver_xml = basic_http_request(resolver_url, return_response=True)
+            tree = ET.parse(resolver_xml)
             root = tree.getroot()
             if "name" in root.attrib:
                 self.catalog_name = root.attrib["name"]
@@ -88,44 +86,44 @@ class Dataset(object):
             found = False
             for child in root.iter():
                 if not found:
-                    tagType = child.tag.split('}')[-1]
-                    if tagType == "dataset":
+                    tag_type = child.tag.split('}')[-1]
+                    if tag_type == "dataset":
                         if "urlPath" in child.attrib:
                             ds = Dataset(child)
-                            resolvedUrl = ds.urlPath
+                            resolved_url = ds.urlPath
                             found = True
             if found:
-                return resolvedUrl
+                return resolved_url
             else:
                 print("no dataset url path found in latest.xml!")
 
-    def makeAccessUrls(self, catalogUrl, services):
-        accessUrls = {}
-        serverUrl = catalogUrl.split('/thredds/')[0]
+    def make_access_urls(self, catalog_url, services):
+        access_urls = {}
+        server_url = catalog_url.split('/thredds/')[0]
         for service in services:
             if service.serviceType != 'Resolver':
-                accessUrls[service.serviceType] = serverUrl + \
+                access_urls[service.serviceType] = server_url + \
                     service.base + self.urlPath
 
-        self.accessUrls = accessUrls
+        self.accessUrls = access_urls
 
 
 class SimpleService(object):
 
-    def __init__(self, serviceNode):
-        self.name = serviceNode.attrib['name']
-        self.serviceType = serviceNode.attrib['serviceType']
-        self.base = serviceNode.attrib['base']
+    def __init__(self, service_node):
+        self.name = service_node.attrib['name']
+        self.serviceType = service_node.attrib['serviceType']
+        self.base = service_node.attrib['base']
 
 
 class CompoundService(object):
 
-    def __init__(self, serviceNode):
-        self.name = serviceNode.attrib['name']
-        self.serviceType = serviceNode.attrib['serviceType']
-        self.base = serviceNode.attrib['base']
+    def __init__(self, service_node):
+        self.name = service_node.attrib['name']
+        self.serviceType = service_node.attrib['serviceType']
+        self.base = service_node.attrib['base']
         services = []
-        for child in list(serviceNode):
+        for child in list(service_node):
             services.append(SimpleService(child))
 
         self.services = services
@@ -194,11 +192,11 @@ def get_latest_access_url(catalog, access_method):
 
     """
 
-    latestCat = get_latest_cat(catalog)
-    if latestCat != "":
-        if len(latestCat.datasets.keys()) == 1:
-            latestDs = latestCat.datasets[latestCat.datasets.keys()[0]]
-            return latestDs.accessUrls[access_method]
+    latest_cat = get_latest_cat(catalog)
+    if latest_cat != "":
+        if len(latest_cat.datasets.keys()) == 1:
+            latest_ds = latest_cat.datasets[latest_cat.datasets.keys()[0]]
+            return latest_ds.accessUrls[access_method]
         else:
             print('ERROR: More than one access url matching the requested '
                   'access method...clearly this is an error')

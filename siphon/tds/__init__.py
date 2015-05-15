@@ -6,4 +6,3 @@ __all__ = ['TDSCatalog', 'get_latest_access_url']
 __all__.extend(catalog_util.__all__)
 
 del catalog_util
-
