@@ -30,7 +30,7 @@ install:
 
 script:
   - if [[ $LINT == true ]]; then
-      flake8 pudl;
+      flake8 siphon;
     else
       nosetests;
     fi

@@ -1,4 +1,4 @@
-from pudl.tds import TDSCatalog
+from siphon.tds import TDSCatalog
 
 
 class TestCatalog(object):

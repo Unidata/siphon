@@ -1,11 +1,10 @@
-# pudl
+# siphon
 
-Python Unidata Data Library
-A collection of Python utilities for interacting with Unidata data
+A collection of Python utilities for downloading data from Unidata data
 technologies.
 
 ## Installtion
 
-    git clone https://github.com/Unidata/pudl.git
-    cd pudl
+    git clone https://github.com/Unidata/siphon.git
+    cd siphon
     python setup.py install

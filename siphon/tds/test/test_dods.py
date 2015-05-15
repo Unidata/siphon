@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-from pudl.tds import get_latest_dods_url
+from siphon.tds import get_latest_dods_url
 
 
 def test_get_latest():

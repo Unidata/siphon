@@ -5,12 +5,12 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name = "pudl",
+    name = "siphon",
     version = "0.2",
     packages = find_packages(),
     author = "Unidata Development Team",
     license = read('LICENSE'),
-    url = "https://github.com/Unidata/pudl",
+    url = "https://github.com/Unidata/siphon",
     test_suite = "nose.collector",
     description = ("A collection of Python utilities for interacting with the"
                                    "Unidata technology stack."),
