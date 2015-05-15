@@ -1,7 +1,8 @@
 from __future__ import print_function
 import xml.etree.ElementTree as ET
+from siphon import __version__ as ver
 
-userAgent = "siphon"
+userAgent = 'siphon (%s)' % ver
 
 
 class TDSCatalog(object):
