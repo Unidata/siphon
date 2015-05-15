@@ -60,6 +60,7 @@ design issues.
 Installation
 ------------
 ::
+
     git clone https://github.com/Unidata/siphon.git
     cd siphon
     python setup.py install
