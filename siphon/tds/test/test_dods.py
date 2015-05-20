@@ -1,11 +1,11 @@
-from datetime import date, timedelta
+import os.path
+import vcr
 from siphon.tds import get_latest_dods_url
 
 
+@vcr.use_cassette(os.path.join(os.path.dirname(__file__), 'fixtures/latest_rap_catalog'))
 def test_get_latest():
-    yesterday = date.today() - timedelta(days=1)
-    datestr = yesterday.strftime('%Y%m%d')
-    base_url = 'http://thredds.ucar.edu/thredds/catalog/nexrad/level2/KFTG/'
-    url = base_url + datestr + '/catalog.xml'
+    url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
+           'grib/NCEP/RAP/CONUS_13km/latest.xml')
     latest_url = get_latest_dods_url(url)
     assert latest_url

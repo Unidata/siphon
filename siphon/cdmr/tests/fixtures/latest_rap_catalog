@@ -1,0 +1,99 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Connection: [close]
+      Host: [thredds-test.unidata.ucar.edu]
+      User-Agent: [siphon (0.2.0+77.gb16ad7c.dirty-py3.4.egg)]
+    method: GET
+    uri: http://thredds-test.unidata.ucar.edu/thredds/catalog/grib/NCEP/RAP/CONUS_13km/latest.xml
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<catalog xmlns=\"\
+        http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\" xmlns:xlink=\"\
+        http://www.w3.org/1999/xlink\" name=\"RR_CONUS_13km_20150519_0300.grib2\"\
+        \ version=\"1.0.1\">\r\n  <service name=\"VirtualServices\" serviceType=\"\
+        Compound\" base=\"\">\r\n    <service name=\"opendap\" serviceType=\"OPENDAP\"\
+        \ base=\"/thredds/dodsC/\" />\r\n    <service name=\"wcs\" serviceType=\"\
+        WCS\" base=\"/thredds/wcs/\" />\r\n    <service name=\"wms\" serviceType=\"\
+        WMS\" base=\"/thredds/wms/\" />\r\n    <service name=\"ncss\" serviceType=\"\
+        NetcdfSubset\" base=\"/thredds/ncss/\" />\r\n    <service name=\"cdmremote\"\
+        \ serviceType=\"CdmRemote\" base=\"/thredds/cdmremote/\" />\r\n    <service\
+        \ name=\"ncml\" serviceType=\"NCML\" base=\"/thredds/ncml/\" />\r\n    <service\
+        \ name=\"uddc\" serviceType=\"UDDC\" base=\"/thredds/uddc/\" />\r\n    <service\
+        \ name=\"iso\" serviceType=\"ISO\" base=\"/thredds/iso/\" />\r\n  </service>\r\
+        \n  <service name=\"fullServices\" serviceType=\"Compound\" base=\"\">\r\n\
+        \    <service name=\"opendap\" serviceType=\"OPENDAP\" base=\"/thredds/dodsC/\"\
+        \ />\r\n    <service name=\"HTTPServer\" serviceType=\"HTTPServer\" base=\"\
+        /thredds/fileServer/\" />\r\n    <service name=\"wcs\" serviceType=\"WCS\"\
+        \ base=\"/thredds/wcs/\" />\r\n    <service name=\"wms\" serviceType=\"WMS\"\
+        \ base=\"/thredds/wms/\" />\r\n    <service name=\"ncss\" serviceType=\"NetcdfSubset\"\
+        \ base=\"/thredds/ncss/\" />\r\n    <service name=\"cdmremote\" serviceType=\"\
+        CdmRemote\" base=\"/thredds/cdmremote/\" />\r\n    <service name=\"ncml\"\
+        \ serviceType=\"NCML\" base=\"/thredds/ncml/\" />\r\n    <service name=\"\
+        uddc\" serviceType=\"UDDC\" base=\"/thredds/uddc/\" />\r\n    <service name=\"\
+        iso\" serviceType=\"ISO\" base=\"/thredds/iso/\" />\r\n  </service>\r\n  <dataset\
+        \ name=\"RR_CONUS_13km_20150519_0300.grib2\" harvest=\"true\" ID=\"grib/NCEP/RAP/CONUS_13km/RR_CONUS_13km_20150519_0300.grib2\"\
+        \ urlPath=\"grib/NCEP/RAP/CONUS_13km/RR_CONUS_13km_20150519_0300.grib2\">\r\
+        \n    <documentation type=\"summary\">Single reference time Grib Collection</documentation>\r\
+        \n    <metadata inherited=\"true\">\r\n      <serviceName>fullServices</serviceName>\r\
+        \n      <authority>edu.ucar.unidata</authority>\r\n      <dataType>GRID</dataType>\r\
+        \n      <dataFormat>GRIB-2</dataFormat>\r\n      <documentation type=\"summary\"\
+        >Horizontal = 337 by 451 points, resolution 13.55 km, LambertConformal projection.</documentation>\r\
+        \n      <documentation type=\"summary\">NCEP Rapid Refresh (RR / RAP)) Model:\
+        \ frequently updated short-range weather forecasts. Replaced the Rapid Update\
+        \ Cycle (RUC/RUC2) on 05 May 2012 12Z. Model runs are made hourly, with analysis\
+        \ and hourly forecasts out to 3 hours; on the 0, 3, 6, 9, 12, 15, 18, and\
+        \ 21Z runs, the hourly forecasts go out to 12 hours</documentation>\r\n  \
+        \    <documentation xlink:href=\"http://rapidrefresh.noaa.gov/\" xlink:title=\"\
+        Earth System Research Laboratory (ESRL)\" />\r\n      <documentation xlink:href=\"\
+        http://www.emc.ncep.noaa.gov/modelinfo/index.html\" xlink:title=\"NCEP Model\
+        \ documentation\" />\r\n      <documentation type=\"rights\">Freely available</documentation>\r\
+        \n      <documentation type=\"processing_level\">Transmitted through Unidata\
+        \ Internet Data Distribution.</documentation>\r\n      <documentation type=\"\
+        processing_level\">Read by CDM Grib Collection.</documentation>\r\n      <documentation\
+        \ xlink:href=\"http://www.nco.ncep.noaa.gov/pmb/nwprod/analysis/\" xlink:title=\"\
+        NCEP/NWS Model Analyses and Forecasts page\" />\r\n      <documentation xlink:href=\"\
+        http://www.unidata.ucar.edu/data/index.html#model\" xlink:title=\"Unidata\
+        \ IDD Model Data page\" />\r\n      <documentation type=\"Reference Time\"\
+        >2015-05-19T03:00:00Z</documentation>\r\n      <creator>\r\n        <name\
+        \ vocabulary=\"DIF\">DOC/NOAA/NWS/NCEP</name>\r\n        <contact url=\"http://www.ncep.noaa.gov/\"\
+        \ email=\"http://www.ncep.noaa.gov/mail_liaison.shtml\" />\r\n      </creator>\r\
+        \n      <creator>\r\n        <name vocabulary=\"ADN\">National Oceanic and\
+        \ Atmospheric Administration (NOAA)/National Weather Service (NWS)\r\n   \
+        \       National Center for Environmental Prediction (NCEP)</name>\r\n   \
+        \     <contact url=\"http://www.ncep.noaa.gov/\" email=\"http://www.ncep.noaa.gov/mail_liaison.shtml\"\
+        \ />\r\n      </creator>\r\n      <property name=\"Originating_or_generating_Center\"\
+        \ value=\"US National Weather Service, National Centres for Environmental\
+        \ Prediction (NCEP)\" />\r\n      <property name=\"Originating_or_generating_Subcenter\"\
+        \ value=\"0\" />\r\n      <property name=\"GRIB_table_version\" value=\"2,1\"\
+        \ />\r\n      <property name=\"Type_of_generating_process\" value=\"Forecast\"\
+        \ />\r\n      <property name=\"Analysis_or_forecast_generating_process_identifier_defined_by_originating_centre\"\
+        \ value=\"RUC Model from FSL (isentropic; scale: 20km at 40N)\" />\r\n   \
+        \   <property name=\"file_format\" value=\"GRIB-2\" />\r\n      <property\
+        \ name=\"Conventions\" value=\"CF-1.6\" />\r\n      <property name=\"history\"\
+        \ value=\"Read using CDM IOSP GribCollection v3\" />\r\n      <property name=\"\
+        featureType\" value=\"GRID\" />\r\n      <publisher>\r\n        <name vocabulary=\"\
+        DIF\">UCAR/UNIDATA</name>\r\n        <contact url=\"http://www.unidata.ucar.edu/\"\
+        \ email=\"support@unidata.ucar.edu\" />\r\n      </publisher>\r\n      <publisher>\r\
+        \n        <name vocabulary=\"ADN\">University Corporation for Atmospheric\
+        \ Research (UCAR)/Unidata</name>\r\n        <contact url=\"http://www.unidata.ucar.edu/\"\
+        \ email=\"support@unidata.ucar.edu\" />\r\n      </publisher>\r\n      <geospatialCoverage>\r\
+        \n        <northsouth>\r\n          <start>16.28100013732909</start>\r\n \
+        \         <size>39.27113383800054</size>\r\n          <units>degrees_north</units>\r\
+        \n        </northsouth>\r\n        <eastwest>\r\n          <start>-139.9143544245699</start>\r\
+        \n          <size>82.75845401954362</size>\r\n          <units>degrees_east</units>\r\
+        \n        </eastwest>\r\n      </geospatialCoverage>\r\n      <timeCoverage>\r\
+        \n        <start>2015-05-19T03:00:00Z</start>\r\n        <end>2015-05-19T21:00:00Z</end>\r\
+        \n      </timeCoverage>\r\n      <variableMap xlink:href=\"/thredds/metadata/grib/NCEP/RAP/CONUS_13km/RR_CONUS_13km_20150519_0300.grib2?metadata=variableMap\"\
+        \ xlink:title=\"variables\" />\r\n    </metadata>\r\n  </dataset>\r\n</catalog>\r\
+        \n"}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [close]
+      Content-Language: [en-US]
+      Content-Type: [application/xml;charset=UTF-8]
+      Date: ['Tue, 19 May 2015 04:23:39 GMT']
+      Server: [Apache]
+      Vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+version: 1

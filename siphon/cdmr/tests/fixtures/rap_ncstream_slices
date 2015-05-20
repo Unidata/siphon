@@ -1,0 +1,25 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Connection: [close]
+      Host: [thredds-dev.unidata.ucar.edu]
+      User-Agent: [Siphon v0.2.0+78.ga30e247.dirty-py3.4.egg CDMRemote Reader]
+    method: GET
+    uri: http://thredds-dev.unidata.ucar.edu/thredds/cdmremote/grib/NCEP/RAP/CONUS_13km/RR_CONUS_13km_20150518_1200.grib2/GC?var=Temperature_isobaric(1:1,1:2,4:6,8:11)&req=data
+  response:
+    body:
+      string: !!binary |
+        q+zOujQKFFRlbXBlcmF0dXJlX2lzb2JhcmljEAUaGAoECAEQAQoECAEQAgoECAQQAwoECAgQBCgC
+        YENIiLRDSIi0Q0iItENIqLRDSKi0Q0iotENIqLRDSKi0Q0iotENIqLRDSMi0Q0jItENO0UhDTtFI
+        Q07RSENO0UhDTtFIQ07RSENO0UhDTtFIQ06xSENO0UhDTtFIQ07RSA==
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [close]
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Wed, 20 May 2015 15:47:37 GMT']
+      Server: [Apache]
+      Vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+version: 1

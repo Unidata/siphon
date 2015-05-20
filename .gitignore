@@ -33,6 +33,7 @@ develop-eggs
 lib
 lib64
 __pycache__
+.ipynb_checkpoints/
 
 # Installer logs
 pip-log.txt

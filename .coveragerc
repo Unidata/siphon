@@ -1,2 +1,2 @@
 [run]
-omit = siphon/_version.py
+omit = siphon/_version.py,siphon/cdmr/ncStream_pb2.py

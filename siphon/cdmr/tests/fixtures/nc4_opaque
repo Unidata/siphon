@@ -1,0 +1,48 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Connection: [close]
+      Host: [localhost]
+      User-Agent: [Siphon v0.2.0+78.ga30e247.dirty-py3.4.egg CDMRemote Reader]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/tst/tst_opaques.nc?req=header
+  response:
+    body:
+      string: !!binary |
+        rezO2noKPmh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC90aHJlZGRzL2NkbXJlbW90ZS9uYzQvdHN0L3Rz
+        dF9vcGFxdWVzLm5jIjYKABIHCgNkaW0QAxopCgN2YXIQDRoHCgNkaW0QAyIXCgtfQ2h1bmtTaXpl
+        cxADGAEiBAAAAAMoAQ==
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [close]
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Wed, 20 May 2015 15:36:42 GMT']
+      Server: [Apache]
+      Vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Connection: [close]
+      Host: [localhost]
+      User-Agent: [Siphon v0.2.0+78.ga30e247.dirty-py3.4.egg CDMRemote Reader]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/tst/tst_opaques.nc?var=var&req=data
+  response:
+    body:
+      string: !!binary |
+        q+zOug8KA3ZhchANGgQKAhADKAIDFAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [close]
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Wed, 20 May 2015 15:36:42 GMT']
+      Server: [Apache]
+      Vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+version: 1
+
