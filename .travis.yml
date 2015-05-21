@@ -22,8 +22,12 @@ notifications:
 before_install:
   - if [[ $LINT == true ]]; then
       pip install flake8 pep8-naming;
-    elif [[ $NOSE_WITH_COVERAGE == y ]]; then
-      pip install coverage;
+    else
+      pip install -r requirements.txt;
+      pip install vcrpy;
+      if [[ $NOSE_WITH_COVERAGE == y ]]; then
+        pip install coverage;
+      fi;
     fi
 
 install:

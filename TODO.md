@@ -1,0 +1,16 @@
+Things to get done before next release:
+- [ ] TDSCatalog and co. design review
+- [x] Refactor CDMR support
+  - [x] CDMR web-api support should be stand-alone
+  - [x] NCStream parsing -- as good as justified without need for more
+- [ ] Complete implementation of spec
+  - [x] unsigned handling
+  - [x] compression
+  - [ ] structure
+  - [ ] seq
+  - [x] opaque ?
+  - [x] enums
+- [x] Profile and optimize
+- [x] Benchmark against opendap and local netcdf
+- [x] Enable Travis
+- [ ] Comment and document code (once API is more stable)

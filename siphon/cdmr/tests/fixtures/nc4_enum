@@ -1,0 +1,50 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Connection: [close]
+      Host: [localhost]
+      User-Agent: [Siphon v0.2.0+78.ga30e247.dirty-py3.4.egg CDMRemote Reader]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/tst/test_enum_type.nc?req=header
+  response:
+    body:
+      string: !!binary |
+        rezO2u8CCkFodHRwOi8vbG9jYWxob3N0OjgwODAvdGhyZWRkcy9jZG1yZW1vdGUvbmM0L3RzdC90
+        ZXN0X2VudW1fdHlwZS5uYyKnAgoAEgsKB3N0YXRpb24QBRpICg1wcmltYXJ5X2Nsb3VkEAoaCwoH
+        c3RhdGlvbhAFIhkKCl9GaWxsVmFsdWUQABgBKgdNaXNzaW5nOg1jbG91ZF9jbGFzc190OssBCg1j
+        bG91ZF9jbGFzc190EgkIABIFQ2xlYXISEAgBEgxDdW11bG9uaW1idXMSCwgCEgdTdHJhdHVzEhEI
+        AxINU3RyYXRvY3VtdWx1cxILCAQSB0N1bXVsdXMSDwgFEgtBbHRvc3RyYXR1cxIQCAYSDE5pbWJv
+        c3RyYXR1cxIPCAcSC0FsdG9jdW11bHVzEhAICBIMQ2lycm9zdHJhdHVzEhAICRIMQ2lycm9jdW11
+        bHVzEgoIChIGQ2lycnVzEgwI/wESB01pc3NpbmcoAQ==
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [close]
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Wed, 20 May 2015 15:36:42 GMT']
+      Server: [Apache]
+      Vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Connection: [close]
+      Host: [localhost]
+      User-Agent: [Siphon v0.2.0+78.ga30e247.dirty-py3.4.egg CDMRemote Reader]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/tst/test_enum_type.nc?var=primary_cloud&req=data
+  response:
+    body:
+      string: !!binary |
+        q+zOuhkKDXByaW1hcnlfY2xvdWQQChoECgIQBSgCBQACAAH/
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [close]
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Wed, 20 May 2015 15:36:42 GMT']
+      Server: [Apache]
+      Vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+version: 1
