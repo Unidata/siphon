@@ -4,6 +4,11 @@ language: python
 
 sudo: false
 
+addons:
+  apt:
+    packages:
+    - pandoc
+
 matrix:
   include:
     - python: 2.7
