@@ -9,33 +9,52 @@ matrix:
     - python: 2.7
     - python: 2.7
       env: LINT=true
+    - python: 2.7
+      env: DOCBUILD=true
+    - python: 2.7
+      env: EXAMPLES=true
     - python: 3.2
     - python: 3.3
     - python: 3.4
       env: NOSE_WITH_COVERAGE=y NOSE_COVER_PACKAGE=siphon
     - python: 3.4
       env: LINT=true
-
-notifications:
-  email: false
+    - python: 3.4
+      env: EXAMPLES=true
 
 before_install:
   - if [[ $LINT == true ]]; then
       pip install flake8 pep8-naming;
     else
       pip install -r requirements.txt;
-      pip install vcrpy;
-      if [[ $NOSE_WITH_COVERAGE == y ]]; then
-        pip install coverage;
+      if [[ $DOCBUILD == true || $EXAMPLES == true ]]; then
+        pip install -r docs/requirements.txt;
+      else
+        pip install vcrpy;
+        pip install nose;
+        if [[ $NOSE_WITH_COVERAGE == y ]]; then
+          pip install coverage;
+        fi;
       fi;
     fi
 
 install:
-  - python setup.py install
+  - if [[ $LINT != true ]]; then
+      python setup.py install;
+    fi
+  - if [[ $EXAMPLES == true ]]; then
+      python setup.py examples;
+    fi
 
 script:
   - if [[ $LINT == true ]]; then
       flake8 siphon;
+    elif [[ $DOCBUILD == true ]]; then
+      cd docs;
+      make html;
+    elif [[ $EXAMPLES == true ]]; then
+      cd examples;
+      python test_examples.py;
     else
       nosetests;
     fi
