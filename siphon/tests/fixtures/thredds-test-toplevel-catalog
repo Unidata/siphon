@@ -1,0 +1,37 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Connection: [close]
+      Host: [thredds-test.unidata.ucar.edu]
+      User-Agent: [siphon (0.2.0+17.g81655ef.dirty)]
+    method: GET
+    uri: http://thredds-test.unidata.ucar.edu/thredds/catalog.xml
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<catalog xmlns=\"\
+        http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\" xmlns:xlink=\"\
+        http://www.w3.org/1999/xlink\" name=\"Unidata THREDDS Data Server\" version=\"\
+        1.0.1\">\r\n  <dataset name=\"Realtime data from IDD\">\r\n    <catalogRef\
+        \ xlink:href=\"idd/forecastModels.xml\" xlink:title=\"Forecast Model Data\"\
+        \ name=\"\" />\r\n    <catalogRef xlink:href=\"idd/forecastProdsAndAna.xml\"\
+        \ xlink:title=\"Forecast Products and Analyses\" name=\"\" />\r\n    <catalogRef\
+        \ xlink:href=\"idd/obsData.xml\" xlink:title=\"Observation Data\" name=\"\"\
+        \ />\r\n    <catalogRef xlink:href=\"idd/radars.xml\" xlink:title=\"Radar\
+        \ Data\" name=\"\" />\r\n    <catalogRef xlink:href=\"idd/satellite.xml\"\
+        \ xlink:title=\"Satellite Data\" name=\"\" />\r\n  </dataset>\r\n  <dataset\
+        \ name=\"Other Unidata Data\">\r\n    <catalogRef xlink:href=\"casestudies/catalog.xml\"\
+        \ xlink:title=\"Unidata case studies\" name=\"\" />\r\n  </dataset>\r\n  <dataset\
+        \ name=\"Test Datasets\">\r\n    <catalogRef xlink:href=\"testDatasets.xml\"\
+        \ xlink:title=\"Test Datasets\" name=\"\" />\r\n    <catalogRef xlink:href=\"\
+        testPointDatasets.xml\" xlink:title=\"Test Point Datasets\" name=\"\" />\r\
+        \n  </dataset>\r\n</catalog>\r\n"}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [close]
+      Content-Language: [en-US]
+      Content-Type: [application/xml;charset=UTF-8]
+      Date: ['Wed, 27 May 2015 15:49:40 GMT']
+      Server: [Apache]
+      Vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+version: 1

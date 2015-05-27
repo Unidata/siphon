@@ -18,7 +18,7 @@ HEAD_VERSION_DEFAULT = 0
 
 @recorder.use_cassette('latest_rap_catalog')
 def get_test_latest_url(query=None):
-    from siphon.tds import TDSCatalog
+    from siphon.catalog import TDSCatalog
     cat = TDSCatalog('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
                      'grib/NCEP/RAP/CONUS_13km/latest.xml')
     url = list(cat.datasets.values())[0].access_urls['CdmRemote']

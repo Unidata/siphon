@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 import xml.etree.ElementTree as ET
-from .._version import get_versions
+from ._version import get_versions
 
 userAgent = 'siphon (%s)' % get_versions()['version']
 
