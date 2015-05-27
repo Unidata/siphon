@@ -76,4 +76,11 @@ Important Links
 Dependencies
 ------------
 
-None
+protobuf==3.0.0a1
+
+Developer Dependencies
+----------------------
+
+nose
+vcrpy
+flake8

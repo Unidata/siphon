@@ -21,7 +21,7 @@ def get_test_latest_url(query=None):
     from siphon.tds import TDSCatalog
     cat = TDSCatalog('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
                      'grib/NCEP/RAP/CONUS_13km/latest.xml')
-    url = list(cat.datasets.values())[0].accessUrls['CdmRemote']
+    url = list(cat.datasets.values())[0].access_urls['CdmRemote']
     if query:
         url += '?' + query
     return url
