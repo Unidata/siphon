@@ -37,6 +37,7 @@ def read_ncstream_messages(fobj):
             log.debug('Data chunk')
             data = stream.Data()
             data.ParseFromString(read_block(fobj))
+            log.debug('Data: %s', str(data))
             if data.dataType in (stream.STRING, stream.OPAQUE) or data.vdata:
                 log.debug('Reading string/opaque')
                 dt = _dtypeLookup.get(data.dataType, np.object_)
@@ -45,10 +46,17 @@ def read_ncstream_messages(fobj):
                 messages.append(blocks)
             elif data.dataType in _dtypeLookup:
                 log.debug('Reading array data')
-                data_block = read_numpy_block(fobj, data)
+                data_block = make_array(data, read_block(fobj))
                 messages.append(data_block)
-            elif data.dataType in (stream.STRUCTURE, stream.SEQUENCE):
+            elif data.dataType == stream.STRUCTURE:
                 log.debug('Reading structure')
+                sd = stream.StructureData()
+                sd.ParseFromString(read_block(fobj))
+                log.debug('StructureData: %s', str(sd))
+                data_block = make_array(data, sd)
+                messages.append(data_block)
+            elif data.dataType == stream.SEQUENCE:
+                log.debug('Reading sequence')
                 blocks = []
                 magic = read_magic(fobj)
                 while magic != MAGIC_VEND:
@@ -59,8 +67,8 @@ def read_ncstream_messages(fobj):
                     magic = read_magic(fobj)
                 messages.append((data, blocks))
             else:
-                raise NotImplementedError("Don't know how to handle data type: %d" %
-                                          data.dataType)
+                raise NotImplementedError("Don't know how to handle data type: {0}".format(
+                    data.dataType))
         elif magic == MAGIC_ERR:
             err = stream.Error()
             err.ParseFromString(read_block(fobj))
@@ -80,18 +88,37 @@ def read_block(fobj):
     return fobj.read(num)
 
 
-def read_numpy_block(fobj, data_header):
-    dt = data_type_to_numpy(data_header.dataType)
-    dt.newbyteorder('>' if data_header.bigend else '<')
+def make_array(data_header, buf):
+    """Handles returning an numpy array from serialized ncstream data.
+
+    Can handle taking a data header and either bytes containing data or a StructureData
+    instance, which will have binary data as well as some additional information.
+
+    data_header : Data
+    buf : bytes or StructureData
+    """
+    # Structures properly encode endian, but regular data is big endian
+    if data_header.dataType == stream.STRUCTURE:
+        struct_header = buf
+        buf = struct_header.data
+        endian = '>' if data_header.bigend else '<'
+        dt = np.dtype([(endian, np.void, struct_header.rowLength)])
+    else:
+        endian = '>'
+        dt = data_type_to_numpy(data_header.dataType)
+
+    dt = dt.newbyteorder(endian)
+
+    # Figure out the shape of the resulting array
     shape = tuple(r.size for r in data_header.section.range)
 
-    buf = read_block(fobj)
+    # Handle decompressing the bytes
     if data_header.compress == stream.DEFLATE:
         buf = zlib.decompress(buf)
         assert len(buf) == data_header.uncompressedSize
     elif data_header.compress != stream.NONE:
-        raise NotImplementedError('Compression type %d not implemented!' %
-                                  data_header.compress)
+        raise NotImplementedError('Compression type {0} not implemented!'.format(
+            data_header.compress))
 
     return np.frombuffer(bytearray(buf), dtype=dt).reshape(*shape)
 
@@ -112,22 +139,27 @@ def data_type_to_numpy(datatype, unsigned=False):
 
     if unsigned:
         basic_type = basic_type.replace('i', 'u')
-    return np.dtype('>' + basic_type)
+    return np.dtype('=' + basic_type)
 
 
 def struct_to_dtype(struct):
-    fields = [(var.name, data_type_to_numpy(var.dataType, var.unsigned))
+    """Convert a Structure specification to a numpy structured dtype."""
+    # str() around name necessary because protobuf gives unicode names, but dtype doesn't
+    # support them on Python 2
+    fields = [(str(var.name), data_type_to_numpy(var.dataType, var.unsigned))
               for var in struct.vars]
     for s in struct.structs:
         fields.append((s.name, struct_to_dtype(s)))
 
-    return np.dtype(fields)
+    log.debug('Structure fields: %s', fields)
+    dt = np.dtype(fields)
+    return dt
 
 
 def unpack_variable(var):
     # If we actually get a structure instance, handle turning that into a variable
     if var.dataType == stream.STRUCTURE:
-        return None, 'Structure', struct_to_dtype(var)
+        return None, struct_to_dtype(var), 'Structure'
     elif var.dataType == stream.SEQUENCE:
         log.warning('Sequence support not implemented!')
 

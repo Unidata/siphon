@@ -153,21 +153,31 @@ class Variable(AttributeContainer):
             return self._data[ind]
         else:
             ind, keep_dims = self._process_indices(ind)
+
+            # Get the data for our request. We assume we only get 1 message.
             messages = self.dataset.cdmr.fetch_data(**{self.path: ind})
             assert len(messages) == 1
+            arr = messages[0]
+
+            # Get the proper byte ordering.
+            # We handle structures by looking for a structured dtype. By convention,
+            # this has a single field which is has a void type and the byte order encoded
+            # in its name. This is because we can't retrieve a useful byte order from
+            # any of these flexible types.
+            byteorder = arr.dtype.names[0] if arr.dtype.fields else arr.dtype.byteorder
+
+            # Set the dtype on the returned data to our own dtype, with byte ordering set
+            # based on what was returned. This allows us to handle structures.
+            arr.dtype = self.dtype.newbyteorder(byteorder)
 
             # Need to handle removing dimensions that have had an index
             # applied -- the protocol returns them with size 1, but numpy
             # behavior removes them
-            arr = messages[0]
             if keep_dims:
                 ret = arr.reshape(*[arr.shape[i] for i in keep_dims])
             else:
                 ret = arr.squeeze()
 
-            if self.dtype.byteorder != '|':
-                old_dtype = arr.dtype
-                ret.dtype = self.dtype.newbyteorder(old_dtype.byteorder)
             return ret
 
     def _process_indices(self, ind):
