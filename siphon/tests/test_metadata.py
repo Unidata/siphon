@@ -1,0 +1,517 @@
+from siphon.metadata import TDSCatalogMetadata, _SimpleTypes, _ComplexTypes
+from nose.tools import assert_dict_equal, assert_equal
+import xml.etree.ElementTree as ET
+
+#
+# tested:
+#
+# threddsMetadataGroup:
+# =====================
+#
+# element_name="documentation" type="documentationType"
+# element_name="serviceName"   type="xsd:string"
+# element_name="authority"     type="xsd:string"
+#
+# simple types:
+# =============
+# name="upOrDown"
+# name="dataFormatTypes"
+# name="dataTypes"
+#
+# complex types:
+# ==============
+# name="spatialRange">
+# type="controlledVocabulary"
+# name="dateTypeFormatted"#
+# name="sourceType"
+# name="timeCoverageType">
+#
+# ref'd elements
+# ==============
+#
+# element_name="metadata"
+# element_name="geospatialCoverage"
+# element_name="property":
+# element_name="contributor"
+# element_name="variable"
+# element_name="variables"
+# element_name="variableMap"
+# element_name="dataSize"
+# element_name="publisher"
+# element_name="creator"
+# element_name="keyword"
+# element_name="project"
+# element_name="dataFormat"
+# element_name="date"
+# element_name="dataType"
+# element_name="date"
+# element_name="timeCoverage"
+
+
+class TestSimpleTypes(object):
+
+    @classmethod
+    def setup_class(cls):
+        cls.st = _SimpleTypes()
+
+    def test_up_or_down_valid(self):
+        xml = '<geospatialCoverage zpositive="down" />'
+        expected = {"zpositive": "down"}
+        element = ET.fromstring(xml)
+        assert element.attrib
+        val = self.st.handle_upOrDown(element)
+        assert_dict_equal(val, expected)
+
+    def test_data_format_type(self):
+        xml = '<dataFormat>NcML</dataFormat>'
+        expected = {"dataFormat": "NcML"}
+        element = ET.fromstring(xml)
+        assert not element.attrib
+        assert element.text
+        val = self.st.handle_dataFormat(element)
+        assert_dict_equal(expected, val)
+
+    def test_data_type(self):
+        xml = '<dataType>GRID</dataType>'
+        expected = {"dataType": "GRID"}
+        element = ET.fromstring(xml)
+
+        assert not element.attrib
+        assert element.text
+        val = self.st.handle_dataType(element)
+        assert_dict_equal(expected, val)
+
+
+class TestComplexTypes(object):
+
+    @classmethod
+    def setup_class(cls):
+        cls.st = _ComplexTypes()
+
+    def test_spatial_range_valid(self):
+        xml = '<northsouth><start>44.1</start>' \
+              '<size>20.6</size><units>degrees_north</units>' \
+              '</northsouth>'
+        expected = {"start": 44.1,
+                    "size": 20.6,
+                    "units": "degrees_north"}
+        element = ET.fromstring(xml)
+        actual = {}
+        for child in element:
+            actual.update(self.st.handle_spatialRange(element))
+
+        assert_dict_equal(actual, expected)
+
+    def test_controlled_vocabulary(self):
+        xml = '<name vocabulary="MyVocabName">' \
+              'NOAA and NCEP</name>'
+        expected = {"vocabulary": "MyVocabName",
+                    "name": "NOAA and NCEP"}
+        element = ET.fromstring(xml)
+        actual = self.st.handle_controlledVocabulary(element)
+        assert_dict_equal(expected, actual)
+
+    def test_date_type_formatted(self):
+        xml = '<start format="yyyy DDD" type="created">1999 189</start>'
+        expected = {"format": "yyyy DDD",
+                    "type": "created",
+                    "value": "1999 189"}
+        element = ET.fromstring(xml)
+        actual = self.st.handle_dateTypeFormatted(element)
+        assert_dict_equal(expected, actual)
+
+    def test_source_type(self):
+        xml = '<publisher><name vocabulary="DIF">UCAR/NCAR/CDP</name>' \
+              '<contact url="http://dataportal.ucar.edu" ' \
+              'email="cdp@ucar.edu"/></publisher>'
+
+        element = ET.fromstring(xml)
+        expected = {"vocabulary": "DIF",
+                    "name": "UCAR/NCAR/CDP",
+                    "email": "cdp@ucar.edu",
+                    "url": "http://dataportal.ucar.edu"}
+        actual = self.st.handle_sourceType(element)
+        assert_dict_equal(expected, actual)
+
+    def test_time_coverage_type1(self):
+        xml = '<timeCoverage><end>present</end><duration>10 days</duration>' \
+            '<resolution>15 minutes</resolution></timeCoverage>'
+        element = ET.fromstring(xml)
+        expected = {"end": "present",
+                    "duration": "10 days",
+                    "resolution": "15 minutes"}
+        actual = self.st.handle_timeCoverageType(element)
+        assert_dict_equal(expected, actual)
+
+    def test_time_coverage_type2(self):
+        xml = '<timeCoverage><start>1999-11-16T12:00:00</start>' \
+            '<end>present</end></timeCoverage>'
+        element = ET.fromstring(xml)
+        expected = {"end": "present",
+                    "start": "1999-11-16T12:00:00"}
+        actual = self.st.handle_timeCoverageType(element)
+        assert_dict_equal(expected, actual)
+
+    def test_time_coverage_type3(self):
+        xml = '<timeCoverage><start>1999-11-16T12:00:00</start>' \
+            '<duration>P3M</duration></timeCoverage>'
+        element = ET.fromstring(xml)
+        expected = {"duration": "P3M",
+                    "start": "1999-11-16T12:00:00"}
+        actual = self.st.handle_timeCoverageType(element)
+        assert_dict_equal(expected, actual)
+
+    def test_variable(self):
+        xml = '<variable name="wdir" vocabulary_name="Wind Direction" ' \
+              'units= "degrees">Wind Direction @ surface</variable>'
+        element = ET.fromstring(xml)
+        expected = {"name": "wdir",
+                    "vocabulary_name": "Wind Direction",
+                    "units": "degrees",
+                    "description": "Wind Direction @ surface"}
+        actual = self.st.handle_variable(element)
+        assert_dict_equal(expected, actual)
+
+    def test_variable2(self):
+        xml = '<variable name="wdir"></variable>'
+        element = ET.fromstring(xml)
+        expected = {"name": "wdir"}
+        actual = self.st.handle_variable(element)
+        assert_dict_equal(expected, actual)
+
+    def test_variable3(self):
+        xml = '<variable name="wdir">Wind Direction @ surface</variable>'
+        element = ET.fromstring(xml)
+        expected = {"name": "wdir",
+                    "description": "Wind Direction @ surface"}
+        actual = self.st.handle_variable(element)
+        assert_dict_equal(expected, actual)
+
+    def test_variable_map(self):
+        xml = '<variableMap xmlns:xlink="http://www.w3.org/1999/xlink" ' \
+              'xlink:href="../standardQ/Eta.xml" />'
+        element = ET.fromstring(xml)
+        expected = {
+            "{http://www.w3.org/1999/xlink}href": "../standardQ/Eta.xml"}
+        actual = self.st.handle_variableMap(element)
+        assert_dict_equal(expected, actual)
+
+    def test_variable_map2(self):
+        xml = '<variableMap xmlns:xlink="http://www.w3.org/1999/xlink" ' \
+              'xlink:href="../standardQ/Eta.xml" xlink:title="variables"/>'
+        element = ET.fromstring(xml)
+        expected = {"{http://www.w3.org/1999/xlink}href":
+                    "../standardQ/Eta.xml",
+                    "{http://www.w3.org/1999/xlink}title":
+                        "variables"}
+        actual = self.st.handle_variableMap(element)
+        assert_dict_equal(expected, actual)
+
+    def test_variables(self):
+        xml = '<variables vocabulary="CF-1.0">' \
+              '<variable name="wv" vocabulary_name="Wind Speed" ' \
+              'units="m/s">Wind Speed @ surface</variable>' \
+              '<variable name="wdir" vocabulary_name="Wind Direction" ' \
+              'units= "degrees">Wind Direction @ surface</variable>' \
+              '<variable name="o3c" vocabulary_name="Ozone Concentration"' \
+              ' units="g/g">Ozone Concentration @ surface</variable>' \
+              '</variables>'
+        element = ET.fromstring(xml)
+        actual = self.st.handle_variables(element)
+        assert "vocabulary" in actual
+        assert actual["vocabulary"] == "CF-1.0"
+        assert "variables" in actual
+        assert len(actual["variables"]) == 3
+        assert "variableMaps" not in actual
+
+    def test_variables2(self):
+        xml = '<variables vocabulary="GRIB-NCEP" ' \
+              ' xmlns:xlink="http://www.w3.org/1999/xlink" ' \
+              'xlink:href="http://www.unidata.ucar.edu/GRIB-NCEPtable2.xml">' \
+              '<variableMap xlink:href="../standardQ/Eta.xml" />' \
+              '</variables>'
+        element = ET.fromstring(xml)
+        actual = self.st.handle_variables(element)
+        assert "vocabulary" in actual
+        assert actual["vocabulary"] == "GRIB-NCEP"
+        assert "variables" not in actual
+        assert "variableMaps" in actual
+        assert len(actual["variableMaps"]) == 1
+
+    def test_data_size(self):
+        xml = '<dataSize units="Kbytes">123</dataSize>'
+        element = ET.fromstring(xml)
+        actual = self.st.handle_dataSize(element)
+        assert "units" in actual
+        assert actual["units"] == "Kbytes"
+        assert actual["size"] == 123
+
+
+class TestProperty(object):
+
+    @classmethod
+    def setup_class(cls):
+        xml = '<property name="Conventions" value="CF-1.6" />'
+        element = ET.fromstring(xml)
+        cls.md = TDSCatalogMetadata(element).metadata
+        cls.element_name = "property"
+
+    def test_prop(self):
+        assert self.element_name in self.md
+
+    def test_prop_not_empty(self):
+        for entry in self.md[self.element_name]:
+            assert entry
+
+
+class TestContributor:
+
+    @classmethod
+    def setup_class(cls):
+        xml = '<contributor role="PI">Jane Doe</contributor>'
+        element = ET.fromstring(xml)
+        cls.md = TDSCatalogMetadata(element).metadata
+        cls.element_name = "contributor"
+
+    def test_contributor(self):
+        assert self.element_name in self.md
+
+    def test_contributor_for_role_not_empty(self):
+        for entry in self.md[self.element_name]:
+            assert entry
+
+
+class TestGeospatialCoverage(object):
+
+    @classmethod
+    def setup_class(cls):
+        cls.element_name = "geospatialCoverage"
+
+        xml1 = '<geospatialCoverage zpositive="down">' \
+               '<northsouth>' \
+               '<start>10</start><size>80</size>' \
+               '<resolution>2</resolution>' \
+               '<units>degrees_north</units>' \
+               '</northsouth>' \
+               '<eastwest>' \
+               '<start>-130</start>' \
+               '<size>260</size>' \
+               '<resolution>2</resolution>' \
+               '<units>degrees_east</units>' \
+               '</eastwest>' \
+               '<updown>' \
+               '<start>0</start>' \
+               '<size>22</size>' \
+               '<resolution>0.5</resolution>' \
+               '<units>km</units>' \
+               '</updown>' \
+               '</geospatialCoverage>'
+
+        xml2 = '<geospatialCoverage>' \
+               '<name vocabulary="Thredds">global</name>' \
+               '</geospatialCoverage>'
+
+        cls.xml_warn1 = '<geospatialCoverage crazy="yep">' \
+            '</geospatialCoverage>'
+
+        cls.xml_warn2 = '<geospatialCoverage zpositive="waka-waka">' \
+            '</geospatialCoverage>'
+
+        cls.md1 = TDSCatalogMetadata(ET.fromstring(xml1)).metadata
+        cls.md2 = TDSCatalogMetadata(ET.fromstring(xml2)).metadata
+
+    def test_geospatial_coverage_attr1(self):
+        assert self.element_name in self.md1
+        for entry in self.md1[self.element_name]:
+            assert entry
+
+    def test_geospatial_coverage_attr2(self):
+        # can we detect this:
+        # <geospatialCoverage zpositive="down">
+        if self.md1[self.element_name]:
+            if "zpositive" in self.md1[self.element_name]:
+                possible_values = ["up", "down"]
+                value = self.md1[self.element_name]["zpositive"]
+                assert value in possible_values
+
+
+class TestMetadata(object):
+
+    def _make_element(self, xml_str):
+        return ET.fromstring(xml_str)
+
+    def test_documentation_element_no_type(self):
+        xml = '<documentation>Used in doubled CO2 scenario</documentation>'
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "documentation" in md
+        assert "generic" in md["documentation"]
+        assert len(md["documentation"]["generic"]) > 0
+        for entry in md["documentation"]["generic"]:
+            assert entry != []
+
+    def test_documentation_element_summary(self):
+        xml = '<documentation type="summary"> The SAGE III Ozone Loss and ' \
+              'Validation Experiment (SOLVE) was a measurement campaign ' \
+              'designed to examine the processes controlling ozone levels ' \
+              'at mid- to high high latitudes. Measurements were made in ' \
+              'the Arctic high-latitude region in winter using the NASA ' \
+              'DC-8 and ER-2 aircraft,as well as balloon platforms and ' \
+              'ground-based instruments. </documentation>'
+
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "documentation" in md
+        assert "summary" in md["documentation"]
+        assert len(md["documentation"]["summary"]) > 0
+        for entry in md["documentation"]["summary"]:
+            assert entry != []
+
+    def test_documentation_element_rights(self):
+        xml = '<documentation type="rights"> Users of these data files are ' \
+              'expected  to follow the NASA ESPO Archive guidelines for ' \
+              'use of the SOLVE data, including consulting with the PIs ' \
+              'of the individual measurements  for interpretation and ' \
+              'credit.</documentation>'
+
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "documentation" in md
+        assert "rights" in md["documentation"]
+        assert len(md["documentation"]["rights"]) > 0
+        for entry in md["documentation"]["rights"]:
+            assert entry != []
+
+    def test_documentation_element_processing_level(self):
+        xml = '<documentation type="processing_level"> Transmitted through ' \
+              'Unidata Internet Data Distribution.</documentation>'
+
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "documentation" in md
+        assert "processing_level" in md["documentation"]
+        assert len(md["documentation"]["processing_level"]) > 0
+        for entry in md["documentation"]["processing_level"]:
+            assert entry != []
+
+    def test_documentation_element_reference_time(self):
+        xml = '<documentation type="Reference Time">' \
+              '2015-05-28T12:00:00Z</documentation>'
+
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "documentation" in md
+        assert "Reference Time" in md["documentation"]
+        assert len(md["documentation"]["Reference Time"]) > 0
+        for entry in md["documentation"]["Reference Time"]:
+            assert entry != []
+
+    def test_documentation_element_xlink(self):
+        xml = '<documentation xmlns:xlink="http://www.w3.org/1999/xlink" ' \
+              'xlink:href="http://espoarchive.nasa.gov/archive/index.html" ' \
+              'xlink:title="Earth Science Project Office Archives"/>'
+
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "documentation" in md
+        assert "xlink" in md["documentation"]
+        assert len(md["documentation"]["xlink"]) > 0
+        for entry in md["documentation"]["xlink"]:
+            assert entry["title"]
+            assert entry["href"]
+
+    def test_service_type(self):
+        xml = '<serviceName>VirtualServices</serviceName>'
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "serviceName" in md
+        md["serviceName"] == "VirtualServices"
+
+    def test_authority(self):
+        xml = '<authority>edu.ucar.unidata</authority>'
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "authority" in md
+        assert_equal(len(md["authority"]), 1)
+        assert_equal(md["authority"][0], "edu.ucar.unidata")
+
+    def test_publisher(self):
+        xml = '<publisher><name vocabulary="DIF">UCAR/UNIDATA</name>' \
+              '<contact url="http://www.unidata.ucar.edu/" ' \
+              'email="support@unidata.ucar.edu"/>' \
+              '</publisher>'
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "publisher" in md
+        assert_equal(len(md["publisher"]), 1)
+        assert_equal(md["publisher"][0]["vocabulary"], "DIF")
+        assert_equal(md["publisher"][0]["name"], "UCAR/UNIDATA")
+        assert_equal(md["publisher"][0]["url"], "http://www.unidata.ucar.edu/")
+        assert_equal(md["publisher"][0]["email"], "support@unidata.ucar.edu")
+
+    def test_creator(self):
+        xml = '<creator><name vocabulary="DIF">DOC/NOAA/NWS/NCEP</name>' \
+              '<contact url="http://www.ncep.noaa.gov/" ' \
+              'email="http://www.ncep.noaa.gov/mail_liaison.shtml"/>' \
+              '</creator>'
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "creator" in md
+        assert_equal(len(md["creator"]), 1)
+        assert_equal(md["creator"][0]["vocabulary"], "DIF")
+        assert_equal(md["creator"][0]["name"], "DOC/NOAA/NWS/NCEP")
+        assert_equal(md["creator"][0]["url"], "http://www.ncep.noaa.gov/")
+        assert_equal(md["creator"][0]["email"],
+                     "http://www.ncep.noaa.gov/mail_liaison.shtml")
+
+    def test_keyword(self):
+        xml = "<keyword>Ocean Biomass</keyword>"
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "keyword" in md
+        assert_equal(len(md["keyword"]), 1)
+        assert_equal(md["keyword"][0]["name"], "Ocean Biomass")
+
+    def test_project(self):
+        xml = '<project vocabulary="DIF">NASA Earth Science Project Office, ' \
+              'Ames Research Center</project>'
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "project" in md
+        assert_equal(len(md["project"]), 1)
+        assert_equal(md["project"][0]["vocabulary"], "DIF")
+        assert_equal(md["project"][0]["name"],
+                     "NASA Earth Science Project Office, Ames Research Center")
+
+    def test_data_format(self):
+        xml = '<dataFormat>GRIB-1</dataFormat>'
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "dataFormat" in md
+        assert_equal(md["dataFormat"], "GRIB-1")
+
+    def test_data_type(self):
+        xml = '<dataType>GRID</dataType>'
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "dataType" in md
+        assert_equal(md["dataType"], "GRID")
+
+    def test_date(self):
+        xml = '<date type="modified">2015-06-11T02:09:52Z</date>'
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "date" in md
+        assert_equal(len(md["date"]), 1)
+        assert_equal(md["date"][0]["type"], "modified")
+        assert_equal(md["date"][0]["value"], "2015-06-11T02:09:52Z")
+
+    def test_time_coverage(self):
+        xml = '<timeCoverage><end>present</end><duration>45 days</duration>' \
+              '</timeCoverage>'
+        element = self._make_element(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert "timeCoverage" in md
+        assert_equal(len(md["timeCoverage"]), 1)
+        assert_equal(md["timeCoverage"][0]["end"], "present")
+        assert_equal(md["timeCoverage"][0]["duration"], "45 days")

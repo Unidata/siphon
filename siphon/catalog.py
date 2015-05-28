@@ -1,7 +1,8 @@
 from __future__ import print_function
-
-import xml.etree.ElementTree as ET
 from ._version import get_versions
+from .metadata import TDSCatalogMetadata
+import logging
+import xml.etree.ElementTree as ET
 
 userAgent = 'siphon (%s)' % get_versions()['version']
 
@@ -52,6 +53,7 @@ class TDSCatalog(object):
         self.datasets = {}
         self.services = []
         self.catalog_refs = {}
+        self.metadata = {}
         for child in root.iter():
             tag_type = child.tag.split('}')[-1]
 
@@ -65,9 +67,13 @@ class TDSCatalog(object):
                     else:
                         ds = Dataset(child)
                     self.datasets[ds.name] = ds
+            elif tag_type == "metadata":
+                self.metadata = TDSCatalogMetadata(child, self.metadata).metadata
             elif tag_type == "catalogRef":
                 catalog_ref = CatalogRef(child)
                 self.catalog_refs[catalog_ref.title] = catalog_ref
+            elif tag_type == "":
+                self.metadata = TDSCatalogMetadata(child, self.metadata).metadata
 
         for dsName in list(self.datasets.keys()):
             self.datasets[dsName].make_access_urls(
@@ -145,8 +151,9 @@ class Dataset(object):
                 self._resolverUrl = self.url_path
                 self.url_path = self.resolve_url(catalog_url)
             else:
-                print("Must pass along the catalog URL to resolve the "
-                      "latest.xml dataset!")
+                msg = "Must pass along the catalog URL to resolve the " \
+                      "latest.xml dataset!"
+                logging.warning(msg)
 
     def resolve_url(self, catalog_url):
         r"""
@@ -182,7 +189,8 @@ class Dataset(object):
             if found:
                 return resolved_url
             else:
-                print("no dataset url path found in latest.xml!")
+                msg = "no dataset url path found in latest.xml!"
+                logging.warning(msg)
 
     def make_access_urls(self, catalog_url, services):
         r"""
@@ -299,10 +307,10 @@ def basic_http_request(full_url, return_response=False):
         but not always.
 
     """
-    import sys
-    if sys.version_info >= (3, 0):
+
+    try:
         from urllib.request import urlopen, Request
-    else:
+    except ImportError:
         from urllib2 import urlopen, Request
 
     url_request = Request(full_url)
@@ -324,7 +332,6 @@ def basic_http_request(full_url, return_response=False):
             print('Full  url: {}'.format(full_url))
             raise
         else:
-            print('error not caught!')
             raise
 
 
@@ -354,7 +361,8 @@ def _get_latest_cat(catalog_url):
             latest_cat = cat.catalog_url.replace("catalog.xml", "latest.xml")
             return TDSCatalog(latest_cat)
 
-    print('ERROR: "latest" service not enabled for this catalog!')
+    msg = 'ERROR: "latest" service not enabled for this catalog!'
+    logging.warning(msg)
 
 
 def get_latest_access_url(catalog_url, access_method):
@@ -392,8 +400,10 @@ def get_latest_access_url(catalog_url, access_method):
                 latest_ds = latest_ds[0]
                 return latest_ds
             else:
-                print('ERROR: More than one latest dataset found '
-                      'this case is currently not suppored in siphon.')
+                msg = 'More than one latest dataset found ' \
+                      'this case is currently not suppored in siphon.'
+                logging.warning(msg)
         else:
-            print('ERROR: More than one access url matching the requested '
-                  'access method...clearly this is an error')
+            msg = 'ERROR: More than one access url matching the requested ' \
+                  'access method...clearly this is an error'
+            logging.warning(msg)
