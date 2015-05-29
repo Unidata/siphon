@@ -1,9 +1,7 @@
+from siphon.testing import get_recorder
 from siphon.catalog import TDSCatalog, get_latest_access_url
-import os.path
-import vcr
 
-recorder = vcr.VCR(cassette_library_dir=os.path.join(os.path.dirname(__file__),
-                                                     'fixtures'))
+recorder = get_recorder(__file__)
 
 
 class TestCatalog(object):

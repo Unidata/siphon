@@ -1,19 +1,16 @@
-import os.path
-import vcr
-
 from io import BytesIO
+from siphon.testing import get_recorder
 from siphon.cdmr.ncstream import read_ncstream_messages, read_var_int
 from siphon.cdmr.ncStream_pb2 import Header
 
 from nose.tools import eq_
 
-recorder = vcr.VCR(cassette_library_dir=os.path.join(os.path.dirname(__file__),
-                                                     'fixtures'))
-
 HEAD_LOCATION_DEFAULT = ''
 HEAD_TITLE_DEFAULT = ''
 HEAD_ID_DEFAULT = ''
 HEAD_VERSION_DEFAULT = 0
+
+recorder = get_recorder(__file__)
 
 
 @recorder.use_cassette('latest_rap_catalog')
@@ -29,10 +26,7 @@ def get_test_latest_url(query=None):
 
 @recorder.use_cassette('latest_rap_ncstream_header')
 def get_header_remote():
-    try:
-        from urllib2 import urlopen
-    except ImportError:
-        from urllib.request import urlopen
+    from siphon.util import urlopen
     return urlopen(get_test_latest_url('req=header'))
 
 

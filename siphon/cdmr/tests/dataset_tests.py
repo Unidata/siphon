@@ -1,10 +1,8 @@
-import os.path
-import vcr
+from siphon.testing import get_recorder
 from siphon.cdmr import Dataset
 from nose.tools import eq_, assert_almost_equals
 
-recorder = vcr.VCR(cassette_library_dir=os.path.join(os.path.dirname(__file__),
-                                                     'fixtures'))
+recorder = get_recorder(__file__)
 
 
 def get_fixed_url():
