@@ -54,7 +54,7 @@ setup(
     license = 'MIT',
     url = "https://github.com/Unidata/siphon",
     test_suite = "nose.collector",
-    description = ("A collection of Python utilities for interacting with the"
+    description = ("A collection of Python utilities for interacting with the "
                                    "Unidata technology stack."),
     keywords='meteorology weather',
     classifiers=['Development Status :: 2 - Pre-Alpha',
