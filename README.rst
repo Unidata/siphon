@@ -70,12 +70,12 @@ Important Links
 Dependencies
 ------------
 
-numpy>=1.8
-protobuf>=3.0.0a3
+- numpy>=1.8
+- protobuf>=3.0.0a3
 
 Developer Dependencies
 ----------------------
 
-nose
-vcrpy
-flake8
+- nose
+- vcrpy
+- flake8
