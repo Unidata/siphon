@@ -1,10 +1,7 @@
-from __future__ import print_function
-from ._version import get_versions
-from .metadata import TDSCatalogMetadata
 import logging
 import xml.etree.ElementTree as ET
-
-userAgent = 'siphon (%s)' % get_versions()['version']
+from .metadata import TDSCatalogMetadata
+from .util import urlopen
 
 
 class TDSCatalog(object):
@@ -41,9 +38,9 @@ class TDSCatalog(object):
         self.catalog_url = catalog_url
         self.base_tds_url = catalog_url.split('/thredds/')[0]
         # get catalog.xml file
-        xml_data = basic_http_request(catalog_url, return_response=True)
+        xml_fobj = urlopen(catalog_url)
         # begin parsing the xml doc
-        tree = ET.parse(xml_data)
+        tree = ET.parse(xml_fobj)
         root = tree.getroot()
         if "name" in root.attrib:
             self.catalog_name = root.attrib["name"]
@@ -196,8 +193,7 @@ class Dataset(object):
         if catalog_url != "":
             resolver_base = catalog_url.split("catalog.xml")[0]
             resolver_url = resolver_base + self.url_path
-            resolver_xml = basic_http_request(resolver_url,
-                                              return_response=True)
+            resolver_xml = urlopen(resolver_url)
             tree = ET.parse(resolver_xml)
             root = tree.getroot()
             if "name" in root.attrib:
@@ -329,58 +325,6 @@ class CompoundService(object):
 
         self.services = services
         self.number_of_subservices = subservices
-
-
-def basic_http_request(full_url, return_response=False):
-    r"""
-    wrapper of urllib2 lib used for basic http requests in siphon.
-
-    The big thing this adds is that the http header will have a user-agent of
-    "siphon version". May replace urllib2 with the requests package in the
-    future, but for now this works for what we need.
-
-    Parameters
-    ----------
-    catalog_url : string
-        The URL of a top level data catalog
-
-    access_method : String
-        desired data access method (i.e. "OPENDAP", "NetcdfSubset", "WMS", etc)
-
-    Returns
-    -------
-    string
-        Data access URL to be used to access the latest data available from a
-        given catalog using the specified `access_method`. Typical of length 1,
-        but not always.
-
-    """
-
-    try:
-        from urllib.request import urlopen, Request
-    except ImportError:
-        from urllib2 import urlopen, Request
-
-    url_request = Request(full_url)
-    url_request.add_header('User-agent', userAgent)
-    try:
-        response = urlopen(url_request)
-        if return_response:
-            return response
-    except IOError as e:
-        if hasattr(e, 'reason'):
-            print('We failed to reach a server.')
-            print('Reason: {}'.format(e.reason))
-            print('Full  url: {}'.format(full_url))
-            raise
-        elif hasattr(e, 'code'):
-            print('The server couldn\'t fulfill the request.')
-            print('Error code: {}'.format(e.code))
-            print('TDS response: {}'.format(e.read()))
-            print('Full  url: {}'.format(full_url))
-            raise
-        else:
-            raise
 
 
 def _get_latest_cat(catalog_url):
