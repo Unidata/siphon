@@ -71,7 +71,7 @@ Dependencies
 ------------
 
 numpy>=1.8
-protobuf==3.0.0a1
+protobuf>=3.0.0a3
 
 Developer Dependencies
 ----------------------
