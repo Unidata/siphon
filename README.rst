@@ -70,6 +70,7 @@ Important Links
 Dependencies
 ------------
 
+numpy>=1.8
 protobuf==3.0.0a1
 
 Developer Dependencies
