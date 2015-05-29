@@ -1,31 +1,23 @@
 Siphon
 ======
 
-.. image:: https://pypip.in/status/siphon/badge.svg
-    :target: https://pypi.python.org/pypi/siphon/
-    :alt: Development Status
-
-.. image:: https://pypip.in/py_versions/siphon/badge.svg
-    :target: https://pypi.python.org/pypi/siphon/
-    :alt: Supported Python versions
-
-.. image:: https://pypip.in/implementation/siphon/badge.svg
-    :target: https://pypi.python.org/pypi/siphon/
-    :alt: Supported Python implementations
-
-.. image:: https://pypip.in/license/siphon/badge.svg
+.. image:: https://img.shields.io/pypi/l/siphon.svg
     :target: https://pypi.python.org/pypi/siphon/
     :alt: License
 
-.. image:: https://pypip.in/version/siphon/badge.svg?text=version
+.. image:: https://img.shields.io/github/issues/Unidata/siphon.svg
+    :target: http://www.github.com/Unidata/siphon/issues
+    :alt: GitHub Issues
+
+.. image:: https://img.shields.io/github/tag/Unidata/siphon.svg
+    :target: https://github.com/Unidata/siphon/tags
+    :alt: GitHub Tags
+
+.. image:: https://img.shields.io/pypi/v/siphon.svg
     :target: https://pypi.python.org/pypi/siphon/
     :alt: Latest Version
 
-.. image:: https://pypip.in/format/siphon/badge.svg
-    :target: https://pypi.python.org/pypi/siphon/
-    :alt: Download format
-
-.. image:: https://pypip.in/download/siphon/badge.svg?period=month
+.. image:: https://img.shields.io/pypi/dm/siphon.svg
     :target: https://pypi.python.org/pypi/siphon/
     :alt: Downloads
 
@@ -56,6 +48,8 @@ Siphon is still in an early stage of development, and as such
 **no APIs are considered stable.** While we won't break things
 just for fun, many things may still change as we work through
 design issues.
+
+We support Python 2.7 as well as Python >= 3.2.
 
 Installation
 ------------
