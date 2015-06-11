@@ -1,0 +1,310 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Connection: [close]
+      Host: [thredds.ucar.edu]
+      User-Agent: [siphon (None)]
+    method: GET
+    uri: http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/catalog.xml
+  response:
+    body: {string: !!python/unicode "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<catalog
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"
+        name=\"NAM CONUS 20km\" version=\"1.0.1\">\r\n  <service name=\"latest\" serviceType=\"Resolver\"
+        base=\"\" />\r\n  <service name=\"VirtualServices\" serviceType=\"Compound\"
+        base=\"\">\r\n    <service name=\"opendap\" serviceType=\"OPENDAP\" base=\"/thredds/dodsC/\"
+        />\r\n    <service name=\"wcs\" serviceType=\"WCS\" base=\"/thredds/wcs/\"
+        />\r\n    <service name=\"wms\" serviceType=\"WMS\" base=\"/thredds/wms/\"
+        />\r\n    <service name=\"ncss\" serviceType=\"NetcdfSubset\" base=\"/thredds/ncss/\"
+        />\r\n    <service name=\"cdmremote\" serviceType=\"CdmRemote\" base=\"/thredds/cdmremote/\"
+        />\r\n    <service name=\"ncml\" serviceType=\"NCML\" base=\"/thredds/ncml/\"
+        />\r\n    <service name=\"uddc\" serviceType=\"UDDC\" base=\"/thredds/uddc/\"
+        />\r\n    <service name=\"iso\" serviceType=\"ISO\" base=\"/thredds/iso/\"
+        />\r\n  </service>\r\n  <dataset name=\"NAM CONUS 20km\" harvest=\"true\">\r\n
+        \   <metadata inherited=\"true\">\r\n      <serviceName>VirtualServices</serviceName>\r\n
+        \     <authority>edu.ucar.unidata</authority>\r\n      <dataType>GRID</dataType>\r\n
+        \     <dataFormat>GRIB-1</dataFormat>\r\n      <documentation type=\"summary\">Model
+        runs are made at 00Z, and 12Z with analysis and forecasts every 3 hours out
+        to 60 hours; and at 06Z, and 18Z with analysis and forecasts every 3 hours
+        out to 48 hours. Vertical = surface, height above ground, and 1000 to 30 hPa
+        pressure levels.</documentation>\r\n      <documentation type=\"summary\">NCEP
+        Nonhydrostatic Mesoscale Model (NMM) and Gridpoint Statistical Interpolation
+        (GSI) analysis, running in the Weather Research and Forecasting (WRF) infrastructure.</documentation>\r\n
+        \     <documentation xlink:href=\"http://meted.ucar.edu/nwp/pcu2/NAMWRFjun2006.htm\"
+        xlink:title=\"COMET MetEd (Meteorology Education and Training) documentation\"
+        />\r\n      <documentation xlink:href=\"http://www.nco.ncep.noaa.gov/pmb/products/nam/\"
+        xlink:title=\"NCEP NAM product inventory\" />\r\n      <documentation xlink:href=\"http://www.emc.ncep.noaa.gov/modelinfo/index.html\"
+        xlink:title=\"NCEP Model documentation\" />\r\n      <documentation type=\"rights\">Freely
+        available</documentation>\r\n      <documentation type=\"processing_level\">Transmitted
+        through Unidata Internet Data Distribution.</documentation>\r\n      <documentation
+        type=\"processing_level\">Read by CDM Grib Collection.</documentation>\r\n
+        \     <documentation xlink:href=\"http://www.nco.ncep.noaa.gov/pmb/nwprod/analysis/\"
+        xlink:title=\"NCEP/NWS Model Analyses and Forecasts page\" />\r\n      <documentation
+        xlink:href=\"http://www.unidata.ucar.edu/data/index.html#model\" xlink:title=\"Unidata
+        IDD Model Data page\" />\r\n      <creator>\r\n        <name vocabulary=\"DIF\">DOC/NOAA/NWS/NCEP</name>\r\n
+        \       <contact url=\"http://www.ncep.noaa.gov/\" email=\"http://www.ncep.noaa.gov/mail_liaison.shtml\"
+        />\r\n      </creator>\r\n      <creator>\r\n        <name vocabulary=\"ADN\">National
+        Oceanic and Atmospheric Administration (NOAA)/National Weather Service (NWS)\r\n
+        \         National Center for Environmental Prediction (NCEP)</name>\r\n        <contact
+        url=\"http://www.ncep.noaa.gov/\" email=\"http://www.ncep.noaa.gov/mail_liaison.shtml\"
+        />\r\n      </creator>\r\n      <property name=\"Originating_or_generating_Center\"
+        value=\"US National Weather Service, National Centres for Environmental Prediction
+        (NCEP)\" />\r\n      <property name=\"Originating_or_generating_Subcenter\"
+        value=\"0\" />\r\n      <property name=\"GRIB_table_version\" value=\"0,2\"
+        />\r\n      <property name=\"Generating_process_or_model\" value=\"MESO NAM
+        Model (currently 12 km)\" />\r\n      <property name=\"file_format\" value=\"GRIB-1\"
+        />\r\n      <property name=\"Conventions\" value=\"CF-1.6\" />\r\n      <property
+        name=\"history\" value=\"Read using CDM IOSP GribCollection v3\" />\r\n      <property
+        name=\"featureType\" value=\"GRID\" />\r\n      <publisher>\r\n        <name
+        vocabulary=\"DIF\">UCAR/UNIDATA</name>\r\n        <contact url=\"http://www.unidata.ucar.edu/\"
+        email=\"support@unidata.ucar.edu\" />\r\n      </publisher>\r\n      <publisher>\r\n
+        \       <name vocabulary=\"ADN\">University Corporation for Atmospheric Research
+        (UCAR)/Unidata</name>\r\n        <contact url=\"http://www.unidata.ucar.edu/\"
+        email=\"support@unidata.ucar.edu\" />\r\n      </publisher>\r\n      <timeCoverage>\r\n
+        \       <end>present</end>\r\n        <duration>45 days</duration>\r\n      </timeCoverage>\r\n
+        \     <variableMap xlink:href=\"/thredds/metadata/grib/NCEP/NAM/CONUS_20km/noaaport/collection?metadata=variableMap\"
+        xlink:title=\"variables\" />\r\n    </metadata>\r\n    <dataset name=\"Full
+        Collection (Reference / Forecast Time) Dataset\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/TwoD\"
+        urlPath=\"grib/NCEP/NAM/CONUS_20km/noaaport/TwoD\">\r\n      <documentation
+        type=\"summary\">Two time dimensions: reference and forecast; full access
+        to all GRIB records</documentation>\r\n      <metadata inherited=\"true\">\r\n
+        \       <geospatialCoverage>\r\n          <northsouth>\r\n            <start>12.190000534057615</start>\r\n
+        \           <size>45.20275051890929</size>\r\n            <units>degrees_north</units>\r\n
+        \         </northsouth>\r\n          <eastwest>\r\n            <start>-152.98469030768285</start>\r\n
+        \           <size>104.0296533835022</size>\r\n            <units>degrees_east</units>\r\n
+        \         </eastwest>\r\n        </geospatialCoverage>\r\n        <timeCoverage>\r\n
+        \         <start>2015-05-28T00:00:00Z</start>\r\n          <end>2015-06-14T00:00:00Z</end>\r\n
+        \       </timeCoverage>\r\n        <variableMap xlink:href=\"/thredds/metadata/grib/NCEP/NAM/CONUS_20km/noaaport/TwoD?metadata=variableMap\"
+        xlink:title=\"variables\" />\r\n      </metadata>\r\n    </dataset>\r\n    <dataset
+        name=\"Best NAM CONUS 20km Time Series\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/Best\"
+        urlPath=\"grib/NCEP/NAM/CONUS_20km/noaaport/Best\">\r\n      <documentation
+        type=\"summary\">Single time dimension: for each forecast time, use GRIB record
+        with smallest offset from reference time</documentation>\r\n      <metadata
+        inherited=\"true\">\r\n        <geospatialCoverage>\r\n          <northsouth>\r\n
+        \           <start>12.190000534057615</start>\r\n            <size>45.20275051890929</size>\r\n
+        \           <units>degrees_north</units>\r\n          </northsouth>\r\n          <eastwest>\r\n
+        \           <start>-152.98469030768285</start>\r\n            <size>104.0296533835022</size>\r\n
+        \           <units>degrees_east</units>\r\n          </eastwest>\r\n        </geospatialCoverage>\r\n
+        \       <timeCoverage>\r\n          <start>2015-05-28T00:00:00Z</start>\r\n
+        \         <end>2015-06-14T00:00:00Z</end>\r\n        </timeCoverage>\r\n        <variableMap
+        xlink:href=\"/thredds/metadata/grib/NCEP/NAM/CONUS_20km/noaaport/Best?metadata=variableMap\"
+        xlink:title=\"variables\" />\r\n      </metadata>\r\n    </dataset>\r\n    <dataset
+        name=\"Latest Collection for NAM CONUS 20km\" urlPath=\"latest.xml\">\r\n
+        \     <serviceName>latest</serviceName>\r\n    </dataset>\r\n    <catalogRef
+        xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150528_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150528_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150528_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150528_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150528_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150528_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150528_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150528_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150528_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150528_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150528_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150528_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150529_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150529_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150529_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150529_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150529_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150529_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150529_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150529_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150529_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150529_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150529_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150529_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150530_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150530_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150530_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150530_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150530_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150530_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150530_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150530_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150530_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150530_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150530_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150530_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150531_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150531_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150531_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150531_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150531_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150531_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150601_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150601_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150601_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150601_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150601_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150601_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150601_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150601_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150601_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150601_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150601_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150601_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150602_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150602_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150602_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150602_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150602_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150602_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150602_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150602_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150602_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150602_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150602_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150602_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150603_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150603_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150603_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150603_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150603_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150603_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150603_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150603_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150603_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150603_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150603_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150603_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150604_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150604_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150604_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150604_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150604_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150604_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150604_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150604_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150604_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150604_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150604_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150604_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150605_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150605_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150605_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150605_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150605_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150605_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150605_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150605_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150605_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150605_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150605_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150605_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150606_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150606_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150606_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150606_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150606_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150606_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150606_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150606_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150606_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150606_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150606_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150606_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150607_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150607_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150607_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150607_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150607_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150607_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150607_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150607_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150607_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150607_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150607_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150607_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150608_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150608_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150608_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150608_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150608_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150608_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150608_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150608_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150608_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150608_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150608_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150608_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150609_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150609_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150609_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150609_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150609_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150609_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150609_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150609_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150609_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150609_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150609_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150609_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150610_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150610_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150610_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150610_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150610_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150610_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150610_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150610_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150610_1200.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150610_1800.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150610_1800.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150610_1800.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150611_0000.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150611_0000.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150611_0000.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150611_0600.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150611_0600.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150611_0600.grib1\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150611_1200.grib1/catalog.xml\"
+        xlink:title=\"NAM_CONUS_20km_noaaport_20150611_1200.grib1\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150611_1200.grib1\"
+        name=\"\" />\r\n  </dataset>\r\n</catalog>\r\n"}
+    headers:
+      access-control-allow-origin: ['*']
+      connection: [close]
+      content-language: [en]
+      content-type: [application/xml;charset=UTF-8]
+      date: ['Thu, 11 Jun 2015 15:21:50 GMT']
+      server: [Apache]
+      vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Connection: [close]
+      Host: [thredds.ucar.edu]
+      User-Agent: [siphon (None)]
+    method: GET
+    uri: http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/latest.xml
+  response:
+    body: {string: !!python/unicode "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<catalog
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"
+        name=\"NAM_CONUS_20km_noaaport_20150611_1200.grib1\" version=\"1.0.1\">\r\n
+        \ <service name=\"VirtualServices\" serviceType=\"Compound\" base=\"\">\r\n
+        \   <service name=\"opendap\" serviceType=\"OPENDAP\" base=\"/thredds/dodsC/\"
+        />\r\n    <service name=\"wcs\" serviceType=\"WCS\" base=\"/thredds/wcs/\"
+        />\r\n    <service name=\"wms\" serviceType=\"WMS\" base=\"/thredds/wms/\"
+        />\r\n    <service name=\"ncss\" serviceType=\"NetcdfSubset\" base=\"/thredds/ncss/\"
+        />\r\n    <service name=\"cdmremote\" serviceType=\"CdmRemote\" base=\"/thredds/cdmremote/\"
+        />\r\n    <service name=\"ncml\" serviceType=\"NCML\" base=\"/thredds/ncml/\"
+        />\r\n    <service name=\"uddc\" serviceType=\"UDDC\" base=\"/thredds/uddc/\"
+        />\r\n    <service name=\"iso\" serviceType=\"ISO\" base=\"/thredds/iso/\"
+        />\r\n  </service>\r\n  <service name=\"fullServices\" serviceType=\"Compound\"
+        base=\"\">\r\n    <service name=\"opendap\" serviceType=\"OPENDAP\" base=\"/thredds/dodsC/\"
+        />\r\n    <service name=\"HTTPServer\" serviceType=\"HTTPServer\" base=\"/thredds/fileServer/\"
+        />\r\n    <service name=\"wcs\" serviceType=\"WCS\" base=\"/thredds/wcs/\"
+        />\r\n    <service name=\"wms\" serviceType=\"WMS\" base=\"/thredds/wms/\"
+        />\r\n    <service name=\"ncss\" serviceType=\"NetcdfSubset\" base=\"/thredds/ncss/\"
+        />\r\n    <service name=\"cdmremote\" serviceType=\"CdmRemote\" base=\"/thredds/cdmremote/\"
+        />\r\n    <service name=\"ncml\" serviceType=\"NCML\" base=\"/thredds/ncml/\"
+        />\r\n    <service name=\"uddc\" serviceType=\"UDDC\" base=\"/thredds/uddc/\"
+        />\r\n    <service name=\"iso\" serviceType=\"ISO\" base=\"/thredds/iso/\"
+        />\r\n  </service>\r\n  <dataset name=\"NAM_CONUS_20km_noaaport_20150611_1200.grib1\"
+        harvest=\"true\" ID=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150611_1200.grib1\"
+        urlPath=\"grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150611_1200.grib1\">\r\n
+        \   <documentation type=\"summary\">Single reference time Grib Collection</documentation>\r\n
+        \   <metadata inherited=\"true\">\r\n      <serviceName>fullServices</serviceName>\r\n
+        \     <authority>edu.ucar.unidata</authority>\r\n      <dataType>GRID</dataType>\r\n
+        \     <dataFormat>GRIB-1</dataFormat>\r\n      <documentation type=\"summary\">Model
+        runs are made at 00Z, and 12Z with analysis and forecasts every 3 hours out
+        to 60 hours; and at 06Z, and 18Z with analysis and forecasts every 3 hours
+        out to 48 hours. Vertical = surface, height above ground, and 1000 to 30 hPa
+        pressure levels.</documentation>\r\n      <documentation type=\"summary\">NCEP
+        Nonhydrostatic Mesoscale Model (NMM) and Gridpoint Statistical Interpolation
+        (GSI) analysis, running in the Weather Research and Forecasting (WRF) infrastructure.</documentation>\r\n
+        \     <documentation xlink:href=\"http://meted.ucar.edu/nwp/pcu2/NAMWRFjun2006.htm\"
+        xlink:title=\"COMET MetEd (Meteorology Education and Training) documentation\"
+        />\r\n      <documentation xlink:href=\"http://www.nco.ncep.noaa.gov/pmb/products/nam/\"
+        xlink:title=\"NCEP NAM product inventory\" />\r\n      <documentation xlink:href=\"http://www.emc.ncep.noaa.gov/modelinfo/index.html\"
+        xlink:title=\"NCEP Model documentation\" />\r\n      <documentation type=\"rights\">Freely
+        available</documentation>\r\n      <documentation type=\"processing_level\">Transmitted
+        through Unidata Internet Data Distribution.</documentation>\r\n      <documentation
+        type=\"processing_level\">Read by CDM Grib Collection.</documentation>\r\n
+        \     <documentation xlink:href=\"http://www.nco.ncep.noaa.gov/pmb/nwprod/analysis/\"
+        xlink:title=\"NCEP/NWS Model Analyses and Forecasts page\" />\r\n      <documentation
+        xlink:href=\"http://www.unidata.ucar.edu/data/index.html#model\" xlink:title=\"Unidata
+        IDD Model Data page\" />\r\n      <documentation type=\"Reference Time\">2015-06-11T12:00:00Z</documentation>\r\n
+        \     <creator>\r\n        <name vocabulary=\"DIF\">DOC/NOAA/NWS/NCEP</name>\r\n
+        \       <contact url=\"http://www.ncep.noaa.gov/\" email=\"http://www.ncep.noaa.gov/mail_liaison.shtml\"
+        />\r\n      </creator>\r\n      <creator>\r\n        <name vocabulary=\"ADN\">National
+        Oceanic and Atmospheric Administration (NOAA)/National Weather Service (NWS)\r\n
+        \         National Center for Environmental Prediction (NCEP)</name>\r\n        <contact
+        url=\"http://www.ncep.noaa.gov/\" email=\"http://www.ncep.noaa.gov/mail_liaison.shtml\"
+        />\r\n      </creator>\r\n      <property name=\"Originating_or_generating_Center\"
+        value=\"US National Weather Service, National Centres for Environmental Prediction
+        (NCEP)\" />\r\n      <property name=\"Originating_or_generating_Subcenter\"
+        value=\"0\" />\r\n      <property name=\"GRIB_table_version\" value=\"0,2\"
+        />\r\n      <property name=\"Generating_process_or_model\" value=\"MESO NAM
+        Model (currently 12 km)\" />\r\n      <property name=\"file_format\" value=\"GRIB-1\"
+        />\r\n      <property name=\"Conventions\" value=\"CF-1.6\" />\r\n      <property
+        name=\"history\" value=\"Read using CDM IOSP GribCollection v3\" />\r\n      <property
+        name=\"featureType\" value=\"GRID\" />\r\n      <publisher>\r\n        <name
+        vocabulary=\"DIF\">UCAR/UNIDATA</name>\r\n        <contact url=\"http://www.unidata.ucar.edu/\"
+        email=\"support@unidata.ucar.edu\" />\r\n      </publisher>\r\n      <publisher>\r\n
+        \       <name vocabulary=\"ADN\">University Corporation for Atmospheric Research
+        (UCAR)/Unidata</name>\r\n        <contact url=\"http://www.unidata.ucar.edu/\"
+        email=\"support@unidata.ucar.edu\" />\r\n      </publisher>\r\n      <geospatialCoverage>\r\n
+        \       <northsouth>\r\n          <start>12.190000534057615</start>\r\n          <size>45.20275051890929</size>\r\n
+        \         <units>degrees_north</units>\r\n        </northsouth>\r\n        <eastwest>\r\n
+        \         <start>-152.98469030768285</start>\r\n          <size>104.0296533835022</size>\r\n
+        \         <units>degrees_east</units>\r\n        </eastwest>\r\n      </geospatialCoverage>\r\n
+        \     <timeCoverage>\r\n        <start>2015-06-11T12:00:00Z</start>\r\n        <end>2015-06-14T00:00:00Z</end>\r\n
+        \     </timeCoverage>\r\n      <variableMap xlink:href=\"/thredds/metadata/grib/NCEP/NAM/CONUS_20km/noaaport/NAM_CONUS_20km_noaaport_20150611_1200.grib1?metadata=variableMap\"
+        xlink:title=\"variables\" />\r\n    </metadata>\r\n  </dataset>\r\n</catalog>\r\n"}
+    headers:
+      access-control-allow-origin: ['*']
+      connection: [close]
+      content-language: [en]
+      content-type: [application/xml;charset=UTF-8]
+      date: ['Thu, 11 Jun 2015 15:21:50 GMT']
+      server: [Apache]
+      vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+version: 1

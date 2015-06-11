@@ -54,12 +54,25 @@ class TDSCatalog(object):
         self.services = []
         self.catalog_refs = {}
         self.metadata = {}
+        service_skip_count = 0
+        service_skip = 0
         for child in root.iter():
             tag_type = child.tag.split('}')[-1]
-
             if tag_type == "service":
                 if child.attrib["serviceType"] != "Compound":
-                    self.services.append(SimpleService(child))
+                    # we do not want to process single services if they
+                    # are already contained within a compound service, so
+                    # we need to skip over those cases.
+                    if service_skip_count >= service_skip:
+                        self.services.append(SimpleService(child))
+                        service_skip = 0
+                        service_skip_count = 0
+                    else:
+                        service_skip_count += 1
+                else:
+                    self.services.append(CompoundService(child))
+                    service_skip = self.services[-1]._number_of_subservices
+                    service_skip_count = 0
             elif tag_type == "dataset":
                 if "urlPath" in child.attrib:
                     if child.attrib["urlPath"] == "latest.xml":
@@ -77,7 +90,7 @@ class TDSCatalog(object):
 
         for dsName in list(self.datasets.keys()):
             self.datasets[dsName].make_access_urls(
-                self.base_tds_url, self.services)
+                self.base_tds_url, self.services, metadata=self.metadata)
 
 
 class CatalogRef(object):
@@ -192,7 +205,7 @@ class Dataset(object):
                 msg = "no dataset url path found in latest.xml!"
                 logging.warning(msg)
 
-    def make_access_urls(self, catalog_url, services):
+    def make_access_urls(self, catalog_url, all_services, metadata=None):
         r"""
         Make fully qualified urls for the access methods enabled on the
         dataset.
@@ -206,10 +219,28 @@ class Dataset(object):
             list of SimpleService objects associated with the dataset
 
         """
+        service_name = None
+        if metadata:
+            if "serviceName" in metadata:
+                service_name = metadata["serviceName"]
+
         access_urls = {}
         server_url = catalog_url.split('/thredds/')[0]
-        for service in services:
-            if service.service_type != 'Resolver':
+
+        if service_name:
+            for service in all_services:
+                if service.name == service_name:
+                    found_service = service
+                    break
+
+        service = found_service
+
+        if service.service_type != 'Resolver':
+            if isinstance(service, CompoundService):
+                for subservice in service.services:
+                    access_urls[subservice.service_type] = server_url + \
+                        subservice.base + self.url_path
+            else:
                 access_urls[service.service_type] = server_url + \
                     service.base + self.url_path
 
@@ -277,10 +308,13 @@ class CompoundService(object):
         self.service_type = service_node.attrib['serviceType']
         self.base = service_node.attrib['base']
         services = []
+        subservices = 0
         for child in list(service_node):
             services.append(SimpleService(child))
+            subservices += 1
 
         self.services = services
+        self._number_of_subservices = subservices
 
 
 def basic_http_request(full_url, return_response=False):
