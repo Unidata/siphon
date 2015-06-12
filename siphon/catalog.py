@@ -2,7 +2,7 @@ import logging
 import xml.etree.ElementTree as ET
 
 from .metadata import TDSCatalogMetadata
-from .util import urlopen
+from .http_util import urlopen
 
 
 class TDSCatalog(object):

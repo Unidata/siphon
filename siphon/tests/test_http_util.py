@@ -1,5 +1,5 @@
 import siphon.testing
-from siphon.util import create_http_session, urlopen
+from siphon.http_util import create_http_session, urlopen
 
 from nose.tools import eq_
 

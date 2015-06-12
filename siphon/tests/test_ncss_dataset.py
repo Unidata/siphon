@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 from nose.tools import assert_dict_equal, assert_equal
 from siphon.ncss_dataset import NcssDataset, _Types
 from siphon.testing import get_recorder
-from siphon.util import urlopen
+from siphon.http_util import urlopen
 
 log = logging.getLogger("siphon.ncss_dataset")
 log.setLevel(logging.WARNING)

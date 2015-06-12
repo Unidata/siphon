@@ -1,5 +1,5 @@
 from .ncstream import read_ncstream_messages
-from ..util import urlopen
+from ..http_util import urlopen
 
 
 class CDMRemote(object):
