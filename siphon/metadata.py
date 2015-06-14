@@ -15,14 +15,14 @@ class _SimpleTypes(object):
         self._valid["dataType"] = self._load_valid_data_types()
 
     def _load_valid_data_types(self):
-        valid = ["Grid",
-                 "Image",
-                 "Point",
-                 "Radial",
-                 "Station",
-                 "Swath",
-                 "Trajectory"]
-        return map(lambda x: x.lower(), valid)
+        valid = ["grid",
+                 "image",
+                 "point",
+                 "radial",
+                 "station",
+                 "swath",
+                 "trajectory"]
+        return valid
 
     def _load_valid_data_format_types(self):
         import mimetypes
@@ -73,9 +73,8 @@ class _SimpleTypes(object):
             attr = attrib
             val = element.attrib[attr]
             if val not in valid:
-                msg = "Value {} not valid for type {}: ".format(val, type_name)
-                msg = msg + " must be {}".format(valid)
-                logging.warning(msg)
+                logging.warning("Value %s not valid for type %s: must be %s",
+                                val, type_name, valid)
         return {attr: val}
 
     def handle_dataFormat(self, element):  # noqa
@@ -128,9 +127,8 @@ class _SimpleTypes(object):
         valid = self._valid[type_name]
         val = element.text
         if val not in valid:
-            msg = "Value {} not valid for type {}: ".format(val, type_name)
-            msg = msg + " must be {}".format(valid)
-            logging.warning(msg)
+            logging.warning("Value %s not valid for type %s: must be %s",
+                            val, type_name, valid)
         return {type_name: val}
 
     def handle_dataType(self, element):  # noqa
@@ -154,9 +152,8 @@ class _SimpleTypes(object):
 
         val = element.text
         if val.lower() not in valid:
-            msg = "Value {} not valid for type {}: ".format(val, type_name)
-            msg = msg + " must be {}".format(valid)
-            logging.warning(msg)
+            logging.warning("Value %s not valid for type %s: must be %s",
+                            val, type_name, valid)
         return {type_name: val}
 
 
@@ -216,9 +213,8 @@ class _ComplexTypes(object):
                     spatial_range[child.tag] = child.text
             else:
                 # child not valid
-                msg = "{} is not valid for type {}: ".format(child_name,
-                                                             type_name)
-                logging.warning(msg)
+                logging.warning("%s is not valid for type %s",
+                                child_name, type_name)
         return spatial_range
 
     def handle_controlledVocabulary(self, element):  # noqa
@@ -236,9 +232,8 @@ class _ComplexTypes(object):
         val = {}
         for attr in opt_attrs:
             if attr not in element.attrib:
-                msg = "{} must have an attribute: {}".format(type_name,
-                                                             attr)
-                logging.warning(msg)
+                logging.warning("%s must have an attribute: %s", type_name,
+                                attr)
             else:
                 val[attr] = element.attrib[attr]
 
@@ -262,9 +257,8 @@ class _ComplexTypes(object):
         val = {}
         for attr in element.attrib:
             if attr not in valid_attrs:
-                msg = "{} is not a valid attribute for {}".format(attr,
-                                                                  type_name)
-                logging.warning(msg)
+                logging.warning("%s is not a valid attribute for %s", attr,
+                                type_name)
             else:
                 val[attr] = element.attrib[attr]
 
@@ -295,9 +289,8 @@ class _ComplexTypes(object):
                 if "email" in child.attrib:
                     value["email"] = child.attrib["email"]
                 else:
-                    msg = "{} must have an attribute: {}".format("contact",
-                                                                 "email")
-                    logging.warning(msg)
+                    logging.warning("'contact' must have an attribute: "
+                                    "'email'")
                     value["email"] = "missing"
             if value:
                 parsed.update(value)
@@ -328,8 +321,7 @@ class _ComplexTypes(object):
                     value[child.tag] = child.text
                 parsed.update(value)
         else:
-            msg = "Not enough elements to make a valid timeCoverage"
-            logging.warning(msg)
+            logging.warning("Not enough elements to make a valid timeCoverage")
 
         return parsed
 
@@ -349,9 +341,8 @@ class _ComplexTypes(object):
         for req_attr in req_attrs:
             if req_attr not in element.attrib:
                 valid = False
-                msg = "{} must have an attribute {}".format(type_name,
-                                                            req_attr)
-                logging.warning(msg)
+                logging.warning("%s must have an attribute %s", type_name,
+                                req_attr)
             variable = {}
         if valid:
             if element.text:
@@ -524,9 +515,7 @@ class TDSCatalogMetadata(object):
         try:
             parser[element_name](element)
         except KeyError:
-            msg = "no parser found for element {}".format(element_name)
-            logging.error(msg)
-            print(msg)
+            logging.error("No parser found for element %s", element_name)
             raise
 
     def _parse_documentation(self, element):
@@ -600,12 +589,10 @@ class TDSCatalogMetadata(object):
         element_type = "contributor"
         role = element.attrib["role"]
         name = element.text
-        self.metadata.setdefault(element_type, {})
-        self.metadata[element_type].setdefault(role, []).append(name)
+        self.metadata.setdefault(element_type, {}).setdefault(role, []).append(name)
 
     def _parse_geospatial_coverage(self, element):
         element_type = "geospatialCoverage"
-        self.metadata.setdefault(element_type, [])
         md = {}
         # <xsd:element name="geospatialCoverage">
         #  <xsd:complexType>
@@ -638,9 +625,8 @@ class TDSCatalogMetadata(object):
                     value = handler(element)
                     md.update({attr: value})
                 else:
-                    msg = "Attr on {} : {} not captured".format(attr,
-                                                                element_type)
-                    logging.warning(msg)
+                    logging.warning("Attr on %s : %s not captured", attr,
+                                    element_type)
 
         for child in element:
             child_name = child.tag
@@ -649,8 +635,7 @@ class TDSCatalogMetadata(object):
                 handler = self._get_handler(handler_name)
                 value = handler(child)
                 md.update(value)
-
-        self.metadata[element_type].append(md)
+        self.metadata.setdefault(element_type, []).append(md)
 
     def _parse_service_name(self, element):
         # can only have one serviceName
@@ -659,32 +644,27 @@ class TDSCatalogMetadata(object):
 
     def _parse_authority(self, element):
         element_type = "authority"
-        self.metadata.setdefault(element_type, [])
-        self.metadata[element_type].append(element.text)
+        self.metadata.setdefault(element_type, []).append(element.text)
 
     def _parse_publisher(self, element):
         element_type = "publisher"
-        self.metadata.setdefault(element_type, [])
         parsed = self._ct.handle_sourceType(element)
-        self.metadata[element_type].append(parsed)
+        self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_creator(self, element):
         element_type = "creator"
-        self.metadata.setdefault(element_type, [])
         parsed = self._ct.handle_sourceType(element)
-        self.metadata[element_type].append(parsed)
+        self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_keyword(self, element):
         element_type = "keyword"
-        self.metadata.setdefault(element_type, [])
         parsed = self._ct.handle_controlledVocabulary(element)
-        self.metadata[element_type].append(parsed)
+        self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_project(self, element):
         element_type = "project"
-        self.metadata.setdefault(element_type, [])
         parsed = self._ct.handle_controlledVocabulary(element)
-        self.metadata[element_type].append(parsed)
+        self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_data_format(self, element):
         element_type = "dataFormat"  # noqa
@@ -699,17 +679,14 @@ class TDSCatalogMetadata(object):
     def _parse_date(self, element):
         element_type = "date"
         parsed = self._ct.handle_dateTypeFormatted(element)
-        self.metadata.setdefault(element_type, [])
-        self.metadata[element_type].append(parsed)
+        self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_timeCoverage(self, element):  # noqa
         element_type = "timeCoverage"
         parsed = self._ct.handle_timeCoverageType(element)
-        self.metadata.setdefault(element_type, [])
-        self.metadata[element_type].append(parsed)
+        self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_variableMap(self, element):  # noqa
         element_type = "variableMap"
         parsed = self._ct.handle_variableMap(element)
-        self.metadata.setdefault(element_type, [])
-        self.metadata[element_type].append(parsed)
+        self.metadata.setdefault(element_type, []).append(parsed)

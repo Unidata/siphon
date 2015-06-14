@@ -58,7 +58,13 @@ class TDSCatalog(object):
         service_skip = 0
         for child in root.iter():
             tag_type = child.tag.split('}')[-1]
-            if tag_type == "service":
+            if tag_type == "dataset":
+                self._process_dataset(child)
+            elif tag_type == "catalogRef":
+                self._process_catalog_ref(child)
+            elif (tag_type == "metadata") or (tag_type == ""):
+                self._process_metadata(child, tag_type)
+            elif tag_type == "service":
                 if child.attrib["serviceType"] != "Compound":
                     # we do not want to process single services if they
                     # are already contained within a compound service, so
@@ -71,23 +77,33 @@ class TDSCatalog(object):
                         service_skip_count += 1
                 else:
                     self.services.append(CompoundService(child))
-                    service_skip = self.services[-1]._number_of_subservices
+                    service_skip = self.services[-1].number_of_subservices
                     service_skip_count = 0
-            elif tag_type == "dataset":
-                if "urlPath" in child.attrib:
-                    if child.attrib["urlPath"] == "latest.xml":
-                        ds = Dataset(child, catalog_url)
-                    else:
-                        ds = Dataset(child)
-                    self.datasets[ds.name] = ds
-            elif tag_type == "metadata":
-                self.metadata = TDSCatalogMetadata(child, self.metadata).metadata
-            elif tag_type == "catalogRef":
-                catalog_ref = CatalogRef(child)
-                self.catalog_refs[catalog_ref.title] = catalog_ref
-            elif tag_type == "":
-                self.metadata = TDSCatalogMetadata(child, self.metadata).metadata
+            else:
+                logging.warning("Siphon does not know how to handle %s "
+                                "elements. Please report this issue.",
+                                tag_type)
 
+        self._process_datasets()
+
+    def _process_dataset(self, element):
+        if "urlPath" in element.attrib:
+            if element.attrib["urlPath"] == "latest.xml":
+                ds = Dataset(element, self.catalog_url)
+            else:
+                ds = Dataset(element)
+            self.datasets[ds.name] = ds
+
+    def _process_catalog_ref(self, element):
+        catalog_ref = CatalogRef(element)
+        self.catalog_refs[catalog_ref.title] = catalog_ref
+
+    def _process_metadata(self, element, tag_type):
+        if tag_type == "":
+            logging.warning("Trying empty tag type as metadata")
+        self.metadata = TDSCatalogMetadata(element, self.metadata).metadata
+
+    def _process_datasets(self):
         for dsName in list(self.datasets.keys()):
             self.datasets[dsName].make_access_urls(
                 self.base_tds_url, self.services, metadata=self.metadata)
@@ -164,9 +180,8 @@ class Dataset(object):
                 self._resolverUrl = self.url_path
                 self.url_path = self.resolve_url(catalog_url)
             else:
-                msg = "Must pass along the catalog URL to resolve the " \
-                      "latest.xml dataset!"
-                logging.warning(msg)
+                logging.warning('Must pass along the catalog URL to resolve '
+                                'the latest.xml dataset!')
 
     def resolve_url(self, catalog_url):
         r"""
@@ -202,8 +217,7 @@ class Dataset(object):
             if found:
                 return resolved_url
             else:
-                msg = "no dataset url path found in latest.xml!"
-                logging.warning(msg)
+                logging.warning("no dataset url path found in latest.xml!")
 
     def make_access_urls(self, catalog_url, all_services, metadata=None):
         r"""
@@ -314,7 +328,7 @@ class CompoundService(object):
             subservices += 1
 
         self.services = services
-        self._number_of_subservices = subservices
+        self.number_of_subservices = subservices
 
 
 def basic_http_request(full_url, return_response=False):
@@ -395,8 +409,7 @@ def _get_latest_cat(catalog_url):
             latest_cat = cat.catalog_url.replace("catalog.xml", "latest.xml")
             return TDSCatalog(latest_cat)
 
-    msg = 'ERROR: "latest" service not enabled for this catalog!'
-    logging.warning(msg)
+    logging.error('ERROR: "latest" service not enabled for this catalog!')
 
 
 def get_latest_access_url(catalog_url, access_method):
@@ -434,10 +447,9 @@ def get_latest_access_url(catalog_url, access_method):
                 latest_ds = latest_ds[0]
                 return latest_ds
             else:
-                msg = 'More than one latest dataset found ' \
-                      'this case is currently not suppored in siphon.'
-                logging.warning(msg)
+                logging.error('ERROR: More than one latest dataset found '
+                              'this case is currently not suppored in '
+                              'siphon.')
         else:
-            msg = 'ERROR: More than one access url matching the requested ' \
-                  'access method...clearly this is an error'
-            logging.warning(msg)
+            logging.error('ERROR: More than one access url matching the '
+                          'requested access method...clearly this is an error')
