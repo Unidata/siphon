@@ -1,7 +1,8 @@
 from __future__ import print_function
-
-import xml.etree.ElementTree as ET
 from ._version import get_versions
+from .metadata import TDSCatalogMetadata
+import logging
+import xml.etree.ElementTree as ET
 
 userAgent = 'siphon (%s)' % get_versions()['version']
 
@@ -52,26 +53,60 @@ class TDSCatalog(object):
         self.datasets = {}
         self.services = []
         self.catalog_refs = {}
+        self.metadata = {}
+        service_skip_count = 0
+        service_skip = 0
         for child in root.iter():
             tag_type = child.tag.split('}')[-1]
-
-            if tag_type == "service":
-                if child.attrib["serviceType"] != "Compound":
-                    self.services.append(SimpleService(child))
-            elif tag_type == "dataset":
-                if "urlPath" in child.attrib:
-                    if child.attrib["urlPath"] == "latest.xml":
-                        ds = Dataset(child, catalog_url)
-                    else:
-                        ds = Dataset(child)
-                    self.datasets[ds.name] = ds
+            if tag_type == "dataset":
+                self._process_dataset(child)
             elif tag_type == "catalogRef":
-                catalog_ref = CatalogRef(child)
-                self.catalog_refs[catalog_ref.title] = catalog_ref
+                self._process_catalog_ref(child)
+            elif (tag_type == "metadata") or (tag_type == ""):
+                self._process_metadata(child, tag_type)
+            elif tag_type == "service":
+                if child.attrib["serviceType"] != "Compound":
+                    # we do not want to process single services if they
+                    # are already contained within a compound service, so
+                    # we need to skip over those cases.
+                    if service_skip_count >= service_skip:
+                        self.services.append(SimpleService(child))
+                        service_skip = 0
+                        service_skip_count = 0
+                    else:
+                        service_skip_count += 1
+                else:
+                    self.services.append(CompoundService(child))
+                    service_skip = self.services[-1].number_of_subservices
+                    service_skip_count = 0
+            else:
+                logging.warning("Siphon does not know how to handle %s "
+                                "elements. Please report this issue.",
+                                tag_type)
 
+        self._process_datasets()
+
+    def _process_dataset(self, element):
+        if "urlPath" in element.attrib:
+            if element.attrib["urlPath"] == "latest.xml":
+                ds = Dataset(element, self.catalog_url)
+            else:
+                ds = Dataset(element)
+            self.datasets[ds.name] = ds
+
+    def _process_catalog_ref(self, element):
+        catalog_ref = CatalogRef(element)
+        self.catalog_refs[catalog_ref.title] = catalog_ref
+
+    def _process_metadata(self, element, tag_type):
+        if tag_type == "":
+            logging.warning("Trying empty tag type as metadata")
+        self.metadata = TDSCatalogMetadata(element, self.metadata).metadata
+
+    def _process_datasets(self):
         for dsName in list(self.datasets.keys()):
             self.datasets[dsName].make_access_urls(
-                self.base_tds_url, self.services)
+                self.base_tds_url, self.services, metadata=self.metadata)
 
 
 class CatalogRef(object):
@@ -145,8 +180,8 @@ class Dataset(object):
                 self._resolverUrl = self.url_path
                 self.url_path = self.resolve_url(catalog_url)
             else:
-                print("Must pass along the catalog URL to resolve the "
-                      "latest.xml dataset!")
+                logging.warning('Must pass along the catalog URL to resolve '
+                                'the latest.xml dataset!')
 
     def resolve_url(self, catalog_url):
         r"""
@@ -182,9 +217,9 @@ class Dataset(object):
             if found:
                 return resolved_url
             else:
-                print("no dataset url path found in latest.xml!")
+                logging.warning("no dataset url path found in latest.xml!")
 
-    def make_access_urls(self, catalog_url, services):
+    def make_access_urls(self, catalog_url, all_services, metadata=None):
         r"""
         Make fully qualified urls for the access methods enabled on the
         dataset.
@@ -198,10 +233,28 @@ class Dataset(object):
             list of SimpleService objects associated with the dataset
 
         """
+        service_name = None
+        if metadata:
+            if "serviceName" in metadata:
+                service_name = metadata["serviceName"]
+
         access_urls = {}
         server_url = catalog_url.split('/thredds/')[0]
-        for service in services:
-            if service.service_type != 'Resolver':
+
+        if service_name:
+            for service in all_services:
+                if service.name == service_name:
+                    found_service = service
+                    break
+
+        service = found_service
+
+        if service.service_type != 'Resolver':
+            if isinstance(service, CompoundService):
+                for subservice in service.services:
+                    access_urls[subservice.service_type] = server_url + \
+                        subservice.base + self.url_path
+            else:
                 access_urls[service.service_type] = server_url + \
                     service.base + self.url_path
 
@@ -269,10 +322,13 @@ class CompoundService(object):
         self.service_type = service_node.attrib['serviceType']
         self.base = service_node.attrib['base']
         services = []
+        subservices = 0
         for child in list(service_node):
             services.append(SimpleService(child))
+            subservices += 1
 
         self.services = services
+        self.number_of_subservices = subservices
 
 
 def basic_http_request(full_url, return_response=False):
@@ -299,10 +355,10 @@ def basic_http_request(full_url, return_response=False):
         but not always.
 
     """
-    import sys
-    if sys.version_info >= (3, 0):
+
+    try:
         from urllib.request import urlopen, Request
-    else:
+    except ImportError:
         from urllib2 import urlopen, Request
 
     url_request = Request(full_url)
@@ -324,7 +380,6 @@ def basic_http_request(full_url, return_response=False):
             print('Full  url: {}'.format(full_url))
             raise
         else:
-            print('error not caught!')
             raise
 
 
@@ -354,7 +409,7 @@ def _get_latest_cat(catalog_url):
             latest_cat = cat.catalog_url.replace("catalog.xml", "latest.xml")
             return TDSCatalog(latest_cat)
 
-    print('ERROR: "latest" service not enabled for this catalog!')
+    logging.error('ERROR: "latest" service not enabled for this catalog!')
 
 
 def get_latest_access_url(catalog_url, access_method):
@@ -392,8 +447,9 @@ def get_latest_access_url(catalog_url, access_method):
                 latest_ds = latest_ds[0]
                 return latest_ds
             else:
-                print('ERROR: More than one latest dataset found '
-                      'this case is currently not suppored in siphon.')
+                logging.error('ERROR: More than one latest dataset found '
+                              'this case is currently not suppored in '
+                              'siphon.')
         else:
-            print('ERROR: More than one access url matching the requested '
-                  'access method...clearly this is an error')
+            logging.error('ERROR: More than one access url matching the '
+                          'requested access method...clearly this is an error')

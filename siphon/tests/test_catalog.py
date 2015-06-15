@@ -22,10 +22,24 @@ class TestCatalog(object):
         ds = list(cat.datasets.values())[0]
         assert 'OPENDAP' in ds.access_urls
 
+    @recorder.use_cassette('top_level_20km_rap_catalog')
+    def test_virtual_access(self):
+        url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+               'CONUS_20km/noaaport/catalog.xml')
+        cat = TDSCatalog(url)
+        # find the 2D time coordinate "full collection" dataset
+        for dataset in list(cat.datasets.values()):
+            if "Full Collection" in dataset.name:
+                ds = dataset
+                break
+        assert 'OPENDAP' in ds.access_urls
+        # TwoD is a virtual dataset, so HTTPServer
+        # should not be listed here
+        assert 'HTTPServer' not in ds.access_urls
 
-@recorder.use_cassette('latest_rap_catalog')
-def test_get_latest():
-    url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
-           'grib/NCEP/RAP/CONUS_13km/catalog.xml')
-    latest_url = get_latest_access_url(url, "OPENDAP")
-    assert latest_url
+    @recorder.use_cassette('latest_rap_catalog')
+    def test_get_latest(self):
+        url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
+               'grib/NCEP/RAP/CONUS_13km/catalog.xml')
+        latest_url = get_latest_access_url(url, "OPENDAP")
+        assert latest_url
