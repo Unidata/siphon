@@ -1,0 +1,32 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.2.0+46.gf833b51.dirty)]
+    method: GET
+    uri: http://thredds.ucar.edu/thredds/metadata/grib/NCEP/GFS/Global_0p5deg/TwoD/
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA7WTX0/CMBTFv8oVXxljoJBAbYLBhDeJ7sXHriussWtne4lOwne3rPxLMFETeVjW
+        3Xv62+l2LimwVJQUguWUoEQl6KRivBCQmpIzjIedbmeQQAQP1hoLVlTGIomDlDist7erKJolsF4Y
+        jdGClVLVo5QVpmTtiZVMtR3TLnLCysWYG2Xs6L2QKMYZ469La1Y6j0L5+rZ3Ox0Oxg3IyU8x6vWq
+        j/EGZr2L0JNBoPcvQ79p6PeP05e/8DPl0ef88FqP+0evG5j/jnYk7JCnVk9O3PytCaybNowgCDaT
+        jmalOCvPno6lg6UooiQOuQISh2BmJq99SBM6S9M5PCPDlYObbtfH0ksSSjxpa+CulbRAG1ew3K93
+        ixYllUdQrCtB4ozu9++jXO36pXCOLYOErLyJ7bVv5sJxKyuURu8FqR8SK95WwiE4oRGyGtDXuJLb
+        p3fmwNUaGUfJmVI1SM2NtYJj58D+wXfR/3Ya/Zn7fn/4KnEzwV+pbTLmyAMAAA==
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Language: [en]
+      Content-Length: ['388']
+      Content-Type: [text/html;charset=utf-8]
+      Date: ['Mon, 15 Jun 2015 19:29:41 GMT']
+      Server: [Apache]
+      Vary: [Accept-Encoding]
+    status: {code: 400, message: Bad Request}
+version: 1
