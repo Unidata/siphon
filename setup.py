@@ -54,7 +54,7 @@ setup(
     license = 'MIT',
     url = "https://github.com/Unidata/siphon",
     test_suite = "nose.collector",
-    description = ("A collection of Python utilities for interacting with the"
+    description = ("A collection of Python utilities for interacting with the "
                                    "Unidata technology stack."),
     keywords='meteorology weather',
     classifiers=['Development Status :: 2 - Pre-Alpha',
@@ -69,7 +69,7 @@ setup(
                  'Operating System :: OS Independent',
                  'License :: OSI Approved :: MIT License'],
 
-    install_requires=['numpy>=1.8', 'protobuf>=3.0.0a3'],
+    install_requires=['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2'],
     extras_require={
         'dev': ['ipython[all]>=3.1'],
         'doc': ['sphinx>=1.3', 'ipython[all]>=3.1'],

@@ -70,6 +70,7 @@ Important Links
 Dependencies
 ------------
 
+- requests>=1.2
 - numpy>=1.8
 - protobuf>=3.0.0a3
 

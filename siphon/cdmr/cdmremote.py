@@ -1,28 +1,15 @@
-try:
-    from urllib2 import build_opener, HTTPError
-except ImportError:
-    from urllib.request import build_opener, HTTPError
-
 from .ncstream import read_ncstream_messages
-from .._version import get_versions
-__version__ = get_versions()['version']
+from ..util import urlopen
 
 
 class CDMRemote(object):
     # Create a custom url opener to add a user agent
-    opener = build_opener()
-    opener.addheaders = [('User-agent', 'Siphon v%s CDMRemote Reader' % __version__)]
-
     def __init__(self, url):
         self.url = url
         self.responseHandler = read_ncstream_messages
 
     def _fetch(self, url):
-        try:
-            return self.responseHandler(self.opener.open(url))
-        except HTTPError:
-            print('Error accessing: ' + url)
-            raise
+        return self.responseHandler(urlopen(url))
 
     def fetch_capabilities(self):
         url = self.query_url(req='capabilities')

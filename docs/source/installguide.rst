@@ -8,7 +8,8 @@ Requirements
 Siphon supports Python 2.7 as well as Python >= 3.2. Python 3.4 is the recommended version.
 
 Siphon requires the following packages:
-  - NumPy >= 1.8.0
+  - requests >= 1.2
+  - numpy >= 1.8.0
   - protobuf >= 3.0.0a3
 
 Installation Instructions for NumPy can be found at:
