@@ -8,6 +8,8 @@ addons:
   apt:
     packages:
     - pandoc
+    - libhdf5-serial-dev
+    - libnetcdf-dev
 
 matrix:
   include:

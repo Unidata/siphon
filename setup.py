@@ -69,7 +69,8 @@ setup(
                  'Operating System :: OS Independent',
                  'License :: OSI Approved :: MIT License'],
 
-    install_requires=['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2'],
+    install_requires=['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2',
+                      'netCDF4>=1.1.0'],
     extras_require={
         'dev': ['ipython[all]>=3.1'],
         'doc': ['sphinx>=1.3', 'ipython[all]>=3.1'],
