@@ -1,0 +1,31 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.2.0+47.g2059476.dirty)]
+    method: GET
+    uri: http://thredds.ucar.edu/thredds/radarServer/catalog.xml
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6yUUU+DMBSF3038Dzd9l27yoCzDxYBGEmMiYPS1g25rLIW0Bca/t0C3uKcN4xvp
+        Pef0uycpy9W+4NBQqVgpfDR3ZgioyMqcia2PPtLnm3u0eri+WmZEE15uwciF8tFO62qBcdu2Ti1Y
+        boZOnRHp0LzGghRUVSSjCuudpHmucCSaYAzAzXDHELPYcya+T8Ja1ynlFs89z8PDFEEf56P0JX4K
+        wwRikhMJCZWGGZ2AO3fIgAIslRmyjFqj7A0HvR2lXWUm7zWVXUAqsmac6Q7BmihzfIT+5cQI8Bje
+        r6qotuEjTWjOxruNwBYV0w0MCyxM2sZHgu5NHua0ofwWB0Eycz1swxzTBrJqzTQ3wW9PX/FjCK+9
+        HKLIrr0pJQTGAYmu8w7GlENDkyx4Em4UhtNZZVmAMZ7BO6qmELmTC/xLg/9YoTutwgs7nF6iprJg
+        gvDLqNLwMz7LdEZkn83hlv5Xgi2c+f4BAAD//wMA97cZWH8EAAA=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [Keep-Alive]
+      Content-Encoding: [gzip]
+      Content-Type: [application/xml]
+      Date: ['Tue, 16 Jun 2015 17:38:01 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Server: [Apache]
+      Vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+version: 1
