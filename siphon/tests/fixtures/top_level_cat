@@ -1,0 +1,32 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (None)]
+    method: GET
+    uri: http://thredds.ucar.edu/thredds/catalog.xml
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA5ySQW7CMBBF95V6h5H3jYu6KSgUoaaoLCqqQA9g4glYdWzkcQi9fR2TLCpFVLBL
+        5Of/n0eTzk6VhiM6UtZM2Sh5ZICmsFKZ3ZR9bRYPz2z2cn+XFsILbXcQcENTtvf+MOG8aZqkNkqG
+        w6QuhEtQ1tyICukgCiTu9w6lJL40x9dzAD/GjhgzOWllvv+ENU+JdTs+Go/HPJ4yaOOCyrkFNu/5
+        W5atIWt/1uiCOvvjn4xY8AVIW5zQd/dzFNqrCiGmlM5WsMyyMxrg7nk5lhBrJ0G8nDIlJS+tw0KQ
+        /7ASNSXBnHWMV16H6EUHQCSiWW/NgF/R8OmspLmRcyMu1bRYXXgCYSQEVv8Q0nWNdkut5kDLakth
+        qMKHcd7wEiekcEMzytuDGwJJeNRaeRzIXPdng7kp7xZgaBtWfo8O+p2K1/+RCZNH8rVUYas7ZECp
+        T2xp6PBLYmmfFb5/AQAA//8DAK+jrdmLAwAA
+    headers:
+      access-control-allow-origin: ['*']
+      connection: [Keep-Alive]
+      content-encoding: [gzip]
+      content-language: [en]
+      content-type: [application/xml;charset=UTF-8]
+      date: ['Tue, 16 Jun 2015 16:51:19 GMT']
+      keep-alive: ['timeout=5, max=100']
+      server: [Apache]
+      vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+version: 1

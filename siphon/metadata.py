@@ -1,9 +1,8 @@
 from __future__ import print_function
 
-from ._version import get_versions
 import logging
 
-userAgent = 'siphon (%s)' % get_versions()['version']
+log = logging.getLogger("siphon.ncss_dataset")
 
 
 class _SimpleTypes(object):
