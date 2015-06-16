@@ -1,6 +1,8 @@
 from datetime import datetime
 from contextlib import contextmanager
 
+import numpy as np
+
 import siphon.testing
 from siphon.ncss import NCSS, NCSSQuery, ResponseRegistry
 
@@ -48,6 +50,11 @@ def response_context():
     siphon.ncss.response_handlers = old_reg
 
 
+# For testing unit handling
+def tuple_unit_handler(data, units=None):
+    return np.array(data).tolist(), units
+
+
 class TestNCSS(object):
     server = 'http://thredds.ucar.edu/thredds/ncss/'
     urlPath = 'grib/NCEP/GFS/Global_0p5deg/GFS_Global_0p5deg_20150612_1200.grib2'
@@ -78,6 +85,34 @@ class TestNCSS(object):
         assert 'Relative_humidity_isobaric' in csv_data
         eq_(csv_data['lat'][0], 40)
         eq_(csv_data['lon'][0], -105)
+
+    @recorder.use_cassette('ncss_gfs_csv_point')
+    def test_unit_handler_csv(self):
+        self.nq.accept('csv')
+        self.ncss.unit_handler = tuple_unit_handler
+        csv_data = self.ncss.get_data(self.nq)
+
+        temp = csv_data['Temperature_isobaric']
+        eq_(len(temp), 2)
+        eq_(temp[1], 'K')
+
+        relh = csv_data['Relative_humidity_isobaric']
+        eq_(len(relh), 2)
+        eq_(relh[1], '%')
+
+    @recorder.use_cassette('ncss_gfs_xml_point')
+    def test_unit_handler_xml(self):
+        self.nq.accept('xml')
+        self.ncss.unit_handler = tuple_unit_handler
+        xml_data = self.ncss.get_data(self.nq)
+
+        temp = xml_data['Temperature_isobaric']
+        eq_(len(temp), 2)
+        eq_(temp[1], 'K')
+
+        relh = xml_data['Relative_humidity_isobaric']
+        eq_(len(relh), 2)
+        eq_(relh[1], '%')
 
     @recorder.use_cassette('ncss_gfs_netcdf_point')
     def test_netcdf_point(self):

@@ -5,12 +5,29 @@ import numpy as np
 from .http_util import DataQuery, HTTPEndPoint, parse_iso_date
 
 
+def default_unit_handler(data, units=None):  # pylint:disable=unused-argument
+    r'Default unit handler, which ignores units and just returns ``numpy.array``'
+    return np.array(data)
+
+
 class NCSS(HTTPEndPoint):
     r'''Wraps access to the NetCDF Subset Service (NCSS) on a THREDDS server.
 
     Simplifies access via HTTP to the NCSS endpoint. Parses the metadata, provides
     data download and parsing based on the appropriate query.
+
+    Attributes
+    ----------
+    unit_handler : callable
+        Function to handle units that come with CSV/XML data. Should be a callable that
+        takes a list of string values and unit str (can be ``None``), and returns the
+        desired representation of values. Defaults to ignoring units and returning
+        ``numpy.array``.
     '''
+
+    # Need staticmethod to keep this from becoming a bound method, where self
+    # is passed implicitly
+    unit_handler = staticmethod(default_unit_handler)
 
     def _get_metadata(self):
         self.get_path('dataset.xml')
@@ -47,7 +64,7 @@ class NCSS(HTTPEndPoint):
         '''
 
         resp = self.get_query(query)
-        return response_handlers(resp)
+        return response_handlers(resp, self.unit_handler)
 
     def get_data_raw(self, query):
         r'''Fetch raw data from a THREDDS server using NCSS
@@ -69,6 +86,7 @@ class NCSS(HTTPEndPoint):
         --------
         get_data
         '''
+
         return self.get_query(query).content
 
 
@@ -167,6 +185,7 @@ class NCSSQuery(DataQuery):
         self : ``NCSSQuery`` instance
             Returns self for chaining calls
         '''
+
         if time:
             self.add_query_parameter(timeStride=time)
         if spatial:
@@ -192,6 +211,7 @@ class NCSSQuery(DataQuery):
         self : ``NCSSQuery`` instance
             Returns self for chaining calls
         '''
+
         return self.add_query_parameter(vertCoord=level)
 
 
@@ -214,19 +234,14 @@ class ResponseRegistry(object):
             return func
         return dec
 
-    def default(self, content):
+    def default(self, content, units):  # pylint:disable=unused-argument
         return content
 
-    def __call__(self, resp):
+    def __call__(self, resp, unit_handler):
         mimetype = resp.headers['content-type'].split(';')[0]
-        return self._reg.get(mimetype, self.default)(resp.content)
+        return self._reg.get(mimetype, self.default)(resp.content, unit_handler)
 
 response_handlers = ResponseRegistry()
-
-
-def default_unit_handler(data, units=None):  # pylint:disable=unused-argument
-    r'Default unit handler, which ignores units and just returns ``numpy.array``'
-    return np.array(data)
 
 
 def squish(l):
@@ -246,10 +261,10 @@ def combine_dicts(l):
 
 # Parsing of XML returns from NCSS
 @response_handlers.register('application/xml')
-def parse_xml(data):
+def parse_xml(data, handle_units):
     import xml.etree.ElementTree as ET
     root = ET.fromstring(data)
-    return squish(parse_xml_dataset(root))
+    return squish(parse_xml_dataset(root, handle_units))
 
 
 def parse_xml_point(elem):
@@ -264,7 +279,7 @@ def parse_xml_point(elem):
     return point, units
 
 
-def combine_xml_points(l, units, handle_units=default_unit_handler):
+def combine_xml_points(l, units, handle_units):
     ret = dict()
     for item in l:
         for key, value in item.items():
@@ -277,7 +292,7 @@ def combine_xml_points(l, units, handle_units=default_unit_handler):
     return ret
 
 
-def parse_xml_dataset(elem):
+def parse_xml_dataset(elem, handle_units):
     points, units = zip(*[parse_xml_point(p) for p in elem.findall('point')])
     # Group points by the contents of each point
     datasets = dict()
@@ -285,7 +300,7 @@ def parse_xml_dataset(elem):
         datasets.setdefault(tuple(p.keys()), []).append(p)
 
     all_units = combine_dicts(units)
-    return [combine_xml_points(d, all_units) for d in datasets.values()]
+    return [combine_xml_points(d, all_units, handle_units) for d in datasets.values()]
 
 
 # Handling of netCDF 3/4 from NCSS
@@ -295,7 +310,7 @@ try:
 
     @response_handlers.register('application/x-netcdf')
     @response_handlers.register('application/x-netcdf4')
-    def read_netcdf(data):
+    def read_netcdf(data, handle_units):  # pylint:disable=unused-argument
         with NamedTemporaryFile() as tmp_file:
             tmp_file.write(data)
             tmp_file.flush()
@@ -308,8 +323,8 @@ except ImportError:
 
 # Parsing of CSV data returned from NCSS
 @response_handlers.register('text/plain')
-def parse_csv_response(data):
-    return squish([parse_csv_dataset(d) for d in data.split(b'\n\n')])
+def parse_csv_response(data, unit_handler):
+    return squish([parse_csv_dataset(d, unit_handler) for d in data.split(b'\n\n')])
 
 
 def parse_csv_header(line):
@@ -331,15 +346,15 @@ def parse_csv_header(line):
     return names, units
 
 
-def parse_csv_dataset(data, handle_units=default_unit_handler):
+def parse_csv_dataset(data, handle_units):
     fobj = BytesIO(data)
     names, units = parse_csv_header(fobj.readline().decode('utf-8'))
     arrs = np.genfromtxt(fobj, dtype=None, names=names, delimiter=',', unpack=True,
                          converters={'date': lambda s: parse_iso_date(s.decode('utf-8'))})
     d = dict()
     for f in arrs.dtype.fields:
-        dat = handle_units(arrs[f], units.get(f, None))
+        dat = arrs[f]
         if dat.dtype == np.object:
             dat = dat.tolist()
-        d[f] = dat
+        d[f] = handle_units(dat, units.get(f, None))
     return d
