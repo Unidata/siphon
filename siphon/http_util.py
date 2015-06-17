@@ -176,13 +176,13 @@ class DataQuery(object):
         Parameters
         ----------
         north : float
-            The bounding latitude to the north
+            The bounding latitude to the north, in degrees north of the equator
         south : float
-            The bounding latitude to the south
+            The bounding latitude to the south, in degrees north of the equator
         east : float
-            The bounding longitude to the east
+            The bounding longitude to the east, in degrees east of the prime meridian
         west: float
-            The bounding longitude to the west
+            The bounding longitude to the west, in degrees east of the prime meridian
 
         Returns
         -------

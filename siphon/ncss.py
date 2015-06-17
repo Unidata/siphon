@@ -293,7 +293,6 @@ def combine_dicts(l):
 # Parsing of XML returns from NCSS
 @response_handlers.register('application/xml')
 def parse_xml(data, handle_units):
-    import xml.etree.ElementTree as ET
     root = ET.fromstring(data)
     return squish(parse_xml_dataset(root, handle_units))
 
