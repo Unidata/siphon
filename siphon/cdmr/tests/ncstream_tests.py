@@ -26,7 +26,7 @@ def get_test_latest_url(query=None):
 
 @recorder.use_cassette('latest_rap_ncstream_header')
 def get_header_remote():
-    from siphon.util import urlopen
+    from siphon.http_util import urlopen
     return urlopen(get_test_latest_url('req=header'))
 
 

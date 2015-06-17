@@ -8,6 +8,8 @@ addons:
   apt:
     packages:
     - pandoc
+    - libhdf5-serial-dev
+    - libnetcdf-dev
 
 matrix:
   include:
@@ -33,6 +35,9 @@ before_install:
     else
       pip install -r requirements.txt;
       if [[ $DOCBUILD == true || $EXAMPLES == true ]]; then
+        if [[ $EXAMPLES == true ]]; then
+          pip install -r examples/requirements.txt;
+        fi;
         pip install -r docs/requirements.txt;
       else
         pip install vcrpy;
@@ -59,7 +64,8 @@ script:
       make html;
     elif [[ $EXAMPLES == true ]]; then
       cd examples;
-      python test_examples.py;
+      echo backend:agg > matplotlibrc;
+      MPLBACKEND='agg' python test_examples.py;
     else
       nosetests;
     fi

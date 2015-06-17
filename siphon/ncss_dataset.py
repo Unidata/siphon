@@ -128,7 +128,7 @@ class _Types(object):
         return self.handle_grid(element)
 
 
-class NcssDataset(object):
+class NCSSDataset(object):
 
     r"""
     An object for holding information contained in the dataset.xml NCSS
@@ -136,7 +136,7 @@ class NcssDataset(object):
 
     In general, if a dataset.xml NCSS document is missing the information
     needed to construct an attribute, that attribute will not show up as
-    part of the `NcssDataset` object.
+    part of the `NCSSDataset` object.
 
     Note that only gridded ncss datasets may contain the attributes
     `gridsets`, `axes`, `coordinate_transforms`, and `lat_lon_box`.
@@ -179,13 +179,13 @@ class NcssDataset(object):
 
     def __init__(self, element):
         r"""
-        Initialize a NcssDataset object.
+        Initialize a NCSSDataset object.
 
         Parameters
         ----------
         element : Element
             An ElementTree Element representing the top level node of an
-            ncss dataset.xml doc
+            NCSS dataset.xml doc
 
         """
         self._types = _Types()
