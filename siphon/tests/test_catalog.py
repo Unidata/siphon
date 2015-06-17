@@ -53,3 +53,10 @@ class TestCatalog(object):
         url = 'http://thredds.ucar.edu/thredds/catalog.xml'
         cat = TDSCatalog(url)
         assert cat
+
+    @recorder.use_cassette('radar_dataset_cat')
+    def simple_test_radar_cat(self):
+        url = 'http://thredds.ucar.edu/thredds/radarServer/nexrad/level2/' \
+              'IDD/dataset.xml'
+        cat = TDSCatalog(url)
+        assert cat

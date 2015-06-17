@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (None)]
+    method: GET
+    uri: http://thredds.ucar.edu/thredds/radarServer/nexrad/level2/IDD/dataset.xml
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA7SWy27bMBBF9wX6DwQX3UWM80AelRWkloMaCILUTpuim4CRxhIRiRRISo779R3q
+        4ciB4GaRbAx6Znzv0XhIyr94zjNSgTZCyTEdefuUgIxULGQypj/vrvZO6UXw+ZMfccszlRAsl2ZM
+        U2uLc8ZWq5VXShFj0isjrj2ISyZ5DqbgERhmUw1xbNhMVpNGgFW1Ry1z/pwJ+bQltjr0lE7Y6Ozs
+        jNVZSpzcmM55zDUJUYRu4XonFPEI8Q3oSkTQlmtXvsAQaEra1N26wEz4Y0LJIze43OD1qhklrBF0
+        D2XAtoI309/zy5BcQwUZmc1Iw7PUKiezMKT4MaYSnlGJZa7mgNXhUme33KZDudrlBfwGbYIeiM/6
+        ibbWMbnHCJBldnnts02gV3CldM5t0BAfNDVtrK3KwXIXJUKmoIWFeEytLqFjckIqKnOQllvsNLF1
+        60yZ51yvaTDcjPvFfO/0NNw0xSMLFCBYpNfkmORClhaMh0B97RfLBBSOjRU8myj8DU9gk8OsVNqm
+        RpU27UVd+yzXNjjY9/axY/V6Oy3+QnDUZN1yK4mja00QQ6IBzEPt4LMm2HNmg9Y+cGNXYF771Qh7
+        o8PjXUAnbwJyDkM8A85+WcRqJYdYdnZmJ8dTPuT+yslnO/4334ochv5NkHFQaDA4Bfg8+KWXi0vd
+        TMboiMR8bXBgusiL6aCwX3Et+GMGhlQq4o9lhuOKW352RfsGXVW7tSdKa8hqg4mC5VJEArFoT+Kh
+        KZxezu++k8VkNr2ZTMmXxH4liwIiq3nGpjIREnAzyaTJNHvCLfEUcE0c0xiZpTu5ENB058wwUyiW
+        S9CIgV29TfEc+ggcSN4OMYdlhtqiEnb9ESzfdqN8jH273BbfEP3ZjdQYlPm9iG36jkyhKooMNOn0
+        SWvQcuXsP6PzCzIVvW+bOqQX6WEYn202YHfVsO6uaS5V1t6q7pWCte8UuP4HAAD//wMAoU/IcIcI
+        AAA=
+    headers:
+      access-control-allow-origin: ['*']
+      connection: [Keep-Alive]
+      content-encoding: [gzip]
+      content-type: [application/xml]
+      date: ['Wed, 17 Jun 2015 19:42:20 GMT']
+      keep-alive: ['timeout=5, max=100']
+      server: [Apache]
+      vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+version: 1

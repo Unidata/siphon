@@ -234,6 +234,7 @@ class Dataset(object):
         access_urls = {}
         server_url = catalog_url.split('/thredds/')[0]
 
+        found_service = None
         if service_name:
             for service in all_services:
                 if service.name == service_name:
@@ -241,15 +242,15 @@ class Dataset(object):
                     break
 
         service = found_service
-
-        if service.service_type != 'Resolver':
-            if isinstance(service, CompoundService):
-                for subservice in service.services:
-                    access_urls[subservice.service_type] = server_url + \
-                        subservice.base + self.url_path
-            else:
-                access_urls[service.service_type] = server_url + \
-                    service.base + self.url_path
+        if service:
+            if service.service_type != 'Resolver':
+                if isinstance(service, CompoundService):
+                    for subservice in service.services:
+                        access_urls[subservice.service_type] = server_url + \
+                            subservice.base + self.url_path
+                else:
+                    access_urls[service.service_type] = server_url + \
+                        service.base + self.url_path
 
         self.access_urls = access_urls
 
