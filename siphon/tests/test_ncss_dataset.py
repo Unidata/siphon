@@ -2,7 +2,7 @@ import logging
 import xml.etree.ElementTree as ET
 
 from nose.tools import assert_dict_equal, assert_equal
-from siphon.ncss_dataset import NcssDataset, _Types
+from siphon.ncss_dataset import NCSSDataset, _Types
 from siphon.testing import get_recorder
 from siphon.http_util import urlopen
 
@@ -206,7 +206,7 @@ class TestDatasetElements(object):
               '<values>2.0</values></axis>'
 
         element = ET.fromstring(xml)
-        actual = NcssDataset(element).axes
+        actual = NCSSDataset(element).axes
         assert actual
         assert_equal(len(actual), 1)
         assert actual["height_above_ground"]
@@ -274,7 +274,7 @@ class TestDatasetElements(object):
               '</grid>' \
               '</gridSet>'
         element = ET.fromstring(xml)
-        actual = NcssDataset(element).gridsets
+        actual = NCSSDataset(element).gridsets
         assert actual
         assert_equal(len(actual), 1)
         assert actual["time1 isobaric3 y x"]
@@ -307,7 +307,7 @@ class TestDatasetElements(object):
               '<parameter name="earth_radius" value="6371229.0 "/>' \
               '</coordTransform>'
         element = ET.fromstring(xml)
-        actual = NcssDataset(element).coordinate_transforms
+        actual = NCSSDataset(element).coordinate_transforms
         assert actual
         assert actual["LambertConformal_Projection"]
         assert_equal(len(actual["LambertConformal_Projection"]), 2)
@@ -334,7 +334,7 @@ class TestDatasetElements(object):
                     "east": -56.1753,
                     "south": 19.8791,
                     "north": 49.9041}
-        actual = NcssDataset(element).lat_lon_box
+        actual = NCSSDataset(element).lat_lon_box
         assert actual
         assert_dict_equal(expected, actual)
 
@@ -344,7 +344,7 @@ class TestDatasetElements(object):
         element = ET.fromstring(xml)
         expected = {"begin": "2015-06-19T12:00:00Z",
                     "end": "2015-06-23T18:00:00Z"}
-        actual = NcssDataset(element).time_span
+        actual = NCSSDataset(element).time_span
         assert actual
         assert_dict_equal(expected, actual)
 
@@ -367,7 +367,7 @@ class TestDatasetElements(object):
                                     "csv", "csv_file",
                                     "netcdf", "netcdf4"],
                     "Grid": ["netcdf", "netcdf4"]}
-        actual = NcssDataset(element).accept_list
+        actual = NCSSDataset(element).accept_list
         assert_dict_equal(expected, actual)
 
     def test_station_accept_list(self):
@@ -386,7 +386,7 @@ class TestDatasetElements(object):
                                                "csv", "text/csv",
                                                "netcdf", "netcdf4",
                                                "waterml2"]}
-        actual = NcssDataset(element).accept_list
+        actual = NCSSDataset(element).accept_list
 
         assert_equal(len(actual.keys()), len(expected.keys()))
         for accept_type in actual:
@@ -403,7 +403,7 @@ class TestDatasetElements(object):
         url = ('http://thredds.ucar.edu/thredds/ncss/nws/synoptic/'
                'ncdecoded/Surface_Synoptic_Point_Data_fc.cdmr/dataset.xml')
         element = ET.fromstring(urlopen(url).read())
-        parsed = NcssDataset(element)
+        parsed = NCSSDataset(element)
         assert parsed
 
     @recorder.use_cassette('GFS_Global_0p5_Grid_Dataset_xml')
@@ -412,5 +412,5 @@ class TestDatasetElements(object):
                'Global_0p5deg/GFS_Global_0p5deg_20150602_0000.grib2/'
                'dataset.xml')
         element = ET.fromstring(urlopen(url).read())
-        parsed = NcssDataset(element)
+        parsed = NCSSDataset(element)
         assert parsed
