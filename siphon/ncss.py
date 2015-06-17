@@ -1,8 +1,10 @@
+import xml.etree.ElementTree as ET
 from io import BytesIO
 
 import numpy as np
 
 from .http_util import DataQuery, HTTPEndPoint, parse_iso_date
+from .ncss_dataset import NCSSDataset
 
 
 def default_unit_handler(data, units=None):  # pylint:disable=unused-argument
@@ -18,6 +20,12 @@ class NCSS(HTTPEndPoint):
 
     Attributes
     ----------
+    metadata : ``NCSSDataset`` instance
+        Contains the result of parsing the NCSS endpoint's dataset.xml. This has
+        information about the time and space coverage, as well as full information
+        about all of the variables.
+    variables : set of strings
+        Names of all variables available in this dataset
     unit_handler : callable
         Function to handle units that come with CSV/XML data. Should be a callable that
         takes a list of string values and unit str (can be ``None``), and returns the
@@ -30,7 +38,11 @@ class NCSS(HTTPEndPoint):
     unit_handler = staticmethod(default_unit_handler)
 
     def _get_metadata(self):
-        self.get_path('dataset.xml')
+        # Need to use .content here to avoid decode problems
+        meta_xml = self.get_path('dataset.xml').content
+        root = ET.fromstring(meta_xml)
+        self.metadata = NCSSDataset(root)
+        self.variables = set(self.metadata.variables.keys())
 
     def query(self):
         r'''Returns a new query for NCSS
@@ -41,6 +53,25 @@ class NCSS(HTTPEndPoint):
         '''
 
         return NCSSQuery()
+
+    def validate_query(self, query):
+        r'''Validate a query
+
+        Determines whether `query` is well-formed. This includes checking for all
+        required parameters, as well as checking parameters for valid values.
+
+        Parameters
+        ----------
+        query : ``NCSSQuery`` instance
+
+        Returns
+        -------
+        valid : bool
+            Whether `query` is valid.
+        '''
+
+        # Make sure all variables are in the dataset
+        return query.var and all(var in self.variables for var in query.var)
 
     def get_data(self, query):
         r'''Fetch parsed data from a THREDDS server using NCSS

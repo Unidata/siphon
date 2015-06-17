@@ -66,6 +66,17 @@ class TestNCSS(object):
         self.nq = self.ncss.query().lonlat_point(-105, 40).time(dt)
         self.nq.variables('Temperature_isobaric', 'Relative_humidity_isobaric')
 
+    def test_good_query(self):
+        assert self.ncss.validate_query(self.nq)
+
+    def test_bad_query(self):
+        self.nq.variables('foo')
+        assert not self.ncss.validate_query(self.nq)
+
+    def test_bad_query_no_vars(self):
+        self.nq.var.clear()
+        assert not self.ncss.validate_query(self.nq)
+
     @recorder.use_cassette('ncss_gfs_xml_point')
     def test_xml_point(self):
         self.nq.accept('xml')
