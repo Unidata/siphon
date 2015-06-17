@@ -1,5 +1,11 @@
+import logging
+
 from siphon.testing import get_recorder
 from siphon.catalog import TDSCatalog, get_latest_access_url
+
+log = logging.getLogger("siphon.catalog")
+log.setLevel(logging.WARNING)
+log.addHandler(logging.StreamHandler())
 
 recorder = get_recorder(__file__)
 
@@ -41,3 +47,9 @@ class TestCatalog(object):
                'grib/NCEP/RAP/CONUS_13km/catalog.xml')
         latest_url = get_latest_access_url(url, "OPENDAP")
         assert latest_url
+
+    @recorder.use_cassette('top_level_cat')
+    def test_tds_top_catalog(self):
+        url = 'http://thredds.ucar.edu/thredds/catalog.xml'
+        cat = TDSCatalog(url)
+        assert cat

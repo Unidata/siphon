@@ -1,5 +1,6 @@
 import logging
 import xml.etree.ElementTree as ET
+
 from .metadata import TDSCatalogMetadata
 from .util import urlopen
 
@@ -76,10 +77,6 @@ class TDSCatalog(object):
                     self.services.append(CompoundService(child))
                     service_skip = self.services[-1].number_of_subservices
                     service_skip_count = 0
-            else:
-                logging.warning("Siphon does not know how to handle %s "
-                                "elements. Please report this issue.",
-                                tag_type)
 
         self._process_datasets()
 
@@ -150,7 +147,7 @@ class Dataset(object):
     url_path : string
         url to the accessible dataset
     access_urls : dict
-        A dictionairy of access urls whose keywords are the access service
+        A dictionary of access urls whose keywords are the access service
         types defined in the catalog (for example, "OPENDAP", "NetcdfSubset",
         "WMS", etc.
     """
@@ -270,7 +267,7 @@ class SimpleService(object):
     service_type : string
         The service type (i.e. "OPENDAP", "NetcdfSubset", "WMS", etc.)
     access_urls : dict
-        A dictionairy of access urls whose keywords are the access service
+        A dictionary of access urls whose keywords are the access service
         types defined in the catalog (for example, "OPENDAP", "NetcdfSubset",
         "WMS", etc.)
     """
@@ -360,7 +357,7 @@ def get_latest_access_url(catalog_url, access_method):
     r"""
     Get the data access url, using a specified access method, to the latest
     data available from a top level dataset catalog (url). Currently only
-    supports the existance of one "latest" dataset.
+    supports the existence of one "latest" dataset.
 
     Parameters
     ----------

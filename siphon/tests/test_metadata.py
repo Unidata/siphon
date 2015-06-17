@@ -1,6 +1,12 @@
-from siphon.metadata import TDSCatalogMetadata, _SimpleTypes, _ComplexTypes
-from nose.tools import assert_dict_equal, assert_equal
+import logging
 import xml.etree.ElementTree as ET
+
+from nose.tools import assert_dict_equal, assert_equal
+from siphon.metadata import TDSCatalogMetadata, _SimpleTypes, _ComplexTypes
+
+log = logging.getLogger("siphon.metadata")
+log.setLevel(logging.WARNING)
+log.addHandler(logging.StreamHandler())
 
 #
 # tested:
