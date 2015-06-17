@@ -158,6 +158,13 @@ class _SimpleTypes(object):
 
 class _ComplexTypes(object):
 
+    def _get_tag_name(self, element):
+        if "}" in element.tag:
+            element_name = element.tag.split('}')[-1]
+        else:
+            element_name = element.tag
+        return element_name
+
     def _spatial_range_req_children(self):
         req = ["start",
                "size"]
@@ -381,7 +388,8 @@ class _ComplexTypes(object):
         variable_list = []
         variable_map_list = []
         for child in element:
-            child_type = child.tag
+            child_type = self._get_tag_name(child)
+
             if child_type == "variable":
                 var = self.handle_variable(child)
                 variable_list.append(var)
@@ -509,7 +517,8 @@ class TDSCatalogMetadata(object):
                   "dataType": self._parse_data_type,
                   "date": self._parse_date,
                   "timeCoverage": self._parse_timeCoverage,
-                  "variableMap": self._parse_variableMap}
+                  "variableMap": self._parse_variableMap,
+                  "variables": self._parse_variables}
 
         try:
             parser[element_name](element)
@@ -689,3 +698,11 @@ class TDSCatalogMetadata(object):
         element_type = "variableMap"
         parsed = self._ct.handle_variableMap(element)
         self.metadata.setdefault(element_type, []).append(parsed)
+
+    def _parse_variables(self, element):
+        element_type = "variables"
+        parsed = self._ct.handle_variables(element)
+        for variable in parsed["variables"]:
+            var_name = variable["name"]
+            variable.pop("name", None)
+            self.metadata.setdefault(element_type, {})[var_name] = variable

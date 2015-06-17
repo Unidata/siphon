@@ -145,7 +145,7 @@ class NCSSDataset(object):
     ----------
 
     name : variables
-        A list of variables (dictionaries) in the dataset
+        A dictionary of variables
 
     name : time_span
         A dictionary holding the beginning and ending iso time strings which
