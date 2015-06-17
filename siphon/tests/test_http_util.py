@@ -33,8 +33,18 @@ class TestDataQuery(object):
         dr = DataQuery()
         dr.all_times()
         dr.variables('foo', 'bar')
-        eq_(str(dr), 'var=foo&var=bar&temporal=all')
-        eq_(repr(dr), 'var=foo&var=bar&temporal=all')
+        query = repr(dr)  # To check repr for once
+        assert 'temporal=all' in query
+        assert 'var=foo' in query
+        assert 'var=bar' in query
+
+    def test_repeated_vars(self):
+        dr = DataQuery()
+        dr.variables('foo', 'bar')
+        dr.variables('foo')
+        query = str(dr)
+        eq_(query.count('foo'), 1)
+        eq_(query.count('bar'), 1)
 
     def test_time_reset(self):
         dr = DataQuery().all_times().time(datetime.utcnow())

@@ -116,13 +116,15 @@ class DataQuery(object):
     def __init__(self):
         r'Constructs an empty DataQuery'
 
-        self.var = list()
+        self.var = set()
         self.time_query = OrderedDict()
         self.spatial_query = OrderedDict()
         self.extra_params = OrderedDict()
 
     def variables(self, *var_names):
         r'''Specify one or more variables for the query.
+
+        This function ensures that variable names are not repeated.
 
         This modifies the query in-place, but returns ``self`` so that multiple
         queries can be chained together on one line.
@@ -138,7 +140,7 @@ class DataQuery(object):
             Returns self for chaining calls
         '''
 
-        self.var.extend(var_names)
+        self.var.update(set(var_names))
         return self
 
     def add_query_parameter(self, **kwargs):
