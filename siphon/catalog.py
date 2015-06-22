@@ -4,6 +4,9 @@ import xml.etree.ElementTree as ET
 from .metadata import TDSCatalogMetadata
 from .http_util import urlopen
 
+log = logging.getLogger("siphon.catalog")
+log.setLevel(logging.WARNING)
+
 
 class TDSCatalog(object):
     r"""
@@ -94,7 +97,7 @@ class TDSCatalog(object):
 
     def _process_metadata(self, element, tag_type):
         if tag_type == "":
-            logging.warning("Trying empty tag type as metadata")
+            log.warning("Trying empty tag type as metadata")
         self.metadata = TDSCatalogMetadata(element, self.metadata).metadata
 
     def _process_datasets(self):
@@ -174,8 +177,8 @@ class Dataset(object):
                 self._resolverUrl = self.url_path
                 self.url_path = self.resolve_url(catalog_url)
             else:
-                logging.warning('Must pass along the catalog URL to resolve '
-                                'the latest.xml dataset!')
+                log.warning('Must pass along the catalog URL to resolve '
+                            'the latest.xml dataset!')
 
     def resolve_url(self, catalog_url):
         r"""
@@ -210,7 +213,7 @@ class Dataset(object):
             if found:
                 return resolved_url
             else:
-                logging.warning("no dataset url path found in latest.xml!")
+                log.warning("no dataset url path found in latest.xml!")
 
     def make_access_urls(self, catalog_url, all_services, metadata=None):
         r"""
@@ -351,7 +354,7 @@ def _get_latest_cat(catalog_url):
             latest_cat = cat.catalog_url.replace("catalog.xml", "latest.xml")
             return TDSCatalog(latest_cat)
 
-    logging.error('ERROR: "latest" service not enabled for this catalog!')
+    log.error('ERROR: "latest" service not enabled for this catalog!')
 
 
 def get_latest_access_url(catalog_url, access_method):
@@ -389,9 +392,9 @@ def get_latest_access_url(catalog_url, access_method):
                 latest_ds = latest_ds[0]
                 return latest_ds
             else:
-                logging.error('ERROR: More than one latest dataset found '
-                              'this case is currently not suppored in '
-                              'siphon.')
+                log.error('ERROR: More than one latest dataset found '
+                          'this case is currently not suppored in '
+                          'siphon.')
         else:
-            logging.error('ERROR: More than one access url matching the '
-                          'requested access method...clearly this is an error')
+            log.error('ERROR: More than one access url matching the '
+                      'requested access method...clearly this is an error')
