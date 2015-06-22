@@ -2,7 +2,8 @@ from __future__ import print_function
 
 import logging
 
-log = logging.getLogger("siphon.ncss_dataset")
+log = logging.getLogger("siphon.metadata")
+log.setLevel(logging.WARNING)
 
 
 class _SimpleTypes(object):
@@ -72,8 +73,8 @@ class _SimpleTypes(object):
             attr = attrib
             val = element.attrib[attr]
             if val not in valid:
-                logging.warning("Value %s not valid for type %s: must be %s",
-                                val, type_name, valid)
+                log.warning("Value %s not valid for type %s: must be %s",
+                            val, type_name, valid)
         return {attr: val}
 
     def handle_dataFormat(self, element):  # noqa
@@ -126,8 +127,8 @@ class _SimpleTypes(object):
         valid = self._valid[type_name]
         val = element.text
         if val not in valid:
-            logging.warning("Value %s not valid for type %s: must be %s",
-                            val, type_name, valid)
+            log.warning("Value %s not valid for type %s: must be %s",
+                        val, type_name, valid)
         return {type_name: val}
 
     def handle_dataType(self, element):  # noqa
@@ -151,8 +152,8 @@ class _SimpleTypes(object):
 
         val = element.text
         if val.lower() not in valid:
-            logging.warning("Value %s not valid for type %s: must be %s",
-                            val, type_name, valid)
+            log.warning("Value %s not valid for type %s: must be %s",
+                        val, type_name, valid)
         return {type_name: val}
 
 
@@ -219,8 +220,8 @@ class _ComplexTypes(object):
                     spatial_range[child.tag] = child.text
             else:
                 # child not valid
-                logging.warning("%s is not valid for type %s",
-                                child_name, type_name)
+                log.warning("%s is not valid for type %s",
+                            child_name, type_name)
         return spatial_range
 
     def handle_controlledVocabulary(self, element):  # noqa
@@ -236,10 +237,10 @@ class _ComplexTypes(object):
 
         opt_attrs = self._controlled_vocatulary_opt_attrs()
         val = {}
-        for attr in opt_attrs:
-            if attr not in element.attrib:
-                logging.warning("%s must have an attribute: %s", type_name,
-                                attr)
+        for attr in element.attrib:
+            if attr not in opt_attrs:
+                log.warning("%s not a valid attribute for %s", type_name,
+                            attr)
             else:
                 val[attr] = element.attrib[attr]
 
@@ -263,8 +264,8 @@ class _ComplexTypes(object):
         val = {}
         for attr in element.attrib:
             if attr not in valid_attrs:
-                logging.warning("%s is not a valid attribute for %s", attr,
-                                type_name)
+                log.warning("%s is not a valid attribute for %s", attr,
+                            type_name)
             else:
                 val[attr] = element.attrib[attr]
 
@@ -295,8 +296,8 @@ class _ComplexTypes(object):
                 if "email" in child.attrib:
                     value["email"] = child.attrib["email"]
                 else:
-                    logging.warning("'contact' must have an attribute: "
-                                    "'email'")
+                    log.warning("'contact' must have an attribute: "
+                                "'email'")
                     value["email"] = "missing"
             if value:
                 parsed.update(value)
@@ -327,7 +328,7 @@ class _ComplexTypes(object):
                     value[child.tag] = child.text
                 parsed.update(value)
         else:
-            logging.warning("Not enough elements to make a valid timeCoverage")
+            log.warning("Not enough elements to make a valid timeCoverage")
 
         return parsed
 
@@ -347,8 +348,8 @@ class _ComplexTypes(object):
         for req_attr in req_attrs:
             if req_attr not in element.attrib:
                 valid = False
-                logging.warning("%s must have an attribute %s", type_name,
-                                req_attr)
+                log.warning("%s must have an attribute %s", type_name,
+                            req_attr)
             variable = {}
         if valid:
             if element.text:
@@ -495,7 +496,7 @@ class TDSCatalogMetadata(object):
             handler = getattr(self._st,  handler_name)
         else:
             msg = "cannot find handler for element {}".format(handler_name)
-            logging.error(msg)
+            log.error(msg)
 
         return handler
 
@@ -523,7 +524,7 @@ class TDSCatalogMetadata(object):
         try:
             parser[element_name](element)
         except KeyError:
-            logging.error("No parser found for element %s", element_name)
+            log.error("No parser found for element %s", element_name)
             raise
 
     def _parse_documentation(self, element):
@@ -633,8 +634,8 @@ class TDSCatalogMetadata(object):
                     value = handler(element)
                     md.update({attr: value})
                 else:
-                    logging.warning("Attr on %s : %s not captured", attr,
-                                    element_type)
+                    log.warning("Attr on %s : %s not captured", attr,
+                                element_type)
 
         for child in element:
             child_name = child.tag

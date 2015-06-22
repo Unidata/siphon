@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.0+0.ga006c71.dirty)]
+    method: GET
+    uri: http://thredds.ucar.edu/thredds/catalog/nws/metar/ncdecoded/catalog.xml?dataset=nws/metar/ncdecoded/Metar_Station_Data_fc.cdmr
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      access-control-allow-origin: ['*']
+      connection: [Keep-Alive]
+      content-encoding: [gzip]
+      content-language: [en]
+      content-type: [application/xml;charset=UTF-8]
+      date: ['Mon, 22 Jun 2015 16:41:59 GMT']
+      keep-alive: ['timeout=5, max=100']
+      server: [Apache]
+      vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+version: 1
