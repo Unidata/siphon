@@ -57,7 +57,7 @@ class RadarServer(HTTPEndPoint):
     def _get_metadata(self):
         ds_cat = TDSCatalog(self.url_path('dataset.xml'))
         self.metadata = ds_cat.metadata
-        self.variables = set(self.metadata['variables'].keys())
+        self.variables = set(k.split('/')[0] for k in self.metadata['variables'].keys())
         self._get_stations()
 
     def _get_stations(self, station_file='stations.xml'):
@@ -95,6 +95,10 @@ class RadarServer(HTTPEndPoint):
         if 'stn' in query.spatial_query:
             valid = valid and all(stid in self.stations
                                   for stid in query.spatial_query['stn'])
+
+        if query.var:
+            valid = valid and all(var in self.variables for var in query.var)
+
         return valid
 
     def get_catalog(self, query):
