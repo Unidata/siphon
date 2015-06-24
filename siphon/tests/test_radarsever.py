@@ -37,6 +37,9 @@ class TestRadarServer(object):
     def test_stations(self):
         assert 'KFTG' in self.client.stations
 
+    def test_metadata(self):
+        assert 'Reflectivity' in self.client.variables
+
     def test_valid_stations(self):
         q = self.client.query()
         q.stations('KFTG', 'KTLX')

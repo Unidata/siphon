@@ -37,7 +37,9 @@ class RadarQuery(DataQuery):
 
 class RadarServer(HTTPEndPoint):
     def _get_metadata(self):
-        self.get_path('dataset.xml')
+        ds_cat = TDSCatalog(self.url_path('dataset.xml'))
+        self.metadata = ds_cat.metadata
+        self.variables = set(self.metadata['variables'].keys())
         self._get_stations()
 
     def _get_stations(self, station_file='stations.xml'):
