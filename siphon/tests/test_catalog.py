@@ -68,3 +68,10 @@ class TestCatalog(object):
               '/Metar_Station_Data_fc.cdmr'
         cat = TDSCatalog(url)
         assert cat
+
+    @recorder.use_cassette('html_then_xml_catalog')
+    def test_html_link(self):
+        url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
+               'grib/NCEP/RAP/CONUS_13km/catalog.html')
+        cat = TDSCatalog(url)
+        assert cat
