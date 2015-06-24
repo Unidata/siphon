@@ -2,7 +2,7 @@ import logging
 import xml.etree.ElementTree as ET
 
 from .metadata import TDSCatalogMetadata
-from .http_util import urlopen
+from .http_util import create_http_session, urlopen
 
 log = logging.getLogger("siphon.catalog")
 log.setLevel(logging.WARNING)
@@ -41,11 +41,23 @@ class TDSCatalog(object):
         # top level server url
         self.catalog_url = catalog_url
         self.base_tds_url = catalog_url.split('/thredds/')[0]
+
+        session = create_http_session()
+
         # get catalog.xml file
-        xml_fobj = urlopen(catalog_url)
+        resp = session.get(self.catalog_url)
+
+        # If we were given an HTML link, warn about it and try to fix to xml
+        if 'html' in resp.headers['content-type']:
+            import warnings
+            new_url = self.catalog_url.replace('html', 'xml')
+            warnings.warn('URL %s returned HTML. Changing to: %s' % (self.catalog_url,
+                                                                     new_url))
+            self.catalog_url = new_url
+            resp = session.get(self.catalog_url)
+
         # begin parsing the xml doc
-        tree = ET.parse(xml_fobj)
-        root = tree.getroot()
+        root = ET.fromstring(resp.text)
         if "name" in root.attrib:
             self.catalog_name = root.attrib["name"]
         else:
