@@ -28,6 +28,23 @@ class TestRadarQuery(object):
         assert 'time=2015-06-15T12' in query
 
 
+class TestRadarServerLevel3(object):
+    @recorder.use_cassette('thredds_radarserver_level3_metadata')
+    def setup(self):
+        self.server = 'http://thredds.ucar.edu/thredds/radarServer/'
+        self.client = RadarServer(self.server + 'nexrad/level3/IDD')
+
+    def test_valid_variables(self):
+        q = self.client.query()
+        q.variables('N0Q', 'N0C')
+        assert self.client.validate_query(q)
+
+    def test_invalid_variables(self):
+        q = self.client.query()
+        q.variables('FOO', 'BAR')
+        assert not self.client.validate_query(q)
+
+
 class TestRadarServer(object):
     @recorder.use_cassette('thredds_radarserver_metadata')
     def setup(self):
@@ -36,6 +53,9 @@ class TestRadarServer(object):
 
     def test_stations(self):
         assert 'KFTG' in self.client.stations
+
+    def test_metadata(self):
+        assert 'Reflectivity' in self.client.variables
 
     def test_valid_stations(self):
         q = self.client.query()

@@ -36,8 +36,28 @@ class RadarQuery(DataQuery):
 
 
 class RadarServer(HTTPEndPoint):
+    r'''Wraps access to the THREDDS radar query service (radar server).
+
+    Simplifies access via HTTP to the radar server endpoint. Parses the metadata, provides
+    query catalog results download and parsing based on the appropriate query.
+
+    Attributes
+    ----------
+    metadata : ``TDSCatalogMetadata`` instance
+        Contains the result of parsing the radar server endpoint's dataset.xml. This has
+        information about the time and space coverage, as well as full information
+        about all of the variables.
+    variables : set of strings
+        Names of all variables available in this dataset
+    stations : dict of string -> ``Station`` instance
+        Mapping of station ID to a ``Station``, which is a namedtuple containing the
+        station's id, name, latitude, longitude, and elevation.
+    '''
+
     def _get_metadata(self):
-        self.get_path('dataset.xml')
+        ds_cat = TDSCatalog(self.url_path('dataset.xml'))
+        self.metadata = ds_cat.metadata
+        self.variables = set(k.split('/')[0] for k in self.metadata['variables'].keys())
         self._get_stations()
 
     def _get_stations(self, station_file='stations.xml'):
@@ -75,6 +95,10 @@ class RadarServer(HTTPEndPoint):
         if 'stn' in query.spatial_query:
             valid = valid and all(stid in self.stations
                                   for stid in query.spatial_query['stn'])
+
+        if query.var:
+            valid = valid and all(var in self.variables for var in query.var)
+
         return valid
 
     def get_catalog(self, query):

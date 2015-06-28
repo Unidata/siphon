@@ -368,6 +368,28 @@ class HTTPEndPoint(object):
         url = self._base[:-1] if self._base[-1] == '/' else self._base
         return self.get(url, query)
 
+    def url_path(self, path):
+        r'''Assemble the full url to a path.
+
+        Given a path relative to the base URL, assemble the full URL.
+
+        Parameters
+        ----------
+        path : string
+            The path, relative to the endpoint
+
+        Returns
+        -------
+        url : string
+            The full URL to `path`
+
+        See Also
+        --------
+        get_path
+        '''
+
+        return posixpath.join(self._base, path)
+
     def get_path(self, path, query=None):
         r'''Make a GET request, optionally including a query, to a relative path.
 
@@ -388,11 +410,10 @@ class HTTPEndPoint(object):
 
         See Also
         --------
-        get_query, get
+        get_query, get, url_path
         '''
 
-        fullpath = posixpath.join(self._base, path)
-        return self.get(fullpath, query)
+        return self.get(self.url_path(path), query)
 
     def get(self, path, params=None):
         r'''Make a GET request, optionally including a parameters, to a path.

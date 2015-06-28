@@ -140,3 +140,7 @@ class TestEndPoint(object):
     @raises(HTTPError)
     def test_get_error(self):
         self.endpoint.get_path('')
+
+    def test_url_path(self):
+        path = self.endpoint.url_path('foobar.html')
+        eq_(path, self.server + self.api + '/foobar.html')
