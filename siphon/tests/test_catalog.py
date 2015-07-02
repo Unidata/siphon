@@ -3,7 +3,11 @@ import logging
 from siphon.testing import get_recorder
 from siphon.catalog import TDSCatalog, get_latest_access_url
 
-from urlparse import urljoin
+try:
+    from urlparse import urljoin
+except ImportError:
+    # Python 3
+    from urllib.parse import urljoin
 
 log = logging.getLogger("siphon.catalog")
 log.setLevel(logging.WARNING)
@@ -85,3 +89,4 @@ class TestCatalog(object):
         ref = cat.catalog_refs[ref_name]
         ref_url = urljoin(cat.catalog_url, ref.href)
         ref_cat = TDSCatalog(ref_url)
+        assert ref_cat
