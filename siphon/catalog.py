@@ -145,8 +145,6 @@ class CatalogRef(object):
         """
         self.name = element_node.attrib["name"]
         self.href = element_node.attrib["{http://www.w3.org/1999/xlink}href"]
-        if self.href[0] == '/':
-            self.href = self.href[1:]
         self.title = element_node.attrib["{http://www.w3.org/1999/xlink}title"]
 
 
