@@ -4,6 +4,12 @@ import xml.etree.ElementTree as ET
 from .metadata import TDSCatalogMetadata
 from .http_util import create_http_session, urlopen
 
+try:
+    from urlparse import urljoin
+except ImportError:
+    # Python 3
+    from urllib.parse import urljoin
+
 log = logging.getLogger("siphon.catalog")
 log.setLevel(logging.WARNING)
 
@@ -104,7 +110,7 @@ class TDSCatalog(object):
             self.datasets[ds.name] = ds
 
     def _process_catalog_ref(self, element):
-        catalog_ref = CatalogRef(element)
+        catalog_ref = CatalogRef(self.catalog_url, element)
         self.catalog_refs[catalog_ref.title] = catalog_ref
 
     def _process_metadata(self, element, tag_type):
@@ -133,21 +139,30 @@ class CatalogRef(object):
     title : string
         Title of the catalogRef element
     """
-    def __init__(self, element_node):
+    def __init__(self, base_url, element_node):
         r"""
         Initialize the catalogRef object.
 
         Parameters
         ----------
+        base_url : String
+            URL to the base catalog that owns this reference
         element_node : Element
             An Element Tree Element representing a catalogRef node
 
         """
         self.name = element_node.attrib["name"]
-        self.href = element_node.attrib["{http://www.w3.org/1999/xlink}href"]
-        if self.href[0] == '/':
-            self.href = self.href[1:]
         self.title = element_node.attrib["{http://www.w3.org/1999/xlink}title"]
+
+        # Resolve relative URLs
+        href = element_node.attrib["{http://www.w3.org/1999/xlink}href"]
+        self.href = urljoin(base_url, href)
+
+    def follow(self):
+        r"""
+        Follow the reference, returning a new TDSCatalog
+        """
+        return TDSCatalog(self.href)
 
 
 class Dataset(object):

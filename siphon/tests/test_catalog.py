@@ -75,3 +75,9 @@ class TestCatalog(object):
                'grib/NCEP/RAP/CONUS_13km/catalog.html')
         cat = TDSCatalog(url)
         assert cat
+
+    def test_catalog_follow(self):
+        url = 'http://thredds-test.unidata.ucar.edu/thredds/testDatasets.xml'
+        ref_name = 'TestFmrc'
+        cat = TDSCatalog(url).catalog_refs[ref_name].follow()
+        assert cat
