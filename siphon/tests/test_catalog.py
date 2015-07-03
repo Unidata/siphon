@@ -3,12 +3,6 @@ import logging
 from siphon.testing import get_recorder
 from siphon.catalog import TDSCatalog, get_latest_access_url
 
-try:
-    from urlparse import urljoin
-except ImportError:
-    # Python 3
-    from urllib.parse import urljoin
-
 log = logging.getLogger("siphon.catalog")
 log.setLevel(logging.WARNING)
 log.addHandler(logging.StreamHandler())
@@ -85,8 +79,5 @@ class TestCatalog(object):
     def test_catalog_follow(self):
         url = 'http://thredds-test.unidata.ucar.edu/thredds/testDatasets.xml'
         ref_name = 'TestFmrc'
-        cat = TDSCatalog(url)
-        ref = cat.catalog_refs[ref_name]
-        ref_url = urljoin(cat.catalog_url, ref.href)
-        ref_cat = TDSCatalog(ref_url)
-        assert ref_cat
+        cat = TDSCatalog(url).catalog_refs[ref_name].follow()
+        assert cat
