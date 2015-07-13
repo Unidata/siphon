@@ -15,11 +15,19 @@ Siphon
 
 .. image:: https://img.shields.io/pypi/v/siphon.svg
     :target: https://pypi.python.org/pypi/siphon/
-    :alt: Latest Version
+    :alt: PyPI Package
 
 .. image:: https://img.shields.io/pypi/dm/siphon.svg
     :target: https://pypi.python.org/pypi/siphon/
-    :alt: Downloads
+    :alt: PyPI Downloads
+
+.. image:: https://binstar.org/unidata/siphon/badges/version.svg
+    :target: https://binstar.org/unidata/siphon
+    :alt: Binstar Package
+
+.. image:: https://binstar.org/unidata/siphon/badges/downloads.svg
+    :target: https://binstar.org/unidata/siphon
+    :alt: Binstar Downloads
 
 .. image:: https://travis-ci.org/Unidata/siphon.svg?branch=master
     :target: https://travis-ci.org/Unidata/siphon
