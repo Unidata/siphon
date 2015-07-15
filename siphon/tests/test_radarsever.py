@@ -54,6 +54,12 @@ class TestRadarServer(object):
     def test_stations(self):
         assert 'KFTG' in self.client.stations
 
+    def test_float_attrs(self):
+        stn = self.client.stations['KFTG']
+        eq_(stn.elevation, 1675.0)
+        eq_(stn.latitude, 39.78)
+        eq_(stn.longitude, -104.53)
+
     def test_metadata(self):
         assert 'Reflectivity' in self.client.variables
 
@@ -108,3 +114,9 @@ class TestRadarServerDatasets(object):
     def test_trailing(self):
         ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
         eq_(len(ds), 5)
+
+    @recorder.use_cassette('thredds_radarserver_level3_catalog')
+    def test_catalog_access(self):
+        ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
+        url = ds['NEXRAD Level III Radar from IDD'].follow().catalog_url
+        assert RadarServer(url)
