@@ -108,3 +108,9 @@ class TestRadarServerDatasets(object):
     def test_trailing(self):
         ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
         eq_(len(ds), 5)
+
+    @recorder.use_cassette('thredds_radarserver_level3_catalog')
+    def test_catalog_access(self):
+        ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
+        url = ds['NEXRAD Level III Radar from IDD'].follow().catalog_url
+        assert RadarServer(url)

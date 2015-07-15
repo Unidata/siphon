@@ -54,6 +54,19 @@ class RadarServer(HTTPEndPoint):
         station's id, name, latitude, longitude, and elevation.
     '''
 
+    def __init__(self, url):
+        r'''Create a RadarServer instance.
+
+        Parameters
+        ----------
+        url : string
+            The base URL for the endpoint
+        '''
+        xmlfile = '/dataset.xml'
+        if url.endswith(xmlfile):
+            url = url[:-len(xmlfile)]
+        super(RadarServer, self).__init__(url)
+
     def _get_metadata(self):
         ds_cat = TDSCatalog(self.url_path('dataset.xml'))
         self.metadata = ds_cat.metadata
