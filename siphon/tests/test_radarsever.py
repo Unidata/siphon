@@ -54,6 +54,12 @@ class TestRadarServer(object):
     def test_stations(self):
         assert 'KFTG' in self.client.stations
 
+    def test_float_attrs(self):
+        stn = self.client.stations['KFTG']
+        eq_(stn.elevation, 1675.0)
+        eq_(stn.latitude, 39.78)
+        eq_(stn.longitude, -104.53)
+
     def test_metadata(self):
         assert 'Reflectivity' in self.client.variables
 
