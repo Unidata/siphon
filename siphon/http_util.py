@@ -190,7 +190,8 @@ class DataQuery(object):
             Returns self for chaining calls
         '''
 
-        self._set_query(self.spatial_query, west=west, east=east, south=south, north=north)
+        self._set_query(self.spatial_query, west=west, east=east, south=south,
+                        north=north)
         return self
 
     def lonlat_point(self, lon, lat):

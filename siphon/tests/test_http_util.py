@@ -81,10 +81,10 @@ class TestDataQuery(object):
     def test_spatial_reset2(self):
         dr = DataQuery().lonlat_point(-1, -2).lonlat_box(1, 2, 3, 4)
         query = str(dr)
-        assert 'east=3' in query
-        assert 'west=4' in query
-        assert 'north=1' in query
-        assert 'south=2' in query
+        assert 'south=3' in query
+        assert 'north=4' in query
+        assert 'west=1' in query
+        assert 'east=2' in query
         eq_(query.count('='), 4)
 
     def test_iter(self):
