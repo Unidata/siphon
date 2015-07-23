@@ -163,11 +163,11 @@ class DataQuery(object):
         self.extra_params.update(kwargs)
         return self
 
-    def lonlat_box(self, north, south, east, west):
+    def lonlat_box(self, west, east, south, north):
         r'''Add a latitude/longitude bounding box to the query.
 
-        This adds a request for a spatial bounding box, bounded by (`south`, `north`)
-        for latitude and (`west`, `east`) for the longitude. This modifies the query
+        This adds a request for a spatial bounding box, bounded by ('north', 'south')
+        for latitude and ('east', 'west') for the longitude. This modifies the query
         in-place, but returns ``self`` so that multiple queries can be chained together
         on one line.
 
@@ -175,14 +175,14 @@ class DataQuery(object):
 
         Parameters
         ----------
-        north : float
-            The bounding latitude to the north, in degrees north of the equator
-        south : float
-            The bounding latitude to the south, in degrees north of the equator
-        east : float
-            The bounding longitude to the east, in degrees east of the prime meridian
         west: float
             The bounding longitude to the west, in degrees east of the prime meridian
+        east : float
+            The bounding longitude to the east, in degrees east of the prime meridian
+        south : float
+            The bounding latitude to the south, in degrees north of the equator
+        north : float
+            The bounding latitude to the north, in degrees north of the equator
 
         Returns
         -------
@@ -190,8 +190,8 @@ class DataQuery(object):
             Returns self for chaining calls
         '''
 
-        self._set_query(self.spatial_query, north=north, south=south,
-                        east=east, west=west)
+        self._set_query(self.spatial_query, west=west, east=east, south=south,
+                        north=north)
         return self
 
     def lonlat_point(self, lon, lat):
