@@ -166,8 +166,8 @@ class DataQuery(object):
     def lonlat_box(self, west, east, south, north):
         r'''Add a latitude/longitude bounding box to the query.
 
-        This adds a request for a spatial bounding box, bounded by (`south`, `north`)
-        for latitude and (`west`, `east`) for the longitude. This modifies the query
+        This adds a request for a spatial bounding box, bounded by ('north', 'south')
+        for latitude and ('east', 'west') for the longitude. This modifies the query
         in-place, but returns ``self`` so that multiple queries can be chained together
         on one line.
 
