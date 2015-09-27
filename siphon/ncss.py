@@ -2,6 +2,8 @@ import xml.etree.ElementTree as ET
 from io import BytesIO
 
 import numpy as np
+from os import remove
+import atexit
 
 from .http_util import DataQuery, HTTPEndPoint, parse_iso_date
 from .ncss_dataset import NCSSDataset
@@ -341,14 +343,28 @@ try:
     @response_handlers.register('application/x-netcdf')
     @response_handlers.register('application/x-netcdf4')
     def read_netcdf(data, handle_units):  # pylint:disable=unused-argument
-        with NamedTemporaryFile() as tmp_file:
+        with NamedTemporaryFile(delete=False) as tmp_file:
             tmp_file.write(data)
             tmp_file.flush()
+            # return Dataset(tmp_file.name, 'r') 
+
+            ## Windows work around - DGG 9.14.2015
+            atexit.register(deletetempfile,tmp_file.name)
             return Dataset(tmp_file.name, 'r')
+
 except ImportError:
     import warnings
     warnings.warn('netCDF4 module not installed. '
                   'Will be unable to handle NetCDF returns from NCSS.')
+
+def deletetempfile(fname):
+    try:
+        remove(fname)
+    except PermissionError:
+        import warnings
+        warnings.warn('temporary netcdf dataset file not deleted. '
+                      'to delete temporary dataset file in the future '
+                      'be sure to use dataset.close() when finished.')
 
 
 # Parsing of CSV data returned from NCSS
