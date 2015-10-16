@@ -1,10 +1,10 @@
 import xml.etree.ElementTree as ET
+import atexit
 from io import BytesIO
+from os import remove
+import platform
 
 import numpy as np
-import os
-import platform
-import atexit
 
 from .http_util import DataQuery, HTTPEndPoint, parse_iso_date
 from .ncss_dataset import NCSSDataset
@@ -357,17 +357,6 @@ try:
                 tmp_file.flush()
                 return Dataset(tmp_file.name, 'r')
 
-# def temp_opener(name, flag, mode=0o777):
-#   return os.open(name, flag | os.O_TEMPORARY, mode)
-
-# with tempfile.NamedTemporaryFile() as f:
-#     f.write(DATA)
-#     f.flush()
-#     with open(f.name, "rb", opener=temp_opener) as f:
-#         assert f.read() == DATA
-
-# assert not os.path.exists(f.name) 
-
 except ImportError:
     import warnings
     warnings.warn('netCDF4 module not installed. '
@@ -375,7 +364,7 @@ except ImportError:
 
 def deletetempfile(fname):
     try:
-        os.remove(fname)
+        remove(fname)
     except PermissionError:
         import warnings
         warnings.warn('temporary netcdf dataset file not deleted. '
