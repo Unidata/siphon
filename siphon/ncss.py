@@ -2,7 +2,8 @@ import xml.etree.ElementTree as ET
 from io import BytesIO
 
 import numpy as np
-from os import remove
+import os
+import platform
 import atexit
 
 from .http_util import DataQuery, HTTPEndPoint, parse_iso_date
@@ -343,14 +344,29 @@ try:
     @response_handlers.register('application/x-netcdf')
     @response_handlers.register('application/x-netcdf4')
     def read_netcdf(data, handle_units):  # pylint:disable=unused-argument
-        with NamedTemporaryFile(delete=False) as tmp_file:
-            tmp_file.write(data)
-            tmp_file.flush()
-            # return Dataset(tmp_file.name, 'r') 
+        osType = platform.architecture()
+        if osType[1].lower() == 'windowspe':
+            with NamedTemporaryFile(delete=False) as tmp_file:
+                tmp_file.write(data)
+                tmp_file.flush()
+                atexit.register(deletetempfile,tmp_file.name)
+                return Dataset(tmp_file.name, 'r')
+        else:
+            with NamedTemporaryFile() as tmp_file:
+                tmp_file.write(data)
+                tmp_file.flush()
+                return Dataset(tmp_file.name, 'r')
 
-            ## Windows work around - DGG 9.14.2015
-            atexit.register(deletetempfile,tmp_file.name)
-            return Dataset(tmp_file.name, 'r')
+# def temp_opener(name, flag, mode=0o777):
+#   return os.open(name, flag | os.O_TEMPORARY, mode)
+
+# with tempfile.NamedTemporaryFile() as f:
+#     f.write(DATA)
+#     f.flush()
+#     with open(f.name, "rb", opener=temp_opener) as f:
+#         assert f.read() == DATA
+
+# assert not os.path.exists(f.name) 
 
 except ImportError:
     import warnings
@@ -359,7 +375,7 @@ except ImportError:
 
 def deletetempfile(fname):
     try:
-        remove(fname)
+        os.remove(fname)
     except PermissionError:
         import warnings
         warnings.warn('temporary netcdf dataset file not deleted. '
