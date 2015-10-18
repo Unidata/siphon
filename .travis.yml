@@ -40,7 +40,7 @@ before_install:
         fi;
         pip install -r docs/requirements.txt;
       else
-        pip install vcrpy;
+        pip install "vcrpy<1.7";
         pip install nose;
         if [[ $NOSE_WITH_COVERAGE == y ]]; then
           pip install coverage;
