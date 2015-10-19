@@ -344,12 +344,12 @@ try:
     @response_handlers.register('application/x-netcdf')
     @response_handlers.register('application/x-netcdf4')
     def read_netcdf(data, handle_units):  # pylint:disable=unused-argument
-        osType = platform.architecture()
-        if osType[1].lower() == 'windowspe':
+        ostype = platform.architecture()
+        if ostype[1].lower() == 'windowspe':
             with NamedTemporaryFile(delete=False) as tmp_file:
                 tmp_file.write(data)
                 tmp_file.flush()
-                atexit.register(deletetempfile,tmp_file.name)
+                atexit.register(deletetempfile, tmp_file.name)
                 return Dataset(tmp_file.name, 'r')
         else:
             with NamedTemporaryFile() as tmp_file:
@@ -362,10 +362,11 @@ except ImportError:
     warnings.warn('netCDF4 module not installed. '
                   'Will be unable to handle NetCDF returns from NCSS.')
 
+
 def deletetempfile(fname):
     try:
         remove(fname)
-    except PermissionError:
+    except OSError:
         import warnings
         warnings.warn('temporary netcdf dataset file not deleted. '
                       'to delete temporary dataset file in the future '
