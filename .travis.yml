@@ -13,21 +13,21 @@ addons:
 
 matrix:
   include:
-    - python: 2.7
-    - python: 2.7
-      env: LINT=true
-    - python: 2.7
-      env: DOCBUILD=true
-    - python: 2.7
-      env: EXAMPLES=true
-    - python: 3.3
-    - python: 3.4
     - python: 3.5
       env: NOSE_WITH_COVERAGE=y NOSE_COVER_PACKAGE=siphon
     - python: 3.5
-      env: LINT=true
-    - python: 3.5
       env: EXAMPLES=true
+    - python: 3.5
+      env: LINT=true
+    - python: 2.7
+    - python: 2.7
+      env: EXAMPLES=true
+    - python: 2.7
+      env: DOCBUILD=true
+    - python: 2.7
+      env: LINT=true
+    - python: 3.3
+    - python: 3.4
 
 before_install:
   - if [[ $LINT == true ]]; then
@@ -40,7 +40,7 @@ before_install:
         fi;
         pip install -r docs/requirements.txt;
       else
-        pip install "vcrpy<1.7";
+        pip install "vcrpy>=1.7.4";
         pip install nose;
         if [[ $NOSE_WITH_COVERAGE == y ]]; then
           pip install coverage;
