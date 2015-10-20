@@ -69,7 +69,7 @@ setup(
     extras_require={
         'dev': ['ipython[all]>=3.1'],
         'doc': ['sphinx>=1.3', 'ipython[all]>=3.1'],
-        'test': ['nosetest', 'vcrpy>=1.5,<1.7']
+        'test': ['nosetest', 'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3']
     },
 
     download_url='https://github.com/Unidata/siphon/archive/v%s.tar.gz' % ver,)
