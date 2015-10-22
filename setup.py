@@ -17,8 +17,8 @@ class MakeExamples(Command):
         import glob
         import os
         import os.path
-        from IPython.nbconvert.exporters import python
-        from IPython.config import Config
+        from nbconvert.exporters import python
+        from traitlets.config import Config
         examples_dir = os.path.join(os.path.dirname(__file__), 'examples')
         script_dir = os.path.join(examples_dir, 'scripts')
         if not os.path.exists(script_dir):
