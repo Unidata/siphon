@@ -52,6 +52,7 @@ class TDSCatalog(object):
 
         # get catalog.xml file
         resp = session.get(self.catalog_url)
+        resp.raise_for_status()
 
         # If we were given an HTML link, warn about it and try to fix to xml
         if 'html' in resp.headers['content-type']:
@@ -61,6 +62,7 @@ class TDSCatalog(object):
                                                                      new_url))
             self.catalog_url = new_url
             resp = session.get(self.catalog_url)
+            resp.raise_for_status()
 
         # begin parsing the xml doc
         root = ET.fromstring(resp.text)
