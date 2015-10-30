@@ -5,6 +5,7 @@ from siphon.radarserver import (BadQueryError, RadarQuery, RadarServer,
                                 get_radarserver_datasets)
 
 from nose.tools import eq_, raises
+from requests import HTTPError
 
 recorder = siphon.testing.get_recorder(__file__)
 
@@ -120,3 +121,16 @@ class TestRadarServerDatasets(object):
         ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
         url = ds['NEXRAD Level III Radar from IDD'].follow().catalog_url
         assert RadarServer(url)
+
+
+class TestUnauthorizedErrors(object):
+    @recorder.use_cassette('radarserver_toplevel_denied')
+    @raises(HTTPError)
+    def test_get_rs_datasets_denied_throws(self):
+        get_radarserver_datasets('http://thredds-aws.unidata.ucar.edu/thredds/')
+
+    @raises(HTTPError)
+    @recorder.use_cassette('radarserver_ds_denied')
+    def test_rs_constructor_throws(self):
+        RadarServer('http://thredds-aws.unidata.ucar.edu/thredds/'
+                    'radarServer/nexrad/level2/S3/')

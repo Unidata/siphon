@@ -1,0 +1,17 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.1+20.gdd8f139.dirty)]
+    method: GET
+    uri: http://thredds-aws.unidata.ucar.edu/thredds/radarServer/catalog.xml
+  response:
+    body: {string: ''}
+    headers:
+      Date: ['Thu, 29 Oct 2015 14:35:24 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 403, message: Forbidden}
+version: 1
