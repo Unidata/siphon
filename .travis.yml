@@ -21,6 +21,7 @@ env:
   global:
     - WHEELHOUSE="https://unidata-python.s3.amazonaws.com/wheelhouse/index.html"
     - WHEELDIR="wheelhouse/"
+    - EXTRAS="test"
   matrix:
     - NOSE_WITH_COVERAGE=y NOSE_COVER_PACKAGE=siphon
     - TASK="examples"
@@ -54,7 +55,7 @@ before_install:
       pip install --upgrade pip;
       if [[ $TASK == "docs" || $TASK == "examples" ]]; then
         if [[ $TASK == "examples" ]]; then
-          export VERSIONS="$VERSIONS -r examples/requirements.txt";
+          export EXTRAS="$EXTRAS,examples";
         fi;
         pip install -r docs/requirements.txt;
       fi;
@@ -62,15 +63,15 @@ before_install:
         pip install coverage;
       fi;
       mkdir $WHEELDIR;
-      pip install ".[test]" -d $WHEELDIR -f $WHEELHOUSE $PRE $VERSIONS;
+      pip install ".[$EXTRAS]" -d $WHEELDIR -f $WHEELHOUSE $PRE $VERSIONS;
       touch $WHEELDIR/download_marker;
-      travis_wait pip wheel ".[test]" -w $WHEELDIR -f $WHEELHOUSE $PRE $VERSIONS;
+      travis_wait pip wheel ".[$EXTRAS]" -w $WHEELDIR -f $WHEELHOUSE $PRE $VERSIONS;
       rm -f $WHEELDIR/siphon*.whl;
     fi
 
 install:
   - if [[ $TASK != "lint" ]]; then
-      pip install ".[test]" --upgrade --no-index -f file://$PWD/$WHEELDIR $VERSIONS;
+      pip install ".[$EXTRAS]" --upgrade --no-index -f file://$PWD/$WHEELDIR $VERSIONS;
       if [[ $TASK == "examples" ]]; then
         python setup.py examples;
       fi;

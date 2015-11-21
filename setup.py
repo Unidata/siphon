@@ -70,7 +70,8 @@ setup(
         'dev': ['ipython[all]>=3.1'],
         'doc': ['sphinx>=1.3', 'ipython[all]>=3.1'],
         'test': ['nose', 'netCDF4>=1.1.0',
-                 'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3']
+                 'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3'],
+        'examples': ['matplotlib>=1.3']
     },
 
     download_url='https://github.com/Unidata/siphon/archive/v%s.tar.gz' % ver,)
