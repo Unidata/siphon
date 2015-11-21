@@ -65,7 +65,7 @@ before_install:
       pip install ".[test]" -d $WHEELDIR -f $WHEELHOUSE $PRE $VERSIONS;
       touch $WHEELDIR/download_marker;
       travis_wait pip wheel ".[test]" -w $WHEELDIR -f $WHEELHOUSE $PRE $VERSIONS;
-      rm -f $WHEELDIR/MetPy*.whl;
+      rm -f $WHEELDIR/siphon*.whl;
     fi
 
 install:
