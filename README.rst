@@ -33,8 +33,8 @@ Siphon
     :target: https://travis-ci.org/Unidata/siphon
     :alt: Travis Build Status
 
-.. image:: https://coveralls.io/repos/Unidata/siphon/badge.svg?branch=master
-    :target: https://coveralls.io/r/Unidata/siphon
+.. image:: https://codecov.io/github/Unidata/siphon/coverage.svg?branch=master
+    :target: https://codecov.io/github/Unidata/siphon?branch=master
     :alt: Coveralls Coverage Status
 
 .. image:: https://www.quantifiedcode.com/api/v1/project/e4c6ae8ad9d64a8a94f5454ff28615b1/badge.svg
