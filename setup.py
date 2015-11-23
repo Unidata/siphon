@@ -68,9 +68,9 @@ setup(
     extras_require={
         'netcdf': 'netCDF4>=1.1.0',
         'dev': 'ipython[all]>=3.1',
-        'doc': ['sphinx>=1.3', 'nbconvert>=4.0', 'IPython>=4.0'],
         'test': ['nose', 'netCDF4>=1.1.0',
                  'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3'],
+        'doc': ['sphinx>=1.3', 'nbconvert>=4.0', 'IPython>=4.0'],
         'examples': 'matplotlib>=1.3'
     },
 
