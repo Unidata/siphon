@@ -17,8 +17,8 @@ class MakeExamples(Command):
         import glob
         import os
         import os.path
-        from IPython.nbconvert.exporters import python
-        from IPython.config import Config
+        from nbconvert.exporters import python
+        from traitlets.config import Config
         examples_dir = os.path.join(os.path.dirname(__file__), 'examples')
         script_dir = os.path.join(examples_dir, 'scripts')
         if not os.path.exists(script_dir):
@@ -68,7 +68,7 @@ setup(
     extras_require={
         'netcdf': ['netCDF4>=1.1.0'],
         'dev': ['ipython[all]>=3.1'],
-        'doc': ['sphinx>=1.3', 'ipython[all]>=3.1'],
+        'doc': ['sphinx>=1.3', 'nbconvert>=4.0', 'IPython>=4.0'],
         'test': ['nose', 'netCDF4>=1.1.0',
                  'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3'],
         'examples': ['matplotlib>=1.3']
