@@ -66,12 +66,12 @@ setup(
 
     install_requires=['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2'],
     extras_require={
-        'netcdf': ['netCDF4>=1.1.0'],
-        'dev': ['ipython[all]>=3.1'],
+        'netcdf': 'netCDF4>=1.1.0',
+        'dev': 'ipython[all]>=3.1',
         'doc': ['sphinx>=1.3', 'nbconvert>=4.0', 'IPython>=4.0'],
         'test': ['nose', 'netCDF4>=1.1.0',
                  'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3'],
-        'examples': ['matplotlib>=1.3']
+        'examples': 'matplotlib>=1.3'
     },
 
     download_url='https://github.com/Unidata/siphon/archive/v%s.tar.gz' % ver,)
