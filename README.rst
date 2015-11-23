@@ -37,9 +37,9 @@ Siphon
     :target: https://coveralls.io/r/Unidata/siphon
     :alt: Coveralls Coverage Status
 
-.. image:: https://landscape.io/github/Unidata/siphon/master/landscape.svg?style=flat
-    :target: https://landscape.io/github/Unidata/siphon/master
-    :alt: Code Health
+.. image:: https://www.quantifiedcode.com/api/v1/project/e4c6ae8ad9d64a8a94f5454ff28615b1/badge.svg
+    :target: https://www.quantifiedcode.com/app/project/e4c6ae8ad9d64a8a94f5454ff28615b1
+    :alt: Code issues
 
 .. image:: https://readthedocs.org/projects/pip/badge/?version=latest
     :target: http://siphon.readthedocs.org/en/latest/
