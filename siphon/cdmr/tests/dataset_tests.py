@@ -1,3 +1,7 @@
+# Copyright (c) 2013-2015 Unidata.
+# Distributed under the terms of the MIT License.
+# SPDX-License-Identifier: MIT
+
 from siphon.testing import get_recorder
 from siphon.cdmr import Dataset
 from nose.tools import eq_, assert_almost_equals

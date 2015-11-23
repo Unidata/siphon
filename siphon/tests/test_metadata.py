@@ -1,3 +1,7 @@
+# Copyright (c) 2013-2015 Unidata.
+# Distributed under the terms of the MIT License.
+# SPDX-License-Identifier: MIT
+
 import logging
 import xml.etree.ElementTree as ET
 
