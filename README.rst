@@ -41,6 +41,10 @@ Siphon
     :target: https://www.quantifiedcode.com/app/project/e4c6ae8ad9d64a8a94f5454ff28615b1
     :alt: Code issues
 
+.. image:: https://api.codacy.com/project/badge/grade/ebacd20b84ab4673bd6cd34f65c48af6
+    :target: https://www.codacy.com/app/Unidata/siphon
+    :alt: Codacy code issues
+
 .. image:: https://readthedocs.org/projects/pip/badge/?version=latest
     :target: http://siphon.readthedocs.org/en/latest/
     :alt: Latest Doc Build Status

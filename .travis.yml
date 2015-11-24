@@ -19,6 +19,7 @@ python:
 
 env:
   global:
+    - secure: "mFy/PJrAVKh9Uje1+R8cEOjY8/MDj/qqjn0+FqXCTZPmBMu7RLxTfASMB8QcHfDrJDhH3lEUqkt/uAbGsOKsDIWn/pjKqm6qyvsdw2ISoARommD5lOL3A3Q/Mti1Hz1u4J8CKa0zaGj88NmIyJ2zC8ZyrCl6qS6bTNv7E6A1AIs="
     - WHEELHOUSE="https://unidata-python.s3.amazonaws.com/wheelhouse/index.html"
     - WHEELDIR="wheelhouse/"
     - EXTRAS="test"
@@ -93,6 +94,8 @@ script:
 
 after_success:
   - if [[ $NOSE_WITH_COVERAGE == y ]]; then
-      pip install codecov;
+      pip install codecov codacy-coverage;
       codecov;
+      coverage xml;
+      python-codacy-coverage -r coverage.xml;
     fi
