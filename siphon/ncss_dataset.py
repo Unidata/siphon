@@ -12,22 +12,6 @@ log = logging.getLogger("siphon.ncss_dataset")
 
 class _Types(object):
 
-    def handle_attribute(self, element):  # noqa
-        # type_name = "attribute"
-        attribute_type = None
-        if "type" in element.attrib:
-            attribute_type = element.attrib["type"]
-
-        name = element.attrib["name"]
-        val = element.attrib["value"]
-        if attribute_type:
-            if attribute_type == "int":
-                val = int(val)
-            elif attribute_type == "float":
-                val = float(val)
-
-        return {name: val}
-
     def handle_typed_values(self, val, type_name, value_type):
         if value_type == "int":
             try:

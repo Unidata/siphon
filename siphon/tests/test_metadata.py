@@ -435,7 +435,7 @@ class TestMetadata(object):
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert "serviceName" in md
-        md["serviceName"] == "VirtualServices"
+        assert md["serviceName"] == "VirtualServices"
 
     def test_authority(self):
         xml = '<authority>edu.ucar.unidata</authority>'
