@@ -1,11 +1,8 @@
 .. _api-index:
 
-################
-  The Siphon API
-################
-
-   :Release: |version|
-   :Date: |today|
+##############
+The Siphon API
+##############
 
 .. toctree::
    :maxdepth: 2
@@ -16,3 +13,6 @@
    http_util
    ncss
    radarserver
+
+* :ref:`genindex`
+* :ref:`modindex`
