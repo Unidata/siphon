@@ -80,8 +80,9 @@ class TestCatalog(object):
         cat = TDSCatalog(url)
         assert cat
 
+    @recorder.use_cassette('follow_cat')
     def test_catalog_follow(self):
-        url = 'http://thredds-test.unidata.ucar.edu/thredds/testDatasets.xml'
-        ref_name = 'TestFmrc'
+        url = 'http://thredds.ucar.edu/thredds/catalog.xml'
+        ref_name = 'Forecast Model Data'
         cat = TDSCatalog(url).catalog_refs[ref_name].follow()
         assert cat
