@@ -89,6 +89,6 @@ Dependencies
 Developer Dependencies
 ----------------------
 
-- nose
+- pytest
 - vcrpy
 - flake8
