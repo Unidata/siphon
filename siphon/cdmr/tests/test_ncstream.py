@@ -7,8 +7,6 @@ from siphon.testing import get_recorder
 from siphon.cdmr.ncstream import read_ncstream_messages, read_var_int
 from siphon.cdmr.ncStream_pb2 import Header
 
-from nose.tools import eq_
-
 HEAD_LOCATION_DEFAULT = ''
 HEAD_TITLE_DEFAULT = ''
 HEAD_ID_DEFAULT = ''
@@ -40,13 +38,13 @@ def test_var_int():
 
 
 def check_var_int(src, result):
-    eq_(read_var_int(BytesIO(src)), result)
+    read_var_int(BytesIO(src)) == result
 
 
 def test_header_message_def():
     f = get_header_remote()
     messages = read_ncstream_messages(f)
-    eq_(len(messages), 1)
+    assert len(messages) == 1
     assert isinstance(messages[0], Header)
     head = messages[0]
     # test that the header message definition has not changed!
@@ -63,7 +61,7 @@ def test_header_message_def():
 def test_remote_header():
     f = get_header_remote()
     messages = read_ncstream_messages(f)
-    eq_(len(messages), 1)
+    assert len(messages) == 1
     assert isinstance(messages[0], Header)
 
     head = messages[0]
@@ -80,5 +78,5 @@ def test_local_data():
     f = BytesIO(b'\xab\xec\xce\xba\x17\n\x0breftime_ISO\x10\x07\x1a\x04\n'
                 b'\x02\x10\x01(\x02\x01\x142014-10-28T21:00:00Z')
     messages = read_ncstream_messages(f)
-    eq_(len(messages), 1)
-    eq_(messages[0][0], b'2014-10-28T21:00:00Z')
+    assert len(messages) == 1
+    assert messages[0][0] == b'2014-10-28T21:00:00Z'

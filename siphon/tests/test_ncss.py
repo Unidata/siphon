@@ -10,38 +10,39 @@ import numpy as np
 import siphon.testing
 from siphon.ncss import NCSS, NCSSQuery, ResponseRegistry
 
-from nose.tools import eq_
-
 recorder = siphon.testing.get_recorder(__file__)
 
 
-class TestNCSSQuery(object):
-    def test_proj_box(self):
-        nq = NCSSQuery().lonlat_point(1, 2).projection_box(-1, -2, -3, -4)
-        query = str(nq)
-        eq_(query.count('='), 4)
-        assert 'minx=-1' in query
-        assert 'maxx=-3' in query
-        assert 'miny=-2' in query
-        assert 'maxy=-4' in query
+def test_ncss_query_proj_box():
+    nq = NCSSQuery().lonlat_point(1, 2).projection_box(-1, -2, -3, -4)
+    query = str(nq)
+    assert query.count('=') == 4
+    assert 'minx=-1' in query
+    assert 'maxx=-3' in query
+    assert 'miny=-2' in query
+    assert 'maxy=-4' in query
 
-    def test_vertical_level(self):
-        nq = NCSSQuery().vertical_level(50000)
-        eq_(str(nq), 'vertCoord=50000')
 
-    def test_add_latlon(self):
-        nq = NCSSQuery().add_lonlat(True)
-        eq_(str(nq), 'addLatLon=True')
+def test_ncss_query_vertical_level():
+    nq = NCSSQuery().vertical_level(50000)
+    assert str(nq) == 'vertCoord=50000'
 
-    def test_strides(self):
-        nq = NCSSQuery().strides(5, 10)
-        query = str(nq)
-        assert 'timeStride=5' in query
-        assert 'horizStride=10' in query
 
-    def test_accept(self):
-        nq = NCSSQuery().accept('csv')
-        eq_(str(nq), 'accept=csv')
+def test_ncss_query_add_latlon():
+    nq = NCSSQuery().add_lonlat(True)
+    assert str(nq) == 'addLatLon=True'
+
+
+def test_ncss_query_strides():
+    nq = NCSSQuery().strides(5, 10)
+    query = str(nq)
+    assert 'timeStride=5' in query
+    assert 'horizStride=10' in query
+
+
+def test_ncss_query_accept():
+    nq = NCSSQuery().accept('csv')
+    assert str(nq) == 'accept=csv'
 
 
 # This allows us to override the response handler registry, so we can test that we
@@ -88,8 +89,8 @@ class TestNCSS(object):
 
         assert 'Temperature_isobaric' in xml_data
         assert 'Relative_humidity_isobaric' in xml_data
-        eq_(xml_data['lat'][0], 40)
-        eq_(xml_data['lon'][0], -105)
+        assert xml_data['lat'][0] == 40
+        assert xml_data['lon'][0] == -105
 
     @recorder.use_cassette('ncss_gfs_csv_point')
     def test_csv_point(self):
@@ -98,8 +99,8 @@ class TestNCSS(object):
 
         assert 'Temperature_isobaric' in csv_data
         assert 'Relative_humidity_isobaric' in csv_data
-        eq_(csv_data['lat'][0], 40)
-        eq_(csv_data['lon'][0], -105)
+        assert csv_data['lat'][0] == 40
+        assert csv_data['lon'][0] == -105
 
     @recorder.use_cassette('ncss_gfs_csv_point')
     def test_unit_handler_csv(self):
@@ -108,12 +109,12 @@ class TestNCSS(object):
         csv_data = self.ncss.get_data(self.nq)
 
         temp = csv_data['Temperature_isobaric']
-        eq_(len(temp), 2)
-        eq_(temp[1], 'K')
+        assert len(temp) == 2
+        assert temp[1] == 'K'
 
         relh = csv_data['Relative_humidity_isobaric']
-        eq_(len(relh), 2)
-        eq_(relh[1], '%')
+        assert len(relh) == 2
+        assert relh[1] == '%'
 
     @recorder.use_cassette('ncss_gfs_xml_point')
     def test_unit_handler_xml(self):
@@ -122,12 +123,12 @@ class TestNCSS(object):
         xml_data = self.ncss.get_data(self.nq)
 
         temp = xml_data['Temperature_isobaric']
-        eq_(len(temp), 2)
-        eq_(temp[1], 'K')
+        assert len(temp) == 2
+        assert temp[1] == 'K'
 
         relh = xml_data['Relative_humidity_isobaric']
-        eq_(len(relh), 2)
-        eq_(relh[1], '%')
+        assert len(relh) == 2
+        assert relh[1] == '%'
 
     @recorder.use_cassette('ncss_gfs_netcdf_point')
     def test_netcdf_point(self):
@@ -136,8 +137,8 @@ class TestNCSS(object):
 
         assert 'Temperature_isobaric' in nc.variables
         assert 'Relative_humidity_isobaric' in nc.variables
-        eq_(nc.variables['latitude'][0], 40)
-        eq_(nc.variables['longitude'][0], -105)
+        assert nc.variables['latitude'][0] == 40
+        assert nc.variables['longitude'][0] == -105
 
     @recorder.use_cassette('ncss_gfs_netcdf4_point')
     def test_netcdf4_point(self):
@@ -146,15 +147,15 @@ class TestNCSS(object):
 
         assert 'Temperature_isobaric' in nc.variables
         assert 'Relative_humidity_isobaric' in nc.variables
-        eq_(nc.variables['latitude'][0], 40)
-        eq_(nc.variables['longitude'][0], -105)
+        assert nc.variables['latitude'][0] == 40
+        assert nc.variables['longitude'][0] == -105
 
     @recorder.use_cassette('ncss_gfs_vertical_level')
     def test_vertical_level(self):
         self.nq.accept('csv').vertical_level(50000)
         csv_data = self.ncss.get_data(self.nq)
 
-        eq_(str(csv_data['Temperature_isobaric'])[:6], '263.39')
+        assert str(csv_data['Temperature_isobaric'])[:6] == '263.39'
 
     @recorder.use_cassette('ncss_gfs_csv_point')
     def test_raw_csv(self):
