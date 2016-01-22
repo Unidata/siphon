@@ -48,7 +48,6 @@ setup(
     author_email = 'support-python@unidata.ucar.edu',
     license = 'MIT',
     url = "https://github.com/Unidata/siphon",
-    test_suite = "nose.collector",
     description = ("A collection of Python utilities for interacting with the "
                                    "Unidata technology stack."),
     keywords='meteorology weather',
@@ -68,7 +67,7 @@ setup(
     extras_require={
         'netcdf': 'netCDF4>=1.1.0',
         'dev': 'ipython[all]>=3.1',
-        'test': ['nose', 'netCDF4>=1.1.0',
+        'test': ['pytest', 'pytest-runner', 'netCDF4>=1.1.0',
                  'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3'],
         'doc': ['sphinx>=1.3', 'nbconvert>=4.0', 'IPython>=4.0'],
         'examples': 'matplotlib>=1.3'
