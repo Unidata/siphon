@@ -3,34 +3,35 @@
 # SPDX-License-Identifier: MIT
 
 from datetime import datetime
+import pytest
 
 import siphon.testing
 from siphon.radarserver import (BadQueryError, RadarQuery, RadarServer,
                                 get_radarserver_datasets)
 
-from nose.tools import eq_, raises
 from requests import HTTPError
 
 recorder = siphon.testing.get_recorder(__file__)
 
 
-class TestRadarQuery(object):
-    def test_one_station(self):
-        q = RadarQuery()
-        q.stations('KTLX')
-        eq_(str(q), 'stn=KTLX')
+def test_radar_query_one_station():
+    q = RadarQuery()
+    q.stations('KTLX')
+    assert str(q) == 'stn=KTLX'
 
-    def test_multiple_stations(self):
-        q = RadarQuery()
-        q.stations('KTLX', 'KFTG')
-        eq_(str(q), 'stn=KTLX&stn=KFTG')
 
-    def test_chain(self):
-        dt = datetime(2015, 6, 15, 12, 0, 0)
-        q = RadarQuery().stations('KFTG').time(dt)
-        query = str(q)
-        assert 'stn=KFTG' in query
-        assert 'time=2015-06-15T12' in query
+def test_radar_query_multiple_stations():
+    q = RadarQuery()
+    q.stations('KTLX', 'KFTG')
+    assert str(q) == 'stn=KTLX&stn=KFTG'
+
+
+def test_radar_query_chain():
+    dt = datetime(2015, 6, 15, 12, 0, 0)
+    q = RadarQuery().stations('KFTG').time(dt)
+    query = str(q)
+    assert 'stn=KFTG' in query
+    assert 'time=2015-06-15T12' in query
 
 
 class TestRadarServerLevel3(object):
@@ -61,9 +62,9 @@ class TestRadarServer(object):
 
     def test_float_attrs(self):
         stn = self.client.stations['KFTG']
-        eq_(stn.elevation, 1675.0)
-        eq_(stn.latitude, 39.78)
-        eq_(stn.longitude, -104.53)
+        assert stn.elevation == 1675.0
+        assert stn.latitude == 39.78
+        assert stn.longitude == -104.53
 
     def test_metadata(self):
         assert 'Reflectivity' in self.client.variables
@@ -83,22 +84,22 @@ class TestRadarServer(object):
         dt = datetime(2015, 6, 15, 12, 0, 0)
         q = self.client.query().stations('KFTG').time(dt)
         cat = self.client.get_catalog_raw(q).strip()
-        eq_(cat[-10:], b'</catalog>')
+        assert cat[-10:] == b'</catalog>'
 
     @recorder.use_cassette('thredds_radarserver_level2_single')
     def test_good_query(self):
         dt = datetime(2015, 6, 15, 12, 0, 0)
         q = self.client.query().stations('KFTG').time(dt)
         cat = self.client.get_catalog(q)
-        eq_(len(cat.datasets), 1)
+        assert len(cat.datasets) == 1
 
     @recorder.use_cassette('thredds_radarserver_level3_bad')
-    @raises(BadQueryError)
     def test_bad_query_raises(self):
         dt = datetime(2015, 6, 15, 12, 0, 0)
         client = RadarServer(self.server + '/nexrad/level3/IDD')
         q = client.query().stations('FTG').time(dt)
-        client.get_catalog(q)
+        with pytest.raises(BadQueryError):
+            client.get_catalog(q)
 
     @recorder.use_cassette('thredds_radarserver_level3_good')
     def test_good_level3_query(self):
@@ -106,19 +107,19 @@ class TestRadarServer(object):
         client = RadarServer(self.server + '/nexrad/level3/IDD/')
         q = client.query().stations('FTG').time(dt).variables('N0Q')
         cat = client.get_catalog(q)
-        eq_(len(cat.datasets), 1)
+        assert len(cat.datasets) == 1
 
 
 class TestRadarServerDatasets(object):
     @recorder.use_cassette('thredds_radarserver_toplevel')
     def test_no_trailing(self):
         ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds')
-        eq_(len(ds), 5)
+        assert len(ds) == 5
 
     @recorder.use_cassette('thredds_radarserver_toplevel')
     def test_trailing(self):
         ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
-        eq_(len(ds), 5)
+        assert len(ds) == 5
 
     @recorder.use_cassette('thredds_radarserver_level3_catalog')
     def test_catalog_access(self):
@@ -127,14 +128,14 @@ class TestRadarServerDatasets(object):
         assert RadarServer(url)
 
 
-class TestUnauthorizedErrors(object):
-    @recorder.use_cassette('radarserver_toplevel_denied')
-    @raises(HTTPError)
-    def test_get_rs_datasets_denied_throws(self):
+@recorder.use_cassette('radarserver_toplevel_denied')
+def test_get_rs_datasets_denied_throws():
+    with pytest.raises(HTTPError):
         get_radarserver_datasets('http://thredds-aws.unidata.ucar.edu/thredds/')
 
-    @raises(HTTPError)
-    @recorder.use_cassette('radarserver_ds_denied')
-    def test_rs_constructor_throws(self):
+
+@recorder.use_cassette('radarserver_ds_denied')
+def test_rs_constructor_throws():
+    with pytest.raises(HTTPError):
         RadarServer('http://thredds-aws.unidata.ucar.edu/thredds/'
                     'radarServer/nexrad/level2/S3/')

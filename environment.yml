@@ -13,7 +13,7 @@ dependencies:
   - netcdf4
   - ipython-notebook
   - sphinx
-  - nose
+  - pytest
   - vcrpy
   - flake8
   - pep8-naming

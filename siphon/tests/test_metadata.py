@@ -5,7 +5,6 @@
 import logging
 import xml.etree.ElementTree as ET
 
-from nose.tools import assert_dict_equal, assert_equal
 from siphon.metadata import TDSCatalogMetadata, _SimpleTypes, _ComplexTypes
 
 log = logging.getLogger("siphon.metadata")
@@ -70,7 +69,7 @@ class TestSimpleTypes(object):
         element = ET.fromstring(xml)
         assert element.attrib
         val = self.st.handle_upOrDown(element)
-        assert_dict_equal(val, expected)
+        assert val == expected
 
     def test_data_format_type(self):
         xml = '<dataFormat>NcML</dataFormat>'
@@ -79,7 +78,7 @@ class TestSimpleTypes(object):
         assert not element.attrib
         assert element.text
         val = self.st.handle_dataFormat(element)
-        assert_dict_equal(expected, val)
+        assert expected == val
 
     def test_data_type(self):
         xml = '<dataType>GRID</dataType>'
@@ -89,7 +88,7 @@ class TestSimpleTypes(object):
         assert not element.attrib
         assert element.text
         val = self.st.handle_dataType(element)
-        assert_dict_equal(expected, val)
+        assert expected == val
 
 
 class TestComplexTypes(object):
@@ -110,7 +109,7 @@ class TestComplexTypes(object):
         for child in element:
             actual.update(self.st.handle_spatialRange(element))
 
-        assert_dict_equal(actual, expected)
+        assert actual == expected
 
     def test_controlled_vocabulary(self):
         xml = '<name vocabulary="MyVocabName">' \
@@ -119,7 +118,7 @@ class TestComplexTypes(object):
                     "name": "NOAA and NCEP"}
         element = ET.fromstring(xml)
         actual = self.st.handle_controlledVocabulary(element)
-        assert_dict_equal(expected, actual)
+        assert expected == actual
 
     def test_date_type_formatted(self):
         xml = '<start format="yyyy DDD" type="created">1999 189</start>'
@@ -128,7 +127,7 @@ class TestComplexTypes(object):
                     "value": "1999 189"}
         element = ET.fromstring(xml)
         actual = self.st.handle_dateTypeFormatted(element)
-        assert_dict_equal(expected, actual)
+        assert expected == actual
 
     def test_source_type(self):
         xml = '<publisher><name vocabulary="DIF">UCAR/NCAR/CDP</name>' \
@@ -141,7 +140,7 @@ class TestComplexTypes(object):
                     "email": "cdp@ucar.edu",
                     "url": "http://dataportal.ucar.edu"}
         actual = self.st.handle_sourceType(element)
-        assert_dict_equal(expected, actual)
+        assert expected == actual
 
     def test_time_coverage_type1(self):
         xml = '<timeCoverage><end>present</end><duration>10 days</duration>' \
@@ -151,7 +150,7 @@ class TestComplexTypes(object):
                     "duration": "10 days",
                     "resolution": "15 minutes"}
         actual = self.st.handle_timeCoverageType(element)
-        assert_dict_equal(expected, actual)
+        assert expected == actual
 
     def test_time_coverage_type2(self):
         xml = '<timeCoverage><start>1999-11-16T12:00:00</start>' \
@@ -160,7 +159,7 @@ class TestComplexTypes(object):
         expected = {"end": "present",
                     "start": "1999-11-16T12:00:00"}
         actual = self.st.handle_timeCoverageType(element)
-        assert_dict_equal(expected, actual)
+        assert expected == actual
 
     def test_time_coverage_type3(self):
         xml = '<timeCoverage><start>1999-11-16T12:00:00</start>' \
@@ -169,7 +168,7 @@ class TestComplexTypes(object):
         expected = {"duration": "P3M",
                     "start": "1999-11-16T12:00:00"}
         actual = self.st.handle_timeCoverageType(element)
-        assert_dict_equal(expected, actual)
+        assert expected == actual
 
     def test_variable(self):
         xml = '<variable name="wdir" vocabulary_name="Wind Direction" ' \
@@ -180,14 +179,14 @@ class TestComplexTypes(object):
                     "units": "degrees",
                     "description": "Wind Direction @ surface"}
         actual = self.st.handle_variable(element)
-        assert_dict_equal(expected, actual)
+        assert expected == actual
 
     def test_variable2(self):
         xml = '<variable name="wdir"></variable>'
         element = ET.fromstring(xml)
         expected = {"name": "wdir"}
         actual = self.st.handle_variable(element)
-        assert_dict_equal(expected, actual)
+        assert expected == actual
 
     def test_variable3(self):
         xml = '<variable name="wdir">Wind Direction @ surface</variable>'
@@ -195,7 +194,7 @@ class TestComplexTypes(object):
         expected = {"name": "wdir",
                     "description": "Wind Direction @ surface"}
         actual = self.st.handle_variable(element)
-        assert_dict_equal(expected, actual)
+        assert expected == actual
 
     def test_variable_map(self):
         xml = '<variableMap xmlns:xlink="http://www.w3.org/1999/xlink" ' \
@@ -204,7 +203,7 @@ class TestComplexTypes(object):
         expected = {
             "{http://www.w3.org/1999/xlink}href": "../standardQ/Eta.xml"}
         actual = self.st.handle_variableMap(element)
-        assert_dict_equal(expected, actual)
+        assert expected == actual
 
     def test_variable_map2(self):
         xml = '<variableMap xmlns:xlink="http://www.w3.org/1999/xlink" ' \
@@ -215,7 +214,7 @@ class TestComplexTypes(object):
                     "{http://www.w3.org/1999/xlink}title":
                         "variables"}
         actual = self.st.handle_variableMap(element)
-        assert_dict_equal(expected, actual)
+        assert expected == actual
 
     def test_variables(self):
         xml = '<variables vocabulary="CF-1.0">' \
@@ -442,8 +441,8 @@ class TestMetadata(object):
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert "authority" in md
-        assert_equal(len(md["authority"]), 1)
-        assert_equal(md["authority"][0], "edu.ucar.unidata")
+        assert len(md["authority"]) == 1
+        assert md["authority"][0] == "edu.ucar.unidata"
 
     def test_publisher(self):
         xml = '<publisher><name vocabulary="DIF">UCAR/UNIDATA</name>' \
@@ -453,11 +452,11 @@ class TestMetadata(object):
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert "publisher" in md
-        assert_equal(len(md["publisher"]), 1)
-        assert_equal(md["publisher"][0]["vocabulary"], "DIF")
-        assert_equal(md["publisher"][0]["name"], "UCAR/UNIDATA")
-        assert_equal(md["publisher"][0]["url"], "http://www.unidata.ucar.edu/")
-        assert_equal(md["publisher"][0]["email"], "support@unidata.ucar.edu")
+        assert len(md["publisher"]) == 1
+        assert md["publisher"][0]["vocabulary"] == "DIF"
+        assert md["publisher"][0]["name"] == "UCAR/UNIDATA"
+        assert md["publisher"][0]["url"] == "http://www.unidata.ucar.edu/"
+        assert md["publisher"][0]["email"] == "support@unidata.ucar.edu"
 
     def test_creator(self):
         xml = '<creator><name vocabulary="DIF">DOC/NOAA/NWS/NCEP</name>' \
@@ -467,20 +466,19 @@ class TestMetadata(object):
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert "creator" in md
-        assert_equal(len(md["creator"]), 1)
-        assert_equal(md["creator"][0]["vocabulary"], "DIF")
-        assert_equal(md["creator"][0]["name"], "DOC/NOAA/NWS/NCEP")
-        assert_equal(md["creator"][0]["url"], "http://www.ncep.noaa.gov/")
-        assert_equal(md["creator"][0]["email"],
-                     "http://www.ncep.noaa.gov/mail_liaison.shtml")
+        assert len(md["creator"]) == 1
+        assert md["creator"][0]["vocabulary"] == "DIF"
+        assert md["creator"][0]["name"] == "DOC/NOAA/NWS/NCEP"
+        assert md["creator"][0]["url"] == "http://www.ncep.noaa.gov/"
+        assert md["creator"][0]["email"] == "http://www.ncep.noaa.gov/mail_liaison.shtml"
 
     def test_keyword(self):
         xml = "<keyword>Ocean Biomass</keyword>"
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert "keyword" in md
-        assert_equal(len(md["keyword"]), 1)
-        assert_equal(md["keyword"][0]["name"], "Ocean Biomass")
+        assert len(md["keyword"]) == 1
+        assert md["keyword"][0]["name"] == "Ocean Biomass"
 
     def test_project(self):
         xml = '<project vocabulary="DIF">NASA Earth Science Project Office, ' \
@@ -488,33 +486,33 @@ class TestMetadata(object):
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert "project" in md
-        assert_equal(len(md["project"]), 1)
-        assert_equal(md["project"][0]["vocabulary"], "DIF")
-        assert_equal(md["project"][0]["name"],
-                     "NASA Earth Science Project Office, Ames Research Center")
+        assert len(md["project"]) == 1
+        assert md["project"][0]["vocabulary"] == "DIF"
+        assert md["project"][0]["name"] == "NASA Earth Science Project Office, " \
+                                           "Ames Research Center"
 
     def test_data_format(self):
         xml = '<dataFormat>GRIB-1</dataFormat>'
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert "dataFormat" in md
-        assert_equal(md["dataFormat"], "GRIB-1")
+        assert md["dataFormat"] == "GRIB-1"
 
     def test_data_type(self):
         xml = '<dataType>GRID</dataType>'
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert "dataType" in md
-        assert_equal(md["dataType"], "GRID")
+        assert md["dataType"] == "GRID"
 
     def test_date(self):
         xml = '<date type="modified">2015-06-11T02:09:52Z</date>'
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert "date" in md
-        assert_equal(len(md["date"]), 1)
-        assert_equal(md["date"][0]["type"], "modified")
-        assert_equal(md["date"][0]["value"], "2015-06-11T02:09:52Z")
+        assert len(md["date"]) == 1
+        assert md["date"][0]["type"] == "modified"
+        assert md["date"][0]["value"] == "2015-06-11T02:09:52Z"
 
     def test_time_coverage(self):
         xml = '<timeCoverage><end>present</end><duration>45 days</duration>' \
@@ -522,6 +520,6 @@ class TestMetadata(object):
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert "timeCoverage" in md
-        assert_equal(len(md["timeCoverage"]), 1)
-        assert_equal(md["timeCoverage"][0]["end"], "present")
-        assert_equal(md["timeCoverage"][0]["duration"], "45 days")
+        assert len(md["timeCoverage"]) == 1
+        assert md["timeCoverage"][0]["end"] == "present"
+        assert md["timeCoverage"][0]["duration"] == "45 days"

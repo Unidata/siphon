@@ -59,14 +59,14 @@ class TestCatalog(object):
         assert cat
 
     @recorder.use_cassette('radar_dataset_cat')
-    def simple_test_radar_cat(self):
+    def test_simple_radar_cat(self):
         url = 'http://thredds.ucar.edu/thredds/radarServer/nexrad/level2/' \
               'IDD/dataset.xml'
         cat = TDSCatalog(url)
         assert cat
 
     @recorder.use_cassette('point_feature_dataset_xml')
-    def simple_test_point_feature_collection_xml(self):
+    def test_simple_point_feature_collection_xml(self):
         url = 'http://thredds.ucar.edu/thredds/catalog/nws/metar/' \
               'ncdecoded/catalog.xml?dataset=nws/metar/ncdecoded' \
               '/Metar_Station_Data_fc.cdmr'
