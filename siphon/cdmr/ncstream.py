@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 from __future__ import print_function
+import logging
 import zlib
 
 import numpy as np
@@ -14,6 +15,10 @@ MAGIC_DATA = b'\xab\xec\xce\xba'
 MAGIC_VDATA = b'\xab\xef\xfe\xba'
 MAGIC_VEND = b'\xed\xef\xfe\xda'
 MAGIC_ERR = b'\xab\xad\xba\xda'
+
+log = logging.getLogger('siphon.ncstream')
+log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
+log.setLevel(logging.WARNING)
 
 
 def read_ncstream_messages(fobj):
@@ -42,7 +47,8 @@ def read_ncstream_messages(fobj):
                 blocks = []
                 magic = read_magic(fobj)
                 while magic != MAGIC_VEND:
-                    assert magic == MAGIC_VDATA, 'Bad magic for struct/seq data!'
+                    if magic == MAGIC_VDATA:
+                        log.error('Bad magic for struct/seq data!')
                     blocks.append(stream.StructureData())
                     blocks[0].ParseFromString(read_block(fobj))
                     magic = read_magic(fobj)
@@ -55,7 +61,7 @@ def read_ncstream_messages(fobj):
             err.ParseFromString(read_block(fobj))
             raise RuntimeError(err.message)
         else:
-            print('Unknown magic: ' + str(' '.join('%02x' % b for b in magic)))
+            log.error('Unknown magic: ' + str(' '.join('%02x' % b for b in magic)))
 
     return messages
 
@@ -148,7 +154,7 @@ _attrConverters = {stream.Attribute.BYTE: np.dtype('>b'),
 
 def unpack_attribute(att):
     if att.unsigned:
-        print('Warning: Unsigned attribute!')
+        log.warning('Unsupported unsigned attribute!')
 
     if att.len == 0:
         val = None

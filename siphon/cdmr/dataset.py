@@ -3,10 +3,15 @@
 # SPDX-License-Identifier: MIT
 
 from __future__ import print_function
+import logging
 from collections import OrderedDict
 
 from .cdmremote import CDMRemote
 from .ncstream import unpack_attribute, unpack_variable
+
+log = logging.getLogger('siphon.cdmr')
+log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
+log.setLevel(logging.WARNING)
 
 
 class AttributeContainer(object):
