@@ -35,6 +35,15 @@ class Group(AttributeContainer):
         else:
             self.dataset = self
 
+    @property
+    def path(self):
+        'The full path to the Group, including any parent Groups.'
+        # If root, return '/'
+        if self.dataset is self:
+            return ''
+        else:  # Otherwise recurse
+            return self.dataset.path + '/' + self.name
+
     def load_from_stream(self, group):
         self._unpack_attrs(group.atts)
         self.name = group.name
@@ -107,7 +116,7 @@ class Dataset(Group):
     def _read_header(self):
         messages = self.cdmr.fetch_header()
         if len(messages) != 1:
-            print('Receive %d messages for header!' % len(messages))
+            log.warning('Receive %d messages for header!', len(messages))
         self._header = messages[0]
         self.load_from_stream(self._header.root)
 
@@ -128,12 +137,17 @@ class Variable(AttributeContainer):
     def group(self):
         return self._group
 
+    @property
+    def path(self):
+        'The full path to the Variable, including any parent Groups.'
+        return self._group.path + '/' + self.name
+
     def __getitem__(self, ind):
         if self._data is not None:
             return self._data[ind]
         else:
             ind, keep_dims = self._process_indices(ind)
-            messages = self.dataset.cdmr.fetch_data(**{self.name: ind})
+            messages = self.dataset.cdmr.fetch_data(**{self.path: ind})
             assert len(messages) == 1
 
             # Need to handle removing dimensions that have had an index

@@ -29,7 +29,7 @@ interactions:
       Host: [localhost]
       User-Agent: [Siphon v0.2.0+78.ga30e247.dirty-py3.4.egg CDMRemote Reader]
     method: GET
-    uri: http://localhost:8080/thredds/cdmremote/nc4/tst/tst_opaques.nc?var=var&req=data
+    uri: http://localhost:8080/thredds/cdmremote/nc4/tst/tst_opaques.nc?var=%2Fvar&req=data
   response:
     body:
       string: !!binary |

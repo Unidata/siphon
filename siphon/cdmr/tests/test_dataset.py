@@ -64,6 +64,20 @@ def test_opaque():
                       b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
 
 
+@recorder.use_cassette('nc4_groups')
+def test_groups():
+    "Test that a variable's path includes any parent groups"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_groups.nc')
+    var = ds.groups['g1'].variables['var']
+
+    # Need to check actual path because sample file's header includes data--no request
+    # necessary
+    assert var.path == '/g1/var'
+
+    dat = var[:]
+    assert dat.shape == (1,)
+
+
 class TestIndexing(object):
     @classmethod
     @recorder.use_cassette('rap_ncstream_header')

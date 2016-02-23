@@ -6,7 +6,7 @@ interactions:
       Host: [thredds-dev.unidata.ucar.edu]
       User-Agent: [Siphon v0.2.0+78.ga30e247.dirty-py3.4.egg CDMRemote Reader]
     method: GET
-    uri: http://thredds-dev.unidata.ucar.edu/thredds/cdmremote/grib/NCEP/RAP/CONUS_13km/RR_CONUS_13km_20150518_1200.grib2/GC?var=Temperature_isobaric(:,:,:,2)&req=data
+    uri: http://thredds-dev.unidata.ucar.edu/thredds/cdmremote/grib/NCEP/RAP/CONUS_13km/RR_CONUS_13km_20150518_1200.grib2/GC?var=/Temperature_isobaric(:,:,:,2)&req=data
   response:
     body:
       string: !!binary |
