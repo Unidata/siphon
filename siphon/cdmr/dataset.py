@@ -54,8 +54,10 @@ class Group(AttributeContainer):
             self.groups[grp.name] = new_group
             new_group.load_from_stream(grp)
 
-        if group.structs:
-            print('Structures not implemented for groups!')
+        for struct in group.structs:
+            new_var = Variable(self, struct.name)
+            self.variables[struct.name] = new_var
+            new_var.load_from_stream(struct)
 
         if group.enumTypes:
             for en in group.enumTypes:
@@ -220,7 +222,7 @@ class Variable(AttributeContainer):
         self.ndim = len(var.shape)
         self._unpack_attrs(var.atts)
 
-        if var.enumType:
+        if hasattr(var, 'enumType') and var.enumType:
             self.datatype = var.enumType
             self._enum = True
 

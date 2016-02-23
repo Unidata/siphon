@@ -104,7 +104,22 @@ def data_type_to_numpy(datatype, unsigned=False):
     return np.dtype('>' + basic_type)
 
 
+def struct_to_dtype(struct):
+    fields = [(var.name, data_type_to_numpy(var.dataType, var.unsigned))
+              for var in struct.vars]
+    for s in struct.structs:
+        fields.append((s.name, struct_to_dtype(s)))
+
+    return np.dtype(fields)
+
+
 def unpack_variable(var):
+    # If we actually get a structure instance, handle turning that into a variable
+    if var.dataType == stream.STRUCTURE:
+        return None, 'Structure', struct_to_dtype(var)
+    elif var.dataType == stream.SEQUENCE:
+        log.warning('Sequence support not implemented!')
+
     dt = data_type_to_numpy(var.dataType, var.unsigned)
     if var.dataType == stream.OPAQUE:
         type_name = 'opaque'
