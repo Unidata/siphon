@@ -78,6 +78,62 @@ def test_groups():
     assert dat.shape == (1,)
 
 
+@recorder.use_cassette('nc4_groups')
+def test_print():
+    "Test that __str__ (or printing) a dataset works"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_groups.nc')
+    s = str(ds)
+    truth = """Groups:
+g1
+Dimensions:
+<class 'siphon.cdmr.dataset.Dimension'> name = dim, size = 1
+Variables:
+<class 'siphon.cdmr.dataset.Variable'>
+float32 var(dim)
+\tunits: km/hour
+\t_ChunkSizes: 1
+shape = 1
+Attributes:
+\ttitle: in first group
+---end group---
+g2
+Groups:
+g3
+Dimensions:
+<class 'siphon.cdmr.dataset.Dimension'> name = dim, size = 3
+Variables:
+<class 'siphon.cdmr.dataset.Variable'>
+float32 var(dim)
+\tunits: mm/msec
+\t_ChunkSizes: 3
+shape = 3
+Attributes:
+\ttitle: in third group
+---end group---
+Dimensions:
+<class 'siphon.cdmr.dataset.Dimension'> name = dim, size = 2
+Variables:
+<class 'siphon.cdmr.dataset.Variable'>
+float32 var(dim)
+\tunits: cm/sec
+\t_ChunkSizes: 2
+shape = 2
+Attributes:
+\ttitle: in second group
+---end group---
+Dimensions:
+<class 'siphon.cdmr.dataset.Dimension'> name = dim, size = 4
+Variables:
+<class 'siphon.cdmr.dataset.Variable'>
+float32 var(dim)
+\tunits: m/s
+\t_ChunkSizes: 4
+shape = 4
+Attributes:
+\ttitle: for testing groups"""
+    assert s == truth
+
+
 class TestIndexing(object):
     @classmethod
     @recorder.use_cassette('rap_ncstream_header')

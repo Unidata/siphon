@@ -83,12 +83,13 @@ class Group(AttributeContainer):
         if self.groups:
             print_groups.append('Groups:')
             for group in self.groups.values():
-                print_groups.append(group)
+                print_groups.append(str(group))
+                print_groups.append(str('---end group---'))
 
         if self.dimensions:
             print_groups.append('Dimensions:')
             for dim in self.dimensions.values():
-                print_groups.append(dim)
+                print_groups.append(str(dim))
 
         if self.types:
             print_groups.append('Types:')
@@ -98,7 +99,7 @@ class Group(AttributeContainer):
         if self.variables:
             print_groups.append('Variables:')
             for var in self.variables.values():
-                print_groups.append(var)
+                print_groups.append(str(var))
 
         if self.ncattrs():
             print_groups.append('Attributes:')
