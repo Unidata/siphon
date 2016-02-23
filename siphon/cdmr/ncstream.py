@@ -30,20 +30,25 @@ def read_ncstream_messages(fobj):
             break
 
         if magic == MAGIC_HEADER:
+            log.debug('Header chunk')
             messages.append(stream.Header())
             messages[0].ParseFromString(read_block(fobj))
         elif magic == MAGIC_DATA:
+            log.debug('Data chunk')
             data = stream.Data()
             data.ParseFromString(read_block(fobj))
             if data.dataType in (stream.STRING, stream.OPAQUE) or data.vdata:
+                log.debug('Reading string/opaque')
                 dt = _dtypeLookup.get(data.dataType, np.object_)
                 num_obj = read_var_int(fobj)
                 blocks = np.array([read_block(fobj) for _ in range(num_obj)], dtype=dt)
                 messages.append(blocks)
             elif data.dataType in _dtypeLookup:
+                log.debug('Reading array data')
                 data_block = read_numpy_block(fobj, data)
                 messages.append(data_block)
             elif data.dataType in (stream.STRUCTURE, stream.SEQUENCE):
+                log.debug('Reading structure')
                 blocks = []
                 magic = read_magic(fobj)
                 while magic != MAGIC_VEND:
