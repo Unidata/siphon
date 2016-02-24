@@ -51,7 +51,7 @@ setup(
     description = ("A collection of Python utilities for interacting with the "
                                    "Unidata technology stack."),
     keywords='meteorology weather',
-    classifiers=['Development Status :: 2 - Pre-Alpha',
+    classifiers=['Development Status :: 3 - Alpha',
                  'Programming Language :: Python :: 2',
                  'Programming Language :: Python :: 2.7',
                  'Programming Language :: Python :: 3',
