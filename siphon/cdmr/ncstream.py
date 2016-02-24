@@ -48,7 +48,9 @@ def read_ncstream_messages(fobj):
                 messages.append(np.array(blocks, dtype=dt))
             elif data.dataType in _dtypeLookup:
                 log.debug('Reading array data')
-                data_block = make_array(data, read_block(fobj))
+                bin_data = read_block(fobj)
+                log.debug('Binary data: %s', bin_data)
+                data_block = make_array(data, bin_data)
                 messages.append(data_block)
             elif data.dataType == stream.STRUCTURE:
                 log.debug('Reading structure')
@@ -96,6 +98,8 @@ def make_array(data_header, buf):
     Can handle taking a data header and either bytes containing data or a StructureData
     instance, which will have binary data as well as some additional information.
 
+    Parameters
+    ----------
     data_header : Data
     buf : bytes or StructureData
     """
@@ -173,9 +177,10 @@ def unpack_variable(var):
     elif var.dataType == stream.STRING:
         type_name = 'string'
     else:
-        type_name = dt.type.__name__
+        type_name = dt.name
 
     if var.data:
+        log.debug('Storing variable data: %s %s', dt, var.data)
         if var.dataType is str:
             data = var.data
         else:
