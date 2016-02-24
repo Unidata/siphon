@@ -3,10 +3,15 @@
 # SPDX-License-Identifier: MIT
 
 from __future__ import print_function
+import logging
 from collections import OrderedDict
 
 from .cdmremote import CDMRemote
 from .ncstream import unpack_attribute, unpack_variable
+
+log = logging.getLogger('siphon.cdmr')
+log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
+log.setLevel(logging.WARNING)
 
 
 class AttributeContainer(object):
@@ -35,6 +40,15 @@ class Group(AttributeContainer):
         else:
             self.dataset = self
 
+    @property
+    def path(self):
+        'The full path to the Group, including any parent Groups.'
+        # If root, return '/'
+        if self.dataset is self:
+            return ''
+        else:  # Otherwise recurse
+            return self.dataset.path + '/' + self.name
+
     def load_from_stream(self, group):
         self._unpack_attrs(group.atts)
         self.name = group.name
@@ -54,8 +68,10 @@ class Group(AttributeContainer):
             self.groups[grp.name] = new_group
             new_group.load_from_stream(grp)
 
-        if group.structs:
-            print('Structures not implemented for groups!')
+        for struct in group.structs:
+            new_var = Variable(self, struct.name)
+            self.variables[struct.name] = new_var
+            new_var.load_from_stream(struct)
 
         if group.enumTypes:
             for en in group.enumTypes:
@@ -72,12 +88,13 @@ class Group(AttributeContainer):
         if self.groups:
             print_groups.append('Groups:')
             for group in self.groups.values():
-                print_groups.append(group)
+                print_groups.append(str(group))
+                print_groups.append(str('---end group---'))
 
         if self.dimensions:
             print_groups.append('Dimensions:')
             for dim in self.dimensions.values():
-                print_groups.append(dim)
+                print_groups.append(str(dim))
 
         if self.types:
             print_groups.append('Types:')
@@ -87,7 +104,7 @@ class Group(AttributeContainer):
         if self.variables:
             print_groups.append('Variables:')
             for var in self.variables.values():
-                print_groups.append(var)
+                print_groups.append(str(var))
 
         if self.ncattrs():
             print_groups.append('Attributes:')
@@ -105,7 +122,7 @@ class Dataset(Group):
     def _read_header(self):
         messages = self.cdmr.fetch_header()
         if len(messages) != 1:
-            print('Receive %d messages for header!' % len(messages))
+            log.warning('Receive %d messages for header!', len(messages))
         self._header = messages[0]
         self.load_from_stream(self._header.root)
 
@@ -126,26 +143,41 @@ class Variable(AttributeContainer):
     def group(self):
         return self._group
 
+    @property
+    def path(self):
+        'The full path to the Variable, including any parent Groups.'
+        return self._group.path + '/' + self.name
+
     def __getitem__(self, ind):
         if self._data is not None:
             return self._data[ind]
         else:
             ind, keep_dims = self._process_indices(ind)
-            messages = self.dataset.cdmr.fetch_data(**{self.name: ind})
+
+            # Get the data for our request. We assume we only get 1 message.
+            messages = self.dataset.cdmr.fetch_data(**{self.path: ind})
             assert len(messages) == 1
+            arr = messages[0]
+
+            # Get the proper byte ordering.
+            # We handle structures by looking for a structured dtype. By convention,
+            # this has a single field which is has a void type and the byte order encoded
+            # in its name. This is because we can't retrieve a useful byte order from
+            # any of these flexible types.
+            byteorder = arr.dtype.names[0] if arr.dtype.fields else arr.dtype.byteorder
+
+            # Set the dtype on the returned data to our own dtype, with byte ordering set
+            # based on what was returned. This allows us to handle structures.
+            arr.dtype = self.dtype.newbyteorder(byteorder)
 
             # Need to handle removing dimensions that have had an index
             # applied -- the protocol returns them with size 1, but numpy
             # behavior removes them
-            arr = messages[0]
             if keep_dims:
                 ret = arr.reshape(*[arr.shape[i] for i in keep_dims])
             else:
                 ret = arr.squeeze()
 
-            if self.dtype.byteorder != '|':
-                old_dtype = arr.dtype
-                ret.dtype = self.dtype.newbyteorder(old_dtype.byteorder)
             return ret
 
     def _process_indices(self, ind):
@@ -220,7 +252,7 @@ class Variable(AttributeContainer):
         self.ndim = len(var.shape)
         self._unpack_attrs(var.atts)
 
-        if var.enumType:
+        if hasattr(var, 'enumType') and var.enumType:
             self.datatype = var.enumType
             self._enum = True
 

@@ -4,7 +4,8 @@
 
 from siphon.testing import get_recorder
 from siphon.cdmr import Dataset
-from numpy.testing import assert_almost_equal
+from numpy.testing import assert_almost_equal, assert_array_equal, assert_array_almost_equal
+import numpy as np
 
 recorder = get_recorder(__file__)
 
@@ -62,6 +63,92 @@ def test_opaque():
     assert var.shape == (3,)
     assert var[0] == (b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
                       b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
+
+
+@recorder.use_cassette('nc4_compound_ref')
+def test_struct():
+    "Test reading a structured variable"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/compound/ref_tst_compounds.nc4')
+    var = ds.variables['obs'][:]
+    assert var.shape == (3,)
+    assert var.dtype == np.dtype([('day', 'b'), ('elev', '<i2'), ('count', '<i4'),
+                                  ('relhum', '<f4'), ('time', '<f8')])
+    assert_array_equal(var['day'], np.array([15, -99, 20]))
+    assert_array_equal(var['elev'], np.array([2, -99, 6]))
+    assert_array_equal(var['count'], np.array([1, -99, 3]))
+    assert_array_almost_equal(var['relhum'], np.array([0.5, -99.0, 0.75]))
+    assert_array_almost_equal(var['time'],
+                              np.array([3600.01, -99.0, 5000.01], dtype=np.double))
+
+
+@recorder.use_cassette('nc4_groups')
+def test_groups():
+    "Test that a variable's path includes any parent groups"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_groups.nc')
+    var = ds.groups['g1'].variables['var']
+
+    # Need to check actual path because sample file's header includes data--no request
+    # necessary
+    assert var.path == '/g1/var'
+
+    dat = var[:]
+    assert dat.shape == (1,)
+
+
+@recorder.use_cassette('nc4_groups')
+def test_print():
+    "Test that __str__ (or printing) a dataset works"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_groups.nc')
+    s = str(ds)
+    truth = """Groups:
+g1
+Dimensions:
+<class 'siphon.cdmr.dataset.Dimension'> name = dim, size = 1
+Variables:
+<class 'siphon.cdmr.dataset.Variable'>
+float32 var(dim)
+\tunits: km/hour
+\t_ChunkSizes: 1
+shape = 1
+Attributes:
+\ttitle: in first group
+---end group---
+g2
+Groups:
+g3
+Dimensions:
+<class 'siphon.cdmr.dataset.Dimension'> name = dim, size = 3
+Variables:
+<class 'siphon.cdmr.dataset.Variable'>
+float32 var(dim)
+\tunits: mm/msec
+\t_ChunkSizes: 3
+shape = 3
+Attributes:
+\ttitle: in third group
+---end group---
+Dimensions:
+<class 'siphon.cdmr.dataset.Dimension'> name = dim, size = 2
+Variables:
+<class 'siphon.cdmr.dataset.Variable'>
+float32 var(dim)
+\tunits: cm/sec
+\t_ChunkSizes: 2
+shape = 2
+Attributes:
+\ttitle: in second group
+---end group---
+Dimensions:
+<class 'siphon.cdmr.dataset.Dimension'> name = dim, size = 4
+Variables:
+<class 'siphon.cdmr.dataset.Variable'>
+float32 var(dim)
+\tunits: m/s
+\t_ChunkSizes: 4
+shape = 4
+Attributes:
+\ttitle: for testing groups"""
+    assert s == truth
 
 
 class TestIndexing(object):

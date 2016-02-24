@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.2+43.gadbe069.dirty)]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/nc4_pres_temp_4D.nc?deflate=4&var=latitude&req=data
+  response:
+    body:
+      string: !!binary |
+        q+zOuhoKCGxhdGl0dWRlEAUaBAoCEAYgACgCMAFAGBt4XnM8wcDg+IGBwYkHiBWA2ASIPRgYAD20
+        A+s=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Wed, 24 Feb 2016 00:19:55 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+version: 1

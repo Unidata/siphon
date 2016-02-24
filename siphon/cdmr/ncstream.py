@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 from __future__ import print_function
+import logging
 import zlib
 
 import numpy as np
@@ -15,6 +16,10 @@ MAGIC_VDATA = b'\xab\xef\xfe\xba'
 MAGIC_VEND = b'\xed\xef\xfe\xda'
 MAGIC_ERR = b'\xab\xad\xba\xda'
 
+log = logging.getLogger('siphon.ncstream')
+log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
+log.setLevel(logging.WARNING)
+
 
 def read_ncstream_messages(fobj):
     messages = []
@@ -25,37 +30,51 @@ def read_ncstream_messages(fobj):
             break
 
         if magic == MAGIC_HEADER:
+            log.debug('Header chunk')
             messages.append(stream.Header())
             messages[0].ParseFromString(read_block(fobj))
         elif magic == MAGIC_DATA:
+            log.debug('Data chunk')
             data = stream.Data()
             data.ParseFromString(read_block(fobj))
+            log.debug('Data: %s', str(data))
             if data.dataType in (stream.STRING, stream.OPAQUE) or data.vdata:
+                log.debug('Reading string/opaque')
                 dt = _dtypeLookup.get(data.dataType, np.object_)
                 num_obj = read_var_int(fobj)
                 blocks = np.array([read_block(fobj) for _ in range(num_obj)], dtype=dt)
                 messages.append(blocks)
             elif data.dataType in _dtypeLookup:
-                data_block = read_numpy_block(fobj, data)
+                log.debug('Reading array data')
+                data_block = make_array(data, read_block(fobj))
                 messages.append(data_block)
-            elif data.dataType in (stream.STRUCTURE, stream.SEQUENCE):
+            elif data.dataType == stream.STRUCTURE:
+                log.debug('Reading structure')
+                sd = stream.StructureData()
+                sd.ParseFromString(read_block(fobj))
+                log.debug('StructureData: %s', str(sd))
+                data_block = make_array(data, sd)
+                messages.append(data_block)
+            elif data.dataType == stream.SEQUENCE:
+                log.debug('Reading sequence')
                 blocks = []
                 magic = read_magic(fobj)
                 while magic != MAGIC_VEND:
-                    assert magic == MAGIC_VDATA, 'Bad magic for struct/seq data!'
+                    if magic == MAGIC_VDATA:
+                        log.error('Bad magic for struct/seq data!')
                     blocks.append(stream.StructureData())
                     blocks[0].ParseFromString(read_block(fobj))
                     magic = read_magic(fobj)
                 messages.append((data, blocks))
             else:
-                raise NotImplementedError("Don't know how to handle data type: %d" %
-                                          data.dataType)
+                raise NotImplementedError("Don't know how to handle data type: {0}".format(
+                    data.dataType))
         elif magic == MAGIC_ERR:
             err = stream.Error()
             err.ParseFromString(read_block(fobj))
             raise RuntimeError(err.message)
         else:
-            print('Unknown magic: ' + str(' '.join('%02x' % b for b in magic)))
+            log.error('Unknown magic: ' + str(' '.join('%02x' % b for b in magic)))
 
     return messages
 
@@ -69,18 +88,37 @@ def read_block(fobj):
     return fobj.read(num)
 
 
-def read_numpy_block(fobj, data_header):
-    dt = data_type_to_numpy(data_header.dataType)
-    dt.newbyteorder('>' if data_header.bigend else '<')
+def make_array(data_header, buf):
+    """Handles returning an numpy array from serialized ncstream data.
+
+    Can handle taking a data header and either bytes containing data or a StructureData
+    instance, which will have binary data as well as some additional information.
+
+    data_header : Data
+    buf : bytes or StructureData
+    """
+    # Structures properly encode endian, but regular data is big endian
+    if data_header.dataType == stream.STRUCTURE:
+        struct_header = buf
+        buf = struct_header.data
+        endian = '>' if data_header.bigend else '<'
+        dt = np.dtype([(endian, np.void, struct_header.rowLength)])
+    else:
+        endian = '>'
+        dt = data_type_to_numpy(data_header.dataType)
+
+    dt = dt.newbyteorder(endian)
+
+    # Figure out the shape of the resulting array
     shape = tuple(r.size for r in data_header.section.range)
 
-    buf = read_block(fobj)
+    # Handle decompressing the bytes
     if data_header.compress == stream.DEFLATE:
         buf = zlib.decompress(buf)
         assert len(buf) == data_header.uncompressedSize
     elif data_header.compress != stream.NONE:
-        raise NotImplementedError('Compression type %d not implemented!' %
-                                  data_header.compress)
+        raise NotImplementedError('Compression type {0} not implemented!'.format(
+            data_header.compress))
 
     return np.frombuffer(bytearray(buf), dtype=dt).reshape(*shape)
 
@@ -101,10 +139,30 @@ def data_type_to_numpy(datatype, unsigned=False):
 
     if unsigned:
         basic_type = basic_type.replace('i', 'u')
-    return np.dtype('>' + basic_type)
+    return np.dtype('=' + basic_type)
+
+
+def struct_to_dtype(struct):
+    """Convert a Structure specification to a numpy structured dtype."""
+    # str() around name necessary because protobuf gives unicode names, but dtype doesn't
+    # support them on Python 2
+    fields = [(str(var.name), data_type_to_numpy(var.dataType, var.unsigned))
+              for var in struct.vars]
+    for s in struct.structs:
+        fields.append((s.name, struct_to_dtype(s)))
+
+    log.debug('Structure fields: %s', fields)
+    dt = np.dtype(fields)
+    return dt
 
 
 def unpack_variable(var):
+    # If we actually get a structure instance, handle turning that into a variable
+    if var.dataType == stream.STRUCTURE:
+        return None, struct_to_dtype(var), 'Structure'
+    elif var.dataType == stream.SEQUENCE:
+        log.warning('Sequence support not implemented!')
+
     dt = data_type_to_numpy(var.dataType, var.unsigned)
     if var.dataType == stream.OPAQUE:
         type_name = 'opaque'
@@ -133,7 +191,7 @@ _attrConverters = {stream.Attribute.BYTE: np.dtype('>b'),
 
 def unpack_attribute(att):
     if att.unsigned:
-        print('Warning: Unsigned attribute!')
+        log.warning('Unsupported unsigned attribute!')
 
     if att.len == 0:
         val = None

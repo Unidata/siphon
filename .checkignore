@@ -1,0 +1,13 @@
+#
+# Configures file ignores for Quantified Code
+#
+
+# Ignore versioneer stuff
+siphon/_version.py
+versioneer.py
+
+# Ignore generated protobuf files
+siphon/cdmr/ncStream_pb2.py
+
+# Don't scan sphinx config
+docs/conf.py

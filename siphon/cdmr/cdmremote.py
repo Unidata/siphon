@@ -8,14 +8,18 @@ from ..http_util import HTTPEndPoint
 
 
 class CDMRemote(HTTPEndPoint):
+    def __init__(self, url):
+        super(CDMRemote, self).__init__(url)
+        self.deflate = 0
+
     def _fetch(self, query):
         return read_ncstream_messages(BytesIO(self.get_query(query).content))
 
     def fetch_capabilities(self):
-        return self._fetch(self.query().add_query_parameter(req='capabilities'))
+        return self.get_query(self.query().add_query_parameter(req='capabilities'))
 
     def fetch_cdl(self):
-        return self._fetch(self.query().add_query_parameter(req='CDL'))
+        return self.get_query(self.query().add_query_parameter(req='CDL'))
 
     def fetch_data(self, **var):
         varstr = ','.join(name + self._convert_indices(ind)
@@ -27,7 +31,25 @@ class CDMRemote(HTTPEndPoint):
         return self._fetch(self.query().add_query_parameter(req='header'))
 
     def fetch_ncml(self):
-        return self._fetch(self.query().add_query_parameter(req='NcML'))
+        return self.get_query(self.query().add_query_parameter(req='NcML'))
+
+    def query(self):
+        """Generate a new query for CDMRemote.
+
+        This handles turning on compression if necessary.
+
+        Returns
+        -------
+        HTTPQuery
+            The created query.
+        """
+        q = super(CDMRemote, self).query()
+
+        # Turn on compression if it's been set on the object
+        if self.deflate:
+            q.add_query_parameter(deflate=self.deflate)
+
+        return q
 
     @staticmethod
     def _convert_indices(ind):
