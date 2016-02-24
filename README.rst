@@ -1,55 +1,55 @@
 Siphon
 ======
 
-.. image:: https://img.shields.io/pypi/l/siphon.svg
+|License|
+
+|PyPI| |PyPIDownloads| |Conda| |CondaDownloads|
+
+|Travis| |CodeCov| |Codacy| |QuantifiedCode|
+
+|LatestDocs| |StableDocs|
+
+.. |License| image:: https://img.shields.io/pypi/l/siphon.svg
     :target: https://pypi.python.org/pypi/siphon/
     :alt: License
 
-.. image:: https://img.shields.io/github/issues/Unidata/siphon.svg
-    :target: http://www.github.com/Unidata/siphon/issues
-    :alt: GitHub Issues
-
-.. image:: https://img.shields.io/github/tag/Unidata/siphon.svg
-    :target: https://github.com/Unidata/siphon/tags
-    :alt: GitHub Tags
-
-.. image:: https://img.shields.io/pypi/v/siphon.svg
+.. |PyPI| image:: https://img.shields.io/pypi/v/siphon.svg
     :target: https://pypi.python.org/pypi/siphon/
     :alt: PyPI Package
 
-.. image:: https://img.shields.io/pypi/dm/siphon.svg
+.. |PyPIDownloads| image:: https://img.shields.io/pypi/dm/siphon.svg
     :target: https://pypi.python.org/pypi/siphon/
     :alt: PyPI Downloads
 
-.. image:: https://binstar.org/unidata/siphon/badges/version.svg
-    :target: https://binstar.org/unidata/siphon
-    :alt: Binstar Package
+.. |Conda| image:: https://anaconda.org/unidata/siphon/badges/version.svg
+    :target: https://anaconda.org/unidata/siphon
+    :alt: Conda Package
 
-.. image:: https://binstar.org/unidata/siphon/badges/downloads.svg
-    :target: https://binstar.org/unidata/siphon
-    :alt: Binstar Downloads
+.. |CondaDownloads| image:: https://anaconda.org/unidata/siphon/badges/downloads.svg
+    :target: https://anaconda.org/unidata/siphon
+    :alt: Conda Downloads
 
-.. image:: https://travis-ci.org/Unidata/siphon.svg?branch=master
+.. |Travis| image:: https://travis-ci.org/Unidata/siphon.svg?branch=master
     :target: https://travis-ci.org/Unidata/siphon
     :alt: Travis Build Status
 
-.. image:: https://codecov.io/github/Unidata/siphon/coverage.svg?branch=master
+.. |CodeCov| image:: https://codecov.io/github/Unidata/siphon/coverage.svg?branch=master
     :target: https://codecov.io/github/Unidata/siphon?branch=master
-    :alt: Coveralls Coverage Status
+    :alt: Code Coverage Status
 
-.. image:: https://www.quantifiedcode.com/api/v1/project/e4c6ae8ad9d64a8a94f5454ff28615b1/badge.svg
+.. |QuantifiedCode| image:: https://www.quantifiedcode.com/api/v1/project/e4c6ae8ad9d64a8a94f5454ff28615b1/badge.svg
     :target: https://www.quantifiedcode.com/app/project/e4c6ae8ad9d64a8a94f5454ff28615b1
     :alt: Code issues
 
-.. image:: https://api.codacy.com/project/badge/grade/ebacd20b84ab4673bd6cd34f65c48af6
+.. |Codacy| image:: https://api.codacy.com/project/badge/grade/ebacd20b84ab4673bd6cd34f65c48af6
     :target: https://www.codacy.com/app/Unidata/siphon
     :alt: Codacy code issues
 
-.. image:: https://readthedocs.org/projects/pip/badge/?version=latest
+.. |LatestDocs| image:: https://readthedocs.org/projects/pip/badge/?version=latest
     :target: http://siphon.readthedocs.org/en/latest/
     :alt: Latest Doc Build Status
 
-.. image:: https://readthedocs.org/projects/pip/badge/?version=stable
+.. |StableDocs| image:: https://readthedocs.org/projects/pip/badge/?version=stable
     :target: http://siphon.readthedocs.org/en/stable/
     :alt: Stable Doc Build Status
 
