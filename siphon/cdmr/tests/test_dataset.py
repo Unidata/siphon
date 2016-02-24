@@ -113,6 +113,7 @@ def test_groups():
 
     dat = var[:]
     assert dat.shape == (1,)
+    assert_almost_equal(dat[0], 1.0)
 
 
 @recorder.use_cassette('nc4_groups')

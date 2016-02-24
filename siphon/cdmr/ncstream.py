@@ -184,7 +184,8 @@ def unpack_variable(var):
         if var.dataType is str:
             data = var.data
         else:
-            data = np.fromstring(var.data, dtype=dt)
+            # Always sent big endian
+            data = np.fromstring(var.data, dtype=dt.newbyteorder('>'))
     else:
         data = None
 
