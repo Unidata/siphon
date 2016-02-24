@@ -116,6 +116,15 @@ def test_groups():
     assert_almost_equal(dat[0], 1.0)
 
 
+@recorder.use_cassette('nc4_chararray')
+def test_char():
+    "Test processing arrays of characters"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/chararr.nc')
+    dat = ds.variables['ca'][:]
+    assert dat.size == 10
+    assert dat[0] == b's'
+
+
 @recorder.use_cassette('nc4_groups')
 def test_print():
     "Test that __str__ (or printing) a dataset works"

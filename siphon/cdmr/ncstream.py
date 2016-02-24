@@ -33,6 +33,7 @@ def read_ncstream_messages(fobj):
             log.debug('Header chunk')
             messages.append(stream.Header())
             messages[0].ParseFromString(read_block(fobj))
+            log.debug('Header: %s', str(messages[0]))
         elif magic == MAGIC_DATA:
             log.debug('Data chunk')
             data = stream.Data()
@@ -132,7 +133,7 @@ def make_array(data_header, buf):
 
 # STRUCTURE = 8;
 # SEQUENCE = 9;
-_dtypeLookup = {stream.CHAR: 'b', stream.BYTE: 'b', stream.SHORT: 'i2',
+_dtypeLookup = {stream.CHAR: 'S1', stream.BYTE: 'b', stream.SHORT: 'i2',
                 stream.INT: 'i4', stream.LONG: 'i8', stream.FLOAT: 'f4',
                 stream.DOUBLE: 'f8', stream.STRING: 'O',
                 stream.ENUM1: 'B', stream.ENUM2: 'u2', stream.ENUM4: 'u4',
