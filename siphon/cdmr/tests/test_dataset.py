@@ -81,6 +81,14 @@ def test_struct():
                               np.array([3600.01, -99.0, 5000.01], dtype=np.double))
 
 
+@recorder.use_cassette('nc4_compound_ref_deflate')
+def test_struct():
+    "Test reading a structured variable with compression turned on"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/compound/ref_tst_compounds.nc4')
+    ds.cdmr.deflate = 4
+    assert ds.variables['obs'][:] is not None
+
+
 @recorder.use_cassette('nc4_groups')
 def test_groups():
     "Test that a variable's path includes any parent groups"

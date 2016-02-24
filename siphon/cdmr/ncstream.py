@@ -114,8 +114,10 @@ def make_array(data_header, buf):
 
     # Handle decompressing the bytes
     if data_header.compress == stream.DEFLATE:
-        buf = zlib.decompress(buf)
-        assert len(buf) == data_header.uncompressedSize
+        # Structure data not currently compressed by TDS
+        if data_header.dataType != stream.STRUCTURE:
+            buf = zlib.decompress(buf)
+            assert len(buf) == data_header.uncompressedSize
     elif data_header.compress != stream.NONE:
         raise NotImplementedError('Compression type {0} not implemented!'.format(
             data_header.compress))
