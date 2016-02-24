@@ -12,10 +12,10 @@ class CDMRemote(HTTPEndPoint):
         return read_ncstream_messages(BytesIO(self.get_query(query).content))
 
     def fetch_capabilities(self):
-        return self._fetch(self.query().add_query_parameter(req='capabilities'))
+        return self.get_query(self.query().add_query_parameter(req='capabilities'))
 
     def fetch_cdl(self):
-        return self._fetch(self.query().add_query_parameter(req='CDL'))
+        return self.get_query(self.query().add_query_parameter(req='CDL'))
 
     def fetch_data(self, **var):
         varstr = ','.join(name + self._convert_indices(ind)
@@ -27,7 +27,7 @@ class CDMRemote(HTTPEndPoint):
         return self._fetch(self.query().add_query_parameter(req='header'))
 
     def fetch_ncml(self):
-        return self._fetch(self.query().add_query_parameter(req='NcML'))
+        return self.get_query(self.query().add_query_parameter(req='NcML'))
 
     @staticmethod
     def _convert_indices(ind):

@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.2+43.gadbe069.dirty)]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/nc4_pres_temp_4D.nc?req=capabilities
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<cdmRemoteCapabilities\
+        \ location=\"http://localhost:8080/thredds/cdmremote/nc4/nc4_pres_temp_4D.nc\"\
+        >\r\n  <featureDataset url=\"http://localhost:8080/thredds/cdmremote/nc4/nc4_pres_temp_4D.nc\"\
+        \ />\r\n</cdmRemoteCapabilities>\r\n"}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Type: [application/xml;charset=UTF-8]
+      Date: ['Wed, 24 Feb 2016 00:22:07 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+version: 1

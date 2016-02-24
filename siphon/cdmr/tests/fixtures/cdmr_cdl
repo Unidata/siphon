@@ -1,0 +1,28 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.2+43.gadbe069.dirty)]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/nc4_pres_temp_4D.nc?req=CDL
+  response:
+    body: {string: "netcdf nc4/nc4_pres_temp_4D.nc {\n  dimensions:\n    level = 2;\n\
+        \    latitude = 6;\n    longitude = 12;\n    time = UNLIMITED;   // (2 currently)\n\
+        \  variables:\n    float temperature(time=2, level=2, latitude=6, longitude=12);\n\
+        \      :units = \"celsius\";\n      :_ChunkSizes = 1, 2, 6, 12; // int\n\n\
+        \    float pressure(time=2, level=2, latitude=6, longitude=12);\n      :units\
+        \ = \"hPa\";\n      :_ChunkSizes = 1, 2, 6, 12; // int\n\n    float latitude(latitude=6);\n\
+        \      :units = \"degrees_north\";\n      :_ChunkSizes = 6; // int\n\n   \
+        \ float longitude(longitude=12);\n      :units = \"degrees_east\";\n     \
+        \ :_ChunkSizes = 12; // int\n\n}\n"}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Length: ['612']
+      Content-Type: [text/plain;charset=UTF-8]
+      Date: ['Wed, 24 Feb 2016 00:22:07 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+version: 1
