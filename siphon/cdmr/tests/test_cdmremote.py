@@ -33,3 +33,10 @@ class TestCDMRmote(object):
         'Test getting an NCML document from CDMRemote'
         s = self.cdmr.fetch_ncml()
         assert s
+
+    @recorder.use_cassette('cdmr_enable_compression')
+    def test_enable_compression(self):
+        'Test turning on data compression for CDMRemote'
+        self.cdmr.deflate = 4
+        d = self.cdmr.fetch_data(latitude=[slice(None)])
+        assert d

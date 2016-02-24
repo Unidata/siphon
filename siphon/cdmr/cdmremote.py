@@ -8,6 +8,10 @@ from ..http_util import HTTPEndPoint
 
 
 class CDMRemote(HTTPEndPoint):
+    def __init__(self, url):
+        super(CDMRemote, self).__init__(url)
+        self.deflate = 0
+
     def _fetch(self, query):
         return read_ncstream_messages(BytesIO(self.get_query(query).content))
 
@@ -28,6 +32,24 @@ class CDMRemote(HTTPEndPoint):
 
     def fetch_ncml(self):
         return self.get_query(self.query().add_query_parameter(req='NcML'))
+
+    def query(self):
+        """Generate a new query for CDMRemote.
+
+        This handles turning on compression if necessary.
+
+        Returns
+        -------
+        HTTPQuery
+            The created query.
+        """
+        q = super(CDMRemote, self).query()
+
+        # Turn on compression if it's been set on the object
+        if self.deflate:
+            q.add_query_parameter(deflate=self.deflate)
+
+        return q
 
     @staticmethod
     def _convert_indices(ind):
