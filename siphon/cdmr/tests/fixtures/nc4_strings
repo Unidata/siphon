@@ -1,0 +1,84 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.2+51.g4799f20.dirty)]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/tst/tst_strings.nc?req=header
+  response:
+    body:
+      string: !!binary |
+        rezO2pABCj5odHRwOi8vbG9jYWxob3N0OjgwODAvdGhyZWRkcy9jZG1yZW1vdGUvbmM0L3RzdC90
+        c3Rfc3RyaW5ncy5uYyJMCgASCAoEbGluZRArGj4KF21lYXN1cmVfZm9yX21lYXN1cmVfdmFyEAca
+        CAoEbGluZRArIhcKC19DaHVua1NpemVzEAMYASIEAAAAKygB
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Wed, 24 Feb 2016 22:45:27 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.2+51.g4799f20.dirty)]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/tst/tst_strings.nc?var=%2Fmeasure_for_measure_var%280%29&req=data
+  response:
+    body:
+      string: !!binary |
+        q+zOuicKF21lYXN1cmVfZm9yX21lYXN1cmVfdmFyEAcaBAoCEAEgACgCMAABCldhc2hpbmd0b24=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Wed, 24 Feb 2016 22:45:27 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.2+51.g4799f20.dirty)]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/tst/tst_strings.nc?var=%2Fmeasure_for_measure_var%2810%29&req=data
+  response:
+    body:
+      string: !!binary |
+        q+zOuikKF21lYXN1cmVfZm9yX21lYXN1cmVfdmFyEAcaBgoECAoQASAAKAIwAAEEUG9saw==
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Wed, 24 Feb 2016 22:45:27 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.2+51.g4799f20.dirty)]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/tst/tst_strings.nc?var=%2Fmeasure_for_measure_var%2842%29&req=data
+  response:
+    body:
+      string: !!binary |
+        q+zOuikKF21lYXN1cmVfZm9yX21lYXN1cmVfdmFyEAcaBgoECCoQASAAKAIwAAEA
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Wed, 24 Feb 2016 22:45:27 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+version: 1

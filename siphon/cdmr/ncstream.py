@@ -40,10 +40,12 @@ def read_ncstream_messages(fobj):
             log.debug('Data: %s', str(data))
             if data.dataType in (stream.STRING, stream.OPAQUE) or data.vdata:
                 log.debug('Reading string/opaque')
-                dt = _dtypeLookup.get(data.dataType, np.object_)
                 num_obj = read_var_int(fobj)
-                blocks = np.array([read_block(fobj) for _ in range(num_obj)], dtype=dt)
-                messages.append(blocks)
+                blocks = [read_block(fobj) for _ in range(num_obj)]
+                if data.dataType == stream.STRING:
+                    blocks = [b.decode('utf-8', errors='ignore') for b in blocks]
+                dt = _dtypeLookup.get(data.dataType, np.object_)
+                messages.append(np.array(blocks, dtype=dt))
             elif data.dataType in _dtypeLookup:
                 log.debug('Reading array data')
                 data_block = make_array(data, read_block(fobj))
@@ -128,7 +130,7 @@ def make_array(data_header, buf):
 # SEQUENCE = 9;
 _dtypeLookup = {stream.CHAR: 'b', stream.BYTE: 'b', stream.SHORT: 'i2',
                 stream.INT: 'i4', stream.LONG: 'i8', stream.FLOAT: 'f4',
-                stream.DOUBLE: 'f8', stream.STRING: np.string_,
+                stream.DOUBLE: 'f8', stream.STRING: 'O',
                 stream.ENUM1: 'B', stream.ENUM2: 'u2', stream.ENUM4: 'u4',
                 stream.OPAQUE: 'O'}
 

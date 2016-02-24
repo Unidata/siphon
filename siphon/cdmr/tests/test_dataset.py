@@ -58,11 +58,23 @@ def test_enum():
 
 @recorder.use_cassette('nc4_opaque')
 def test_opaque():
+    "Test reading opaque datatype"
     ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_opaques.nc')
     var = ds.variables['var'][:]
     assert var.shape == (3,)
     assert var[0] == (b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
                       b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
+
+
+@recorder.use_cassette('nc4_strings')
+def test_strings():
+    "Test reading an array of strings"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_strings.nc')
+    var = ds.variables['measure_for_measure_var']
+    assert var.shape == (43,)
+    assert var[0] == 'Washington'
+    assert var[10] == 'Polk'
+    assert var[-1] == ''
 
 
 @recorder.use_cassette('nc4_compound_ref')

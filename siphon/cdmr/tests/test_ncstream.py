@@ -79,4 +79,4 @@ def test_local_data():
                 b'\x02\x10\x01(\x02\x01\x142014-10-28T21:00:00Z')
     messages = read_ncstream_messages(f)
     assert len(messages) == 1
-    assert messages[0][0] == b'2014-10-28T21:00:00Z'
+    assert messages[0][0] == '2014-10-28T21:00:00Z'
