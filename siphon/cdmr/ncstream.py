@@ -129,7 +129,13 @@ def make_array(data_header, buf):
         raise NotImplementedError('Compression type {0} not implemented!'.format(
             data_header.compress))
 
-    return np.frombuffer(bytearray(buf), dtype=dt).reshape(*shape)
+    ret = np.frombuffer(bytearray(buf), dtype=dt)
+
+    # Only reshape if non-scalar. This is necessary because we handle compound types.
+    if shape:
+        ret = ret.reshape(*shape)
+
+    return ret
 
 # STRUCTURE = 8;
 # SEQUENCE = 9;

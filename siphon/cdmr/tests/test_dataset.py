@@ -125,6 +125,15 @@ def test_char():
     assert dat[0] == b's'
 
 
+@recorder.use_cassette('nc4_nested_structure_scalar')
+def test_scalar():
+    "Test handling a scalar variable"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/testNestedStructure.nc')
+    var = ds.variables['x']
+    data = var[:]
+    assert data['field1']['x'] == 1
+
+
 @recorder.use_cassette('nc4_groups')
 def test_print():
     "Test that __str__ (or printing) a dataset works"

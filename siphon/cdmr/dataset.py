@@ -189,7 +189,9 @@ class Variable(AttributeContainer):
 
         # Make sure we don't have too many things to index
         if len(ind) > self.ndim:
-            raise IndexError('Too many dimensions to index.')
+            # But allow a full slice on a scalar variable
+            if not (self.ndim == 0 and len(ind) == 1 and ind[0] == slice(None)):
+                raise IndexError('Too many dimensions to index.')
 
         # Expand to a slice/ellipsis for every dimension
         if Ellipsis not in ind and len(ind) < self.ndim:
