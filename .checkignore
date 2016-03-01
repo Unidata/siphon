@@ -10,4 +10,4 @@ versioneer.py
 siphon/cdmr/ncStream_pb2.py
 
 # Don't scan sphinx config
-docs/conf.py
+docs/source/conf.py

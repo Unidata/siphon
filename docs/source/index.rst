@@ -3,6 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. image:: _static/tds-logo.png
+   :width: 150 px
+   :align: left
+
 ======
 Siphon
 ======

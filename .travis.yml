@@ -50,27 +50,29 @@ matrix:
     - python: nightly
 
 before_install:
+  - pip install --upgrade pip;
   - if [[ $TASK == "lint" ]]; then
       pip install flake8 pep8-naming;
+    elif [[ $TASK == "docs" ]]; then
+        pip install -r docs/requirements.txt -f $WHEELHOUSE;
     else
-      pip install --upgrade pip;
-      if [[ $TASK == "docs" || $TASK == "examples" ]]; then
-        if [[ $TASK == "examples" ]]; then
-          export EXTRAS="$EXTRAS,examples";
-        fi;
-        pip install -r docs/requirements.txt;
+      if [[ $TASK == "examples" ]]; then
+        export EXTRAS="$EXTRAS,examples";
+        export EXTRA_PACKAGES="nbconvert ipykernel";
       elif [[ $TASK == "coverage" ]]; then
         pip install pytest-cov;
       fi;
       mkdir $WHEELDIR;
-      pip install ".[$EXTRAS]" -d $WHEELDIR -f $WHEELHOUSE $PRE $VERSIONS;
-      touch $WHEELDIR/download_marker;
+      pip download -d $WHEELDIR ".[$EXTRAS]" $EXTRA_PACKAGES -f $WHEELHOUSE $PRE $VERSIONS;
+      touch $WHEELDIR/download_marker && ls -lrt $WHEELDIR;
+      travis_wait pip wheel -w $WHEELDIR $EXTRA_PACKAGES -f $WHEELHOUSE $PRE $VERSIONS;
+      pip install $EXTRA_PACKAGES --upgrade --no-index -f file://$PWD/$WHEELDIR $VERSIONS;
       travis_wait pip wheel ".[$EXTRAS]" -w $WHEELDIR -f $WHEELHOUSE $PRE $VERSIONS;
       rm -f $WHEELDIR/siphon*.whl;
     fi
 
 install:
-  - if [[ $TASK != "lint" ]]; then
+  - if [[ $TASK != "lint" && $TASK != "docs" ]]; then
       pip install ".[$EXTRAS]" --upgrade --no-index -f file://$PWD/$WHEELDIR $VERSIONS;
       if [[ $TASK == "examples" ]]; then
         python setup.py examples;
@@ -82,11 +84,17 @@ script:
       flake8 siphon;
     elif [[ $TASK == "docs" ]]; then
       cd docs;
-      make html;
+      make html 2>docs.log;
+      if [ -s docs.log ]; then
+        echo Doc build produced warnings or errors:;
+        cat docs.log;
+        false;
+      fi;
     elif [[ $TASK == "examples" ]]; then
-      cd examples;
-      echo backend:agg > matplotlibrc;
-      MPLBACKEND='agg' python test_examples.py;
+      if [[ $TRAVIS_PYTHON_VERSION == 2* ]]; then
+        sed -i -e "s/python3/python2/" examples/notebooks/*.ipynb;
+      fi;
+      find examples/notebooks/ -name \*.ipynb -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=60 --to=notebook --stdout >| /dev/null;
     elif [[ $TASK == "coverage" ]]; then
       python setup.py test --addopts --cov=siphon;
     else
@@ -100,3 +108,16 @@ after_success:
       coverage xml;
       python-codacy-coverage -r coverage.xml;
     fi
+
+deploy:
+  provider: pypi
+  user: dopplershift
+  password:
+    secure: RQNuBqUGZHgE7Ux9ud93i8IHiAtjy8mibkYoCbYrY4yhobnMT6cJED33jWyEyVHdQ0GIeAl1PQ7NVl4K9OG0L/KADfVLxEqEBoTu6m2Za5ywBDJChyD3N1XlZT/ix7jEIImrjyfcNLahhH8JLpFrBtIllO7JsMgUo3RtzHwBysg=
+  distributions: sdist bdist_wheel
+  upload_docs: no
+  on:
+    repo: Unidata/siphon
+    python: 3.5
+    condition: '$TASK == "coverage"'
+    tags: true
