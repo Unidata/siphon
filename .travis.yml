@@ -108,3 +108,16 @@ after_success:
       coverage xml;
       python-codacy-coverage -r coverage.xml;
     fi
+
+deploy:
+  provider: pypi
+  user: dopplershift
+  password:
+    secure: RQNuBqUGZHgE7Ux9ud93i8IHiAtjy8mibkYoCbYrY4yhobnMT6cJED33jWyEyVHdQ0GIeAl1PQ7NVl4K9OG0L/KADfVLxEqEBoTu6m2Za5ywBDJChyD3N1XlZT/ix7jEIImrjyfcNLahhH8JLpFrBtIllO7JsMgUo3RtzHwBysg=
+  distributions: sdist bdist_wheel
+  upload_docs: no
+  on:
+    repo: Unidata/siphon
+    python: 3.5
+    condition: '$TASK == "coverage"'
+    tags: true
