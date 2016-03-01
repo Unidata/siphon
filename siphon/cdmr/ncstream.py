@@ -45,8 +45,14 @@ def read_ncstream_messages(fobj):
                 blocks = [read_block(fobj) for _ in range(num_obj)]
                 if data.dataType == stream.STRING:
                     blocks = [b.decode('utf-8', errors='ignore') for b in blocks]
-                dt = _dtypeLookup.get(data.dataType, np.object_)
-                messages.append(np.array(blocks, dtype=dt))
+
+                # Again endian isn't coded properly
+                dt = data_type_to_numpy(data.dataType).newbyteorder('>')
+                if data.vdata:
+                    arr = np.array([np.frombuffer(b, dtype=dt) for b in blocks])
+                    messages.append(arr)
+                else:
+                    messages.append(np.array(blocks, dtype=dt))
             elif data.dataType in _dtypeLookup:
                 log.debug('Reading array data')
                 bin_data = read_block(fobj)
@@ -93,6 +99,10 @@ def read_block(fobj):
     return fobj.read(num)
 
 
+def make_vlen(data_header, blocks):
+    return [s]
+
+
 def make_array(data_header, buf):
     """Handles returning an numpy array from serialized ncstream data.
 
@@ -117,7 +127,10 @@ def make_array(data_header, buf):
     dt = dt.newbyteorder(endian)
 
     # Figure out the shape of the resulting array
-    shape = tuple(r.size for r in data_header.section.range)
+    if data_header.vdata:
+        shape = None
+    else:
+        shape = tuple(r.size for r in data_header.section.range)
 
     # Handle decompressing the bytes
     if data_header.compress == stream.DEFLATE:

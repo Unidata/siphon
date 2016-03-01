@@ -156,7 +156,6 @@ class Variable(AttributeContainer):
 
             # Get the data for our request. We assume we only get 1 message.
             messages = self.dataset.cdmr.fetch_data(**{self.path: ind})
-            assert len(messages) == 1
             arr = messages[0]
 
             # Get the proper byte ordering.
@@ -164,21 +163,32 @@ class Variable(AttributeContainer):
             # this has a single field which is has a void type and the byte order encoded
             # in its name. This is because we can't retrieve a useful byte order from
             # any of these flexible types.
-            byteorder = arr.dtype.names[0] if arr.dtype.fields else arr.dtype.byteorder
+            if arr.dtype == 'O' and hasattr(arr[0], 'dtype'):
+                byteorder = arr[0].dtype.byteorder
+            elif arr.dtype.fields:
+                byteorder = arr.dtype.names[0]
+            else:
+                byteorder = arr.dtype.byteorder
 
             # Set the dtype on the returned data to our own dtype, with byte ordering set
             # based on what was returned. This allows us to handle structures.
-            arr.dtype = self.dtype.newbyteorder(byteorder)
+            dt = self.dtype.newbyteorder(byteorder)
+
+            if arr.dtype == 'O':
+                if hasattr(arr[0], 'dtype'):
+                    for subarray in arr:
+                        subarray.dtype = dt
+            else:
+                arr.dtype = dt
 
             # Need to handle removing dimensions that have had an index
             # applied -- the protocol returns them with size 1, but numpy
             # behavior removes them
             if keep_dims:
-                ret = arr.reshape(*[arr.shape[i] for i in keep_dims])
+                return arr.reshape(*[arr.shape[i] for i in keep_dims])
             else:
-                ret = arr.squeeze()
+                return arr.squeeze()
 
-            return ret
 
     def _process_indices(self, ind):
         # Make sure we have a list of indices
@@ -208,12 +218,19 @@ class Variable(AttributeContainer):
         keep_dims = []
         for dim, i in enumerate(ind):
             if isinstance(i, slice):
-                # Need to keep the dimension if we slice
-                keep_dims.append(dim)
+                is_vlen = self.dimensions and self.dimensions[dim] == '*'
+
+                # Need to keep the dimension if we slice for non-vlen
+                if not is_vlen:
+                    keep_dims.append(dim)
 
                 # Skip full slice
                 if i.start is None and i.stop is None and i.step is None:
                     continue
+
+                # vlen needs to have full slice
+                if is_vlen:
+                    raise RuntimeError("Can't slice along vlen dimension (%d)!", dim)
 
                 # Adjust start and stop to handle negative indexing
                 # and partial support for slicing beyond end.
@@ -248,9 +265,14 @@ class Variable(AttributeContainer):
         self.dtype = dt
         self.datatype = typeName
 
-        self.dimensions = tuple(dim.name if dim.name else '<unnamed>'
-                                for dim in var.shape)
-        self.shape = tuple(dim.length for dim in var.shape)
+        dims = []
+        for d in var.shape:
+            dim = Dimension(None, d.name)
+            dim.load_from_stream(d)
+            dims.append(dim)
+
+        self.dimensions = tuple(dim.name for dim in dims)
+        self.shape = tuple(dim.size for dim in dims)
         self.ndim = len(var.shape)
         self._unpack_attrs(var.atts)
 
@@ -266,9 +288,9 @@ class Variable(AttributeContainer):
             groups.append('\t%s: %s' % (att, getattr(self, att)))
         if self.ndim:
             if self.ndim > 1:
-                shape_str = '(' + ', '.join('%d' % s for s in self.shape) + ')'
+                shape_str = '(' + ', '.join(str(s) for s in self.shape) + ')'
             else:
-                shape_str = '%d' % self.shape[0]
+                shape_str = str(self.shape[0])
             groups.append('shape = ' + shape_str)
         return '\n'.join(groups)
 
@@ -290,13 +312,14 @@ class Dimension(object):
         return self.unlimited
 
     def load_from_stream(self, dim):
-        self.size = dim.length
         self.unlimited = dim.isUnlimited
         self.private = dim.isPrivate
         self.vlen = dim.isVlen
+        if not self.vlen:
+            self.size = dim.length
 
     def __len__(self):
-        return self.size
+        return self.size if self.size is not None else 0
 
     def __str__(self):
         grps = ['%s ' % type(self)]
@@ -311,6 +334,6 @@ class Dimension(object):
         if self.vlen:
             grps.append(', (vlen)')
         else:
-            grps.append(', size = %d' % self.size)
+            grps.append(', size = {0}'.format(self.size))
 
         return ''.join(grps)

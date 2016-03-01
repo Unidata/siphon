@@ -77,6 +77,18 @@ def test_strings():
     assert var[-1] == ''
 
 
+@recorder.use_cassette('nc4_vlen')
+def test_vlen():
+    "Test reading vlen"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/vlen/tst_vl.nc4')
+    dat = ds.variables['var'][:]
+
+    assert dat.shape == (3,)
+    assert_array_equal(dat[0], np.array([-99], dtype=np.int32))
+    assert_array_equal(dat[1], np.array([-99, -99], dtype=np.int32))
+    assert_array_equal(dat[2], np.array([-99, -99, -99], dtype=np.int32))
+
+
 @recorder.use_cassette('nc4_compound_ref')
 def test_struct():
     "Test reading a structured variable"
