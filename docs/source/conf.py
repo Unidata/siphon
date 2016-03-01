@@ -28,8 +28,16 @@ sys.path.insert(0, os.path.abspath('../..'))
 # which is unused, so that pandoc will run
 # 
 
-if 'READTHEDOCS' in os.environ and not 'HOME' in os.environ:
-    os.environ['HOME'] = '/home/docs'  # Not sure what else to use
+if 'READTHEDOCS' in os.environ or 'TRAVIS' in os.environ:
+    import mock
+
+    MOCK_MODULES = ['numpy', 'requests']
+    for mod_name in MOCK_MODULES:
+        sys.modules[mod_name] = mock.Mock()
+
+    # Fixes pandoc
+    if 'HOME' not in os.environ:
+        os.environ['HOME'] = '/home/docs'  # Not sure what else to use
 
 # -- General configuration ------------------------------------------------
 
