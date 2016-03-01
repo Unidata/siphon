@@ -70,7 +70,7 @@ before_install:
     fi
 
 install:
-  - if [[ $TASK != "lint" ]]; then
+  - if [[ $TASK != "lint" && $TASK != "docs" ]]; then
       pip install ".[$EXTRAS]" --upgrade --no-index -f file://$PWD/$WHEELDIR $VERSIONS;
       if [[ $TASK == "examples" ]]; then
         python setup.py examples;
