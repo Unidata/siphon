@@ -19,7 +19,8 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='ncStream.proto',
   package='',
-  serialized_pb=_b('\n\x0encStream.proto\"\xce\x01\n\tAttribute\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\x1d\n\x04type\x18\x02 \x02(\x0e\x32\x0f.Attribute.Type\x12\x0b\n\x03len\x18\x03 \x02(\r\x12\x0c\n\x04\x64\x61ta\x18\x04 \x01(\x0c\x12\r\n\x05sdata\x18\x05 \x03(\t\x12\x17\n\x08unsigned\x18\x06 \x01(\x08:\x05\x66\x61lse\"Q\n\x04Type\x12\n\n\x06STRING\x10\x00\x12\x08\n\x04\x42YTE\x10\x01\x12\t\n\x05SHORT\x10\x02\x12\x07\n\x03INT\x10\x03\x12\x08\n\x04LONG\x10\x04\x12\t\n\x05\x46LOAT\x10\x05\x12\n\n\x06\x44OUBLE\x10\x06\"v\n\tDimension\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06length\x18\x02 \x01(\x04\x12\x1a\n\x0bisUnlimited\x18\x03 \x01(\x08:\x05\x66\x61lse\x12\x15\n\x06isVlen\x18\x04 \x01(\x08:\x05\x66\x61lse\x12\x18\n\tisPrivate\x18\x05 \x01(\x08:\x05\x66\x61lse\"\xa3\x01\n\x08Variable\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\x1b\n\x08\x64\x61taType\x18\x02 \x02(\x0e\x32\t.DataType\x12\x19\n\x05shape\x18\x03 \x03(\x0b\x32\n.Dimension\x12\x18\n\x04\x61tts\x18\x04 \x03(\x0b\x32\n.Attribute\x12\x17\n\x08unsigned\x18\x05 \x01(\x08:\x05\x66\x61lse\x12\x0c\n\x04\x64\x61ta\x18\x06 \x01(\x0c\x12\x10\n\x08\x65numType\x18\x07 \x01(\t\"\xa1\x01\n\tStructure\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\x1b\n\x08\x64\x61taType\x18\x02 \x02(\x0e\x32\t.DataType\x12\x19\n\x05shape\x18\x03 \x03(\x0b\x32\n.Dimension\x12\x18\n\x04\x61tts\x18\x04 \x03(\x0b\x32\n.Attribute\x12\x17\n\x04vars\x18\x05 \x03(\x0b\x32\t.Variable\x12\x1b\n\x07structs\x18\x06 \x03(\x0b\x32\n.Structure\"h\n\x0b\x45numTypedef\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\"\n\x03map\x18\x02 \x03(\x0b\x32\x15.EnumTypedef.EnumType\x1a\'\n\x08\x45numType\x12\x0c\n\x04\x63ode\x18\x01 \x02(\r\x12\r\n\x05value\x18\x02 \x02(\t\"\xb8\x01\n\x05Group\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\x18\n\x04\x64ims\x18\x02 \x03(\x0b\x32\n.Dimension\x12\x17\n\x04vars\x18\x03 \x03(\x0b\x32\t.Variable\x12\x1b\n\x07structs\x18\x04 \x03(\x0b\x32\n.Structure\x12\x18\n\x04\x61tts\x18\x05 \x03(\x0b\x32\n.Attribute\x12\x16\n\x06groups\x18\x06 \x03(\x0b\x32\x06.Group\x12\x1f\n\tenumTypes\x18\x07 \x03(\x0b\x32\x0c.EnumTypedef\"_\n\x06Header\x12\x10\n\x08location\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\n\n\x02id\x18\x03 \x01(\t\x12\x14\n\x04root\x18\x04 \x02(\x0b\x32\x06.Group\x12\x12\n\x07version\x18\x05 \x01(\r:\x01\x30\"\xcc\x01\n\x04\x44\x61ta\x12\x0f\n\x07varName\x18\x01 \x02(\t\x12\x1b\n\x08\x64\x61taType\x18\x02 \x02(\x0e\x32\t.DataType\x12\x19\n\x07section\x18\x03 \x01(\x0b\x32\x08.Section\x12\x14\n\x06\x62igend\x18\x04 \x01(\x08:\x04true\x12\x12\n\x07version\x18\x05 \x01(\r:\x01\x30\x12!\n\x08\x63ompress\x18\x06 \x01(\x0e\x32\t.Compress:\x04NONE\x12\x14\n\x05vdata\x18\x07 \x01(\x08:\x05\x66\x61lse\x12\x18\n\x10uncompressedSize\x18\x08 \x01(\r\":\n\x05Range\x12\x10\n\x05start\x18\x01 \x01(\x04:\x01\x30\x12\x0c\n\x04size\x18\x02 \x02(\x04\x12\x11\n\x06stride\x18\x03 \x01(\x04:\x01\x31\" \n\x07Section\x12\x15\n\x05range\x18\x01 \x03(\x0b\x32\x06.Range\"t\n\rStructureData\x12\x0e\n\x06member\x18\x01 \x03(\r\x12\x0c\n\x04\x64\x61ta\x18\x02 \x02(\x0c\x12\x11\n\theapCount\x18\x03 \x03(\r\x12\r\n\x05sdata\x18\x04 \x03(\t\x12\x10\n\x05nrows\x18\x05 \x01(\x04:\x01\x31\x12\x11\n\trowLength\x18\x06 \x01(\r\"\x18\n\x05\x45rror\x12\x0f\n\x07message\x18\x01 \x02(\t*\xa9\x01\n\x08\x44\x61taType\x12\x08\n\x04\x43HAR\x10\x00\x12\x08\n\x04\x42YTE\x10\x01\x12\t\n\x05SHORT\x10\x02\x12\x07\n\x03INT\x10\x03\x12\x08\n\x04LONG\x10\x04\x12\t\n\x05\x46LOAT\x10\x05\x12\n\n\x06\x44OUBLE\x10\x06\x12\n\n\x06STRING\x10\x07\x12\r\n\tSTRUCTURE\x10\x08\x12\x0c\n\x08SEQUENCE\x10\t\x12\t\n\x05\x45NUM1\x10\n\x12\t\n\x05\x45NUM2\x10\x0b\x12\t\n\x05\x45NUM4\x10\x0c\x12\n\n\x06OPAQUE\x10\r*!\n\x08\x43ompress\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07\x44\x45\x46LATE\x10\x01\x42 \n\x0fucar.nc2.streamB\rNcStreamProto')
+  syntax='proto3',
+  serialized_pb=_b('\n\x0encStream.proto\"\xe4\x01\n\tAttribute\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1d\n\x04type\x18\x02 \x01(\x0e\x32\x0f.Attribute.Type\x12\x0b\n\x03len\x18\x03 \x01(\r\x12\x0c\n\x04\x64\x61ta\x18\x04 \x01(\x0c\x12\r\n\x05sdata\x18\x05 \x03(\t\x12\x10\n\x08unsigned\x18\x06 \x01(\x08\x12\x1b\n\x08\x64\x61taType\x18\x07 \x01(\x0e\x32\t.DataType\"Q\n\x04Type\x12\n\n\x06STRING\x10\x00\x12\x08\n\x04\x42YTE\x10\x01\x12\t\n\x05SHORT\x10\x02\x12\x07\n\x03INT\x10\x03\x12\x08\n\x04LONG\x10\x04\x12\t\n\x05\x46LOAT\x10\x05\x12\n\n\x06\x44OUBLE\x10\x06\"a\n\tDimension\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06length\x18\x02 \x01(\x04\x12\x13\n\x0bisUnlimited\x18\x03 \x01(\x08\x12\x0e\n\x06isVlen\x18\x04 \x01(\x08\x12\x11\n\tisPrivate\x18\x05 \x01(\x08\"\x9c\x01\n\x08Variable\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1b\n\x08\x64\x61taType\x18\x02 \x01(\x0e\x32\t.DataType\x12\x19\n\x05shape\x18\x03 \x03(\x0b\x32\n.Dimension\x12\x18\n\x04\x61tts\x18\x04 \x03(\x0b\x32\n.Attribute\x12\x10\n\x08unsigned\x18\x05 \x01(\x08\x12\x0c\n\x04\x64\x61ta\x18\x06 \x01(\x0c\x12\x10\n\x08\x65numType\x18\x07 \x01(\t\"\xa1\x01\n\tStructure\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1b\n\x08\x64\x61taType\x18\x02 \x01(\x0e\x32\t.DataType\x12\x19\n\x05shape\x18\x03 \x03(\x0b\x32\n.Dimension\x12\x18\n\x04\x61tts\x18\x04 \x03(\x0b\x32\n.Attribute\x12\x17\n\x04vars\x18\x05 \x03(\x0b\x32\t.Variable\x12\x1b\n\x07structs\x18\x06 \x03(\x0b\x32\n.Structure\"h\n\x0b\x45numTypedef\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\"\n\x03map\x18\x02 \x03(\x0b\x32\x15.EnumTypedef.EnumType\x1a\'\n\x08\x45numType\x12\x0c\n\x04\x63ode\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\t\"\xb8\x01\n\x05Group\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x18\n\x04\x64ims\x18\x02 \x03(\x0b\x32\n.Dimension\x12\x17\n\x04vars\x18\x03 \x03(\x0b\x32\t.Variable\x12\x1b\n\x07structs\x18\x04 \x03(\x0b\x32\n.Structure\x12\x18\n\x04\x61tts\x18\x05 \x03(\x0b\x32\n.Attribute\x12\x16\n\x06groups\x18\x06 \x03(\x0b\x32\x06.Group\x12\x1f\n\tenumTypes\x18\x07 \x03(\x0b\x32\x0c.EnumTypedef\"\\\n\x06Header\x12\x10\n\x08location\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\n\n\x02id\x18\x03 \x01(\t\x12\x14\n\x04root\x18\x04 \x01(\x0b\x32\x06.Group\x12\x0f\n\x07version\x18\x05 \x01(\r\"&\n\x05\x45rror\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0c\n\x04\x63ode\x18\x02 \x01(\r\"4\n\x05Range\x12\r\n\x05start\x18\x01 \x01(\x04\x12\x0c\n\x04size\x18\x02 \x01(\x04\x12\x0e\n\x06stride\x18\x03 \x01(\x04\" \n\x07Section\x12\x15\n\x05range\x18\x01 \x03(\x0b\x32\x06.Range\"\xca\x01\n\x04\x44\x61ta\x12\x0f\n\x07varName\x18\x01 \x01(\t\x12\x1b\n\x08\x64\x61taType\x18\x02 \x01(\x0e\x32\t.DataType\x12\x19\n\x07section\x18\x03 \x01(\x0b\x32\x08.Section\x12\x10\n\x06\x62igend\x18\x04 \x01(\x08H\x00\x12\x0f\n\x07version\x18\x05 \x01(\r\x12\x1b\n\x08\x63ompress\x18\x06 \x01(\x0e\x32\t.Compress\x12\r\n\x05vdata\x18\x07 \x01(\x08\x12\x18\n\x10uncompressedSize\x18\x08 \x01(\rB\x10\n\x0e\x62igend_present\"q\n\rStructureData\x12\x0e\n\x06member\x18\x01 \x03(\r\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\x12\x11\n\theapCount\x18\x03 \x03(\r\x12\r\n\x05sdata\x18\x04 \x03(\t\x12\r\n\x05nrows\x18\x05 \x01(\x04\x12\x11\n\trowLength\x18\x06 \x01(\r\"\x81\x02\n\x07\x44\x61taCol\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1b\n\x08\x64\x61taType\x18\x02 \x01(\x0e\x32\t.DataType\x12\x19\n\x07section\x18\x03 \x01(\x0b\x32\x08.Section\x12\x0e\n\x06\x62igend\x18\x04 \x01(\x08\x12\x0f\n\x07version\x18\x05 \x01(\r\x12\x0e\n\x06isVlen\x18\x07 \x01(\x08\x12\x0e\n\x06nelems\x18\t \x01(\r\x12\x10\n\x08primdata\x18\n \x01(\x0c\x12\x12\n\nstringdata\x18\x0b \x03(\t\x12\r\n\x05vlens\x18\x0c \x03(\r\x12\x12\n\nopaquedata\x18\r \x03(\x0c\x12&\n\nstructdata\x18\x0e \x01(\x0b\x32\x12.ArrayStructureCol\"1\n\x11\x41rrayStructureCol\x12\x1c\n\nmemberData\x18\x01 \x03(\x0b\x32\x08.DataCol\"\x85\x02\n\x07\x44\x61taRow\x12\x10\n\x08\x66ullName\x18\x01 \x01(\t\x12\x1b\n\x08\x64\x61taType\x18\x02 \x01(\x0e\x32\t.DataType\x12\x19\n\x07section\x18\x03 \x01(\x0b\x32\x08.Section\x12\x0e\n\x06\x62igend\x18\x04 \x01(\x08\x12\x0f\n\x07version\x18\x05 \x01(\r\x12\x0e\n\x06isVlen\x18\x07 \x01(\x08\x12\x0e\n\x06nelems\x18\t \x01(\r\x12\x10\n\x08primdata\x18\n \x01(\x0c\x12\x12\n\nstringdata\x18\x0b \x03(\t\x12\r\n\x05vlens\x18\x0c \x03(\r\x12\x12\n\nopaquedata\x18\r \x03(\x0c\x12&\n\nstructdata\x18\x0e \x01(\x0b\x32\x12.ArrayStructureRow\"W\n\x06Member\x12\x11\n\tshortName\x18\x01 \x01(\t\x12\x1b\n\x08\x64\x61taType\x18\x02 \x01(\x0e\x32\t.DataType\x12\r\n\x05shape\x18\x03 \x03(\r\x12\x0e\n\x06isVlen\x18\x04 \x01(\x08\"\xae\x01\n\x11\x41rrayStructureRow\x12\x18\n\x07members\x18\x01 \x03(\x0b\x32\x07.Member\x12\r\n\x05nrows\x18\x05 \x01(\x04\x12\x11\n\trowLength\x18\x06 \x01(\r\x12\x0f\n\x07\x66ixdata\x18\n \x01(\x0c\x12\x12\n\nstringdata\x18\x0b \x03(\t\x12\x10\n\x08\x62ytedata\x18\r \x03(\x0c\x12&\n\nstructdata\x18\x0e \x03(\x0b\x32\x12.ArrayStructureRow*\xd5\x01\n\x08\x44\x61taType\x12\x08\n\x04\x43HAR\x10\x00\x12\x08\n\x04\x42YTE\x10\x01\x12\t\n\x05SHORT\x10\x02\x12\x07\n\x03INT\x10\x03\x12\x08\n\x04LONG\x10\x04\x12\t\n\x05\x46LOAT\x10\x05\x12\n\n\x06\x44OUBLE\x10\x06\x12\n\n\x06STRING\x10\x07\x12\r\n\tSTRUCTURE\x10\x08\x12\x0c\n\x08SEQUENCE\x10\t\x12\t\n\x05\x45NUM1\x10\n\x12\t\n\x05\x45NUM2\x10\x0b\x12\t\n\x05\x45NUM4\x10\x0c\x12\n\n\x06OPAQUE\x10\r\x12\t\n\x05UBYTE\x10\x0e\x12\n\n\x06USHORT\x10\x0f\x12\x08\n\x04UINT\x10\x10\x12\t\n\x05ULONG\x10\x11*!\n\x08\x43ompress\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07\x44\x45\x46LATE\x10\x01\x42 \n\x0fucar.nc2.streamB\rNcStreamProtob\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -85,11 +86,27 @@ _DATATYPE = _descriptor.EnumDescriptor(
       name='OPAQUE', index=13, number=13,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='UBYTE', index=14, number=14,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='USHORT', index=15, number=15,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='UINT', index=16, number=16,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ULONG', index=17, number=17,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=1513,
-  serialized_end=1682,
+  serialized_start=2348,
+  serialized_end=2561,
 )
 _sym_db.RegisterEnumDescriptor(_DATATYPE)
 
@@ -111,8 +128,8 @@ _COMPRESS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1684,
-  serialized_end=1717,
+  serialized_start=2563,
+  serialized_end=2596,
 )
 _sym_db.RegisterEnumDescriptor(_COMPRESS)
 
@@ -131,6 +148,10 @@ ENUM1 = 10
 ENUM2 = 11
 ENUM4 = 12
 OPAQUE = 13
+UBYTE = 14
+USHORT = 15
+UINT = 16
+ULONG = 17
 NONE = 0
 DEFLATE = 1
 
@@ -172,8 +193,8 @@ _ATTRIBUTE_TYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=144,
-  serialized_end=225,
+  serialized_start=166,
+  serialized_end=247,
 )
 _sym_db.RegisterEnumDescriptor(_ATTRIBUTE_TYPE)
 
@@ -187,21 +208,21 @@ _ATTRIBUTE = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='name', full_name='Attribute.name', index=0,
-      number=1, type=9, cpp_type=9, label=2,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='type', full_name='Attribute.type', index=1,
-      number=2, type=14, cpp_type=8, label=2,
+      number=2, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='len', full_name='Attribute.len', index=2,
-      number=3, type=13, cpp_type=3, label=2,
+      number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -223,7 +244,14 @@ _ATTRIBUTE = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='unsigned', full_name='Attribute.unsigned', index=5,
       number=6, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='dataType', full_name='Attribute.dataType', index=6,
+      number=7, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -236,11 +264,12 @@ _ATTRIBUTE = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
   serialized_start=19,
-  serialized_end=225,
+  serialized_end=247,
 )
 
 
@@ -268,21 +297,21 @@ _DIMENSION = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='isUnlimited', full_name='Dimension.isUnlimited', index=2,
       number=3, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='isVlen', full_name='Dimension.isVlen', index=3,
       number=4, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='isPrivate', full_name='Dimension.isPrivate', index=4,
       number=5, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -294,11 +323,12 @@ _DIMENSION = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=227,
-  serialized_end=345,
+  serialized_start=249,
+  serialized_end=346,
 )
 
 
@@ -311,14 +341,14 @@ _VARIABLE = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='name', full_name='Variable.name', index=0,
-      number=1, type=9, cpp_type=9, label=2,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='dataType', full_name='Variable.dataType', index=1,
-      number=2, type=14, cpp_type=8, label=2,
+      number=2, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -340,7 +370,7 @@ _VARIABLE = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='unsigned', full_name='Variable.unsigned', index=4,
       number=5, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -366,11 +396,12 @@ _VARIABLE = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=348,
-  serialized_end=511,
+  serialized_start=349,
+  serialized_end=505,
 )
 
 
@@ -383,14 +414,14 @@ _STRUCTURE = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='name', full_name='Structure.name', index=0,
-      number=1, type=9, cpp_type=9, label=2,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='dataType', full_name='Structure.dataType', index=1,
-      number=2, type=14, cpp_type=8, label=2,
+      number=2, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -431,11 +462,12 @@ _STRUCTURE = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=514,
-  serialized_end=675,
+  serialized_start=508,
+  serialized_end=669,
 )
 
 
@@ -448,14 +480,14 @@ _ENUMTYPEDEF_ENUMTYPE = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='code', full_name='EnumTypedef.EnumType.code', index=0,
-      number=1, type=13, cpp_type=3, label=2,
+      number=1, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='value', full_name='EnumTypedef.EnumType.value', index=1,
-      number=2, type=9, cpp_type=9, label=2,
+      number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -468,11 +500,12 @@ _ENUMTYPEDEF_ENUMTYPE = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=742,
-  serialized_end=781,
+  serialized_start=736,
+  serialized_end=775,
 )
 
 _ENUMTYPEDEF = _descriptor.Descriptor(
@@ -484,7 +517,7 @@ _ENUMTYPEDEF = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='name', full_name='EnumTypedef.name', index=0,
-      number=1, type=9, cpp_type=9, label=2,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -504,11 +537,12 @@ _ENUMTYPEDEF = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=677,
-  serialized_end=781,
+  serialized_start=671,
+  serialized_end=775,
 )
 
 
@@ -521,7 +555,7 @@ _GROUP = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='name', full_name='Group.name', index=0,
-      number=1, type=9, cpp_type=9, label=2,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -576,11 +610,12 @@ _GROUP = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=784,
-  serialized_end=968,
+  serialized_start=778,
+  serialized_end=962,
 )
 
 
@@ -614,7 +649,7 @@ _HEADER = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='root', full_name='Header.root', index=3,
-      number=4, type=11, cpp_type=10, label=2,
+      number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -622,7 +657,7 @@ _HEADER = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='version', full_name='Header.version', index=4,
       number=5, type=13, cpp_type=3, label=1,
-      has_default_value=True, default_value=0,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -634,73 +669,32 @@ _HEADER = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=970,
-  serialized_end=1065,
+  serialized_start=964,
+  serialized_end=1056,
 )
 
 
-_DATA = _descriptor.Descriptor(
-  name='Data',
-  full_name='Data',
+_ERROR = _descriptor.Descriptor(
+  name='Error',
+  full_name='Error',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='varName', full_name='Data.varName', index=0,
-      number=1, type=9, cpp_type=9, label=2,
+      name='message', full_name='Error.message', index=0,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='dataType', full_name='Data.dataType', index=1,
-      number=2, type=14, cpp_type=8, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='section', full_name='Data.section', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='bigend', full_name='Data.bigend', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=True,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='version', full_name='Data.version', index=4,
-      number=5, type=13, cpp_type=3, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='compress', full_name='Data.compress', index=5,
-      number=6, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='vdata', full_name='Data.vdata', index=6,
-      number=7, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='uncompressedSize', full_name='Data.uncompressedSize', index=7,
-      number=8, type=13, cpp_type=3, label=1,
+      name='code', full_name='Error.code', index=1,
+      number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -713,11 +707,12 @@ _DATA = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1068,
-  serialized_end=1272,
+  serialized_start=1058,
+  serialized_end=1096,
 )
 
 
@@ -731,13 +726,13 @@ _RANGE = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='start', full_name='Range.start', index=0,
       number=1, type=4, cpp_type=4, label=1,
-      has_default_value=True, default_value=0,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='size', full_name='Range.size', index=1,
-      number=2, type=4, cpp_type=4, label=2,
+      number=2, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -745,7 +740,7 @@ _RANGE = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='stride', full_name='Range.stride', index=2,
       number=3, type=4, cpp_type=4, label=1,
-      has_default_value=True, default_value=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -757,11 +752,12 @@ _RANGE = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1274,
-  serialized_end=1332,
+  serialized_start=1098,
+  serialized_end=1150,
 )
 
 
@@ -787,11 +783,95 @@ _SECTION = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1334,
-  serialized_end=1366,
+  serialized_start=1152,
+  serialized_end=1184,
+)
+
+
+_DATA = _descriptor.Descriptor(
+  name='Data',
+  full_name='Data',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='varName', full_name='Data.varName', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='dataType', full_name='Data.dataType', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='section', full_name='Data.section', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='bigend', full_name='Data.bigend', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='version', full_name='Data.version', index=4,
+      number=5, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='compress', full_name='Data.compress', index=5,
+      number=6, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='vdata', full_name='Data.vdata', index=6,
+      number=7, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='uncompressedSize', full_name='Data.uncompressedSize', index=7,
+      number=8, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='bigend_present', full_name='Data.bigend_present',
+      index=0, containing_type=None, fields=[]),
+  ],
+  serialized_start=1187,
+  serialized_end=1389,
 )
 
 
@@ -811,7 +891,7 @@ _STRUCTUREDATA = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='data', full_name='StructureData.data', index=1,
-      number=2, type=12, cpp_type=9, label=2,
+      number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -833,7 +913,7 @@ _STRUCTUREDATA = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='nrows', full_name='StructureData.nrows', index=4,
       number=5, type=4, cpp_type=4, label=1,
-      has_default_value=True, default_value=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -852,25 +932,103 @@ _STRUCTUREDATA = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1368,
-  serialized_end=1484,
+  serialized_start=1391,
+  serialized_end=1504,
 )
 
 
-_ERROR = _descriptor.Descriptor(
-  name='Error',
-  full_name='Error',
+_DATACOL = _descriptor.Descriptor(
+  name='DataCol',
+  full_name='DataCol',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='message', full_name='Error.message', index=0,
-      number=1, type=9, cpp_type=9, label=2,
+      name='name', full_name='DataCol.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='dataType', full_name='DataCol.dataType', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='section', full_name='DataCol.section', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='bigend', full_name='DataCol.bigend', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='version', full_name='DataCol.version', index=4,
+      number=5, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='isVlen', full_name='DataCol.isVlen', index=5,
+      number=7, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='nelems', full_name='DataCol.nelems', index=6,
+      number=9, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='primdata', full_name='DataCol.primdata', index=7,
+      number=10, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='stringdata', full_name='DataCol.stringdata', index=8,
+      number=11, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='vlens', full_name='DataCol.vlens', index=9,
+      number=12, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='opaquedata', full_name='DataCol.opaquedata', index=10,
+      number=13, type=12, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='structdata', full_name='DataCol.structdata', index=11,
+      number=14, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -882,14 +1040,280 @@ _ERROR = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1486,
-  serialized_end=1510,
+  serialized_start=1507,
+  serialized_end=1764,
+)
+
+
+_ARRAYSTRUCTURECOL = _descriptor.Descriptor(
+  name='ArrayStructureCol',
+  full_name='ArrayStructureCol',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='memberData', full_name='ArrayStructureCol.memberData', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1766,
+  serialized_end=1815,
+)
+
+
+_DATAROW = _descriptor.Descriptor(
+  name='DataRow',
+  full_name='DataRow',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='fullName', full_name='DataRow.fullName', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='dataType', full_name='DataRow.dataType', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='section', full_name='DataRow.section', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='bigend', full_name='DataRow.bigend', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='version', full_name='DataRow.version', index=4,
+      number=5, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='isVlen', full_name='DataRow.isVlen', index=5,
+      number=7, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='nelems', full_name='DataRow.nelems', index=6,
+      number=9, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='primdata', full_name='DataRow.primdata', index=7,
+      number=10, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='stringdata', full_name='DataRow.stringdata', index=8,
+      number=11, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='vlens', full_name='DataRow.vlens', index=9,
+      number=12, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='opaquedata', full_name='DataRow.opaquedata', index=10,
+      number=13, type=12, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='structdata', full_name='DataRow.structdata', index=11,
+      number=14, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1818,
+  serialized_end=2079,
+)
+
+
+_MEMBER = _descriptor.Descriptor(
+  name='Member',
+  full_name='Member',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='shortName', full_name='Member.shortName', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='dataType', full_name='Member.dataType', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='shape', full_name='Member.shape', index=2,
+      number=3, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='isVlen', full_name='Member.isVlen', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2081,
+  serialized_end=2168,
+)
+
+
+_ARRAYSTRUCTUREROW = _descriptor.Descriptor(
+  name='ArrayStructureRow',
+  full_name='ArrayStructureRow',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='members', full_name='ArrayStructureRow.members', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='nrows', full_name='ArrayStructureRow.nrows', index=1,
+      number=5, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='rowLength', full_name='ArrayStructureRow.rowLength', index=2,
+      number=6, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='fixdata', full_name='ArrayStructureRow.fixdata', index=3,
+      number=10, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='stringdata', full_name='ArrayStructureRow.stringdata', index=4,
+      number=11, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='bytedata', full_name='ArrayStructureRow.bytedata', index=5,
+      number=13, type=12, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='structdata', full_name='ArrayStructureRow.structdata', index=6,
+      number=14, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2171,
+  serialized_end=2345,
 )
 
 _ATTRIBUTE.fields_by_name['type'].enum_type = _ATTRIBUTE_TYPE
+_ATTRIBUTE.fields_by_name['dataType'].enum_type = _DATATYPE
 _ATTRIBUTE_TYPE.containing_type = _ATTRIBUTE
 _VARIABLE.fields_by_name['dataType'].enum_type = _DATATYPE
 _VARIABLE.fields_by_name['shape'].message_type = _DIMENSION
@@ -908,10 +1332,23 @@ _GROUP.fields_by_name['atts'].message_type = _ATTRIBUTE
 _GROUP.fields_by_name['groups'].message_type = _GROUP
 _GROUP.fields_by_name['enumTypes'].message_type = _ENUMTYPEDEF
 _HEADER.fields_by_name['root'].message_type = _GROUP
+_SECTION.fields_by_name['range'].message_type = _RANGE
 _DATA.fields_by_name['dataType'].enum_type = _DATATYPE
 _DATA.fields_by_name['section'].message_type = _SECTION
 _DATA.fields_by_name['compress'].enum_type = _COMPRESS
-_SECTION.fields_by_name['range'].message_type = _RANGE
+_DATA.oneofs_by_name['bigend_present'].fields.append(
+  _DATA.fields_by_name['bigend'])
+_DATA.fields_by_name['bigend'].containing_oneof = _DATA.oneofs_by_name['bigend_present']
+_DATACOL.fields_by_name['dataType'].enum_type = _DATATYPE
+_DATACOL.fields_by_name['section'].message_type = _SECTION
+_DATACOL.fields_by_name['structdata'].message_type = _ARRAYSTRUCTURECOL
+_ARRAYSTRUCTURECOL.fields_by_name['memberData'].message_type = _DATACOL
+_DATAROW.fields_by_name['dataType'].enum_type = _DATATYPE
+_DATAROW.fields_by_name['section'].message_type = _SECTION
+_DATAROW.fields_by_name['structdata'].message_type = _ARRAYSTRUCTUREROW
+_MEMBER.fields_by_name['dataType'].enum_type = _DATATYPE
+_ARRAYSTRUCTUREROW.fields_by_name['members'].message_type = _MEMBER
+_ARRAYSTRUCTUREROW.fields_by_name['structdata'].message_type = _ARRAYSTRUCTUREROW
 DESCRIPTOR.message_types_by_name['Attribute'] = _ATTRIBUTE
 DESCRIPTOR.message_types_by_name['Dimension'] = _DIMENSION
 DESCRIPTOR.message_types_by_name['Variable'] = _VARIABLE
@@ -919,11 +1356,16 @@ DESCRIPTOR.message_types_by_name['Structure'] = _STRUCTURE
 DESCRIPTOR.message_types_by_name['EnumTypedef'] = _ENUMTYPEDEF
 DESCRIPTOR.message_types_by_name['Group'] = _GROUP
 DESCRIPTOR.message_types_by_name['Header'] = _HEADER
-DESCRIPTOR.message_types_by_name['Data'] = _DATA
+DESCRIPTOR.message_types_by_name['Error'] = _ERROR
 DESCRIPTOR.message_types_by_name['Range'] = _RANGE
 DESCRIPTOR.message_types_by_name['Section'] = _SECTION
+DESCRIPTOR.message_types_by_name['Data'] = _DATA
 DESCRIPTOR.message_types_by_name['StructureData'] = _STRUCTUREDATA
-DESCRIPTOR.message_types_by_name['Error'] = _ERROR
+DESCRIPTOR.message_types_by_name['DataCol'] = _DATACOL
+DESCRIPTOR.message_types_by_name['ArrayStructureCol'] = _ARRAYSTRUCTURECOL
+DESCRIPTOR.message_types_by_name['DataRow'] = _DATAROW
+DESCRIPTOR.message_types_by_name['Member'] = _MEMBER
+DESCRIPTOR.message_types_by_name['ArrayStructureRow'] = _ARRAYSTRUCTUREROW
 DESCRIPTOR.enum_types_by_name['DataType'] = _DATATYPE
 DESCRIPTOR.enum_types_by_name['Compress'] = _COMPRESS
 
@@ -984,12 +1426,12 @@ Header = _reflection.GeneratedProtocolMessageType('Header', (_message.Message,),
   ))
 _sym_db.RegisterMessage(Header)
 
-Data = _reflection.GeneratedProtocolMessageType('Data', (_message.Message,), dict(
-  DESCRIPTOR = _DATA,
+Error = _reflection.GeneratedProtocolMessageType('Error', (_message.Message,), dict(
+  DESCRIPTOR = _ERROR,
   __module__ = 'ncStream_pb2'
-  # @@protoc_insertion_point(class_scope:Data)
+  # @@protoc_insertion_point(class_scope:Error)
   ))
-_sym_db.RegisterMessage(Data)
+_sym_db.RegisterMessage(Error)
 
 Range = _reflection.GeneratedProtocolMessageType('Range', (_message.Message,), dict(
   DESCRIPTOR = _RANGE,
@@ -1005,6 +1447,13 @@ Section = _reflection.GeneratedProtocolMessageType('Section', (_message.Message,
   ))
 _sym_db.RegisterMessage(Section)
 
+Data = _reflection.GeneratedProtocolMessageType('Data', (_message.Message,), dict(
+  DESCRIPTOR = _DATA,
+  __module__ = 'ncStream_pb2'
+  # @@protoc_insertion_point(class_scope:Data)
+  ))
+_sym_db.RegisterMessage(Data)
+
 StructureData = _reflection.GeneratedProtocolMessageType('StructureData', (_message.Message,), dict(
   DESCRIPTOR = _STRUCTUREDATA,
   __module__ = 'ncStream_pb2'
@@ -1012,12 +1461,40 @@ StructureData = _reflection.GeneratedProtocolMessageType('StructureData', (_mess
   ))
 _sym_db.RegisterMessage(StructureData)
 
-Error = _reflection.GeneratedProtocolMessageType('Error', (_message.Message,), dict(
-  DESCRIPTOR = _ERROR,
+DataCol = _reflection.GeneratedProtocolMessageType('DataCol', (_message.Message,), dict(
+  DESCRIPTOR = _DATACOL,
   __module__ = 'ncStream_pb2'
-  # @@protoc_insertion_point(class_scope:Error)
+  # @@protoc_insertion_point(class_scope:DataCol)
   ))
-_sym_db.RegisterMessage(Error)
+_sym_db.RegisterMessage(DataCol)
+
+ArrayStructureCol = _reflection.GeneratedProtocolMessageType('ArrayStructureCol', (_message.Message,), dict(
+  DESCRIPTOR = _ARRAYSTRUCTURECOL,
+  __module__ = 'ncStream_pb2'
+  # @@protoc_insertion_point(class_scope:ArrayStructureCol)
+  ))
+_sym_db.RegisterMessage(ArrayStructureCol)
+
+DataRow = _reflection.GeneratedProtocolMessageType('DataRow', (_message.Message,), dict(
+  DESCRIPTOR = _DATAROW,
+  __module__ = 'ncStream_pb2'
+  # @@protoc_insertion_point(class_scope:DataRow)
+  ))
+_sym_db.RegisterMessage(DataRow)
+
+Member = _reflection.GeneratedProtocolMessageType('Member', (_message.Message,), dict(
+  DESCRIPTOR = _MEMBER,
+  __module__ = 'ncStream_pb2'
+  # @@protoc_insertion_point(class_scope:Member)
+  ))
+_sym_db.RegisterMessage(Member)
+
+ArrayStructureRow = _reflection.GeneratedProtocolMessageType('ArrayStructureRow', (_message.Message,), dict(
+  DESCRIPTOR = _ARRAYSTRUCTUREROW,
+  __module__ = 'ncStream_pb2'
+  # @@protoc_insertion_point(class_scope:ArrayStructureRow)
+  ))
+_sym_db.RegisterMessage(ArrayStructureRow)
 
 
 DESCRIPTOR.has_options = True
