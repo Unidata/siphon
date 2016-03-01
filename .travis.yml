@@ -50,21 +50,23 @@ matrix:
     - python: nightly
 
 before_install:
+  - pip install --upgrade pip;
   - if [[ $TASK == "lint" ]]; then
       pip install flake8 pep8-naming;
+    elif [[ $TASK == "docs" ]]; then
+        pip install -r docs/requirements.txt -f $WHEELHOUSE;
     else
-      pip install --upgrade pip;
-      if [[ $TASK == "docs" || $TASK == "examples" ]]; then
-        if [[ $TASK == "examples" ]]; then
-          export EXTRAS="$EXTRAS,examples";
-        fi;
-        pip install -r docs/requirements.txt;
+      if [[ $TASK == "examples" ]]; then
+        export EXTRAS="$EXTRAS,examples";
+        export EXTRA_PACKAGES="nbconvert ipykernel";
       elif [[ $TASK == "coverage" ]]; then
         pip install pytest-cov;
       fi;
       mkdir $WHEELDIR;
-      pip install ".[$EXTRAS]" -d $WHEELDIR -f $WHEELHOUSE $PRE $VERSIONS;
-      touch $WHEELDIR/download_marker;
+      pip download -d $WHEELDIR ".[$EXTRAS]" $EXTRA_PACKAGES -f $WHEELHOUSE $PRE $VERSIONS;
+      touch $WHEELDIR/download_marker && ls -lrt $WHEELDIR;
+      travis_wait pip wheel -w $WHEELDIR $EXTRA_PACKAGES -f $WHEELHOUSE $PRE $VERSIONS;
+      pip install $EXTRA_PACKAGES --upgrade --no-index -f file://$PWD/$WHEELDIR $VERSIONS;
       travis_wait pip wheel ".[$EXTRAS]" -w $WHEELDIR -f $WHEELHOUSE $PRE $VERSIONS;
       rm -f $WHEELDIR/siphon*.whl;
     fi
@@ -89,9 +91,10 @@ script:
         false;
       fi;
     elif [[ $TASK == "examples" ]]; then
-      cd examples;
-      echo backend:agg > matplotlibrc;
-      MPLBACKEND='agg' python test_examples.py;
+      if [[ $TRAVIS_PYTHON_VERSION == 2* ]]; then
+        sed -i -e "s/python3/python2/" examples/notebooks/*.ipynb;
+      fi;
+      find examples/notebooks/ -name \*.ipynb -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=60 --to=notebook --stdout >| /dev/null;
     elif [[ $TASK == "coverage" ]]; then
       python setup.py test --addopts --cov=siphon;
     else
