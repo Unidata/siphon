@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 from __future__ import print_function
+import itertools
 import logging
 import zlib
 
@@ -12,6 +13,7 @@ from . import ncStream_pb2 as stream  # noqa
 
 MAGIC_HEADER = b'\xad\xec\xce\xda'
 MAGIC_DATA = b'\xab\xec\xce\xba'
+MAGIC_DATA2 = b'\xab\xeb\xbe\xba'
 MAGIC_VDATA = b'\xab\xef\xfe\xba'
 MAGIC_VEND = b'\xed\xef\xfe\xda'
 MAGIC_ERR = b'\xab\xad\xba\xda'
@@ -99,6 +101,32 @@ def read_ncstream_messages(fobj):
             else:
                 raise NotImplementedError("Don't know how to handle data type: {0}".format(
                     data.dataType))
+        elif magic == MAGIC_DATA2:
+            log.debug('Data2 chunk')
+            data = stream.DataCol()
+            data.ParseFromString(read_block(fobj))
+            log.debug('Data2: %s', str(data))
+
+            # Make a datatype appropriate to the rows of struct
+            endian = '>' if data.bigend else '<'
+            dt = data_type_to_numpy(data.dataType).newbyteorder(endian)
+
+            # Turn bytes into an array
+            arr = np.frombuffer(data.primdata, dtype=dt)
+            if arr.size != data.nelems:
+                log.warning('Array size %d does not agree with nelems %d',
+                            arr.size, data.nelems)
+            if data.isVlen:
+                arr = process_vlen(data, arr)
+                if arr.dtype == np.object_:
+                    arr = reshape_array(data, arr)
+                else:
+                    # In this case, the array collapsed, need different resize that correctly
+                    # sizes from elements
+                    shape = tuple(r.size for r in data.section.range) + (data.vlens[0],)
+                    arr = arr.reshape(*shape)
+            messages.append(arr)
+
         elif magic == MAGIC_ERR:
             err = stream.Error()
             err.ParseFromString(read_block(fobj))
@@ -118,6 +146,10 @@ def read_block(fobj):
     return fobj.read(num)
 
 
+def process_vlen(data_header, array):
+    source = iter(array)
+    return np.array([np.fromiter(itertools.islice(source, size), dtype=array.dtype)
+                     for size in data_header.vlens])
 
 
 def reshape_array(data_header, array):
@@ -144,7 +176,8 @@ _dtypeLookup = {stream.CHAR: 'S1', stream.BYTE: 'b', stream.SHORT: 'i2',
                 stream.INT: 'i4', stream.LONG: 'i8', stream.FLOAT: 'f4',
                 stream.DOUBLE: 'f8', stream.STRING: 'O',
                 stream.ENUM1: 'B', stream.ENUM2: 'u2', stream.ENUM4: 'u4',
-                stream.OPAQUE: 'O'}
+                stream.OPAQUE: 'O', stream.UBYTE: 'B', stream.USHORT: 'u2',
+                stream.UINT: 'u4', stream.ULONG: 'u8'}
 
 
 def data_type_to_numpy(datatype, unsigned=False):
@@ -211,13 +244,21 @@ def unpack_attribute(att):
     if att.unsigned:
         log.warning('Unsupported unsigned attribute!')
 
-    if att.len == 0:
+    # TDS 5.0 now has a dataType attribute that takes precedence
+    if att.len == 0:  # Empty
         val = None
-    elif att.type == stream.Attribute.STRING:
+    elif att.dataType == stream.STRING:  # Then look for new datatype string
         val = att.sdata
-    else:
+    elif att.dataType:  # Then a non-zero new data type
+        val = np.fromstring(att.data,
+                            dtype='>' + _dtypeLookup[att.dataType], count=att.len)
+    elif att.type:  # Then non-zero old-data type0
         val = np.fromstring(att.data,
                             dtype=_attrConverters[att.type], count=att.len)
+    elif att.sdata:  # This leaves both 0, try old string
+        val = att.sdata
+    else:  # Assume new datatype is Char (0)
+        val = np.array(att.data, dtype=_dtypeLookup[att.dataType])
 
     if att.len == 1:
         val = val[0]

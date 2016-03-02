@@ -21,6 +21,11 @@ class TestDataset(object):
     def setup_class(cls):
         cls.ds = Dataset(get_fixed_url())
 
+    def test_str_attr(self):
+        'Test that we properly read a string attribute'
+        assert self.ds.Conventions == 'CF-1.6'
+        assert hasattr(self.ds, 'Conventions')
+
     def test_dataset(self):
         assert hasattr(self.ds, 'Conventions')
         assert 'featureType' in self.ds.ncattrs()
@@ -43,6 +48,35 @@ def test_compression():
     subset = var[0, 0]
     assert subset.shape == var.shape[2:]
     assert_almost_equal(subset[0, 0], 206.65640259, 6)
+
+
+@recorder.use_cassette('tds5_vlen')
+def test_tds5_attr():
+    "Test handling TDS 5's new attributes"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/vlen/tst_vl.nc4')
+    var = ds.variables['var']
+    assert getattr(var, '_ChunkSizes') == 3
+
+
+@recorder.use_cassette('tds5_vlen')
+def test_tds5_vlen():
+    "Test handling TDS 5's new vlen"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/vlen/tst_vl.nc4')
+    dat = ds.variables['var'][:]
+    assert dat.size == 3
+    assert_array_equal(dat[0], np.array([-99], dtype=np.int32))
+    assert_array_equal(dat[1], np.array([-99, -99], dtype=np.int32))
+    assert_array_equal(dat[2], np.array([-99, -99, -99], dtype=np.int32))
+
+
+@recorder.use_cassette('tds5_vlen_slicing')
+def test_tds5_vlen_slicing():
+    "Test handling TDS 5's new vlen and asking for indices"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/vlen/tst_vl.nc4')
+    var = ds.variables['var']
+    assert_array_equal(var[0], np.array([-99], dtype=np.int32))
+    assert_array_equal(var[1], np.array([-99, -99], dtype=np.int32))
+    assert_array_equal(var[2], np.array([-99, -99, -99], dtype=np.int32))
 
 
 @recorder.use_cassette('nc4_enum')
