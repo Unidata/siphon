@@ -57,15 +57,34 @@ def read_ncstream_messages(fobj):
                 log.debug('Reading array data')
                 bin_data = read_block(fobj)
                 log.debug('Binary data: %s', bin_data)
-                data_block = make_array(data, bin_data)
-                messages.append(data_block)
+
+                # Hard code to big endian for now since it's not encoded correctly
+                dt = data_type_to_numpy(data.dataType).newbyteorder('>')
+
+                # Handle decompressing the bytes
+                if data.compress == stream.DEFLATE:
+                    bin_data = zlib.decompress(bin_data)
+                    assert len(bin_data) == data.uncompressedSize
+                elif data.compress != stream.NONE:
+                    raise NotImplementedError('Compression type {0} not implemented!'.format(
+                        data.compress))
+
+                # Turn bytes into an array
+                arr = reshape_array(data, np.frombuffer(bin_data, dtype=dt))
+                messages.append(arr)
             elif data.dataType == stream.STRUCTURE:
                 log.debug('Reading structure')
                 sd = stream.StructureData()
                 sd.ParseFromString(read_block(fobj))
                 log.debug('StructureData: %s', str(sd))
-                data_block = make_array(data, sd)
-                messages.append(data_block)
+
+                # Make a datatype appropriate to the rows of struct
+                endian = '>' if data.bigend else '<'
+                dt = np.dtype([(endian, np.void, sd.rowLength)])
+
+                # Turn bytes into an array
+                arr = reshape_array(data, np.frombuffer(sd.data, dtype=dt))
+                messages.append(arr)
             elif data.dataType == stream.SEQUENCE:
                 log.debug('Reading sequence')
                 blocks = []
@@ -99,56 +118,25 @@ def read_block(fobj):
     return fobj.read(num)
 
 
-def make_vlen(data_header, blocks):
-    return [s]
 
 
-def make_array(data_header, buf):
-    """Handles returning an numpy array from serialized ncstream data.
+def reshape_array(data_header, array):
+    """Extracts the appropriate array shape from the header
 
     Can handle taking a data header and either bytes containing data or a StructureData
     instance, which will have binary data as well as some additional information.
 
     Parameters
     ----------
+    array : :class:`numpy.ndarray`
     data_header : Data
-    buf : bytes or StructureData
     """
-    # Structures properly encode endian, but regular data is big endian
-    if data_header.dataType == stream.STRUCTURE:
-        struct_header = buf
-        buf = struct_header.data
-        endian = '>' if data_header.bigend else '<'
-        dt = np.dtype([(endian, np.void, struct_header.rowLength)])
-    else:
-        endian = '>'
-        dt = data_type_to_numpy(data_header.dataType)
-
-    dt = dt.newbyteorder(endian)
-
-    # Figure out the shape of the resulting array
-    if data_header.vdata:
-        shape = None
-    else:
-        shape = tuple(r.size for r in data_header.section.range)
-
-    # Handle decompressing the bytes
-    if data_header.compress == stream.DEFLATE:
-        # Structure data not currently compressed by TDS
-        if data_header.dataType != stream.STRUCTURE:
-            buf = zlib.decompress(buf)
-            assert len(buf) == data_header.uncompressedSize
-    elif data_header.compress != stream.NONE:
-        raise NotImplementedError('Compression type {0} not implemented!'.format(
-            data_header.compress))
-
-    ret = np.frombuffer(bytearray(buf), dtype=dt)
-
-    # Only reshape if non-scalar. This is necessary because we handle compound types.
+    shape = tuple(r.size for r in data_header.section.range)
     if shape:
-        ret = ret.reshape(*shape)
+        return array.reshape(*shape)
+    else:
+        return array
 
-    return ret
 
 # STRUCTURE = 8;
 # SEQUENCE = 9;
