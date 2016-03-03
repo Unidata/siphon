@@ -50,6 +50,21 @@ def test_compression():
     assert_almost_equal(subset[0, 0], 206.65640259, 6)
 
 
+@recorder.use_cassette('tds5_basic')
+def test_tds5_basic():
+    "Test basic handling of getting data from TDS 5"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/nc4_sfc_pres_temp.nc')
+    temp = ds.variables['temperature']
+    temp_data = temp[:]
+    assert temp_data.shape == (6, 12)
+    assert_almost_equal(temp_data[0, 0], 9.)
+
+    temp_sub = temp[:2, :2]
+    assert temp_sub.shape == (2, 2)
+    assert_array_almost_equal(temp_sub,
+                              np.array([[9., 10.5], [9.25, 10.75]], dtype=np.float32))
+
+
 @recorder.use_cassette('tds5_vlen')
 def test_tds5_attr():
     "Test handling TDS 5's new attributes"

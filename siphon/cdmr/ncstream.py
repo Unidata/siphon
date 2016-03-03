@@ -126,6 +126,8 @@ def read_ncstream_messages(fobj):
                     # sizes from elements
                     shape = tuple(r.size for r in data.section.range) + (data.vlens[0],)
                     arr = arr.reshape(*shape)
+            else:
+                arr = reshape_array(data, arr)
             messages.append(arr)
 
         elif magic == MAGIC_ERR:
