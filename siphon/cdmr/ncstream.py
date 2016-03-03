@@ -112,22 +112,25 @@ def read_ncstream_messages(fobj):
             endian = '>' if data.bigend else '<'
             dt = data_type_to_numpy(data.dataType).newbyteorder(endian)
 
-            # Turn bytes into an array
-            arr = np.frombuffer(data.primdata, dtype=dt)
-            if arr.size != data.nelems:
-                log.warning('Array size %d does not agree with nelems %d',
-                            arr.size, data.nelems)
-            if data.isVlen:
-                arr = process_vlen(data, arr)
-                if arr.dtype == np.object_:
-                    arr = reshape_array(data, arr)
-                else:
-                    # In this case, the array collapsed, need different resize that correctly
-                    # sizes from elements
-                    shape = tuple(r.size for r in data.section.range) + (data.vlens[0],)
-                    arr = arr.reshape(*shape)
+            if data.dataType == stream.STRING:
+                arr = np.array(data.stringdata, dtype=dt)
             else:
-                arr = reshape_array(data, arr)
+                # Turn bytes into an array
+                arr = np.frombuffer(data.primdata, dtype=dt)
+                if arr.size != data.nelems:
+                    log.warning('Array size %d does not agree with nelems %d',
+                                arr.size, data.nelems)
+                if data.isVlen:
+                    arr = process_vlen(data, arr)
+                    if arr.dtype == np.object_:
+                        arr = reshape_array(data, arr)
+                    else:
+                        # In this case, the array collapsed, need different resize that
+                        # correctly sizes from elements
+                        shape = tuple(r.size for r in data.section.range) + (data.vlens[0],)
+                        arr = arr.reshape(*shape)
+                else:
+                    arr = reshape_array(data, arr)
             messages.append(arr)
 
         elif magic == MAGIC_ERR:

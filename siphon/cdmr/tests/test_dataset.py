@@ -94,6 +94,17 @@ def test_tds5_vlen_slicing():
     assert_array_equal(var[2], np.array([-99, -99, -99], dtype=np.int32))
 
 
+@recorder.use_cassette('tds5_strings')
+def test_tds5_strings():
+    "Test reading an array of strings"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_strings.nc')
+    var = ds.variables['measure_for_measure_var']
+    assert var.shape == (43,)
+    assert var[0] == 'Washington'
+    assert var[10] == 'Polk'
+    assert var[-1] == ''
+
+
 @recorder.use_cassette('nc4_enum')
 def test_enum():
     ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/test_enum_type.nc')
