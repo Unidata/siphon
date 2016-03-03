@@ -42,8 +42,9 @@ def read_ncstream_messages(fobj):
             data.ParseFromString(read_block(fobj))
             log.debug('Data: %s', str(data))
             if data.dataType in (stream.STRING, stream.OPAQUE) or data.vdata:
-                log.debug('Reading string/opaque')
+                log.debug('Reading string/opaque/vlen')
                 num_obj = read_var_int(fobj)
+                log.debug('Num objects: %d', num_obj)
                 blocks = [read_block(fobj) for _ in range(num_obj)]
                 if data.dataType == stream.STRING:
                     blocks = [b.decode('utf-8', errors='ignore') for b in blocks]
@@ -143,6 +144,7 @@ def read_magic(fobj):
 
 def read_block(fobj):
     num = read_var_int(fobj)
+    log.debug('Next block: %d bytes', num)
     return fobj.read(num)
 
 
