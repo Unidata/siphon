@@ -74,11 +74,10 @@ class Group(AttributeContainer):
             new_var.load_from_stream(struct)
 
         if group.enumTypes:
+            import enum
             for en in group.enumTypes:
-                type_map = OrderedDict()
-                self.types[en.name] = type_map
-                for typ in en.map:
-                    type_map[typ.code] = typ.value
+                self.types[en.name] = enum.Enum(en.name,
+                                                [(typ.value, typ.code) for typ in en.map])
 
     def __str__(self):
         print_groups = []
@@ -99,7 +98,7 @@ class Group(AttributeContainer):
         if self.types:
             print_groups.append('Types:')
             for name, typ in self.types.items():
-                print_groups.append(name + ' ' + typ)
+                print_groups.append(name + ' ' + str(list(typ)))
 
         if self.variables:
             print_groups.append('Variables:')
@@ -188,7 +187,6 @@ class Variable(AttributeContainer):
                 return arr.reshape(*[arr.shape[i] for i in keep_dims])
             else:
                 return arr.squeeze()
-
 
     def _process_indices(self, ind):
         # Make sure we have a list of indices

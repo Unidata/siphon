@@ -107,6 +107,7 @@ def test_tds5_strings():
 
 @recorder.use_cassette('nc4_enum')
 def test_enum():
+    "Test reading enumerated types"
     ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/test_enum_type.nc')
     var = ds.variables['primary_cloud'][:]
     assert var[0] == 0
@@ -114,6 +115,23 @@ def test_enum():
     assert var[2] == 0
     assert var[3] == 1
     assert var[4] == 255
+
+
+@recorder.use_cassette('nc4_enum')
+def test_enum_ds_str():
+    "Test converting a dataset with an enum to a str"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/test_enum_type.nc')
+    s = str(ds)
+    assert s == ("Dimensions:\n<class 'siphon.cdmr.dataset.Dimension'> name = station, "
+                 "size = 5\nTypes:\ncloud_class_t [<cloud_class_t.Clear: 0>, "
+                 "<cloud_class_t.Cumulonimbus: 1>, <cloud_class_t.Stratus: 2>, "
+                 "<cloud_class_t.Stratocumulus: 3>, <cloud_class_t.Cumulus: 4>, "
+                 "<cloud_class_t.Altostratus: 5>, <cloud_class_t.Nimbostratus: 6>, "
+                 "<cloud_class_t.Altocumulus: 7>, <cloud_class_t.Cirrostratus: 8>, "
+                 "<cloud_class_t.Cirrocumulus: 9>, <cloud_class_t.Cirrus: 10>, "
+                 "<cloud_class_t.Missing: 255>]\nVariables:\n"
+                 "<class 'siphon.cdmr.dataset.Variable'>\ncloud_class_t primary_cloud(station)"
+                 "\n\t_FillValue: Missing\nshape = 5")
 
 
 @recorder.use_cassette('nc4_opaque')
