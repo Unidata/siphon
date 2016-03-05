@@ -164,7 +164,7 @@ class Variable(AttributeContainer):
             # any of these flexible types.
             if arr.dtype == 'O' and hasattr(arr[0], 'dtype'):
                 byteorder = arr[0].dtype.byteorder
-            elif arr.dtype.fields:
+            elif arr.dtype.fields and arr.dtype.names[0] in ('>', '<'):
                 byteorder = arr.dtype.names[0]
             else:
                 byteorder = arr.dtype.byteorder
@@ -177,6 +177,9 @@ class Variable(AttributeContainer):
                 if hasattr(arr[0], 'dtype'):
                     for subarray in arr:
                         subarray.dtype = dt
+            # Don't reset dtype if we've already decoded to struct
+            elif arr.dtype.fields and arr.dtype.fields == dt.fields:
+                pass
             else:
                 arr.dtype = dt
 

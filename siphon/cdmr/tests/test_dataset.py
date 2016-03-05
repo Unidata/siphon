@@ -115,6 +115,22 @@ def test_tds5_opaque():
                       b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
 
 
+@recorder.use_cassette('tds5_compound_ref')
+def test_tds5_struct():
+    "Test reading a structured variable in tds 5"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/compound/ref_tst_compounds.nc4')
+    var = ds.variables['obs'][:]
+    assert var.shape == (3,)
+    assert var.dtype == np.dtype([('day', 'b'), ('elev', '<i2'), ('count', '<i4'),
+                                  ('relhum', '<f4'), ('time', '<f8')])
+    assert_array_equal(var['day'], np.array([15, -99, 20]))
+    assert_array_equal(var['elev'], np.array([2, -99, 6]))
+    assert_array_equal(var['count'], np.array([1, -99, 3]))
+    assert_array_almost_equal(var['relhum'], np.array([0.5, -99.0, 0.75]))
+    assert_array_almost_equal(var['time'],
+                              np.array([3600.01, -99.0, 5000.01], dtype=np.double))
+
+
 @recorder.use_cassette('nc4_enum')
 def test_enum():
     "Test reading enumerated types"

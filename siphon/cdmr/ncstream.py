@@ -7,6 +7,8 @@ import itertools
 import logging
 import zlib
 
+from collections import OrderedDict
+
 import numpy as np
 
 from . import ncStream_pb2 as stream  # noqa
@@ -106,33 +108,9 @@ def read_ncstream_messages(fobj):
             log.debug('Data2 chunk')
             data = stream.DataCol()
             data.ParseFromString(read_block(fobj))
-            log.debug('Data2: %s', str(data))
 
-            # Make a datatype appropriate to the rows of struct
-            endian = '>' if data.bigend else '<'
-            dt = data_type_to_numpy(data.dataType).newbyteorder(endian)
-
-            if data.dataType == stream.STRING:
-                arr = np.array(data.stringdata, dtype=dt)
-            elif data.dataType == stream.OPAQUE:
-                arr = np.array(data.opaquedata, dtype=dt)
-            else:
-                # Turn bytes into an array
-                arr = np.frombuffer(data.primdata, dtype=dt)
-                if arr.size != data.nelems:
-                    log.warning('Array size %d does not agree with nelems %d',
-                                arr.size, data.nelems)
-                if data.isVlen:
-                    arr = process_vlen(data, arr)
-                    if arr.dtype == np.object_:
-                        arr = reshape_array(data, arr)
-                    else:
-                        # In this case, the array collapsed, need different resize that
-                        # correctly sizes from elements
-                        shape = tuple(r.size for r in data.section.range) + (data.vlens[0],)
-                        arr = arr.reshape(*shape)
-                else:
-                    arr = reshape_array(data, arr)
+            log.debug('DataCol:\n%s', str(data))
+            arr = datacol_to_array(data)
             messages.append(arr)
 
         elif magic == MAGIC_ERR:
@@ -159,6 +137,46 @@ def process_vlen(data_header, array):
     source = iter(array)
     return np.array([np.fromiter(itertools.islice(source, size), dtype=array.dtype)
                      for size in data_header.vlens])
+
+
+def datacol_to_array(datacol):
+    if datacol.dataType == stream.STRING:
+        arr = np.array(datacol.stringdata, dtype=np.object)
+    elif datacol.dataType == stream.OPAQUE:
+        arr = np.array(datacol.opaquedata, dtype=np.object)
+    elif datacol.dataType == stream.STRUCTURE:
+        members = OrderedDict((mem.name, datacol_to_array(mem))
+                              for mem in datacol.structdata.memberData)
+        log.debug('Struct members:\n%s', str(members))
+
+        dt = np.dtype([(name, arr.dtype) for name, arr in members.items()])
+        log.debug('Struct dtype: %s', str(dt))
+
+        arr = np.empty((datacol.nelems,), dtype=dt)
+        for name, arr_data in members.items():
+            arr[name] = arr_data
+    else:
+        # Make an appropriate datatype
+        endian = '>' if datacol.bigend else '<'
+        dt = data_type_to_numpy(datacol.dataType).newbyteorder(endian)
+
+        # Turn bytes into an array
+        arr = np.frombuffer(datacol.primdata, dtype=dt)
+        if arr.size != datacol.nelems:
+            log.warning('Array size %d does not agree with nelems %d',
+                        arr.size, datacol.nelems)
+        if datacol.isVlen:
+            arr = process_vlen(datacol, arr)
+            if arr.dtype == np.object_:
+                arr = reshape_array(datacol, arr)
+            else:
+                # In this case, the array collapsed, need different resize that
+                # correctly sizes from elements
+                shape = tuple(r.size for r in datacol.section.range) + (datacol.vlens[0],)
+                arr = arr.reshape(*shape)
+        else:
+            arr = reshape_array(datacol, arr)
+    return arr
 
 
 def reshape_array(data_header, array):
