@@ -194,7 +194,7 @@ def test_struct():
 
 
 @recorder.use_cassette('nc4_compound_ref_deflate')
-def test_struct():
+def test_struct_deflate():
     "Test reading a structured variable with compression turned on"
     ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/compound/ref_tst_compounds.nc4')
     ds.cdmr.deflate = 4
