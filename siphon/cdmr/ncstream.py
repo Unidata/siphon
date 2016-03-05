@@ -114,6 +114,8 @@ def read_ncstream_messages(fobj):
 
             if data.dataType == stream.STRING:
                 arr = np.array(data.stringdata, dtype=dt)
+            elif data.dataType == stream.OPAQUE:
+                arr = np.array(data.opaquedata, dtype=dt)
             else:
                 # Turn bytes into an array
                 arr = np.frombuffer(data.primdata, dtype=dt)

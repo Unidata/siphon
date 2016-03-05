@@ -105,6 +105,16 @@ def test_tds5_strings():
     assert var[-1] == ''
 
 
+@recorder.use_cassette('tds5_opaque')
+def test_tds5_opaque():
+    "Test reading opaque datatype on TDS 5"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_opaques.nc')
+    var = ds.variables['var'][:]
+    assert var.shape == (3,)
+    assert var[0] == (b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+                      b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
+
+
 @recorder.use_cassette('nc4_enum')
 def test_enum():
     "Test reading enumerated types"
