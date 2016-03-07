@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 from __future__ import print_function
+import enum
 import logging
 from collections import OrderedDict
 
@@ -74,7 +75,6 @@ class Group(AttributeContainer):
             new_var.load_from_stream(struct)
 
         if group.enumTypes:
-            import enum
             for en in group.enumTypes:
                 self.types[en.name] = enum.Enum(en.name,
                                                 [(typ.value, typ.code) for typ in en.map])

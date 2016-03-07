@@ -1,4 +1,5 @@
 from __future__ import print_function
+import sys
 from setuptools import setup, find_packages, Command
 import versioneer
 
@@ -38,6 +39,10 @@ ver = versioneer.get_version()
 commands = versioneer.get_cmdclass()
 commands.update(examples=MakeExamples)
 
+# Need to conditionally add enum support for older Python
+dependencies = ['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2']
+if sys.version_info < (3, 4):
+    dependencies.append('enum34')
 
 setup(
     name = "siphon",
@@ -63,7 +68,7 @@ setup(
                  'Operating System :: OS Independent',
                  'License :: OSI Approved :: MIT License'],
 
-    install_requires=['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2'],
+    install_requires=dependencies,
     extras_require={
         'netcdf': 'netCDF4>=1.1.0',
         'dev': 'ipython[all]>=3.1',
