@@ -124,22 +124,79 @@ def read_ncstream_messages(fobj):
 
 
 def read_magic(fobj):
+    """Read a magic bytes.
+
+    Parameters
+    ----------
+    fobj : file-like object
+        The file to read from.
+
+    Returns
+    -------
+    bytes
+        magic byte sequence read
+    """
     return fobj.read(4)
 
 
 def read_block(fobj):
+    """Read a block.
+
+    Reads a block from a file object by first reading the number of bytes to read, which must
+    be encoded as a variable-byte length integer.
+
+    Parameters
+    ----------
+    fobj : file-like object
+        The file to read from.
+
+    Returns
+    -------
+    bytes
+        block of bytes read
+    """
     num = read_var_int(fobj)
     log.debug('Next block: %d bytes', num)
     return fobj.read(num)
 
 
 def process_vlen(data_header, array):
+    """Process vlen coming back from NCStream v2
+
+    This takes the array of values and slices into an object array, with entries containing
+    the appropriate pieces of the original array. Sizes are controlled by the passed in
+    `data_header`.
+
+    Parameters
+    ----------
+    data_header : Header
+    array : :class:`numpy.ndarray`
+
+    Returns
+    -------
+    ndarray
+        object array containing sub-sequences from the original primitive array
+    """
     source = iter(array)
     return np.array([np.fromiter(itertools.islice(source, size), dtype=array.dtype)
                      for size in data_header.vlens])
 
 
 def datacol_to_array(datacol):
+    """Convert DataCol from NCStream v2 into an array with appropriate type
+
+    Depending on the data type specified, this extracts data from the appropriate members
+    and packs into a :class:`numpy.ndarray`, recursing as necessary for compound data types.
+
+    Parameters
+    ----------
+    datacol : DataCol
+
+    Returns
+    -------
+    ndarray
+        array containing extracted data
+    """
     if datacol.dataType == stream.STRING:
         arr = np.array(datacol.stringdata, dtype=np.object)
     elif datacol.dataType == stream.OPAQUE:
@@ -296,7 +353,18 @@ def unpack_attribute(att):
 
 
 def read_var_int(file_obj):
-    'Read a variable-length integer'
+    """Read a variable-length integer
+
+    Parameters
+    ----------
+    file_obj : file-like object
+        The file to read from.
+
+    Returns
+    -------
+    int
+        the variable-length value read
+    """
     # Read all bytes from here, stopping with the first one that does not have
     # the MSB set. Save the lower 7 bits, and keep stacking to the *left*.
     val = 0
