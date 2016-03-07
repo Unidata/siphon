@@ -190,6 +190,14 @@ def test_strings():
     assert var[-1] == ''
 
 
+@recorder.use_cassette('nc4_strings')
+def test_dim_len():
+    "Test getting a dimension's length"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_strings.nc')
+    dim = ds.dimensions['line']
+    assert len(dim) == 43
+
+
 @recorder.use_cassette('nc4_vlen')
 def test_vlen():
     "Test reading vlen"
@@ -312,6 +320,17 @@ float32 var(dim)
 shape = 4
 Attributes:
 \ttitle: for testing groups"""
+    assert s == truth
+
+
+@recorder.use_cassette('tds5_basic')
+def test_var_print():
+    "Test that __str__ on var works"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/nc4_sfc_pres_temp.nc')
+    temp = ds.variables['temperature']
+    s = str(temp)
+    truth = ("<class 'siphon.cdmr.dataset.Variable'>\nfloat32 temperature(latitude, longitude)"
+             "\n\tunits: celsius\n\t_ChunkSizes: [ 6 12]\nshape = (6, 12)")
     assert s == truth
 
 
