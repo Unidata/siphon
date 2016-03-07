@@ -149,7 +149,9 @@ def datacol_to_array(datacol):
                               for mem in datacol.structdata.memberData)
         log.debug('Struct members:\n%s', str(members))
 
-        dt = np.dtype([(name, arr.dtype) for name, arr in members.items()])
+        # str() around name necessary because protobuf gives unicode names, but dtype doesn't
+        # support them on Python 2
+        dt = np.dtype([(str(name), arr.dtype) for name, arr in members.items()])
         log.debug('Struct dtype: %s', str(dt))
 
         arr = np.empty((datacol.nelems,), dtype=dt)
@@ -225,7 +227,7 @@ def struct_to_dtype(struct):
     fields = [(str(var.name), data_type_to_numpy(var.dataType, var.unsigned))
               for var in struct.vars]
     for s in struct.structs:
-        fields.append((s.name, struct_to_dtype(s)))
+        fields.append((str(s.name), struct_to_dtype(s)))
 
     log.debug('Structure fields: %s', fields)
     dt = np.dtype(fields)
