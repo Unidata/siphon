@@ -21,6 +21,11 @@ class TestDataset(object):
     def setup_class(cls):
         cls.ds = Dataset(get_fixed_url())
 
+    def test_str_attr(self):
+        'Test that we properly read a string attribute'
+        assert self.ds.Conventions == 'CF-1.6'
+        assert hasattr(self.ds, 'Conventions')
+
     def test_dataset(self):
         assert hasattr(self.ds, 'Conventions')
         assert 'featureType' in self.ds.ncattrs()
@@ -45,8 +50,99 @@ def test_compression():
     assert_almost_equal(subset[0, 0], 206.65640259, 6)
 
 
+@recorder.use_cassette('tds5_basic')
+def test_tds5_basic():
+    "Test basic handling of getting data from TDS 5"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/nc4_sfc_pres_temp.nc')
+    temp = ds.variables['temperature']
+    temp_data = temp[:]
+    assert temp_data.shape == (6, 12)
+    assert_almost_equal(temp_data[0, 0], 9.)
+
+    temp_sub = temp[:2, :2]
+    assert temp_sub.shape == (2, 2)
+    assert_array_almost_equal(temp_sub,
+                              np.array([[9., 10.5], [9.25, 10.75]], dtype=np.float32))
+
+
+@recorder.use_cassette('tds5_vlen')
+def test_tds5_attr():
+    "Test handling TDS 5's new attributes"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/vlen/tst_vl.nc4')
+    var = ds.variables['var']
+    assert getattr(var, '_ChunkSizes') == 3
+
+
+@recorder.use_cassette('tds5_vlen')
+def test_tds5_vlen():
+    "Test handling TDS 5's new vlen"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/vlen/tst_vl.nc4')
+    dat = ds.variables['var'][:]
+    assert dat.size == 3
+    assert_array_equal(dat[0], np.array([-99], dtype=np.int32))
+    assert_array_equal(dat[1], np.array([-99, -99], dtype=np.int32))
+    assert_array_equal(dat[2], np.array([-99, -99, -99], dtype=np.int32))
+
+
+@recorder.use_cassette('tds5_vlen_slicing')
+def test_tds5_vlen_slicing():
+    "Test handling TDS 5's new vlen and asking for indices"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/vlen/tst_vl.nc4')
+    var = ds.variables['var']
+    assert_array_equal(var[0], np.array([-99], dtype=np.int32))
+    assert_array_equal(var[1], np.array([-99, -99], dtype=np.int32))
+    assert_array_equal(var[2], np.array([-99, -99, -99], dtype=np.int32))
+
+
+@recorder.use_cassette('tds5_strings')
+def test_tds5_strings():
+    "Test reading an array of strings"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_strings.nc')
+    var = ds.variables['measure_for_measure_var']
+    assert var.shape == (43,)
+    assert var[0] == 'Washington'
+    assert var[10] == 'Polk'
+    assert var[-1] == ''
+
+
+@recorder.use_cassette('tds5_opaque')
+def test_tds5_opaque():
+    "Test reading opaque datatype on TDS 5"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_opaques.nc')
+    var = ds.variables['var'][:]
+    assert var.shape == (3,)
+    assert var[0] == (b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+                      b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
+
+
+@recorder.use_cassette('tds5_compound_ref')
+def test_tds5_struct():
+    "Test reading a structured variable in tds 5"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/compound/ref_tst_compounds.nc4')
+    var = ds.variables['obs'][:]
+    assert var.shape == (3,)
+    assert var.dtype == np.dtype([('day', 'b'), ('elev', '<i2'), ('count', '<i4'),
+                                  ('relhum', '<f4'), ('time', '<f8')])
+    assert_array_equal(var['day'], np.array([15, -99, 20]))
+    assert_array_equal(var['elev'], np.array([2, -99, 6]))
+    assert_array_equal(var['count'], np.array([1, -99, 3]))
+    assert_array_almost_equal(var['relhum'], np.array([0.5, -99.0, 0.75]))
+    assert_array_almost_equal(var['time'],
+                              np.array([3600.01, -99.0, 5000.01], dtype=np.double))
+
+
+@recorder.use_cassette('tds5_nested_structure_scalar')
+def test_tds5_scalar_nested_struct():
+    "Test handling a scalar nested structure on TDS 5"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/testNestedStructure.nc')
+    var = ds.variables['x']
+    data = var[:]
+    assert data['field1']['x'] == 1
+
+
 @recorder.use_cassette('nc4_enum')
 def test_enum():
+    "Test reading enumerated types"
     ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/test_enum_type.nc')
     var = ds.variables['primary_cloud'][:]
     assert var[0] == 0
@@ -56,13 +152,62 @@ def test_enum():
     assert var[4] == 255
 
 
+@recorder.use_cassette('nc4_enum')
+def test_enum_ds_str():
+    "Test converting a dataset with an enum to a str"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/test_enum_type.nc')
+    s = str(ds)
+    assert s == ("Dimensions:\n<class 'siphon.cdmr.dataset.Dimension'> name = station, "
+                 "size = 5\nTypes:\ncloud_class_t [<cloud_class_t.Clear: 0>, "
+                 "<cloud_class_t.Cumulonimbus: 1>, <cloud_class_t.Stratus: 2>, "
+                 "<cloud_class_t.Stratocumulus: 3>, <cloud_class_t.Cumulus: 4>, "
+                 "<cloud_class_t.Altostratus: 5>, <cloud_class_t.Nimbostratus: 6>, "
+                 "<cloud_class_t.Altocumulus: 7>, <cloud_class_t.Cirrostratus: 8>, "
+                 "<cloud_class_t.Cirrocumulus: 9>, <cloud_class_t.Cirrus: 10>, "
+                 "<cloud_class_t.Missing: 255>]\nVariables:\n"
+                 "<class 'siphon.cdmr.dataset.Variable'>\ncloud_class_t primary_cloud(station)"
+                 "\n\t_FillValue: Missing\nshape = 5")
+
+
 @recorder.use_cassette('nc4_opaque')
 def test_opaque():
+    "Test reading opaque datatype"
     ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_opaques.nc')
     var = ds.variables['var'][:]
     assert var.shape == (3,)
     assert var[0] == (b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
                       b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
+
+
+@recorder.use_cassette('nc4_strings')
+def test_strings():
+    "Test reading an array of strings"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_strings.nc')
+    var = ds.variables['measure_for_measure_var']
+    assert var.shape == (43,)
+    assert var[0] == 'Washington'
+    assert var[10] == 'Polk'
+    assert var[-1] == ''
+
+
+@recorder.use_cassette('nc4_strings')
+def test_dim_len():
+    "Test getting a dimension's length"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_strings.nc')
+    dim = ds.dimensions['line']
+    assert len(dim) == 43
+
+
+@recorder.use_cassette('nc4_vlen')
+def test_vlen():
+    "Test reading vlen"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/vlen/tst_vl.nc4')
+    dat = ds.variables['var'][:]
+
+    assert dat.shape == (3,)
+    assert_array_equal(dat[0], np.array([-99], dtype=np.int32))
+    assert_array_equal(dat[1], np.array([-99, -99], dtype=np.int32))
+    assert_array_equal(dat[2], np.array([-99, -99, -99], dtype=np.int32))
 
 
 @recorder.use_cassette('nc4_compound_ref')
@@ -81,6 +226,14 @@ def test_struct():
                               np.array([3600.01, -99.0, 5000.01], dtype=np.double))
 
 
+@recorder.use_cassette('nc4_compound_ref_deflate')
+def test_struct_deflate():
+    "Test reading a structured variable with compression turned on"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/compound/ref_tst_compounds.nc4')
+    ds.cdmr.deflate = 4
+    assert ds.variables['obs'][:] is not None
+
+
 @recorder.use_cassette('nc4_groups')
 def test_groups():
     "Test that a variable's path includes any parent groups"
@@ -93,6 +246,25 @@ def test_groups():
 
     dat = var[:]
     assert dat.shape == (1,)
+    assert_almost_equal(dat[0], 1.0)
+
+
+@recorder.use_cassette('nc4_chararray')
+def test_char():
+    "Test processing arrays of characters"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/chararr.nc')
+    dat = ds.variables['ca'][:]
+    assert dat.size == 10
+    assert dat[0] == b's'
+
+
+@recorder.use_cassette('nc4_nested_structure_scalar')
+def test_scalar():
+    "Test handling a scalar variable"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/testNestedStructure.nc')
+    var = ds.variables['x']
+    data = var[:]
+    assert data['field1']['x'] == 1
 
 
 @recorder.use_cassette('nc4_groups')
@@ -148,6 +320,17 @@ float32 var(dim)
 shape = 4
 Attributes:
 \ttitle: for testing groups"""
+    assert s == truth
+
+
+@recorder.use_cassette('tds5_basic')
+def test_var_print():
+    "Test that __str__ on var works"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/nc4_sfc_pres_temp.nc')
+    temp = ds.variables['temperature']
+    s = str(temp)
+    truth = ("<class 'siphon.cdmr.dataset.Variable'>\nfloat32 temperature(latitude, longitude)"
+             "\n\tunits: celsius\n\t_ChunkSizes: [ 6 12]\nshape = (6, 12)")
     assert s == truth
 
 

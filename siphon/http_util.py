@@ -448,8 +448,13 @@ class HTTPEndPoint(object):
 
         resp = self._session.get(path, params=params)
         if resp.status_code != 200:
-            raise requests.HTTPError('Error accessing %s: %s' % (resp.request.url,
-                                                                 resp.text))
+            if resp.headers['Content-Type'].startswith('text/html'):
+                text = resp.reason
+            else:
+                text = resp.text
+            raise requests.HTTPError('Error accessing %s: %d %s' % (resp.request.url,
+                                                                    resp.status_code,
+                                                                    text))
         return resp
 
     def _get_metadata(self):

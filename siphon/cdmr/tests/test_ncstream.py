@@ -7,10 +7,7 @@ from siphon.testing import get_recorder
 from siphon.cdmr.ncstream import read_ncstream_messages, read_var_int
 from siphon.cdmr.ncStream_pb2 import Header
 
-HEAD_LOCATION_DEFAULT = ''
-HEAD_TITLE_DEFAULT = ''
-HEAD_ID_DEFAULT = ''
-HEAD_VERSION_DEFAULT = 0
+import pytest
 
 recorder = get_recorder(__file__)
 
@@ -32,46 +29,24 @@ def get_header_remote():
     return urlopen(get_test_latest_url('req=header'))
 
 
-def test_var_int():
-    for src, truth in [(b'\xb6\xe0\x02', 45110), (b'\x17\n\x0b', 23)]:
-        yield check_var_int, src, truth
-
-
-def check_var_int(src, result):
-    read_var_int(BytesIO(src)) == result
+@pytest.mark.parametrize("src, result", [(b'\xb6\xe0\x02', 45110), (b'\x17\n\x0b', 23)])
+def test_read_var_int(src, result):
+    "Check that we properly read variable length integers   "
+    assert read_var_int(BytesIO(src)) == result
 
 
 def test_header_message_def():
+    'Test parsing of Header message'
     f = get_header_remote()
     messages = read_ncstream_messages(f)
     assert len(messages) == 1
     assert isinstance(messages[0], Header)
     head = messages[0]
-    # test that the header message definition has not changed!
-    test = head.location == HEAD_LOCATION_DEFAULT
-    assert [test, not test][head.HasField("location")]
-    test = head.title == HEAD_TITLE_DEFAULT
-    assert [test, not test][head.HasField("title")]
-    test = head.title == HEAD_ID_DEFAULT
-    assert [test, not test][head.HasField("id")]
-    test = head.title == HEAD_VERSION_DEFAULT
-    assert [test, not test][head.HasField("version")]
-
-
-def test_remote_header():
-    f = get_header_remote()
-    messages = read_ncstream_messages(f)
-    assert len(messages) == 1
-    assert isinstance(messages[0], Header)
-
-    head = messages[0]
-    # make sure fields in the message are set to non-default values
-    #  when HasField returns True
-    for field in head.ListFields():
-        fname = field[0].name
-        if not fname == "root":
-            test = eval("head.{} == HEAD_{}_DEFAULT".format(fname, fname.upper()))
-            assert eval("[{}, not {}][head.HasField('{}')]".format(test, test, fname))
+    assert head.location == ('http://thredds-test.unidata.ucar.edu/thredds/cdmremote/grib/'
+                             'NCEP/RAP/CONUS_13km/RR_CONUS_13km_20150519_0300.grib2')
+    assert head.title == ''
+    assert head.id == ''
+    assert head.version == 1
 
 
 def test_local_data():
@@ -79,4 +54,4 @@ def test_local_data():
                 b'\x02\x10\x01(\x02\x01\x142014-10-28T21:00:00Z')
     messages = read_ncstream_messages(f)
     assert len(messages) == 1
-    assert messages[0][0] == b'2014-10-28T21:00:00Z'
+    assert messages[0][0] == '2014-10-28T21:00:00Z'
