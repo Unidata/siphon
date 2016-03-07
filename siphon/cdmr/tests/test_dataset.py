@@ -131,6 +131,15 @@ def test_tds5_struct():
                               np.array([3600.01, -99.0, 5000.01], dtype=np.double))
 
 
+@recorder.use_cassette('tds5_nested_structure_scalar')
+def test_tds5_scalar_nested_struct():
+    "Test handling a scalar nested structure on TDS 5"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/testNestedStructure.nc')
+    var = ds.variables['x']
+    data = var[:]
+    assert data['field1']['x'] == 1
+
+
 @recorder.use_cassette('nc4_enum')
 def test_enum():
     "Test reading enumerated types"

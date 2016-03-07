@@ -1,0 +1,46 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.2+84.gfeb23f4.dirty)]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/testNestedStructure.nc?req=header
+  response:
+    body:
+      string: !!binary |
+        rezO2oMBCkJodHRwOi8vbG9jYWxob3N0OjgwODAvdGhyZWRkcy9jZG1yZW1vdGUvbmM0L3Rlc3RO
+        ZXN0ZWRTdHJ1Y3R1cmUubmMiOyI5CgF4EAgyGAoGZmllbGQxEAgqBQoBeBADKgUKAXkQAzIYCgZm
+        aWVsZDIQCCoFCgF4EAMqBQoBeRADKAE=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Mon, 07 Mar 2016 20:32:58 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.2+84.gfeb23f4.dirty)]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/testNestedStructure.nc?var=%2Fx&req=data
+  response:
+    body:
+      string: !!binary |
+        q+u+unUKAXgQCBoAKANIAXJoCjIKBmZpZWxkMRAIGgBIAXIiCg8KAXgQAxoASAFSBAEAAAAKDwoB
+        eRADGgBIAVIE/v///woyCgZmaWVsZDIQCBoASAFyIgoPCgF4EAMaAEgBUgT/AAAACg8KAXkQAxoA
+        SAFSBFoAAAA=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Mon, 07 Mar 2016 20:32:58 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+version: 1
