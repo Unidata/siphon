@@ -7,6 +7,8 @@ from siphon.testing import get_recorder
 from siphon.cdmr.ncstream import read_ncstream_messages, read_var_int
 from siphon.cdmr.ncStream_pb2 import Header
 
+import pytest
+
 recorder = get_recorder(__file__)
 
 
@@ -27,13 +29,10 @@ def get_header_remote():
     return urlopen(get_test_latest_url('req=header'))
 
 
-def test_var_int():
-    for src, truth in [(b'\xb6\xe0\x02', 45110), (b'\x17\n\x0b', 23)]:
-        yield check_var_int, src, truth
-
-
-def check_var_int(src, result):
-    read_var_int(BytesIO(src)) == result
+@pytest.mark.parametrize("src, result", [(b'\xb6\xe0\x02', 45110), (b'\x17\n\x0b', 23)])
+def test_read_var_int(src, result):
+    "Check that we properly read variable length integers   "
+    assert read_var_int(BytesIO(src)) == result
 
 
 def test_header_message_def():
