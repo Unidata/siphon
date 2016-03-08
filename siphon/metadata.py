@@ -1,6 +1,10 @@
 # Copyright (c) 2013-2015 Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""
+This module contains code to support reading and parsing
+metadata elements from a THREDDS Data Server (TDS) Client catalog.
+"""
 
 from __future__ import print_function
 
@@ -435,27 +439,26 @@ class _ComplexTypes(object):
 
 
 class TDSCatalogMetadata(object):
-
     r"""
-    An object for holding information contained in the catalog Metadata.
-
+    An object for holding information contained in the catalog Metadata tag.
 
     Attributes
     ----------
-    name : metadata
-        The dictionary containing the metadata enteries
+    metadata : dict[str, object]
+        The dictionary containing the metadata entries
 
     """
 
     def __init__(self, element, metadata_in=None):
         r"""
-        Initialize a TDSCatalogMetadata object.
+        Initialize a :class:`TDSCatalogMetadata` object.
 
         Parameters
         ----------
-        metadata_node : Element
-            An Element Tree Element representing a metadata node
-
+        element : :class:`~xml.etree.ElementTree.Element`
+            An :class:`~xml.etree.ElementTree.Element` representing a metadata node
+        metadata_in : dict[str, object], optional
+            Parent metadata to inherit, if appropriate. Defaults to None.
         """
         self._ct = _ComplexTypes()
         self._st = _SimpleTypes()

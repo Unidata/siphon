@@ -1,6 +1,11 @@
 # Copyright (c) 2013-2015 Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""
+This module contains code to support reading and parsing
+catalog files from a THREDDS Data Server (TDS). They help identifying
+the latest dataset and finding proper URLs to access the data.
+"""
 
 import logging
 import xml.etree.ElementTree as ET
@@ -22,20 +27,19 @@ class TDSCatalog(object):
     r"""
     An object for holding information from a THREDDS Client Catalog.
 
-
     Attributes
     ----------
-    catalog_url : string
+    catalog_url : str
         The url path of the catalog to parse.
-    base_tds_url : string
+    base_tds_url : str
         The top level server address
-    datasets : Dataset
-        A dictionary of Dataset object, whose keys are the name of the
+    datasets : dict[str, Dataset]
+        A dictionary of :class:`Dataset` objects, whose keys are the name of the
         dataset's name
     services : List
-        A list of SimpleServices listed in the catalog
-    catalog_refs : dict
-        A dictionary of CatalogRef objects whose keys are the name of the
+        A list of :class:`SimpleService` listed in the catalog
+    catalog_refs : dict[str, CatalogRef]
+        A dictionary of :class:`CatalogRef` objects whose keys are the name of the
         catalog ref title.
 
     """
@@ -45,7 +49,7 @@ class TDSCatalog(object):
 
         Parameters
         ----------
-        catalog_url : string
+        catalog_url : str
             The URL of a THREDDS client catalog
         """
         # top level server url
@@ -135,15 +139,14 @@ class CatalogRef(object):
     An object for holding Catalog References obtained from a THREDDS Client
     Catalog.
 
-
     Attributes
     ----------
-    name : string
-        The name of the catalogRef element
-    href : string
-        url to the catalogRef's THREDDS Client Catalog
-    title : string
-        Title of the catalogRef element
+    name : str
+        The name of the :class:`CatalogRef` element
+    href : str
+        url to the :class:`CatalogRef`'s THREDDS Client Catalog
+    title : str
+        Title of the :class:`CatalogRef` element
     """
     def __init__(self, base_url, element_node):
         r"""
@@ -151,10 +154,10 @@ class CatalogRef(object):
 
         Parameters
         ----------
-        base_url : String
+        base_url : str
             URL to the base catalog that owns this reference
-        element_node : Element
-            An Element Tree Element representing a catalogRef node
+        element_node : :class:`~xml.etree.ElementTree.Element`
+            An :class:`~xml.etree.ElementTree.Element` representing a catalogRef node
 
         """
         self.name = element_node.attrib["name"]
@@ -165,8 +168,12 @@ class CatalogRef(object):
         self.href = urljoin(base_url, href)
 
     def follow(self):
-        r"""
-        Follow the reference, returning a new TDSCatalog
+        r""" Follow the catalog reference, returning a new :class:`TDSCatalog`
+
+        Returns
+        -------
+        TDSCatalog
+            The referenced catalog
         """
         return TDSCatalog(self.href)
 
@@ -175,14 +182,13 @@ class Dataset(object):
     r"""
     An object for holding Datasets obtained from a THREDDS Client Catalog.
 
-
     Attributes
     ----------
-    name : string
-        The name of the Dataset element
-    url_path : string
+    name : str
+        The name of the :class:`Dataset` element
+    url_path : str
         url to the accessible dataset
-    access_urls : dict
+    access_urls : dict[str, str]
         A dictionary of access urls whose keywords are the access service
         types defined in the catalog (for example, "OPENDAP", "NetcdfSubset",
         "WMS", etc.
@@ -193,14 +199,15 @@ class Dataset(object):
 
         Parameters
         ----------
-        element_node : Element
-            An Element Tree Element representing a Dataset node
-        catalog_url : string
+        element_node : :class:`~xml.etree.ElementTree.Element`
+            An :class:`~xml.etree.ElementTree.Element` representing a Dataset node
+        catalog_url : str
             The top level server url
 
         """
         self.name = element_node.attrib['name']
         self.url_path = element_node.attrib['urlPath']
+        self.catalog_name = ''
         self._resolved = False
         self._resolverUrl = None
         # if latest.xml, resolve the latest url
@@ -219,7 +226,7 @@ class Dataset(object):
 
         Parameters
         ----------
-        catalog_url : string
+        catalog_url : str
             The catalog url to be resolved
 
         """
@@ -255,12 +262,12 @@ class Dataset(object):
 
         Parameters
         ----------
-        catalog_url : string
+        catalog_url : str
             The top level server url
-
-        services : list
-            list of SimpleService objects associated with the dataset
-
+        all_services : List[SimpleService]
+            list of :class:`SimpleService` objects associated with the dataset
+        metadata : TDSCatalogMetadata
+            Metadata from the :class:`TDSCatalog`
         """
         service_name = None
         if metadata:
@@ -296,14 +303,13 @@ class SimpleService(object):
     An object for holding information about an access service enabled on a
     dataset.
 
-
     Attributes
     ----------
-    name : string
+    name : str
         The name of the service
-    service_type : string
+    service_type : str
         The service type (i.e. "OPENDAP", "NetcdfSubset", "WMS", etc.)
-    access_urls : dict
+    access_urls : dict[str, str]
         A dictionary of access urls whose keywords are the access service
         types defined in the catalog (for example, "OPENDAP", "NetcdfSubset",
         "WMS", etc.)
@@ -314,38 +320,38 @@ class SimpleService(object):
 
         Parameters
         ----------
-        service_node : Element
-            An Element Tree Element representing a service node
+        service_node : :class:`~xml.etree.ElementTree.Element`
+            An :class:`~xml.etree.ElementTree.Element` representing a service node
 
         """
         self.name = service_node.attrib['name']
         self.service_type = service_node.attrib['serviceType']
         self.base = service_node.attrib['base']
+        self.access_urls = dict()
 
 
 class CompoundService(object):
     r"""
-    An object for holding information about an Compound services.
-
+    An object for holding information about compound services.
 
     Attributes
     ----------
-    name : string
+    name : str
         The name of the compound service
-    service_type : string
+    service_type : str
         The service type (for this object, service type will always be
         "COMPOUND")
-    services : list
-        A list of SimpleService objects
+    services : list[SimpleService]
+        A list of :class:`SimpleService` objects
     """
     def __init__(self, service_node):
         r"""
-        Initialize a CompoundService object.
+        Initialize a :class:`CompoundService` object.
 
         Parameters
         ----------
-        service_node : Element
-            An Element Tree Element representing a compound service node
+        service_node : :class:`~xml.etree.ElementTree.Element`
+            An :class:`~xml.etree.ElementTree.Element` representing a compound service node
 
         """
         self.name = service_node.attrib['name']
@@ -368,11 +374,8 @@ def _get_latest_cat(catalog_url):
 
     Parameters
     ----------
-    catalog_url : string
+    catalog_url : str
         The URL of a top level data catalog
-
-    access_method : String
-        desired data access method (i.e. "OPENDAP", "NetcdfSubset", "WMS", etc)
 
     Returns
     -------
@@ -398,19 +401,17 @@ def get_latest_access_url(catalog_url, access_method):
 
     Parameters
     ----------
-    catalog_url : string
+    catalog_url : str
         The URL of a top level data catalog
-
-    access_method : String
+    access_method : str
         desired data access method (i.e. "OPENDAP", "NetcdfSubset", "WMS", etc)
 
     Returns
     -------
-    string
+    access_url : str
         Data access URL to be used to access the latest data available from a
-        given catalog using the specified `access_method`. Typical of length 1,
+        given catalog using the specified `access_method`. Typically a single string,
         but not always.
-
     """
 
     latest_cat = _get_latest_cat(catalog_url)

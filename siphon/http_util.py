@@ -1,6 +1,8 @@
 # Copyright (c) 2013-2015 Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+""" This module contains utility code to support making requests using HTTP.
+"""
 
 import posixpath
 from collections import OrderedDict
@@ -49,7 +51,7 @@ def create_http_session():
 
     Returns
     -------
-    session : ``requests.Session``
+    session : requests.Session
         The created session
 
     See Also
@@ -65,16 +67,16 @@ def create_http_session():
 def urlopen(url, **kwargs):
     r'''GET a file-like object for a URL using HTTP.
 
-    This is a thin wrapper around ``requests.get`` that returns a file-like object
+    This is a thin wrapper around :meth:`requests.Session.get` that returns a file-like object
     wrapped around the resulting content.
 
     Parameters
     ----------
-    url : string
+    url : str
         The URL to request
 
     kwargs : arbitrary keyword arguments
-        Additional keyword arguments to pass to ``requests.get``.
+        Additional keyword arguments to pass to :meth:`requests.Session.get`.
 
     Returns
     -------
@@ -83,7 +85,7 @@ def urlopen(url, **kwargs):
 
     See Also
     --------
-    http_get
+    :meth:`requests.Session.get`
     '''
 
     return BytesIO(create_http_session().get(url, **kwargs).content)
@@ -94,12 +96,12 @@ def parse_iso_date(s):
 
     Parameters
     ----------
-    s : string
+    s : str
         The string to be parsed
 
     Returns
     -------
-    dt : ``datetime.datetime`` instance
+    dt : datetime.datetime
         The results of parsing the string
     '''
 
@@ -111,14 +113,14 @@ class DataQuery(object):
 
     This object provides a clear API to formulate a query for data, including
     a spatial query, a time query, and possibly some variables or other parameters.
-    These objects provide a dictionary-like interface, (``items`` and ``__iter``)
+    These objects provide a dictionary-like interface, (:meth:`items` and :meth:`__iter__`)
     sufficient to be passed to functions expecting a dictionary representing a URL query.
     Instances of this object can also be turned into a string, which will yield a
     properly escaped string for a URL.
     '''
 
     def __init__(self):
-        r'Constructs an empty DataQuery'
+        r'Constructs an empty :class:`DataQuery`'
 
         self.var = set()
         self.time_query = OrderedDict()
@@ -130,7 +132,7 @@ class DataQuery(object):
 
         This function ensures that variable names are not repeated.
 
-        This modifies the query in-place, but returns ``self`` so that multiple
+        This modifies the query in-place, but returns `self` so that multiple
         queries can be chained together on one line.
 
         Parameters
@@ -140,7 +142,7 @@ class DataQuery(object):
 
         Returns
         -------
-        self : ``DataQuery`` instance
+        self : DataQuery
             Returns self for chaining calls
         '''
 
@@ -150,7 +152,7 @@ class DataQuery(object):
     def add_query_parameter(self, **kwargs):
         r'''Add arbitrary query element (name=value) to the request.
 
-        This modifies the query in-place, but returns ``self`` so that multiple
+        This modifies the query in-place, but returns `self` so that multiple
         queries can be chained together on one line.
 
         Parameters
@@ -160,7 +162,7 @@ class DataQuery(object):
 
         Returns
         -------
-        self : ``DataQuery`` instance
+        self : DataQuery
             Returns self for chaining calls
         '''
 
@@ -172,7 +174,7 @@ class DataQuery(object):
 
         This adds a request for a spatial bounding box, bounded by ('north', 'south')
         for latitude and ('east', 'west') for the longitude. This modifies the query
-        in-place, but returns ``self`` so that multiple queries can be chained together
+        in-place, but returns `self` so that multiple queries can be chained together
         on one line.
 
         This replaces any existing spatial queries that have been set.
@@ -190,7 +192,7 @@ class DataQuery(object):
 
         Returns
         -------
-        self : ``DataQuery`` instance
+        self : DataQuery
             Returns self for chaining calls
         '''
 
@@ -202,21 +204,21 @@ class DataQuery(object):
         r'''Add a latitude/longitude point to the query.
 
         This adds a request for a (`lon`, `lat`) point. This modifies the query
-        in-place, but returns ``self`` so that multiple queries can be chained together on
+        in-place, but returns `self` so that multiple queries can be chained together on
         one line.
 
         This replaces any existing spatial queries that have been set.
 
         Parameters
         ----------
-        longitude: float
+        lon: float
             The longitude to request
-        latitude : float
+        lat : float
             The latitude to request
 
         Returns
         -------
-        self : ``DataQuery`` instance
+        self : DataQuery
             Returns self for chaining calls
         '''
 
@@ -233,14 +235,14 @@ class DataQuery(object):
         r'''Add a request for all times to the query
 
         This adds a request for all times (`temporal=all`). This modifies the query
-        in-place, but returns ``self`` so that multiple queries can be chained together on
+        in-place, but returns `self` so that multiple queries can be chained together on
         one line.
 
         This replaces any existing temporal queries that have been set.
 
         Returns
         -------
-        self : ``DataQuery`` instance
+        self : DataQuery
             Returns self for chaining calls
         '''
 
@@ -250,19 +252,19 @@ class DataQuery(object):
     def time(self, time):
         r'''Add a request for a specific time to the query.
 
-        This modifies the query in-place, but returns ``self`` so that multiple queries
+        This modifies the query in-place, but returns `self` so that multiple queries
         can be chained together on one line.
 
         This replaces any existing temporal queries that have been set.
 
         Parameters
         ----------
-        time : ``datetime.datetime`` instance
+        time : datetime.datetime
             The time to request
 
         Returns
         -------
-        self : ``DataQuery`` instance
+        self : DataQuery
             Returns self for chaining calls
         '''
 
@@ -272,21 +274,21 @@ class DataQuery(object):
     def time_range(self, start, end):
         r'''Add a request for a time range to the query.
 
-        This modifies the query in-place, but returns ``self`` so that multiple queries
+        This modifies the query in-place, but returns `self` so that multiple queries
         can be chained together on one line.
 
         This replaces any existing temporal queries that have been set.
 
         Parameters
         ----------
-        start : ``datetime.datetime`` instance
+        start : datetime.datetime
             The start of the requested time range
-        end : ``datetime.datetime`` instance
+        end : datetime.datetime
             The end of the requested time range
 
         Returns
         -------
-        self : ``DataQuery`` instance
+        self : DataQuery
             Returns self for chaining calls
         '''
 
@@ -343,7 +345,7 @@ class HTTPEndPoint(object):
 
         Parameters
         ----------
-        url : string
+        url : str
             The base URL for the endpoint
         '''
         self._base = url
@@ -357,12 +359,12 @@ class HTTPEndPoint(object):
 
         Parameters
         ----------
-        query : ``DataQuery`` instance
+        query : DataQuery
             The query to pass when making the request
 
         Returns
         -------
-        resp : ``requests.Response`` instance
+        resp : requests.Response
             The server's response to the request
 
         See Also
@@ -379,12 +381,12 @@ class HTTPEndPoint(object):
 
         Parameters
         ----------
-        path : string
+        path : str
             The path, relative to the endpoint
 
         Returns
         -------
-        url : string
+        url : str
             The full URL to `path`
 
         See Also
@@ -402,14 +404,14 @@ class HTTPEndPoint(object):
 
         Parameters
         ----------
-        path : string
+        path : str
             The path to request, relative to the endpoint
-        query : ``DataQuery`` instance, optional
+        query : DataQuery, optional
             The query to pass when making the request
 
         Returns
         -------
-        resp : ``requests.Response`` instance
+        resp : requests.Response
             The server's response to the request
 
         See Also
@@ -426,14 +428,14 @@ class HTTPEndPoint(object):
 
         Parameters
         ----------
-        path : string
+        path : str
             The URL to request
-        params : ``DataQuery`` instance, optional
+        params : DataQuery, optional
             The query to pass when making the request
 
         Returns
         -------
-        resp : ``requests.Response`` instance
+        resp : requests.Response
             The server's response to the request
 
         Raises
@@ -476,7 +478,7 @@ class HTTPEndPoint(object):
 
         Parameters
         ----------
-        query : ``DataQuery`` instance (or subclass)
+        query : DataQuery (or subclass)
 
         Returns
         -------
@@ -489,14 +491,10 @@ class HTTPEndPoint(object):
     def query(self):
         r'''Create a new query object
 
-        Returns a new ``DataQuery`` instance appropriate for this endpoint.
+        Returns a new :class:`DataQuery` instance appropriate for this endpoint.
 
-        The default implementation returns a ``DataQuery`` instance. Subclasses can
+        The default implementation returns a :class:`DataQuery` instance. Subclasses can
         override to return a subclass specific to this endpoint.
-
-        Parameters
-        ----------
-        query : DataQuery instance (or subclass)
 
         Returns
         -------

@@ -1,6 +1,11 @@
 # Copyright (c) 2013-2015 Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""
+This module contains code to support reading and parsing
+the dataset.xml documents from the THREDDS Data Server (TDS) netCDF Subset
+Service.
+"""
 
 from __future__ import print_function
 
@@ -131,38 +136,33 @@ class NCSSDataset(object):
 
     Attributes
     ----------
-
-    name : variables
+    variables : dict[str, str]
         A dictionary of variables
 
-    name : time_span
+    time_span : dict[str, datetime.datetime]
         A dictionary holding the beginning and ending iso time strings which
         define the temporal bounds of the dataset
 
-    name : featureDataset
+     featureDataset : dict[str, str]
         A dictionary containing the type ["grid", "point"] and location ["url"]
         of the dataset
 
-    name : accept_list
+    accept_list : dict[str, list[str]]
         A dictionary holding the types of valid returns of the dataset by
         access method [Grid, GridAsPoint, PointFeatureCollection]
 
-    Other
-    -----
-
-    name : gridsets
+    gridsets : dict[str, set[str]]
         A dictionary of gridSets contained within the dataset
 
-    name : axes
+    axes : dict[str, object]
         A dictionary of coordinate axes
 
-    name : coordinate_transforms
+    coordinate_transforms : dict[str, object]
         A dictionary of coordinate transforms
 
-    name : lat_lon_box
+    lat_lon_box : dict[str, float]
         A dictionary holding the north, south, east, and west latitude and
         longitude bounds of the dataset (in degree_east, degree_north)
-
     """
 
     def __init__(self, element):
@@ -171,10 +171,9 @@ class NCSSDataset(object):
 
         Parameters
         ----------
-        element : Element
-            An ElementTree Element representing the top level node of an
+        element : :class:`~xml.etree.ElementTree.Element`
+            An :class:`~xml.etree.ElementTree.Element` representing the top level node of an
             NCSS dataset.xml doc
-
         """
         self._types = _Types()
         self._types_methods = _Types.__dict__
