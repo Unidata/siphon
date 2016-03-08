@@ -16,8 +16,8 @@ log = logging.getLogger("siphon.ncss_dataset")
 
 
 class _Types(object):
-
-    def handle_typed_values(self, val, type_name, value_type):
+    @staticmethod
+    def handle_typed_values(val, type_name, value_type):
         if value_type == "int":
             try:
                 val = val.split()
@@ -54,7 +54,6 @@ class _Types(object):
         return {name: val}
 
     def handle_values(self, element, value_type=None):  # noqa
-
         type_name = "value"
         val = element.text
         if val:
@@ -77,7 +76,8 @@ class _Types(object):
 
         return {"values": val}
 
-    def handle_projectionBox(self, element):  # noqa
+    @staticmethod
+    def handle_projectionBox(element):  # noqa
         type_name = "projectionBox"
         pb = {}
         if element.tag == type_name:
@@ -86,10 +86,12 @@ class _Types(object):
 
         return {type_name: pb}
 
-    def handle_axisRef(self, element):  # noqa
+    @staticmethod
+    def handle_axisRef(element):  # noqa
         return element.attrib["name"]
 
-    def handle_coordTransRef(self, element):  # noqa
+    @staticmethod
+    def handle_coordTransRef(element):  # noqa
         # type_name = "coordTransRef"
         return {"coordTransRef": element.attrib["name"]}
 
@@ -106,12 +108,14 @@ class _Types(object):
 
         return grid
 
-    def handle_parameter(self, element):
+    @staticmethod
+    def handle_parameter(element):
         name = element.attrib["name"]
         value = element.attrib["value"].strip()
         return {name: value}
 
-    def handle_featureDataset(self, element):  # noqa
+    @staticmethod
+    def handle_featureDataset(element):  # noqa
         fd = {}
         for attr in element.attrib:
             fd[attr] = element.attrib[attr]
@@ -122,7 +126,6 @@ class _Types(object):
 
 
 class NCSSDataset(object):
-
     r"""
     An object for holding information contained in the dataset.xml NCSS
     document.
@@ -212,12 +215,10 @@ class NCSSDataset(object):
     def _get_handler(self, handler_name):
         handler_name = "handle_" + handler_name
         if handler_name in self._types_methods:
-            handler = getattr(self._types, handler_name)
+            return getattr(self._types, handler_name)
         else:
             msg = "cannot find handler for element {}".format(handler_name)
             logging.error(msg)
-
-        return handler
 
     def _parse_element(self, element):
         element_name = element.tag

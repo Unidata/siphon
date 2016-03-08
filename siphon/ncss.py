@@ -125,7 +125,7 @@ class NCSS(HTTPEndPoint):
         Returns
         -------
         content : bytes
-            The raw, unparsed, data returned by the server
+            The raw, un-parsed, data returned by the server
 
         See Also
         --------
@@ -279,7 +279,8 @@ class ResponseRegistry(object):
             return func
         return dec
 
-    def default(self, content, units):  # pylint:disable=unused-argument
+    @staticmethod
+    def default(content, units):  # pylint:disable=unused-argument
         return content
 
     def __call__(self, resp, unit_handler):

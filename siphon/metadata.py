@@ -15,14 +15,13 @@ log.setLevel(logging.WARNING)
 
 
 class _SimpleTypes(object):
-
     def __init__(self):
-        self._valid = {}
-        self._valid["dataFormat"] = self._load_valid_data_format_types()
-        self._valid["upOrDown"] = self._load_valid_up_or_down()
-        self._valid["dataType"] = self._load_valid_data_types()
+        self._valid = {"dataFormat": self._load_valid_data_format_types(),
+                       "upOrDown": self._load_valid_up_or_down(),
+                       "dataType": self._load_valid_data_types()}
 
-    def _load_valid_data_types(self):
+    @staticmethod
+    def _load_valid_data_types():
         valid = ["grid",
                  "image",
                  "point",
@@ -32,7 +31,8 @@ class _SimpleTypes(object):
                  "trajectory"]
         return valid
 
-    def _load_valid_data_format_types(self):
+    @staticmethod
+    def _load_valid_data_format_types():
         import mimetypes
         valid = ["BUFR",
                  "ESML",
@@ -60,13 +60,13 @@ class _SimpleTypes(object):
                  "video/quicktime",
                  "video/realtime"]
 
-        valid_mime_types = mimetypes.types_map.values()
+        valid_mime_types = list(mimetypes.types_map.values())
         valid.extend(valid_mime_types)
         return valid
 
-    def _load_valid_up_or_down(self):
-        valid = ["up", "down"]
-        return valid
+    @staticmethod
+    def _load_valid_up_or_down():
+        return ["up", "down"]
 
     def handle_upOrDown(self, element):  # noqa
         # name="upOrDown"
@@ -166,40 +166,44 @@ class _SimpleTypes(object):
 
 
 class _ComplexTypes(object):
-
-    def _get_tag_name(self, element):
+    @staticmethod
+    def _get_tag_name(element):
         if "}" in element.tag:
             element_name = element.tag.split('}')[-1]
         else:
             element_name = element.tag
         return element_name
 
-    def _spatial_range_req_children(self):
-        req = ["start",
-               "size"]
-        return req
+    @staticmethod
+    def _spatial_range_req_children():
+        return ["start", "size"]
 
-    def _spatial_range_opt_children(self):
-        opt = ["resolution",
-               "units"]
-        return opt
+    @staticmethod
+    def _spatial_range_opt_children():
+        return ["resolution", "units"]
 
-    def _date_type_formatted_valid_attrs(self):
+    @staticmethod
+    def _date_type_formatted_valid_attrs():
         return ["format", "type"]
 
-    def _controlled_vocatulary_opt_attrs(self):
+    @staticmethod
+    def _controlled_vocatulary_opt_attrs():
         return ["vocabulary"]
 
-    def _variable_opt_attrs(self):
+    @staticmethod
+    def _variable_opt_attrs():
         return ["vocabulary_name", "units"]
 
-    def _variable_req_attrs(self):
+    @staticmethod
+    def _variable_req_attrs():
         return ["name"]
 
-    def _variables_opt_attrs(self):
+    @staticmethod
+    def _variables_opt_attrs():
         return ["vocabulary"]
 
-    def _data_size_req_attrs(self):
+    @staticmethod
+    def _data_size_req_attrs():
         return ["units"]
 
     #
@@ -353,12 +357,12 @@ class _ComplexTypes(object):
         req_attrs = self._variable_req_attrs()
         valid_attrs = opt_attrs + req_attrs
         valid = True
+        variable = {}
         for req_attr in req_attrs:
             if req_attr not in element.attrib:
                 valid = False
                 log.warning("%s must have an attribute %s", type_name,
                             req_attr)
-            variable = {}
         if valid:
             if element.text:
                 variable["description"] = element.text
@@ -368,7 +372,8 @@ class _ComplexTypes(object):
 
         return variable
 
-    def handle_variableMap(self, element):  # noqa
+    @staticmethod
+    def handle_variableMap(element):  # noqa
         # element_name="variableMap"
         #   <xsd:complexType>
         #     <xsd:attributeGroup ref="XLink"/>
@@ -428,8 +433,7 @@ class _ComplexTypes(object):
         #   </xsd:complexType>
         #
         req_attrs = self._data_size_req_attrs()
-        data_size = {}
-        data_size["size"] = float(element.text)
+        data_size = {"size": float(element.text)}
 
         for attr in element.attrib:
             if attr in req_attrs:
@@ -478,8 +482,7 @@ class TDSCatalogMetadata(object):
             # element has inherit set to True
             self.metadata = metadata_in
         else:
-            self.metadata = {}
-            self.metadata["inherited"] = inherited
+            self.metadata = {"inherited": inherited}
 
         element_name = self._get_tag_name(element)
         if element_name == "metadata":
@@ -488,7 +491,8 @@ class TDSCatalogMetadata(object):
         else:
             self._parse_element(element)
 
-    def _get_tag_name(self, element):
+    @staticmethod
+    def _get_tag_name(element):
         if "}" in element.tag:
             element_name = element.tag.split('}')[-1]
         else:
@@ -498,14 +502,12 @@ class TDSCatalogMetadata(object):
     def _get_handler(self, handler_name):
         handler_name = "handle_" + handler_name
         if handler_name in self._cts:
-            handler = getattr(self._ct, handler_name)
+            return getattr(self._ct, handler_name)
         elif handler_name in self._sts:
-            handler = getattr(self._st,  handler_name)
+            return getattr(self._st,  handler_name)
         else:
             msg = "cannot find handler for element {}".format(handler_name)
             log.error(msg)
-
-        return handler
 
     def _parse_element(self, element):
 
