@@ -1,6 +1,11 @@
 # Copyright (c) 2013-2015 Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""
+This module contains code to support reading and parsing
+the dataset.xml documents from the THREDDS Data Server (TDS) netCDF Subset
+Service.
+"""
 
 from __future__ import print_function
 
@@ -11,8 +16,8 @@ log = logging.getLogger("siphon.ncss_dataset")
 
 
 class _Types(object):
-
-    def handle_typed_values(self, val, type_name, value_type):
+    @staticmethod
+    def handle_typed_values(val, type_name, value_type):
         if value_type == "int":
             try:
                 val = val.split()
@@ -49,7 +54,6 @@ class _Types(object):
         return {name: val}
 
     def handle_values(self, element, value_type=None):  # noqa
-
         type_name = "value"
         val = element.text
         if val:
@@ -72,7 +76,8 @@ class _Types(object):
 
         return {"values": val}
 
-    def handle_projectionBox(self, element):  # noqa
+    @staticmethod
+    def handle_projectionBox(element):  # noqa
         type_name = "projectionBox"
         pb = {}
         if element.tag == type_name:
@@ -81,10 +86,12 @@ class _Types(object):
 
         return {type_name: pb}
 
-    def handle_axisRef(self, element):  # noqa
+    @staticmethod
+    def handle_axisRef(element):  # noqa
         return element.attrib["name"]
 
-    def handle_coordTransRef(self, element):  # noqa
+    @staticmethod
+    def handle_coordTransRef(element):  # noqa
         # type_name = "coordTransRef"
         return {"coordTransRef": element.attrib["name"]}
 
@@ -101,12 +108,14 @@ class _Types(object):
 
         return grid
 
-    def handle_parameter(self, element):
+    @staticmethod
+    def handle_parameter(element):
         name = element.attrib["name"]
         value = element.attrib["value"].strip()
         return {name: value}
 
-    def handle_featureDataset(self, element):  # noqa
+    @staticmethod
+    def handle_featureDataset(element):  # noqa
         fd = {}
         for attr in element.attrib:
             fd[attr] = element.attrib[attr]
@@ -117,7 +126,6 @@ class _Types(object):
 
 
 class NCSSDataset(object):
-
     r"""
     An object for holding information contained in the dataset.xml NCSS
     document.
@@ -131,38 +139,33 @@ class NCSSDataset(object):
 
     Attributes
     ----------
-
-    name : variables
+    variables : dict[str, str]
         A dictionary of variables
 
-    name : time_span
+    time_span : dict[str, datetime.datetime]
         A dictionary holding the beginning and ending iso time strings which
         define the temporal bounds of the dataset
 
-    name : featureDataset
+     featureDataset : dict[str, str]
         A dictionary containing the type ["grid", "point"] and location ["url"]
         of the dataset
 
-    name : accept_list
+    accept_list : dict[str, list[str]]
         A dictionary holding the types of valid returns of the dataset by
         access method [Grid, GridAsPoint, PointFeatureCollection]
 
-    Other
-    -----
-
-    name : gridsets
+    gridsets : dict[str, set[str]]
         A dictionary of gridSets contained within the dataset
 
-    name : axes
+    axes : dict[str, object]
         A dictionary of coordinate axes
 
-    name : coordinate_transforms
+    coordinate_transforms : dict[str, object]
         A dictionary of coordinate transforms
 
-    name : lat_lon_box
+    lat_lon_box : dict[str, float]
         A dictionary holding the north, south, east, and west latitude and
         longitude bounds of the dataset (in degree_east, degree_north)
-
     """
 
     def __init__(self, element):
@@ -171,10 +174,9 @@ class NCSSDataset(object):
 
         Parameters
         ----------
-        element : Element
-            An ElementTree Element representing the top level node of an
+        element : :class:`~xml.etree.ElementTree.Element`
+            An :class:`~xml.etree.ElementTree.Element` representing the top level node of an
             NCSS dataset.xml doc
-
         """
         self._types = _Types()
         self._types_methods = _Types.__dict__
@@ -213,12 +215,10 @@ class NCSSDataset(object):
     def _get_handler(self, handler_name):
         handler_name = "handle_" + handler_name
         if handler_name in self._types_methods:
-            handler = getattr(self._types, handler_name)
+            return getattr(self._types, handler_name)
         else:
             msg = "cannot find handler for element {}".format(handler_name)
             logging.error(msg)
-
-        return handler
 
     def _parse_element(self, element):
         element_name = element.tag

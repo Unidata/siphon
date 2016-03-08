@@ -1,6 +1,11 @@
 # Copyright (c) 2013-2015 Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""
+This module contains code to support making data requests to
+the NetCDF subset service (NCSS) on a THREDDS Data Server (TDS). This includes
+forming proper queries as well as parsing the returned data.
+"""
 
 import xml.etree.ElementTree as ET
 import atexit
@@ -15,7 +20,7 @@ from .ncss_dataset import NCSSDataset
 
 
 def default_unit_handler(data, units=None):  # pylint:disable=unused-argument
-    r'Default unit handler, which ignores units and just returns ``numpy.array``'
+    r'Default unit handler, which ignores units and just returns :func:`numpy.array`'
     return np.array(data)
 
 
@@ -27,17 +32,17 @@ class NCSS(HTTPEndPoint):
 
     Attributes
     ----------
-    metadata : ``NCSSDataset`` instance
+    metadata : NCSSDataset
         Contains the result of parsing the NCSS endpoint's dataset.xml. This has
         information about the time and space coverage, as well as full information
         about all of the variables.
-    variables : set of strings
+    variables : set(str)
         Names of all variables available in this dataset
     unit_handler : callable
         Function to handle units that come with CSV/XML data. Should be a callable that
-        takes a list of string values and unit str (can be ``None``), and returns the
+        takes a list of string values and unit str (can be :data:`None`), and returns the
         desired representation of values. Defaults to ignoring units and returning
-        ``numpy.array``.
+        :func:`numpy.array`.
     '''
 
     # Need staticmethod to keep this from becoming a bound method, where self
@@ -56,7 +61,8 @@ class NCSS(HTTPEndPoint):
 
         Returns
         -------
-        ``NCSSQuery`` instance
+        query : NCSSQuery
+            The newly created query
         '''
 
         return NCSSQuery()
@@ -69,7 +75,8 @@ class NCSS(HTTPEndPoint):
 
         Parameters
         ----------
-        query : ``NCSSQuery`` instance
+        query : NCSSQuery
+            The query to validate
 
         Returns
         -------
@@ -88,7 +95,7 @@ class NCSS(HTTPEndPoint):
 
         Parameters
         ----------
-        query : ``NCSSQuery`` instance
+        query : NCSSQuery
             The parameters to send to the NCSS endpoint
 
         Returns
@@ -112,13 +119,13 @@ class NCSS(HTTPEndPoint):
 
         Parameters
         ----------
-        query : ``NCSSQuery`` instance
+        query : NCSSQuery
             The parameters to send to the NCSS endpoint
 
         Returns
         -------
         content : bytes
-            The raw, unparsed, data returned by the server
+            The raw, un-parsed, data returned by the server
 
         See Also
         --------
@@ -131,8 +138,8 @@ class NCSS(HTTPEndPoint):
 class NCSSQuery(DataQuery):
     r'''An object representing a query to the NetCDF Subset Service (NCSS).
 
-    Expands on the queries supported by ``DataQuery`` to add queries specific to
-    NCSS.
+    Expands on the queries supported by :class:`~siphon.http_util.DataQuery` to add queries
+    specific to NCSS.
     '''
     def projection_box(self, min_x, min_y, max_x, max_y):
         r'''Add a bounding box in projected (native) coordinates to the query.
@@ -157,7 +164,7 @@ class NCSSQuery(DataQuery):
 
         Returns
         -------
-        self : ``NCSSQuery`` instance
+        self : NCSSQuery
             Returns self for chaining calls
         '''
 
@@ -168,7 +175,7 @@ class NCSSQuery(DataQuery):
     def accept(self, fmt):
         r'''Set format for data returned from NCSS.
 
-        This modifies the query in-place, but returns ``self`` so that multiple queries
+        This modifies the query in-place, but returns `self` so that multiple queries
         can be chained together on one line.
 
         Parameters
@@ -178,7 +185,7 @@ class NCSSQuery(DataQuery):
 
         Returns
         -------
-        self : ``NCSSQuery`` instance
+        self : NCSSQuery
             Returns self for chaining calls
         '''
 
@@ -188,7 +195,7 @@ class NCSSQuery(DataQuery):
         r'''Sets whether NCSS should add latitude/longitude to returned data.
 
         This is only used on grid requests. Used to make returned data CF-compliant.
-        This modifies the query in-place, but returns ``self`` so that multiple queries
+        This modifies the query in-place, but returns `self` so that multiple queries
         can be chained together on one line.
 
         Parameters
@@ -198,7 +205,7 @@ class NCSSQuery(DataQuery):
 
         Returns
         -------
-        self : ``NCSSQuery`` instance
+        self : NCSSQuery
             Returns self for chaining calls
         '''
 
@@ -208,7 +215,7 @@ class NCSSQuery(DataQuery):
         r'''Set time and/or spatial (horizontal) strides.
 
         This is only used on grid requests. Used to skip points in the returned data.
-        This modifies the query in-place, but returns ``self`` so that multiple queries
+        This modifies the query in-place, but returns `self` so that multiple queries
         can be chained together on one line.
 
         Parameters
@@ -220,7 +227,7 @@ class NCSSQuery(DataQuery):
 
         Returns
         -------
-        self : ``NCSSQuery`` instance
+        self : NCSSQuery
             Returns self for chaining calls
         '''
 
@@ -236,7 +243,7 @@ class NCSSQuery(DataQuery):
         The value depends on the coordinate values for the vertical dimension of the
         requested variable.
 
-        This modifies the query in-place, but returns ``self`` so that multiple queries
+        This modifies the query in-place, but returns `self` so that multiple queries
         can be chained together on one line.
 
         Parameters
@@ -246,7 +253,7 @@ class NCSSQuery(DataQuery):
 
         Returns
         -------
-        self : ``NCSSQuery`` instance
+        self : NCSSQuery
             Returns self for chaining calls
         '''
 
@@ -272,7 +279,8 @@ class ResponseRegistry(object):
             return func
         return dec
 
-    def default(self, content, units):  # pylint:disable=unused-argument
+    @staticmethod
+    def default(content, units):  # pylint:disable=unused-argument
         return content
 
     def __call__(self, resp, unit_handler):

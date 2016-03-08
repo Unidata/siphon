@@ -1,7 +1,11 @@
 # Copyright (c) 2013-2015 Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
-
+"""
+This module contains code to support making data requests to
+the radar data query service (radar server) on a THREDDS Data Server (TDS).
+This includes forming proper queries as well as parsing the returned catalog.
+"""
 import xml.etree.ElementTree as ET
 from collections import namedtuple
 
@@ -12,14 +16,14 @@ from .http_util import BadQueryError, DataQuery, HTTPEndPoint, urljoin
 class RadarQuery(DataQuery):
     r'''An object representing a query to the THREDDS radar server.
 
-    Expands on the queries supported by ``DataQuery`` to add queries specific to
-    the radar data query service.
+    Expands on the queries supported by :class:`~siphon.http_util.DataQuery` to add queries
+    specific to the radar data query service.
     '''
 
     def stations(self, *stns):
         r'''Specify one or more stations for the query.
 
-        This modifies the query in-place, but returns ``self`` so that multiple
+        This modifies the query in-place, but returns `self` so that multiple
         queries can be chained together on one line.
 
         This replaces any existing spatial queries that have been set.
@@ -31,7 +35,7 @@ class RadarQuery(DataQuery):
 
         Returns
         -------
-        self : ``RadarQuery`` instance
+        self : RadarQuery
             Returns self for chaining calls
         '''
 
@@ -47,14 +51,14 @@ class RadarServer(HTTPEndPoint):
 
     Attributes
     ----------
-    metadata : ``TDSCatalogMetadata`` instance
+    metadata : :class:`~siphon.metadata.TDSCatalogMetadata`
         Contains the result of parsing the radar server endpoint's dataset.xml. This has
         information about the time and space coverage, as well as full information
         about all of the variables.
-    variables : set of strings
+    variables : set(str)
         Names of all variables available in this dataset
-    stations : dict of string -> ``Station`` instance
-        Mapping of station ID to a ``Station``, which is a namedtuple containing the
+    stations : dict[str, Station]
+        Mapping of station ID to a :class:`Station`, which is a namedtuple containing the
         station's id, name, latitude, longitude, and elevation.
     '''
 
@@ -63,7 +67,7 @@ class RadarServer(HTTPEndPoint):
 
         Parameters
         ----------
-        url : string
+        url : str
             The base URL for the endpoint
         '''
         xmlfile = '/dataset.xml'
@@ -86,7 +90,8 @@ class RadarServer(HTTPEndPoint):
 
         Returns
         -------
-        ``RadarQuery`` instance
+        RadarQuery
+            The new query
         '''
 
         return RadarQuery()
@@ -99,7 +104,8 @@ class RadarServer(HTTPEndPoint):
 
         Parameters
         ----------
-        query : ``RadarQuery`` instance
+        query : RadarQuery
+            The query to validate
 
         Returns
         -------
@@ -122,21 +128,21 @@ class RadarServer(HTTPEndPoint):
         r'''Fetch a parsed THREDDS catalog from the radar server
 
         Requests a catalog of radar data files data from the radar server given the
-        parameters in `query` and returns a ``TDSCatalog`` instance.
+        parameters in `query` and returns a :class:`~siphon.catalog.TDSCatalog` instance.
 
         Parameters
         ----------
-        query : ``RadarQuery`` instance
+        query : RadarQuery
             The parameters to send to the radar server
 
         Returns
         -------
-        catalog : ``TDSCatalog`` instance
+        catalog : TDSCatalog
             The catalog of matching data files
 
         Raises
         ------
-        BadQueryError
+        :class:`~siphon.http_util.BadQueryError`
             When the query cannot be handled by the server
 
         See Also
@@ -159,7 +165,7 @@ class RadarServer(HTTPEndPoint):
 
         Parameters
         ----------
-        query : ``RadarQuery`` instance
+        query : RadarQuery
             The parameters to send to the radar server
 
         Returns
@@ -188,7 +194,7 @@ def get_radarserver_datasets(server):
 
     Returns
     -------
-    datasets : dict of string -> ``CatalogRef``
+    datasets : dict[str, :class:`~siphon.catalog.CatalogRef`]
         Mapping of dataset name to the catalog reference
     '''
     if server[-1] != '/':
@@ -211,7 +217,7 @@ def parse_station_table(root):
 
 
 def parse_xml_station(elem):
-    r'Create a ``Station`` instance from an XML tag'
+    r'Create a :class:`Station` instance from an XML tag'
     stid = elem.attrib['id']
     name = elem.find('name').text
     lat = float(elem.find('latitude').text)
