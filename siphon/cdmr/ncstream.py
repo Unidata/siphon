@@ -25,7 +25,88 @@ log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
 log.setLevel(logging.WARNING)
 
 
+#
+# NCStream handling
+#
+def read_ncstream_data(fobj):
+    data = read_proto_object(fobj, stream.Data)
+    if data.dataType in (stream.STRING, stream.OPAQUE) or data.vdata:
+        log.debug('Reading string/opaque/vlen')
+        num_obj = read_var_int(fobj)
+        log.debug('Num objects: %d', num_obj)
+        blocks = [read_block(fobj) for _ in range(num_obj)]
+        if data.dataType == stream.STRING:
+            blocks = [b.decode('utf-8', errors='ignore') for b in blocks]
+
+        # Again endian isn't coded properly
+        dt = data_type_to_numpy(data.dataType).newbyteorder('>')
+        if data.vdata:
+            return np.array([np.frombuffer(b, dtype=dt) for b in blocks])
+        else:
+            return np.array(blocks, dtype=dt)
+    elif data.dataType in _dtypeLookup:
+        log.debug('Reading array data')
+        bin_data = read_block(fobj)
+        log.debug('Binary data: %s', bin_data)
+
+        # Hard code to big endian for now since it's not encoded correctly
+        dt = data_type_to_numpy(data.dataType).newbyteorder('>')
+
+        # Handle decompressing the bytes
+        if data.compress == stream.DEFLATE:
+            bin_data = zlib.decompress(bin_data)
+            assert len(bin_data) == data.uncompressedSize
+        elif data.compress != stream.NONE:
+            raise NotImplementedError('Compression type {0} not implemented!'.format(
+                data.compress))
+
+        # Turn bytes into an array
+        return reshape_array(data, np.frombuffer(bin_data, dtype=dt))
+    elif data.dataType == stream.STRUCTURE:
+        sd = read_proto_object(fobj, stream.StructureData)
+
+        # Make a datatype appropriate to the rows of struct
+        endian = '>' if data.bigend else '<'
+        dt = np.dtype([(endian, np.void, sd.rowLength)])
+
+        # Turn bytes into an array
+        return reshape_array(data, np.frombuffer(sd.data, dtype=dt))
+    elif data.dataType == stream.SEQUENCE:
+        log.debug('Reading sequence')
+        blocks = []
+        magic = read_magic(fobj)
+        while magic != MAGIC_VEND:
+            if magic == MAGIC_VDATA:
+                log.error('Bad magic for struct/seq data!')
+            blocks.append(read_proto_object(fobj, stream.StructureData))
+            magic = read_magic(fobj)
+        return data, blocks
+    else:
+        raise NotImplementedError("Don't know how to handle data type: {0}".format(
+            data.dataType))
+
+
+def read_ncstream_data2(fobj):
+    data = read_proto_object(fobj, stream.DataCol)
+    return datacol_to_array(data)
+
+
+def read_ncstream_err(fobj):
+    err = read_proto_object(fobj, stream.Error)
+    raise RuntimeError(err.message)
+
+
+ncstream_table = {MAGIC_HEADER: lambda f: read_proto_object(f, stream.Header),
+                  MAGIC_DATA: read_ncstream_data,
+                  MAGIC_DATA2: read_ncstream_data2,
+                  MAGIC_ERR: read_ncstream_err}
+
+
 def read_ncstream_messages(fobj):
+    return read_messages(fobj, ncstream_table)
+
+
+def read_messages(fobj, magic_table):
     messages = []
 
     while True:
@@ -33,94 +114,21 @@ def read_ncstream_messages(fobj):
         if not magic:
             break
 
-        if magic == MAGIC_HEADER:
-            log.debug('Header chunk')
-            messages.append(stream.Header())
-            messages[0].ParseFromString(read_block(fobj))
-            log.debug('Header: %s', str(messages[0]))
-        elif magic == MAGIC_DATA:
-            log.debug('Data chunk')
-            data = stream.Data()
-            data.ParseFromString(read_block(fobj))
-            log.debug('Data: %s', str(data))
-            if data.dataType in (stream.STRING, stream.OPAQUE) or data.vdata:
-                log.debug('Reading string/opaque/vlen')
-                num_obj = read_var_int(fobj)
-                log.debug('Num objects: %d', num_obj)
-                blocks = [read_block(fobj) for _ in range(num_obj)]
-                if data.dataType == stream.STRING:
-                    blocks = [b.decode('utf-8', errors='ignore') for b in blocks]
-
-                # Again endian isn't coded properly
-                dt = data_type_to_numpy(data.dataType).newbyteorder('>')
-                if data.vdata:
-                    arr = np.array([np.frombuffer(b, dtype=dt) for b in blocks])
-                    messages.append(arr)
-                else:
-                    messages.append(np.array(blocks, dtype=dt))
-            elif data.dataType in _dtypeLookup:
-                log.debug('Reading array data')
-                bin_data = read_block(fobj)
-                log.debug('Binary data: %s', bin_data)
-
-                # Hard code to big endian for now since it's not encoded correctly
-                dt = data_type_to_numpy(data.dataType).newbyteorder('>')
-
-                # Handle decompressing the bytes
-                if data.compress == stream.DEFLATE:
-                    bin_data = zlib.decompress(bin_data)
-                    assert len(bin_data) == data.uncompressedSize
-                elif data.compress != stream.NONE:
-                    raise NotImplementedError('Compression type {0} not implemented!'.format(
-                        data.compress))
-
-                # Turn bytes into an array
-                arr = reshape_array(data, np.frombuffer(bin_data, dtype=dt))
-                messages.append(arr)
-            elif data.dataType == stream.STRUCTURE:
-                log.debug('Reading structure')
-                sd = stream.StructureData()
-                sd.ParseFromString(read_block(fobj))
-                log.debug('StructureData: %s', str(sd))
-
-                # Make a datatype appropriate to the rows of struct
-                endian = '>' if data.bigend else '<'
-                dt = np.dtype([(endian, np.void, sd.rowLength)])
-
-                # Turn bytes into an array
-                arr = reshape_array(data, np.frombuffer(sd.data, dtype=dt))
-                messages.append(arr)
-            elif data.dataType == stream.SEQUENCE:
-                log.debug('Reading sequence')
-                blocks = []
-                magic = read_magic(fobj)
-                while magic != MAGIC_VEND:
-                    if magic == MAGIC_VDATA:
-                        log.error('Bad magic for struct/seq data!')
-                    blocks.append(stream.StructureData())
-                    blocks[0].ParseFromString(read_block(fobj))
-                    magic = read_magic(fobj)
-                messages.append((data, blocks))
-            else:
-                raise NotImplementedError("Don't know how to handle data type: {0}".format(
-                    data.dataType))
-        elif magic == MAGIC_DATA2:
-            log.debug('Data2 chunk')
-            data = stream.DataCol()
-            data.ParseFromString(read_block(fobj))
-
-            log.debug('DataCol:\n%s', str(data))
-            arr = datacol_to_array(data)
-            messages.append(arr)
-
-        elif magic == MAGIC_ERR:
-            err = stream.Error()
-            err.ParseFromString(read_block(fobj))
-            raise RuntimeError(err.message)
+        func = magic_table.get(magic)
+        if func is not None:
+            messages.append(func(fobj))
         else:
             log.error('Unknown magic: ' + str(' '.join('%02x' % b for b in magic)))
 
     return messages
+
+
+def read_proto_object(fobj, klass):
+    log.debug('%s chunk', klass.__name__)
+    obj = klass()
+    obj.ParseFromString(read_block(fobj))
+    log.debug('Header: %s', str(obj))
+    return obj
 
 
 def read_magic(fobj):
