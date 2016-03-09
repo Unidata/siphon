@@ -8,6 +8,7 @@ versioneer.py
 
 # Ignore generated protobuf files
 siphon/cdmr/ncStream_pb2.py
+siphon/cdmr/cdmrfeature_pb2.py
 
 # Don't scan sphinx config
 docs/source/conf.py
