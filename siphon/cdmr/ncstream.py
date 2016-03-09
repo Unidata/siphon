@@ -380,7 +380,7 @@ def read_var_int(file_obj):
     while True:
         # Read next byte
         next_val = ord(file_obj.read(1))
-        val = ((next_val & 0x7F) << shift) | val
+        val |= ((next_val & 0x7F) << shift)
         shift += 7
         if not next_val & 0x80:
             break
