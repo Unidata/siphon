@@ -261,11 +261,6 @@ class Variable(AttributeContainer):
         return index
 
     def load_from_stream(self, var):
-        data, dt, typeName = unpack_variable(var)
-        self._data = data
-        self.dtype = dt
-        self.datatype = typeName
-
         dims = []
         for d in var.shape:
             dim = Dimension(None, d.name)
@@ -276,6 +271,13 @@ class Variable(AttributeContainer):
         self.shape = tuple(dim.size for dim in dims)
         self.ndim = len(var.shape)
         self._unpack_attrs(var.atts)
+
+        data, dt, typeName = unpack_variable(var)
+        if data is not None:
+            data = data.reshape(self.shape)
+        self._data = data
+        self.dtype = dt
+        self.datatype = typeName
 
         if hasattr(var, 'enumType') and var.enumType:
             self.datatype = var.enumType

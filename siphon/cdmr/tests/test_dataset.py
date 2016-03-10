@@ -34,6 +34,10 @@ class TestDataset(object):
         assert 'Temperature_isobaric' in self.ds.variables
         assert 'Convective_available_potential_energy_surface' in self.ds.variables
 
+    def test_header_var_data_shape(self):
+        assert self.ds.variables['height_above_ground_layer1_bounds'].shape == (1, 2)
+        assert self.ds.variables['height_above_ground_layer1_bounds'][:].shape == (1, 2)
+
     @recorder.use_cassette('rap_ncstream_var')
     def test_variable_attrs(self):
         var = self.ds.variables['Temperature_isobaric']
