@@ -12,7 +12,7 @@ from __future__ import print_function
 import logging
 import numpy as np
 
-log = logging.getLogger("siphon.ncss_dataset")
+log = logging.getLogger(__name__)
 
 
 class _Types(object):

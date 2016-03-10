@@ -20,7 +20,7 @@ MAGIC_VDATA = b'\xab\xef\xfe\xba'
 MAGIC_VEND = b'\xed\xef\xfe\xda'
 MAGIC_ERR = b'\xab\xad\xba\xda'
 
-log = logging.getLogger('siphon.ncstream')
+log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
 log.setLevel(logging.WARNING)
 
