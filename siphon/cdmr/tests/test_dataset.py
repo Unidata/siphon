@@ -168,7 +168,8 @@ def test_enum_ds_str():
     "Test converting a dataset with an enum to a str"
     ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/test_enum_type.nc')
     s = str(ds)
-    assert s == ("Dimensions:\n<class 'siphon.cdmr.dataset.Dimension'> name = station, "
+    assert s == ("http://localhost:8080/thredds/cdmremote/nc4/tst/test_enum_type.nc\n"
+                 "Dimensions:\n<class 'siphon.cdmr.dataset.Dimension'> name = station, "
                  "size = 5\nTypes:\ncloud_class_t [<cloud_class_t.Clear: 0>, "
                  "<cloud_class_t.Cumulonimbus: 1>, <cloud_class_t.Stratus: 2>, "
                  "<cloud_class_t.Stratocumulus: 3>, <cloud_class_t.Cumulus: 4>, "
@@ -283,7 +284,8 @@ def test_print():
     "Test that __str__ (or printing) a dataset works"
     ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_groups.nc')
     s = str(ds)
-    truth = """Groups:
+    truth = """http://localhost:8080/thredds/cdmremote/nc4/tst/tst_groups.nc
+Groups:
 g1
 Dimensions:
 <class 'siphon.cdmr.dataset.Dimension'> name = dim, size = 1

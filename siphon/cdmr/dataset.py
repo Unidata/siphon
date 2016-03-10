@@ -116,6 +116,7 @@ class Dataset(Group):
     def __init__(self, url):
         super(Dataset, self).__init__()
         self.cdmr = CDMRemote(url)
+        self.url = url
         self._read_header()
 
     def _read_header(self):
@@ -125,8 +126,8 @@ class Dataset(Group):
         self._header = messages[0]
         self.load_from_stream(self._header.root)
 
-    def __unicode__(self):
-        return self.cdmr.url + '\n' + Group.__unicode__(self)
+    def __str__(self):
+        return self.url + '\n' + super(Dataset, self).__str__()
 
 
 class Variable(AttributeContainer):
