@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2015 Unidata.
+# Copyright (c) 2014-2016 Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 
@@ -12,6 +12,7 @@ from collections import OrderedDict
 import numpy as np
 
 from . import ncStream_pb2 as stream  # noqa
+from . import cdmrfeature_pb2 as cdmrf
 
 MAGIC_HEADER = b'\xad\xec\xce\xda'
 MAGIC_DATA = b'\xab\xec\xce\xba'
@@ -19,6 +20,9 @@ MAGIC_DATA2 = b'\xab\xeb\xbe\xba'
 MAGIC_VDATA = b'\xab\xef\xfe\xba'
 MAGIC_VEND = b'\xed\xef\xfe\xda'
 MAGIC_ERR = b'\xab\xad\xba\xda'
+
+MAGIC_HEADERCOV = b'\xad\xed\xde\xda'
+MAGIC_DATACOV = b'\xab\xed\xde\xba'
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
@@ -106,6 +110,22 @@ def read_ncstream_messages(fobj):
     return read_messages(fobj, ncstream_table)
 
 
+#
+# CDMRemoteFeature handling
+#
+cdmrf_table = {MAGIC_HEADERCOV: lambda f: read_proto_object(f, cdmrf.CoverageDataset),
+               MAGIC_DATACOV: lambda f: read_proto_object(f, cdmrf.CoverageDataResponse),
+               MAGIC_DATA2: read_ncstream_data2,  # For coordinates
+               MAGIC_ERR: read_ncstream_err}
+
+
+def read_cdmrf_messages(fobj):
+    return read_messages(fobj, cdmrf_table)
+
+
+#
+# General Utilities
+#
 def read_messages(fobj, magic_table):
     messages = []
 
