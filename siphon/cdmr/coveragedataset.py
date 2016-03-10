@@ -15,11 +15,14 @@ log.setLevel(logging.WARNING)
 
 
 def reindent_lines(new_leader, source):
+    'Helper for __str__ to re-indent lines'
     return new_leader + ('\n' + new_leader).join(source.split('\n'))
 
 
 class CoverageDataset(AttributeContainer):
+    """Experimental class wrapping dataset access using CDMRemoteFeature and Coverages."""
     def __init__(self, url):
+        "Initialize CoverageDataset from a url pointing to CDMRemoteFeature endpoint"
         super(CoverageDataset, self).__init__()
         warnings.warn('CoverageDataset is in early development, unsupported, and API may '
                       'change at any time.')
@@ -36,10 +39,12 @@ class CoverageDataset(AttributeContainer):
         self._read_header()
 
     def _read_header(self):
+        "Get the needed header information to initialize dataset"
         self._header = self.cdmrf.fetch_header()
         self.load_from_stream(self._header)
 
     def load_from_stream(self, header):
+        "Populate the CoverageDataset from the protobuf information"
         self._unpack_attrs(header.atts)
         self.name = header.name
         self.lon_lat_domain = header.latlonRect
@@ -60,6 +65,7 @@ class CoverageDataset(AttributeContainer):
             self.grids[cov.name] = cov
 
     def __str__(self):
+        "String representation of CoverageDataset"
         print_groups = []
         if self.name:
             print_groups.append(self.name + ' (' + str(self.type) + ')')

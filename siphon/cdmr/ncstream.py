@@ -33,6 +33,7 @@ log.setLevel(logging.WARNING)
 # NCStream handling
 #
 def read_ncstream_data(fobj):
+    'Handle reading an NcStream v1 data block from a file-like object'
     data = read_proto_object(fobj, stream.Data)
     if data.dataType in (stream.STRING, stream.OPAQUE) or data.vdata:
         log.debug('Reading string/opaque/vlen')
@@ -91,11 +92,13 @@ def read_ncstream_data(fobj):
 
 
 def read_ncstream_data2(fobj):
+    'Handle reading an NcStream v2 data block from a file-like object'
     data = read_proto_object(fobj, stream.DataCol)
     return datacol_to_array(data)
 
 
 def read_ncstream_err(fobj):
+    'Handle reading an NcStream error from a file-like object and raise as error'
     err = read_proto_object(fobj, stream.Error)
     raise RuntimeError(err.message)
 
@@ -107,6 +110,7 @@ ncstream_table = {MAGIC_HEADER: lambda f: read_proto_object(f, stream.Header),
 
 
 def read_ncstream_messages(fobj):
+    'Read a collection of NcStream messages from a file-like object'
     return read_messages(fobj, ncstream_table)
 
 
@@ -120,6 +124,7 @@ cdmrf_table = {MAGIC_HEADERCOV: lambda f: read_proto_object(f, cdmrf.CoverageDat
 
 
 def read_cdmrf_messages(fobj):
+    'Read a collection of CDMRemoteFeature messages from a file-like object'
     return read_messages(fobj, cdmrf_table)
 
 
@@ -127,6 +132,7 @@ def read_cdmrf_messages(fobj):
 # General Utilities
 #
 def read_messages(fobj, magic_table):
+    "General function to read messages from a file-like object until stream is exhausted."
     messages = []
 
     while True:
@@ -144,6 +150,7 @@ def read_messages(fobj, magic_table):
 
 
 def read_proto_object(fobj, klass):
+    "Read a block of data and parse using the given protobuf object"
     log.debug('%s chunk', klass.__name__)
     obj = klass()
     obj.ParseFromString(read_block(fobj))

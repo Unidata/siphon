@@ -16,9 +16,12 @@ def get_fixed_url():
 
 
 class TestDataset(object):
+    'Various tests of basic Dataset functionality'
+
     @classmethod
     @recorder.use_cassette('rap_ncstream_header')
     def setup_class(cls):
+        'Set up all tests to use the same url'
         cls.ds = Dataset(get_fixed_url())
 
     def test_str_attr(self):
@@ -27,19 +30,23 @@ class TestDataset(object):
         assert hasattr(self.ds, 'Conventions')
 
     def test_dataset(self):
+        'Test handling of global attributes'
         assert hasattr(self.ds, 'Conventions')
         assert 'featureType' in self.ds.ncattrs()
 
     def test_variable(self):
+        'Test presence of variables'
         assert 'Temperature_isobaric' in self.ds.variables
         assert 'Convective_available_potential_energy_surface' in self.ds.variables
 
     def test_header_var_data_shape(self):
+        'Test that variable data present in header is given proper shape'
         assert self.ds.variables['height_above_ground_layer1_bounds'].shape == (1, 2)
         assert self.ds.variables['height_above_ground_layer1_bounds'][:].shape == (1, 2)
 
     @recorder.use_cassette('rap_ncstream_var')
     def test_variable_attrs(self):
+        'Test that attributes are assigned properly to variables'
         var = self.ds.variables['Temperature_isobaric']
         assert hasattr(var, 'units')
         assert 'long_name' in var.ncattrs()
