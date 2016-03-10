@@ -18,3 +18,11 @@ def test_simple_cdmremotefeature():
     cd = CoverageDataset('http://localhost:8080/thredds/cdmrfeature/grid/'
                          'test/HRRR_CONUS_2p5km_20160309_1600.grib2')
     assert cd.grids
+
+
+@recorder.use_cassette('hrrr_cdmremotefeature')
+def test_simple_cdmremotefeature_str():
+    'Just a smoke test for converting CoverageDataset to str'
+    cd = CoverageDataset('http://localhost:8080/thredds/cdmrfeature/grid/'
+                         'test/HRRR_CONUS_2p5km_20160309_1600.grib2')
+    assert str(cd)
