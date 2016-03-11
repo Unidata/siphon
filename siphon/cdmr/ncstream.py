@@ -344,7 +344,7 @@ def unpack_variable(var):
 
     if var.data:
         log.debug('Storing variable data: %s %s', dt, var.data)
-        if var.dataType is str:
+        if var.dataType == stream.STRING:
             data = var.data
         else:
             # Always sent big endian
