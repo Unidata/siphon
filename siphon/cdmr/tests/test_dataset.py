@@ -305,6 +305,14 @@ def test_scalar():
     assert data['field1']['x'] == 1
 
 
+@recorder.use_cassette('nc4_unsigned')
+def test_unsigned_var():
+    "Test handling of unsigned variables"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/test_atomic_types.nc')
+    var = ds.variables['vu64']
+    assert var[:] == 18446744073709551615
+
+
 @recorder.use_cassette('nc4_groups')
 def test_print():
     "Test that __str__ (or printing) a dataset works"
