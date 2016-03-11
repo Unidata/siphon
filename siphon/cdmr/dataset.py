@@ -150,7 +150,8 @@ class Variable(AttributeContainer):
 
     def __getitem__(self, ind):
         if self._data is not None:
-            return self._data[ind]
+            # For scalars, don't slice
+            return self._data if not self.shape else self._data[ind]
         else:
             ind, keep_dims = self._process_indices(ind)
 

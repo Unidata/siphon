@@ -94,6 +94,14 @@ def test_tds5_empty_atts():
     assert ds.testShortArray0 is None
 
 
+@recorder.use_cassette('tds5_unsigned')
+def test_tds5_unsigned():
+    "Test handling of unsigned variables coming from TDS5"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/test_atomic_types.nc')
+    var = ds.variables['vu64']
+    assert var[:] == 18446744073709551615
+
+
 @recorder.use_cassette('tds5_vlen')
 def test_tds5_attr():
     "Test handling TDS 5's new attributes"
