@@ -2,7 +2,7 @@
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 
-from io import BytesIO, StringIO
+from io import BytesIO
 from siphon.testing import get_recorder
 from siphon.cdmr.ncstream import read_ncstream_messages, read_var_int
 from siphon.cdmr.ncStream_pb2 import Header
@@ -63,6 +63,13 @@ def test_local_data():
 def test_bad_magic():
     'Test that we get notified of bad magic bytes in stream'
     import logging
+    import sys
+
+    # Only StringIO's version supports writing str
+    if sys.version_info.major == 2:
+        from StringIO import StringIO
+    else:
+        from io import StringIO
 
     # Set up capturing of logging
     log = logging.getLogger('siphon.cdmr.ncstream')
