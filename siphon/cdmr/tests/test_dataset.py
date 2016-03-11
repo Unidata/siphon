@@ -87,6 +87,13 @@ def test_tds5_basic():
                               np.array([[9., 10.5], [9.25, 10.75]], dtype=np.float32))
 
 
+@recorder.use_cassette('tds5_empty_att')
+def test_tds5_empty_atts():
+    "Test handling of empty attributes"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/testEmptyAtts.nc')
+    assert ds.testShortArray0 is None
+
+
 @recorder.use_cassette('tds5_vlen')
 def test_tds5_attr():
     "Test handling TDS 5's new attributes"
