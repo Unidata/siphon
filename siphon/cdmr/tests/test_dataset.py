@@ -51,6 +51,17 @@ class TestDataset(object):
         assert hasattr(var, 'units')
         assert 'long_name' in var.ncattrs()
 
+    def test_var_group(self):
+        'Test that Variables have correct group pointer'
+        var = self.ds.variables['Temperature_isobaric']
+        assert var.group() is self.ds
+
+    def test_dims(self):
+        'Test that Dimensions have correct properties'
+        dim = self.ds.dimensions['x']
+        assert dim.group() is self.ds
+        assert not dim.isunlimited()
+
 
 @recorder.use_cassette('rap_compressed')
 def test_compression():
@@ -358,7 +369,7 @@ class TestIndexing(object):
     @recorder.use_cassette('rap_ncstream_slices')
     def test_slices(self):
         subset = self.var[1:2, 1:3, 4:7, 8:12]
-        assert subset.shape, (1, 2, 3 == 4)
+        assert subset.shape == (1, 2, 3, 4)
 
     @recorder.use_cassette('rap_ncstream_first_index')
     def test_first_index(self):
@@ -396,7 +407,13 @@ class TestIndexing(object):
         subset = self.var[0, 0, :3, :]
         assert subset.shape, (3 == self.var.shape[-1])
 
+    @recorder.use_cassette('rap_ncstream_slice_beyond_end')
+    def test_slices_long(self):
+        'Test that we can use slices that go beyond last index'
+        subset = self.var[0, 0, :3, 0:1200]
+        assert subset.shape == (3, self.var.shape[-1])
+
     @recorder.use_cassette('rap_ncstream_decimation')
     def test_decimation(self):
         subset = self.var[0, 0, ::2, ::2]
-        assert subset.shape, ((self.var.shape[-2] + 1)//2 == (self.var.shape[-1] + 1)//2)
+        assert subset.shape == ((self.var.shape[-2] + 1)//2, (self.var.shape[-1] + 1)//2)
