@@ -1,0 +1,26 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.2+112.gf2f8041.dirty)]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmremote/nc4/testEmptyAtts.nc?req=header
+  response:
+    body:
+      string: !!binary |
+        rezO2vkBCjxodHRwOi8vbG9jYWxob3N0OjgwODAvdGhyZWRkcy9jZG1yZW1vdGUvbmM0L3Rlc3RF
+        bXB0eUF0dHMubmMitgEqFAoQdGVzdERvdWJsZUFycmF5MDgGKiAKEHRlc3REb3VibGVBcnJheTEY
+        ASIIQAqj1wo9cKQ4BioTCg90ZXN0U2hvcnRBcnJheTA4AioZCg90ZXN0U2hvcnRBcnJheTEYASIC
+        AAM4AioQCgh0ZXh0TnVsbBgBKgA4ByoQCgh0ZXh0TGVuMBgBKgA4ByoSCg50ZXN0RW1wdHlBcnJh
+        eTgHKhQKDHRlc3RPbmVBcnJheRgBKgA4BygB
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Description: [ncstream]
+      Content-Type: [application/octet-stream]
+      Date: ['Fri, 11 Mar 2016 17:50:26 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+version: 1

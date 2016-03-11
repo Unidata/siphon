@@ -16,9 +16,12 @@ def get_fixed_url():
 
 
 class TestDataset(object):
+    'Various tests of basic Dataset functionality'
+
     @classmethod
     @recorder.use_cassette('rap_ncstream_header')
     def setup_class(cls):
+        'Set up all tests to use the same url'
         cls.ds = Dataset(get_fixed_url())
 
     def test_str_attr(self):
@@ -27,18 +30,37 @@ class TestDataset(object):
         assert hasattr(self.ds, 'Conventions')
 
     def test_dataset(self):
+        'Test handling of global attributes'
         assert hasattr(self.ds, 'Conventions')
         assert 'featureType' in self.ds.ncattrs()
 
     def test_variable(self):
+        'Test presence of variables'
         assert 'Temperature_isobaric' in self.ds.variables
         assert 'Convective_available_potential_energy_surface' in self.ds.variables
 
+    def test_header_var_data_shape(self):
+        'Test that variable data present in header is given proper shape'
+        assert self.ds.variables['height_above_ground_layer1_bounds'].shape == (1, 2)
+        assert self.ds.variables['height_above_ground_layer1_bounds'][:].shape == (1, 2)
+
     @recorder.use_cassette('rap_ncstream_var')
     def test_variable_attrs(self):
+        'Test that attributes are assigned properly to variables'
         var = self.ds.variables['Temperature_isobaric']
         assert hasattr(var, 'units')
         assert 'long_name' in var.ncattrs()
+
+    def test_var_group(self):
+        'Test that Variables have correct group pointer'
+        var = self.ds.variables['Temperature_isobaric']
+        assert var.group() is self.ds
+
+    def test_dims(self):
+        'Test that Dimensions have correct properties'
+        dim = self.ds.dimensions['x']
+        assert dim.group() is self.ds
+        assert not dim.isunlimited()
 
 
 @recorder.use_cassette('rap_compressed')
@@ -63,6 +85,21 @@ def test_tds5_basic():
     assert temp_sub.shape == (2, 2)
     assert_array_almost_equal(temp_sub,
                               np.array([[9., 10.5], [9.25, 10.75]], dtype=np.float32))
+
+
+@recorder.use_cassette('tds5_empty_att')
+def test_tds5_empty_atts():
+    "Test handling of empty attributes"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/testEmptyAtts.nc')
+    assert ds.testShortArray0 is None
+
+
+@recorder.use_cassette('tds5_unsigned')
+def test_tds5_unsigned():
+    "Test handling of unsigned variables coming from TDS5"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/test_atomic_types.nc')
+    var = ds.variables['vu64']
+    assert var[:] == 18446744073709551615
 
 
 @recorder.use_cassette('tds5_vlen')
@@ -157,7 +194,8 @@ def test_enum_ds_str():
     "Test converting a dataset with an enum to a str"
     ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/test_enum_type.nc')
     s = str(ds)
-    assert s == ("Dimensions:\n<class 'siphon.cdmr.dataset.Dimension'> name = station, "
+    assert s == ("http://localhost:8080/thredds/cdmremote/nc4/tst/test_enum_type.nc\n"
+                 "Dimensions:\n<class 'siphon.cdmr.dataset.Dimension'> name = station, "
                  "size = 5\nTypes:\ncloud_class_t [<cloud_class_t.Clear: 0>, "
                  "<cloud_class_t.Cumulonimbus: 1>, <cloud_class_t.Stratus: 2>, "
                  "<cloud_class_t.Stratocumulus: 3>, <cloud_class_t.Cumulus: 4>, "
@@ -267,12 +305,21 @@ def test_scalar():
     assert data['field1']['x'] == 1
 
 
+@recorder.use_cassette('nc4_unsigned')
+def test_unsigned_var():
+    "Test handling of unsigned variables"
+    ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/test_atomic_types.nc')
+    var = ds.variables['vu64']
+    assert var[:] == 18446744073709551615
+
+
 @recorder.use_cassette('nc4_groups')
 def test_print():
     "Test that __str__ (or printing) a dataset works"
     ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_groups.nc')
     s = str(ds)
-    truth = """Groups:
+    truth = """http://localhost:8080/thredds/cdmremote/nc4/tst/tst_groups.nc
+Groups:
 g1
 Dimensions:
 <class 'siphon.cdmr.dataset.Dimension'> name = dim, size = 1
@@ -345,7 +392,7 @@ class TestIndexing(object):
     @recorder.use_cassette('rap_ncstream_slices')
     def test_slices(self):
         subset = self.var[1:2, 1:3, 4:7, 8:12]
-        assert subset.shape, (1, 2, 3 == 4)
+        assert subset.shape == (1, 2, 3, 4)
 
     @recorder.use_cassette('rap_ncstream_first_index')
     def test_first_index(self):
@@ -383,7 +430,13 @@ class TestIndexing(object):
         subset = self.var[0, 0, :3, :]
         assert subset.shape, (3 == self.var.shape[-1])
 
+    @recorder.use_cassette('rap_ncstream_slice_beyond_end')
+    def test_slices_long(self):
+        'Test that we can use slices that go beyond last index'
+        subset = self.var[0, 0, :3, 0:1200]
+        assert subset.shape == (3, self.var.shape[-1])
+
     @recorder.use_cassette('rap_ncstream_decimation')
     def test_decimation(self):
         subset = self.var[0, 0, ::2, ::2]
-        assert subset.shape, ((self.var.shape[-2] + 1)//2 == (self.var.shape[-1] + 1)//2)
+        assert subset.shape == ((self.var.shape[-2] + 1)//2, (self.var.shape[-1] + 1)//2)

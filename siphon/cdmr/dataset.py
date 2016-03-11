@@ -10,7 +10,7 @@ from collections import OrderedDict
 from .cdmremote import CDMRemote
 from .ncstream import unpack_attribute, unpack_variable
 
-log = logging.getLogger('siphon.cdmr')
+log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
 log.setLevel(logging.WARNING)
 
@@ -116,6 +116,7 @@ class Dataset(Group):
     def __init__(self, url):
         super(Dataset, self).__init__()
         self.cdmr = CDMRemote(url)
+        self.url = url
         self._read_header()
 
     def _read_header(self):
@@ -125,8 +126,8 @@ class Dataset(Group):
         self._header = messages[0]
         self.load_from_stream(self._header.root)
 
-    def __unicode__(self):
-        return self.cdmr.url + '\n' + Group.__unicode__(self)
+    def __str__(self):
+        return self.url + '\n' + super(Dataset, self).__str__()
 
 
 class Variable(AttributeContainer):
@@ -149,7 +150,8 @@ class Variable(AttributeContainer):
 
     def __getitem__(self, ind):
         if self._data is not None:
-            return self._data[ind]
+            # For scalars, don't slice
+            return self._data if not self.shape else self._data[ind]
         else:
             ind, keep_dims = self._process_indices(ind)
 
@@ -261,11 +263,6 @@ class Variable(AttributeContainer):
         return index
 
     def load_from_stream(self, var):
-        data, dt, typeName = unpack_variable(var)
-        self._data = data
-        self.dtype = dt
-        self.datatype = typeName
-
         dims = []
         for d in var.shape:
             dim = Dimension(None, d.name)
@@ -276,6 +273,13 @@ class Variable(AttributeContainer):
         self.shape = tuple(dim.size for dim in dims)
         self.ndim = len(var.shape)
         self._unpack_attrs(var.atts)
+
+        data, dt, typeName = unpack_variable(var)
+        if data is not None:
+            data = data.reshape(self.shape)
+        self._data = data
+        self.dtype = dt
+        self.datatype = typeName
 
         if hasattr(var, 'enumType') and var.enumType:
             self.datatype = var.enumType

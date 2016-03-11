@@ -19,7 +19,8 @@ except ImportError:
     # Python 3
     from urllib.parse import urljoin
 
-log = logging.getLogger("siphon.catalog")
+log = logging.getLogger(__name__)
+log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
 log.setLevel(logging.WARNING)
 
 

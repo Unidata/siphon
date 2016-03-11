@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.3.2+102.gc1c3580.dirty)]
+    method: GET
+    uri: http://localhost:8080/thredds/cdmrfeature/grid/test/HRRR_CONUS_2p5km_20160309_1600.grib2?req=featureType
+  response:
+    body: {string: GRID}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Disposition: [inline;filename=f.txt]
+      Content-Length: ['4']
+      Content-Type: [text/plain;charset=UTF-8]
+      Date: ['Thu, 10 Mar 2016 22:46:13 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+version: 1

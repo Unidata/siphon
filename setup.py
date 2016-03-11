@@ -73,7 +73,7 @@ setup(
         'netcdf': 'netCDF4>=1.1.0',
         'dev': 'ipython[all]>=3.1',
         'test': ['pytest', 'pytest-runner', 'netCDF4>=1.1.0',
-                 'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3'],
+                 'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3', 'xarray>=0.6'],
         'doc': ['sphinx>=1.3', 'nbconvert>=4.0', 'IPython>=4.0'],
         'examples': 'matplotlib>=1.3'
     },
