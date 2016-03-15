@@ -1,11 +1,11 @@
 Siphon
 ======
 
-|License|
+|License| |Travis| |AppVeyor|
 
 |PyPI| |PyPIDownloads| |Conda| |CondaDownloads|
 
-|Travis| |CodeCov| |Codacy| |QuantifiedCode|
+|CodeCov| |Codacy| |QuantifiedCode|
 
 |LatestDocs| |StableDocs|
 
@@ -32,6 +32,10 @@ Siphon
 .. |Travis| image:: https://travis-ci.org/Unidata/siphon.svg?branch=master
     :target: https://travis-ci.org/Unidata/siphon
     :alt: Travis Build Status
+
+.. |AppVeyor| image:: https://ci.appveyor.com/api/projects/status/stxqunhdyqu75u3r/branch/master?svg=true
+    :target: https://ci.appveyor.com/project/Unidata/siphon/branch/master
+    :alt: AppVeyor Build Status
 
 .. |CodeCov| image:: https://codecov.io/github/Unidata/siphon/coverage.svg?branch=master
     :target: https://codecov.io/github/Unidata/siphon?branch=master
