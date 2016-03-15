@@ -39,3 +39,7 @@ test_script:
     - cmd: if %PYTHON_VERSION% == 2.7 find examples\notebooks -name "*.ipynb" -exec sed -i -e s/python3/python2/ {} ;
     - cmd: python setup.py test --addopts --cov=siphon
     - cmd: find examples\notebooks\ -name "*.ipynb" -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=120 --inplace
+
+after_test:
+    - cmd: pip install codecov
+    - cmd: codecov
