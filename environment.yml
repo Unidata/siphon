@@ -1,19 +1,19 @@
 # Create full conda environment for development, including some useful tools
 name: devel
 channels:
-  - https://conda.binstar.org/Unidata
+  - https://conda.binstar.org/conda-forge
 dependencies:
   - python=3
-  - numpy
-  - scipy
-  - matplotlib
-  - pint
   - requests
   - protobuf
   - netcdf4
-  - ipython-notebook
+  - jupyter
   - sphinx
   - pytest
+  - pytest-cov
   - vcrpy
   - flake8
   - pep8-naming
+  - matplotlib
+  - xarray
+  - jupyter_client!=4.2.1
