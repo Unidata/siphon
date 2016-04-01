@@ -21,7 +21,7 @@ except ImportError:
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
-log.setLevel(logging.WARNING)
+log.setLevel(logging.ERROR)
 
 
 class TDSCatalog(object):
