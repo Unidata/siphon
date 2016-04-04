@@ -19,3 +19,4 @@ dependencies:
   - pep8-naming
   - matplotlib
   - xarray
+  - cartopy
