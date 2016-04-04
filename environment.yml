@@ -1,7 +1,7 @@
 # Create full conda environment for development, including some useful tools
 name: devel
 channels:
-  - https://conda.binstar.org/conda-forge
+  - https://conda.anaconda.org/conda-forge
 dependencies:
   - python=3
   - requests
@@ -16,4 +16,3 @@ dependencies:
   - pep8-naming
   - matplotlib
   - xarray
-  - jupyter_client!=4.2.1
