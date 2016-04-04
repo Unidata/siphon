@@ -89,3 +89,21 @@ class TestCatalog(object):
         ref_name = 'Forecast Model Data'
         cat = TDSCatalog(url).catalog_refs[ref_name].follow()
         assert cat
+
+    @recorder.use_cassette('top_level_20km_rap_catalog')
+    def test_datasets_order(self):
+        url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+               'CONUS_20km/noaaport/catalog.xml')
+        cat = TDSCatalog(url)
+        assert list(cat.datasets) == ['Full Collection (Reference / Forecast Time) Dataset',
+                                      'Best NAM CONUS 20km Time Series',
+                                      'Latest Collection for NAM CONUS 20km']
+
+    @recorder.use_cassette('top_level_cat')
+    def test_catalog_ref_order(self):
+        url = 'http://thredds.ucar.edu/thredds/catalog.xml'
+        cat = TDSCatalog(url)
+        assert list(cat.catalog_refs) == ['Forecast Model Data',
+                                          'Forecast Products and Analyses', 'Observation Data',
+                                          'Radar Data', 'Satellite Data',
+                                          'Unidata case studies']

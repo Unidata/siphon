@@ -9,6 +9,7 @@ the latest dataset and finding proper URLs to access the data.
 
 import logging
 import xml.etree.ElementTree as ET
+from collections import OrderedDict
 
 from .metadata import TDSCatalogMetadata
 from .http_util import create_http_session, urlopen
@@ -80,9 +81,9 @@ class TDSCatalog(object):
         else:
             self.catalog_name = "No name found"
 
-        self.datasets = {}
+        self.datasets = OrderedDict()
         self.services = []
-        self.catalog_refs = {}
+        self.catalog_refs = OrderedDict()
         self.metadata = {}
         service_skip_count = 0
         service_skip = 0
