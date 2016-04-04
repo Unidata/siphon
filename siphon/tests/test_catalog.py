@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 import logging
+import warnings
 
 from siphon.testing import get_recorder
 from siphon.catalog import TDSCatalog, get_latest_access_url
@@ -75,10 +76,12 @@ class TestCatalog(object):
 
     @recorder.use_cassette('html_then_xml_catalog')
     def test_html_link(self):
-        url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
-               'grib/NCEP/RAP/CONUS_13km/catalog.html')
-        cat = TDSCatalog(url)
-        assert cat
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
+                   'grib/NCEP/RAP/CONUS_13km/catalog.html')
+            cat = TDSCatalog(url)
+            assert cat
 
     @recorder.use_cassette('follow_cat')
     def test_catalog_follow(self):
