@@ -1,11 +1,14 @@
 # Create full conda environment for development, including some useful tools
 name: devel
 channels:
-  - https://conda.binstar.org/conda-forge
+  - https://conda.anaconda.org/conda-forge
 dependencies:
   - python=3
   - requests
   - protobuf
+  # Work around current conda-forge packages on windows downloading
+  # too new of an hdf5
+  - hdf5 < 1.8.16
   - netcdf4
   - jupyter
   - sphinx
@@ -16,4 +19,3 @@ dependencies:
   - pep8-naming
   - matplotlib
   - xarray
-  - jupyter_client!=4.2.1
