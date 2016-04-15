@@ -1,9 +1,11 @@
 Siphon
 ======
 
-|License| |Travis| |AppVeyor|
+|License| |PRWelcome|
 
 |PyPI| |PyPIDownloads| |Conda| |CondaDownloads|
+
+|Travis| |AppVeyor|
 
 |CodeCov| |Codacy| |QuantifiedCode|
 
@@ -56,6 +58,10 @@ Siphon
 .. |StableDocs| image:: https://readthedocs.org/projects/pip/badge/?version=stable
     :target: http://siphon.readthedocs.org/en/stable/
     :alt: Stable Doc Build Status
+
+.. |PRWelcome| image:: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=round-square
+    :target: https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github
+    :alt: PRs Welcome
 
 Siphon is a collection of Python utilities for downloading data from Unidata
 data technologies.
