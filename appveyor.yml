@@ -39,7 +39,7 @@ build: off
 test_script:
     - cmd: python setup.py test --addopts --cov=siphon
     - cmd: cd examples/notebooks
-    - cmd: find . -name "*.ipynb" -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=120 --ExecutePreprocessor.kernel_name=devel --inplace
+    - cmd: find . -name "*.ipynb" -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=180 --ExecutePreprocessor.kernel_name=devel --inplace
     - cmd: cd ../..
 
 after_test:
