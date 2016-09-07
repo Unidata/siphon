@@ -15,10 +15,10 @@ from .metadata import TDSCatalogMetadata
 from .http_util import create_http_session, urlopen
 
 try:
-    from urlparse import urljoin
+    from urlparse import urljoin, urlparse
 except ImportError:
     # Python 3
-    from urllib.parse import urljoin
+    from urllib.parse import urljoin, urlparse
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
@@ -277,7 +277,14 @@ class Dataset(object):
                 service_name = metadata["serviceName"]
 
         access_urls = {}
-        server_url = catalog_url.split('/thredds/')[0]
+        if catalog_url.find('/thredds/') >= 0:
+            server_url = catalog_url.split('/thredds/')[0]
+        else:
+            url_components = urlparse(catalog_url)
+            if url_components.path:
+                server_url = catalog_url.split(url_components.path)[0]
+            else:
+                server_url = catalog_url
 
         found_service = None
         if service_name:
