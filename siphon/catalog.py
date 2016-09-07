@@ -56,7 +56,7 @@ class TDSCatalog(object):
         """
         # top level server url
         self.catalog_url = catalog_url
-        self.base_tds_url = catalog_url.split('/thredds/')[0]
+        self.base_tds_url = _find_base_tds_url(catalog_url)
 
         session = create_http_session()
 
@@ -277,14 +277,7 @@ class Dataset(object):
                 service_name = metadata["serviceName"]
 
         access_urls = {}
-        if catalog_url.find('/thredds/') >= 0:
-            server_url = catalog_url.split('/thredds/')[0]
-        else:
-            url_components = urlparse(catalog_url)
-            if url_components.path:
-                server_url = catalog_url.split(url_components.path)[0]
-            else:
-                server_url = catalog_url
+        server_url = _find_base_tds_url(catalog_url)
 
         found_service = None
         if service_name:
@@ -375,6 +368,18 @@ class CompoundService(object):
         self.services = services
         self.number_of_subservices = subservices
 
+
+def _find_base_tds_url(catalog_url):
+    """
+    Identify the base URL of the THREDDS server from the catalog URL.
+
+    Will retain URL scheme, host, port and username/password when present.
+    """
+    url_components = urlparse(catalog_url)
+    if url_components.path:
+        return catalog_url.split(url_components.path)[0]
+    else:
+        return catalog_url
 
 def _get_latest_cat(catalog_url):
     r"""
