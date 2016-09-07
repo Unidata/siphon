@@ -381,6 +381,7 @@ def _find_base_tds_url(catalog_url):
     else:
         return catalog_url
 
+
 def _get_latest_cat(catalog_url):
     r"""
     Get the latest dataset catalog from the supplied top level dataset catalog
