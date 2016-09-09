@@ -15,10 +15,10 @@ from .metadata import TDSCatalogMetadata
 from .http_util import create_http_session, urlopen
 
 try:
-    from urlparse import urljoin
+    from urlparse import urljoin, urlparse
 except ImportError:
     # Python 3
-    from urllib.parse import urljoin
+    from urllib.parse import urljoin, urlparse
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
@@ -56,7 +56,7 @@ class TDSCatalog(object):
         """
         # top level server url
         self.catalog_url = catalog_url
-        self.base_tds_url = catalog_url.split('/thredds/')[0]
+        self.base_tds_url = _find_base_tds_url(catalog_url)
 
         session = create_http_session()
 
@@ -277,7 +277,7 @@ class Dataset(object):
                 service_name = metadata["serviceName"]
 
         access_urls = {}
-        server_url = catalog_url.split('/thredds/')[0]
+        server_url = _find_base_tds_url(catalog_url)
 
         found_service = None
         if service_name:
@@ -367,6 +367,19 @@ class CompoundService(object):
 
         self.services = services
         self.number_of_subservices = subservices
+
+
+def _find_base_tds_url(catalog_url):
+    """
+    Identify the base URL of the THREDDS server from the catalog URL.
+
+    Will retain URL scheme, host, port and username/password when present.
+    """
+    url_components = urlparse(catalog_url)
+    if url_components.path:
+        return catalog_url.split(url_components.path)[0]
+    else:
+        return catalog_url
 
 
 def _get_latest_cat(catalog_url):
