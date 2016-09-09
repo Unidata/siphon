@@ -1,0 +1,76 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.4.0+17.gb19adc3.dirty)]
+    method: GET
+    uri: http://ereeftds.bom.gov.au/ereefs/tds/catalog/ereef/mwq/P1A/catalog.xml
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<catalog xmlns=\"\
+        http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\" xmlns:xlink=\"\
+        http://www.w3.org/1999/xlink\" version=\"1.0.1\">\r\n  <service name=\"nongrid\"\
+        \ serviceType=\"Compound\" base=\"\">\r\n    <service name=\"ncdods\" serviceType=\"\
+        OPENDAP\" base=\"/ereefs/tds/dodsC/\" />\r\n    <service name=\"HTTPServer\"\
+        \ serviceType=\"HTTPServer\" base=\"/ereefs/tds/fileServer/\" />\r\n  </service>\r\
+        \n  <dataset name=\"P1A\" ID=\"mwq/P1A\">\r\n    <metadata inherited=\"true\"\
+        >\r\n      <serviceName>nongrid</serviceName>\r\n      <authority>au.gov.bom</authority>\r\
+        \n      <dataType>GRID</dataType>\r\n      <dataFormat>netCDF</dataFormat>\r\
+        \n      <documentation type=\"rights\">Registered research users only</documentation>\r\
+        \n    </metadata>\r\n    <dataset name=\"A20020101.P1A.ANN_MIM_RMP.nc\" ID=\"\
+        mwq/P1A/A20020101.P1A.ANN_MIM_RMP.nc\" urlPath=\"ereef/mwq/P1A/A20020101.P1A.ANN_MIM_RMP.nc\"\
+        >\r\n      <dataSize units=\"Mbytes\">94.89</dataSize>\r\n      <date type=\"\
+        modified\">2014-03-09T20:51:38Z</date>\r\n    </dataset>\r\n    <dataset name=\"\
+        A20030101.P1A.ANN_MIM_RMP.nc\" ID=\"mwq/P1A/A20030101.P1A.ANN_MIM_RMP.nc\"\
+        \ urlPath=\"ereef/mwq/P1A/A20030101.P1A.ANN_MIM_RMP.nc\">\r\n      <dataSize\
+        \ units=\"Mbytes\">97.71</dataSize>\r\n      <date type=\"modified\">2014-03-09T21:12:03Z</date>\r\
+        \n    </dataset>\r\n    <dataset name=\"A20040101.P1A.ANN_MIM_RMP.nc\" ID=\"\
+        mwq/P1A/A20040101.P1A.ANN_MIM_RMP.nc\" urlPath=\"ereef/mwq/P1A/A20040101.P1A.ANN_MIM_RMP.nc\"\
+        >\r\n      <dataSize units=\"Mbytes\">98.36</dataSize>\r\n      <date type=\"\
+        modified\">2014-03-09T12:39:31Z</date>\r\n    </dataset>\r\n    <dataset name=\"\
+        A20050101.P1A.ANN_MIM_RMP.nc\" ID=\"mwq/P1A/A20050101.P1A.ANN_MIM_RMP.nc\"\
+        \ urlPath=\"ereef/mwq/P1A/A20050101.P1A.ANN_MIM_RMP.nc\">\r\n      <dataSize\
+        \ units=\"Mbytes\">97.27</dataSize>\r\n      <date type=\"modified\">2014-03-09T12:39:52Z</date>\r\
+        \n    </dataset>\r\n    <dataset name=\"A20060101.P1A.ANN_MIM_RMP.nc\" ID=\"\
+        mwq/P1A/A20060101.P1A.ANN_MIM_RMP.nc\" urlPath=\"ereef/mwq/P1A/A20060101.P1A.ANN_MIM_RMP.nc\"\
+        >\r\n      <dataSize units=\"Mbytes\">98.44</dataSize>\r\n      <date type=\"\
+        modified\">2014-03-09T12:43:41Z</date>\r\n    </dataset>\r\n    <dataset name=\"\
+        A20070101.P1A.ANN_MIM_RMP.nc\" ID=\"mwq/P1A/A20070101.P1A.ANN_MIM_RMP.nc\"\
+        \ urlPath=\"ereef/mwq/P1A/A20070101.P1A.ANN_MIM_RMP.nc\">\r\n      <dataSize\
+        \ units=\"Mbytes\">97.62</dataSize>\r\n      <date type=\"modified\">2014-03-09T12:43:09Z</date>\r\
+        \n    </dataset>\r\n    <dataset name=\"A20080101.P1A.ANN_MIM_RMP.nc\" ID=\"\
+        mwq/P1A/A20080101.P1A.ANN_MIM_RMP.nc\" urlPath=\"ereef/mwq/P1A/A20080101.P1A.ANN_MIM_RMP.nc\"\
+        >\r\n      <dataSize units=\"Mbytes\">98.55</dataSize>\r\n      <date type=\"\
+        modified\">2014-03-09T12:44:09Z</date>\r\n    </dataset>\r\n    <dataset name=\"\
+        A20090101.P1A.ANN_MIM_RMP.nc\" ID=\"mwq/P1A/A20090101.P1A.ANN_MIM_RMP.nc\"\
+        \ urlPath=\"ereef/mwq/P1A/A20090101.P1A.ANN_MIM_RMP.nc\">\r\n      <dataSize\
+        \ units=\"Mbytes\">97.67</dataSize>\r\n      <date type=\"modified\">2014-03-09T12:44:10Z</date>\r\
+        \n    </dataset>\r\n    <dataset name=\"A20100101.P1A.ANN_MIM_RMP.nc\" ID=\"\
+        mwq/P1A/A20100101.P1A.ANN_MIM_RMP.nc\" urlPath=\"ereef/mwq/P1A/A20100101.P1A.ANN_MIM_RMP.nc\"\
+        >\r\n      <dataSize units=\"Mbytes\">97.26</dataSize>\r\n      <date type=\"\
+        modified\">2014-03-09T12:44:32Z</date>\r\n    </dataset>\r\n    <dataset name=\"\
+        A20110101.P1A.ANN_MIM_RMP.nc\" ID=\"mwq/P1A/A20110101.P1A.ANN_MIM_RMP.nc\"\
+        \ urlPath=\"ereef/mwq/P1A/A20110101.P1A.ANN_MIM_RMP.nc\">\r\n      <dataSize\
+        \ units=\"Mbytes\">98.59</dataSize>\r\n      <date type=\"modified\">2014-03-09T12:42:33Z</date>\r\
+        \n    </dataset>\r\n    <dataset name=\"A20120101.P1A.ANN_MIM_RMP.nc\" ID=\"\
+        mwq/P1A/A20120101.P1A.ANN_MIM_RMP.nc\" urlPath=\"ereef/mwq/P1A/A20120101.P1A.ANN_MIM_RMP.nc\"\
+        >\r\n      <dataSize units=\"Mbytes\">98.09</dataSize>\r\n      <date type=\"\
+        modified\">2014-03-09T12:40:15Z</date>\r\n    </dataset>\r\n    <dataset name=\"\
+        A20130101.P1A.ANN_MIM_RMP.nc\" ID=\"mwq/P1A/A20130101.P1A.ANN_MIM_RMP.nc\"\
+        \ urlPath=\"ereef/mwq/P1A/A20130101.P1A.ANN_MIM_RMP.nc\">\r\n      <dataSize\
+        \ units=\"Mbytes\">98.19</dataSize>\r\n      <date type=\"modified\">2014-03-09T12:42:53Z</date>\r\
+        \n    </dataset>\r\n    <dataset name=\"A20140101.316.P1A.ANN_MIM_RMP.nc\"\
+        \ ID=\"mwq/P1A/A20140101.316.P1A.ANN_MIM_RMP.nc\" urlPath=\"ereef/mwq/P1A/A20140101.316.P1A.ANN_MIM_RMP.nc\"\
+        >\r\n      <dataSize units=\"Mbytes\">100.6</dataSize>\r\n      <date type=\"\
+        modified\">2015-01-06T01:05:32Z</date>\r\n    </dataset>\r\n  </dataset>\r\
+        \n</catalog>\r\n"}
+    headers:
+      Connection: [close]
+      Content-Language: [en-US]
+      Content-Type: [application/xml;charset=UTF-8]
+      Date: ['Fri, 09 Sep 2016 00:24:21 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+version: 1

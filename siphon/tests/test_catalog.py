@@ -124,3 +124,14 @@ def test_catalog_ref_order():
     assert list(cat.catalog_refs) == ['Forecast Model Data', 'Forecast Products and Analyses',
                                       'Observation Data', 'Radar Data', 'Satellite Data',
                                       'Unidata case studies']
+
+
+@recorder.use_cassette('cat_non_standard_context_path')
+def test_non_standard_context_path():
+    'Test accessing TDS with non-standard Context Path'
+    url = 'http://ereeftds.bom.gov.au/ereefs/tds/catalog/ereef/mwq/P1A/catalog.xml'
+    cat = TDSCatalog(url)
+    ds = cat.datasets['A20020101.P1A.ANN_MIM_RMP.nc']
+    expected = ('http://ereeftds.bom.gov.au/ereefs/tds/dodsC/ereef/mwq/'
+                'P1A/A20020101.P1A.ANN_MIM_RMP.nc')
+    assert ds.access_urls['OPENDAP'] == expected
