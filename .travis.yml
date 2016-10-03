@@ -56,9 +56,10 @@ before_install:
     elif [[ $TASK == "docs" ]]; then
         pip install -r docs/requirements.txt -f $WHEELHOUSE;
     else
+      export EXTRA_PACKAGES="Cython";
       if [[ $TASK == "examples" ]]; then
         export EXTRAS="$EXTRAS,examples";
-        export EXTRA_PACKAGES="nbconvert ipykernel";
+        export EXTRA_PACKAGES="$EXTRA_PACKAGES nbconvert ipykernel";
         wget https://github.com/OSGeo/proj.4/archive/4.9.2.tar.gz;
         tar xf 4.9.2.tar.gz;
         pushd proj.4-4.9.2;
