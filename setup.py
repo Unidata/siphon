@@ -75,10 +75,7 @@ setup(
         'test': ['pytest', 'pytest-runner', 'netCDF4>=1.1.0',
                  'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3', 'xarray>=0.6'],
         'doc': ['sphinx>=1.3', 'nbconvert>=4.0', 'IPython>=4.0'],
-        # Need quite a bit of cartopy's "optional" dependencies
-        # Need to pin shapely until at least cartopy 0.13.1 is on pypi
-        'examples': ['matplotlib>=1.3', 'cartopy>=0.13', 'pillow', 'scipy',
-                     'shapely<=1.5.12']
+        'examples': ['matplotlib>=1.3', 'cartopy>=0.13.1', 'scipy']
     },
 
     download_url='https://github.com/Unidata/siphon/archive/v%s.tar.gz' % ver,)
