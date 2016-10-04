@@ -54,7 +54,8 @@ __ https://github.com/Unidata/siphon/issues
 Other Resources
 ---------------
 
-* The materials_ for Unidata's annual Python training workshop includes some tutorials on using Siphon.
+* The materials_ for Unidata's annual Python training workshop includes some tutorials on
+  using Siphon.
 
 .. _materials: http://github.com/Unidata/unidata-python-workshop
 
