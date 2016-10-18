@@ -11,7 +11,7 @@ from __future__ import print_function
 import logging
 
 log = logging.getLogger(__name__)
-log.setLevel(logging.ERROR)
+log.setLevel(logging.WARNING)
 
 
 class _SimpleTypes(object):
@@ -507,7 +507,7 @@ class TDSCatalogMetadata(object):
             return getattr(self._st,  handler_name)
         else:
             msg = "cannot find handler for element {}".format(handler_name)
-            log.error(msg)
+            log.warning(msg)
 
     def _parse_element(self, element):
 
@@ -533,8 +533,7 @@ class TDSCatalogMetadata(object):
         try:
             parser[element_name](element)
         except KeyError:
-            log.error("No parser found for element %s", element_name)
-            raise
+            log.warning("No parser found for element %s", element_name)
 
     def _parse_documentation(self, element):
         # <xsd:simpleType name="documentationEnumTypes">
