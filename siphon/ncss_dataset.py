@@ -13,7 +13,7 @@ import logging
 import numpy as np
 
 log = logging.getLogger(__name__)
-log.setLevel(logging.ERROR)
+log.setLevel(logging.WARNING)
 
 
 class _Types(object):
@@ -219,7 +219,7 @@ class NCSSDataset(object):
             return getattr(self._types, handler_name)
         else:
             msg = "cannot find handler for element {}".format(handler_name)
-            logging.error(msg)
+            logging.warning(msg)
 
     def _parse_element(self, element):
         element_name = element.tag
@@ -236,8 +236,7 @@ class NCSSDataset(object):
         try:
             parser[element_name](element)
         except KeyError:
-            logging.error("No parser found for element %s", element_name)
-            raise
+            logging.warning("No parser found for element %s", element_name)
 
     def _parse_gridset(self, element):
         element_name = element.tag
