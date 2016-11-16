@@ -43,6 +43,7 @@ class UTC(tzinfo):
     def dst(self, dt):  # pylint:disable=unused-argument
         return self.ZERO
 
+
 utc = UTC()
 
 

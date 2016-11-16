@@ -354,6 +354,7 @@ def unpack_variable(var):
 
     return data, dt, type_name
 
+
 _attrConverters = {stream.Attribute.BYTE: np.dtype('>b'),
                    stream.Attribute.SHORT: np.dtype('>i2'),
                    stream.Attribute.INT: np.dtype('>i4'),
