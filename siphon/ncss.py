@@ -287,6 +287,7 @@ class ResponseRegistry(object):
         mimetype = resp.headers['content-type'].split(';')[0]
         return self._reg.get(mimetype, self.default)(resp.content, unit_handler)
 
+
 response_handlers = ResponseRegistry()
 
 
