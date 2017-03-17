@@ -14,7 +14,7 @@ addons:
     - libnetcdf-dev
 
 python:
-  - 3.5
+  - 3.6
   - 2.7
 
 env:
@@ -37,16 +37,16 @@ matrix:
           packages:
             - *base_build
             - pandoc
-    - python: 3.3
-      env:
     - python: 3.4
       env:
-    - python: "3.5-dev"
+    - python: 3.5
+      env:
+    - python: "3.6-dev"
       env: PRE="--pre"
     - python: nightly
       env: PRE="--pre"
   allow_failures:
-    - python: "3.5-dev"
+    - python: "3.6-dev"
     - python: nightly
 
 before_install:
@@ -132,6 +132,6 @@ deploy:
   upload_docs: no
   on:
     repo: Unidata/siphon
-    python: 3.5
+    python: 3.6
     condition: '$TASK == "coverage"'
     tags: true
