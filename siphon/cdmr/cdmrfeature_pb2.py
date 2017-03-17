@@ -14,7 +14,7 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-from . import ncStream_pb2
+from . import ncStream_pb2 as ucar_dot_nc2_dot_stream_dot_ncStream__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_pb=_b('\n\x11\x63\x64mrfeature.proto\x1a\x1eucar/nc2/stream/ncStream.proto\"K\n\x0e\x43oordTransform\x12\x0f\n\x07isHoriz\x18\x01 \x01(\x08\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x1a\n\x06params\x18\x03 \x03(\x0b\x32\n.Attribute\"\xce\x02\n\tCoordAxis\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1b\n\x08\x64\x61taType\x18\x02 \x01(\x0e\x32\t.DataType\x12\x18\n\x04\x61tts\x18\x03 \x03(\x0b\x32\n.Attribute\x12\x1b\n\x08\x61xisType\x18\x04 \x01(\x0e\x32\t.AxisType\x12\r\n\x05units\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x1f\n\x06\x64\x65pend\x18\x07 \x01(\x0e\x32\x0f.DependenceType\x12\x11\n\tdependsOn\x18\x08 \x03(\t\x12\r\n\x05shape\x18\t \x03(\r\x12\x0f\n\x07nvalues\x18\n \x01(\x03\x12\x1d\n\x07spacing\x18\x0b \x01(\x0e\x32\x0c.AxisSpacing\x12\x12\n\nstartValue\x18\x0c \x01(\x01\x12\x10\n\x08\x65ndValue\x18\r \x01(\x01\x12\x12\n\nresolution\x18\x0e \x01(\x01\x12\x0e\n\x06values\x18\x0f \x01(\x0c\"h\n\x08\x43oordSys\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\taxisNames\x18\x02 \x03(\t\x12\x16\n\x0etransformNames\x18\x03 \x03(\t\x12#\n\x0c\x63overageType\x18\x05 \x01(\x0e\x32\r.CoverageType\"L\n\x11\x43\x61lendarDateRange\x12\r\n\x05start\x18\x01 \x01(\x03\x12\x0b\n\x03\x65nd\x18\x02 \x01(\x03\x12\x1b\n\x08\x63\x61lendar\x18\x03 \x01(\x0e\x32\t.Calendar\"G\n\tRectangle\x12\x0e\n\x06startx\x18\x01 \x01(\x01\x12\x0e\n\x06starty\x18\x02 \x01(\x01\x12\x0c\n\x04incx\x18\x03 \x01(\x01\x12\x0c\n\x04incy\x18\x04 \x01(\x01\"\x85\x01\n\x08\x43overage\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1b\n\x08\x64\x61taType\x18\x02 \x01(\x0e\x32\t.DataType\x12\x18\n\x04\x61tts\x18\x04 \x03(\x0b\x32\n.Attribute\x12\x10\n\x08\x63oordSys\x18\x05 \x01(\t\x12\r\n\x05units\x18\x06 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x07 \x01(\t\"\xc3\x02\n\x0f\x43overageDataset\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x18\n\x04\x61tts\x18\x02 \x03(\x0b\x32\n.Attribute\x12\x1e\n\nlatlonRect\x18\x03 \x01(\x0b\x32\n.Rectangle\x12\x1c\n\x08projRect\x18\x04 \x01(\x0b\x32\n.Rectangle\x12%\n\tdateRange\x18\x05 \x01(\x0b\x32\x12.CalendarDateRange\x12\x1b\n\x08\x63oordSys\x18\x06 \x03(\x0b\x32\t.CoordSys\x12(\n\x0f\x63oordTransforms\x18\x07 \x03(\x0b\x32\x0f.CoordTransform\x12\x1d\n\tcoordAxes\x18\x08 \x03(\x0b\x32\n.CoordAxis\x12\x18\n\x05grids\x18\t \x03(\x0b\x32\t.Coverage\x12#\n\x0c\x63overageType\x18\n \x01(\x0e\x32\r.CoverageType\"\xe8\x01\n\x12GeoReferencedArray\x12\x14\n\x0c\x63overageName\x18\x01 \x01(\t\x12\x1b\n\x08\x64\x61taType\x18\x02 \x01(\x0e\x32\t.DataType\x12\x0e\n\x06\x62igend\x18\x03 \x01(\x08\x12\x0f\n\x07version\x18\x04 \x01(\r\x12\x1b\n\x08\x63ompress\x18\x05 \x01(\x0e\x32\t.Compress\x12\x18\n\x10uncompressedSize\x18\x06 \x01(\x04\x12\r\n\x05shape\x18\x07 \x03(\r\x12\x10\n\x08\x61xisName\x18\x08 \x03(\t\x12\x14\n\x0c\x63oordSysName\x18\t \x01(\t\x12\x10\n\x08primdata\x18\n \x01(\x0c\"\xa3\x01\n\x14\x43overageDataResponse\x12\x1d\n\tcoordAxes\x18\x01 \x03(\x0b\x32\n.CoordAxis\x12\x1b\n\x08\x63oordSys\x18\x02 \x03(\x0b\x32\t.CoordSys\x12(\n\x0f\x63oordTransforms\x18\x03 \x03(\x0b\x32\x0f.CoordTransform\x12%\n\x08geoArray\x18\x04 \x03(\x0b\x32\x13.GeoReferencedArray*\xd3\x01\n\x08\x41xisType\x12\x0b\n\x07RunTime\x10\x00\x12\x0c\n\x08\x45nsemble\x10\x01\x12\x08\n\x04Time\x10\x02\x12\x08\n\x04GeoX\x10\x03\x12\x08\n\x04GeoY\x10\x04\x12\x08\n\x04GeoZ\x10\x05\x12\x07\n\x03Lat\x10\x06\x12\x07\n\x03Lon\x10\x07\x12\n\n\x06Height\x10\x08\x12\x0c\n\x08Pressure\x10\t\x12\x11\n\rRadialAzimuth\x10\n\x12\x12\n\x0eRadialDistance\x10\x0b\x12\x13\n\x0fRadialElevation\x10\x0c\x12\x0c\n\x08Spectral\x10\r\x12\x0e\n\nTimeOffset\x10\x0e*{\n\x0b\x41xisSpacing\x12\x10\n\x0cregularPoint\x10\x00\x12\x12\n\x0eirregularPoint\x10\x01\x12\x16\n\x12\x63ontiguousInterval\x10\x02\x12\x19\n\x15\x64iscontiguousInterval\x10\x03\x12\x13\n\x0fregularInterval\x10\x04*S\n\x0e\x44\x65pendenceType\x12\x0f\n\x0bindependent\x10\x00\x12\r\n\tdependent\x10\x01\x12\n\n\x06scalar\x10\x02\x12\x08\n\x04twoD\x10\x03\x12\x0b\n\x07\x66mrcReg\x10\x04*t\n\x08\x43\x61lendar\x12\x17\n\x13proleptic_gregorian\x10\x00\x12\r\n\tgregorian\x10\x01\x12\n\n\x06noleap\x10\x02\x12\x0c\n\x08\x61ll_leap\x10\x03\x12\x10\n\x0cuniform30day\x10\x04\x12\n\n\x06julian\x10\x05\x12\x08\n\x04none\x10\x06*K\n\x0c\x43overageType\x12\x0b\n\x07General\x10\x00\x12\x0f\n\x0b\x43urvilinear\x10\x01\x12\x08\n\x04Grid\x10\x02\x12\t\n\x05Swath\x10\x03\x12\x08\n\x04\x46mrc\x10\x04\x42\x30\n\x1cucar.nc2.ft2.coverage.remoteB\x10\x43\x64mrFeatureProtob\x06proto3')
   ,
-  dependencies=[ncStream_pb2.DESCRIPTOR, ])
+  dependencies=[ucar_dot_nc2_dot_stream_dot_ncStream__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _AXISTYPE = _descriptor.EnumDescriptor(
@@ -421,21 +421,21 @@ _COORDAXIS = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='startValue', full_name='CoordAxis.startValue', index=11,
       number=12, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='endValue', full_name='CoordAxis.endValue', index=12,
       number=13, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='resolution', full_name='CoordAxis.resolution', index=13,
       number=14, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -570,28 +570,28 @@ _RECTANGLE = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='startx', full_name='Rectangle.startx', index=0,
       number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='starty', full_name='Rectangle.starty', index=1,
       number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='incx', full_name='Rectangle.incx', index=2,
       number=3, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='incy', full_name='Rectangle.incy', index=3,
       number=4, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -917,17 +917,17 @@ _COVERAGEDATARESPONSE = _descriptor.Descriptor(
   serialized_end=1585,
 )
 
-_COORDTRANSFORM.fields_by_name['params'].message_type = ncStream_pb2._ATTRIBUTE
-_COORDAXIS.fields_by_name['dataType'].enum_type = ncStream_pb2._DATATYPE
-_COORDAXIS.fields_by_name['atts'].message_type = ncStream_pb2._ATTRIBUTE
+_COORDTRANSFORM.fields_by_name['params'].message_type = ucar_dot_nc2_dot_stream_dot_ncStream__pb2._ATTRIBUTE
+_COORDAXIS.fields_by_name['dataType'].enum_type = ucar_dot_nc2_dot_stream_dot_ncStream__pb2._DATATYPE
+_COORDAXIS.fields_by_name['atts'].message_type = ucar_dot_nc2_dot_stream_dot_ncStream__pb2._ATTRIBUTE
 _COORDAXIS.fields_by_name['axisType'].enum_type = _AXISTYPE
 _COORDAXIS.fields_by_name['depend'].enum_type = _DEPENDENCETYPE
 _COORDAXIS.fields_by_name['spacing'].enum_type = _AXISSPACING
 _COORDSYS.fields_by_name['coverageType'].enum_type = _COVERAGETYPE
 _CALENDARDATERANGE.fields_by_name['calendar'].enum_type = _CALENDAR
-_COVERAGE.fields_by_name['dataType'].enum_type = ncStream_pb2._DATATYPE
-_COVERAGE.fields_by_name['atts'].message_type = ncStream_pb2._ATTRIBUTE
-_COVERAGEDATASET.fields_by_name['atts'].message_type = ncStream_pb2._ATTRIBUTE
+_COVERAGE.fields_by_name['dataType'].enum_type = ucar_dot_nc2_dot_stream_dot_ncStream__pb2._DATATYPE
+_COVERAGE.fields_by_name['atts'].message_type = ucar_dot_nc2_dot_stream_dot_ncStream__pb2._ATTRIBUTE
+_COVERAGEDATASET.fields_by_name['atts'].message_type = ucar_dot_nc2_dot_stream_dot_ncStream__pb2._ATTRIBUTE
 _COVERAGEDATASET.fields_by_name['latlonRect'].message_type = _RECTANGLE
 _COVERAGEDATASET.fields_by_name['projRect'].message_type = _RECTANGLE
 _COVERAGEDATASET.fields_by_name['dateRange'].message_type = _CALENDARDATERANGE
@@ -936,8 +936,8 @@ _COVERAGEDATASET.fields_by_name['coordTransforms'].message_type = _COORDTRANSFOR
 _COVERAGEDATASET.fields_by_name['coordAxes'].message_type = _COORDAXIS
 _COVERAGEDATASET.fields_by_name['grids'].message_type = _COVERAGE
 _COVERAGEDATASET.fields_by_name['coverageType'].enum_type = _COVERAGETYPE
-_GEOREFERENCEDARRAY.fields_by_name['dataType'].enum_type = ncStream_pb2._DATATYPE
-_GEOREFERENCEDARRAY.fields_by_name['compress'].enum_type = ncStream_pb2._COMPRESS
+_GEOREFERENCEDARRAY.fields_by_name['dataType'].enum_type = ucar_dot_nc2_dot_stream_dot_ncStream__pb2._DATATYPE
+_GEOREFERENCEDARRAY.fields_by_name['compress'].enum_type = ucar_dot_nc2_dot_stream_dot_ncStream__pb2._COMPRESS
 _COVERAGEDATARESPONSE.fields_by_name['coordAxes'].message_type = _COORDAXIS
 _COVERAGEDATARESPONSE.fields_by_name['coordSys'].message_type = _COORDSYS
 _COVERAGEDATARESPONSE.fields_by_name['coordTransforms'].message_type = _COORDTRANSFORM
