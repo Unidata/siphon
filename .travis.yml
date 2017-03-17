@@ -17,6 +17,11 @@ python:
   - 3.6
   - 2.7
 
+cache:
+  - pip
+  - directories:
+    - $HOME/local
+
 env:
   global:
     - secure: "mFy/PJrAVKh9Uje1+R8cEOjY8/MDj/qqjn0+FqXCTZPmBMu7RLxTfASMB8QcHfDrJDhH3lEUqkt/uAbGsOKsDIWn/pjKqm6qyvsdw2ISoARommD5lOL3A3Q/Mti1Hz1u4J8CKa0zaGj88NmIyJ2zC8ZyrCl6qS6bTNv7E6A1AIs="
