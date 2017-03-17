@@ -31,7 +31,9 @@ sys.path.insert(0, os.path.abspath('../..'))
 if 'READTHEDOCS' in os.environ or 'TRAVIS' in os.environ:
     import mock
 
-    MOCK_MODULES = ['numpy', 'requests']
+    MOCK_MODULES = ['numpy']
+    if 'READTHEDOCS' in os.environ:
+        MOCK_MODULES.append('requests')
     for mod_name in MOCK_MODULES:
         sys.modules[mod_name] = mock.Mock()
 
