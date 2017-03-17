@@ -64,7 +64,7 @@ before_install:
       export EXTRA_PACKAGES="Cython";
       if [[ $TASK == "examples" ]]; then
         export EXTRAS="$EXTRAS,examples";
-        export EXTRA_PACKAGES="$EXTRA_PACKAGES nbconvert ipykernel";
+        export EXTRA_PACKAGES="$EXTRA_PACKAGES nbconvert[execute] ipykernel";
         ls $HOME/local/lib/;
         if [[ ! -f $HOME/local/lib/libproj.so ]]; then
           wget http://download.osgeo.org/proj/proj-4.9.3.tar.gz;
