@@ -30,11 +30,12 @@ env:
     - EXTRAS="test"
   matrix:
     - TASK="coverage"
-    - TASK="examples"
     - TASK="lint"
 
 matrix:
   include:
+    - python: 3.6
+      env: TASK="examples"
     - python: 2.7
       env: TASK="docs"
       addons:
