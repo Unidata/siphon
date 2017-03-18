@@ -76,4 +76,4 @@ Related Projects
 
 .. _netCDF4-python: https://unidata.github.io/netcdf4-python/
 .. _netCDF: https://www.unidata.ucar.edu/software/netcdf/
-.. _metpy: http://metpy.readthedocs.org
+.. _metpy: http://unidata.github.io/MetPy/

@@ -80,8 +80,7 @@ Important Links
 ---------------
 
 - Source code repository: https://github.com/Unidata/siphon
-- HTML Documentation (stable release): http://siphon.readthedocs.org/en/stable/
-- HTML Documentation (development): http://siphon.readthedocs.org/en/latest/
+- HTML Documentation: http://unidata.github.io/siphon/
 - Issue tracker: http://github.com/Unidata/siphon/issues
 
 Dependencies
