@@ -1,0 +1,1101 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.4.0+45.g669af16.dirty)]
+    method: GET
+    uri: http://oceandata.sci.gsfc.nasa.gov/opendap/SeaWiFS/L3SMI/2001/001/catalog.xml
+  response:
+    body: {string: "<html>\r\n<head><title>301 Moved Permanently</title></head>\r\n<body
+        bgcolor=\"white\">\r\n<center><h1>301 Moved Permanently</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"}
+    headers:
+      Connection: [keep-alive]
+      Content-Length: ['178']
+      Content-Type: [text/html]
+      Date: ['Sat, 18 Mar 2017 19:24:35 GMT']
+      Location: ['https://oceandata.sci.gsfc.nasa.gov/opendap/SeaWiFS/L3SMI/2001/001/catalog.xml']
+      Server: [nginx]
+    status: {code: 301, message: Moved Permanently}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.4.0+45.g669af16.dirty)]
+    method: GET
+    uri: https://oceandata.sci.gsfc.nasa.gov/opendap/SeaWiFS/L3SMI/2001/001/catalog.xml
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n    <thredds:catalog
+        xmlns:thredds=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\"\n
+        \                xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n                 xmlns:bes=\"http://xml.opendap.org/ns/bes/1.0#\">\n
+        \  <thredds:service name=\"dap\" serviceType=\"OPeNDAP\" base=\"/opendap/hyrax\"/>\n
+        \  <thredds:service name=\"file\" serviceType=\"HTTPServer\" base=\"/opendap/hyrax\"/>\n
+        \  <thredds:service name=\"wms\" serviceType=\"WMS\" base=\"/ncWMS/wms\"/>\n
+        \       <thredds:dataset name=\"/SeaWiFS/L3SMI/2001/001\" ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/\">\n
+        \           <thredds:dataset name=\"S2001001.L3m_DAY_BIOS4_chlor_a_4km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_BIOS4_chlor_a_4km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6038934</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2017-03-14T12:25:25</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_BIOS4_chlor_a_4km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_BIOS4_chlor_a_4km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_CHL_chl_ocx_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_CHL_chl_ocx_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1990904</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T21:23:02</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_CHL_chl_ocx_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_CHL_chl_ocx_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_CHL_chlor_a_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_CHL_chlor_a_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1973123</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T21:23:14</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_CHL_chlor_a_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_CHL_chlor_a_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_a_412_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_412_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1598151</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:05:33</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_412_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_412_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_a_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1579207</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:05:46</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_a_490_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_490_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1489384</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:05:58</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_490_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_490_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_a_510_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_510_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1381617</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:06:11</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_510_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_510_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_a_555_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_555_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1162213</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:06:24</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_555_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_555_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_a_670_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_670_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1272702</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:06:37</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_670_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_a_670_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_adg_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_adg_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1439652</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:06:51</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_adg_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_adg_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_adg_s_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_adg_s_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">502242</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:07:04</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_adg_s_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_adg_s_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_adg_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_adg_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1148667</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:07:18</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_adg_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_adg_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_aph_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_aph_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1527007</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:07:31</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_aph_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_aph_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_aph_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_aph_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1294330</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:07:44</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_aph_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_aph_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_bb_412_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_412_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1726481</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:07:56</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_412_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_412_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_bb_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1711685</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:08:10</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_bb_490_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_490_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1688098</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:08:23</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_490_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_490_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_bb_510_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_510_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1682916</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:08:35</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_510_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_510_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_bb_555_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_555_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1671952</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:08:49</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_555_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_555_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_bb_670_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_670_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1615696</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:09:01</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_670_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bb_670_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_bbp_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bbp_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1736420</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:09:14</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bbp_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bbp_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_bbp_s_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bbp_s_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1806131</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:09:26</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bbp_s_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bbp_s_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_IOP_bbp_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bbp_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1367274</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:09:38</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bbp_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_IOP_bbp_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_KD490_Kd_490_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_KD490_Kd_490_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1598232</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T21:42:28</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_KD490_Kd_490_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_KD490_Kd_490_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_PAR_par_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_PAR_par_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9731902</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T22:35:47</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_PAR_par_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_PAR_par_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_PIC_pic_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_PIC_pic_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1130798</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T21:59:48</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_PIC_pic_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_PIC_pic_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_POC_poc_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_POC_poc_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1592346</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T22:16:53</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_POC_poc_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_POC_poc_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_RRS_Rrs_412_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_412_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1897495</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:45:06</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_412_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_412_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_RRS_Rrs_443_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_443_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1882028</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:45:18</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_443_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_443_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_RRS_Rrs_490_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_490_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1833043</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:45:31</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_490_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_490_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_RRS_Rrs_510_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_510_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1800676</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:45:43</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_510_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_510_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_RRS_Rrs_555_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_555_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1774880</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:45:57</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_555_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_555_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_RRS_Rrs_670_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_670_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1608395</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:46:10</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_670_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_Rrs_670_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_RRS_angstrom_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_angstrom_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1991331</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:46:23</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_angstrom_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_angstrom_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S2001001.L3m_DAY_RRS_aot_865_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_aot_865_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1882441</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T20:46:36</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_aot_865_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S2001001.L3m_DAY_RRS_aot_865_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_BIOS4_chlor_a_4km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_BIOS4_chlor_a_4km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">22583639</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2017-03-14T13:27:51</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_BIOS4_chlor_a_4km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_BIOS4_chlor_a_4km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_CHL_chl_ocx_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_CHL_chl_ocx_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8249049</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:53:42</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_CHL_chl_ocx_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_CHL_chl_ocx_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_CHL_chlor_a_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_CHL_chlor_a_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8159431</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:53:55</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_CHL_chlor_a_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_CHL_chlor_a_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_a_412_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_412_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6837979</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:47:15</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_412_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_412_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_a_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6756277</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:47:27</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_a_490_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_490_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6400135</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:47:41</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_490_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_490_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_a_510_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_510_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5930700</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:47:56</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_510_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_510_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_a_555_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_555_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4972077</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:48:11</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_555_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_555_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_a_670_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_670_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5330234</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:48:25</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_670_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_a_670_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_adg_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_adg_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6269183</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:48:38</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_adg_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_adg_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_adg_s_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_adg_s_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">909008</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:48:50</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_adg_s_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_adg_s_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_adg_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_adg_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5033242</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:49:03</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_adg_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_adg_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_aph_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_aph_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6581440</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:49:16</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_aph_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_aph_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_aph_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_aph_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5702395</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:49:30</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_aph_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_aph_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_bb_412_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_412_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6701993</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:49:43</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_412_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_412_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_bb_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6603184</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:49:56</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_bb_490_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_490_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6466390</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:50:09</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_490_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_490_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_bb_510_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_510_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6425260</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:50:21</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_510_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_510_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_bb_555_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_555_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6347730</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:50:34</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_555_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_555_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_bb_670_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_670_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6047416</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:50:47</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_670_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bb_670_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_bbp_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bbp_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6704408</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:51:01</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bbp_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bbp_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_bbp_s_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bbp_s_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7409861</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:51:15</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bbp_s_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bbp_s_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_IOP_bbp_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bbp_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4896678</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:51:28</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bbp_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_IOP_bbp_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_KD490_Kd_490_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_KD490_Kd_490_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6871294</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:55:39</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_KD490_Kd_490_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_KD490_Kd_490_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_PAR_par_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_PAR_par_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">14236064</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:00:18</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_PAR_par_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_PAR_par_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_PIC_pic_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_PIC_pic_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4106441</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:57:01</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_PIC_pic_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_PIC_pic_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_POC_poc_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_POC_poc_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7135463</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:58:27</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_POC_poc_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_POC_poc_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_RRS_Rrs_412_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_412_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7573582</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:46:12</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_412_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_412_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_RRS_Rrs_443_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_443_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7437758</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:46:24</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_443_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_443_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_RRS_Rrs_490_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_490_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7052935</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:46:36</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_490_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_490_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_RRS_Rrs_510_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_510_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6828565</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:46:49</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_510_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_510_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_RRS_Rrs_555_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_555_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6592847</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:47:01</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_555_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_555_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_RRS_Rrs_670_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_670_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5704050</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:47:14</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_670_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_Rrs_670_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_RRS_angstrom_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_angstrom_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8347072</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:47:27</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_angstrom_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_angstrom_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001008.L3m_8D_RRS_aot_865_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_aot_865_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7976355</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-01T23:47:41</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_aot_865_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001008.L3m_8D_RRS_aot_865_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001015.L3m_BM1_BIOS4_chlor_a_4km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001015.L3m_BM1_BIOS4_chlor_a_4km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">27887810</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2017-03-14T14:10:53</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001015.L3m_BM1_BIOS4_chlor_a_4km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001015.L3m_BM1_BIOS4_chlor_a_4km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_CHL_chl_ocx_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_CHL_chl_ocx_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">12343210</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:08:07</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_CHL_chl_ocx_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_CHL_chl_ocx_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_CHL_chlor_a_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_CHL_chlor_a_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">12228075</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:08:20</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_CHL_chlor_a_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_CHL_chlor_a_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_a_412_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_412_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">11051904</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:11:49</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_412_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_412_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_a_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10935974</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:12:22</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_a_490_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_490_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10423521</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:12:35</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_490_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_490_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_a_510_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_510_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9681490</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:12:47</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_510_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_510_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_a_555_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_555_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8283354</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:13:00</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_555_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_555_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_a_670_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_670_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8596767</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:13:12</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_670_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_a_670_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_adg_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_adg_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10311967</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:13:24</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_adg_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_adg_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_adg_s_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_adg_s_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">723929</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:13:37</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_adg_s_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_adg_s_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_adg_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_adg_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8292325</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:13:49</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_adg_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_adg_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_aph_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_aph_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10712282</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:14:02</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_aph_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_aph_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_aph_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_aph_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9345922</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:14:14</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_aph_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_aph_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_bb_412_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_412_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9611296</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:14:27</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_412_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_412_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_bb_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9442827</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:14:39</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_bb_490_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_490_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9216538</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:14:51</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_490_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_490_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_bb_510_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_510_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9139360</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:15:04</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_510_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_510_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_bb_555_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_555_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9011862</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:15:16</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_555_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_555_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_bb_670_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_670_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8563387</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:15:29</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_670_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bb_670_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_bbp_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bbp_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9579480</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:15:41</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bbp_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bbp_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_bbp_s_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bbp_s_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">11083275</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:15:54</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bbp_s_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bbp_s_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_IOP_bbp_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bbp_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6884303</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:16:07</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bbp_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_IOP_bbp_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_KD490_Kd_490_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_KD490_Kd_490_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">11235295</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:08:22</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_KD490_Kd_490_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_KD490_Kd_490_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_PAR_par_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_PAR_par_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">14229820</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:10:44</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_PAR_par_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_PAR_par_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_PIC_pic_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_PIC_pic_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6434568</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:08:58</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_PIC_pic_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_PIC_pic_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_POC_poc_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_POC_poc_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">11710395</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:09:18</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_POC_poc_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_POC_poc_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_RRS_Rrs_412_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_412_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">11041163</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:09:04</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_412_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_412_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_RRS_Rrs_443_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_443_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10763725</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:09:17</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_443_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_443_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_RRS_Rrs_490_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_490_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10018490</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:09:29</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_490_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_490_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_RRS_Rrs_510_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_510_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9584886</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:09:42</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_510_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_510_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_RRS_Rrs_555_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_555_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9162439</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:09:54</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_555_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_555_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_RRS_Rrs_670_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_670_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7860528</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:10:11</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_670_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_Rrs_670_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_RRS_angstrom_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_angstrom_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">12591160</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:10:26</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_angstrom_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_angstrom_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001031.L3m_MO_RRS_aot_865_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_aot_865_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">12201332</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:10:40</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_aot_865_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001031.L3m_MO_RRS_aot_865_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_BIOS4_chlor_a_4km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_BIOS4_chlor_a_4km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">32741168</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2017-03-14T14:00:03</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_BIOS4_chlor_a_4km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_BIOS4_chlor_a_4km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_CHL_chl_ocx_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_CHL_chl_ocx_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">12407762</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:22:34</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_CHL_chl_ocx_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_CHL_chl_ocx_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_CHL_chlor_a_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_CHL_chlor_a_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">12292643</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:22:46</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_CHL_chlor_a_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_CHL_chlor_a_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_a_412_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_412_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">11122024</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:17:30</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_412_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_412_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_a_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">11004439</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:17:46</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_a_490_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_490_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10489758</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:18:02</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_490_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_490_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_a_510_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_510_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9742772</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:18:15</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_510_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_510_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_a_555_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_555_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8339346</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:18:29</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_555_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_555_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_a_670_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_670_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8649980</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:18:49</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_670_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_a_670_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_adg_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_adg_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10378786</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:19:11</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_adg_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_adg_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_adg_s_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_adg_s_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">718745</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:19:28</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_adg_s_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_adg_s_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_adg_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_adg_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8346345</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:19:41</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_adg_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_adg_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_aph_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_aph_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10780246</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:19:59</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_aph_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_aph_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_aph_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_aph_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9405467</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:20:18</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_aph_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_aph_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_bb_412_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_412_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9651590</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:20:35</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_412_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_412_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_bb_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9482643</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:20:53</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_bb_490_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_490_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9255548</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:21:11</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_490_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_490_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_bb_510_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_510_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9177381</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:21:28</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_510_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_510_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_bb_555_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_555_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9049524</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:21:41</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_555_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_555_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_bb_670_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_670_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8598840</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:22:04</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_670_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bb_670_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_bbp_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bbp_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9620088</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:22:17</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bbp_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bbp_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_bbp_s_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bbp_s_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">11140915</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:22:35</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bbp_s_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bbp_s_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_IOP_bbp_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bbp_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6911492</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:22:47</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bbp_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_IOP_bbp_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_KD490_Kd_490_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_KD490_Kd_490_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">11307888</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:24:59</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_KD490_Kd_490_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_KD490_Kd_490_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_PAR_par_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_PAR_par_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">14231929</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:30:30</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_PAR_par_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_PAR_par_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_PIC_pic_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_PIC_pic_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6472816</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:26:32</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_PIC_pic_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_PIC_pic_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_POC_poc_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_POC_poc_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">11786853</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:28:15</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_POC_poc_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_POC_poc_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_RRS_Rrs_412_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_412_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">11094632</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:18:27</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_412_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_412_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_RRS_Rrs_443_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_443_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10813692</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:18:40</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_443_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_443_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_RRS_Rrs_490_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_490_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10061320</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:18:52</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_490_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_490_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_RRS_Rrs_510_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_510_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9623894</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:19:05</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_510_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_510_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_RRS_Rrs_555_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_555_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9198845</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:19:17</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_555_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_555_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_RRS_Rrs_670_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_670_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7890823</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:19:30</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_670_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_Rrs_670_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_RRS_angstrom_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_angstrom_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">12657623</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:19:44</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_angstrom_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_angstrom_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001032.L3m_R32_RRS_aot_865_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_aot_865_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">12267721</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:19:57</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_aot_865_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001032.L3m_R32_RRS_aot_865_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_CHL_chl_ocx_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_CHL_chl_ocx_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">14849215</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:50:27</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_CHL_chl_ocx_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_CHL_chl_ocx_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_CHL_chlor_a_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_CHL_chlor_a_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">14799962</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:50:40</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_CHL_chlor_a_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_CHL_chlor_a_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_a_412_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_412_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">13862969</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:58:22</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_412_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_412_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_a_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">13711415</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:58:34</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_a_490_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_490_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">13088124</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:58:48</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_490_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_490_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_a_510_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_510_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">12186528</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:59:01</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_510_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_510_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_a_555_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_555_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10612322</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:59:13</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_555_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_555_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_a_670_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_670_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10747782</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:59:26</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_670_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_a_670_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_adg_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_adg_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">13063652</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:59:39</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_adg_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_adg_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_adg_s_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_adg_s_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">411894</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:59:51</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_adg_s_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_adg_s_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_adg_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_adg_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10472053</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T01:00:04</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_adg_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_adg_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_aph_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_aph_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">13294259</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T01:00:16</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_aph_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_aph_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_aph_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_aph_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">11620338</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T01:00:29</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_aph_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_aph_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_bb_412_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_412_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10331717</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T01:00:42</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_412_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_412_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_bb_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10156179</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T01:00:54</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_bb_490_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_490_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9914767</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T01:01:07</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_490_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_490_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_bb_510_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_510_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9820405</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T01:01:20</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_510_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_510_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_bb_555_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_555_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9683558</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T01:01:32</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_555_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_555_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_bb_670_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_670_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9265952</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T01:01:45</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_670_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bb_670_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_bbp_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bbp_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10292950</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T01:01:58</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bbp_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bbp_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_bbp_s_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bbp_s_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">13438139</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T01:02:10</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bbp_s_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bbp_s_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_IOP_bbp_unc_443_giop_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bbp_unc_443_giop_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7455006</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T01:02:23</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bbp_unc_443_giop_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_IOP_bbp_unc_443_giop_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_KD490_Kd_490_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_KD490_Kd_490_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">13956709</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:50:00</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_KD490_Kd_490_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_KD490_Kd_490_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_PAR_par_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_PAR_par_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">14484929</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:50:16</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_PAR_par_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_PAR_par_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_PIC_pic_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_PIC_pic_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7627377</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:50:01</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_PIC_pic_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_PIC_pic_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_POC_poc_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_POC_poc_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">14762349</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:50:02</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_POC_poc_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_POC_poc_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_RRS_Rrs_412_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_412_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">12675417</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:52:21</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_412_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_412_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_RRS_Rrs_443_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_443_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">12134091</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:52:33</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_443_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_443_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_RRS_Rrs_490_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_490_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10907525</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:52:46</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_490_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_490_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_RRS_Rrs_510_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_510_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10017695</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:52:58</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_510_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_510_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_RRS_Rrs_555_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_555_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9543004</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:53:10</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_555_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_555_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_RRS_Rrs_670_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_670_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8137831</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:53:23</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_670_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_Rrs_670_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_RRS_angstrom_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_angstrom_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">14908211</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:53:35</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_angstrom_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_angstrom_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n            <thredds:dataset name=\"S20010012001365.L3m_YR_RRS_aot_865_9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_aot_865_9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">14547365</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2015-10-02T00:53:48</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_aot_865_9km.nc\"/>\n
+        \        <thredds:access serviceName=\"wms\"\n                         urlPath=\"?DATASET=lds/SeaWiFS/L3SMI/2001/001/S20010012001365.L3m_YR_RRS_aot_865_9km.nc&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities\"/>\n
+        \     </thredds:dataset>\n        </thredds:dataset>\n    </thredds:catalog>\n"}
+    headers:
+      Connection: [keep-alive]
+      Content-Description: [thredds_catalog]
+      Content-Type: [text/xml; charset=utf-8]
+      Date: ['Sat, 18 Mar 2017 19:24:35 GMT']
+      Server: [nginx]
+      Set-Cookie: [JSESSIONID=9A6D157C07970FF7349B484964CD112E; Path=/opendap/; HttpOnly]
+      Strict-Transport-Security: [max-age=31536000; includeSubDomains; preload]
+      X-DAP: ['3.2']
+      X-FRAME-OPTIONS: [DENY]
+      XDODS-Server: [dods/3.2]
+      XOPeNDAP-Server: ['bes/3.15.1, csv_handler/1.1.1, dap-server/ascii/4.1.5, dap-server/usage/4.2.1,
+          dap-server/www/4.1.5, dapreader_module/0.0.1, fileout_gdal/0.9.6, fileout_json/1.0.1,
+          fileout_netcdf/1.3.1, fits_handler/1.0.13, freeform_handler/3.9.1, gateway_module/1.1.4,
+          gdal_handler/1.0.1, libdap/3.15.1, ncml_moddule/1.3.0, netcdf_handler/3.11.1,
+          w10n_handler/1.0.1, xml_data_handler/1.0.7']
+    status: {code: 200, message: OK}
+version: 1
