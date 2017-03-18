@@ -119,7 +119,7 @@ of the source directory is as easy as:
 Documentation
 -------------
 
-Siphon's documentation is built using sphinx >= 1.3. API documentation is automatically
+Siphon's documentation is built using sphinx >= 1.4. API documentation is automatically
 generated from docstrings, written using the
 `NumPy docstring standard <https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt>`_.
 There are also example IPython notebooks in the ``examples/notebooks`` directory. Using
@@ -129,10 +129,10 @@ documentation. The examples can also be converted to standalone scripts using:
 .. parsed-literal::
     python setup.py examples
 
-The documentation is hosted by `Read the Docs <http://siphon.readthedocs.org>`_. The docs are
-built automatically from ``master`` as well as for the tagged versions on github. ``master`` is
-used for the ``latest`` documentation, and the latest tagged version is used for the ``stable``
-documentation. To see what the docs will look like on RTD, you also need to install the
+The documentation is hosted on `GitHub Pages <https://unidata.github.io/MetPy>`_. The docs are
+built automatically from ``master`` with every build on Travis-CI; every merged PR will
+have the built docs upload to GitHub Pages. As part of the build, the documentation is also
+checked with ``doc8``. To see what the docs will look like, you also need to install the
 ``sphinx-rtd-theme`` package.
 
 -----------
@@ -144,10 +144,7 @@ This service runs the unit tests on all support versions, as well as runs agains
 package versions. ``flake8`` is also run against the code to check formatting. Travis is also
 used to build the documentation and to run the examples to ensure they stay working.
 
-Test coverage is monitored by `Coveralls.io <https://coveralls.io/r/Unidata/siphon>`_.
-
-`Landscape.io <https://landscape.io/github/Unidata/siphon>`_ is used to track code quality
-using the ``prospector`` tool.
+Test coverage is monitored by `Codecov.io <https://codecov.io/github/Unidata/siphon>`_.
 
 ---------
 Releasing
@@ -167,5 +164,3 @@ To create a new release:
 5. Upload using ``twine``: ``twine upload dist/*``, assuming the ``dist/`` directory contains
    only files for this release. This upload process will include any changes to the ``README``
    as well as any updated flags from ``setup.py``.
-6. Tagging a new version on GitHub should also update the
-   `stable <http://siphon.readthedocs.org/en/stable>`_  docs on Read the Docs.

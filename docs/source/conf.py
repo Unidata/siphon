@@ -22,25 +22,6 @@ import os
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('../..'))
 
-#
-# Read the docs fix
-# On read the docs, there is no $HOME now, which breaks pandoc. Set one,
-# which is unused, so that pandoc will run
-# 
-
-if 'READTHEDOCS' in os.environ or 'TRAVIS' in os.environ:
-    import mock
-
-    MOCK_MODULES = ['numpy']
-    if 'READTHEDOCS' in os.environ:
-        MOCK_MODULES.append('requests')
-    for mod_name in MOCK_MODULES:
-        sys.modules[mod_name] = mock.Mock()
-
-    # Fixes pandoc
-    if 'HOME' not in os.environ:
-        os.environ['HOME'] = '/home/docs'  # Not sure what else to use
-
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -64,8 +45,8 @@ mathjax_path = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS
 
 # Set up mapping for other projects' docs
 intersphinx_mapping = {
-                       'python': ('http://docs.python.org/3/', None),
-                       'numpy': ('http://docs.scipy.org/doc/numpy/', None),
+                       'python': ('https://docs.python.org/3/', None),
+                       'numpy': ('https://docs.scipy.org/doc/numpy/', None),
                        'requests': ('http://docs.python-requests.org/en/master/', None),
                        }
 
@@ -140,15 +121,12 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #html_theme = 'default'
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
-
-if not on_rtd:  # only import and set the theme if we're building docs locally
-    try:
-        import sphinx_rtd_theme
-        html_theme = 'sphinx_rtd_theme'
-        html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-    except ImportError:
-        pass
+try:
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+except ImportError:
+    pass
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

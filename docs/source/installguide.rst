@@ -13,7 +13,7 @@ Siphon requires the following packages:
   - protobuf >= 3.0.0
 
 Installation Instructions for NumPy can be found at:
-  http://www.scipy.org/scipylib/download.html
+  https://www.scipy.org/scipylib/download.html
 
 ------------
 Installation
@@ -24,7 +24,7 @@ The easiest way to install Siphon is through ``pip``:
 .. parsed-literal::
     pip install siphon
 
-The source code can also be grabbed from `GitHub <http://github.com/Unidata/siphon>`_. From
+The source code can also be grabbed from `GitHub <https://github.com/Unidata/siphon>`_. From
 the base of the source directory, run:
 
 .. parsed-literal::
