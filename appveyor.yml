@@ -31,16 +31,12 @@ install:
     - cmd: conda list
     - cmd: if %PYTHON_VERSION% == 2.7 conda install enum34
     - cmd: pip install ".[test]"
-    - cmd: python -m ipykernel install --user --name devel --display-name "devel"
 
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
     - cmd: python setup.py test --addopts "-s --junitxml=tests.xml --cov=siphon"
-    - cmd: cd examples/notebooks
-    - cmd: find . -name "*.ipynb" -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=180 --ExecutePreprocessor.kernel_name=devel --inplace
-    - cmd: cd ../..
 
 on_finish:
     - ps: $wc = New-Object 'System.Net.WebClient'

@@ -9,7 +9,7 @@ addons:
     paths:
       - $(find $WHEELDIR -newer $WHEELDIR/download_marker -name *.whl | tr [:space:] :)
   apt:
-    packages: &base_build
+    packages:
     - libhdf5-serial-dev
     - libnetcdf-dev
 
@@ -38,11 +38,6 @@ matrix:
       env: TASK="examples"
     - python: 2.7
       env: TASK="docs"
-      addons:
-        apt:
-          packages:
-            - *base_build
-            - pandoc
     - python: 3.4
       env:
     - python: 3.5
