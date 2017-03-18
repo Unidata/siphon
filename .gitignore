@@ -37,7 +37,6 @@ lib64
 __pycache__
 .ipynb_checkpoints/
 docs/build
-docs/source/examples/generated/
 
 # Installer logs
 pip-log.txt
