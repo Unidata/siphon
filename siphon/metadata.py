@@ -504,7 +504,7 @@ class TDSCatalogMetadata(object):
         if handler_name in self._cts:
             return getattr(self._ct, handler_name)
         elif handler_name in self._sts:
-            return getattr(self._st,  handler_name)
+            return getattr(self._st, handler_name)
         else:
             msg = "cannot find handler for element {}".format(handler_name)
             log.warning(msg)

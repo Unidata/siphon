@@ -12,15 +12,15 @@ if sys.version_info < (3, 4):
     dependencies.append('enum34')
 
 setup(
-    name = "siphon",
-    version = ver,
-    packages = find_packages(),
-    author = "Unidata Development Team",
-    author_email = 'support-python@unidata.ucar.edu',
-    license = 'MIT',
-    url = "https://github.com/Unidata/siphon",
-    description = ("A collection of Python utilities for interacting with the "
-                                   "Unidata technology stack."),
+    name="siphon",
+    version=ver,
+    packages=find_packages(),
+    author="Unidata Development Team",
+    author_email='support-python@unidata.ucar.edu',
+    license='MIT',
+    url="https://github.com/Unidata/siphon",
+    description=("A collection of Python utilities for interacting with the "
+                 "Unidata technology stack."),
     keywords='meteorology weather',
     classifiers=['Development Status :: 3 - Alpha',
                  'Programming Language :: Python :: 2',

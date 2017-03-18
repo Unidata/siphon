@@ -11,12 +11,22 @@ Use Siphon to query the NetCDF Subset Service (NCSS) and plot on a map.
 This example uses Siphon's NCSS class to provide temperature data
 for contouring a basic map using CartoPy.
 """
+from datetime import datetime
 
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+import matplotlib.pyplot as plt
+from netCDF4 import num2date
+import numpy as np
+
+from siphon.catalog import TDSCatalog
+from siphon.ncss import NCSS
+
+###########################################
 # First we construct a `TDSCatalog` instance pointing to our dataset of interest, in
 # this case TDS' "Best" virtual dataset for the GFS global 0.25 degree collection of
 # GRIB files. This will give us a good resolution for our map. This catalog contains a
 # single dataset.
-from siphon.catalog import TDSCatalog
 best_gfs = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/'
                       'Global_0p25deg/catalog.xml?dataset=grib/NCEP/GFS/Global_0p25deg/Best')
 print(list(best_gfs.datasets))
@@ -28,7 +38,6 @@ print(best_ds.access_urls)
 
 ###########################################
 # Note the `NetcdfSubset` entry, which we will use with our NCSS class.
-from siphon.ncss import NCSS
 ncss = NCSS(best_ds.access_urls['NetcdfSubset'])
 
 ###########################################
@@ -45,7 +54,6 @@ query = ncss.query()
 # will return all surface temperatures for points in our bounding box for a single time,
 # nearest to that requested. Note the string representation of the query is a properly encoded
 # query string.
-from datetime import datetime
 query.lonlat_box(north=43, south=35, east=-100, west=-111).time(datetime.utcnow())
 query.accept('netcdf4')
 query.variables('Temperature_surface')
@@ -72,8 +80,6 @@ lon_var = data.variables['lon']
 
 ###########################################
 # Now we make our data suitable for plotting.
-import numpy as np
-from netCDF4 import num2date
 
 # Get the actual data values and remove any size 1 dimensions
 temp_vals = temp_var[:].squeeze()
@@ -91,9 +97,6 @@ lon_2d, lat_2d = np.meshgrid(lon_vals, lat_vals)
 
 ###########################################
 # Now we can plot these up using matplotlib and cartopy.
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
 
 # Create a new figure
 fig = plt.figure(figsize=(15, 12))

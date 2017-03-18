@@ -439,4 +439,4 @@ class TestIndexing(object):
     @recorder.use_cassette('rap_ncstream_decimation')
     def test_decimation(self):
         subset = self.var[0, 0, ::2, ::2]
-        assert subset.shape == ((self.var.shape[-2] + 1)//2, (self.var.shape[-1] + 1)//2)
+        assert subset.shape == ((self.var.shape[-2] + 1) // 2, (self.var.shape[-1] + 1) // 2)

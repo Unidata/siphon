@@ -8,9 +8,17 @@ TDS Radar Query Service
 
 Use Siphon to get NEXRAD Level 3 data from a TDS.
 """
+from datetime import datetime
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+from siphon.cdmr import Dataset
+from siphon.radarserver import RadarServer, get_radarserver_datasets
+
+###########################################
 # First, point to the top-level thredds radar server accessor to find what datasets are
 # available.
-from siphon.radarserver import RadarServer, get_radarserver_datasets
 ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
 print(list(ds.keys()))
 
@@ -29,7 +37,6 @@ print(rs.variables)
 # methods, ask for data from radar FTG (Denver) for now for the product
 # N0Q, which is reflectivity data for the lowest tilt. We see that when the query
 # is represented as a string, it shows the encoded URL.
-from datetime import datetime
 query = rs.query()
 query.stations('FTG').time(datetime.utcnow()).variables('N0Q')
 
@@ -57,7 +64,6 @@ print(ds.access_urls)
 
 ###########################################
 # We'll use the CDMRemote reader in Siphon and pass it the appropriate access URL.
-from siphon.cdmr import Dataset
 data = Dataset(ds.access_urls['CdmRemote'])
 
 ###########################################
@@ -70,14 +76,12 @@ ref = data.variables['BaseReflectivityDR'][:]
 
 ###########################################
 # Then convert the polar coordinates to Cartesian
-import numpy as np
 x = rng * np.sin(np.deg2rad(az))[:, None]
 y = rng * np.cos(np.deg2rad(az))[:, None]
 ref = np.ma.array(ref, mask=np.isnan(ref))
 
 ###########################################
 # Finally, we plot them up using matplotlib.
-import matplotlib.pyplot as plt
 fig, ax = plt.subplots(1, 1, figsize=(9, 8))
 ax.pcolormesh(x, y, ref)
 ax.set_aspect('equal', 'datalim')

@@ -8,11 +8,18 @@ NCSS Time Series
 
 Use Siphon to query the NetCDF Subset Service for a timeseries.
 """
+from datetime import datetime, timedelta
 
+import matplotlib.pyplot as plt
+from netCDF4 import num2date
+
+from siphon.catalog import TDSCatalog
+from siphon.ncss import NCSS
+
+###########################################
 # First we construct a TDSCatalog instance pointing to our dataset of interest, in
 # this case TDS' "Best" virtual dataset for the GFS global 0.5 degree collection of
 # GRIB files. We see this catalog contains a single dataset.
-from siphon.catalog import TDSCatalog
 best_gfs = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/'
                       'Global_0p5deg/catalog.xml?dataset=grib/NCEP/GFS/Global_0p5deg/Best')
 print(best_gfs.datasets)
@@ -24,7 +31,6 @@ print(best_ds.access_urls)
 
 ###########################################
 # Note the `NetcdfSubset` entry, which we will use with our NCSS class.
-from siphon.ncss import NCSS
 ncss = NCSS(best_ds.access_urls['NetcdfSubset'])
 
 ###########################################
@@ -38,7 +44,6 @@ query = ncss.query()
 # 'Temperature_isobaric', at the vertical level of 100000 Pa (approximately surface).
 # This request will return all times in the range for a single point. Note the string
 # representation of the query is a properly encoded query string.
-from datetime import datetime, timedelta
 now = datetime.utcnow()
 query.lonlat_point(-105, 40).vertical_level(100000).time_range(now, now + timedelta(days=7))
 query.variables('Temperature_isobaric').accept('netcdf')
@@ -60,14 +65,12 @@ time = data.variables['time']
 # Fortunately, the `netCDF4` module has a helper function to convert these numbers into
 # Python `datetime` objects. We can see the first 5 element output by the function look
 # reasonable.
-from netCDF4 import num2date
 time_vals = num2date(time[:].squeeze(), time.units)
-time_vals[:5]
+print(time_vals[:5])
 
 ###########################################
 # Now we can plot these up using matplotlib, which has ready-made support for `datetime`
 # objects.
-import matplotlib.pyplot as plt
 fig, ax = plt.subplots(1, 1, figsize=(9, 8))
 ax.plot(time_vals, temp[:].squeeze(), 'r', linewidth=2)
 ax.set_ylabel(temp.standard_name + ' (%s)' % temp.units)

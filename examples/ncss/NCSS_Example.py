@@ -8,11 +8,17 @@ Basic NCSS
 
 Use Siphon to query the NetCDF Subset Service (NCSS).
 """
+from datetime import datetime
 
+import matplotlib.pyplot as plt
+
+from siphon.catalog import TDSCatalog
+from siphon.ncss import NCSS
+
+###########################################
 # First we construct a TDSCatalog instance pointing to our dataset of interest, in
 # this case TDS' "Best" virtual dataset for the GFS global 0.5 degree collection of
 # GRIB files. We see this catalog contains a single dataset.
-from siphon.catalog import TDSCatalog
 best_gfs = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/'
                       'Global_0p5deg/catalog.xml?dataset=grib/NCEP/GFS/Global_0p5deg/Best')
 print(best_gfs.datasets)
@@ -24,7 +30,6 @@ print(best_ds.access_urls)
 
 ###########################################
 # Note the `NetcdfSubset` entry, which we will use with our NCSS class.
-from siphon.ncss import NCSS
 ncss = NCSS(best_ds.access_urls['NetcdfSubset'])
 
 ###########################################
@@ -38,7 +43,6 @@ query = ncss.query()
 # 'Temperature_isobaric' and 'Relative_humidity_isobaric'. This request will return all
 # vertical levels for a single point and single time. Note the string representation of
 # the query is a properly encoded query string.
-from datetime import datetime
 query.lonlat_point(-105, 40).time(datetime.utcnow())
 query.accept('netcdf4')
 query.variables('Temperature_isobaric', 'Relative_humidity_isobaric')
@@ -63,7 +67,6 @@ press_vals = press[:].squeeze()
 
 ###########################################
 # Now we can plot these up using matplotlib.
-import matplotlib.pyplot as plt
 fig, ax = plt.subplots(1, 1, figsize=(9, 8))
 ax.plot(temp[:].squeeze(), press_vals, 'r', linewidth=2)
 ax.set_xlabel(temp.standard_name + ' (%s)' % temp.units)
