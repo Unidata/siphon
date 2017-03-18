@@ -57,7 +57,7 @@ Other Resources
 * The materials_ for Unidata's annual Python training workshop includes some tutorials on
   using Siphon.
 
-.. _materials: http://github.com/Unidata/unidata-python-workshop
+.. _materials: https://github.com/Unidata/unidata-python-workshop
 
 -------
 License
@@ -76,4 +76,4 @@ Related Projects
 
 .. _netCDF4-python: https://unidata.github.io/netcdf4-python/
 .. _netCDF: https://www.unidata.ucar.edu/software/netcdf/
-.. _metpy: http://unidata.github.io/MetPy/
+.. _metpy: https://unidata.github.io/MetPy/
