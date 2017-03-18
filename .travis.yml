@@ -61,7 +61,6 @@ before_install:
       pip install flake8 pep8-naming;
     elif [[ $TASK == "docs" ]]; then
         pip install -r docs/requirements.txt -f $WHEELHOUSE;
-        export EXTRA_PACKAGES="sphinx_rtd_theme";
     else
       export EXTRA_PACKAGES="Cython";
       if [[ $TASK == "examples" ]]; then
