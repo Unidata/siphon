@@ -36,7 +36,8 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.intersphinx',
     'sphinx.ext.mathjax',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'sphinx_gallery.gen_gallery'
 ]
 
 mathjax_path = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
@@ -48,6 +49,19 @@ intersphinx_mapping = {
                        'numpy': ('https://docs.scipy.org/doc/numpy/', None),
                        'requests': ('http://docs.python-requests.org/en/master/', None),
                        }
+
+sphinx_gallery_conf = {
+    'doc_module': ('siphon',),
+    'reference_url': {
+        'siphon': None,
+        'matplotlib': 'http://matplotlib.org',
+        'numpy': 'http://docs.scipy.org/doc/numpy/',
+        'requests': 'http://docs.python-requests.org/en/master/'},
+    'examples_dirs': ['../examples'],
+    'gallery_dirs': ['examples'],
+    'filename_pattern': '/',
+    'mod_example_dir': 'api/generated'
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
