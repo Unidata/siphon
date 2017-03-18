@@ -400,8 +400,7 @@ def _get_latest_cat(catalog_url):
     """
     cat = TDSCatalog(catalog_url)
     for service in cat.services:
-        if (service.name.lower() == "latest" and
-                service.service_type.lower() == "resolver"):
+        if (service.service_type.lower() == "resolver"):
             latest_cat = cat.catalog_url.replace("catalog.xml", "latest.xml")
             return TDSCatalog(latest_cat)
 
