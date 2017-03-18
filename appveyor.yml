@@ -42,6 +42,6 @@ test_script:
     - cmd: find . -name "*.ipynb" -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=180 --ExecutePreprocessor.kernel_name=devel --inplace
     - cmd: cd ../..
 
-after_test:
+on_finish:
     - cmd: pip install codecov
-    - cmd: codecov
+    - cmd: codecov -e PYTHON_VERSION PLATFORM
