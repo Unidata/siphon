@@ -1,43 +1,10 @@
 from __future__ import print_function
 import sys
-from setuptools import setup, find_packages, Command
+from setuptools import setup, find_packages
 import versioneer
 
 
-class MakeExamples(Command):
-    description = 'Create example scripts from IPython notebooks'
-    user_options=[]
-
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
-    def run(self):
-        import glob
-        import os
-        import os.path
-        from nbconvert.exporters import python
-        from traitlets.config import Config
-        examples_dir = os.path.join(os.path.dirname(__file__), 'examples')
-        script_dir = os.path.join(examples_dir, 'scripts')
-        if not os.path.exists(script_dir):
-            os.makedirs(script_dir)
-        c = Config({'Exporter': {'template_file': 'examples/python-scripts.tpl'}})
-        exporter = python.PythonExporter(config=c)
-        for fname in glob.glob(os.path.join(examples_dir, 'notebooks', '*.ipynb')):
-            output, _ = exporter.from_filename(fname)
-            out_fname = os.path.splitext(os.path.basename(fname))[0]
-            out_name = os.path.join(script_dir, out_fname + '.py')
-            print(fname, '->', out_name)
-            with open(out_name, 'w') as outf:
-                outf.write(output)
-
-
 ver = versioneer.get_version()
-commands = versioneer.get_cmdclass()
-commands.update(examples=MakeExamples)
 
 # Need to conditionally add enum support for older Python
 dependencies = ['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2']
@@ -48,7 +15,6 @@ setup(
     name = "siphon",
     version = ver,
     packages = find_packages(),
-    cmdclass=commands,
     author = "Unidata Development Team",
     author_email = 'support-python@unidata.ucar.edu',
     license = 'MIT',
