@@ -154,5 +154,5 @@ deploy:
     target_branch: gh-pages
     on:
       branch: master
-      python: 3.6
+      python: 2.7
       condition: '$TASK == "docs"'
