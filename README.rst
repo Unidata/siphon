@@ -3,13 +3,12 @@ Siphon
 
 |License| |PRWelcome|
 
-|PyPI| |PyPIDownloads| |Conda| |CondaDownloads|
+|Docs| |PyPI| |Conda|
 
-|Travis| |AppVeyor|
+|Travis| |AppVeyor| |CodeCov|
 
-|CodeCov| |Codacy| |QuantifiedCode|
+|Codacy| |QuantifiedCode|
 
-|LatestDocs| |StableDocs|
 
 .. |License| image:: https://img.shields.io/pypi/l/siphon.svg
     :target: https://pypi.python.org/pypi/siphon/
@@ -51,13 +50,9 @@ Siphon
     :target: https://www.codacy.com/app/Unidata/siphon
     :alt: Codacy code issues
 
-.. |LatestDocs| image:: https://readthedocs.org/projects/pip/badge/?version=latest
-    :target: http://siphon.readthedocs.org/en/latest/
-    :alt: Latest Doc Build Status
-
-.. |StableDocs| image:: https://readthedocs.org/projects/pip/badge/?version=stable
-    :target: http://siphon.readthedocs.org/en/stable/
-    :alt: Stable Doc Build Status
+.. |Docs| image:: https://img.shields.io/badge/docs-stable-brightgreen.svg
+    :target: http://unidata.github.io/siphon
+    :alt: Latest Docs
 
 .. |PRWelcome| image:: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=round-square
     :target: https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github
