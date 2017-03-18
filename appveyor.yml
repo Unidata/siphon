@@ -37,11 +37,13 @@ install:
 build: off
 
 test_script:
-    - cmd: python setup.py test --addopts --cov=siphon
+    - cmd: python setup.py test --addopts "-s --junitxml=tests.xml --cov=siphon"
     - cmd: cd examples/notebooks
     - cmd: find . -name "*.ipynb" -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=180 --ExecutePreprocessor.kernel_name=devel --inplace
     - cmd: cd ../..
 
 on_finish:
+    - ps: $wc = New-Object 'System.Net.WebClient'
+    - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\tests.xml))
     - cmd: pip install codecov
     - cmd: codecov -e PYTHON_VERSION PLATFORM
