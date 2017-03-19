@@ -17,7 +17,7 @@ class CDMRemoteFeature(NCSS):
     def _get_metadata(self):
         "Get header information and store as metadata for the endpoint."
         self.metadata = self.fetch_header()
-        self.variables = set(g.name for g in self.metadata.grids)
+        self.variables = {g.name for g in self.metadata.grids}
 
     def fetch_header(self):
         "Make a header request to the endpoint"
