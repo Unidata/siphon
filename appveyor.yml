@@ -36,7 +36,7 @@ install:
 build: off
 
 test_script:
-    - cmd: python setup.py test --addopts "-s --junitxml=tests.xml --cov=siphon"
+    - cmd: python setup.py test --addopts "-s --junitxml=tests.xml --flake8 --cov=siphon"
 
 on_finish:
     - ps: $wc = New-Object 'System.Net.WebClient'
