@@ -19,7 +19,7 @@ import requests
 from io import BytesIO
 from . import __version__
 
-user_agent = 'Siphon (%s)' % __version__
+user_agent = 'Siphon ({})'.format(__version__)
 
 HTTPError = requests.HTTPError
 
@@ -455,9 +455,9 @@ class HTTPEndPoint(object):
                 text = resp.reason
             else:
                 text = resp.text
-            raise requests.HTTPError('Error accessing %s: %d %s' % (resp.request.url,
-                                                                    resp.status_code,
-                                                                    text))
+            raise requests.HTTPError('Error accessing {0}: {1:d} {2}'.format(resp.request.url,
+                                                                             resp.status_code,
+                                                                             text))
         return resp
 
     def _get_metadata(self):

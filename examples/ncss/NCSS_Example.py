@@ -69,12 +69,12 @@ press_vals = press[:].squeeze()
 # Now we can plot these up using matplotlib.
 fig, ax = plt.subplots(1, 1, figsize=(9, 8))
 ax.plot(temp[:].squeeze(), press_vals, 'r', linewidth=2)
-ax.set_xlabel(temp.standard_name + ' (%s)' % temp.units)
-ax.set_ylabel(press.standard_name + ' (%s)' % press.units)
+ax.set_xlabel('{} ({})'.format(temp.standard_name, temp.units))
+ax.set_ylabel('{} ({})'.format(press.standard_name, press.units))
 
 # Create second plot with shared y-axis
 ax2 = plt.twiny(ax)
 ax2.plot(relh[:].squeeze(), press_vals, 'g', linewidth=2)
-ax2.set_xlabel(relh.standard_name + ' (%s)' % relh.units)
+ax2.set_xlabel('{} ({})'.format(relh.standard_name, relh.units))
 ax.set_ylim(press_vals.max(), press_vals.min())
 ax.grid(True)

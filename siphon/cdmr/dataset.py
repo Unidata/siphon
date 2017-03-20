@@ -108,7 +108,7 @@ class Group(AttributeContainer):
         if self.ncattrs():
             print_groups.append('Attributes:')
             for att in self.ncattrs():
-                print_groups.append('\t%s: %s' % (att, getattr(self, att)))
+                print_groups.append('\t{}: {}'.format(att, getattr(self, att)))
         return '\n'.join(print_groups)
 
 
@@ -287,10 +287,10 @@ class Variable(AttributeContainer):
 
     def __str__(self):
         groups = [str(type(self))]
-        groups.append('%s %s(%s)' % (self.datatype, self.name,
-                                     ', '.join(self.dimensions)))
+        groups.append('{} {}({})'.format(self.datatype, self.name,
+                                         ', '.join(self.dimensions)))
         for att in self.ncattrs():
-            groups.append('\t%s: %s' % (att, getattr(self, att)))
+            groups.append('\t{}: {}'.format(att, getattr(self, att)))
         if self.ndim:
             if self.ndim > 1:
                 shape_str = '(' + ', '.join(str(s) for s in self.shape) + ')'
@@ -327,7 +327,7 @@ class Dimension(object):
         return self.size if self.size is not None else 0
 
     def __str__(self):
-        grps = ['%s ' % type(self)]
+        grps = ['{} '.format(type(self))]
         if self.unlimited:
             grps.append('(unlimited): ')
 

@@ -68,8 +68,8 @@ class TDSCatalog(object):
         if 'html' in resp.headers['content-type']:
             import warnings
             new_url = self.catalog_url.replace('html', 'xml')
-            warnings.warn('URL %s returned HTML. Changing to: %s' % (self.catalog_url,
-                                                                     new_url))
+            warnings.warn('URL {} returned HTML. Changing to: {}'.format(self.catalog_url,
+                                                                         new_url))
             self.catalog_url = new_url
             resp = session.get(self.catalog_url)
             resp.raise_for_status()

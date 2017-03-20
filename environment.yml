@@ -22,6 +22,7 @@ dependencies:
   - flake8-comprehensions
   - flake8-copyright
   - flake8-mutable
+  - flake8-pep3101
   - flake8-print
   - pep8-naming
   - matplotlib
