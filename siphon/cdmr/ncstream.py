@@ -3,16 +3,16 @@
 # SPDX-License-Identifier: MIT
 
 from __future__ import print_function
+
+from collections import OrderedDict
 import itertools
 import logging
 import zlib
 
-from collections import OrderedDict
-
 import numpy as np
 
-from . import ncStream_pb2 as stream  # noqa
 from . import cdmrfeature_pb2 as cdmrf
+from . import ncStream_pb2 as stream  # noqa
 
 MAGIC_HEADER = b'\xad\xec\xce\xda'
 MAGIC_DATA = b'\xab\xec\xce\xba'

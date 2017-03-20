@@ -2,10 +2,11 @@
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 
-from siphon.testing import get_recorder
-from siphon.cdmr import Dataset
-from numpy.testing import assert_almost_equal, assert_array_equal, assert_array_almost_equal
 import numpy as np
+from numpy.testing import assert_almost_equal, assert_array_almost_equal, assert_array_equal
+
+from siphon.cdmr import Dataset
+from siphon.testing import get_recorder
 
 recorder = get_recorder(__file__)
 

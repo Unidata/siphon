@@ -7,18 +7,17 @@ catalog files from a THREDDS Data Server (TDS). They help identifying
 the latest dataset and finding proper URLs to access the data.
 """
 
+from collections import OrderedDict
 import logging
 import xml.etree.ElementTree as ET
-from collections import OrderedDict
-
-from .metadata import TDSCatalogMetadata
-from .http_util import create_http_session, urlopen
-
 try:
     from urlparse import urljoin, urlparse
 except ImportError:
     # Python 3
     from urllib.parse import urljoin, urlparse
+
+from .http_util import create_http_session, urlopen
+from .metadata import TDSCatalogMetadata
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set

@@ -5,8 +5,8 @@
 import logging
 import warnings
 
+from siphon.catalog import get_latest_access_url, TDSCatalog
 from siphon.testing import get_recorder
-from siphon.catalog import TDSCatalog, get_latest_access_url
 
 log = logging.getLogger("siphon.catalog")
 log.setLevel(logging.WARNING)

@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from siphon.cdmr import Dataset
-from siphon.radarserver import RadarServer, get_radarserver_datasets
+from siphon.radarserver import get_radarserver_datasets, RadarServer
 
 ###########################################
 # First, point to the top-level thredds radar server accessor to find what datasets are

@@ -4,10 +4,11 @@
 """ This module contains utility code to support making requests using HTTP.
 """
 
-import posixpath
 from collections import OrderedDict
 from datetime import datetime, timedelta, tzinfo
+from io import BytesIO
 from itertools import chain
+import posixpath
 try:
     from urllib.parse import urlencode, urljoin  # noqa
 except ImportError:
@@ -16,7 +17,6 @@ except ImportError:
 
 import requests
 
-from io import BytesIO
 from . import __version__
 
 user_agent = 'Siphon ({})'.format(__version__)

@@ -5,9 +5,9 @@
 import logging
 import xml.etree.ElementTree as ET
 
-from siphon.ncss_dataset import NCSSDataset, _Types
-from siphon.testing import get_recorder
 from siphon.http_util import urlopen
+from siphon.ncss_dataset import _Types, NCSSDataset
+from siphon.testing import get_recorder
 
 log = logging.getLogger("siphon.ncss_dataset")
 log.setLevel(logging.WARNING)

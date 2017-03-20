@@ -1,10 +1,11 @@
 # Copyright (c) 2014-2016 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
+
 from datetime import datetime
 
-from siphon.testing import get_recorder
 from siphon.cdmr.cdmremotefeature import CDMRemoteFeature
+from siphon.testing import get_recorder
 
 recorder = get_recorder(__file__)
 

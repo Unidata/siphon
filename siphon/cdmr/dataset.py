@@ -3,9 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 from __future__ import print_function
+
+from collections import OrderedDict
 import enum
 import logging
-from collections import OrderedDict
 
 from .cdmremote import CDMRemote
 from .ncstream import unpack_attribute, unpack_variable

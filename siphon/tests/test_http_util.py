@@ -3,11 +3,12 @@
 # SPDX-License-Identifier: MIT
 
 from datetime import datetime, timedelta
+
 import pytest
 
-import siphon.testing
-from siphon.http_util import (DataQuery, HTTPEndPoint, HTTPError, create_http_session,
+from siphon.http_util import (create_http_session, DataQuery, HTTPEndPoint, HTTPError,
                               parse_iso_date, urlopen, utc)
+import siphon.testing
 
 recorder = siphon.testing.get_recorder(__file__)
 

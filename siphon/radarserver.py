@@ -6,8 +6,9 @@ This module contains code to support making data requests to
 the radar data query service (radar server) on a THREDDS Data Server (TDS).
 This includes forming proper queries as well as parsing the returned catalog.
 """
-import xml.etree.ElementTree as ET
+
 from collections import namedtuple
+import xml.etree.ElementTree as ET
 
 from .catalog import TDSCatalog
 from .http_util import BadQueryError, DataQuery, HTTPEndPoint, urljoin

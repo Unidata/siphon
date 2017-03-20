@@ -7,11 +7,11 @@ the NetCDF subset service (NCSS) on a THREDDS Data Server (TDS). This includes
 forming proper queries as well as parsing the returned data.
 """
 
-import xml.etree.ElementTree as ET
 import atexit
 from io import BytesIO
 from os import remove
 import platform
+import xml.etree.ElementTree as ET
 
 import numpy as np
 

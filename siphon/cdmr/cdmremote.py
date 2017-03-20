@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 from io import BytesIO
+
 from .ncstream import read_ncstream_messages
 from ..http_util import HTTPEndPoint
 

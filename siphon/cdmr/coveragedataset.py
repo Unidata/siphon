@@ -2,9 +2,9 @@
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 
+from collections import OrderedDict
 import logging
 import warnings
-from collections import OrderedDict
 
 from .cdmremotefeature import CDMRemoteFeature
 from .dataset import AttributeContainer

@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 from io import BytesIO
+
 from .ncstream import read_cdmrf_messages
 from ..ncss import NCSS
 

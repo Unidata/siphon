@@ -2,13 +2,13 @@
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 
-from datetime import datetime
 from contextlib import contextmanager
+from datetime import datetime
 
 import numpy as np
 
-import siphon.testing
 from siphon.ncss import NCSS, NCSSQuery, ResponseRegistry
+import siphon.testing
 
 recorder = siphon.testing.get_recorder(__file__)
 

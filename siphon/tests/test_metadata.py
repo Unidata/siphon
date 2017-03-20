@@ -5,7 +5,7 @@
 import logging
 import xml.etree.ElementTree as ET
 
-from siphon.metadata import TDSCatalogMetadata, _SimpleTypes, _ComplexTypes
+from siphon.metadata import _ComplexTypes, _SimpleTypes, TDSCatalogMetadata
 
 log = logging.getLogger("siphon.metadata")
 log.setLevel(logging.WARNING)

@@ -3,11 +3,12 @@
 # SPDX-License-Identifier: MIT
 
 from io import BytesIO
-from siphon.testing import get_recorder
-from siphon.cdmr.ncstream import read_ncstream_messages, read_var_int
-from siphon.cdmr.ncStream_pb2 import Header
 
 import pytest
+
+from siphon.cdmr.ncstream import read_ncstream_messages, read_var_int
+from siphon.cdmr.ncStream_pb2 import Header
+from siphon.testing import get_recorder
 
 recorder = get_recorder(__file__)
 
