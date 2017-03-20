@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2015 Unidata.
+# Copyright (c) 2014-2016 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 
