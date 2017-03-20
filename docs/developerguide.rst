@@ -124,7 +124,7 @@ generated from docstrings, written using the
 `NumPy docstring standard <https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt>`_.
 There are also examples in the ``examples/`` directory.
 
-The documentation is hosted on `GitHub Pages <https://unidata.github.io/MetPy>`_. The docs are
+The documentation is hosted on `GitHub Pages <https://unidata.github.io/siphon>`_. The docs are
 built automatically from ``master`` with every build on Travis-CI; every merged PR will
 have the built docs upload to GitHub Pages. As part of the build, the documentation is also
 checked with ``doc8``. To see what the docs will look like, you also need to install the
