@@ -51,6 +51,7 @@ before_install:
   # which use a different geos that what we build cartopy with on Travis
   - pip install --upgrade pip;
   - if [[ $TASK == "docs" ]]; then
+      if ! git describe --tags; then git fetch --depth=150; fi;
       export EXTRAS="doc,examples,netcdf";
       export EXTRA_PACKAGES="Cython pillow sphinx_rtd_theme shapely<1.5.17.post1";
       ls $HOME/local/lib/;
