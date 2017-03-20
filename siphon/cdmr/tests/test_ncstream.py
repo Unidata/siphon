@@ -32,9 +32,9 @@ def get_header_remote():
     return urlopen(get_test_latest_url('req=header'))
 
 
-@pytest.mark.parametrize("src, result", [(b'\xb6\xe0\x02', 45110), (b'\x17\n\x0b', 23)])
+@pytest.mark.parametrize('src, result', [(b'\xb6\xe0\x02', 45110), (b'\x17\n\x0b', 23)])
 def test_read_var_int(src, result):
-    "Check that we properly read variable length integers   "
+    """Check that we properly read variable length integers."""
     assert read_var_int(BytesIO(src)) == result
 
 

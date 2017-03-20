@@ -75,10 +75,7 @@ class TDSCatalog(object):
 
         # begin parsing the xml doc
         root = ET.fromstring(resp.text)
-        if "name" in root.attrib:
-            self.catalog_name = root.attrib["name"]
-        else:
-            self.catalog_name = "No name found"
+        self.catalog_name = root.attrib.get('name', 'No name found')
 
         self.datasets = OrderedDict()
         self.services = []
@@ -88,14 +85,14 @@ class TDSCatalog(object):
         service_skip = 0
         for child in root.iter():
             tag_type = child.tag.split('}')[-1]
-            if tag_type == "dataset":
+            if tag_type == 'dataset':
                 self._process_dataset(child)
-            elif tag_type == "catalogRef":
+            elif tag_type == 'catalogRef':
                 self._process_catalog_ref(child)
-            elif (tag_type == "metadata") or (tag_type == ""):
+            elif (tag_type == 'metadata') or (tag_type == ''):
                 self._process_metadata(child, tag_type)
-            elif tag_type == "service":
-                if child.attrib["serviceType"] != "Compound":
+            elif tag_type == 'service':
+                if child.attrib['serviceType'] != 'Compound':
                     # we do not want to process single services if they
                     # are already contained within a compound service, so
                     # we need to skip over those cases.
@@ -113,8 +110,8 @@ class TDSCatalog(object):
         self._process_datasets()
 
     def _process_dataset(self, element):
-        if "urlPath" in element.attrib:
-            if element.attrib["urlPath"] == "latest.xml":
+        if 'urlPath' in element.attrib:
+            if element.attrib['urlPath'] == 'latest.xml':
                 ds = Dataset(element, self.catalog_url)
             else:
                 ds = Dataset(element)
@@ -125,8 +122,8 @@ class TDSCatalog(object):
         self.catalog_refs[catalog_ref.title] = catalog_ref
 
     def _process_metadata(self, element, tag_type):
-        if tag_type == "":
-            log.warning("Trying empty tag type as metadata")
+        if tag_type == '':
+            log.warning('Trying empty tag type as metadata')
         self.metadata = TDSCatalogMetadata(element, self.metadata).metadata
 
     def _process_datasets(self):
@@ -161,11 +158,11 @@ class CatalogRef(object):
             An :class:`~xml.etree.ElementTree.Element` representing a catalogRef node
 
         """
-        self.name = element_node.attrib["name"]
-        self.title = element_node.attrib["{http://www.w3.org/1999/xlink}title"]
+        self.name = element_node.attrib['name']
+        self.title = element_node.attrib['{http://www.w3.org/1999/xlink}title']
 
         # Resolve relative URLs
-        href = element_node.attrib["{http://www.w3.org/1999/xlink}href"]
+        href = element_node.attrib['{http://www.w3.org/1999/xlink}href']
         self.href = urljoin(base_url, href)
 
     def follow(self):
@@ -194,7 +191,7 @@ class Dataset(object):
         types defined in the catalog (for example, "OPENDAP", "NetcdfSubset",
         "WMS", etc.
     """
-    def __init__(self, element_node, catalog_url=""):
+    def __init__(self, element_node, catalog_url=''):
         r"""
         Initialize the Dataset object.
 
@@ -212,8 +209,8 @@ class Dataset(object):
         self._resolved = False
         self._resolverUrl = None
         # if latest.xml, resolve the latest url
-        if self.url_path == "latest.xml":
-            if catalog_url != "":
+        if self.url_path == 'latest.xml':
+            if catalog_url != '':
                 self._resolved = True
                 self._resolverUrl = self.url_path
                 self.url_path = self.resolve_url(catalog_url)
@@ -231,30 +228,30 @@ class Dataset(object):
             The catalog url to be resolved
 
         """
-        if catalog_url != "":
-            resolver_base = catalog_url.split("catalog.xml")[0]
+        if catalog_url != '':
+            resolver_base = catalog_url.split('catalog.xml')[0]
             resolver_url = resolver_base + self.url_path
             resolver_xml = urlopen(resolver_url)
             tree = ET.parse(resolver_xml)
             root = tree.getroot()
-            if "name" in root.attrib:
-                self.catalog_name = root.attrib["name"]
+            if 'name' in root.attrib:
+                self.catalog_name = root.attrib['name']
             else:
-                self.catalog_name = "No name found"
+                self.catalog_name = 'No name found'
             resolved_url = ''
             found = False
             for child in root.iter():
                 if not found:
                     tag_type = child.tag.split('}')[-1]
-                    if tag_type == "dataset":
-                        if "urlPath" in child.attrib:
+                    if tag_type == 'dataset':
+                        if 'urlPath' in child.attrib:
                             ds = Dataset(child)
                             resolved_url = ds.url_path
                             found = True
             if found:
                 return resolved_url
             else:
-                log.warning("no dataset url path found in latest.xml!")
+                log.warning('no dataset url path found in latest.xml!')
 
     def make_access_urls(self, catalog_url, all_services, metadata=None):
         r"""
@@ -272,8 +269,8 @@ class Dataset(object):
         """
         service_name = None
         if metadata:
-            if "serviceName" in metadata:
-                service_name = metadata["serviceName"]
+            if 'serviceName' in metadata:
+                service_name = metadata['serviceName']
 
         access_urls = {}
         server_url = _find_base_tds_url(catalog_url)
@@ -399,8 +396,8 @@ def _get_latest_cat(catalog_url):
     """
     cat = TDSCatalog(catalog_url)
     for service in cat.services:
-        if (service.service_type.lower() == "resolver"):
-            latest_cat = cat.catalog_url.replace("catalog.xml", "latest.xml")
+        if service.service_type.lower() == 'resolver':
+            latest_cat = cat.catalog_url.replace('catalog.xml', 'latest.xml')
             return TDSCatalog(latest_cat)
 
     log.error('ERROR: "latest" service not enabled for this catalog!')
@@ -428,7 +425,7 @@ def get_latest_access_url(catalog_url, access_method):
     """
 
     latest_cat = _get_latest_cat(catalog_url)
-    if latest_cat != "":
+    if latest_cat != '':
         if len(list(latest_cat.datasets.keys())) > 0:
             latest_ds = []
             for lds_name in latest_cat.datasets:

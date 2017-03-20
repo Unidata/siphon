@@ -9,7 +9,7 @@ from siphon.http_util import urlopen
 from siphon.ncss_dataset import _Types, NCSSDataset
 from siphon.testing import get_recorder
 
-log = logging.getLogger("siphon.ncss_dataset")
+log = logging.getLogger('siphon.ncss_dataset')
 log.setLevel(logging.WARNING)
 log.addHandler(logging.StreamHandler())
 
@@ -47,10 +47,9 @@ class TestSimpleTypes(object):
 
     def test_attribute_1(self):
         'Test parsing a string attribute'
-        xml = '<attribute name="long_name" ' \
-              'value="Specified height level above ground"/>'
+        xml = '<attribute name="long_name" value="Specified height level above ground"/>'
         element = ET.fromstring(xml)
-        expected = {"long_name": "Specified height level above ground"}
+        expected = {'long_name': 'Specified height level above ground'}
         actual = self.types.handle_attribute(element)
         assert expected == actual
 
@@ -59,17 +58,17 @@ class TestSimpleTypes(object):
         import math
         xml = '<attribute name="missing_value" type="float" value="NaN"/>'
         element = ET.fromstring(xml)
-        expected = {"missing_value": [float("NaN")]}
+        expected = {'missing_value': [float('NaN')]}
         actual = self.types.handle_attribute(element)
         assert expected.keys() == actual.keys()
-        assert(math.isnan(actual["missing_value"][0]))
-        assert(math.isnan(expected["missing_value"][0]))
+        assert(math.isnan(actual['missing_value'][0]))
+        assert(math.isnan(expected['missing_value'][0]))
 
     def test_attribute_3(self):
         'Test parsing a float value attribute'
         xml = '<attribute name="missing_value" type="float" value="-999"/>'
         element = ET.fromstring(xml)
-        expected = {"missing_value": [float(-999)]}
+        expected = {'missing_value': [float(-999)]}
         actual = self.types.handle_attribute(element)
         assert expected == actual
 
@@ -77,7 +76,7 @@ class TestSimpleTypes(object):
         'Test parsing an int attribute'
         xml = '<attribute name="missing_value" type="int" value="-999"/>'
         element = ET.fromstring(xml)
-        expected = {"missing_value": [-999]}
+        expected = {'missing_value': [-999]}
         actual = self.types.handle_attribute(element)
         assert expected == actual
 
@@ -85,7 +84,7 @@ class TestSimpleTypes(object):
         'Test parsing a float value tag'
         xml = '<values>2.0</values>'
         element = ET.fromstring(xml)
-        expected = {"values": ["2.0"]}
+        expected = {'values': ['2.0']}
         actual = self.types.handle_values(element)
         assert expected == actual
 
@@ -93,7 +92,7 @@ class TestSimpleTypes(object):
         'Test parsing multiple floats in a value tag'
         xml = '<values>50000.0 70000.0 85000.0</values>'
         element = ET.fromstring(xml)
-        expected = {"values": ["50000.0", "70000.0", "85000.0"]}
+        expected = {'values': ['50000.0', '70000.0', '85000.0']}
         actual = self.types.handle_values(element)
         assert expected == actual
 
@@ -101,16 +100,16 @@ class TestSimpleTypes(object):
         'Test parsing multiple floats in a value tag to actual float values'
         xml = '<values>50000.0 70000.0 85000.0</values>'
         element = ET.fromstring(xml)
-        expected = {"values": [50000.0, 70000.0, 85000.0]}
-        actual = self.types.handle_values(element, value_type="float")
+        expected = {'values': [50000.0, 70000.0, 85000.0]}
+        actual = self.types.handle_values(element, value_type='float')
         assert expected == actual
 
     def test_value_4(self):
         'Test parsing multiple ints in a value tag to actual int values'
         xml = '<values>50000 70000 85000</values>'
         element = ET.fromstring(xml)
-        expected = {"values": [50000, 70000, 85000]}
-        actual = self.types.handle_values(element, value_type="int")
+        expected = {'values': [50000, 70000, 85000]}
+        actual = self.types.handle_values(element, value_type='int')
         assert expected == actual
 
     def test_projection_box(self):
@@ -122,10 +121,10 @@ class TestSimpleTypes(object):
               '<maxy>1808.070556640625</maxy>' \
               '</projectionBox>'
         element = ET.fromstring(xml)
-        expected = {"projectionBox": {"minx": -2959.1533203125,
-                                      "maxx": 2932.8466796875,
-                                      "miny": -1827.929443359375,
-                                      "maxy": 1808.070556640625}}
+        expected = {'projectionBox': {'minx': -2959.1533203125,
+                                      'maxx': 2932.8466796875,
+                                      'miny': -1827.929443359375,
+                                      'maxy': 1808.070556640625}}
         actual = self.types.handle_projectionBox(element)
         assert expected == actual
 
@@ -134,7 +133,7 @@ class TestSimpleTypes(object):
         xml = '<axisRef name="time1"/>'
         element = ET.fromstring(xml)
 
-        expected = "time1"
+        expected = 'time1'
         actual = self.types.handle_axisRef(element)
         assert expected == actual
 
@@ -143,7 +142,7 @@ class TestSimpleTypes(object):
         xml = '<coordTransRef name="LambertConformal_Projection"/>'
         element = ET.fromstring(xml)
 
-        expected = {"coordTransRef": "LambertConformal_Projection"}
+        expected = {'coordTransRef': 'LambertConformal_Projection'}
         actual = self.types.handle_coordTransRef(element)
         assert expected == actual
 
@@ -157,21 +156,21 @@ class TestSimpleTypes(object):
               '<attribute name="Grib2_Parameter" type="int" value="0 0 0"/>' \
               '</grid>'
         element = ET.fromstring(xml)
-        expected = {"name": "Temperature_isobaric",
-                    "desc": "Temperature @ Isobaric surface",
-                    "shape": "time1 isobaric3 y x",
-                    "attributes": {"units": "K",
-                                   "missing_value": [-999.9],
-                                   "Grib2_Parameter": [0, 0, 0]}}
+        expected = {'name': 'Temperature_isobaric',
+                    'desc': 'Temperature @ Isobaric surface',
+                    'shape': 'time1 isobaric3 y x',
+                    'attributes': {'units': 'K',
+                                   'missing_value': [-999.9],
+                                   'Grib2_Parameter': [0, 0, 0]}}
         actual = self.types.handle_grid(element)
-        assert expected["attributes"] == actual["attributes"]
-        assert expected.pop("attributes", None) == actual.pop("attributes", None)
+        assert expected['attributes'] == actual['attributes']
+        assert expected.pop('attributes', None) == actual.pop('attributes', None)
 
     def test_parameter(self):
         'Test parsing a parameter tag'
         xml = '<parameter name="earth_radius" value="6371229.0 "/>'
         element = ET.fromstring(xml)
-        expected = {"earth_radius": "6371229.0"}
+        expected = {'earth_radius': '6371229.0'}
         actual = self.types.handle_parameter(element)
         assert expected == actual
 
@@ -181,9 +180,9 @@ class TestSimpleTypes(object):
               'url="/thredds/ncss/nws/metar/ncdecoded/' \
               'Metar_Station_Data_fc.cdmr"/>'
         element = ET.fromstring(xml)
-        expected = {"type": "station",
-                    "url": "/thredds/ncss/nws/metar/ncdecoded/"
-                           "Metar_Station_Data_fc.cdmr"}
+        expected = {'type': 'station',
+                    'url': '/thredds/ncss/nws/metar/ncdecoded/'
+                           'Metar_Station_Data_fc.cdmr'}
         actual = self.types.handle_featureDataset(element)
         assert expected == actual
 
@@ -198,12 +197,12 @@ class TestSimpleTypes(object):
               '<attribute name="units" value=".01 inches"/>' \
               '</variable>'
         element = ET.fromstring(xml)
-        expected = {"name": "precipitation_amount_hourly",
-                    "type": "float",
-                    "attributes": {"long_name": "Hourly precipitation amount",
-                                   "standard_name": "precipitation_amount",
-                                   "_FillValue": [-99999.0],
-                                   "units": ".01 inches"}}
+        expected = {'name': 'precipitation_amount_hourly',
+                    'type': 'float',
+                    'attributes': {'long_name': 'Hourly precipitation amount',
+                                   'standard_name': 'precipitation_amount',
+                                   '_FillValue': [-99999.0],
+                                   'units': '.01 inches'}}
         actual = self.types.handle_variable(element)
         assert expected == actual
 
@@ -225,10 +224,10 @@ def test_dataset_elements_axis():
     actual = NCSSDataset(element).axes
     assert actual
     assert len(actual) == 1
-    assert actual["height_above_ground"]
-    assert len(actual["height_above_ground"]) == 4
-    assert actual["height_above_ground"]["attributes"]
-    assert len(actual["height_above_ground"]["attributes"]) == 8
+    assert actual['height_above_ground']
+    assert len(actual['height_above_ground']) == 4
+    assert actual['height_above_ground']['attributes']
+    assert len(actual['height_above_ground']['attributes']) == 8
 
 
 def test_dataset_elements_grid_set():
@@ -295,22 +294,22 @@ def test_dataset_elements_grid_set():
     actual = NCSSDataset(element).gridsets
     assert actual
     assert len(actual) == 1
-    assert actual["time1 isobaric3 y x"]
-    gs = actual["time1 isobaric3 y x"]
-    assert gs["axisRef"]
-    assert len(gs["axisRef"]) == 4
-    assert gs["coordTransRef"]
-    assert gs["projectionBox"]
-    assert len(gs["projectionBox"]) == 4
-    assert gs["grid"]
-    assert len(gs["grid"]) == 2
-    for grid in gs["grid"]:
-        assert len(gs["grid"][grid]) == 4
-        assert gs["grid"][grid]["desc"]
-        assert gs["grid"][grid]["shape"]
-        assert gs["grid"][grid]["type"]
-        assert gs["grid"][grid]["type"] == "float"
-        assert len(gs["grid"][grid]["attributes"]) == 13
+    assert actual['time1 isobaric3 y x']
+    gs = actual['time1 isobaric3 y x']
+    assert gs['axisRef']
+    assert len(gs['axisRef']) == 4
+    assert gs['coordTransRef']
+    assert gs['projectionBox']
+    assert len(gs['projectionBox']) == 4
+    assert gs['grid']
+    assert len(gs['grid']) == 2
+    for grid in gs['grid']:
+        assert len(gs['grid'][grid]) == 4
+        assert gs['grid'][grid]['desc']
+        assert gs['grid'][grid]['shape']
+        assert gs['grid'][grid]['type']
+        assert gs['grid'][grid]['type'] == 'float'
+        assert len(gs['grid'][grid]['attributes']) == 13
 
 
 def test_dataset_elements_coord_transform_valid():
@@ -329,16 +328,16 @@ def test_dataset_elements_coord_transform_valid():
     element = ET.fromstring(xml)
     actual = NCSSDataset(element).coordinate_transforms
     assert actual
-    assert actual["LambertConformal_Projection"]
-    assert len(actual["LambertConformal_Projection"]) == 2
-    assert actual["LambertConformal_Projection"]["transformType"] == "Projection"
-    parameters = actual["LambertConformal_Projection"]["parameters"]
+    assert actual['LambertConformal_Projection']
+    assert len(actual['LambertConformal_Projection']) == 2
+    assert actual['LambertConformal_Projection']['transformType'] == 'Projection'
+    parameters = actual['LambertConformal_Projection']['parameters']
     assert len(parameters) == 5
-    expected = {"grid_mapping_name": "lambert_conformal_conic",
-                "latitude_of_projection_origin": "40.0",
-                "longitude_of_central_meridian": "262.0",
-                "standard_parallel": "40.0",
-                "earth_radius": "6371229.0"}
+    expected = {'grid_mapping_name': 'lambert_conformal_conic',
+                'latitude_of_projection_origin': '40.0',
+                'longitude_of_central_meridian': '262.0',
+                'standard_parallel': '40.0',
+                'earth_radius': '6371229.0'}
     assert parameters == expected
 
 
@@ -351,10 +350,10 @@ def test_dataset_elements_lat_lon_box():
           '<north>49.9041</north>' \
           '</LatLonBox>'
     element = ET.fromstring(xml)
-    expected = {"west": -140.1465,
-                "east": -56.1753,
-                "south": 19.8791,
-                "north": 49.9041}
+    expected = {'west': -140.1465,
+                'east': -56.1753,
+                'south': 19.8791,
+                'north': 49.9041}
     actual = NCSSDataset(element).lat_lon_box
     assert actual
     assert expected == actual
@@ -365,8 +364,8 @@ def test_dataset_elements_time_span():
     xml = '<TimeSpan><begin>2015-06-19T12:00:00Z</begin>' \
           '<end>2015-06-23T18:00:00Z</end></TimeSpan>'
     element = ET.fromstring(xml)
-    expected = {"begin": "2015-06-19T12:00:00Z",
-                "end": "2015-06-23T18:00:00Z"}
+    expected = {'begin': '2015-06-19T12:00:00Z',
+                'end': '2015-06-23T18:00:00Z'}
     actual = NCSSDataset(element).time_span
     assert actual
     assert expected == actual
@@ -388,10 +387,10 @@ def test_dataset_elements_accept_list():
           '</Grid>' \
           '</AcceptList>'
     element = ET.fromstring(xml)
-    expected = {"GridAsPoint": ["xml", "xml_file",
-                                "csv", "csv_file",
-                                "netcdf", "netcdf4"],
-                "Grid": ["netcdf", "netcdf4"]}
+    expected = {'GridAsPoint': ['xml', 'xml_file',
+                                'csv', 'csv_file',
+                                'netcdf', 'netcdf4'],
+                'Grid': ['netcdf', 'netcdf4']}
     actual = NCSSDataset(element).accept_list
     assert expected == actual
 
@@ -409,9 +408,9 @@ def test_dataset_elements_station_accept_list():
           '</AcceptList>'
 
     element = ET.fromstring(xml)
-    expected = {"PointFeatureCollection": ["csv", "text/csv",
-                                           "xml", "text/xml",
-                                           "waterml2", "netcdf", "netcdf4"]}
+    expected = {'PointFeatureCollection': ['csv', 'text/csv',
+                                           'xml', 'text/xml',
+                                           'waterml2', 'netcdf', 'netcdf4']}
     actual = NCSSDataset(element).accept_list
 
     assert expected == actual

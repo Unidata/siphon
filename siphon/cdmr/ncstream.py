@@ -132,7 +132,7 @@ def read_cdmrf_messages(fobj):
 # General Utilities
 #
 def read_messages(fobj, magic_table):
-    "General function to read messages from a file-like object until stream is exhausted."
+    """General function to read messages from a file-like object until stream is exhausted."""
     messages = []
 
     while True:
@@ -151,7 +151,7 @@ def read_messages(fobj, magic_table):
 
 
 def read_proto_object(fobj, klass):
-    "Read a block of data and parse using the given protobuf object"
+    """Read a block of data and parse using the given protobuf object."""
     log.debug('%s chunk', klass.__name__)
     obj = klass()
     obj.ParseFromString(read_block(fobj))

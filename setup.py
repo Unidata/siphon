@@ -18,15 +18,15 @@ if sys.version_info < (3, 4):
     dependencies.append('enum34')
 
 setup(
-    name="siphon",
+    name='siphon',
     version=ver,
     packages=find_packages(),
-    author="Unidata Development Team",
+    author='Unidata Development Team',
     author_email='support-python@unidata.ucar.edu',
     license='MIT',
-    url="https://github.com/Unidata/siphon",
-    description=("A collection of Python utilities for interacting with the "
-                 "Unidata technology stack."),
+    url='https://github.com/Unidata/siphon',
+    description=('A collection of Python utilities for interacting with the '
+                 'Unidata technology stack.'),
     keywords='meteorology weather',
     classifiers=['Development Status :: 3 - Alpha',
                  'Programming Language :: Python :: 2',
@@ -47,7 +47,8 @@ setup(
         'test': ['pytest', 'pytest-flake8', 'pytest-runner', 'netCDF4>=1.1.0',
                  'flake8>3.2.0', 'flake8-builtins', 'flake8-comprehensions',
                  'flake8-copyright', 'flake8-import-order', 'flake8-mutable',
-                 'flake8-pep3101', 'flake8-print', 'pep8-naming',
+                 'flake8-pep3101', 'flake8-print', 'flake8-quotes',
+                 'pep8-naming',
                  'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3', 'xarray>=0.6'],
         'doc': ['sphinx>=1.3', 'sphinx-gallery', 'doc8'],
         'examples': ['matplotlib>=1.3', 'cartopy>=0.13.1', 'scipy']
