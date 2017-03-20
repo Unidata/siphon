@@ -29,13 +29,16 @@ install:
     - cmd: python --version
     - cmd: conda list
     - cmd: if %PYTHON_VERSION% == 2.7 conda install enum34
-    - cmd: pip install ".[test]"
+    - cmd: pip install ".[test,doc,examples]"
 
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
     - cmd: python setup.py test --addopts "-s --junitxml=tests.xml --flake8 --cov=siphon"
+    - cmd: cd docs
+    - cmd: make html
+    - cmd: cd ..
 
 on_finish:
     - ps: $wc = New-Object 'System.Net.WebClient'
