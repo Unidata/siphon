@@ -51,6 +51,8 @@ setup(
                  'pep8-naming',
                  'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3', 'xarray>=0.6'],
         'doc': ['sphinx>=1.3', 'sphinx-gallery', 'doc8'],
+        # SciPy needed for cartopy; we don't use cartopy[plotting] because
+        # that will pull in GDAL.
         'examples': ['matplotlib>=1.3', 'cartopy>=0.13.1', 'scipy']
     },
 
