@@ -17,7 +17,7 @@ interactions:
         \ serviceType=\"HTTPServer\" base=\"/ereefs/tds/fileServer/\" />\r\n  </service>\r\
         \n  <dataset name=\"P1A\" ID=\"mwq/P1A\">\r\n    <metadata inherited=\"true\"\
         >\r\n      <serviceName>nongrid</serviceName>\r\n      <authority>au.gov.bom</authority>\r\
-        \n      <dataType>GRID</dataType>\r\n      <dataFormat>netCDF</dataFormat>\r\
+        \n      <dataType>GRID</dataType>\r\n      <dataFormat>NetCDF</dataFormat>\r\
         \n      <documentation type=\"rights\">Registered research users only</documentation>\r\
         \n    </metadata>\r\n    <dataset name=\"A20020101.P1A.ANN_MIM_RMP.nc\" ID=\"\
         mwq/P1A/A20020101.P1A.ANN_MIM_RMP.nc\" urlPath=\"ereef/mwq/P1A/A20020101.P1A.ANN_MIM_RMP.nc\"\
