@@ -1,18 +1,18 @@
-# Copyright (c) 2014-2016 Unidata.
+# Copyright (c) 2014-2016 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 
 from __future__ import print_function
+
+from collections import OrderedDict
 import itertools
 import logging
 import zlib
 
-from collections import OrderedDict
-
 import numpy as np
 
-from . import ncStream_pb2 as stream  # noqa
 from . import cdmrfeature_pb2 as cdmrf
+from . import ncStream_pb2 as stream  # noqa
 
 MAGIC_HEADER = b'\xad\xec\xce\xda'
 MAGIC_DATA = b'\xab\xec\xce\xba'
@@ -132,7 +132,7 @@ def read_cdmrf_messages(fobj):
 # General Utilities
 #
 def read_messages(fobj, magic_table):
-    "General function to read messages from a file-like object until stream is exhausted."
+    """General function to read messages from a file-like object until stream is exhausted."""
     messages = []
 
     while True:
@@ -151,7 +151,7 @@ def read_messages(fobj, magic_table):
 
 
 def read_proto_object(fobj, klass):
-    "Read a block of data and parse using the given protobuf object"
+    """Read a block of data and parse using the given protobuf object."""
     log.debug('%s chunk', klass.__name__)
     obj = klass()
     obj.ParseFromString(read_block(fobj))

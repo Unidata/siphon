@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2015 Unidata.
+# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 """
@@ -16,49 +16,49 @@ log.setLevel(logging.ERROR)
 
 class _SimpleTypes(object):
     def __init__(self):
-        self._valid = {"dataFormat": self._load_valid_data_format_types(),
-                       "upOrDown": self._load_valid_up_or_down(),
-                       "dataType": self._load_valid_data_types()}
+        self._valid = {'dataFormat': self._load_valid_data_format_types(),
+                       'upOrDown': self._load_valid_up_or_down(),
+                       'dataType': self._load_valid_data_types()}
 
     @staticmethod
     def _load_valid_data_types():
-        valid = ["grid",
-                 "image",
-                 "point",
-                 "radial",
-                 "station",
-                 "swath",
-                 "trajectory"]
+        valid = ['grid',
+                 'image',
+                 'point',
+                 'radial',
+                 'station',
+                 'swath',
+                 'trajectory']
         return valid
 
     @staticmethod
     def _load_valid_data_format_types():
         import mimetypes
-        valid = ["BUFR",
-                 "ESML",
-                 "GEMPAK",
-                 "GINI",
-                 "GRIB-1",
-                 "GRIB-2",
-                 "HDF4",
-                 "HDF5",
-                 "McIDAS-AREA",
-                 "NcML",
-                 "NetCDF",
-                 "NetCDF-4",
-                 "NEXRAD2",
-                 "NIDS",
-                 "image/gif",
-                 "image/jpeg",
-                 "image/tiff",
-                 "text/csv",
-                 "text/html",
-                 "text/plain",
-                 "text/tab-separated-values",
-                 "text/xml",
-                 "video/mpeg",
-                 "video/quicktime",
-                 "video/realtime"]
+        valid = ['BUFR',
+                 'ESML',
+                 'GEMPAK',
+                 'GINI',
+                 'GRIB-1',
+                 'GRIB-2',
+                 'HDF4',
+                 'HDF5',
+                 'McIDAS-AREA',
+                 'NcML',
+                 'NetCDF',
+                 'NetCDF-4',
+                 'NEXRAD2',
+                 'NIDS',
+                 'image/gif',
+                 'image/jpeg',
+                 'image/tiff',
+                 'text/csv',
+                 'text/html',
+                 'text/plain',
+                 'text/tab-separated-values',
+                 'text/xml',
+                 'video/mpeg',
+                 'video/quicktime',
+                 'video/realtime']
 
         valid_mime_types = list(mimetypes.types_map.values())
         valid.extend(valid_mime_types)
@@ -66,7 +66,7 @@ class _SimpleTypes(object):
 
     @staticmethod
     def _load_valid_up_or_down():
-        return ["up", "down"]
+        return ['up', 'down']
 
     def handle_upOrDown(self, element):  # noqa
         # name="upOrDown"
@@ -75,13 +75,13 @@ class _SimpleTypes(object):
         #    <xsd:enumeration value="down"/>
         #   </xsd:restriction>
         #
-        type_name = "upOrDown"
+        type_name = 'upOrDown'
         valid = self._valid[type_name]
         for attrib in element.attrib:
             attr = attrib
             val = element.attrib[attr]
             if val not in valid:
-                log.warning("Value %s not valid for type %s: must be %s",
+                log.warning('Value %s not valid for type %s: must be %s',
                             val, type_name, valid)
         return {attr: val}
 
@@ -131,11 +131,11 @@ class _SimpleTypes(object):
         #   NOTE: to see if mimetype is valude, check against
         #         mimetypes.types_map.values
         #
-        type_name = "dataFormat"
+        type_name = 'dataFormat'
         valid = self._valid[type_name]
         val = element.text
         if val not in valid:
-            log.warning("Value %s not valid for type %s: must be %s",
+            log.warning('Value %s not valid for type %s: must be %s',
                         val, type_name, valid)
         return {type_name: val}
 
@@ -154,13 +154,13 @@ class _SimpleTypes(object):
         #       </xsd:restriction>
         #     </xsd:simpleType>
         #   </xsd:union>
-        type_name = "dataType"
+        type_name = 'dataType'
         valid = self._valid[type_name]
         # case insensitive
 
         val = element.text
         if val.lower() not in valid:
-            log.warning("Value %s not valid for type %s: must be %s",
+            log.warning('Value %s not valid for type %s: must be %s',
                         val, type_name, valid)
         return {type_name: val}
 
@@ -168,7 +168,7 @@ class _SimpleTypes(object):
 class _ComplexTypes(object):
     @staticmethod
     def _get_tag_name(element):
-        if "}" in element.tag:
+        if '}' in element.tag:
             element_name = element.tag.split('}')[-1]
         else:
             element_name = element.tag
@@ -176,35 +176,35 @@ class _ComplexTypes(object):
 
     @staticmethod
     def _spatial_range_req_children():
-        return ["start", "size"]
+        return ['start', 'size']
 
     @staticmethod
     def _spatial_range_opt_children():
-        return ["resolution", "units"]
+        return ['resolution', 'units']
 
     @staticmethod
     def _date_type_formatted_valid_attrs():
-        return ["format", "type"]
+        return ['format', 'type']
 
     @staticmethod
     def _controlled_vocatulary_opt_attrs():
-        return ["vocabulary"]
+        return ['vocabulary']
 
     @staticmethod
     def _variable_opt_attrs():
-        return ["vocabulary_name", "units"]
+        return ['vocabulary_name', 'units']
 
     @staticmethod
     def _variable_req_attrs():
-        return ["name"]
+        return ['name']
 
     @staticmethod
     def _variables_opt_attrs():
-        return ["vocabulary"]
+        return ['vocabulary']
 
     @staticmethod
     def _data_size_req_attrs():
-        return ["units"]
+        return ['units']
 
     #
     # complex types:
@@ -217,7 +217,7 @@ class _ComplexTypes(object):
         #    <xsd:element name="resolution" type="xsd:double" minOccurs="0" />
         #    <xsd:element name="units" type="xsd:string" minOccurs="0" />
         #   </xsd:sequence>
-        type_name = "spatialRange"
+        type_name = 'spatialRange'
         req_children = self._spatial_range_req_children()
         opt_children = self._spatial_range_opt_children()
         valid = req_children + opt_children
@@ -226,13 +226,13 @@ class _ComplexTypes(object):
         for child in element:
             child_name = child.tag
             if child_name in valid:
-                if child_name != "units":
+                if child_name != 'units':
                     spatial_range[child.tag] = float(child.text)
                 else:
                     spatial_range[child.tag] = child.text
             else:
                 # child not valid
-                log.warning("%s is not valid for type %s",
+                log.warning('%s is not valid for type %s',
                             child_name, type_name)
         return spatial_range
 
@@ -245,19 +245,19 @@ class _ComplexTypes(object):
         #    </xsd:extension>
         #   </xsd:simpleContent>
         #
-        type_name = "controlledVocabulary"
+        type_name = 'controlledVocabulary'
 
         opt_attrs = self._controlled_vocatulary_opt_attrs()
         val = {}
         for attr in element.attrib:
             if attr not in opt_attrs:
-                log.warning("%s not a valid attribute for %s", type_name,
+                log.warning('%s not a valid attribute for %s', type_name,
                             attr)
             else:
                 val[attr] = element.attrib[attr]
 
         name = element.text
-        tmp = {"name": name}
+        tmp = {'name': name}
         if val:
             tmp.update(val)
         return tmp
@@ -271,17 +271,17 @@ class _ComplexTypes(object):
         #       <xsd:attribute name="type" type="dateEnumTypes" />
         #     </xsd:extension>
         #
-        type_name = "dateTypeFormatted"
+        type_name = 'dateTypeFormatted'
         valid_attrs = self._date_type_formatted_valid_attrs()
         val = {}
         for attr in element.attrib:
             if attr not in valid_attrs:
-                log.warning("%s is not a valid attribute for %s", attr,
+                log.warning('%s is not a valid attribute for %s', attr,
                             type_name)
             else:
                 val[attr] = element.attrib[attr]
 
-        val["value"] = element.text
+        val['value'] = element.text
 
         return val
 
@@ -300,17 +300,16 @@ class _ComplexTypes(object):
         parsed = {}
         for child in element:
             value = {}
-            if child.tag == "name":
+            if child.tag == 'name':
                 value = self.handle_controlledVocabulary(child)
-            elif child.tag == "contact":
-                if "url" in child.attrib:
-                    value["url"] = child.attrib["url"]
-                if "email" in child.attrib:
-                    value["email"] = child.attrib["email"]
+            elif child.tag == 'contact':
+                if 'url' in child.attrib:
+                    value['url'] = child.attrib['url']
+                if 'email' in child.attrib:
+                    value['email'] = child.attrib['email']
                 else:
-                    log.warning("'contact' must have an attribute: "
-                                "'email'")
-                    value["email"] = "missing"
+                    log.warning("'contact' must have an attribute: 'email'")
+                    value['email'] = 'missing'
             if value:
                 parsed.update(value)
         return parsed
@@ -333,14 +332,14 @@ class _ComplexTypes(object):
         if valid_num_elements:
             for child in element:
                 value = {}
-                if child.tag in ["start", "end"]:
+                if child.tag in ['start', 'end']:
                     processed = self.handle_dateTypeFormatted(child)
-                    value[child.tag] = processed["value"]
-                elif child.tag in ["duration", "resolution"]:
+                    value[child.tag] = processed['value']
+                elif child.tag in ['duration', 'resolution']:
                     value[child.tag] = child.text
                 parsed.update(value)
         else:
-            log.warning("Not enough elements to make a valid timeCoverage")
+            log.warning('Not enough elements to make a valid timeCoverage')
 
         return parsed
 
@@ -352,7 +351,7 @@ class _ComplexTypes(object):
         #                    use="optional"/>
         #     <xsd:attribute name="units" type="xsd:string"/>
         #   </xsd:complexType>
-        type_name = "variable"
+        type_name = 'variable'
         opt_attrs = self._variable_opt_attrs()
         req_attrs = self._variable_req_attrs()
         valid_attrs = opt_attrs + req_attrs
@@ -361,11 +360,11 @@ class _ComplexTypes(object):
         for req_attr in req_attrs:
             if req_attr not in element.attrib:
                 valid = False
-                log.warning("%s must have an attribute %s", type_name,
+                log.warning('%s must have an attribute %s', type_name,
                             req_attr)
         if valid:
             if element.text:
-                variable["description"] = element.text
+                variable['description'] = element.text
             for attr in element.attrib:
                 if attr in valid_attrs:
                     variable[attr] = element.attrib[attr]
@@ -378,7 +377,7 @@ class _ComplexTypes(object):
         #   <xsd:complexType>
         #     <xsd:attributeGroup ref="XLink"/>
         #   </xsd:complexType>
-        type_name = "variableMap"  # noqa
+        type_name = 'variableMap'  # noqa
         var_map = {}
         for attr in element.attrib:
             var_map[attr] = element.attrib[attr]
@@ -397,17 +396,17 @@ class _ComplexTypes(object):
         #                    use="optional"/>
         #     <xsd:attributeGroup ref="XLink"/>
         #   </xsd:complexType>
-        type_name = "variables"  # noqa
+        type_name = 'variables'  # noqa
         variables = {}
         variable_list = []
         variable_map_list = []
         for child in element:
             child_type = self._get_tag_name(child)
 
-            if child_type == "variable":
+            if child_type == 'variable':
                 var = self.handle_variable(child)
                 variable_list.append(var)
-            elif child_type == "variableMap":
+            elif child_type == 'variableMap':
                 var_map = self.handle_variableMap(element)
                 variable_map_list.append(var_map)
 
@@ -417,10 +416,10 @@ class _ComplexTypes(object):
                 variables[attr] = element.attrib[attr]
 
         if variable_list:
-            variables["variables"] = variable_list
+            variables['variables'] = variable_list
 
         if variable_map_list:
-            variables["variableMaps"] = variable_map_list
+            variables['variableMaps'] = variable_map_list
         return variables
 
     def handle_dataSize(self, element):  # noqa
@@ -433,7 +432,7 @@ class _ComplexTypes(object):
         #   </xsd:complexType>
         #
         req_attrs = self._data_size_req_attrs()
-        data_size = {"size": float(element.text)}
+        data_size = {'size': float(element.text)}
 
         for attr in element.attrib:
             if attr in req_attrs:
@@ -482,10 +481,10 @@ class TDSCatalogMetadata(object):
             # element has inherit set to True
             self.metadata = metadata_in
         else:
-            self.metadata = {"inherited": inherited}
+            self.metadata = {'inherited': inherited}
 
         element_name = self._get_tag_name(element)
-        if element_name == "metadata":
+        if element_name == 'metadata':
             for child in element:
                 self._parse_element(child)
         else:
@@ -493,47 +492,47 @@ class TDSCatalogMetadata(object):
 
     @staticmethod
     def _get_tag_name(element):
-        if "}" in element.tag:
+        if '}' in element.tag:
             element_name = element.tag.split('}')[-1]
         else:
             element_name = element.tag
         return element_name
 
     def _get_handler(self, handler_name):
-        handler_name = "handle_" + handler_name
+        handler_name = 'handle_' + handler_name
         if handler_name in self._cts:
             return getattr(self._ct, handler_name)
         elif handler_name in self._sts:
-            return getattr(self._st,  handler_name)
+            return getattr(self._st, handler_name)
         else:
-            msg = "cannot find handler for element {}".format(handler_name)
+            msg = 'cannot find handler for element {}'.format(handler_name)
             log.warning(msg)
 
     def _parse_element(self, element):
 
         element_name = self._get_tag_name(element)
 
-        parser = {"documentation": self._parse_documentation,
-                  "property": self._parse_property,
-                  "contributor": self._parse_contributor,
-                  "geospatialCoverage": self._parse_geospatial_coverage,
-                  "serviceName": self._parse_service_name,
-                  "authority": self._parse_authority,
-                  "publisher": self._parse_publisher,
-                  "creator": self._parse_creator,
-                  "keyword": self._parse_keyword,
-                  "project": self._parse_project,
-                  "dataFormat": self._parse_data_format,
-                  "dataType": self._parse_data_type,
-                  "date": self._parse_date,
-                  "timeCoverage": self._parse_timeCoverage,
-                  "variableMap": self._parse_variableMap,
-                  "variables": self._parse_variables}
+        parser = {'documentation': self._parse_documentation,
+                  'property': self._parse_property,
+                  'contributor': self._parse_contributor,
+                  'geospatialCoverage': self._parse_geospatial_coverage,
+                  'serviceName': self._parse_service_name,
+                  'authority': self._parse_authority,
+                  'publisher': self._parse_publisher,
+                  'creator': self._parse_creator,
+                  'keyword': self._parse_keyword,
+                  'project': self._parse_project,
+                  'dataFormat': self._parse_data_format,
+                  'dataType': self._parse_data_type,
+                  'date': self._parse_date,
+                  'timeCoverage': self._parse_timeCoverage,
+                  'variableMap': self._parse_variableMap,
+                  'variables': self._parse_variables}
 
         try:
             parser[element_name](element)
         except KeyError:
-            log.warning("No parser found for element %s", element_name)
+            log.warning('No parser found for element %s', element_name)
 
     def _parse_documentation(self, element):
         # <xsd:simpleType name="documentationEnumTypes">
@@ -567,18 +566,18 @@ class TDSCatalogMetadata(object):
         # document element has no attributes
         plain_doc = not element.attrib
         md = self.metadata
-        md.setdefault("documentation", {})
+        md.setdefault('documentation', {})
         if known or plain_doc:
             if known:
                 doc_type = element.attrib['type']
             else:
-                doc_type = "generic"
-            md["documentation"].setdefault(doc_type, []).append(element.text)
+                doc_type = 'generic'
+            md['documentation'].setdefault(doc_type, []).append(element.text)
         elif xlink_href_attr in element.attrib:
             title = element.attrib[xlink_title_attr]
             href = element.attrib[xlink_href_attr]
-            xlink = {"title": title, "href": href}
-            md["documentation"].setdefault('xlink', []).append(xlink)
+            xlink = {'title': title, 'href': href}
+            md['documentation'].setdefault('xlink', []).append(xlink)
         self.metadata = md
 
     def _parse_property(self, element):
@@ -588,9 +587,9 @@ class TDSCatalogMetadata(object):
         #   <xsd:attribute name="value" type="xsd:string"/>
         #  </xsd:complexType>
         # </xsd:element>
-        name = element.attrib["name"]
-        value = element.attrib["value"]
-        self.metadata.setdefault("property", {})[name] = value
+        name = element.attrib['name']
+        value = element.attrib['value']
+        self.metadata.setdefault('property', {})[name] = value
 
     def _parse_contributor(self, element):
         # <xsd:element name="contributor">
@@ -603,13 +602,13 @@ class TDSCatalogMetadata(object):
         #     </xsd:simpleContent>
         #   </xsd:complexType>
         # </xsd:element>
-        element_type = "contributor"
-        role = element.attrib["role"]
+        element_type = 'contributor'
+        role = element.attrib['role']
         name = element.text
         self.metadata.setdefault(element_type, {}).setdefault(role, []).append(name)
 
     def _parse_geospatial_coverage(self, element):
-        element_type = "geospatialCoverage"
+        element_type = 'geospatialCoverage'
         md = {}
         # <xsd:element name="geospatialCoverage">
         #  <xsd:complexType>
@@ -627,12 +626,12 @@ class TDSCatalogMetadata(object):
         #   <xsd:attribute name="zpositive" type="upOrDown" default="up"/>
         #  </xsd:complexType>
         # </xsd:element>
-        elements = {"northsouth": "spatialRange",
-                    "eastwest": "spatialRange",
-                    "updown": "spatialRange",
-                    "name": "controlledVocabulary"
+        elements = {'northsouth': 'spatialRange',
+                    'eastwest': 'spatialRange',
+                    'updown': 'spatialRange',
+                    'name': 'controlledVocabulary'
                     }
-        attrs = {"zpositive": "upOrDown"}
+        attrs = {'zpositive': 'upOrDown'}
 
         if element.attrib:
             for attr in element.attrib:
@@ -642,7 +641,7 @@ class TDSCatalogMetadata(object):
                     value = handler(element)
                     md.update({attr: value})
                 else:
-                    log.warning("Attr on %s : %s not captured", attr,
+                    log.warning('Attr on %s : %s not captured', attr,
                                 element_type)
 
         for child in element:
@@ -656,62 +655,62 @@ class TDSCatalogMetadata(object):
 
     def _parse_service_name(self, element):
         # can only have one serviceName
-        element_type = "serviceName"
+        element_type = 'serviceName'
         self.metadata[element_type] = element.text
 
     def _parse_authority(self, element):
-        element_type = "authority"
+        element_type = 'authority'
         self.metadata.setdefault(element_type, []).append(element.text)
 
     def _parse_publisher(self, element):
-        element_type = "publisher"
+        element_type = 'publisher'
         parsed = self._ct.handle_sourceType(element)
         self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_creator(self, element):
-        element_type = "creator"
+        element_type = 'creator'
         parsed = self._ct.handle_sourceType(element)
         self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_keyword(self, element):
-        element_type = "keyword"
+        element_type = 'keyword'
         parsed = self._ct.handle_controlledVocabulary(element)
         self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_project(self, element):
-        element_type = "project"
+        element_type = 'project'
         parsed = self._ct.handle_controlledVocabulary(element)
         self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_data_format(self, element):
-        element_type = "dataFormat"  # noqa
+        element_type = 'dataFormat'  # noqa
         parsed = self._st.handle_dataFormat(element)
         self.metadata.update(parsed)
 
     def _parse_data_type(self, element):
-        element_type = "dataType"  # noqa
+        element_type = 'dataType'  # noqa
         parsed = self._st.handle_dataType(element)
         self.metadata.update(parsed)
 
     def _parse_date(self, element):
-        element_type = "date"
+        element_type = 'date'
         parsed = self._ct.handle_dateTypeFormatted(element)
         self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_timeCoverage(self, element):  # noqa
-        element_type = "timeCoverage"
+        element_type = 'timeCoverage'
         parsed = self._ct.handle_timeCoverageType(element)
         self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_variableMap(self, element):  # noqa
-        element_type = "variableMap"
+        element_type = 'variableMap'
         parsed = self._ct.handle_variableMap(element)
         self.metadata.setdefault(element_type, []).append(parsed)
 
     def _parse_variables(self, element):
-        element_type = "variables"
+        element_type = 'variables'
         parsed = self._ct.handle_variables(element)
-        for variable in parsed["variables"]:
-            var_name = variable["name"]
-            variable.pop("name", None)
+        for variable in parsed['variables']:
+            var_name = variable['name']
+            variable.pop('name', None)
             self.metadata.setdefault(element_type, {})[var_name] = variable

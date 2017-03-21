@@ -1,15 +1,15 @@
-# Copyright (c) 2013-2015 Unidata.
+# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 
 from datetime import datetime
+
 import pytest
-
-import siphon.testing
-from siphon.radarserver import (BadQueryError, RadarQuery, RadarServer,
-                                get_radarserver_datasets)
-
 from requests import HTTPError
+
+from siphon.radarserver import (BadQueryError, get_radarserver_datasets, RadarQuery,
+                                RadarServer)
+import siphon.testing
 
 recorder = siphon.testing.get_recorder(__file__)
 

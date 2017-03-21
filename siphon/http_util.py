@@ -1,13 +1,14 @@
-# Copyright (c) 2013-2015 Unidata.
+# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 """ This module contains utility code to support making requests using HTTP.
 """
 
-import posixpath
 from collections import OrderedDict
 from datetime import datetime, timedelta, tzinfo
+from io import BytesIO
 from itertools import chain
+import posixpath
 try:
     from urllib.parse import urlencode, urljoin  # noqa
 except ImportError:
@@ -16,10 +17,9 @@ except ImportError:
 
 import requests
 
-from io import BytesIO
 from . import __version__
 
-user_agent = 'Siphon (%s)' % __version__
+user_agent = 'Siphon ({})'.format(__version__)
 
 HTTPError = requests.HTTPError
 
@@ -455,9 +455,9 @@ class HTTPEndPoint(object):
                 text = resp.reason
             else:
                 text = resp.text
-            raise requests.HTTPError('Error accessing %s: %d %s' % (resp.request.url,
-                                                                    resp.status_code,
-                                                                    text))
+            raise requests.HTTPError('Error accessing {0}: {1:d} {2}'.format(resp.request.url,
+                                                                             resp.status_code,
+                                                                             text))
         return resp
 
     def _get_metadata(self):

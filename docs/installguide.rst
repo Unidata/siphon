@@ -36,11 +36,6 @@ This will build and install Siphon into your current Python installation.
 Examples
 --------
 
-The Siphon source comes with a set of example IPython notebooks in the ``examples/notebooks``
-directory. These can also be converted to standalone scripts (provided IPython is installed)
-using:
-
-.. parsed-literal::
-    python setup.py examples
+The Siphon source comes with a set of examples in the ``examples/`` directory.
 
 These examples are also seen within the documentation in the :ref:`examples-index`.

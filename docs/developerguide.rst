@@ -122,14 +122,9 @@ Documentation
 Siphon's documentation is built using sphinx >= 1.4. API documentation is automatically
 generated from docstrings, written using the
 `NumPy docstring standard <https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt>`_.
-There are also example IPython notebooks in the ``examples/notebooks`` directory. Using
-IPython's API, these are automatically converted to restructured text for inclusion in the
-documentation. The examples can also be converted to standalone scripts using:
+There are also examples in the ``examples/`` directory.
 
-.. parsed-literal::
-    python setup.py examples
-
-The documentation is hosted on `GitHub Pages <https://unidata.github.io/MetPy>`_. The docs are
+The documentation is hosted on `GitHub Pages <https://unidata.github.io/siphon>`_. The docs are
 built automatically from ``master`` with every build on Travis-CI; every merged PR will
 have the built docs upload to GitHub Pages. As part of the build, the documentation is also
 checked with ``doc8``. To see what the docs will look like, you also need to install the

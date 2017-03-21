@@ -6,8 +6,7 @@ environment:
 
   matrix:
     - PYTHON_VERSION: "2.7"
-    #- PYTHON_VERSION: "3.4"
-    - PYTHON_VERSION: "3.5"
+    - PYTHON_VERSION: "3.6"
 
 platform:
     - x86
@@ -15,8 +14,8 @@ platform:
 
 install:
     # Use the pre-installed Miniconda for the desired arch
-    - ps: if($env:PYTHON_VERSION -eq '3.5')
-            { $env:CONDA_PATH="$($env:CONDA_PATH)35" }
+    - ps: if($env:PYTHON_VERSION -eq '3.6')
+            { $env:CONDA_PATH="$($env:CONDA_PATH)36" }
     - ps: if($env:TARGET_ARCH -eq 'x64')
             { $env:CONDA_PATH="$($env:CONDA_PATH)-x64" }
     - ps: $env:path="$($env:CONDA_PATH);$($env:CONDA_PATH)\Scripts;$($env:CONDA_PATH)\Library\bin;C:\cygwin\bin;$($env:PATH)"
@@ -30,18 +29,19 @@ install:
     - cmd: python --version
     - cmd: conda list
     - cmd: if %PYTHON_VERSION% == 2.7 conda install enum34
-    - cmd: pip install ".[test]"
-    - cmd: python -m ipykernel install --user --name devel --display-name "devel"
+    - cmd: pip install ".[test,doc,examples]"
 
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
-    - cmd: python setup.py test --addopts --cov=siphon
-    - cmd: cd examples/notebooks
-    - cmd: find . -name "*.ipynb" -print0 | xargs -0 -n1 jupyter nbconvert --execute --ExecutePreprocessor.timeout=180 --ExecutePreprocessor.kernel_name=devel --inplace
-    - cmd: cd ../..
+    - cmd: python setup.py test --addopts "-s --junitxml=tests.xml --flake8 --cov=siphon"
+    - cmd: cd docs
+    - cmd: make html
+    - cmd: cd ..
 
-after_test:
+on_finish:
+    - ps: $wc = New-Object 'System.Net.WebClient'
+    - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\tests.xml))
     - cmd: pip install codecov
-    - cmd: codecov
+    - cmd: codecov -e PYTHON_VERSION PLATFORM

@@ -37,7 +37,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
-    'notebook_gen_sphinxext'
+    'sphinx_gallery.gen_gallery'
 ]
 
 mathjax_path = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
@@ -49,6 +49,19 @@ intersphinx_mapping = {
                        'numpy': ('https://docs.scipy.org/doc/numpy/', None),
                        'requests': ('http://docs.python-requests.org/en/master/', None),
                        }
+
+sphinx_gallery_conf = {
+    'doc_module': ('siphon',),
+    'reference_url': {
+        'siphon': None,
+        'matplotlib': 'http://matplotlib.org',
+        'numpy': 'http://docs.scipy.org/doc/numpy/',
+        'requests': 'http://docs.python-requests.org/en/master/'},
+    'examples_dirs': ['../examples'],
+    'gallery_dirs': ['examples'],
+    'filename_pattern': '/',
+    'mod_example_dir': 'api/generated'
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -127,6 +140,9 @@ try:
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 except ImportError:
     pass
+
+def setup(app):
+        app.add_stylesheet('theme_override.css')
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

@@ -1,13 +1,14 @@
-# Copyright (c) 2013-2015 Unidata.
+# Copyright (c) 2014-2016 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 
 from io import BytesIO
-from siphon.testing import get_recorder
-from siphon.cdmr.ncstream import read_ncstream_messages, read_var_int
-from siphon.cdmr.ncStream_pb2 import Header
 
 import pytest
+
+from siphon.cdmr.ncstream import read_ncstream_messages, read_var_int
+from siphon.cdmr.ncStream_pb2 import Header
+from siphon.testing import get_recorder
 
 recorder = get_recorder(__file__)
 
@@ -31,9 +32,9 @@ def get_header_remote():
     return urlopen(get_test_latest_url('req=header'))
 
 
-@pytest.mark.parametrize("src, result", [(b'\xb6\xe0\x02', 45110), (b'\x17\n\x0b', 23)])
+@pytest.mark.parametrize('src, result', [(b'\xb6\xe0\x02', 45110), (b'\x17\n\x0b', 23)])
 def test_read_var_int(src, result):
-    "Check that we properly read variable length integers   "
+    """Check that we properly read variable length integers."""
     assert read_var_int(BytesIO(src)) == result
 
 

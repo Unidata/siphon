@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2015 Unidata.
+# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 """
@@ -10,6 +10,7 @@ Service.
 from __future__ import print_function
 
 import logging
+
 import numpy as np
 
 log = logging.getLogger(__name__)
@@ -19,21 +20,21 @@ log.setLevel(logging.WARNING)
 class _Types(object):
     @staticmethod
     def handle_typed_values(val, type_name, value_type):
-        if value_type == "int":
+        if value_type == 'int':
             try:
                 val = val.split()
                 val = list(map(int, val))
             except ValueError:
-                logging.warning("Cannot convert %s to float.", val)
+                logging.warning('Cannot convert %s to float.', val)
 
-        elif value_type == "float":
+        elif value_type == 'float':
             try:
                 val = val.split()
                 val = list(map(float, val))
             except ValueError:
-                logging.warning("Cannot convert %s to float", val)
+                logging.warning('Cannot convert %s to float', val)
         else:
-            logging.warning("%s type %s not understood.", type_name,
+            logging.warning('%s type %s not understood.', type_name,
                             value_type)
 
         if not isinstance(val, list):
@@ -42,20 +43,20 @@ class _Types(object):
         return val
 
     def handle_attribute(self, element):  # noqa
-        type_name = "attribute"
+        type_name = 'attribute'
         attribute_type = None
-        if "type" in element.attrib:
-            attribute_type = element.attrib["type"]
+        if 'type' in element.attrib:
+            attribute_type = element.attrib['type']
 
-        name = element.attrib["name"]
-        val = element.attrib["value"]
+        name = element.attrib['name']
+        val = element.attrib['value']
         if attribute_type:
             val = self.handle_typed_values(val, type_name, attribute_type)
 
         return {name: val}
 
     def handle_values(self, element, value_type=None):  # noqa
-        type_name = "value"
+        type_name = 'value'
         val = element.text
         if val:
             if value_type:
@@ -63,23 +64,23 @@ class _Types(object):
             else:
                 val = val.split()
         else:
-            increment_attrs = ["start", "increment", "npts"]
+            increment_attrs = ['start', 'increment', 'npts']
             element_attrs = list(element.attrib.keys())
             increment_attrs.sort()
             element_attrs.sort()
             if increment_attrs == element_attrs:
-                start = float(element.attrib["start"])
-                inc = float(element.attrib["increment"])
-                npts = float(element.attrib["npts"])
+                start = float(element.attrib['start'])
+                inc = float(element.attrib['increment'])
+                npts = float(element.attrib['npts'])
                 stop = npts * inc + inc
                 val = np.arange(start=start, step=inc, stop=stop)
                 val.tolist()
 
-        return {"values": val}
+        return {'values': val}
 
     @staticmethod
     def handle_projectionBox(element):  # noqa
-        type_name = "projectionBox"
+        type_name = 'projectionBox'
         pb = {}
         if element.tag == type_name:
             for child in element:
@@ -89,12 +90,12 @@ class _Types(object):
 
     @staticmethod
     def handle_axisRef(element):  # noqa
-        return element.attrib["name"]
+        return element.attrib['name']
 
     @staticmethod
     def handle_coordTransRef(element):  # noqa
         # type_name = "coordTransRef"
-        return {"coordTransRef": element.attrib["name"]}
+        return {'coordTransRef': element.attrib['name']}
 
     def handle_grid(self, element):
         grid = {}
@@ -105,14 +106,14 @@ class _Types(object):
         for attribute in element:
             attrs.update(self.handle_attribute(attribute))
 
-        grid["attributes"] = attrs
+        grid['attributes'] = attrs
 
         return grid
 
     @staticmethod
     def handle_parameter(element):
-        name = element.attrib["name"]
-        value = element.attrib["value"].strip()
+        name = element.attrib['name']
+        value = element.attrib['value'].strip()
         return {name: value}
 
     @staticmethod
@@ -194,10 +195,10 @@ class NCSSDataset(object):
 
         element_name = element.tag
 
-        if element_name == "gridDataset" or element_name == "capabilities":
+        if element_name == 'gridDataset' or element_name == 'capabilities':
 
-            self.featureDataset = {"type": "grid",
-                                   "url": element.attrib["location"]}
+            self.featureDataset = {'type': 'grid',
+                                   'url': element.attrib['location']}
             for child in element:
                 self._parse_element(child)
 
@@ -206,7 +207,7 @@ class NCSSDataset(object):
 
         things_to_del = []
         for thing in self.__dict__:
-            if not thing.startswith("_") and not thing.startswith("__"):
+            if not (thing.startswith('_') or thing.startswith('__')):
                 if not getattr(self, thing):
                     things_to_del.append(thing)
 
@@ -214,65 +215,60 @@ class NCSSDataset(object):
             delattr(self, thing)
 
     def _get_handler(self, handler_name):
-        handler_name = "handle_" + handler_name
+        handler_name = 'handle_' + handler_name
         if handler_name in self._types_methods:
             return getattr(self._types, handler_name)
         else:
-            msg = "cannot find handler for element {}".format(handler_name)
+            msg = 'cannot find handler for element {}'.format(handler_name)
             logging.warning(msg)
 
     def _parse_element(self, element):
         element_name = element.tag
 
-        parser = {"gridSet": self._parse_gridset,
-                  "axis": self._parse_axis,
-                  "coordTransform": self._parse_coordTransform,
-                  "LatLonBox": self._parse_LatLonBox,
-                  "TimeSpan": self._parse_TimeSpan,
-                  "AcceptList": self._parse_AcceptList,
-                  "featureDataset": self._parse_featureDataset,
-                  "variable": self._parse_variable}
+        parser = dict(gridSet=self._parse_gridset, axis=self._parse_axis,
+                      coordTransform=self._parse_coordTransform,
+                      LatLonBox=self._parse_LatLonBox, TimeSpan=self._parse_TimeSpan,
+                      AcceptList=self._parse_AcceptList,
+                      featureDataset=self._parse_featureDataset, variable=self._parse_variable)
 
         try:
             parser[element_name](element)
         except KeyError:
-            logging.warning("No parser found for element %s", element_name)
+            logging.warning('No parser found for element %s', element_name)
 
     def _parse_gridset(self, element):
         element_name = element.tag
-        gridset_name = element.attrib["name"]
+        gridset_name = element.attrib['name']
         grid_set = {}
         for child in element:
             child_name = child.tag
             handler = self._get_handler(child_name)
-            if child_name in ["projectionBox", "coordTransRef"]:
+            if child_name in ['projectionBox', 'coordTransRef']:
                 grid_set.update(handler(child))
-            elif child_name in ["axisRef"]:
+            elif child_name in ['axisRef']:
                 grid_set.setdefault(child_name, []).append(handler(child))
-            elif child_name in ["grid"]:
+            elif child_name in ['grid']:
                 tmp = handler(child)
-                grid_name = tmp["name"]
-                tmp.pop("name", None)
+                grid_name = tmp['name']
+                tmp.pop('name', None)
                 grid_set.setdefault(child_name, {})[grid_name] = tmp
                 self.variables[grid_name] = tmp
             else:
-                logging.warning("Unknown child in %s: %s", element_name,
-                                child_name)
-                grid_set[child.tag] = "not handled by _parse_gridset"
+                logging.warning('Unknown child in %s: %s', element_name, child_name)
+                grid_set[child.tag] = 'not handled by _parse_gridset'
 
         self.gridsets.update({gridset_name: grid_set})
 
     def _parse_axis(self, element):
         # element_name = element.tag
-        axis_name = element.attrib["name"]
+        axis_name = element.attrib['name']
         axis = {}
         for attr in element.attrib:
-            if attr != "name":
+            if attr != 'name':
                 axis[attr] = element.attrib[attr]
-        if "shape" in axis:
-            typed_vals = self._types.handle_typed_values(axis["shape"],
-                                                         "shape", "int")
-            axis["shape"] = typed_vals
+        if 'shape' in axis:
+            typed_vals = self._types.handle_typed_values(axis['shape'], 'shape', 'int')
+            axis['shape'] = typed_vals
 
         attrs = []
         for child in element:
@@ -281,15 +277,15 @@ class NCSSDataset(object):
             attrs.append(handler(child))
 
         if attrs:
-            axis["attributes"] = attrs
+            axis['attributes'] = attrs
 
         self.axes.update({axis_name: axis})
 
     def _parse_coordTransform(self, element):  # noqa
         coord_trans = {}
-        name = element.attrib["name"]
+        name = element.attrib['name']
         for attr in element.attrib:
-            if attr != "name":
+            if attr != 'name':
                 coord_trans[attr] = element.attrib[attr]
 
         params = {}
@@ -299,7 +295,7 @@ class NCSSDataset(object):
             params.update(handler(child))
 
         if params:
-            coord_trans["parameters"] = params
+            coord_trans['parameters'] = params
 
         self.coordinate_transforms.update({name: coord_trans})
 
@@ -317,7 +313,7 @@ class NCSSDataset(object):
         self.time_span = ts
 
     def _parse_AcceptList(self, element):  # noqa
-        grid_req_types = ["Grid", "GridAsPoint"]
+        grid_req_types = ['Grid', 'GridAsPoint']
         # check if station (i.e.
         check = True
         grid = False
@@ -335,7 +331,7 @@ class NCSSDataset(object):
             if point:
                 # this is a PointFeatureCollection ncss
                 return_type = child.text
-                self.accept_list.setdefault("PointFeatureCollection",
+                self.accept_list.setdefault('PointFeatureCollection',
                                             []).append(return_type)
             elif grid:
                 # this is a grid ncss
@@ -344,8 +340,7 @@ class NCSSDataset(object):
                     self.accept_list.setdefault(request_type,
                                                 []).append(return_type)
             else:
-                logging.warning("Cannot have grid=%s and point=%s", grid,
-                                point)
+                logging.warning('Cannot have grid=%s and point=%s', grid, point)
 
     def _parse_featureDataset(self, element):  # noqa
         handler = self._get_handler(element.tag)
@@ -354,6 +349,6 @@ class NCSSDataset(object):
     def _parse_variable(self, element):
         handler = self._get_handler(element.tag)
         tmp = handler(element)
-        name = tmp["name"]
-        tmp = tmp.pop("name", None)
+        name = tmp['name']
+        tmp = tmp.pop('name', None)
         self.variables[name] = tmp

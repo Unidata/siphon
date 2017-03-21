@@ -1,14 +1,14 @@
-# Copyright (c) 2013-2015 Unidata.
+# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 
 import logging
 import warnings
 
+from siphon.catalog import get_latest_access_url, TDSCatalog
 from siphon.testing import get_recorder
-from siphon.catalog import TDSCatalog, get_latest_access_url
 
-log = logging.getLogger("siphon.catalog")
+log = logging.getLogger('siphon.catalog')
 log.setLevel(logging.WARNING)
 log.addHandler(logging.StreamHandler())
 
@@ -41,7 +41,7 @@ def test_virtual_access():
     cat = TDSCatalog(url)
     # find the 2D time coordinate "full collection" dataset
     for dataset in list(cat.datasets.values()):
-        if "Full Collection" in dataset.name:
+        if 'Full Collection' in dataset.name:
             ds = dataset
             break
     assert 'OPENDAP' in ds.access_urls
@@ -55,7 +55,7 @@ def test_get_latest():
     'Test latest dataset helper function'
     url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
            'grib/NCEP/RAP/CONUS_13km/catalog.xml')
-    latest_url = get_latest_access_url(url, "OPENDAP")
+    latest_url = get_latest_access_url(url, 'OPENDAP')
     assert latest_url
 
 
@@ -89,7 +89,7 @@ def test_simple_point_feature_collection_xml():
 def test_html_link():
     'Test that we fall-back when given an HTML catalog page'
     with warnings.catch_warnings():
-        warnings.simplefilter("ignore")
+        warnings.simplefilter('ignore')
         url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
                'grib/NCEP/RAP/CONUS_13km/catalog.html')
         cat = TDSCatalog(url)
