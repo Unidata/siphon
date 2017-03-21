@@ -135,3 +135,11 @@ def test_non_standard_context_path():
     expected = ('http://ereeftds.bom.gov.au/ereefs/tds/dodsC/ereef/mwq/'
                 'P1A/A20020101.P1A.ANN_MIM_RMP.nc')
     assert ds.access_urls['OPENDAP'] == expected
+
+
+@recorder.use_cassette('cat_access_elements')
+def test_access_elements():
+    'Test parsing access elements in TDS client catalog'
+    url = 'http://oceandata.sci.gsfc.nasa.gov/opendap/SeaWiFS/L3SMI/2001/001/catalog.xml'
+    cat = TDSCatalog(url)
+    assert len(list(cat.datasets)) != 0

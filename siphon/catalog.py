@@ -81,12 +81,28 @@ class TDSCatalog(object):
         self.services = []
         self.catalog_refs = OrderedDict()
         self.metadata = {}
+        self.ds_with_access_elements_to_process = []
         service_skip_count = 0
         service_skip = 0
+        current_dataset = None
+        previous_dataset = None
         for child in root.iter():
             tag_type = child.tag.split('}')[-1]
             if tag_type == 'dataset':
+                current_dataset = child.attrib['name']
                 self._process_dataset(child)
+
+                if previous_dataset:
+                    # see if the previously processed dataset has access elements as children
+                    # if so, these datasets need to be processed specially when making
+                    # access_urls
+                    if self.datasets[previous_dataset].access_element_info:
+                        self.ds_with_access_elements_to_process.append(previous_dataset)
+
+                previous_dataset = current_dataset
+
+            elif tag_type == 'access':
+                self.datasets[current_dataset].add_access_element_info(child)
             elif tag_type == 'catalogRef':
                 self._process_catalog_ref(child)
             elif (tag_type == 'metadata') or (tag_type == ''):
@@ -110,12 +126,13 @@ class TDSCatalog(object):
         self._process_datasets()
 
     def _process_dataset(self, element):
+        catalog_url = ''
         if 'urlPath' in element.attrib:
             if element.attrib['urlPath'] == 'latest.xml':
-                ds = Dataset(element, self.catalog_url)
-            else:
-                ds = Dataset(element)
-            self.datasets[ds.name] = ds
+                catalog_url = self.catalog_url
+
+        ds = Dataset(element, catalog_url=catalog_url)
+        self.datasets[ds.name] = ds
 
     def _process_catalog_ref(self, element):
         catalog_ref = CatalogRef(self.catalog_url, element)
@@ -128,8 +145,16 @@ class TDSCatalog(object):
 
     def _process_datasets(self):
         for dsName in list(self.datasets.keys()):
-            self.datasets[dsName].make_access_urls(
-                self.base_tds_url, self.services, metadata=self.metadata)
+            # check to see if dataset needs to have access urls created, if not,
+            # remove the dataset
+            has_url_path = self.datasets[dsName].url_path is not None
+            is_ds_with_access_elements_to_process = \
+                dsName in self.ds_with_access_elements_to_process
+            if has_url_path or is_ds_with_access_elements_to_process:
+                self.datasets[dsName].make_access_urls(
+                    self.base_tds_url, self.services, metadata=self.metadata)
+            else:
+                self.datasets.pop(dsName)
 
 
 class CatalogRef(object):
@@ -204,8 +229,12 @@ class Dataset(object):
 
         """
         self.name = element_node.attrib['name']
-        self.url_path = element_node.attrib['urlPath']
+        if ('urlPath' in element_node.attrib):
+            self.url_path = element_node.attrib['urlPath']
+        else:
+            self.url_path = None
         self.catalog_name = ''
+        self.access_element_info = {}
         self._resolved = False
         self._resolverUrl = None
         # if latest.xml, resolve the latest url
@@ -267,6 +296,8 @@ class Dataset(object):
         metadata : TDSCatalogMetadata
             Metadata from the :class:`TDSCatalog`
         """
+
+        all_service_dict = {service.name: service for service in all_services}
         service_name = None
         if metadata:
             if 'serviceName' in metadata:
@@ -275,25 +306,38 @@ class Dataset(object):
         access_urls = {}
         server_url = _find_base_tds_url(catalog_url)
 
-        found_service = None
-        if service_name:
-            for service in all_services:
-                if service.name == service_name:
-                    found_service = service
-                    break
-
-        service = found_service
-        if service:
+        # process access urls for datasets that reference top
+        # level catalog services (individual or compound service
+        # types).
+        if service_name in all_service_dict:
+            service = all_service_dict[service_name]
             if service.service_type != 'Resolver':
+                # if service is a CompoundService, create access url
+                # for each SimpleService
                 if isinstance(service, CompoundService):
                     for subservice in service.services:
-                        access_urls[subservice.service_type] = server_url + \
-                            subservice.base + self.url_path
+                        access_urls[subservice.service_type] = (server_url +
+                                                                subservice.base +
+                                                                self.url_path)
                 else:
-                    access_urls[service.service_type] = server_url + \
-                        service.base + self.url_path
+                    access_urls[service.service_type] = (server_url +
+                                                         service.base +
+                                                         self.url_path)
+
+        # process access children of dataset elements
+        for service_type in self.access_element_info:
+            url_path = self.access_element_info[service_type]
+            if service_type in all_service_dict:
+                access_urls[service_type] = (server_url +
+                                             all_service_dict[service_type].base +
+                                             url_path)
 
         self.access_urls = access_urls
+
+    def add_access_element_info(self, access_element):
+        service_name = access_element.attrib['serviceName']
+        url_path = access_element.attrib['urlPath']
+        self.access_element_info[service_name] = url_path
 
 
 class SimpleService(object):
