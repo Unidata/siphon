@@ -9,7 +9,6 @@ from siphon.metadata import _ComplexTypes, _SimpleTypes, TDSCatalogMetadata
 
 log = logging.getLogger('siphon.metadata')
 log.setLevel(logging.WARNING)
-log.addHandler(logging.StreamHandler())
 
 #
 # tested:
@@ -105,9 +104,7 @@ class TestComplexTypes(object):
                     'size': 20.6,
                     'units': 'degrees_north'}
         element = ET.fromstring(xml)
-        actual = {}
-        for child in element:
-            actual.update(self.st.handle_spatialRange(element))
+        actual = self.st.handle_spatialRange(element)
 
         assert actual == expected
 
@@ -346,7 +343,8 @@ class TestGeospatialCoverage(object):
 
 class TestMetadata(object):
 
-    def _make_element(self, xml_str):
+    @staticmethod
+    def _make_element(xml_str):
         return ET.fromstring(xml_str)
 
     def test_documentation_element_no_type(self):
@@ -497,6 +495,12 @@ class TestMetadata(object):
         md = TDSCatalogMetadata(element).metadata
         assert 'dataFormat' in md
         assert md['dataFormat'] == 'GRIB-1'
+
+    def test_data_malformed_format(self, capfd):
+        xml = '<dataFormat>netCDF-4</dataFormat>'
+        element = self._make_element(xml)
+        TDSCatalogMetadata(element)
+        assert 'Value netCDF-4 not valid for type dataFormat' in ''.join(capfd.readouterr())
 
     def test_data_type(self):
         xml = '<dataType>GRID</dataType>'

@@ -12,6 +12,7 @@ import logging
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.ERROR)
+log.addHandler(logging.StreamHandler())
 
 
 class _SimpleTypes(object):
