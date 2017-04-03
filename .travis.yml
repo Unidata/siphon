@@ -110,7 +110,9 @@ after_script:
     fi
 
 before_deploy:
-  - touch docs/build/html/.nojekyll
+  - if [[ $TASK == "docs" ]]; then
+      touch docs/build/html/.nojekyll;
+    fi
 
 deploy:
   - provider: pypi
