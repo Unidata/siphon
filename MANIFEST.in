@@ -1,2 +1,12 @@
+include README.rst
+include LICENSE
+include CONTRIBUTING.md
 include versioneer.py
 include siphon/_version.py
+recursive-include examples *
+recursive-include docs *
+prune docs/build
+prune docs/examples
+prune docs/api/generated
+prune docs/source/__pycache__
+exclude .ipynb_checkpoints/*
