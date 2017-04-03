@@ -18,17 +18,9 @@ Siphon
     :target: https://pypi.python.org/pypi/siphon/
     :alt: PyPI Package
 
-.. |PyPIDownloads| image:: https://img.shields.io/pypi/dm/siphon.svg
-    :target: https://pypi.python.org/pypi/siphon/
-    :alt: PyPI Downloads
-
-.. |Conda| image:: https://anaconda.org/unidata/siphon/badges/version.svg
-    :target: https://anaconda.org/unidata/siphon
+.. |Conda| image:: https://anaconda.org/conda-forge/siphon/badges/version.svg
+    :target: https://anaconda.org/conda-forge/siphon
     :alt: Conda Package
-
-.. |CondaDownloads| image:: https://anaconda.org/unidata/siphon/badges/downloads.svg
-    :target: https://anaconda.org/unidata/siphon
-    :alt: Conda Downloads
 
 .. |Travis| image:: https://travis-ci.org/Unidata/siphon.svg?branch=master
     :target: https://travis-ci.org/Unidata/siphon
