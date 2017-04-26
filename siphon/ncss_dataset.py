@@ -15,27 +15,96 @@ import numpy as np
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.WARNING)
+log.addHandler(logging.StreamHandler())
 
 
 class _Types(object):
     @staticmethod
     def handle_typed_values(val, type_name, value_type):
-        if value_type == 'int':
+        r'''Translate typed values into the appropriate python object
+
+            Takes an element name, value, and type and returns a list
+            with the string value(s) properly converted to a python type.
+
+            TypedValues are handled in ucar.ma2.DataType in netcdfJava
+            in the DataType enum. Possibilities are:
+
+                "boolean"
+                "byte"
+                "char"
+                "short"
+                "int"
+                "long"
+                "float"
+                "double"
+                "Sequence"
+                "String"
+                "Structure"
+                "enum1"
+                "enum2"
+                "enum4"
+                "opaque"
+                "object"
+
+            All of these are values written as strings in the xml, so simply
+            applying int, float to the values will work in most cases (i.e.
+            the TDS encodes them as string values properly).
+
+            Examle XML element:
+
+            <attribute name="scale_factor" type="double" value="0.0010000000474974513"/>
+
+            Parameters
+            ----------
+            val : string
+                The string representation of the value attribute of the xml element
+
+            type_name : string
+                The string representation of the name attribute of the xml element
+
+            value_type : string
+                The string representation of the type attribute of the xml element
+
+            Returns
+            -------
+            val : list
+                A list containing the properly typed python values.
+            '''
+        if value_type in ['byte', 'short', 'int', 'long']:
             try:
                 val = val.split()
                 val = list(map(int, val))
             except ValueError:
-                logging.warning('Cannot convert %s to float.', val)
-
-        elif value_type == 'float':
+                log.warning('Cannot convert %s to int. Keeping type as str.', val)
+        elif value_type in ['float', 'double']:
             try:
                 val = val.split()
                 val = list(map(float, val))
             except ValueError:
-                logging.warning('Cannot convert %s to float', val)
+                log.warning('Cannot convert %s to float. Keeping type as str.', val)
+        elif value_type == 'boolean':
+            try:
+                # special case for boolean type
+                val = val.split()
+                # values must be either true or false
+                for potential_bool in val:
+                    if potential_bool not in ['true', 'false']:
+                        raise ValueError
+                val = [True if bool == 'true' else False for bool in val]
+            except ValueError:
+                msg = 'Cannot convert values %s to boolean.'
+                msg += ' Keeping type as str.'
+                log.warning(msg, val)
+        elif value_type == 'String':
+            # nothing special for String type
+            pass
         else:
-            logging.warning('%s type %s not understood.', type_name,
-                            value_type)
+            # possibilities - Sequence, Structure, enum, opaque, object,
+            # and char.
+            # Not sure how to handle these as I do not have an example
+            # of how they would show up in dataset.xml
+            log.warning('%s type %s not understood. Keeping as String.',
+                        type_name, value_type)
 
         if not isinstance(val, list):
             val = [val]
@@ -177,8 +246,8 @@ class NCSSDataset(object):
         Parameters
         ----------
         element : :class:`~xml.etree.ElementTree.Element`
-            An :class:`~xml.etree.ElementTree.Element` representing the top level node of an
-            NCSS dataset.xml doc
+            An :class:`~xml.etree.ElementTree.Element` representing the top level
+            node of an NCSS dataset.xml doc
         """
         self._types = _Types()
         self._types_methods = _Types.__dict__
@@ -220,7 +289,7 @@ class NCSSDataset(object):
             return getattr(self._types, handler_name)
         else:
             msg = 'cannot find handler for element {}'.format(handler_name)
-            logging.warning(msg)
+            log.warning(msg)
 
     def _parse_element(self, element):
         element_name = element.tag
@@ -229,12 +298,13 @@ class NCSSDataset(object):
                       coordTransform=self._parse_coordTransform,
                       LatLonBox=self._parse_LatLonBox, TimeSpan=self._parse_TimeSpan,
                       AcceptList=self._parse_AcceptList,
-                      featureDataset=self._parse_featureDataset, variable=self._parse_variable)
+                      featureDataset=self._parse_featureDataset,
+                      variable=self._parse_variable)
 
         try:
             parser[element_name](element)
         except KeyError:
-            logging.warning('No parser found for element %s', element_name)
+            log.warning('No parser found for element %s', element_name)
 
     def _parse_gridset(self, element):
         element_name = element.tag
@@ -254,7 +324,7 @@ class NCSSDataset(object):
                 grid_set.setdefault(child_name, {})[grid_name] = tmp
                 self.variables[grid_name] = tmp
             else:
-                logging.warning('Unknown child in %s: %s', element_name, child_name)
+                log.warning('Unknown child in %s: %s', element_name, child_name)
                 grid_set[child.tag] = 'not handled by _parse_gridset'
 
         self.gridsets.update({gridset_name: grid_set})
@@ -340,7 +410,7 @@ class NCSSDataset(object):
                     self.accept_list.setdefault(request_type,
                                                 []).append(return_type)
             else:
-                logging.warning('Cannot have grid=%s and point=%s', grid, point)
+                log.warning('Cannot have grid=%s and point=%s', grid, point)
 
     def _parse_featureDataset(self, element):  # noqa
         handler = self._get_handler(element.tag)
