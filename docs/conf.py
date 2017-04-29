@@ -60,7 +60,7 @@ sphinx_gallery_conf = {
     'examples_dirs': ['../examples'],
     'gallery_dirs': ['examples'],
     'filename_pattern': '/',
-    'mod_example_dir': 'api/generated'
+    'backreferences_dir': 'api/generated'
 }
 
 # Add any paths that contain templates here, relative to this directory.
