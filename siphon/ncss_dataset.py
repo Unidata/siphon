@@ -294,12 +294,12 @@ class NCSSDataset(object):
     def _parse_element(self, element):
         element_name = element.tag
 
-        parser = dict(gridSet=self._parse_gridset, axis=self._parse_axis,
-                      coordTransform=self._parse_coordTransform,
-                      LatLonBox=self._parse_LatLonBox, TimeSpan=self._parse_TimeSpan,
-                      AcceptList=self._parse_AcceptList,
-                      featureDataset=self._parse_featureDataset,
-                      variable=self._parse_variable)
+        parser = {'gridSet': self._parse_gridset, 'axis': self._parse_axis,
+                  'coordTransform': self._parse_coordTransform,
+                  'LatLonBox': self._parse_LatLonBox, 'TimeSpan': self._parse_TimeSpan,
+                  'AcceptList': self._parse_AcceptList,
+                  'featureDataset': self._parse_featureDataset,
+                  'variable': self._parse_variable}
 
         try:
             parser[element_name](element)

@@ -369,7 +369,7 @@ class SimpleService(object):
         self.name = service_node.attrib['name']
         self.service_type = service_node.attrib['serviceType']
         self.base = service_node.attrib['base']
-        self.access_urls = dict()
+        self.access_urls = {}
 
 
 class CompoundService(object):

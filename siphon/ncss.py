@@ -271,7 +271,7 @@ class ResponseRegistry(object):
     '''
 
     def __init__(self):
-        self._reg = dict()
+        self._reg = {}
 
     def register(self, mimetype):
         def dec(func):
@@ -300,7 +300,7 @@ def squish(l):
 def combine_dicts(l):
     r'Combine a list of dictionaries into single one'
 
-    ret = dict()
+    ret = {}
     for item in l:
         ret.update(item)
     return ret
@@ -314,8 +314,8 @@ def parse_xml(data, handle_units):
 
 
 def parse_xml_point(elem):
-    point = dict()
-    units = dict()
+    point = {}
+    units = {}
     for data in elem.findall('data'):
         name = data.get('name')
         unit = data.get('units')
@@ -326,7 +326,7 @@ def parse_xml_point(elem):
 
 
 def combine_xml_points(l, units, handle_units):
-    ret = dict()
+    ret = {}
     for item in l:
         for key, value in item.items():
             ret.setdefault(key, []).append(value)
@@ -341,7 +341,7 @@ def combine_xml_points(l, units, handle_units):
 def parse_xml_dataset(elem, handle_units):
     points, units = zip(*[parse_xml_point(p) for p in elem.findall('point')])
     # Group points by the contents of each point
-    datasets = dict()
+    datasets = {}
     for p in points:
         datasets.setdefault(tuple(p.keys()), []).append(p)
 
@@ -393,7 +393,7 @@ def parse_csv_response(data, unit_handler):
 
 
 def parse_csv_header(line):
-    units = dict()
+    units = {}
     names = []
     for var in line.split(','):
         start = var.find('[')
@@ -416,7 +416,7 @@ def parse_csv_dataset(data, handle_units):
     names, units = parse_csv_header(fobj.readline().decode('utf-8'))
     arrs = np.genfromtxt(fobj, dtype=None, names=names, delimiter=',', unpack=True,
                          converters={'date': lambda s: parse_iso_date(s.decode('utf-8'))})
-    d = dict()
+    d = {}
     for f in arrs.dtype.fields:
         dat = arrs[f]
         if dat.dtype == np.object:
