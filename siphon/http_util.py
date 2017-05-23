@@ -1,8 +1,7 @@
 # Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
-""" This module contains utility code to support making requests using HTTP.
-"""
+"""Utility code to support making requests using HTTP."""
 
 from collections import OrderedDict
 from datetime import datetime, timedelta, tzinfo
@@ -25,22 +24,25 @@ HTTPError = requests.HTTPError
 
 
 class BadQueryError(Exception):
-    r'Exception raised when a query fails.'
-    pass
+    """Exception raised when a query fails."""
 
 
 # A UTC class. Taken from standard library docs.
 class UTC(tzinfo):
-    r'''UTC'''
+    """Represent UTC timezone."""
+
     ZERO = timedelta(0)
 
     def utcoffset(self, dt):  # pylint:disable=unused-argument
+        """Get the offset from UTC."""
         return self.ZERO
 
     def tzname(self, dt):  # pylint:disable=unused-argument
+        """Get the name of the timezone."""
         return r'UTC'
 
     def dst(self, dt):  # pylint:disable=unused-argument
+        """Get whether the timezone uses Daylight Savings Time."""
         return self.ZERO
 
 
@@ -48,7 +50,7 @@ utc = UTC()
 
 
 def create_http_session():
-    r'''Create a new HTTP session with our user-agent set.
+    """Create a new HTTP session with our user-agent set.
 
     Returns
     -------
@@ -58,15 +60,15 @@ def create_http_session():
     See Also
     --------
     urlopen
-    '''
 
+    """
     ret = requests.Session()
     ret.headers['User-Agent'] = user_agent
     return ret
 
 
 def urlopen(url, **kwargs):
-    r'''GET a file-like object for a URL using HTTP.
+    """GET a file-like object for a URL using HTTP.
 
     This is a thin wrapper around :meth:`requests.Session.get` that returns a file-like object
     wrapped around the resulting content.
@@ -87,13 +89,13 @@ def urlopen(url, **kwargs):
     See Also
     --------
     :meth:`requests.Session.get`
-    '''
 
+    """
     return BytesIO(create_http_session().get(url, **kwargs).content)
 
 
 def parse_iso_date(s):
-    r'''Parse a string containing an ISO-8601 formatted date
+    """Parse a string containing an ISO-8601 formatted date.
 
     Parameters
     ----------
@@ -104,13 +106,13 @@ def parse_iso_date(s):
     -------
     dt : datetime.datetime
         The results of parsing the string
-    '''
 
+    """
     return datetime.strptime(s, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=utc)
 
 
 class DataQuery(object):
-    r'''An object representing a query for data from a THREDDS server.
+    """Represent a query for data from a THREDDS server.
 
     This object provides a clear API to formulate a query for data, including
     a spatial query, a time query, and possibly some variables or other parameters.
@@ -118,18 +120,17 @@ class DataQuery(object):
     sufficient to be passed to functions expecting a dictionary representing a URL query.
     Instances of this object can also be turned into a string, which will yield a
     properly escaped string for a URL.
-    '''
+    """
 
     def __init__(self):
-        r'Constructs an empty :class:`DataQuery`'
-
+        """Construct an empty :class:`DataQuery`."""
         self.var = set()
         self.time_query = OrderedDict()
         self.spatial_query = OrderedDict()
         self.extra_params = OrderedDict()
 
     def variables(self, *var_names):
-        r'''Specify one or more variables for the query.
+        """Specify one or more variables for the query.
 
         This function ensures that variable names are not repeated.
 
@@ -145,13 +146,13 @@ class DataQuery(object):
         -------
         self : DataQuery
             Returns self for chaining calls
-        '''
 
+        """
         self.var.update(set(var_names))
         return self
 
     def add_query_parameter(self, **kwargs):
-        r'''Add arbitrary query element (name=value) to the request.
+        """Add arbitrary query element (name=value) to the request.
 
         This modifies the query in-place, but returns `self` so that multiple
         queries can be chained together on one line.
@@ -165,13 +166,13 @@ class DataQuery(object):
         -------
         self : DataQuery
             Returns self for chaining calls
-        '''
 
+        """
         self.extra_params.update(kwargs)
         return self
 
     def lonlat_box(self, west, east, south, north):
-        r'''Add a latitude/longitude bounding box to the query.
+        """Add a latitude/longitude bounding box to the query.
 
         This adds a request for a spatial bounding box, bounded by ('north', 'south')
         for latitude and ('east', 'west') for the longitude. This modifies the query
@@ -195,14 +196,14 @@ class DataQuery(object):
         -------
         self : DataQuery
             Returns self for chaining calls
-        '''
 
+        """
         self._set_query(self.spatial_query, west=west, east=east, south=south,
                         north=north)
         return self
 
     def lonlat_point(self, lon, lat):
-        r'''Add a latitude/longitude point to the query.
+        """Add a latitude/longitude point to the query.
 
         This adds a request for a (`lon`, `lat`) point. This modifies the query
         in-place, but returns `self` so that multiple queries can be chained together on
@@ -221,8 +222,8 @@ class DataQuery(object):
         -------
         self : DataQuery
             Returns self for chaining calls
-        '''
 
+        """
         self._set_query(self.spatial_query, longitude=lon, latitude=lat)
         return self
 
@@ -233,7 +234,7 @@ class DataQuery(object):
         query.update(kwargs)
 
     def all_times(self):
-        r'''Add a request for all times to the query
+        """Add a request for all times to the query.
 
         This adds a request for all times (`temporal=all`). This modifies the query
         in-place, but returns `self` so that multiple queries can be chained together on
@@ -245,13 +246,13 @@ class DataQuery(object):
         -------
         self : DataQuery
             Returns self for chaining calls
-        '''
 
+        """
         self._set_query(self.time_query, temporal='all')
         return self
 
     def time(self, time):
-        r'''Add a request for a specific time to the query.
+        """Add a request for a specific time to the query.
 
         This modifies the query in-place, but returns `self` so that multiple queries
         can be chained together on one line.
@@ -267,13 +268,13 @@ class DataQuery(object):
         -------
         self : DataQuery
             Returns self for chaining calls
-        '''
 
+        """
         self._set_query(self.time_query, time=self._format_time(time))
         return self
 
     def time_range(self, start, end):
-        r'''Add a request for a time range to the query.
+        """Add a request for a time range to the query.
 
         This modifies the query in-place, but returns `self` so that multiple queries
         can be chained together on one line.
@@ -291,8 +292,8 @@ class DataQuery(object):
         -------
         self : DataQuery
             Returns self for chaining calls
-        '''
 
+        """
         self._set_query(self.time_query, time_start=self._format_time(start),
                         time_end=self._format_time(end))
         return self
@@ -303,58 +304,59 @@ class DataQuery(object):
         return dt.isoformat()
 
     def __iter__(self):
-        r'''Returns an iterator of the various items (name=value pairs) that compose the
-        query.
+        """Return an iterator of the various items (name=value pairs) that compose the query.
 
         Returns
         -------
         items : iterator
             Sequence of tuples of name, value representing the query.
-        '''
+
+        """
         return chain([('var', self.var)], self.time_query.items(),
                      self.spatial_query.items(), self.extra_params.items())
 
     def items(self):
-        r'''Returns an iterator of the various items (name=value pairs) that compose the
-        query.
+        """Return the various name=value pairs that compose the query.
 
         Returns
         -------
         items : iterator
             Sequence of tuples of name, value representing the query.
-        '''
+
+        """
         return iter(self)
 
     def __str__(self):
-        r'Format query as a urlencoded string.'
+        """Format query as a urlencoded string."""
         return urlencode(self, doseq=True)
 
     def __repr__(self):
-        r'Format query as a urlencoded string.'
+        """Format query as a urlencoded string."""
         return str(self)
 
 
 class HTTPEndPoint(object):
-    r'''An object representing an endpoint on a server that is accessed using HTTP.
+    """An object representing an endpoint on a server that is accessed using HTTP.
 
     This provides a simple way to point to a URL, formulate appropriate queries and
     validate them, parse metadata as appropriate, and parse returns from requests.
-    '''
+    """
 
     def __init__(self, url):
-        r'''Create an HTTPEndPoint instance.
+        """Create an HTTPEndPoint instance.
 
         Parameters
         ----------
         url : str
             The base URL for the endpoint
-        '''
+
+        """
         self._base = url
         self._session = create_http_session()
         self._get_metadata()
 
     def get_query(self, query):
-        r'''Make a GET request, including a query, to the endpoint
+        """Make a GET request, including a query, to the endpoint.
 
         The path of the request is to the base URL assigned to the endpoint.
 
@@ -371,12 +373,13 @@ class HTTPEndPoint(object):
         See Also
         --------
         get_path, get
-        '''
+
+        """
         url = self._base[:-1] if self._base[-1] == '/' else self._base
         return self.get(url, query)
 
     def url_path(self, path):
-        r'''Assemble the full url to a path.
+        """Assemble the full url to a path.
 
         Given a path relative to the base URL, assemble the full URL.
 
@@ -393,12 +396,12 @@ class HTTPEndPoint(object):
         See Also
         --------
         get_path
-        '''
 
+        """
         return posixpath.join(self._base, path)
 
     def get_path(self, path, query=None):
-        r'''Make a GET request, optionally including a query, to a relative path.
+        """Make a GET request, optionally including a query, to a relative path.
 
         The path of the request includes a path on top of the base URL
         assigned to the endpoint.
@@ -418,12 +421,12 @@ class HTTPEndPoint(object):
         See Also
         --------
         get_query, get, url_path
-        '''
 
+        """
         return self.get(self.url_path(path), query)
 
     def get(self, path, params=None):
-        r'''Make a GET request, optionally including a parameters, to a path.
+        """Make a GET request, optionally including a parameters, to a path.
 
         The path of the request is the full URL.
 
@@ -447,8 +450,8 @@ class HTTPEndPoint(object):
         See Also
         --------
         get_query, get
-        '''
 
+        """
         resp = self._session.get(path, params=params)
         if resp.status_code != 200:
             if resp.headers['Content-Type'].startswith('text/html'):
@@ -461,15 +464,13 @@ class HTTPEndPoint(object):
         return resp
 
     def _get_metadata(self):
-        r'''Get the metadata associated with the endpoint.
+        """Get the metadata associated with the endpoint.
 
         It is intended that this be implemented by subclasses as necessary.
-        '''
-
-        pass
+        """
 
     def validate_query(self, query):
-        r'''Validate a query
+        """Validate a query.
 
         Determines whether a query is well-formed. This includes checking for all
         required parameters, as well as checking parameters for valid values.
@@ -485,12 +486,12 @@ class HTTPEndPoint(object):
         -------
         valid : bool
             Whether `query` is valid.
-        '''
 
+        """
         return len(str(query)) > 0  # Ensure not empty
 
     def query(self):
-        r'''Create a new query object
+        """Create a new query object.
 
         Returns a new :class:`DataQuery` instance appropriate for this endpoint.
 
@@ -501,5 +502,6 @@ class HTTPEndPoint(object):
         -------
         valid : bool
             Whether `query` is valid.
-        '''
+
+        """
         return DataQuery()

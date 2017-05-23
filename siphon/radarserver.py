@@ -1,9 +1,8 @@
 # Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
-"""
-This module contains code to support making data requests to
-the radar data query service (radar server) on a THREDDS Data Server (TDS).
+"""Support making data requests to the radar data query service (radar server) on a TDS.
+
 This includes forming proper queries as well as parsing the returned catalog.
 """
 
@@ -15,14 +14,14 @@ from .http_util import BadQueryError, DataQuery, HTTPEndPoint, urljoin
 
 
 class RadarQuery(DataQuery):
-    r'''An object representing a query to the THREDDS radar server.
+    """Represent a query to the THREDDS radar server.
 
     Expands on the queries supported by :class:`~siphon.http_util.DataQuery` to add queries
     specific to the radar data query service.
-    '''
+    """
 
     def stations(self, *stns):
-        r'''Specify one or more stations for the query.
+        """Specify one or more stations for the query.
 
         This modifies the query in-place, but returns `self` so that multiple
         queries can be chained together on one line.
@@ -38,14 +37,14 @@ class RadarQuery(DataQuery):
         -------
         self : RadarQuery
             Returns self for chaining calls
-        '''
 
+        """
         self._set_query(self.spatial_query, stn=stns)
         return self
 
 
 class RadarServer(HTTPEndPoint):
-    r'''Wraps access to the THREDDS radar query service (radar server).
+    """Wrap access to the THREDDS radar query service (radar server).
 
     Simplifies access via HTTP to the radar server endpoint. Parses the metadata, provides
     query catalog results download and parsing based on the appropriate query.
@@ -61,16 +60,18 @@ class RadarServer(HTTPEndPoint):
     stations : dict[str, Station]
         Mapping of station ID to a :class:`Station`, which is a namedtuple containing the
         station's id, name, latitude, longitude, and elevation.
-    '''
+
+    """
 
     def __init__(self, url):
-        r'''Create a RadarServer instance.
+        """Create a RadarServer instance.
 
         Parameters
         ----------
         url : str
             The base URL for the endpoint
-        '''
+
+        """
         xmlfile = '/dataset.xml'
         if url.endswith(xmlfile):
             url = url[:-len(xmlfile)]
@@ -87,18 +88,18 @@ class RadarServer(HTTPEndPoint):
         self.stations = parse_station_table(ET.fromstring(resp.text))
 
     def query(self):
-        r'''Returns a new query for the radar server
+        """Return a new query for the radar server.
 
         Returns
         -------
         RadarQuery
             The new query
-        '''
 
+        """
         return RadarQuery()
 
     def validate_query(self, query):
-        r'''Validate a query
+        """Validate a query.
 
         Determines whether `query` is well-formed. This includes checking for all
         required parameters, as well as checking parameters for valid values.
@@ -112,8 +113,8 @@ class RadarServer(HTTPEndPoint):
         -------
         valid : bool
             Whether `query` is valid.
-        '''
 
+        """
         valid = True
         # Make sure all stations are in the table
         if 'stn' in query.spatial_query:
@@ -126,7 +127,7 @@ class RadarServer(HTTPEndPoint):
         return valid
 
     def get_catalog(self, query):
-        r'''Fetch a parsed THREDDS catalog from the radar server
+        """Fetch a parsed THREDDS catalog from the radar server.
 
         Requests a catalog of radar data files data from the radar server given the
         parameters in `query` and returns a :class:`~siphon.catalog.TDSCatalog` instance.
@@ -149,7 +150,8 @@ class RadarServer(HTTPEndPoint):
         See Also
         --------
         get_catalog_raw
-        '''
+
+        """
         # TODO: Refactor TDSCatalog so we don't need two requests, or to do URL munging
         try:
             url = self._base[:-1] if self._base[-1] == '/' else self._base
@@ -159,7 +161,7 @@ class RadarServer(HTTPEndPoint):
             raise BadQueryError(self.get_catalog_raw(query))
 
     def get_catalog_raw(self, query):
-        r'''Fetch THREDDS catalog XML from the radar server
+        """Fetch THREDDS catalog XML from the radar server.
 
         Requests a catalog of radar data files data from the radar server given the
         parameters in `query` and returns the raw XML.
@@ -177,13 +179,13 @@ class RadarServer(HTTPEndPoint):
         See Also
         --------
         get_catalog
-        '''
 
+        """
         return self.get_query(query).content
 
 
 def get_radarserver_datasets(server):
-    r'''Get datasets from a THREDDS radar server's top-level catalog.
+    """Get datasets from a THREDDS radar server's top-level catalog.
 
     This is a helper function to construct the appropriate catalog URL from the
     server URL, fetch the catalog, and return the contained catalog references.
@@ -197,7 +199,8 @@ def get_radarserver_datasets(server):
     -------
     datasets : dict[str, :class:`~siphon.catalog.CatalogRef`]
         Mapping of dataset name to the catalog reference
-    '''
+
+    """
     if server[-1] != '/':
         server += '/'
     return TDSCatalog(urljoin(server, 'radarServer/catalog.xml')).catalog_refs
@@ -212,13 +215,13 @@ Station = namedtuple('Station', 'id elevation latitude longitude name')
 
 
 def parse_station_table(root):
-    r'Parse station list XML file'
+    """Parse station list XML file."""
     stations = [parse_xml_station(elem) for elem in root.findall('station')]
     return {st.id: st for st in stations}
 
 
 def parse_xml_station(elem):
-    r'Create a :class:`Station` instance from an XML tag'
+    """Create a :class:`Station` instance from an XML tag."""
     stid = elem.attrib['id']
     name = elem.find('name').text
     lat = float(elem.find('latitude').text)

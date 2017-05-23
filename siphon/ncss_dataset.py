@@ -1,11 +1,7 @@
 # Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
-"""
-This module contains code to support reading and parsing
-the dataset.xml documents from the THREDDS Data Server (TDS) netCDF Subset
-Service.
-"""
+"""Support reading and parsing the dataset.xml documents from the netCDF Subset Service."""
 
 from __future__ import print_function
 
@@ -21,55 +17,56 @@ log.addHandler(logging.StreamHandler())
 class _Types(object):
     @staticmethod
     def handle_typed_values(val, type_name, value_type):
-        r'''Translate typed values into the appropriate python object
+        """Translate typed values into the appropriate python object.
 
-            Takes an element name, value, and type and returns a list
-            with the string value(s) properly converted to a python type.
+        Takes an element name, value, and type and returns a list
+        with the string value(s) properly converted to a python type.
 
-            TypedValues are handled in ucar.ma2.DataType in netcdfJava
-            in the DataType enum. Possibilities are:
+        TypedValues are handled in ucar.ma2.DataType in netcdfJava
+        in the DataType enum. Possibilities are:
 
-                "boolean"
-                "byte"
-                "char"
-                "short"
-                "int"
-                "long"
-                "float"
-                "double"
-                "Sequence"
-                "String"
-                "Structure"
-                "enum1"
-                "enum2"
-                "enum4"
-                "opaque"
-                "object"
+            "boolean"
+            "byte"
+            "char"
+            "short"
+            "int"
+            "long"
+            "float"
+            "double"
+            "Sequence"
+            "String"
+            "Structure"
+            "enum1"
+            "enum2"
+            "enum4"
+            "opaque"
+            "object"
 
-            All of these are values written as strings in the xml, so simply
-            applying int, float to the values will work in most cases (i.e.
-            the TDS encodes them as string values properly).
+        All of these are values written as strings in the xml, so simply
+        applying int, float to the values will work in most cases (i.e.
+        the TDS encodes them as string values properly).
 
-            Examle XML element:
+        Examle XML element:
 
-            <attribute name="scale_factor" type="double" value="0.0010000000474974513"/>
+        <attribute name="scale_factor" type="double" value="0.0010000000474974513"/>
 
-            Parameters
-            ----------
-            val : string
-                The string representation of the value attribute of the xml element
+        Parameters
+        ----------
+        val : string
+            The string representation of the value attribute of the xml element
 
-            type_name : string
-                The string representation of the name attribute of the xml element
+        type_name : string
+            The string representation of the name attribute of the xml element
 
-            value_type : string
-                The string representation of the type attribute of the xml element
+        value_type : string
+            The string representation of the type attribute of the xml element
 
-            Returns
-            -------
-            val : list
-                A list containing the properly typed python values.
-            '''
+        Returns
+        -------
+        val : list
+            A list containing the properly typed python values.
+
+        """
         if value_type in ['byte', 'short', 'int', 'long']:
             try:
                 val = val.split()
@@ -197,9 +194,7 @@ class _Types(object):
 
 
 class NCSSDataset(object):
-    r"""
-    An object for holding information contained in the dataset.xml NCSS
-    document.
+    """Hold information contained in the dataset.xml NCSS document.
 
     In general, if a dataset.xml NCSS document is missing the information
     needed to construct an attribute, that attribute will not show up as
@@ -237,17 +232,18 @@ class NCSSDataset(object):
     lat_lon_box : dict[str, float]
         A dictionary holding the north, south, east, and west latitude and
         longitude bounds of the dataset (in degree_east, degree_north)
+
     """
 
     def __init__(self, element):
-        r"""
-        Initialize a NCSSDataset object.
+        """Initialize a NCSSDataset object.
 
         Parameters
         ----------
         element : :class:`~xml.etree.ElementTree.Element`
             An :class:`~xml.etree.ElementTree.Element` representing the top level
             node of an NCSS dataset.xml doc
+
         """
         self._types = _Types()
         self._types_methods = _Types.__dict__

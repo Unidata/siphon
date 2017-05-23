@@ -1,6 +1,7 @@
 # Copyright (c) 2014-2016 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""Test the low-level ncstream interface."""
 
 from io import BytesIO
 
@@ -15,7 +16,7 @@ recorder = get_recorder(__file__)
 
 @recorder.use_cassette('latest_rap_catalog')
 def get_test_latest_url(query=None):
-    'Get the latest URL for testing'
+    """Get the latest URL for testing."""
     from siphon.catalog import TDSCatalog
     cat = TDSCatalog('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
                      'grib/NCEP/RAP/CONUS_13km/latest.xml')
@@ -27,7 +28,7 @@ def get_test_latest_url(query=None):
 
 @recorder.use_cassette('latest_rap_ncstream_header')
 def get_header_remote():
-    'Get a header from a remote data source'
+    """Get a header from a remote data source."""
     from siphon.http_util import urlopen
     return urlopen(get_test_latest_url('req=header'))
 
@@ -39,7 +40,7 @@ def test_read_var_int(src, result):
 
 
 def test_header_message_def():
-    'Test parsing of Header message'
+    """Test parsing of Header message."""
     f = get_header_remote()
     messages = read_ncstream_messages(f)
     assert len(messages) == 1
@@ -53,7 +54,7 @@ def test_header_message_def():
 
 
 def test_local_data():
-    'Test reading ncstream messages directly from bytes in a file-like object'
+    """Test reading ncstream messages directly from bytes in a file-like object."""
     f = BytesIO(b'\xab\xec\xce\xba\x17\n\x0breftime_ISO\x10\x07\x1a\x04\n'
                 b'\x02\x10\x01(\x02\x01\x142014-10-28T21:00:00Z')
     messages = read_ncstream_messages(f)
@@ -62,7 +63,7 @@ def test_local_data():
 
 
 def test_bad_magic():
-    'Test that we get notified of bad magic bytes in stream'
+    """Test that we get notified of bad magic bytes in stream."""
     import logging
     import sys
 

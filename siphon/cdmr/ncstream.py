@@ -1,6 +1,7 @@
 # Copyright (c) 2014-2016 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""Handle binary stream returns in NCStream format."""
 
 from __future__ import print_function
 
@@ -33,7 +34,7 @@ log.setLevel(logging.WARNING)
 # NCStream handling
 #
 def read_ncstream_data(fobj):
-    'Handle reading an NcStream v1 data block from a file-like object'
+    """Handle reading an NcStream v1 data block from a file-like object."""
     data = read_proto_object(fobj, stream.Data)
     if data.dataType in (stream.STRING, stream.OPAQUE) or data.vdata:
         log.debug('Reading string/opaque/vlen')
@@ -92,13 +93,13 @@ def read_ncstream_data(fobj):
 
 
 def read_ncstream_data2(fobj):
-    'Handle reading an NcStream v2 data block from a file-like object'
+    """Handle reading an NcStream v2 data block from a file-like object."""
     data = read_proto_object(fobj, stream.DataCol)
     return datacol_to_array(data)
 
 
 def read_ncstream_err(fobj):
-    'Handle reading an NcStream error from a file-like object and raise as error'
+    """Handle reading an NcStream error from a file-like object and raise as error."""
     err = read_proto_object(fobj, stream.Error)
     raise RuntimeError(err.message)
 
@@ -110,7 +111,7 @@ ncstream_table = {MAGIC_HEADER: lambda f: read_proto_object(f, stream.Header),
 
 
 def read_ncstream_messages(fobj):
-    'Read a collection of NcStream messages from a file-like object'
+    """Read a collection of NcStream messages from a file-like object."""
     return read_messages(fobj, ncstream_table)
 
 
@@ -124,7 +125,7 @@ cdmrf_table = {MAGIC_HEADERCOV: lambda f: read_proto_object(f, cdmrf.CoverageDat
 
 
 def read_cdmrf_messages(fobj):
-    'Read a collection of CDMRemoteFeature messages from a file-like object'
+    """Read a collection of CDMRemoteFeature messages from a file-like object."""
     return read_messages(fobj, cdmrf_table)
 
 
@@ -132,7 +133,7 @@ def read_cdmrf_messages(fobj):
 # General Utilities
 #
 def read_messages(fobj, magic_table):
-    """General function to read messages from a file-like object until stream is exhausted."""
+    """Read messages from a file-like object until stream is exhausted."""
     messages = []
 
     while True:
@@ -160,7 +161,7 @@ def read_proto_object(fobj, klass):
 
 
 def read_magic(fobj):
-    """Read a magic bytes.
+    """Read magic bytes.
 
     Parameters
     ----------
@@ -171,6 +172,7 @@ def read_magic(fobj):
     -------
     bytes
         magic byte sequence read
+
     """
     return fobj.read(4)
 
@@ -190,6 +192,7 @@ def read_block(fobj):
     -------
     bytes
         block of bytes read
+
     """
     num = read_var_int(fobj)
     log.debug('Next block: %d bytes', num)
@@ -197,7 +200,7 @@ def read_block(fobj):
 
 
 def process_vlen(data_header, array):
-    """Process vlen coming back from NCStream v2
+    """Process vlen coming back from NCStream v2.
 
     This takes the array of values and slices into an object array, with entries containing
     the appropriate pieces of the original array. Sizes are controlled by the passed in
@@ -212,6 +215,7 @@ def process_vlen(data_header, array):
     -------
     ndarray
         object array containing sub-sequences from the original primitive array
+
     """
     source = iter(array)
     return np.array([np.fromiter(itertools.islice(source, size), dtype=array.dtype)
@@ -219,7 +223,7 @@ def process_vlen(data_header, array):
 
 
 def datacol_to_array(datacol):
-    """Convert DataCol from NCStream v2 into an array with appropriate type
+    """Convert DataCol from NCStream v2 into an array with appropriate type.
 
     Depending on the data type specified, this extracts data from the appropriate members
     and packs into a :class:`numpy.ndarray`, recursing as necessary for compound data types.
@@ -232,6 +236,7 @@ def datacol_to_array(datacol):
     -------
     ndarray
         array containing extracted data
+
     """
     if datacol.dataType == stream.STRING:
         arr = np.array(datacol.stringdata, dtype=np.object)
@@ -275,7 +280,7 @@ def datacol_to_array(datacol):
 
 
 def reshape_array(data_header, array):
-    """Extracts the appropriate array shape from the header
+    """Extract the appropriate array shape from the header.
 
     Can handle taking a data header and either bytes containing data or a StructureData
     instance, which will have binary data as well as some additional information.
@@ -284,6 +289,7 @@ def reshape_array(data_header, array):
     ----------
     array : :class:`numpy.ndarray`
     data_header : Data
+
     """
     shape = tuple(r.size for r in data_header.section.range)
     if shape:
@@ -303,6 +309,7 @@ _dtypeLookup = {stream.CHAR: 'S1', stream.BYTE: 'b', stream.SHORT: 'i2',
 
 
 def data_type_to_numpy(datatype, unsigned=False):
+    """Convert an ncstream datatype to a numpy one."""
     basic_type = _dtypeLookup[datatype]
 
     if datatype in (stream.STRING, stream.OPAQUE):
@@ -328,6 +335,7 @@ def struct_to_dtype(struct):
 
 
 def unpack_variable(var):
+    """Unpack an NCStream Variable into information we can use."""
     # If we actually get a structure instance, handle turning that into a variable
     if var.dataType == stream.STRUCTURE:
         return None, struct_to_dtype(var), 'Structure'
@@ -364,6 +372,7 @@ _attrConverters = {stream.Attribute.BYTE: np.dtype('>b'),
 
 
 def unpack_attribute(att):
+    """Unpack an embedded attribute into a python or numpy object."""
     if att.unsigned:
         log.warning('Unsupported unsigned attribute!')
 
@@ -390,7 +399,7 @@ def unpack_attribute(att):
 
 
 def read_var_int(file_obj):
-    """Read a variable-length integer
+    """Read a variable-length integer.
 
     Parameters
     ----------
@@ -401,6 +410,7 @@ def read_var_int(file_obj):
     -------
     int
         the variable-length value read
+
     """
     # Read all bytes from here, stopping with the first one that does not have
     # the MSB set. Save the lower 7 bits, and keep stacking to the *left*.

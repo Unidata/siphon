@@ -2,9 +2,9 @@
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 """
-This module contains code to support reading and parsing
-catalog files from a THREDDS Data Server (TDS). They help identifying
-the latest dataset and finding proper URLs to access the data.
+Code to support reading and parsing catalog files from a THREDDS Data Server (TDS).
+
+They help identifying the latest dataset and finding proper URLs to access the data.
 """
 
 from collections import OrderedDict
@@ -25,8 +25,8 @@ log.setLevel(logging.ERROR)
 
 
 class TDSCatalog(object):
-    r"""
-    An object for holding information from a THREDDS Client Catalog.
+    """
+    Parse information from a THREDDS Client Catalog.
 
     Attributes
     ----------
@@ -44,14 +44,16 @@ class TDSCatalog(object):
         catalog ref title.
 
     """
+
     def __init__(self, catalog_url):
-        r"""
+        """
         Initialize the TDSCatalog object.
 
         Parameters
         ----------
         catalog_url : str
             The URL of a THREDDS client catalog
+
         """
         # top level server url
         self.catalog_url = catalog_url
@@ -158,9 +160,8 @@ class TDSCatalog(object):
 
 
 class CatalogRef(object):
-    r"""
-    An object for holding Catalog References obtained from a THREDDS Client
-    Catalog.
+    """
+    An object for holding catalog references obtained from a THREDDS Client Catalog.
 
     Attributes
     ----------
@@ -170,9 +171,11 @@ class CatalogRef(object):
         url to the :class:`CatalogRef`'s THREDDS Client Catalog
     title : str
         Title of the :class:`CatalogRef` element
+
     """
+
     def __init__(self, base_url, element_node):
-        r"""
+        """
         Initialize the catalogRef object.
 
         Parameters
@@ -191,18 +194,19 @@ class CatalogRef(object):
         self.href = urljoin(base_url, href)
 
     def follow(self):
-        r""" Follow the catalog reference, returning a new :class:`TDSCatalog`
+        """Follow the catalog reference and return a new :class:`TDSCatalog`.
 
         Returns
         -------
         TDSCatalog
             The referenced catalog
+
         """
         return TDSCatalog(self.href)
 
 
 class Dataset(object):
-    r"""
+    """
     An object for holding Datasets obtained from a THREDDS Client Catalog.
 
     Attributes
@@ -215,10 +219,11 @@ class Dataset(object):
         A dictionary of access urls whose keywords are the access service
         types defined in the catalog (for example, "OPENDAP", "NetcdfSubset",
         "WMS", etc.
+
     """
+
     def __init__(self, element_node, catalog_url=''):
-        r"""
-        Initialize the Dataset object.
+        """Initialize the Dataset object.
 
         Parameters
         ----------
@@ -229,7 +234,7 @@ class Dataset(object):
 
         """
         self.name = element_node.attrib['name']
-        if ('urlPath' in element_node.attrib):
+        if 'urlPath' in element_node.attrib:
             self.url_path = element_node.attrib['urlPath']
         else:
             self.url_path = None
@@ -248,8 +253,7 @@ class Dataset(object):
                             'the latest.xml dataset!')
 
     def resolve_url(self, catalog_url):
-        r"""
-        Resolve the url of the dataset when reading latest.xml
+        """Resolve the url of the dataset when reading latest.xml.
 
         Parameters
         ----------
@@ -283,9 +287,7 @@ class Dataset(object):
                 log.warning('no dataset url path found in latest.xml!')
 
     def make_access_urls(self, catalog_url, all_services, metadata=None):
-        r"""
-        Make fully qualified urls for the access methods enabled on the
-        dataset.
+        """Make fully qualified urls for the access methods enabled on the dataset.
 
         Parameters
         ----------
@@ -295,8 +297,8 @@ class Dataset(object):
             list of :class:`SimpleService` objects associated with the dataset
         metadata : TDSCatalogMetadata
             Metadata from the :class:`TDSCatalog`
-        """
 
+        """
         all_service_dict = {service.name: service for service in all_services}
         service_name = None
         if metadata:
@@ -335,15 +337,14 @@ class Dataset(object):
         self.access_urls = access_urls
 
     def add_access_element_info(self, access_element):
+        """Create an access method from a catalog element."""
         service_name = access_element.attrib['serviceName']
         url_path = access_element.attrib['urlPath']
         self.access_element_info[service_name] = url_path
 
 
 class SimpleService(object):
-    r"""
-    An object for holding information about an access service enabled on a
-    dataset.
+    """Hold information about an access service enabled on a dataset.
 
     Attributes
     ----------
@@ -355,9 +356,11 @@ class SimpleService(object):
         A dictionary of access urls whose keywords are the access service
         types defined in the catalog (for example, "OPENDAP", "NetcdfSubset",
         "WMS", etc.)
+
     """
+
     def __init__(self, service_node):
-        r"""
+        """
         Initialize the Dataset object.
 
         Parameters
@@ -373,8 +376,7 @@ class SimpleService(object):
 
 
 class CompoundService(object):
-    r"""
-    An object for holding information about compound services.
+    """Hold information about compound services.
 
     Attributes
     ----------
@@ -385,10 +387,11 @@ class CompoundService(object):
         "COMPOUND")
     services : list[SimpleService]
         A list of :class:`SimpleService` objects
+
     """
+
     def __init__(self, service_node):
-        r"""
-        Initialize a :class:`CompoundService` object.
+        """Initialize a :class:`CompoundService` object.
 
         Parameters
         ----------
@@ -410,8 +413,7 @@ class CompoundService(object):
 
 
 def _find_base_tds_url(catalog_url):
-    """
-    Identify the base URL of the THREDDS server from the catalog URL.
+    """Identify the base URL of the THREDDS server from the catalog URL.
 
     Will retain URL scheme, host, port and username/password when present.
     """
@@ -423,9 +425,7 @@ def _find_base_tds_url(catalog_url):
 
 
 def _get_latest_cat(catalog_url):
-    r"""
-    Get the latest dataset catalog from the supplied top level dataset catalog
-    url.
+    """Get the latest dataset catalog from the supplied top level dataset catalog url.
 
     Parameters
     ----------
@@ -448,10 +448,10 @@ def _get_latest_cat(catalog_url):
 
 
 def get_latest_access_url(catalog_url, access_method):
-    r"""
-    Get the data access url, using a specified access method, to the latest
-    data available from a top level dataset catalog (url). Currently only
-    supports the existence of one "latest" dataset.
+    """Get the data access url to the latest data using a specified access method.
+
+    These are available for a data available from a top level dataset catalog (url).
+    Currently only supports the existence of one "latest" dataset.
 
     Parameters
     ----------
@@ -466,8 +466,8 @@ def get_latest_access_url(catalog_url, access_method):
         Data access URL to be used to access the latest data available from a
         given catalog using the specified `access_method`. Typically a single string,
         but not always.
-    """
 
+    """
     latest_cat = _get_latest_cat(catalog_url)
     if latest_cat != '':
         if len(list(latest_cat.datasets.keys())) > 0:
