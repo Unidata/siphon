@@ -545,13 +545,12 @@ class TestMetadata(object):
         assert 'dataFormat' in md
         assert md['dataFormat'] == 'GRIB-1'
 
-    def test_data_malformed_format(self, capfd):
+    def test_data_malformed_format(self, caplog):
         """Test getting a warning for a malformed dataFormat tag."""
         xml = '<dataFormat>netCDF-4</dataFormat>'
         element = self._make_element(xml)
         TDSCatalogMetadata(element)
-        out, err = capfd.readouterr()
-        assert 'Value netCDF-4 not valid for type dataFormat' in ''.join(err)
+        assert 'Value netCDF-4 not valid for type dataFormat' in caplog.text
 
     def test_data_type(self):
         """Test parsing dataType tags."""

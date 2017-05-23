@@ -62,28 +62,10 @@ def test_local_data():
     assert messages[0][0] == '2014-10-28T21:00:00Z'
 
 
-def test_bad_magic():
+def test_bad_magic(caplog):
     """Test that we get notified of bad magic bytes in stream."""
-    import logging
-    import sys
-
-    # Only StringIO's version supports writing str
-    if sys.version_info.major == 2:
-        from StringIO import StringIO
-    else:
-        from io import StringIO
-
-    # Set up capturing of logging
-    log = logging.getLogger('siphon.cdmr.ncstream')
-    err_out = StringIO()
-    log.addHandler(logging.StreamHandler(err_out))
-
     # Try reading a bad message
     f = BytesIO(b'\x00\x01\x02\x03')
     read_ncstream_messages(f)
 
-    log.handlers.pop()
-
-    # Make sure we got some error output
-    err_out.seek(0)
-    assert 'Unknown magic' in err_out.read()
+    assert 'Unknown magic' in caplog.text
