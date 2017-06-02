@@ -139,7 +139,7 @@ class DataQuery(object):
         Parameters
         ----------
         var_names : one or more strings
-            One or more names of variables to request
+            One or more names of variables to request. Use 'all' to request all.
 
         Returns
         -------
