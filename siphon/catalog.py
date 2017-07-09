@@ -24,6 +24,18 @@ log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
 log.setLevel(logging.ERROR)
 
 
+class IndexableMapping(OrderedDict):
+    """Extend ``OrderedDict`` to allow index-based access to values."""
+
+    def __getitem__(self, item):
+        """Return an item either by index or name."""
+        try:
+            item + ''  # Raises if item not a string
+            return super(IndexableMapping, self).__getitem__(item)
+        except TypeError:
+            return list(self.values())[item]
+
+
 class TDSCatalog(object):
     """
     Parse information from a THREDDS Client Catalog.
@@ -79,9 +91,9 @@ class TDSCatalog(object):
         root = ET.fromstring(resp.text)
         self.catalog_name = root.attrib.get('name', 'No name found')
 
-        self.datasets = OrderedDict()
+        self.datasets = IndexableMapping()
         self.services = []
-        self.catalog_refs = OrderedDict()
+        self.catalog_refs = IndexableMapping()
         self.metadata = {}
         self.ds_with_access_elements_to_process = []
         service_skip_count = 0

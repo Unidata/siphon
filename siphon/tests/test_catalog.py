@@ -116,6 +116,17 @@ def test_datasets_order():
                                   'Latest Collection for NAM CONUS 20km']
 
 
+@recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_get_by_index():
+    """Test that datasets can be accessed by index."""
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+    assert cat.datasets[0].name == 'Full Collection (Reference / Forecast Time) Dataset'
+    assert cat.datasets[1].name == 'Best NAM CONUS 20km Time Series'
+    assert cat.datasets[2].name == 'Latest Collection for NAM CONUS 20km'
+
+
 @recorder.use_cassette('top_level_cat')
 def test_catalog_ref_order():
     """Test that catalog references are properly ordered."""
