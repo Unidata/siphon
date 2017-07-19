@@ -138,9 +138,8 @@ class _Types(object):
                 start = float(element.attrib['start'])
                 inc = float(element.attrib['increment'])
                 npts = float(element.attrib['npts'])
-                stop = npts * inc + inc
-                val = np.arange(start=start, step=inc, stop=stop)
-                val.tolist()
+                val = start + np.arange(npts) * inc
+                val = val.tolist()
 
         return {'values': val}
 

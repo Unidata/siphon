@@ -245,6 +245,11 @@ class TestSimpleTypes(object):
         actual = self.types.handle_values(element, value_type='int')
         assert expected == actual
 
+    def test_value_range_inc0(self):
+        """Test parsing a values tag with start, inc, n with inc of 0."""
+        element = ET.fromstring('<values start="60.0" increment="0.0" npts="5"/>')
+        assert self.types.handle_values(element) == {'values': [60.0, 60.0, 60.0, 60.0, 60.0]}
+
     def test_projection_box(self):
         """Test parsing a projection box."""
         xml = '<projectionBox>' \
