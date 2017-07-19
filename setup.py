@@ -1,6 +1,7 @@
 # Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""Setup script for installing Siphon."""
 
 from __future__ import print_function
 
@@ -44,10 +45,11 @@ setup(
     extras_require={
         'netcdf': 'netCDF4>=1.1.0',
         'dev': 'ipython[all]>=3.1',
-        'test': ['pytest', 'pytest-flake8', 'pytest-runner', 'netCDF4>=1.1.0',
+        'test': ['pytest', 'pytest-catchlog', 'pytest-flake8', 'pytest-runner',
+                 'netCDF4>=1.1.0',
                  'flake8>3.2.0', 'flake8-builtins', 'flake8-comprehensions',
-                 'flake8-copyright', 'flake8-import-order', 'flake8-mutable',
-                 'flake8-pep3101', 'flake8-print', 'flake8-quotes',
+                 'flake8-copyright', 'flake8-docstrings', 'flake8-import-order',
+                 'flake8-mutable', 'flake8-pep3101', 'flake8-print', 'flake8-quotes',
                  'pep8-naming',
                  'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3', 'xarray>=0.6'],
         'doc': ['sphinx>=1.3', 'sphinx-gallery', 'doc8'],

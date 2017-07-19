@@ -1,6 +1,7 @@
 # Copyright (c) 2016 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""Provide access to a TDS Coverage Dataset."""
 
 from collections import OrderedDict
 import logging
@@ -15,12 +16,16 @@ log.setLevel(logging.WARNING)
 
 
 def reindent_lines(new_leader, source):
-    'Helper for __str__ to re-indent lines'
+    """Re-indent string lines."""
     return new_leader + ('\n' + new_leader).join(source.split('\n'))
 
 
 class CoverageDataset(AttributeContainer):
-    """Experimental class wrapping dataset access using CDMRemoteFeature and Coverages."""
+    """Wrap dataset access using CDMRemoteFeature and Coverages.
+
+    This is still experimental.
+    """
+
     def __init__(self, url):
         """Initialize CoverageDataset from a url pointing to CDMRemoteFeature endpoint."""
         super(CoverageDataset, self).__init__()

@@ -1,6 +1,7 @@
 # Copyright (c) 2016 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""Provide access to the CDMRemoteFeature endpoint on TDS."""
 
 from io import BytesIO
 
@@ -9,7 +10,8 @@ from ..ncss import NCSS
 
 
 class CDMRemoteFeature(NCSS):
-    """Simple wrapper for speaking to CDMRemoteFeature HTTP endpoint"""
+    """Communicate to the CDMRemoteFeature HTTP endpoint."""
+
     @staticmethod
     def _parse_messages(resp):
         """Parse server responses as CDMRemoteFeature messages."""

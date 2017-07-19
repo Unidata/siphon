@@ -1,6 +1,7 @@
 # Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""Test the parsing of the NCSS dataset.xml."""
 
 import logging
 import xml.etree.ElementTree as ET
@@ -39,103 +40,100 @@ recorder = get_recorder(__file__)
 
 
 class TestSimpleTypes(object):
-    'Test parsing simple types from NCSS dataset.xml'
+    """Test parsing simple types from NCSS dataset.xml."""
+
     @classmethod
     def setup_class(cls):
+        """Set up the test class."""
         cls.types = _Types()
 
     def test_attribute_byte(self):
-        'Test parsing a byte attribute'
+        """Test parsing a byte attribute."""
         xml = '<attribute name="missing_value" type="byte" value="1"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': [1]}
         actual = self.types.handle_attribute(element)
         assert expected == actual
 
-    def test_attribute_invalid_byte(self, capfd):
-        'Test parsing an invalid byte attribute'
+    def test_attribute_invalid_byte(self, caplog):
+        """Test parsing an invalid byte attribute."""
         xml = '<attribute name="missing_value" type="byte" value="a"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        expected_message = 'Cannot convert [\'a\'] to int. Keeping type as str.'
-        assert expected_message in ''.join(capfd.readouterr())
+        assert 'Cannot convert [\'a\'] to int. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_attribute_short(self):
-        'Test parsing a short attribute'
+        """Test parsing a short attribute."""
         xml = '<attribute name="missing_value" type="short" value="-999"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': [-999]}
         actual = self.types.handle_attribute(element)
         assert expected == actual
 
-    def test_attribute_invalid_short(self, capfd):
-        'Test parsing an invalid short attribute'
+    def test_attribute_invalid_short(self, caplog):
+        """Test parsing an invalid short attribute."""
         xml = '<attribute name="missing_value" type="short" value="a"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        expected_message = 'Cannot convert [\'a\'] to int. Keeping type as str.'
-        assert expected_message in ''.join(capfd.readouterr())
+        assert 'Cannot convert [\'a\'] to int. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_attribute_int(self):
-        'Test parsing an int attribute'
+        """Test parsing an int attribute."""
         xml = '<attribute name="missing_value" type="int" value="-999"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': [-999]}
         actual = self.types.handle_attribute(element)
         assert expected == actual
 
-    def test_attribute_invalid_int(self, capfd):
-        'Test parsing an invalid int attribute'
+    def test_attribute_invalid_int(self, caplog):
+        """Test parsing an invalid int attribute."""
         xml = '<attribute name="missing_value" type="int" value="a"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        expected_message = 'Cannot convert [\'a\'] to int. Keeping type as str.'
-        assert expected_message in ''.join(capfd.readouterr())
+        assert 'Cannot convert [\'a\'] to int. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_attribute_long(self):
-        'Test parsing a long attribute'
+        """Test parsing a long attribute."""
         xml = '<attribute name="missing_value" type="long" value="-999"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': [-999]}
         actual = self.types.handle_attribute(element)
         assert expected == actual
 
-    def test_attribute_invalid_long(self, capfd):
-        'Test parsing a invalid long attribute'
+    def test_attribute_invalid_long(self, caplog):
+        """Test parsing a invalid long attribute."""
         xml = '<attribute name="missing_value" type="long" value="a"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        expected_message = 'Cannot convert [\'a\'] to int. Keeping type as str.'
-        assert expected_message in ''.join(capfd.readouterr())
+        assert 'Cannot convert [\'a\'] to int. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_attribute_float(self):
-        'Test parsing a float value attribute'
+        """Test parsing a float value attribute."""
         xml = '<attribute name="missing_value" type="float" value="-999.0"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': [float(-999.0)]}
         actual = self.types.handle_attribute(element)
         assert expected == actual
 
-    def test_attribute_invalid_float(self, capfd):
-        'Test parsing an invalid float value attribute'
+    def test_attribute_invalid_float(self, caplog):
+        """Test parsing an invalid float value attribute."""
         xml = '<attribute name="missing_value" type="float" value="a"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        expected_message = 'Cannot convert [\'a\'] to float. Keeping type as str.'
-        assert expected_message in ''.join(capfd.readouterr())
+        assert 'Cannot convert [\'a\'] to float. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_attribute_float_nan(self):
-        'Test parsing a float nan attribute'
+        """Test parsing a float nan attribute."""
         import math
         xml = '<attribute name="missing_value" type="float" value="NaN"/>'
         element = ET.fromstring(xml)
@@ -146,25 +144,24 @@ class TestSimpleTypes(object):
         assert(math.isnan(expected['missing_value'][0]))
 
     def test_attribute_double(self):
-        'Test parsing a double attribute'
+        """Test parsing a double attribute."""
         xml = '<attribute name="missing_value" type="double" value="-999.0"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': [-999.0]}
         actual = self.types.handle_attribute(element)
         assert expected == actual
 
-    def test_attribute_invalid_double(self, capfd):
-        'Test parsing an invalid double attribute'
+    def test_attribute_invalid_double(self, caplog):
+        """Test parsing an invalid double attribute."""
         xml = '<attribute name="missing_value" type="double" value="a"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        expected_message = 'Cannot convert [\'a\'] to float. Keeping type as str.'
-        assert expected_message in ''.join(capfd.readouterr())
+        assert 'Cannot convert [\'a\'] to float. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_attribute_double_nan(self):
-        'Test parsing a double nan attribute'
+        """Test parsing a double nan attribute."""
         import math
         xml = '<attribute name="missing_value" type="double" value="NaN"/>'
         element = ET.fromstring(xml)
@@ -175,7 +172,7 @@ class TestSimpleTypes(object):
         assert(math.isnan(expected['missing_value'][0]))
 
     def test_attribute_string_implicit(self):
-        'Test parsing a string attribute'
+        """Test parsing a string attribute."""
         xml = '<attribute name="long_name" value="Specified height level above ground"/>'
         element = ET.fromstring(xml)
         expected = {'long_name': 'Specified height level above ground'}
@@ -183,7 +180,7 @@ class TestSimpleTypes(object):
         assert expected == actual
 
     def test_attribute_string_explicit(self):
-        'Test parsing a string attribute'
+        """Test parsing a string attribute."""
         xml = '<attribute name="long_name" type="String" ' \
               'value="Specified height level above ground"/>'
         element = ET.fromstring(xml)
@@ -192,7 +189,7 @@ class TestSimpleTypes(object):
         assert expected == actual
 
     def test_attribute_boolean_true(self):
-        'Test parsing a boolean attribute'
+        """Test parsing a boolean attribute."""
         xml = '<attribute name="missing_value" type="boolean" value="true"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': [True]}
@@ -200,26 +197,24 @@ class TestSimpleTypes(object):
         assert expected == actual
 
     def test_attribute_boolean_false(self):
-        'Test parsing a boolean attribute'
+        """Test parsing a boolean attribute."""
         xml = '<attribute name="missing_value" type="boolean" value="false"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': [False]}
         actual = self.types.handle_attribute(element)
         assert expected == actual
 
-    def test_attribute_boolean_invalid(self, capfd):
-        'Test parsing an invalid boolean attribute'
+    def test_attribute_boolean_invalid(self, caplog):
+        """Test parsing an invalid boolean attribute."""
         xml = '<attribute name="missing_value" type="boolean" value="a"/>'
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        expected_message = 'Cannot convert values [\'a\'] to boolean.'
-        expected_message += ' Keeping type as str.'
-        assert expected_message in ''.join(capfd.readouterr())
+        assert 'Cannot convert values [\'a\'] to boolean. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_value_1(self):
-        'Test parsing a float value tag'
+        """Test parsing a float value tag."""
         xml = '<values>2.0</values>'
         element = ET.fromstring(xml)
         expected = {'values': ['2.0']}
@@ -227,7 +222,7 @@ class TestSimpleTypes(object):
         assert expected == actual
 
     def test_value_2(self):
-        'Test parsing multiple floats in a value tag'
+        """Test parsing multiple floats in a value tag."""
         xml = '<values>50000.0 70000.0 85000.0</values>'
         element = ET.fromstring(xml)
         expected = {'values': ['50000.0', '70000.0', '85000.0']}
@@ -235,7 +230,7 @@ class TestSimpleTypes(object):
         assert expected == actual
 
     def test_value_3(self):
-        'Test parsing multiple floats in a value tag to actual float values'
+        """Test parsing multiple floats in a value tag to actual float values."""
         xml = '<values>50000.0 70000.0 85000.0</values>'
         element = ET.fromstring(xml)
         expected = {'values': [50000.0, 70000.0, 85000.0]}
@@ -243,15 +238,20 @@ class TestSimpleTypes(object):
         assert expected == actual
 
     def test_value_4(self):
-        'Test parsing multiple ints in a value tag to actual int values'
+        """Test parsing multiple ints in a value tag to actual int values."""
         xml = '<values>50000 70000 85000</values>'
         element = ET.fromstring(xml)
         expected = {'values': [50000, 70000, 85000]}
         actual = self.types.handle_values(element, value_type='int')
         assert expected == actual
 
+    def test_value_range_inc0(self):
+        """Test parsing a values tag with start, inc, n with inc of 0."""
+        element = ET.fromstring('<values start="60.0" increment="0.0" npts="5"/>')
+        assert self.types.handle_values(element) == {'values': [60.0, 60.0, 60.0, 60.0, 60.0]}
+
     def test_projection_box(self):
-        'Test parsing a projection box'
+        """Test parsing a projection box."""
         xml = '<projectionBox>' \
               '<minx>-2959.1533203125</minx>' \
               '<maxx>2932.8466796875</maxx>' \
@@ -267,7 +267,7 @@ class TestSimpleTypes(object):
         assert expected == actual
 
     def test_axis_ref(self):
-        'Test parsing an axis reference'
+        """Test parsing an axis reference."""
         xml = '<axisRef name="time1"/>'
         element = ET.fromstring(xml)
 
@@ -276,7 +276,7 @@ class TestSimpleTypes(object):
         assert expected == actual
 
     def test_coord_trans_ref(self):
-        'Test parsing a coordinate transformation reference'
+        """Test parsing a coordinate transformation reference."""
         xml = '<coordTransRef name="LambertConformal_Projection"/>'
         element = ET.fromstring(xml)
 
@@ -285,7 +285,7 @@ class TestSimpleTypes(object):
         assert expected == actual
 
     def test_grid(self):
-        'Test parsing a grid tag'
+        """Test parsing a grid tag."""
         xml = '<grid name="Temperature_isobaric" ' \
               'desc="Temperature @ Isobaric surface" ' \
               'shape="time1 isobaric3 y x" type="float">' \
@@ -305,7 +305,7 @@ class TestSimpleTypes(object):
         assert expected.pop('attributes', None) == actual.pop('attributes', None)
 
     def test_parameter(self):
-        'Test parsing a parameter tag'
+        """Test parsing a parameter tag."""
         xml = '<parameter name="earth_radius" value="6371229.0 "/>'
         element = ET.fromstring(xml)
         expected = {'earth_radius': '6371229.0'}
@@ -313,7 +313,7 @@ class TestSimpleTypes(object):
         assert expected == actual
 
     def test_feature_type(self):
-        'Test parsing a feature dataset tag'
+        """Test parsing a feature dataset tag."""
         xml = '<featureDataset type="station" ' \
               'url="/thredds/ncss/nws/metar/ncdecoded/' \
               'Metar_Station_Data_fc.cdmr"/>'
@@ -325,7 +325,7 @@ class TestSimpleTypes(object):
         assert expected == actual
 
     def test_variable(self):
-        'Test parsing variable tags'
+        """Test parsing variable tags."""
         xml = '<variable name="precipitation_amount_hourly" type="float">' \
               '<attribute name="long_name" ' \
               'value="Hourly precipitation amount"/>' \
@@ -346,7 +346,7 @@ class TestSimpleTypes(object):
 
 
 def test_dataset_elements_axis():
-    'Test parsing an axis from a dataset element'
+    """Test parsing an axis from a dataset element."""
     xml = '<axis name="height_above_ground" shape="1" type="float" ' \
           'axisType="Height"><attribute name="units" value="m"/>' \
           '<attribute name="long_name" ' \
@@ -369,7 +369,7 @@ def test_dataset_elements_axis():
 
 
 def test_dataset_elements_grid_set():
-    'Test parsing a gridSet from a dataset element'
+    """Test parsing a gridSet from a dataset element."""
     xml = '<gridSet name="time1 isobaric3 y x"><projectionBox>' \
           '<minx>-2959.1533203125</minx>' \
           '<maxx>2932.8466796875</maxx>' \
@@ -451,7 +451,7 @@ def test_dataset_elements_grid_set():
 
 
 def test_dataset_elements_coord_transform_valid():
-    'Test parsing a coordinate transformation from a dataset element'
+    """Test parsing a coordinate transformation from a dataset element."""
     xml = '<coordTransform name="LambertConformal_Projection" ' \
           'transformType="Projection">' \
           '<parameter name="grid_mapping_name" ' \
@@ -480,7 +480,7 @@ def test_dataset_elements_coord_transform_valid():
 
 
 def test_dataset_elements_lat_lon_box():
-    'Test parsing a lat/lon box from a dataset element'
+    """Test parsing a lat/lon box from a dataset element."""
     xml = '<LatLonBox>' \
           '<west>-140.1465</west>' \
           '<east>-56.1753</east>' \
@@ -498,7 +498,7 @@ def test_dataset_elements_lat_lon_box():
 
 
 def test_dataset_elements_time_span():
-    'Test parsing a TimeSpan'
+    """Test parsing a TimeSpan."""
     xml = '<TimeSpan><begin>2015-06-19T12:00:00Z</begin>' \
           '<end>2015-06-23T18:00:00Z</end></TimeSpan>'
     element = ET.fromstring(xml)
@@ -510,7 +510,7 @@ def test_dataset_elements_time_span():
 
 
 def test_dataset_elements_accept_list():
-    'Test parsing an AcceptList'
+    """Test parsing an AcceptList."""
     xml = '<AcceptList><GridAsPoint>' \
           '<accept displayName="xml">xml</accept>' \
           '<accept displayName="xml (file)">xml_file</accept>' \
@@ -534,7 +534,7 @@ def test_dataset_elements_accept_list():
 
 
 def test_dataset_elements_station_accept_list():
-    'Test parsing acceptList for stations'
+    """Test parsing acceptList for stations."""
     xml = '<AcceptList>' \
           '<accept displayName="csv">csv</accept>' \
           '<accept displayName="csv (file)">text/csv</accept>' \
@@ -556,7 +556,7 @@ def test_dataset_elements_station_accept_list():
 
 @recorder.use_cassette('Surface_Synoptic_Station_Dataset_xml')
 def test_dataset_elements_full_ncss_station():
-    'Test parsing the dataset from a full ncss station page'
+    """Test parsing the dataset from a full ncss station page."""
     url = ('http://thredds.ucar.edu/thredds/ncss/nws/synoptic/'
            'ncdecoded/Surface_Synoptic_Point_Data_fc.cdmr/dataset.xml')
     element = ET.fromstring(urlopen(url).read())
@@ -566,7 +566,7 @@ def test_dataset_elements_full_ncss_station():
 
 @recorder.use_cassette('GFS_Global_0p5_Grid_Dataset_xml')
 def test_dataset_elements_full_ncss_grid():
-    'Test parsing the dataset from a full ncss grid page'
+    """Test parsing the dataset from a full ncss grid page."""
     url = ('http://thredds.ucar.edu/thredds/ncss/grib/NCEP/GFS/'
            'Global_0p5deg/GFS_Global_0p5deg_20150602_0000.grib2/'
            'dataset.xml')

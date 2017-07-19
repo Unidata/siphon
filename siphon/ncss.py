@@ -1,10 +1,9 @@
 # Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
-"""
-This module contains code to support making data requests to
-the NetCDF subset service (NCSS) on a THREDDS Data Server (TDS). This includes
-forming proper queries as well as parsing the returned data.
+"""Support making data requests to the NetCDF subset service (NCSS) on a TDS.
+
+This includes forming proper queries as well as parsing the returned data.
 """
 
 import atexit
@@ -20,12 +19,15 @@ from .ncss_dataset import NCSSDataset
 
 
 def default_unit_handler(data, units=None):  # pylint:disable=unused-argument
-    r'Default unit handler, which ignores units and just returns :func:`numpy.array`'
+    """Handle units in the default manner.
+
+    Ignores units and just returns :func:`numpy.array`.
+    """
     return np.array(data)
 
 
 class NCSS(HTTPEndPoint):
-    r'''Wraps access to the NetCDF Subset Service (NCSS) on a THREDDS server.
+    """Wrap access to the NetCDF Subset Service (NCSS) on a THREDDS server.
 
     Simplifies access via HTTP to the NCSS endpoint. Parses the metadata, provides
     data download and parsing based on the appropriate query.
@@ -43,7 +45,8 @@ class NCSS(HTTPEndPoint):
         takes a list of string values and unit str (can be :data:`None`), and returns the
         desired representation of values. Defaults to ignoring units and returning
         :func:`numpy.array`.
-    '''
+
+    """
 
     # Need staticmethod to keep this from becoming a bound method, where self
     # is passed implicitly
@@ -57,18 +60,18 @@ class NCSS(HTTPEndPoint):
         self.variables = set(self.metadata.variables.keys())
 
     def query(self):
-        r'''Returns a new query for NCSS
+        """Return a new query for NCSS.
 
         Returns
         -------
         query : NCSSQuery
             The newly created query
-        '''
 
+        """
         return NCSSQuery()
 
     def validate_query(self, query):
-        r'''Validate a query
+        """Validate a query.
 
         Determines whether `query` is well-formed. This includes checking for all
         required parameters, as well as checking parameters for valid values.
@@ -82,13 +85,13 @@ class NCSS(HTTPEndPoint):
         -------
         valid : bool
             Whether `query` is valid.
-        '''
 
+        """
         # Make sure all variables are in the dataset
         return query.var and all(var in self.variables for var in query.var)
 
     def get_data(self, query):
-        r'''Fetch parsed data from a THREDDS server using NCSS
+        """Fetch parsed data from a THREDDS server using NCSS.
 
         Requests data from the NCSS endpoint given the parameters in `query` and
         handles parsing of the returned content based on the mimetype.
@@ -106,13 +109,13 @@ class NCSS(HTTPEndPoint):
         See Also
         --------
         get_data_raw
-        '''
 
+        """
         resp = self.get_query(query)
         return response_handlers(resp, self.unit_handler)
 
     def get_data_raw(self, query):
-        r'''Fetch raw data from a THREDDS server using NCSS
+        """Fetch raw data from a THREDDS server using NCSS.
 
         Requests data from the NCSS endpoint given the parameters in `query` and
         returns the raw bytes of the response.
@@ -130,19 +133,20 @@ class NCSS(HTTPEndPoint):
         See Also
         --------
         get_data
-        '''
 
+        """
         return self.get_query(query).content
 
 
 class NCSSQuery(DataQuery):
-    r'''An object representing a query to the NetCDF Subset Service (NCSS).
+    """Represent a query to the NetCDF Subset Service (NCSS).
 
     Expands on the queries supported by :class:`~siphon.http_util.DataQuery` to add queries
     specific to NCSS.
-    '''
+    """
+
     def projection_box(self, min_x, min_y, max_x, max_y):
-        r'''Add a bounding box in projected (native) coordinates to the query.
+        """Add a bounding box in projected (native) coordinates to the query.
 
         This adds a request for a spatial bounding box, bounded by (`min_x`, `max_x`) for
         x direction and (`min_y`, `max_y`) for the y direction. This modifies the query
@@ -166,14 +170,14 @@ class NCSSQuery(DataQuery):
         -------
         self : NCSSQuery
             Returns self for chaining calls
-        '''
 
+        """
         self._set_query(self.spatial_query, minx=min_x, miny=min_y,
                         maxx=max_x, maxy=max_y)
         return self
 
     def accept(self, fmt):
-        r'''Set format for data returned from NCSS.
+        """Set format for data returned from NCSS.
 
         This modifies the query in-place, but returns `self` so that multiple queries
         can be chained together on one line.
@@ -187,12 +191,12 @@ class NCSSQuery(DataQuery):
         -------
         self : NCSSQuery
             Returns self for chaining calls
-        '''
 
+        """
         return self.add_query_parameter(accept=fmt)
 
     def add_lonlat(self, value=True):
-        r'''Sets whether NCSS should add latitude/longitude to returned data.
+        """Set whether NCSS should add latitude/longitude to returned data.
 
         This is only used on grid requests. Used to make returned data CF-compliant.
         This modifies the query in-place, but returns `self` so that multiple queries
@@ -207,12 +211,12 @@ class NCSSQuery(DataQuery):
         -------
         self : NCSSQuery
             Returns self for chaining calls
-        '''
 
+        """
         return self.add_query_parameter(addLatLon=value)
 
     def strides(self, time=None, spatial=None):
-        r'''Set time and/or spatial (horizontal) strides.
+        """Set time and/or spatial (horizontal) strides.
 
         This is only used on grid requests. Used to skip points in the returned data.
         This modifies the query in-place, but returns `self` so that multiple queries
@@ -229,8 +233,8 @@ class NCSSQuery(DataQuery):
         -------
         self : NCSSQuery
             Returns self for chaining calls
-        '''
 
+        """
         if time:
             self.add_query_parameter(timeStride=time)
         if spatial:
@@ -238,7 +242,7 @@ class NCSSQuery(DataQuery):
         return self
 
     def vertical_level(self, level):
-        r'''Set vertical level for which data should be retrieved.
+        """Set vertical level for which data should be retrieved.
 
         The value depends on the coordinate values for the vertical dimension of the
         requested variable.
@@ -255,8 +259,8 @@ class NCSSQuery(DataQuery):
         -------
         self : NCSSQuery
             Returns self for chaining calls
-        '''
 
+        """
         return self.add_query_parameter(vertCoord=level)
 
 
@@ -266,14 +270,14 @@ class NCSSQuery(DataQuery):
 #
 
 class ResponseRegistry(object):
-    r'''Allows registering of functions to be called based on the
-    mimetype in the response headers.
-    '''
+    """Register functions to be called based on the mimetype in the response headers."""
 
     def __init__(self):
+        """Initialize the registry."""
         self._reg = {}
 
     def register(self, mimetype):
+        """Register a function to handle a particular mimetype."""
         def dec(func):
             self._reg[mimetype] = func
             return func
@@ -281,9 +285,11 @@ class ResponseRegistry(object):
 
     @staticmethod
     def default(content, units):  # pylint:disable=unused-argument
+        """Handle a mimetype when no function is registered."""
         return content
 
     def __call__(self, resp, unit_handler):
+        """Process the HTTP response using the appropriate handler."""
         mimetype = resp.headers['content-type'].split(';')[0]
         return self._reg.get(mimetype, self.default)(resp.content, unit_handler)
 
@@ -292,14 +298,12 @@ response_handlers = ResponseRegistry()
 
 
 def squish(l):
-    r'If list contains only 1 element, return it instead'
-
+    """If list contains only 1 element, return it instead."""
     return l if len(l) > 1 else l[0]
 
 
 def combine_dicts(l):
-    r'Combine a list of dictionaries into single one'
-
+    """Combine a list of dictionaries into single one."""
     ret = {}
     for item in l:
         ret.update(item)
@@ -309,11 +313,13 @@ def combine_dicts(l):
 # Parsing of XML returns from NCSS
 @response_handlers.register('application/xml')
 def parse_xml(data, handle_units):
+    """Parse XML data returned by NCSS."""
     root = ET.fromstring(data)
     return squish(parse_xml_dataset(root, handle_units))
 
 
 def parse_xml_point(elem):
+    """Parse an XML point tag."""
     point = {}
     units = {}
     for data in elem.findall('data'):
@@ -326,6 +332,7 @@ def parse_xml_point(elem):
 
 
 def combine_xml_points(l, units, handle_units):
+    """Combine multiple Point tags into an array."""
     ret = {}
     for item in l:
         for key, value in item.items():
@@ -339,6 +346,7 @@ def combine_xml_points(l, units, handle_units):
 
 
 def parse_xml_dataset(elem, handle_units):
+    """Create a netCDF-like dataset from XML data."""
     points, units = zip(*[parse_xml_point(p) for p in elem.findall('point')])
     # Group points by the contents of each point
     datasets = {}
@@ -357,6 +365,7 @@ try:
     @response_handlers.register('application/x-netcdf')
     @response_handlers.register('application/x-netcdf4')
     def read_netcdf(data, handle_units):  # pylint:disable=unused-argument
+        """Handle HTTP responses in netCDF format."""
         ostype = platform.architecture()
         if ostype[1].lower() == 'windowspe':
             with NamedTemporaryFile(delete=False) as tmp_file:
@@ -369,7 +378,6 @@ try:
                 tmp_file.write(data)
                 tmp_file.flush()
                 return Dataset(tmp_file.name, 'r')
-
 except ImportError:
     import warnings
     warnings.warn('netCDF4 module not installed. '
@@ -377,6 +385,10 @@ except ImportError:
 
 
 def deletetempfile(fname):
+    """Delete a temporary file.
+
+    Warn on any exceptions.
+    """
     try:
         remove(fname)
     except OSError:
@@ -389,10 +401,12 @@ def deletetempfile(fname):
 # Parsing of CSV data returned from NCSS
 @response_handlers.register('text/plain')
 def parse_csv_response(data, unit_handler):
+    """Handle CSV-formatted HTTP responses."""
     return squish([parse_csv_dataset(d, unit_handler) for d in data.split(b'\n\n')])
 
 
 def parse_csv_header(line):
+    """Parse the CSV header returned by TDS."""
     units = {}
     names = []
     for var in line.split(','):
@@ -412,6 +426,7 @@ def parse_csv_header(line):
 
 
 def parse_csv_dataset(data, handle_units):
+    """Parse CSV data into a netCDF-like dataset."""
     fobj = BytesIO(data)
     names, units = parse_csv_header(fobj.readline().decode('utf-8'))
     arrs = np.genfromtxt(fobj, dtype=None, names=names, delimiter=',', unpack=True,

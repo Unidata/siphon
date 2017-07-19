@@ -1,6 +1,7 @@
 # Copyright (c) 2014-2016 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""Test interaction with xarray library."""
 
 from numpy.testing import assert_almost_equal
 from xarray import open_dataset

@@ -1,6 +1,7 @@
 # Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""Test parsing of metadata from a TDS client catalog."""
 
 import logging
 import xml.etree.ElementTree as ET
@@ -57,12 +58,15 @@ log.setLevel(logging.WARNING)
 
 
 class TestSimpleTypes(object):
+    """Test parsing of simple types from metadata."""
 
     @classmethod
     def setup_class(cls):
+        """Set up testing."""
         cls.st = _SimpleTypes()
 
     def test_up_or_down_valid(self):
+        """Test parsing of zpositive attribute."""
         xml = '<geospatialCoverage zpositive="down" />'
         expected = {'zpositive': 'down'}
         element = ET.fromstring(xml)
@@ -71,6 +75,7 @@ class TestSimpleTypes(object):
         assert val == expected
 
     def test_data_format_type(self):
+        """Test parsing of dataFormat tag."""
         xml = '<dataFormat>NcML</dataFormat>'
         expected = {'dataFormat': 'NcML'}
         element = ET.fromstring(xml)
@@ -80,6 +85,7 @@ class TestSimpleTypes(object):
         assert expected == val
 
     def test_data_type(self):
+        """Test parsing of dataType tag."""
         xml = '<dataType>GRID</dataType>'
         expected = {'dataType': 'GRID'}
         element = ET.fromstring(xml)
@@ -91,12 +97,15 @@ class TestSimpleTypes(object):
 
 
 class TestComplexTypes(object):
+    """Test parsing of complex types from metadata."""
 
     @classmethod
     def setup_class(cls):
+        """Set up testing."""
         cls.st = _ComplexTypes()
 
     def test_spatial_range_valid(self):
+        """Test parsing of valid spatial range."""
         xml = '<northsouth><start>44.1</start>' \
               '<size>20.6</size><units>degrees_north</units>' \
               '</northsouth>'
@@ -109,6 +118,7 @@ class TestComplexTypes(object):
         assert actual == expected
 
     def test_controlled_vocabulary(self):
+        """Test parsing of vocabulary tag."""
         xml = '<name vocabulary="MyVocabName">' \
               'NOAA and NCEP</name>'
         expected = {'vocabulary': 'MyVocabName',
@@ -118,6 +128,7 @@ class TestComplexTypes(object):
         assert expected == actual
 
     def test_date_type_formatted(self):
+        """Test parsing of date types."""
         xml = '<start format="yyyy DDD" type="created">1999 189</start>'
         expected = {'format': 'yyyy DDD',
                     'type': 'created',
@@ -127,6 +138,7 @@ class TestComplexTypes(object):
         assert expected == actual
 
     def test_source_type(self):
+        """Test parsing of source."""
         xml = '<publisher><name vocabulary="DIF">UCAR/NCAR/CDP</name>' \
               '<contact url="http://dataportal.ucar.edu" ' \
               'email="cdp@ucar.edu"/></publisher>'
@@ -140,6 +152,7 @@ class TestComplexTypes(object):
         assert expected == actual
 
     def test_time_coverage_type1(self):
+        """Test parsing of one form of timeCoverage tag."""
         xml = '<timeCoverage><end>present</end><duration>10 days</duration>' \
             '<resolution>15 minutes</resolution></timeCoverage>'
         element = ET.fromstring(xml)
@@ -150,6 +163,7 @@ class TestComplexTypes(object):
         assert expected == actual
 
     def test_time_coverage_type2(self):
+        """Test parsing of a second form of timeCoverage tag."""
         xml = '<timeCoverage><start>1999-11-16T12:00:00</start>' \
             '<end>present</end></timeCoverage>'
         element = ET.fromstring(xml)
@@ -159,6 +173,7 @@ class TestComplexTypes(object):
         assert expected == actual
 
     def test_time_coverage_type3(self):
+        """Test parsing of a third type of timeCoverage tag."""
         xml = '<timeCoverage><start>1999-11-16T12:00:00</start>' \
             '<duration>P3M</duration></timeCoverage>'
         element = ET.fromstring(xml)
@@ -168,6 +183,7 @@ class TestComplexTypes(object):
         assert expected == actual
 
     def test_variable(self):
+        """Test parsing of variable tags."""
         xml = '<variable name="wdir" vocabulary_name="Wind Direction" ' \
               'units= "degrees">Wind Direction @ surface</variable>'
         element = ET.fromstring(xml)
@@ -179,6 +195,7 @@ class TestComplexTypes(object):
         assert expected == actual
 
     def test_variable2(self):
+        """Test parsing another variable tag."""
         xml = '<variable name="wdir"></variable>'
         element = ET.fromstring(xml)
         expected = {'name': 'wdir'}
@@ -186,6 +203,7 @@ class TestComplexTypes(object):
         assert expected == actual
 
     def test_variable3(self):
+        """Test parsing a third variable tag."""
         xml = '<variable name="wdir">Wind Direction @ surface</variable>'
         element = ET.fromstring(xml)
         expected = {'name': 'wdir',
@@ -194,6 +212,7 @@ class TestComplexTypes(object):
         assert expected == actual
 
     def test_variable_map(self):
+        """Test parsing a variableMap tag."""
         xml = '<variableMap xmlns:xlink="http://www.w3.org/1999/xlink" ' \
               'xlink:href="../standardQ/Eta.xml" />'
         element = ET.fromstring(xml)
@@ -203,6 +222,7 @@ class TestComplexTypes(object):
         assert expected == actual
 
     def test_variable_map2(self):
+        """Test parsing another form of VariableMap tag."""
         xml = '<variableMap xmlns:xlink="http://www.w3.org/1999/xlink" ' \
               'xlink:href="../standardQ/Eta.xml" xlink:title="variables"/>'
         element = ET.fromstring(xml)
@@ -214,6 +234,7 @@ class TestComplexTypes(object):
         assert expected == actual
 
     def test_variables(self):
+        """Test parsing multiple variables."""
         xml = '<variables vocabulary="CF-1.0">' \
               '<variable name="wv" vocabulary_name="Wind Speed" ' \
               'units="m/s">Wind Speed @ surface</variable>' \
@@ -231,6 +252,7 @@ class TestComplexTypes(object):
         assert 'variableMaps' not in actual
 
     def test_variables2(self):
+        """Test parsing multiple variables from a variableMap."""
         xml = '<variables vocabulary="GRIB-NCEP" ' \
               ' xmlns:xlink="http://www.w3.org/1999/xlink" ' \
               'xlink:href="http://www.unidata.ucar.edu/GRIB-NCEPtable2.xml">' \
@@ -245,6 +267,7 @@ class TestComplexTypes(object):
         assert len(actual['variableMaps']) == 1
 
     def test_data_size(self):
+        """Test parsing dataSize tag."""
         xml = '<dataSize units="Kbytes">123</dataSize>'
         element = ET.fromstring(xml)
         actual = self.st.handle_dataSize(element)
@@ -254,43 +277,53 @@ class TestComplexTypes(object):
 
 
 class TestProperty(object):
+    """Test parsing of property tags."""
 
     @classmethod
     def setup_class(cls):
+        """Set up testing."""
         xml = '<property name="Conventions" value="CF-1.6" />'
         element = ET.fromstring(xml)
         cls.md = TDSCatalogMetadata(element).metadata
         cls.element_name = 'property'
 
     def test_prop(self):
+        """Test finding the property tag in the metadata."""
         assert self.element_name in self.md
 
     def test_prop_not_empty(self):
+        """Test that the property tag is not empty."""
         for entry in self.md[self.element_name]:
             assert entry
 
 
 class TestContributor:
+    """Test parsing Contributor tags."""
 
     @classmethod
     def setup_class(cls):
+        """Set up testing with common metadata tag."""
         xml = '<contributor role="PI">Jane Doe</contributor>'
         element = ET.fromstring(xml)
         cls.md = TDSCatalogMetadata(element).metadata
         cls.element_name = 'contributor'
 
     def test_contributor(self):
+        """Test finding the Contributor tag in the metadata."""
         assert self.element_name in self.md
 
     def test_contributor_for_role_not_empty(self):
+        """Test non-empty contributor role."""
         for entry in self.md[self.element_name]:
             assert entry
 
 
 class TestGeospatialCoverage(object):
+    """Test parsing GeospatialCoverage tags."""
 
     @classmethod
     def setup_class(cls):
+        """Set up tests with a common set of xml."""
         cls.element_name = 'geospatialCoverage'
 
         xml1 = '<geospatialCoverage zpositive="down">' \
@@ -327,11 +360,13 @@ class TestGeospatialCoverage(object):
         cls.md2 = TDSCatalogMetadata(ET.fromstring(xml2)).metadata
 
     def test_geospatial_coverage_attr1(self):
+        """Test parsing of geospatialCoverage."""
         assert self.element_name in self.md1
         for entry in self.md1[self.element_name]:
             assert entry
 
     def test_geospatial_coverage_attr2(self):
+        """Test parsing geospatialCoverage with zpositive."""
         # can we detect this:
         # <geospatialCoverage zpositive="down">
         if self.md1[self.element_name]:
@@ -342,12 +377,14 @@ class TestGeospatialCoverage(object):
 
 
 class TestMetadata(object):
+    """Test parsing other metadata tags."""
 
     @staticmethod
     def _make_element(xml_str):
         return ET.fromstring(xml_str)
 
     def test_documentation_element_no_type(self):
+        """Test parsing generic documentation."""
         xml = '<documentation>Used in doubled CO2 scenario</documentation>'
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
@@ -358,6 +395,7 @@ class TestMetadata(object):
             assert entry != []
 
     def test_documentation_element_summary(self):
+        """Test parsing a summary element."""
         xml = '<documentation type="summary"> The SAGE III Ozone Loss and ' \
               'Validation Experiment (SOLVE) was a measurement campaign ' \
               'designed to examine the processes controlling ozone levels ' \
@@ -375,6 +413,7 @@ class TestMetadata(object):
             assert entry != []
 
     def test_documentation_element_rights(self):
+        """Test parsing rights documentation."""
         xml = '<documentation type="rights"> Users of these data files are ' \
               'expected  to follow the NASA ESPO Archive guidelines for ' \
               'use of the SOLVE data, including consulting with the PIs ' \
@@ -390,6 +429,7 @@ class TestMetadata(object):
             assert entry != []
 
     def test_documentation_element_processing_level(self):
+        """Test parsing processing_level documentation."""
         xml = '<documentation type="processing_level"> Transmitted through ' \
               'Unidata Internet Data Distribution.</documentation>'
 
@@ -402,6 +442,7 @@ class TestMetadata(object):
             assert entry != []
 
     def test_documentation_element_reference_time(self):
+        """Test parsing reference time documentation."""
         xml = '<documentation type="Reference Time">' \
               '2015-05-28T12:00:00Z</documentation>'
 
@@ -414,6 +455,7 @@ class TestMetadata(object):
             assert entry != []
 
     def test_documentation_element_xlink(self):
+        """Test parsing xlink documentation."""
         xml = '<documentation xmlns:xlink="http://www.w3.org/1999/xlink" ' \
               'xlink:href="http://espoarchive.nasa.gov/archive/index.html" ' \
               'xlink:title="Earth Science Project Office Archives"/>'
@@ -428,6 +470,7 @@ class TestMetadata(object):
             assert entry['href']
 
     def test_service_type(self):
+        """Test parsing service type tags."""
         xml = '<serviceName>VirtualServices</serviceName>'
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
@@ -435,6 +478,7 @@ class TestMetadata(object):
         assert md['serviceName'] == 'VirtualServices'
 
     def test_authority(self):
+        """Test parsing authority tags."""
         xml = '<authority>edu.ucar.unidata</authority>'
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
@@ -443,6 +487,7 @@ class TestMetadata(object):
         assert md['authority'][0] == 'edu.ucar.unidata'
 
     def test_publisher(self):
+        """Test parsing publisher tags."""
         xml = '<publisher><name vocabulary="DIF">UCAR/UNIDATA</name>' \
               '<contact url="http://www.unidata.ucar.edu/" ' \
               'email="support@unidata.ucar.edu"/>' \
@@ -457,6 +502,7 @@ class TestMetadata(object):
         assert md['publisher'][0]['email'] == 'support@unidata.ucar.edu'
 
     def test_creator(self):
+        """Test parsing creator tags."""
         xml = '<creator><name vocabulary="DIF">DOC/NOAA/NWS/NCEP</name>' \
               '<contact url="http://www.ncep.noaa.gov/" ' \
               'email="http://www.ncep.noaa.gov/mail_liaison.shtml"/>' \
@@ -471,6 +517,7 @@ class TestMetadata(object):
         assert md['creator'][0]['email'] == 'http://www.ncep.noaa.gov/mail_liaison.shtml'
 
     def test_keyword(self):
+        """Test parsing keyword tags."""
         xml = '<keyword>Ocean Biomass</keyword>'
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
@@ -479,6 +526,7 @@ class TestMetadata(object):
         assert md['keyword'][0]['name'] == 'Ocean Biomass'
 
     def test_project(self):
+        """Test parsing project tags."""
         xml = '<project vocabulary="DIF">NASA Earth Science Project Office, ' \
               'Ames Research Center</project>'
         element = self._make_element(xml)
@@ -490,19 +538,22 @@ class TestMetadata(object):
                                            'Ames Research Center'
 
     def test_data_format(self):
+        """Test parsing dataFormat tags."""
         xml = '<dataFormat>GRIB-1</dataFormat>'
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert 'dataFormat' in md
         assert md['dataFormat'] == 'GRIB-1'
 
-    def test_data_malformed_format(self, capfd):
+    def test_data_malformed_format(self, caplog):
+        """Test getting a warning for a malformed dataFormat tag."""
         xml = '<dataFormat>netCDF-4</dataFormat>'
         element = self._make_element(xml)
         TDSCatalogMetadata(element)
-        assert 'Value netCDF-4 not valid for type dataFormat' in ''.join(capfd.readouterr())
+        assert 'Value netCDF-4 not valid for type dataFormat' in caplog.text
 
     def test_data_type(self):
+        """Test parsing dataType tags."""
         xml = '<dataType>GRID</dataType>'
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
@@ -510,6 +561,7 @@ class TestMetadata(object):
         assert md['dataType'] == 'GRID'
 
     def test_date(self):
+        """Test parsing a date tag."""
         xml = '<date type="modified">2015-06-11T02:09:52Z</date>'
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
@@ -519,6 +571,7 @@ class TestMetadata(object):
         assert md['date'][0]['value'] == '2015-06-11T02:09:52Z'
 
     def test_time_coverage(self):
+        """Test parsing a timeCoverage tag."""
         xml = '<timeCoverage><end>present</end><duration>45 days</duration>' \
               '</timeCoverage>'
         element = self._make_element(xml)

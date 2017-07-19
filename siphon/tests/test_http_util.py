@@ -1,6 +1,7 @@
 # Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
+"""Test Siphon's base HTTP helper functionality."""
 
 from datetime import datetime, timedelta
 
@@ -15,24 +16,28 @@ recorder = siphon.testing.get_recorder(__file__)
 
 @recorder.use_cassette('top_thredds_catalog')
 def test_urlopen():
+    """Test siphon's urlopen wrapper."""
     fobj = urlopen('http://thredds-test.unidata.ucar.edu/thredds/catalog.xml')
     assert fobj.read(2) == b'<?'
 
 
 @recorder.use_cassette('top_thredds_catalog')
 def test_session():
+    """Test that https sessions contain the proper user agent."""
     session = create_http_session()
     resp = session.get('http://thredds-test.unidata.ucar.edu/thredds/catalog.xml')
     assert resp.request.headers['user-agent'].startswith('Siphon')
 
 
 def test_parse_iso():
+    """Test parsing ISO-formatted dates."""
     parsed = parse_iso_date('2015-06-15T12:00:00Z')
     assert parsed.utcoffset() == timedelta(0)
     assert parsed == datetime(2015, 6, 15, 12, tzinfo=utc)
 
 
 def test_data_query_basic():
+    """Test forming a basic query."""
     dr = DataQuery()
     dr.all_times()
     dr.variables('foo', 'bar')
@@ -43,6 +48,7 @@ def test_data_query_basic():
 
 
 def test_data_query_repeated_vars():
+    """Test a query properly de-duplicates variables."""
     dr = DataQuery()
     dr.variables('foo', 'bar')
     dr.variables('foo')
@@ -52,6 +58,7 @@ def test_data_query_repeated_vars():
 
 
 def test_data_query_time_reset():
+    """Test query with multiple time-type query fields."""
     dr = DataQuery().all_times().time(datetime.utcnow())
     query = str(dr)
     assert query.startswith('time='), 'Bad string: ' + query
@@ -59,11 +66,13 @@ def test_data_query_time_reset():
 
 
 def test_data_query_time_reset2():
+    """Test that time queries replace each other."""
     dr = DataQuery().time(datetime.utcnow()).all_times()
     assert str(dr) == 'temporal=all'
 
 
 def test_data_query_time_reset3():
+    """Test that time queries replace each other with time range."""
     dt = datetime(2015, 6, 12, 12, 0, 0)
     dt2 = datetime(2015, 6, 13, 12, 0, 0)
     dr = DataQuery().all_times().time_range(dt, dt2)
@@ -74,6 +83,7 @@ def test_data_query_time_reset3():
 
 
 def test_data_query_time_format():
+    """Test that time queries are properly formatted."""
     dt = datetime(2015, 6, 15, 12, 0, 0)
     dr = DataQuery().time(dt)
     query = str(dr)
@@ -81,6 +91,7 @@ def test_data_query_time_format():
 
 
 def test_data_query_spatial_reset():
+    """Test that spatial queries reset each other."""
     dr = DataQuery().lonlat_box(1, 2, 3, 4).lonlat_point(-1, -2)
     query = str(dr)
     assert 'latitude=-2' in query
@@ -89,6 +100,7 @@ def test_data_query_spatial_reset():
 
 
 def test_data_query_spatial_reset2():
+    """Test more that spatial queries reset each other."""
     dr = DataQuery().lonlat_point(-1, -2).lonlat_box(1, 2, 3, 4)
     query = str(dr)
     assert 'south=3' in query
@@ -99,6 +111,7 @@ def test_data_query_spatial_reset2():
 
 
 def test_data_query_iter():
+    """Test converting a query to a dictionary."""
     dt = datetime.utcnow()
     dr = DataQuery().time(dt).lonlat_point(-1, -2)
     d = dict(dr)
@@ -109,6 +122,7 @@ def test_data_query_iter():
 
 
 def test_data_query_items():
+    """Test the items method of query."""
     dt = datetime.utcnow()
     dr = DataQuery().time(dt).lonlat_point(-1, -2)
     l = list(dr.items())
@@ -119,23 +133,29 @@ def test_data_query_items():
 
 
 def test_data_query_add():
+    """Test adding custom parameters to a query."""
     dr = DataQuery().add_query_parameter(foo='bar')
     assert str(dr) == 'foo=bar'
 
 
 class TestEndPoint(object):
+    """Test the HTTPEndPoint."""
+
     def setup(self):
+        """Set up tests to point to a common server, api, and end point."""
         self.server = 'http://thredds.ucar.edu/'
         self.api = 'thredds/metadata/grib/NCEP/GFS/Global_0p5deg/TwoD'
         self.endpoint = HTTPEndPoint(self.server + self.api)
 
     def test_basic(self):
+        """Test creating a basic query and validating it."""
         q = self.endpoint.query()
         q.all_times()
         assert self.endpoint.validate_query(q), 'Invalid query.'
 
     @recorder.use_cassette('gfs-metadata-map')
     def test_trailing_slash(self):
+        """Test setting up and end point with a url with a trailing slash."""
         endpoint = HTTPEndPoint(self.server + self.api + '/')
         q = endpoint.query()
         q.add_query_parameter(metadata='variableMap')
@@ -144,6 +164,7 @@ class TestEndPoint(object):
 
     @recorder.use_cassette('gfs-metadata-map')
     def test_query(self):
+        """Test getting a query."""
         q = self.endpoint.query()
         q.add_query_parameter(metadata='variableMap')
         resp = self.endpoint.get_query(q)
@@ -151,9 +172,11 @@ class TestEndPoint(object):
 
     @recorder.use_cassette('gfs-metadata-map-bad')
     def test_get_error(self):
+        """Test that getting a bad path raises an error."""
         with pytest.raises(HTTPError):
             self.endpoint.get_path('')
 
     def test_url_path(self):
+        """Test forming a url path from the end point."""
         path = self.endpoint.url_path('foobar.html')
         assert path == self.server + self.api + '/foobar.html'
