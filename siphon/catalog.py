@@ -448,6 +448,120 @@ class Dataset(object):
         url_path = access_element.attrib['urlPath']
         self.access_element_info[service_name] = url_path
 
+    def download(self, filename):
+        """Download the dataset to a local file.
+
+        Parameters
+        ----------
+        filename : str
+            The full path to which the dataset will be saved
+
+        """
+        with self.remote_open() as infile:
+            with open(filename, 'wb') as outfile:
+                outfile.write(infile.read())
+
+    def remote_open(self):
+        """Open the remote dataset for random access.
+
+        Get a file-like object for reading from the remote dataset, providing random access,
+        similar to a local file.
+
+        Returns
+        -------
+        A random access, file-like object
+
+        """
+        return self.access_with_service('HTTPServer')
+
+    def remote_access(self, service=None):
+        """Access the remote dataset.
+
+        Open the remote dataset and get a netCDF4-compatible `Dataset` object providing
+        index-based subsetting capabilities.
+
+        Parameters
+        ----------
+        service : str, optional
+            The name of the service to use for access to the dataset, either
+            'CdmRemote' or 'OPENDAP'. Defaults to 'CdmRemote'.
+
+        Returns
+        -------
+        Dataset
+            Object for netCDF4-like access to the dataset
+
+        """
+        if service is None:
+            service = 'CdmRemote' if 'CdmRemote' in self.access_urls else 'OPENDAP'
+
+        if service not in ('CdmRemote', 'OPENDAP'):
+            raise ValueError(service + ' is not a valid service for remote_access')
+
+        return self.access_with_service(service)
+
+    def subset(self, service=None):
+        """Subset the dataset.
+
+        Open the remote dataset and get a client for talking to ``service``.
+
+        Parameters
+        ----------
+        service : str, optional
+            The name of the service for subsetting the dataset. Defaults to 'NetcdfSubset'.
+
+        Returns
+        -------
+        a client for communicating using ``service``
+
+        """
+        if service is None:
+            service = 'NetcdfSubset'
+
+        if service not in ('NetcdfSubset',):
+            raise ValueError(service + ' is not a valid service for subset')
+
+        return self.access_with_service(service)
+
+    def access_with_service(self, service):
+        """Access the dataset using a particular service.
+
+        Return an Python object capable of communicating with the server using the particular
+        service. For instance, for 'HTTPServer' this is a file-like object capable of
+        HTTP communication; for OPENDAP this is a netCDF4 dataset.
+
+        Parameters
+        ----------
+        service : str
+            The name of the service for accessing the dataset
+
+        Returns
+        -------
+            An instance appropriate for communicating using ``service``.
+
+        """
+        if service == 'CdmRemote':
+            from .cdmr import Dataset as CDMRDataset
+            provider = CDMRDataset
+        elif service == 'OPENDAP':
+            try:
+                from netCDF4 import Dataset as NC4Dataset
+                provider = NC4Dataset
+            except ImportError:
+                raise ImportError('OPENDAP access requires netCDF4-python to be installed.')
+        elif service == 'NetcdfSubset':
+            from .ncss import NCSS
+            provider = NCSS
+        elif service == 'HTTPServer':
+            provider = urlopen
+        else:
+            raise ValueError(service + ' is not an access method supported by Siphon')
+
+        try:
+            return provider(self.access_urls[service])
+        except KeyError:
+            raise ValueError(service + ' is not available for this dataset')
+
 
 class SimpleService(object):
     """Hold information about an access service enabled on a dataset.
