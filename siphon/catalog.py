@@ -264,6 +264,15 @@ class TDSCatalog(object):
             else:
                 self.datasets.pop(dsName)
 
+    @property
+    def latest(self):
+        """Get the latest dataset, if available."""
+        for service in self.services:
+            if service.is_resolver():
+                latest_cat = self.catalog_url.replace('catalog.xml', 'latest.xml')
+                return TDSCatalog(latest_cat).datasets[0]
+        raise AttributeError('"latest" not available for this catalog')
+
 
 class CatalogRef(object):
     """
@@ -580,8 +589,7 @@ class SimpleService(object):
     """
 
     def __init__(self, service_node):
-        """
-        Initialize the Dataset object.
+        """Initialize the Dataset object.
 
         Parameters
         ----------
@@ -593,6 +601,10 @@ class SimpleService(object):
         self.service_type = service_node.attrib['serviceType']
         self.base = service_node.attrib['base']
         self.access_urls = {}
+
+    def is_resolver(self):
+        """Return whether the service is a resolver service."""
+        return self.service_type.lower() == 'resolver'
 
 
 class CompoundService(object):
@@ -644,29 +656,6 @@ def _find_base_tds_url(catalog_url):
         return catalog_url
 
 
-def _get_latest_cat(catalog_url):
-    """Get the latest dataset catalog from the supplied top level dataset catalog url.
-
-    Parameters
-    ----------
-    catalog_url : str
-        The URL of a top level data catalog
-
-    Returns
-    -------
-    TDSCatalog
-        A TDSCatalog object containing the information from the latest dataset
-
-    """
-    cat = TDSCatalog(catalog_url)
-    for service in cat.services:
-        if service.service_type.lower() == 'resolver':
-            latest_cat = cat.catalog_url.replace('catalog.xml', 'latest.xml')
-            return TDSCatalog(latest_cat)
-
-    log.error('ERROR: "latest" service not enabled for this catalog!')
-
-
 def get_latest_access_url(catalog_url, access_method):
     """Get the data access url to the latest data using a specified access method.
 
@@ -688,21 +677,4 @@ def get_latest_access_url(catalog_url, access_method):
         but not always.
 
     """
-    latest_cat = _get_latest_cat(catalog_url)
-    if latest_cat != '':
-        if len(list(latest_cat.datasets.keys())) > 0:
-            latest_ds = []
-            for lds_name in latest_cat.datasets:
-                lds = latest_cat.datasets[lds_name]
-                if access_method in lds.access_urls:
-                    latest_ds.append(lds.access_urls[access_method])
-            if len(latest_ds) == 1:
-                latest_ds = latest_ds[0]
-                return latest_ds
-            else:
-                log.error('ERROR: More than one latest dataset found '
-                          'this case is currently not suppored in '
-                          'siphon.')
-        else:
-            log.error('ERROR: More than one access url matching the '
-                      'requested access method...clearly this is an error')
+    return TDSCatalog(catalog_url).latest.access_urls[access_method]

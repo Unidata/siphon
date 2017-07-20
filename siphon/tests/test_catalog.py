@@ -63,6 +63,15 @@ def test_get_latest():
     assert latest_url
 
 
+@recorder.use_cassette('latest_rap_catalog')
+def test_latest_attribute():
+    """Test using the catalog latest attribute."""
+    url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
+           'grib/NCEP/RAP/CONUS_13km/catalog.xml')
+    cat = TDSCatalog(url)
+    assert cat.latest.name == 'RR_CONUS_13km_20150527_0100.grib2'
+
+
 @recorder.use_cassette('top_level_cat')
 def test_tds_top_catalog():
     """Test parsing top-level catalog."""
