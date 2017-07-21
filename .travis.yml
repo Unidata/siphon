@@ -98,7 +98,7 @@ script:
       fi;
     else
       flake8 --version;
-      python setup.py test --addopts "-s $TEST_OPTS";
+      python setup.py test --addopts "-s $TEST_OPTS --no-print-logs";
     fi
 
 after_script:
