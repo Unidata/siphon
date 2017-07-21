@@ -13,4 +13,4 @@ pylint:
 
 pep8:
   options:
-    max-line-length: 90
+    max-line-length: 95
