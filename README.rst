@@ -51,7 +51,9 @@ Siphon
     :alt: PRs Welcome
 
 Siphon is a collection of Python utilities for downloading data from Unidata
-data technologies.
+data technologies. See our `support page`__ for ways to get help with Siphon.
+
+__ https://github.com/Unidata/siphon/blob/master/SUPPORT.md
 
 Siphon is still in an early stage of development, and as such
 **no APIs are considered stable.** While we won't break things
