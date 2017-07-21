@@ -88,7 +88,7 @@ class NCSS(HTTPEndPoint):
 
         """
         # Make sure all variables are in the dataset
-        return query.var and all(var in self.variables for var in query.var)
+        return bool(query.var) and all(var in self.variables for var in query.var)
 
     def get_data(self, query):
         """Fetch parsed data from a THREDDS server using NCSS.

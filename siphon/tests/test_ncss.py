@@ -92,6 +92,13 @@ class TestNCSS(object):
         self.nq.variables('foo')
         assert not self.ncss.validate_query(self.nq)
 
+    def test_empty_query(self):
+        """Test that an empty query is invalid."""
+        query = self.ncss.query()
+        res = self.ncss.validate_query(query)
+        assert not res
+        assert not isinstance(res, set)
+
     def test_bad_query_no_vars(self):
         """Test that a query without variables is invalid."""
         self.nq.var.clear()
