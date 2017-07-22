@@ -13,7 +13,6 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 
 from siphon.catalog import TDSCatalog
-from siphon.ncss import NCSS
 
 ###########################################
 # First we construct a TDSCatalog instance pointing to our dataset of interest, in
@@ -24,13 +23,9 @@ best_gfs = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/'
 print(best_gfs.datasets)
 
 ###########################################
-# We pull out this dataset and look at the access urls.
-best_ds = list(best_gfs.datasets.values())[0]
-print(best_ds.access_urls)
-
-###########################################
-# Note the `NetcdfSubset` entry, which we will use with our NCSS class.
-ncss = NCSS(best_ds.access_urls['NetcdfSubset'])
+# We pull out this dataset and get the NCSS access point
+best_ds = best_gfs.datasets[0]
+ncss = best_ds.subset()
 
 ###########################################
 # We can then use the `ncss` object to create a new query object, which

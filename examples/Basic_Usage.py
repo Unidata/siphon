@@ -19,4 +19,4 @@ from siphon.catalog import TDSCatalog
 
 ###########################################
 cat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog.xml')
-print(list(cat.catalog_refs.keys()))
+print(list(cat.catalog_refs))

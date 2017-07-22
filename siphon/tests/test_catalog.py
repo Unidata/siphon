@@ -1,10 +1,13 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
+# Copyright (c) 2013-2017 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 """Test the catalog access API."""
 
+from datetime import datetime
 import logging
 import warnings
+
+import pytest
 
 from siphon.catalog import get_latest_access_url, TDSCatalog
 from siphon.testing import get_recorder
@@ -58,6 +61,15 @@ def test_get_latest():
            'grib/NCEP/RAP/CONUS_13km/catalog.xml')
     latest_url = get_latest_access_url(url, 'OPENDAP')
     assert latest_url
+
+
+@recorder.use_cassette('latest_rap_catalog')
+def test_latest_attribute():
+    """Test using the catalog latest attribute."""
+    url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
+           'grib/NCEP/RAP/CONUS_13km/catalog.xml')
+    cat = TDSCatalog(url)
+    assert cat.latest.name == 'RR_CONUS_13km_20150527_0100.grib2'
 
 
 @recorder.use_cassette('top_level_cat')
@@ -114,6 +126,67 @@ def test_datasets_order():
     assert list(cat.datasets) == ['Full Collection (Reference / Forecast Time) Dataset',
                                   'Best NAM CONUS 20km Time Series',
                                   'Latest Collection for NAM CONUS 20km']
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_get_by_index():
+    """Test that datasets can be accessed by index."""
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+    assert cat.datasets[0].name == 'Full Collection (Reference / Forecast Time) Dataset'
+    assert cat.datasets[1].name == 'Best NAM CONUS 20km Time Series'
+    assert cat.datasets[2].name == 'Latest Collection for NAM CONUS 20km'
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_nearest_time():
+    """Test getting dataset by time using filenames."""
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+    nearest = cat.catalog_refs.filter_time_nearest(datetime(2015, 5, 28, 17))
+    assert nearest.title == 'NAM_CONUS_20km_noaaport_20150528_1800.grib1'
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_nearest_time_raises():
+    """Test getting dataset by time using filenames."""
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+
+    # Datasets doesn't have any timed datasets
+    with pytest.raises(ValueError):
+        cat.datasets.filter_time_nearest(datetime(2015, 5, 28, 17))
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_time_range():
+    """Test getting datasets by time range using filenames."""
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+    in_range = cat.catalog_refs.filter_time_range(datetime(2015, 5, 28, 0),
+                                                  datetime(2015, 5, 29, 0))
+    titles = [item.title for item in in_range]
+    assert titles == ['NAM_CONUS_20km_noaaport_20150528_0000.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_0600.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_1200.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_1800.grib1',
+                      'NAM_CONUS_20km_noaaport_20150529_0000.grib1']
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_time_range_raises():
+    """Test getting datasets by time range using filenames."""
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+
+    # No time-based dataset names
+    with pytest.raises(ValueError):
+        cat.datasets.filter_time_range(datetime(2015, 5, 28, 0), datetime(2015, 5, 29, 0))
 
 
 @recorder.use_cassette('top_level_cat')

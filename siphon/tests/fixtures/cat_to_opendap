@@ -1,0 +1,39 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.4.1+19.g2bea7f3.dirty)]
+    method: GET
+    uri: http://thredds.ucar.edu/thredds/catalog/nexrad/level3/NMD/FTG/20170719/catalog.xml?dataset=NWS/NEXRAD3/NMD/FTG/20170719/Level3_FTG_NMD_20170719_2337.nids
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA5xVW2/aMBR+n7T/YHnPxKRZx0AhHSJlQ2opKqBNe0EmdsFaEkeOw2W/fse5AaFU
+        1d6Sc77znfuxe7ePQrTlKhUy7mPbamPE40AyEa/7eDEftb7iO+/jBzegmoZyjQAep3280TrpEbLb
+        7awsFgyUVhZQZXGWkZhGPE1owFOiN4ozlpJxvB0WBGSb+8hpevtQxH/OyHaOJdWa2N1ul+RajAxd
+        Hz/wLQ+d5Wj+fTl59Jc3bbvT7tjd5Y3jdCyIIMVnWVg2hqgRclOutiLgJYuiTNAQo1I6PyQgHMoo
+        kVnMMFrRFP4LywvbOGDSuDmzfZreT/zBtDKtEzbQIcGIvM71Yz6fzkDCVYPvVNGgfBEhL1TXeQMW
+        KR5JzZspsui5lDdYa4vrpHEQNUs2GT4+XFAZ3HWWjLGgwbLw/eEFi8FdZxGpbJCMZ08XHICqKVxS
+        wos/M6op1++fqrEP6f6ckcn9r+eB7xDAEcCTCkvewZGpcEr1BkrJ9zCCJMxN/oeqqopJYyb+cgTb
+        p2EfVwfNQWt/ubXaLqm0J2iOdF6uCFb7RXCGPcPeandadnd+4/Q+Oz3H/p2b1mZaRHwoYeDoupKZ
+        hmiqdMPa6fTa4LdQ1UiWKaphI71bFIk4gwiBv5KVPsgrTtyIa2pyQCLecCU0Z32sVcbxSRRFUyfQ
+        Rq/Y6rrRuawG0kxvJHAcPLhNxZEqL5ZLjrpjzKAwg+VBs8eDh6KWueAMMpIqotorhqLlFLBSeATK
+        IIt4rPOEUX7OejChL2+fT/NHPkFOFG5AYaSFDs2+FFCU61D+mUDVjsty4bPouRLrjYbpGCnOwwOi
+        WypCugo5RH2KPpIk2SoUKZS+FoHQbAzayoCuspCqQx/74xH2FsPBM1lMxv5gPnDz039qE0jgDrRZ
+        gLeThlcngqj6OM2SRCr9rYk4S5I0A3RJNTLlzpdrbl4uUj5d8P0PAAD//wMA2aScMu4GAAA=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [Keep-Alive]
+      Content-Encoding: [gzip]
+      Content-Language: [en]
+      Content-Type: [application/xml;charset=UTF-8]
+      Date: ['Wed, 19 Jul 2017 23:52:40 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Server: [Apache]
+      Vary: [Accept-Encoding]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: '200'}
+version: 1

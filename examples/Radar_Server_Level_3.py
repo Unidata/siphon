@@ -20,7 +20,7 @@ from siphon.radarserver import get_radarserver_datasets, RadarServer
 # First, point to the top-level thredds radar server accessor to find what datasets are
 # available.
 ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
-print(list(ds.keys()))
+print(list(ds))
 
 ###########################################
 # Now create an instance of RadarServer to point to the appropriate

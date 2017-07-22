@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
+# Copyright (c) 2013-2017 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 """
@@ -8,7 +8,9 @@ They help identifying the latest dataset and finding proper URLs to access the d
 """
 
 from collections import OrderedDict
+from datetime import datetime
 import logging
+import re
 import xml.etree.ElementTree as ET
 try:
     from urlparse import urljoin, urlparse
@@ -24,6 +26,110 @@ log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
 log.setLevel(logging.ERROR)
 
 
+class IndexableMapping(OrderedDict):
+    """Extend ``OrderedDict`` to allow index-based access to values."""
+
+    def __getitem__(self, item):
+        """Return an item either by index or name."""
+        try:
+            item + ''  # Raises if item not a string
+            return super(IndexableMapping, self).__getitem__(item)
+        except TypeError:
+            return list(self.values())[item]
+
+
+class DatasetCollection(IndexableMapping):
+    """Extend ``IndexableMapping`` to allow datetime-based filter queries."""
+
+    default_regex = re.compile(r'(?P<year>\d{4})(?P<month>[01]\d)(?P<day>[012]\d)_'
+                               r'(?P<hour>[012]\d)(?P<minute>[0-5]\d)')
+
+    def _get_datasets_with_times(self, regex):
+        # Set the default regex if we don't have one
+        if regex is None:
+            regex = self.default_regex
+        else:
+            regex = re.compile(regex)
+
+        # Loop over the collection looking for keys that match our regex
+        found_date = False
+        for ds in self:
+            match = regex.search(ds)
+
+            # If we find one, make a datetime and yield it along with the value
+            if match:
+                found_date = True
+                date_parts = match.groupdict()
+                dt = datetime(int(date_parts.get('year', 0)), int(date_parts.get('month', 0)),
+                              int(date_parts.get('day', 0)), int(date_parts.get('hour', 0)),
+                              int(date_parts.get('minute', 0)),
+                              int(date_parts.get('second', 0)),
+                              int(date_parts.get('microsecond', 0)))
+                yield dt, self[ds]
+
+        # If we never found any keys that match, we should let the user know that rather
+        # than have it be the same as if nothing matched filters
+        if not found_date:
+            raise ValueError('No datasets with times found.')
+
+    def filter_time_nearest(self, time, regex=None):
+        """Filter keys for an item closest to the desired time.
+
+        Loops over all keys in the collection and uses `regex` to extract and build
+        `datetime`s. The collection of `datetime`s is compared to `start` and the value that
+        has a `datetime` closest to that requested is returned.If none of the keys in the
+        collection match the regex, indicating that the keys are not date/time-based,
+        a ``ValueError`` is raised.
+
+        Parameters
+        ----------
+        time : ``datetime.datetime``
+            The desired time
+        regex : str, optional
+            The regular expression to use to extract date/time information from the key. If
+            given, this should contain named groups: 'year', 'month', 'day', 'hour', 'minute',
+            'second', and 'microsecond', as appropriate. When a match is found, any of those
+            groups missing from the pattern will be assigned a value of 0. The default pattern
+            looks for patterns like: 20171118_2356.
+
+        Returns
+        -------
+            The value with a time closest to that desired
+
+        """
+        return min(self._get_datasets_with_times(regex),
+                   key=lambda i: abs((i[0] - time).total_seconds()))[-1]
+
+    def filter_time_range(self, start, end, regex=None):
+        """Filter keys for all items within the desired time range.
+
+        Loops over all keys in the collection and uses `regex` to extract and build
+        `datetime`s. From the collection of `datetime`s, all values within `start` and `end`
+        (inclusive) are returned. If none of the keys in the collection match the regex,
+        indicating that the keys are not date/time-based, a ``ValueError`` is raised.
+
+        Parameters
+        ----------
+        start : ``datetime.datetime``
+            The start of the desired time range, inclusive
+        end : ``datetime.datetime``
+            The end of the desired time range, inclusive
+        regex : str, optional
+            The regular expression to use to extract date/time information from the key. If
+            given, this should contain named groups: 'year', 'month', 'day', 'hour', 'minute',
+            'second', and 'microsecond', as appropriate. When a match is found, any of those
+            groups missing from the pattern will be assigned a value of 0. The default pattern
+            looks for patterns like: 20171118_2356.
+
+        Returns
+        -------
+            All values corresponding to times within the specified range
+
+        """
+        return [item[-1] for item in self._get_datasets_with_times(regex)
+                if start <= item[0] <= end]
+
+
 class TDSCatalog(object):
     """
     Parse information from a THREDDS Client Catalog.
@@ -34,12 +140,12 @@ class TDSCatalog(object):
         The url path of the catalog to parse.
     base_tds_url : str
         The top level server address
-    datasets : dict[str, Dataset]
+    datasets : DatasetCollection[str, Dataset]
         A dictionary of :class:`Dataset` objects, whose keys are the name of the
         dataset's name
     services : List
         A list of :class:`SimpleService` listed in the catalog
-    catalog_refs : dict[str, CatalogRef]
+    catalog_refs : DatasetCollection[str, CatalogRef]
         A dictionary of :class:`CatalogRef` objects whose keys are the name of the
         catalog ref title.
 
@@ -79,9 +185,9 @@ class TDSCatalog(object):
         root = ET.fromstring(resp.text)
         self.catalog_name = root.attrib.get('name', 'No name found')
 
-        self.datasets = OrderedDict()
+        self.datasets = DatasetCollection()
         self.services = []
-        self.catalog_refs = OrderedDict()
+        self.catalog_refs = DatasetCollection()
         self.metadata = {}
         self.ds_with_access_elements_to_process = []
         service_skip_count = 0
@@ -157,6 +263,15 @@ class TDSCatalog(object):
                     self.base_tds_url, self.services, metadata=self.metadata)
             else:
                 self.datasets.pop(dsName)
+
+    @property
+    def latest(self):
+        """Get the latest dataset, if available."""
+        for service in self.services:
+            if service.is_resolver():
+                latest_cat = self.catalog_url.replace('catalog.xml', 'latest.xml')
+                return TDSCatalog(latest_cat).datasets[0]
+        raise AttributeError('"latest" not available for this catalog')
 
 
 class CatalogRef(object):
@@ -342,6 +457,120 @@ class Dataset(object):
         url_path = access_element.attrib['urlPath']
         self.access_element_info[service_name] = url_path
 
+    def download(self, filename):
+        """Download the dataset to a local file.
+
+        Parameters
+        ----------
+        filename : str
+            The full path to which the dataset will be saved
+
+        """
+        with self.remote_open() as infile:
+            with open(filename, 'wb') as outfile:
+                outfile.write(infile.read())
+
+    def remote_open(self):
+        """Open the remote dataset for random access.
+
+        Get a file-like object for reading from the remote dataset, providing random access,
+        similar to a local file.
+
+        Returns
+        -------
+        A random access, file-like object
+
+        """
+        return self.access_with_service('HTTPServer')
+
+    def remote_access(self, service=None):
+        """Access the remote dataset.
+
+        Open the remote dataset and get a netCDF4-compatible `Dataset` object providing
+        index-based subsetting capabilities.
+
+        Parameters
+        ----------
+        service : str, optional
+            The name of the service to use for access to the dataset, either
+            'CdmRemote' or 'OPENDAP'. Defaults to 'CdmRemote'.
+
+        Returns
+        -------
+        Dataset
+            Object for netCDF4-like access to the dataset
+
+        """
+        if service is None:
+            service = 'CdmRemote' if 'CdmRemote' in self.access_urls else 'OPENDAP'
+
+        if service not in ('CdmRemote', 'OPENDAP'):
+            raise ValueError(service + ' is not a valid service for remote_access')
+
+        return self.access_with_service(service)
+
+    def subset(self, service=None):
+        """Subset the dataset.
+
+        Open the remote dataset and get a client for talking to ``service``.
+
+        Parameters
+        ----------
+        service : str, optional
+            The name of the service for subsetting the dataset. Defaults to 'NetcdfSubset'.
+
+        Returns
+        -------
+        a client for communicating using ``service``
+
+        """
+        if service is None:
+            service = 'NetcdfSubset'
+
+        if service not in ('NetcdfSubset',):
+            raise ValueError(service + ' is not a valid service for subset')
+
+        return self.access_with_service(service)
+
+    def access_with_service(self, service):
+        """Access the dataset using a particular service.
+
+        Return an Python object capable of communicating with the server using the particular
+        service. For instance, for 'HTTPServer' this is a file-like object capable of
+        HTTP communication; for OPENDAP this is a netCDF4 dataset.
+
+        Parameters
+        ----------
+        service : str
+            The name of the service for accessing the dataset
+
+        Returns
+        -------
+            An instance appropriate for communicating using ``service``.
+
+        """
+        if service == 'CdmRemote':
+            from .cdmr import Dataset as CDMRDataset
+            provider = CDMRDataset
+        elif service == 'OPENDAP':
+            try:
+                from netCDF4 import Dataset as NC4Dataset
+                provider = NC4Dataset
+            except ImportError:
+                raise ImportError('OPENDAP access requires netCDF4-python to be installed.')
+        elif service == 'NetcdfSubset':
+            from .ncss import NCSS
+            provider = NCSS
+        elif service == 'HTTPServer':
+            provider = urlopen
+        else:
+            raise ValueError(service + ' is not an access method supported by Siphon')
+
+        try:
+            return provider(self.access_urls[service])
+        except KeyError:
+            raise ValueError(service + ' is not available for this dataset')
+
 
 class SimpleService(object):
     """Hold information about an access service enabled on a dataset.
@@ -360,8 +589,7 @@ class SimpleService(object):
     """
 
     def __init__(self, service_node):
-        """
-        Initialize the Dataset object.
+        """Initialize the Dataset object.
 
         Parameters
         ----------
@@ -373,6 +601,10 @@ class SimpleService(object):
         self.service_type = service_node.attrib['serviceType']
         self.base = service_node.attrib['base']
         self.access_urls = {}
+
+    def is_resolver(self):
+        """Return whether the service is a resolver service."""
+        return self.service_type.lower() == 'resolver'
 
 
 class CompoundService(object):
@@ -424,29 +656,6 @@ def _find_base_tds_url(catalog_url):
         return catalog_url
 
 
-def _get_latest_cat(catalog_url):
-    """Get the latest dataset catalog from the supplied top level dataset catalog url.
-
-    Parameters
-    ----------
-    catalog_url : str
-        The URL of a top level data catalog
-
-    Returns
-    -------
-    TDSCatalog
-        A TDSCatalog object containing the information from the latest dataset
-
-    """
-    cat = TDSCatalog(catalog_url)
-    for service in cat.services:
-        if service.service_type.lower() == 'resolver':
-            latest_cat = cat.catalog_url.replace('catalog.xml', 'latest.xml')
-            return TDSCatalog(latest_cat)
-
-    log.error('ERROR: "latest" service not enabled for this catalog!')
-
-
 def get_latest_access_url(catalog_url, access_method):
     """Get the data access url to the latest data using a specified access method.
 
@@ -468,21 +677,4 @@ def get_latest_access_url(catalog_url, access_method):
         but not always.
 
     """
-    latest_cat = _get_latest_cat(catalog_url)
-    if latest_cat != '':
-        if len(list(latest_cat.datasets.keys())) > 0:
-            latest_ds = []
-            for lds_name in latest_cat.datasets:
-                lds = latest_cat.datasets[lds_name]
-                if access_method in lds.access_urls:
-                    latest_ds.append(lds.access_urls[access_method])
-            if len(latest_ds) == 1:
-                latest_ds = latest_ds[0]
-                return latest_ds
-            else:
-                log.error('ERROR: More than one latest dataset found '
-                          'this case is currently not suppored in '
-                          'siphon.')
-        else:
-            log.error('ERROR: More than one access url matching the '
-                      'requested access method...clearly this is an error')
+    return TDSCatalog(catalog_url).latest.access_urls[access_method]
