@@ -58,4 +58,6 @@ setup(
         'examples': ['matplotlib>=1.3', 'cartopy>=0.13.1', 'scipy']
     },
 
-    download_url='https://github.com/Unidata/siphon/archive/v{}.tar.gz'.format(ver),)
+    download_url='https://github.com/Unidata/siphon/archive/v{}.tar.gz'.format(ver),
+    cmdclass=versioneer.get_cmdclass(),
+)
