@@ -59,15 +59,6 @@ def test_dataset_remote_access_cdmr(nids_url):
     assert ds.title == 'Nexrad Level 3 Data'
 
 
-@recorder.use_cassette('cat_to_opendap')
-def test_dataset_remote_access_opendap(nids_url):
-    """Test using the remote_access method to request opendap access."""
-    cat = TDSCatalog(nids_url)
-    ds = cat.datasets[0].remote_access(service='OPENDAP')
-    assert ds.variables == {}
-    assert ds.title == 'Nexrad Level 3 Data'
-
-
 @recorder.use_cassette('cat_to_open')
 def test_dataset_download(nids_url):
     """Test using the download method to download entire dataset."""
