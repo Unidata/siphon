@@ -3,20 +3,21 @@
 # SPDX-License-Identifier: MIT
 """Read upper air data from the Wyoming archives."""
 
-from ..http_util import HTTPEndPoint
-from io import BytesIO, StringIO
+from io import StringIO
+
+from bs4 import BeautifulSoup
 import numpy as np
 import pandas as pd
-from metpy.calc import get_wind_components
-from bs4 import BeautifulSoup
+from .._tools import get_wind_components
+from ..http_util import HTTPEndPoint
 
 
 class WyomingUpperAir(HTTPEndPoint):
     """Download and parse data from the University of Wyoming's upper air archive."""
 
     def __init__(self):
+        """Set up endpoint."""
         super(WyomingUpperAir, self).__init__('http://weather.uwyo.edu/cgi-bin/sounding')
-
 
     @classmethod
     def request_data(cls, time, site_id, **kwargs):
@@ -42,7 +43,6 @@ class WyomingUpperAir(HTTPEndPoint):
         endpoint = cls()
         df = endpoint._get_data(time, site_id, **kwargs)
         return df
-
 
     def _get_data(self, time, site_id, region='naconf'):
         r"""Download and parse upper air observations from an online archive.
@@ -85,7 +85,6 @@ class WyomingUpperAir(HTTPEndPoint):
                     'v_wind': 'knot'}
         return df
 
-
     def _get_data_raw(self, time, site_id, region='naconf'):
         """Download data from the University of Wyoming's upper air archive.
 
@@ -107,7 +106,7 @@ class WyomingUpperAir(HTTPEndPoint):
                 '&YEAR={time:%Y}&MONTH={time:%m}&FROM={time:%d%H}&TO={time:%d%H}'
                 '&STNM={stid}').format(region=region, time=time, stid=site_id)
 
-        resp = self.get_path(path) # This will become self.get_query(query)
+        resp = self.get_path(path)
         # See if the return is valid, but has no data
         if resp.text.find('Can\'t') != -1:
             raise ValueError(
