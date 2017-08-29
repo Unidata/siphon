@@ -1,0 +1,53 @@
+######################
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+*.swp
+*.*~
+._*
+.idea/
+
+###################
+# python #
+###################
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+.eggs/
+MANIFEST
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+__pycache__
+.ipynb_checkpoints/
+docs/build
+docs/examples
+docs/api/generated
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+.cache
+
+# Translations
+*.mo
