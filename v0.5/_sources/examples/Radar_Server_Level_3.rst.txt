@@ -1,0 +1,263 @@
+
+
+.. _sphx_glr_examples_Radar_Server_Level_3.py:
+
+
+=======================
+TDS Radar Query Service
+=======================
+
+Use Siphon to get NEXRAD Level 3 data from a TDS.
+
+
+
+.. code-block:: python
+
+    from datetime import datetime
+
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    from siphon.cdmr import Dataset
+    from siphon.radarserver import get_radarserver_datasets, RadarServer
+
+
+
+
+
+
+
+First, point to the top-level thredds radar server accessor to find what datasets are
+available.
+
+
+
+.. code-block:: python
+
+    ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
+    print(list(ds))
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    ['NEXRAD Level II Radar for Case Study CCS039', 'NEXRAD Level II Radar from IDD', 'NEXRAD Level III Radar for Case Study CCS039', 'NEXRAD Level III Radar from IDD', 'TDWR Level III Radar from IDD']
+
+
+Now create an instance of RadarServer to point to the appropriate
+radar server access URL. This is pulled from the catalog reference url.
+
+
+
+.. code-block:: python
+
+    url = ds['NEXRAD Level III Radar from IDD'].follow().catalog_url
+    rs = RadarServer(url)
+
+
+
+
+
+
+
+Look at the variables available in this dataset
+
+
+
+.. code-block:: python
+
+    print(rs.variables)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    {'DU3', 'N0Q', 'N3U', 'DAA', 'N0C', 'N0H', 'N0K', 'N2M', 'N3M', 'DOD', 'N3S', 'N3X', 'N1U', 'N0M', 'NBH', 'NBM', 'N2U', 'NCR', 'NET', 'NVL', 'OHA', 'N3K', 'NMD', 'N3C', 'N2H', 'DU6', 'DTA', 'DPA', 'N0U', 'N1P', 'N3Q', 'NBU', 'N1C', 'N0S', 'NVW', 'N2C', 'DHR', 'N2K', 'N2X', 'PTA', 'N1H', 'NBK', 'N3H', 'NAQ', 'DPR', 'DSD', 'N0X', 'EET', 'NAM', 'NAU', 'NAH', 'N2S', 'DVL', 'N0R', 'N0Z', 'N1K', 'N0V', 'NBC', 'N2Q', 'DSP', 'N1X', 'NTP', 'NBX', 'NAC', 'N1M', 'N1Q', 'NST', 'HHC', 'N1S', 'NAX', 'NAK', 'NBQ'}
+
+
+Create a new query object to help request the data. Using the chaining
+methods, ask for data from radar FTG (Denver) for now for the product
+N0Q, which is reflectivity data for the lowest tilt. We see that when the query
+is represented as a string, it shows the encoded URL.
+
+
+
+.. code-block:: python
+
+    query = rs.query()
+    query.stations('FTG').time(datetime.utcnow()).variables('N0Q')
+
+
+
+
+
+
+
+We can use the RadarServer instance to check our query, to make
+sure we have required parameters and that we have chosen valid
+station(s) and variable(s)
+
+
+
+.. code-block:: python
+
+    rs.validate_query(query)
+
+
+
+
+
+
+
+Make the request, which returns an instance of TDSCatalog. This
+handles parsing the catalog
+
+
+
+.. code-block:: python
+
+    catalog = rs.get_catalog(query)
+
+
+
+
+
+
+
+We can look at the datasets on the catalog to see what data we found by the query. We
+find one NIDS file in the return.
+
+
+
+.. code-block:: python
+
+    print(catalog.datasets)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    DatasetCollection([('Level3_FTG_N0Q_20170901_2202.nids', <siphon.catalog.Dataset object at 0x1116d57b8>)])
+
+
+We can pull that dataset out of the dictionary and look at the available access URLs.
+We see URLs for OPeNDAP, CDMRemote, and HTTPServer (direct download).
+
+
+
+.. code-block:: python
+
+    ds = list(catalog.datasets.values())[0]
+    print(ds.access_urls)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    {'OPENDAP': 'http://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0Q/FTG/20170901/Level3_FTG_N0Q_20170901_2202.nids', 'HTTPServer': 'http://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0Q/FTG/20170901/Level3_FTG_N0Q_20170901_2202.nids', 'CdmRemote': 'http://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0Q/FTG/20170901/Level3_FTG_N0Q_20170901_2202.nids'}
+
+
+We'll use the CDMRemote reader in Siphon and pass it the appropriate access URL.
+
+
+
+.. code-block:: python
+
+    data = Dataset(ds.access_urls['CdmRemote'])
+
+
+
+
+
+
+
+The CDMRemote reader provides an interface that is almost identical to the usual python
+NetCDF interface. We pull out the variables we need for azimuth and range, as well as
+the data itself.
+
+
+
+.. code-block:: python
+
+    rng = data.variables['gate'][:] / 1000.
+    az = data.variables['azimuth'][:]
+    ref = data.variables['BaseReflectivityDR'][:]
+
+
+
+
+
+
+
+Then convert the polar coordinates to Cartesian
+
+
+
+.. code-block:: python
+
+    x = rng * np.sin(np.deg2rad(az))[:, None]
+    y = rng * np.cos(np.deg2rad(az))[:, None]
+    ref = np.ma.array(ref, mask=np.isnan(ref))
+
+
+
+
+
+
+
+Finally, we plot them up using matplotlib.
+
+
+
+.. code-block:: python
+
+    fig, ax = plt.subplots(1, 1, figsize=(9, 8))
+    ax.pcolormesh(x, y, ref)
+    ax.set_aspect('equal', 'datalim')
+    ax.set_xlim(-460, 460)
+    ax.set_ylim(-460, 460)
+
+
+
+.. image:: /examples/images/sphx_glr_Radar_Server_Level_3_001.png
+    :align: center
+
+
+
+
+**Total running time of the script:** ( 0 minutes  0.231 seconds)
+
+
+
+.. container:: sphx-glr-footer
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Python source code: Radar_Server_Level_3.py <Radar_Server_Level_3.py>`
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: Radar_Server_Level_3.ipynb <Radar_Server_Level_3.ipynb>`
+
+.. rst-class:: sphx-glr-signature
+
+    `Generated by Sphinx-Gallery <https://sphinx-gallery.readthedocs.io>`_
