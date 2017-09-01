@@ -1,0 +1,26 @@
+===========
+Basic Usage
+===========
+`Notebook <http://nbviewer.ipython.org/github/Unidata/siphon/blob/master/examples/notebooks/Basic_Usage.ipynb>`_
+
+This is currently a placeholder for a better example
+====================================================
+
+.. code:: ipython3
+
+    from __future__ import print_function
+    from siphon.catalog import TDSCatalog
+
+.. code:: ipython3
+
+    cat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog.xml')
+
+.. code:: ipython3
+
+    print(list(cat.catalog_refs.keys()))
+
+
+.. parsed-literal::
+
+    ['Forecast Model Data', 'Unidata case studies', 'Forecast Products and Analyses', 'Observation Data', 'Radar Data', 'Satellite Data']
+

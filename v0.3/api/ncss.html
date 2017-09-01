@@ -1,0 +1,535 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NCSS &mdash; Siphon 0.3.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Siphon 0.3.2 documentation" href="../index.html"/>
+        <link rel="up" title="The Siphon API" href="index.html"/>
+        <link rel="next" title="Radar Server" href="radarserver.html"/>
+        <link rel="prev" title="Utilities" href="http_util.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Siphon
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installguide.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The Siphon API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="catalog.html">Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncssdataset.html">NCSS Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http_util.html">Utilities</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">NCSS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-siphon.ncss"><code class="docutils literal"><span class="pre">siphon.ncss</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="radarserver.html">Radar Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developerguide.html">Developer’s Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Siphon</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">The Siphon API</a> &raquo;</li>
+        
+      <li>NCSS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/ncss.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ncss">
+<h1>NCSS<a class="headerlink" href="#ncss" title="Permalink to this headline">¶</a></h1>
+<p>The <cite>siphon.ncss</cite> module contains code to support making data requests
+the NetCDF subset service (NCSS) on a THREDDS Data Server (TDS). This includes
+forming proper queries as well as parsing the returned data.</p>
+<div class="section" id="module-siphon.ncss">
+<span id="siphon-ncss"></span><h2><a class="reference internal" href="#module-siphon.ncss" title="siphon.ncss"><code class="xref py py-mod docutils literal"><span class="pre">siphon.ncss</span></code></a><a class="headerlink" href="#module-siphon.ncss" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="siphon.ncss.NCSS">
+<em class="property">class </em><code class="descclassname">siphon.ncss.</code><code class="descname">NCSS</code><span class="sig-paren">(</span><em>url</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps access to the NetCDF Subset Service (NCSS) on a THREDDS server.</p>
+<p>Simplifies access via HTTP to the NCSS endpoint. Parses the metadata, provides
+data download and parsing based on the appropriate query.</p>
+<dl class="attribute">
+<dt id="siphon.ncss.NCSS.metadata">
+<code class="descname">metadata</code><a class="headerlink" href="#siphon.ncss.NCSS.metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">NCSSDataset</span></code> instance – Contains the result of parsing the NCSS endpoint’s dataset.xml. This has
+information about the time and space coverage, as well as full information
+about all of the variables.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="siphon.ncss.NCSS.variables">
+<code class="descname">variables</code><a class="headerlink" href="#siphon.ncss.NCSS.variables" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>set of strings</em> – Names of all variables available in this dataset</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="siphon.ncss.NCSS.unit_handler">
+<code class="descname">unit_handler</code><a class="headerlink" href="#siphon.ncss.NCSS.unit_handler" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>callable</em> – Function to handle units that come with CSV/XML data. Should be a callable that
+takes a list of string values and unit str (can be <code class="docutils literal"><span class="pre">None</span></code>), and returns the
+desired representation of values. Defaults to ignoring units and returning
+<code class="docutils literal"><span class="pre">numpy.array</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="siphon.ncss.NCSS.get_data">
+<code class="descname">get_data</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch parsed data from a THREDDS server using NCSS</p>
+<p>Requests data from the NCSS endpoint given the parameters in <cite>query</cite> and
+handles parsing of the returned content based on the mimetype.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<code class="docutils literal"><span class="pre">NCSSQuery</span></code> instance) – The parameters to send to the NCSS endpoint</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><em>Parsed data response from the server. Exact format depends on the format of the</em></li>
+<li><em>response.</em></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#siphon.ncss.NCSS.get_data_raw" title="siphon.ncss.NCSS.get_data_raw"><code class="xref py py-meth docutils literal"><span class="pre">get_data_raw()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="siphon.ncss.NCSS.get_data_raw">
+<code class="descname">get_data_raw</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.get_data_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch raw data from a THREDDS server using NCSS</p>
+<p>Requests data from the NCSS endpoint given the parameters in <cite>query</cite> and
+returns the raw bytes of the response.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<code class="docutils literal"><span class="pre">NCSSQuery</span></code> instance) – The parameters to send to the NCSS endpoint</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>content</strong> – The raw, unparsed, data returned by the server</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bytes</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#siphon.ncss.NCSS.get_data" title="siphon.ncss.NCSS.get_data"><code class="xref py py-meth docutils literal"><span class="pre">get_data()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="siphon.ncss.NCSS.query">
+<code class="descname">query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new query for NCSS</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><code class="docutils literal"><span class="pre">NCSSQuery</span></code> instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt>
+<em class="property">static </em><code class="descname">unit_handler</code><span class="sig-paren">(</span><em>data</em>, <em>units=None</em><span class="sig-paren">)</span></dt>
+<dd><p>Default unit handler, which ignores units and just returns <code class="docutils literal"><span class="pre">numpy.array</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="siphon.ncss.NCSS.validate_query">
+<code class="descname">validate_query</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.validate_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a query</p>
+<p>Determines whether <cite>query</cite> is well-formed. This includes checking for all
+required parameters, as well as checking parameters for valid values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<code class="docutils literal"><span class="pre">NCSSQuery</span></code> instance) – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>valid</strong> – Whether <cite>query</cite> is valid.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="siphon.ncss.NCSSQuery">
+<em class="property">class </em><code class="descclassname">siphon.ncss.</code><code class="descname">NCSSQuery</code><a class="headerlink" href="#siphon.ncss.NCSSQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object representing a query to the NetCDF Subset Service (NCSS).</p>
+<p>Expands on the queries supported by <code class="docutils literal"><span class="pre">DataQuery</span></code> to add queries specific to
+NCSS.</p>
+<dl class="method">
+<dt id="siphon.ncss.NCSSQuery.accept">
+<code class="descname">accept</code><span class="sig-paren">(</span><em>fmt</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.accept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set format for data returned from NCSS.</p>
+<p>This modifies the query in-place, but returns <code class="docutils literal"><span class="pre">self</span></code> so that multiple queries
+can be chained together on one line.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fmt</strong> (<em>str</em>) – The format to send to the server.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>self</strong> – Returns self for chaining calls</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="docutils literal"><span class="pre">NCSSQuery</span></code> instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="siphon.ncss.NCSSQuery.add_lonlat">
+<code class="descname">add_lonlat</code><span class="sig-paren">(</span><em>value=True</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.add_lonlat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets whether NCSS should add latitude/longitude to returned data.</p>
+<p>This is only used on grid requests. Used to make returned data CF-compliant.
+This modifies the query in-place, but returns <code class="docutils literal"><span class="pre">self</span></code> so that multiple queries
+can be chained together on one line.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to add latitude/longitude information. Defaults to True.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>self</strong> – Returns self for chaining calls</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="docutils literal"><span class="pre">NCSSQuery</span></code> instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="siphon.ncss.NCSSQuery.projection_box">
+<code class="descname">projection_box</code><span class="sig-paren">(</span><em>min_x</em>, <em>min_y</em>, <em>max_x</em>, <em>max_y</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.projection_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a bounding box in projected (native) coordinates to the query.</p>
+<p>This adds a request for a spatial bounding box, bounded by (<cite>min_x</cite>, <cite>max_x</cite>) for
+x direction and (<cite>min_y</cite>, <cite>max_y</cite>) for the y direction. This modifies the query
+in-place, but returns <code class="docutils literal"><span class="pre">self</span></code> so that multiple queries can be chained together
+on one line.</p>
+<p>This replaces any existing spatial queries that have been set.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>min_x</strong> (<em>float</em>) – The left edge of the bounding box</li>
+<li><strong>min_y</strong> (<em>float</em>) – The bottom edge of the bounding box</li>
+<li><strong>max_x</strong> (<em>float</em>) – The right edge of the bounding box</li>
+<li><strong>max_y</strong> (<em>float</em>) – The top edge of the bounding box</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns self for chaining calls</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><code class="docutils literal"><span class="pre">NCSSQuery</span></code> instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="siphon.ncss.NCSSQuery.strides">
+<code class="descname">strides</code><span class="sig-paren">(</span><em>time=None</em>, <em>spatial=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.strides" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set time and/or spatial (horizontal) strides.</p>
+<p>This is only used on grid requests. Used to skip points in the returned data.
+This modifies the query in-place, but returns <code class="docutils literal"><span class="pre">self</span></code> so that multiple queries
+can be chained together on one line.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>time</strong> (<em>int</em><em>, </em><em>optional</em>) – Stride for times returned. Defaults to None, which is equivalent to 1.</li>
+<li><strong>spatial</strong> (<em>int</em><em>, </em><em>optional</em>) – Stride for horizontal grid. Defaults to None, which is equivalent to 1.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns self for chaining calls</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><code class="docutils literal"><span class="pre">NCSSQuery</span></code> instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="siphon.ncss.NCSSQuery.vertical_level">
+<code class="descname">vertical_level</code><span class="sig-paren">(</span><em>level</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.vertical_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set vertical level for which data should be retrieved.</p>
+<p>The value depends on the coordinate values for the vertical dimension of the
+requested variable.</p>
+<p>This modifies the query in-place, but returns <code class="docutils literal"><span class="pre">self</span></code> so that multiple queries
+can be chained together on one line.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>level</strong> (<em>float</em>) – The value of the desired level</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>self</strong> – Returns self for chaining calls</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="docutils literal"><span class="pre">NCSSQuery</span></code> instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="siphon.ncss.ResponseRegistry">
+<em class="property">class </em><code class="descclassname">siphon.ncss.</code><code class="descname">ResponseRegistry</code><a class="headerlink" href="#siphon.ncss.ResponseRegistry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows registering of functions to be called based on the
+mimetype in the response headers.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="siphon.ncss.combine_dicts">
+<code class="descclassname">siphon.ncss.</code><code class="descname">combine_dicts</code><span class="sig-paren">(</span><em>l</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.combine_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Combine a list of dictionaries into single one</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="siphon.ncss.default_unit_handler">
+<code class="descclassname">siphon.ncss.</code><code class="descname">default_unit_handler</code><span class="sig-paren">(</span><em>data</em>, <em>units=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.default_unit_handler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default unit handler, which ignores units and just returns <code class="docutils literal"><span class="pre">numpy.array</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="siphon.ncss.squish">
+<code class="descclassname">siphon.ncss.</code><code class="descname">squish</code><span class="sig-paren">(</span><em>l</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.squish" title="Permalink to this definition">¶</a></dt>
+<dd><p>If list contains only 1 element, return it instead</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="radarserver.html" class="btn btn-neutral float-right" title="Radar Server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http_util.html" class="btn btn-neutral" title="Utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Unidata.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
