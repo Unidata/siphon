@@ -7,7 +7,7 @@ Siphon
 
 |Travis| |AppVeyor| |CodeCov|
 
-|Codacy| |QuantifiedCode|
+|Codacy|
 
 
 .. |License| image:: https://img.shields.io/pypi/l/siphon.svg
@@ -33,10 +33,6 @@ Siphon
 .. |CodeCov| image:: https://codecov.io/github/Unidata/siphon/coverage.svg?branch=master
     :target: https://codecov.io/github/Unidata/siphon?branch=master
     :alt: Code Coverage Status
-
-.. |QuantifiedCode| image:: https://www.quantifiedcode.com/api/v1/project/e4c6ae8ad9d64a8a94f5454ff28615b1/badge.svg
-    :target: https://www.quantifiedcode.com/app/project/e4c6ae8ad9d64a8a94f5454ff28615b1
-    :alt: Code issues
 
 .. |Codacy| image:: https://api.codacy.com/project/badge/grade/ebacd20b84ab4673bd6cd34f65c48af6
     :target: https://www.codacy.com/app/Unidata/siphon
