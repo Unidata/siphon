@@ -1,0 +1,6 @@
+linters:
+    flake8:
+        ignore: 'F405'
+        max-line-length: 95
+files:
+    ignore: ['siphon/cdmr/ncStream_pb2.py', 'siphon/cdmr/cdmrfeature_pb2.py', 'siphon/_version.py']
