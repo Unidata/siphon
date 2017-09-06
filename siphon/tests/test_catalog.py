@@ -216,3 +216,14 @@ def test_access_elements():
     url = 'http://oceandata.sci.gsfc.nasa.gov/opendap/SeaWiFS/L3SMI/2001/001/catalog.xml'
     cat = TDSCatalog(url)
     assert len(list(cat.datasets)) != 0
+
+
+@recorder.use_cassette('cat_only_http')
+def test_simple_service_within_compound():
+    """Test parsing of a catalog that asks for a single service within a compound one."""
+    url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/noaaport/text/'
+           'tropical/atlantic/hdob/catalog.xml')
+    cat = TDSCatalog(url)
+    assert (cat.datasets[0].access_urls ==
+            {'HTTPServer': 'http://thredds-test.unidata.ucar.edu/thredds/fileServer/noaaport/'
+                           'text/tropical/atlantic/hdob/High_density_obs_20170824.txt'})

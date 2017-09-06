@@ -1,0 +1,99 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.5.0+13.g0e639e9.dirty)]
+    method: GET
+    uri: http://thredds-test.unidata.ucar.edu/thredds/catalog/noaaport/text/tropical/atlantic/hdob/catalog.xml
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<catalog xmlns=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\"
+        xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.2\">\r\n  <service
+        name=\"latest\" serviceType=\"Resolver\" base=\"\" />\r\n  <service name=\"fullServices\"
+        serviceType=\"Compound\" base=\"\">\r\n    <service name=\"ncdods\" serviceType=\"OPENDAP\"
+        base=\"/thredds/dodsC/\" />\r\n    <service name=\"HTTPServer\" serviceType=\"HTTPServer\"
+        base=\"/thredds/fileServer/\" />\r\n    <service name=\"wcs\" serviceType=\"WCS\"
+        base=\"/thredds/wcs/\" />\r\n    <service name=\"wms\" serviceType=\"WMS\"
+        base=\"/thredds/wms/\" />\r\n    <service name=\"ncss\" serviceType=\"NetcdfSubset\"
+        base=\"/thredds/ncss/\" />\r\n    <service name=\"cdmremote\" serviceType=\"CdmRemote\"
+        base=\"/thredds/cdmremote/\" />\r\n    <service name=\"gridcoverage\" serviceType=\"CdmrFeature\"
+        base=\"/thredds/cdmrfeature/grid/\" />\r\n    <service name=\"ncml\" serviceType=\"NCML\"
+        base=\"/thredds/ncml/\" />\r\n    <service name=\"uddc\" serviceType=\"UDDC\"
+        base=\"/thredds/uddc/\" />\r\n    <service name=\"iso\" serviceType=\"ISO\"
+        base=\"/thredds/iso/\" />\r\n  </service>\r\n  <dataset name=\"tropical/atlantic/hdob/\">\r\n
+        \   <serviceName>HTTPServer</serviceName>\r\n    <property name=\"DatasetScan\"
+        value=\"true\" />\r\n    <metadata inherited=\"true\">\r\n      <serviceName>HTTPServer</serviceName>\r\n
+        \   </metadata>\r\n    <dataset name=\"High_density_obs_20170824.txt\" ID=\"noaaport-text/tropical/atlantic/hdob/High_density_obs_20170824.txt\"
+        urlPath=\"noaaport/text/tropical/atlantic/hdob/High_density_obs_20170824.txt\">\r\n
+        \     <dataSize units=\"Kbytes\">11.75</dataSize>\r\n      <property name=\"NotAThreddsDataset\"
+        value=\"true\" />\r\n      <date type=\"modified\">2017-08-25T00:00:27Z</date>\r\n
+        \   </dataset>\r\n    <dataset name=\"High_density_obs_20170825.txt\" ID=\"noaaport-text/tropical/atlantic/hdob/High_density_obs_20170825.txt\"
+        urlPath=\"noaaport/text/tropical/atlantic/hdob/High_density_obs_20170825.txt\">\r\n
+        \     <dataSize units=\"Kbytes\">357.0</dataSize>\r\n      <property name=\"NotAThreddsDataset\"
+        value=\"true\" />\r\n      <date type=\"modified\">2017-08-25T23:54:05Z</date>\r\n
+        \   </dataset>\r\n    <dataset name=\"High_density_obs_20170826.txt\" ID=\"noaaport-text/tropical/atlantic/hdob/High_density_obs_20170826.txt\"
+        urlPath=\"noaaport/text/tropical/atlantic/hdob/High_density_obs_20170826.txt\">\r\n
+        \     <dataSize units=\"Kbytes\">63.33</dataSize>\r\n      <property name=\"NotAThreddsDataset\"
+        value=\"true\" />\r\n      <date type=\"modified\">2017-08-26T05:46:05Z</date>\r\n
+        \   </dataset>\r\n    <dataset name=\"High_density_obs_20170828.txt\" ID=\"noaaport-text/tropical/atlantic/hdob/High_density_obs_20170828.txt\"
+        urlPath=\"noaaport/text/tropical/atlantic/hdob/High_density_obs_20170828.txt\">\r\n
+        \     <dataSize units=\"Kbytes\">51.55</dataSize>\r\n      <property name=\"NotAThreddsDataset\"
+        value=\"true\" />\r\n      <date type=\"modified\">2017-08-28T21:00:06Z</date>\r\n
+        \   </dataset>\r\n    <dataset name=\"High_density_obs_20170829.txt\" ID=\"noaaport-text/tropical/atlantic/hdob/High_density_obs_20170829.txt\"
+        urlPath=\"noaaport/text/tropical/atlantic/hdob/High_density_obs_20170829.txt\">\r\n
+        \     <dataSize units=\"Kbytes\">32.40</dataSize>\r\n      <property name=\"NotAThreddsDataset\"
+        value=\"true\" />\r\n      <date type=\"modified\">2017-08-29T19:46:07Z</date>\r\n
+        \   </dataset>\r\n    <dataset name=\"High_density_obs_20170831.txt\" ID=\"noaaport-text/tropical/atlantic/hdob/High_density_obs_20170831.txt\"
+        urlPath=\"noaaport/text/tropical/atlantic/hdob/High_density_obs_20170831.txt\">\r\n
+        \     <dataSize units=\"Kbytes\">10.31</dataSize>\r\n      <property name=\"NotAThreddsDataset\"
+        value=\"true\" />\r\n      <date type=\"modified\">2017-08-31T23:42:07Z</date>\r\n
+        \   </dataset>\r\n    <dataset name=\"High_density_obs_20170902.txt\" ID=\"noaaport-text/tropical/atlantic/hdob/High_density_obs_20170902.txt\"
+        urlPath=\"noaaport/text/tropical/atlantic/hdob/High_density_obs_20170902.txt\">\r\n
+        \     <dataSize units=\"Kbytes\">55.67</dataSize>\r\n      <property name=\"NotAThreddsDataset\"
+        value=\"true\" />\r\n      <date type=\"modified\">2017-09-02T22:48:00Z</date>\r\n
+        \   </dataset>\r\n    <dataset name=\"High_density_obs_20170903.txt\" ID=\"noaaport-text/tropical/atlantic/hdob/High_density_obs_20170903.txt\"
+        urlPath=\"noaaport/text/tropical/atlantic/hdob/High_density_obs_20170903.txt\">\r\n
+        \     <dataSize units=\"Kbytes\">73.25</dataSize>\r\n      <property name=\"NotAThreddsDataset\"
+        value=\"true\" />\r\n      <date type=\"modified\">2017-09-03T23:53:07Z</date>\r\n
+        \   </dataset>\r\n    <dataset name=\"High_density_obs_20170904.txt\" ID=\"noaaport-text/tropical/atlantic/hdob/High_density_obs_20170904.txt\"
+        urlPath=\"noaaport/text/tropical/atlantic/hdob/High_density_obs_20170904.txt\">\r\n
+        \     <dataSize units=\"Kbytes\">268.5</dataSize>\r\n      <property name=\"NotAThreddsDataset\"
+        value=\"true\" />\r\n      <date type=\"modified\">2017-09-05T00:05:12Z</date>\r\n
+        \   </dataset>\r\n    <dataset name=\"High_density_obs_20170905.txt\" ID=\"noaaport-text/tropical/atlantic/hdob/High_density_obs_20170905.txt\"
+        urlPath=\"noaaport/text/tropical/atlantic/hdob/High_density_obs_20170905.txt\">\r\n
+        \     <dataSize units=\"Kbytes\">320.1</dataSize>\r\n      <property name=\"NotAThreddsDataset\"
+        value=\"true\" />\r\n      <date type=\"modified\">2017-09-05T23:36:21Z</date>\r\n
+        \   </dataset>\r\n  </dataset>\r\n</catalog>\r\n"}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [Keep-Alive]
+      Content-Language: [en-US]
+      Content-Type: [application/xml;charset=UTF-8]
+      Date: ['Tue, 05 Sep 2017 23:38:46 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Server: [Apache/2.4.27 (Unix) OpenSSL/1.0.1e-fips mod_jk/1.2.42]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: '200'}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.5.0+13.g0e639e9.dirty)]
+    method: GET
+    uri: http://thredds-test.unidata.ucar.edu/thredds/catalog/noaaport/text/tropical/atlantic/hdob/latest.xml
+  response:
+    body: {string: 'Throwable exception handled : null'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [close]
+      Content-Length: ['34']
+      Content-Type: [text/plain]
+      Date: ['Tue, 05 Sep 2017 23:38:48 GMT']
+      Server: [Apache/2.4.27 (Unix) OpenSSL/1.0.1e-fips mod_jk/1.2.42]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 500, message: '500'}
+version: 1
