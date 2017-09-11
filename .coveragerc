@@ -1,2 +1,2 @@
 [run]
-omit = siphon/_version.py,siphon/cdmr/*_pb2.py,*/tests/*
+omit = siphon/_version.py,siphon/cdmr/*_pb2.py
