@@ -410,15 +410,18 @@ class Dataset(object):
             The top level server url
         all_services : List[SimpleService]
             list of :class:`SimpleService` objects associated with the dataset
-        metadata : TDSCatalogMetadata
+        metadata : dict
             Metadata from the :class:`TDSCatalog`
 
         """
-        all_service_dict = {service.name: service for service in all_services}
-        service_name = None
-        if metadata:
-            if 'serviceName' in metadata:
-                service_name = metadata['serviceName']
+        all_service_dict = {}
+        for service in all_services:
+            all_service_dict[service.name] = service
+            if isinstance(service, CompoundService):
+                for subservice in service.services:
+                    all_service_dict[subservice.name] = subservice
+
+        service_name = metadata.get('serviceName', None)
 
         access_urls = {}
         server_url = _find_base_tds_url(catalog_url)
