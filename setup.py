@@ -14,7 +14,7 @@ import versioneer
 ver = versioneer.get_version()
 
 # Need to conditionally add enum support for older Python
-dependencies = ['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2']
+dependencies = ['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2', 'beautifulsoup4>=4.6']
 if sys.version_info < (3, 4):
     dependencies.append('enum34')
 
