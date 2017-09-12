@@ -31,3 +31,4 @@ dependencies:
   - matplotlib
   - xarray
   - cartopy
+  - beautifulsoup4
