@@ -184,7 +184,7 @@ class TestNCSS(object):
         self.nq.accept('csv').vertical_level(50000)
         csv_data = self.ncss.get_data(self.nq)
 
-        assert str(csv_data['Temperature_isobaric'])[:6] == '263.39'
+        np.testing.assert_almost_equal(csv_data['Temperature_isobaric'], np.array([263.40]), 2)
 
     @recorder.use_cassette('ncss_gfs_csv_point')
     def test_raw_csv(self):
