@@ -129,6 +129,10 @@ class DatasetCollection(IndexableMapping):
         return [item[-1] for item in self._get_datasets_with_times(regex)
                 if start <= item[0] <= end]
 
+    def __str__(self):
+        """Return a string representation of the collection."""
+        return str(list(self))
+
 
 class TDSCatalog(object):
     """

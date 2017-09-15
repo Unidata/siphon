@@ -140,6 +140,17 @@ def test_datasets_get_by_index():
 
 
 @recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_str():
+    """Test that datasets are printed as expected."""
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+    assert str(cat.datasets) == ("['Full Collection (Reference / Forecast Time) Dataset', "
+                                 "'Best NAM CONUS 20km Time Series', "
+                                 "'Latest Collection for NAM CONUS 20km']")
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
 def test_datasets_nearest_time():
     """Test getting dataset by time using filenames."""
     url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'

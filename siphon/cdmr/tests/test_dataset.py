@@ -5,6 +5,7 @@
 
 import numpy as np
 from numpy.testing import assert_almost_equal, assert_array_almost_equal, assert_array_equal
+import pytest
 
 from siphon.cdmr import Dataset
 from siphon.testing import get_recorder
@@ -318,10 +319,11 @@ def test_unsigned_var():
 
 
 @recorder.use_cassette('nc4_groups')
-def test_print():
-    """Test that __str__ (or printing) a dataset works."""
+@pytest.mark.parametrize('func', [str, repr])
+def test_print(func):
+    """Test that str and repr of a dataset work."""
     ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/tst/tst_groups.nc')
-    s = str(ds)
+    s = func(ds)
     truth = """http://localhost:8080/thredds/cdmremote/nc4/tst/tst_groups.nc
 Groups:
 g1

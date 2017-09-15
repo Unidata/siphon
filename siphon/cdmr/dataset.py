@@ -122,6 +122,8 @@ class Group(AttributeContainer):
                 print_groups.append('\t{}: {}'.format(att, getattr(self, att)))
         return '\n'.join(print_groups)
 
+    __repr__ = __str__
+
 
 class Dataset(Group):
     """Abstract away access to the remote dataset."""
@@ -143,6 +145,8 @@ class Dataset(Group):
     def __str__(self):
         """Return a string representation of the Dataset and all contained members."""
         return self.url + '\n' + super(Dataset, self).__str__()
+
+    __repr__ = __str__
 
 
 class Variable(AttributeContainer):
@@ -372,3 +376,5 @@ class Dimension(object):
             grps.append(', size = {0}'.format(self.size))
 
         return ''.join(grps)
+
+    __repr__ = __str__
