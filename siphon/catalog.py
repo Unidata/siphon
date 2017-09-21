@@ -133,6 +133,8 @@ class DatasetCollection(IndexableMapping):
         """Return a string representation of the collection."""
         return str(list(self))
 
+    __repr__ = __str__
+
 
 class TDSCatalog(object):
     """
@@ -312,6 +314,10 @@ class CatalogRef(object):
         href = element_node.attrib['{http://www.w3.org/1999/xlink}href']
         self.href = urljoin(base_url, href)
 
+    def __str__(self):
+        """Return a string representation of the catalog reference."""
+        return str(self.title)
+
     def follow(self):
         """Follow the catalog reference and return a new :class:`TDSCatalog`.
 
@@ -322,6 +328,8 @@ class CatalogRef(object):
 
         """
         return TDSCatalog(self.href)
+
+    __repr__ = __str__
 
 
 class Dataset(object):
@@ -370,6 +378,10 @@ class Dataset(object):
             else:
                 log.warning('Must pass along the catalog URL to resolve '
                             'the latest.xml dataset!')
+
+    def __str__(self):
+        """Return a string representation of the dataset."""
+        return str(self.name)
 
     def resolve_url(self, catalog_url):
         """Resolve the url of the dataset when reading latest.xml.
@@ -575,6 +587,8 @@ class Dataset(object):
             return provider(self.access_urls[service])
         except KeyError:
             raise ValueError(service + ' is not available for this dataset')
+
+    __repr__ = __str__
 
 
 class SimpleService(object):

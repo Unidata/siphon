@@ -148,6 +148,16 @@ def test_datasets_str():
 
 
 @recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_sliced_str():
+    """Test that datasets are printed as expected when sliced."""
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+    assert str(cat.datasets[-2:]) == ('[Best NAM CONUS 20km Time Series, '
+                                      'Latest Collection for NAM CONUS 20km]')
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
 def test_datasets_nearest_time():
     """Test getting dataset by time using filenames."""
     url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
