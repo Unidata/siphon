@@ -14,7 +14,8 @@ import versioneer
 ver = versioneer.get_version()
 
 # Need to conditionally add enum support for older Python
-dependencies = ['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2', 'beautifulsoup4>=4.6']
+dependencies = ['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2', 'beautifulsoup4>=4.6',
+                'pandas']
 if sys.version_info < (3, 4):
     dependencies.append('enum34')
 
@@ -52,7 +53,7 @@ setup(
                  'flake8-mutable', 'flake8-pep3101', 'flake8-print', 'flake8-quotes',
                  'pep8-naming',
                  'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3', 'xarray>=0.6'],
-        'doc': ['sphinx>=1.3', 'sphinx-gallery', 'doc8'],
+        'doc': ['sphinx>=1.3,!=1.6.4', 'sphinx-gallery', 'doc8'],
         # SciPy needed for cartopy; we don't use cartopy[plotting] because
         # that will pull in GDAL.
         'examples': ['matplotlib>=1.3', 'cartopy>=0.13.1', 'scipy']

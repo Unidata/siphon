@@ -13,6 +13,7 @@ The Siphon API
    http_util
    ncss
    radarserver
+   simplewebservice
 
 * :ref:`genindex`
 * :ref:`modindex`
