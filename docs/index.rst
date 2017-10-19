@@ -7,6 +7,16 @@
    :width: 150 px
    :align: left
 
+.. toctree::
+  :maxdepth: 1
+  :hidden:
+
+  installguide
+  api/index
+  examples/index
+  developerguide
+  citing
+
 ======
 Siphon
 ======
@@ -23,19 +33,6 @@ just for fun, many things may still change as we work through
 design issues.
 
 We support Python 2.7 as well as Python >= 3.4.
-
--------------
-Documentation
--------------
-
-.. toctree::
-   :maxdepth: 1
-
-   installguide
-   api/index
-   examples/index
-   developerguide
-   citing
 
 ----------
 Contact Us
