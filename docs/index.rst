@@ -46,20 +46,24 @@ Contact Us
 * The source code is available on GitHub_
 * Bug reports and feature requests should be directed to the
   `GitHub issue tracker`__
+* Siphon has a Gitter_ chatroom for more "live" communication
 * If you use Siphon in a publication, please see :ref:`Citing_Siphon`.
 
 .. _python-users: https://www.unidata.ucar.edu/support/#mailinglists
 .. _GitHub: https://github.com/Unidata/siphon
+.. _Gitter: https://gitter.im/Unidata/siphon
 __ https://github.com/Unidata/siphon/issues
 
 ---------------
 Other Resources
 ---------------
 
+* Unidata's Python gallery_ contains many examples using Siphon to access remote data
 * The materials_ for Unidata's annual Python training workshop includes some tutorials on
   using Siphon.
 
-.. _materials: https://github.com/Unidata/unidata-python-workshop
+.. _gallery: https://unidata.github.io/python-gallery
+.. _materials: https://unidata.github.io/unidata-python-workshop
 
 -------
 License
