@@ -15,6 +15,7 @@
   api/index
   examples/index
   developerguide
+  CONTRIBUTING
   citing
 
 ======
