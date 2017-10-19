@@ -35,6 +35,7 @@ Documentation
    api/index
    examples/index
    developerguide
+   citing
 
 ----------
 Contact Us
@@ -45,6 +46,7 @@ Contact Us
 * The source code is available on GitHub_
 * Bug reports and feature requests should be directed to the
   `GitHub issue tracker`__
+* If you use Siphon in a publication, please see :ref:`Citing_Siphon`.
 
 .. _python-users: https://www.unidata.ucar.edu/support/#mailinglists
 .. _GitHub: https://github.com/Unidata/siphon
