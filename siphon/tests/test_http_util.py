@@ -125,11 +125,11 @@ def test_data_query_items():
     """Test the items method of query."""
     dt = datetime.utcnow()
     dr = DataQuery().time(dt).lonlat_point(-1, -2)
-    l = list(dr.items())
+    items = list(dr.items())
 
-    assert ('time', dt.isoformat()) in l
-    assert ('latitude', -2) in l
-    assert ('longitude', -1) in l
+    assert ('time', dt.isoformat()) in items
+    assert ('latitude', -2) in items
+    assert ('longitude', -1) in items
 
 
 def test_data_query_add():
