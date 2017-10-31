@@ -609,7 +609,7 @@ class SimpleService(object):
 
     def is_resolver(self):
         """Return whether the service is a resolver service."""
-        return self.service_type.lower() == 'resolver'
+        return self.service_type == 'Resolver'
 
 
 class CompoundService(object):
