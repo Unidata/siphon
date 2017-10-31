@@ -305,8 +305,8 @@ class CatalogRef(object):
             An :class:`~xml.etree.ElementTree.Element` representing a catalogRef node
 
         """
-        self.name = element_node.attrib['name']
         self.title = element_node.attrib['{http://www.w3.org/1999/xlink}title']
+        self.name = element_node.attrib.get('name', self.title)
 
         # Resolve relative URLs
         href = element_node.attrib['{http://www.w3.org/1999/xlink}href']

@@ -238,3 +238,11 @@ def test_simple_service_within_compound():
     assert (cat.datasets[0].access_urls ==
             {'HTTPServer': 'http://thredds-test.unidata.ucar.edu/thredds/fileServer/noaaport/'
                            'text/tropical/atlantic/hdob/High_density_obs_20170824.txt'})
+
+
+@recorder.use_cassette('rsmas_ramadda')
+def test_ramadda_catalog():
+    """Test parsing a catalog from RAMADDA."""
+    url = 'http://weather.rsmas.miami.edu/repository?output=thredds.catalog'
+    cat = TDSCatalog(url)
+    assert len(cat.catalog_refs) == 12
