@@ -440,21 +440,19 @@ class Dataset(object):
                 # for each SimpleService
                 if isinstance(service, CompoundService):
                     for subservice in service.services:
-                        access_urls[subservice.service_type] = (server_url +
-                                                                subservice.base +
-                                                                self.url_path)
+                        server_base = urljoin(server_url, subservice.base)
+                        access_urls[subservice.service_type] = urljoin(server_base,
+                                                                       self.url_path)
                 else:
-                    access_urls[service.service_type] = (server_url +
-                                                         service.base +
-                                                         self.url_path)
+                    server_base = urljoin(server_url, service.base)
+                    access_urls[service.service_type] = urljoin(server_base, self.url_path)
 
         # process access children of dataset elements
         for service_type in self.access_element_info:
             url_path = self.access_element_info[service_type]
             if service_type in all_service_dict:
-                access_urls[service_type] = (server_url +
-                                             all_service_dict[service_type].base +
-                                             url_path)
+                server_base = urljoin(server_url, all_service_dict[service_type].base)
+                access_urls[service_type] = urljoin(server_base, url_path)
 
         self.access_urls = access_urls
 

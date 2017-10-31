@@ -246,3 +246,19 @@ def test_ramadda_catalog():
     url = 'http://weather.rsmas.miami.edu/repository?output=thredds.catalog'
     cat = TDSCatalog(url)
     assert len(cat.catalog_refs) == 12
+
+
+@recorder.use_cassette('rsmas_ramadda_datasets')
+def test_ramadda_access_urls():
+    """Test creating access urls from a catalog from RAMADDA."""
+    url = 'http://weather.rsmas.miami.edu/repository?output=thredds.catalog'
+
+    # Walk down a few levels to where we can get a dataset
+    cat = (TDSCatalog(url).catalog_refs[0].follow().catalog_refs[0].follow()
+                          .catalog_refs[0].follow())
+
+    ds = cat.datasets[3]
+    assert ds.access_urls['opendap'] == ('http://weather.rsmas.miami.edu/repository/opendap/'
+                                         'synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c'
+                                         '2VzRUNPQS9keW5hbW9fYmFzaWNfdjJiXzIwMTFhbGwubmM='
+                                         '/entry.das')
