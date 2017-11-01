@@ -165,15 +165,15 @@ class TDSCatalog(object):
             The URL of a THREDDS client catalog
 
         """
-        # top level server url
-        self.catalog_url = catalog_url
-        self.base_tds_url = _find_base_tds_url(catalog_url)
-
         session = create_http_session()
 
         # get catalog.xml file
-        resp = session.get(self.catalog_url)
+        resp = session.get(catalog_url)
         resp.raise_for_status()
+
+        # top level server url
+        self.catalog_url = resp.url
+        self.base_tds_url = _find_base_tds_url(self.catalog_url)
 
         # If we were given an HTML link, warn about it and try to fix to xml
         if 'html' in resp.headers['content-type']:

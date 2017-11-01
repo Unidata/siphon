@@ -262,3 +262,10 @@ def test_ramadda_access_urls():
                                          'synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c'
                                          '2VzRUNPQS9keW5hbW9fYmFzaWNfdjJiXzIwMTFhbGwubmM='
                                          '/entry.das')
+
+
+@recorder.use_cassette('tds50_catalogref_follow')
+def test_tds50_catalogref_follow():
+    """Test following a catalog ref url on TDS 5."""
+    cat = TDSCatalog('http://thredds-test.unidata.ucar.edu/thredds/catalog.xml')
+    assert len(cat.catalog_refs[0].follow().catalog_refs) == 59
