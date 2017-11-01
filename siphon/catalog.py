@@ -186,7 +186,7 @@ class TDSCatalog(object):
             resp.raise_for_status()
 
         # begin parsing the xml doc
-        root = ET.fromstring(resp.text)
+        root = ET.fromstring(resp.content)
         self.catalog_name = root.attrib.get('name', 'No name found')
 
         self.datasets = DatasetCollection()
