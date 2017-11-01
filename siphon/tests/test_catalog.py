@@ -5,7 +5,6 @@
 
 from datetime import datetime
 import logging
-import warnings
 
 import pytest
 
@@ -98,14 +97,12 @@ def test_simple_point_feature_collection_xml():
 
 
 @recorder.use_cassette('html_then_xml_catalog')
-def test_html_link():
+def test_html_link(recwarn):
     """Test that we fall-back when given an HTML catalog page."""
-    with warnings.catch_warnings():
-        warnings.simplefilter('ignore')
-        url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
-               'grib/NCEP/RAP/CONUS_13km/catalog.html')
-        cat = TDSCatalog(url)
-        assert cat
+    url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
+           'grib/NCEP/RAP/CONUS_13km/catalog.html')
+    TDSCatalog(url)
+    assert 'Changing' in str(recwarn.pop(UserWarning).message)
 
 
 @recorder.use_cassette('follow_cat')
