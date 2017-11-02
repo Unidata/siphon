@@ -239,6 +239,10 @@ class TDSCatalog(object):
 
         self._process_datasets()
 
+    def __str__(self):
+        """Return a string representation of the catalog name."""
+        return str(self.catalog_name)
+
     def _process_dataset(self, element):
         catalog_url = ''
         if 'urlPath' in element.attrib:
@@ -278,6 +282,8 @@ class TDSCatalog(object):
                 latest_cat = self.catalog_url.replace('catalog.xml', 'latest.xml')
                 return TDSCatalog(latest_cat).datasets[0]
         raise AttributeError('"latest" not available for this catalog')
+
+    __repr__ = __str__
 
 
 class CatalogRef(object):
