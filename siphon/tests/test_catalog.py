@@ -33,6 +33,7 @@ def test_catalog_representation():
     cat = TDSCatalog(url)
     assert str(cat) == 'Unidata THREDDS Data Server'
 
+
 @recorder.use_cassette('thredds-test-latest-gfs-0p5')
 def test_access():
     """Test catalog parsing of access methods."""
@@ -283,3 +284,11 @@ def test_tds50_catalogref_follow():
     """Test following a catalog ref url on TDS 5."""
     cat = TDSCatalog('http://thredds-test.unidata.ucar.edu/thredds/catalog.xml')
     assert len(cat.catalog_refs[0].follow().catalog_refs) == 59
+
+
+@recorder.use_cassette('top_level_cat')
+def test_catalog_ref_str():
+    """Test that catalog references are properly represented as strings."""
+    url = 'http://thredds.ucar.edu/thredds/catalog.xml'
+    cat = TDSCatalog(url)
+    assert str(cat.catalog_refs[0]) == 'Forecast Model Data'
