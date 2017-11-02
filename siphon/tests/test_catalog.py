@@ -26,6 +26,13 @@ def test_basic():
     assert 'Forecast Model Data' in cat.catalog_refs
 
 
+@recorder.use_cassette('thredds-test-toplevel-catalog')
+def test_catalog_representation():
+    """Test string representation of the catalog object."""
+    url = 'http://thredds-test.unidata.ucar.edu/thredds/catalog.xml'
+    cat = TDSCatalog(url)
+    assert str(cat) == 'Unidata THREDDS Data Server'
+
 @recorder.use_cassette('thredds-test-latest-gfs-0p5')
 def test_access():
     """Test catalog parsing of access methods."""
