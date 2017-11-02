@@ -165,15 +165,15 @@ class TDSCatalog(object):
             The URL of a THREDDS client catalog
 
         """
-        # top level server url
-        self.catalog_url = catalog_url
-        self.base_tds_url = _find_base_tds_url(catalog_url)
-
         session = create_http_session()
 
         # get catalog.xml file
-        resp = session.get(self.catalog_url)
+        resp = session.get(catalog_url)
         resp.raise_for_status()
+
+        # top level server url
+        self.catalog_url = resp.url
+        self.base_tds_url = _find_base_tds_url(self.catalog_url)
 
         # If we were given an HTML link, warn about it and try to fix to xml
         if 'html' in resp.headers['content-type']:
@@ -186,7 +186,7 @@ class TDSCatalog(object):
             resp.raise_for_status()
 
         # begin parsing the xml doc
-        root = ET.fromstring(resp.text)
+        root = ET.fromstring(resp.content)
         self.catalog_name = root.attrib.get('name', 'No name found')
 
         self.datasets = DatasetCollection()
@@ -305,8 +305,8 @@ class CatalogRef(object):
             An :class:`~xml.etree.ElementTree.Element` representing a catalogRef node
 
         """
-        self.name = element_node.attrib['name']
         self.title = element_node.attrib['{http://www.w3.org/1999/xlink}title']
+        self.name = element_node.attrib.get('name', self.title)
 
         # Resolve relative URLs
         href = element_node.attrib['{http://www.w3.org/1999/xlink}href']
@@ -440,21 +440,19 @@ class Dataset(object):
                 # for each SimpleService
                 if isinstance(service, CompoundService):
                     for subservice in service.services:
-                        access_urls[subservice.service_type] = (server_url +
-                                                                subservice.base +
-                                                                self.url_path)
+                        server_base = urljoin(server_url, subservice.base)
+                        access_urls[subservice.service_type] = urljoin(server_base,
+                                                                       self.url_path)
                 else:
-                    access_urls[service.service_type] = (server_url +
-                                                         service.base +
-                                                         self.url_path)
+                    server_base = urljoin(server_url, service.base)
+                    access_urls[service.service_type] = urljoin(server_base, self.url_path)
 
         # process access children of dataset elements
         for service_type in self.access_element_info:
             url_path = self.access_element_info[service_type]
             if service_type in all_service_dict:
-                access_urls[service_type] = (server_url +
-                                             all_service_dict[service_type].base +
-                                             url_path)
+                server_base = urljoin(server_url, all_service_dict[service_type].base)
+                access_urls[service_type] = urljoin(server_base, url_path)
 
         self.access_urls = access_urls
 

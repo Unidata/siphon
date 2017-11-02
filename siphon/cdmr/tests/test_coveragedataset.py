@@ -3,17 +3,15 @@
 # SPDX-License-Identifier: MIT
 """Test Coverage Dataset."""
 
-import warnings
+import pytest
 
 from siphon.cdmr.coveragedataset import CoverageDataset
 from siphon.testing import get_recorder
 
 recorder = get_recorder(__file__)
 
-# Ignore warnings about CoverageDataset
-warnings.simplefilter('ignore')
 
-
+@pytest.mark.filterwarnings('ignore: CoverageDataset')
 @recorder.use_cassette('hrrr_cdmremotefeature')
 def test_simple_cdmremotefeature():
     """Smoke test for CDMRemoteFeature."""
@@ -22,6 +20,7 @@ def test_simple_cdmremotefeature():
     assert cd.grids
 
 
+@pytest.mark.filterwarnings('ignore: CoverageDataset')
 @recorder.use_cassette('hrrr_cdmremotefeature')
 def test_simple_cdmremotefeature_str():
     """Smoke test for converting CoverageDataset to str."""

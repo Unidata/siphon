@@ -1,0 +1,203 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.6.0+18.g872e2b9.dirty)]
+    method: GET
+    uri: http://weather.rsmas.miami.edu/repository?output=thredds.catalog
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><catalog name=\"RSMAS-UM
+        Repository for atm-ocean data and its science\" xmlns=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\"
+        xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n  <dataset name=\"RSMAS-UM
+        Repository for atm-ocean data and its science\">\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=5c0355aa-bcc1-4b90-808f-48ecc03b7989&amp;output=thredds.catalog\"
+        xlink:title=\"AMIE-DYNAMO data archive\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=e1ae1cc5-4a1e-4bcf-bc24-8497c9c2bffd&amp;output=thredds.catalog\"
+        xlink:title=\"Annual Cycle Explorer software and description: tinyurl.com/MapesACE\"/>\n
+        \   <catalogRef xlink:href=\"/repository/entry/show?entryid=d7ce4aa0-7266-47d7-89d7-e84a505d89e2&amp;output=thredds.catalog\"
+        xlink:title=\"CAROB Miami observatory data archive\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=07f6a773-fee4-4dd6-9a09-619db75e157f&amp;output=thredds.catalog\"
+        xlink:title=\"Chen lab\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=424f384c-91ad-42b3-b6c5-a5b0cc90b53d&amp;output=thredds.catalog\"
+        xlink:title=\"Datasets hosted on this UM server\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=0f166334-728e-4344-87ee-7a847399eca6&amp;output=thredds.catalog\"
+        xlink:title=\"GCM nudging project\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=e0ab8229-9dad-431a-b478-71e5607e37e9&amp;output=thredds.catalog\"
+        xlink:title=\"South Asian Monsoon loops\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=45e3b50b-dbe2-408b-a6c2-2c009749cd53&amp;output=thredds.catalog\"
+        xlink:title=\"The Mapes IDV collection\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=b221d8d3-46d5-44f1-8d8e-d1d5ebc24d2d&amp;output=thredds.catalog\"
+        xlink:title=\"UM course related stuff\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=08512ac5-7509-411c-971b-88efdc283bda&amp;output=thredds.catalog\"
+        xlink:title=\"Users\"/>\n    <catalogRef xlink:href=\"http://esrl.noaa.gov/gsd/thredds/hrrr.xml\"
+        xlink:title=\"HRRR model from NOAA-GSD\"/>\n    <catalogRef xlink:href=\"http://weather.rsmas.miami.edu/thredds/catalog.xml\"
+        xlink:title=\"THREDDS data catalog on weather.rsmas.miami.edu\"/>\n  </dataset>\n</catalog>\n"}
+    headers:
+      Connection: [Keep-Alive]
+      Content-Length: ['2258']
+      Content-Type: [text/xml;charset=UTF-8]
+      Date: ['Tue, 31 Oct 2017 22:39:54 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Server: [Apache]
+      Set-Cookie: ['ramadda_repository_session=01515177-fb6e-4d76-ad7e-d534916cc3ee_0.5596476352415347;
+          path=/repository; expires=Tue, 26-Oct-2021 23:59:59 GMT']
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: '200'}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.6.0+18.g872e2b9.dirty)]
+    method: GET
+    uri: http://weather.rsmas.miami.edu/repository/entry/show?entryid=5c0355aa-bcc1-4b90-808f-48ecc03b7989&output=thredds.catalog
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><catalog name=\"AMIE-DYNAMO
+        data archive\" xmlns=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\"
+        xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n  <dataset name=\"AMIE-DYNAMO
+        data archive\">\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=a43c1cc4-1cf2-4365-97b9-6768b8201407&amp;output=thredds.catalog\"
+        xlink:title=\"CSU gridded analyses\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=601aa404-ac59-4abb-8c4f-11c08474a214&amp;output=thredds.catalog\"
+        xlink:title=\"ECMWF analyses 0.25deg pressure grib1 format\"/>\n    <catalogRef
+        xlink:href=\"/repository/entry/show?entryid=46f345ab-ef00-43f2-9942-1c2266149a7e&amp;output=thredds.catalog\"
+        xlink:title=\"IDV bundles and displays\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=7b8b8367-0db3-43f6-b622-7325463babb3&amp;output=thredds.catalog\"
+        xlink:title=\"MIMIC Column water vapor - morphed\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=ead0b8a3-905a-4b6c-b466-7aec80b20cbf&amp;output=thredds.catalog\"
+        xlink:title=\"MJO and BSISO filtered OLR\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=982a2587-ce6c-4315-8e04-d9f646ee8937&amp;output=thredds.catalog\"
+        xlink:title=\"Revelle ship radar (3D volumes)\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=f1c24657-2c1d-4b30-96c1-c0c0302c593b&amp;output=thredds.catalog\"
+        xlink:title=\"SPOL radial data - but IDV doesn't recognize CF-radial format\"/>\n
+        \   <catalogRef xlink:href=\"/repository/entry/show?entryid=862c2b55-353b-468a-8b7e-21557841cc2b&amp;output=thredds.catalog\"
+        xlink:title=\"SPOL survey scans 15min in 2011\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=044f91c5-8fb4-47e6-8971-2520f71a03a2&amp;output=thredds.catalog\"
+        xlink:title=\"SSMI daily products from RSS\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=e36d2a07-045f-42ff-ab06-9dab8cc91a76&amp;output=thredds.catalog\"
+        xlink:title=\"Smart-R CYLBIN hourly files -- tar\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=0ae53955-8426-4e9f-8902-ec3b066d661f&amp;output=thredds.catalog\"
+        xlink:title=\"TRMM and IR satellite grids\"/>\n    <dataset name=\"Gan radiometer+wind\">\n
+        \     <property name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/icons/document-excel-csv.png\"/>\n
+        \     <property name=\"ramadda.id\" value=\"1ae6a83e-6a5e-4776-8dbe-4517a534a8ee\"/>\n
+        \     <property name=\"ramadda.host\" value=\"weather.rsmas.miami.edu\"/>\n
+        \     <access serviceName=\"http\" urlPath=\"/Gan.UV+PW_LWP.csv?entryid=1ae6a83e-6a5e-4776-8dbe-4517a534a8ee\"/>\n
+        \     <property name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/icons/page.png\"/>\n
+        \     <dataSize units=\"bytes\">141262</dataSize>\n      <date type=\"metadataCreated\">2014-09-26
+        02:56:17 UTC</date>\n      <timeCoverage>\n        <start>2014-09-26 02:56:17
+        UTC</start>\n        <end>2014-09-26 02:56:17 UTC</end>\n      </timeCoverage>\n
+        \   </dataset>\n    <dataset name=\"PW_withGan_7views\">\n      <property
+        name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/idv/idv.gif\"/>\n
+        \     <property name=\"ramadda.id\" value=\"8a63f80d-09b4-4007-b07b-7dc3d47caf9a\"/>\n
+        \     <property name=\"ramadda.host\" value=\"weather.rsmas.miami.edu\"/>\n
+        \     <access serviceName=\"http\" urlPath=\"/PW_withGan_7views.xidv?entryid=8a63f80d-09b4-4007-b07b-7dc3d47caf9a\"/>\n
+        \     <property name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/icons/page.png\"/>\n
+        \     <property name=\"thumbnail\" value=\"http://weather.rsmas.miami.edu/repository/metadata/view/PW_withGan_7views.gif?element=1&amp;entryid=8a63f80d-09b4-4007-b07b-7dc3d47caf9a&amp;metadata.id=8bddb0f2-be5e-43c7-9c28-cbf35e65cc69\"/>\n
+        \     <dataSize units=\"bytes\">472724</dataSize>\n      <date type=\"metadataCreated\">2014-09-26
+        14:54:19 UTC</date>\n      <timeCoverage>\n        <start>2011-11-24 00:00:00
+        UTC</start>\n        <end>2011-11-29 00:00:00 UTC</end>\n      </timeCoverage>\n
+        \   </dataset>\n  </dataset>\n  <service base=\"http://weather.rsmas.miami.edu/repository/entry/get\"
+        name=\"http\" serviceType=\"http\"/>\n</catalog>\n"}
+    headers:
+      Connection: [Keep-Alive]
+      Content-Length: ['4034']
+      Content-Type: [text/xml;charset=UTF-8]
+      Date: ['Tue, 31 Oct 2017 22:39:54 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Server: [Apache]
+      Set-Cookie: ['ramadda_repository_session=76be331f-cd5a-443c-a119-947f7d1a28be_0.1308195297232102;
+          path=/repository; expires=Tue, 26-Oct-2021 23:59:59 GMT']
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: '200'}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.6.0+18.g872e2b9.dirty)]
+    method: GET
+    uri: http://weather.rsmas.miami.edu/repository/entry/show?entryid=a43c1cc4-1cf2-4365-97b9-6768b8201407&output=thredds.catalog
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><catalog name=\"CSU
+        gridded analyses\" xmlns=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\"
+        xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n  <dataset name=\"CSU gridded
+        analyses\">\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=synth%3Aa43c1cc4-1cf2-4365-97b9-6768b8201407%3AL3YyYl91c2VzRUNPQQ%3D%3D&amp;output=thredds.catalog\"
+        xlink:title=\"v2b_usesECOA\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=synth%3Aa43c1cc4-1cf2-4365-97b9-6768b8201407%3AL3YyYV9vYnNvbmx5&amp;output=thredds.catalog\"
+        xlink:title=\"v2a_obsonly\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=synth%3Aa43c1cc4-1cf2-4365-97b9-6768b8201407%3AL3YxYQ%3D%3D&amp;output=thredds.catalog\"
+        xlink:title=\"v1a\"/>\n  </dataset>\n</catalog>\n"}
+    headers:
+      Connection: [Keep-Alive]
+      Content-Length: ['793']
+      Content-Type: [text/xml;charset=UTF-8]
+      Date: ['Tue, 31 Oct 2017 22:39:54 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Server: [Apache]
+      Set-Cookie: ['ramadda_repository_session=af5601b1-1eae-4702-b80e-63859747829d_0.8163946096633592;
+          path=/repository; expires=Tue, 26-Oct-2021 23:59:59 GMT']
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: '200'}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.6.0+18.g872e2b9.dirty)]
+    method: GET
+    uri: http://weather.rsmas.miami.edu/repository/entry/show?entryid=synth%3Aa43c1cc4-1cf2-4365-97b9-6768b8201407%3AL3YyYl91c2VzRUNPQQ%3D%3D&output=thredds.catalog
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><catalog name=\"v2b_usesECOA\"
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n
+        \ <dataset name=\"v2b_usesECOA\">\n    <dataset name=\"Latest v2b_usesECOA\">\n
+        \     <property name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/cdmdata/opendap.gif\"/>\n
+        \     <access serviceName=\"latest\" urlPath=\"/latest?entryid=synth%3Aa43c1cc4-1cf2-4365-97b9-6768b8201407%3AL3YyYl91c2VzRUNPQQ%3D%3D&amp;latestopendap=true&amp;output=thredds.catalog\"/>\n
+        \   </dataset>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=synth%3Aa43c1cc4-1cf2-4365-97b9-6768b8201407%3AL3YyYl91c2VzRUNPQS9wbG90cw%3D%3D&amp;output=thredds.catalog\"
+        xlink:title=\"plots\"/>\n    <dataset name=\"Readme.txt\">\n      <property
+        name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/icons/page.png\"/>\n
+        \     <property name=\"ramadda.id\" value=\"synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c2VzRUNPQS9SZWFkbWUudHh0\"/>\n
+        \     <property name=\"ramadda.host\" value=\"weather.rsmas.miami.edu\"/>\n
+        \     <access serviceName=\"http\" urlPath=\"/Readme.txt?entryid=synth%3Aa43c1cc4-1cf2-4365-97b9-6768b8201407%3AL3YyYl91c2VzRUNPQS9SZWFkbWUudHh0\"/>\n
+        \     <property name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/icons/page.png\"/>\n
+        \     <dataSize units=\"bytes\">6302</dataSize>\n      <date type=\"metadataCreated\">2014-04-10
+        21:49:19 UTC</date>\n      <timeCoverage>\n        <start>2014-04-10 21:49:19
+        UTC</start>\n        <end>2014-04-10 21:49:19 UTC</end>\n      </timeCoverage>\n
+        \   </dataset>\n    <dataset name=\"dynamo_derived_v2b_2011all.nc\">\n      <property
+        name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/icons/page.png\"/>\n
+        \     <property name=\"ramadda.id\" value=\"synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c2VzRUNPQS9keW5hbW9fZGVyaXZlZF92MmJfMjAxMWFsbC5uYw==\"/>\n
+        \     <property name=\"ramadda.host\" value=\"weather.rsmas.miami.edu\"/>\n
+        \     <access serviceName=\"opendap\" urlPath=\"/synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c2VzRUNPQS9keW5hbW9fZGVyaXZlZF92MmJfMjAxMWFsbC5uYw==/entry.das\"/>\n
+        \     <dataset name=\"OPeNDAP Link\">\n        <property name=\"ramadda.id\"
+        value=\"synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c2VzRUNPQS9keW5hbW9fZGVyaXZlZF92MmJfMjAxMWFsbC5uYw==\"/>\n
+        \       <property name=\"ramadda.host\" value=\"weather.rsmas.miami.edu\"/>\n
+        \       <access serviceName=\"opendap\" urlPath=\"http://weather.rsmas.miami.edu/repository/opendap/synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c2VzRUNPQS9keW5hbW9fZGVyaXZlZF92MmJfMjAxMWFsbC5uYw==/entry.das\"/>\n
+        \       <property name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/cdmdata/opendap.gif\"/>\n
+        \     </dataset>\n      <dataset name=\"File download\">\n        <property
+        name=\"ramadda.id\" value=\"synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c2VzRUNPQS9keW5hbW9fZGVyaXZlZF92MmJfMjAxMWFsbC5uYw==\"/>\n
+        \       <property name=\"ramadda.host\" value=\"weather.rsmas.miami.edu\"/>\n
+        \       <access serviceName=\"http\" urlPath=\"/dynamo_derived_v2b_2011all.nc?entryid=synth%3Aa43c1cc4-1cf2-4365-97b9-6768b8201407%3AL3YyYl91c2VzRUNPQS9keW5hbW9fZGVyaXZlZF92MmJfMjAxMWFsbC5uYw%3D%3D\"/>\n
+        \       <property name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/icons/page.png\"/>\n
+        \     </dataset>\n      <dataSize units=\"bytes\">2921048216</dataSize>\n
+        \     <date type=\"metadataCreated\">2014-04-12 21:10:27 UTC</date>\n      <timeCoverage>\n
+        \       <start>2014-04-12 21:10:27 UTC</start>\n        <end>2014-04-12 21:10:27
+        UTC</end>\n      </timeCoverage>\n    </dataset>\n    <dataset name=\"dynamo_basic_v2b_2011all.nc\">\n
+        \     <property name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/icons/page.png\"/>\n
+        \     <property name=\"ramadda.id\" value=\"synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c2VzRUNPQS9keW5hbW9fYmFzaWNfdjJiXzIwMTFhbGwubmM=\"/>\n
+        \     <property name=\"ramadda.host\" value=\"weather.rsmas.miami.edu\"/>\n
+        \     <access serviceName=\"opendap\" urlPath=\"/synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c2VzRUNPQS9keW5hbW9fYmFzaWNfdjJiXzIwMTFhbGwubmM=/entry.das\"/>\n
+        \     <dataset name=\"OPeNDAP Link\">\n        <property name=\"ramadda.id\"
+        value=\"synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c2VzRUNPQS9keW5hbW9fYmFzaWNfdjJiXzIwMTFhbGwubmM=\"/>\n
+        \       <property name=\"ramadda.host\" value=\"weather.rsmas.miami.edu\"/>\n
+        \       <access serviceName=\"opendap\" urlPath=\"http://weather.rsmas.miami.edu/repository/opendap/synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c2VzRUNPQS9keW5hbW9fYmFzaWNfdjJiXzIwMTFhbGwubmM=/entry.das\"/>\n
+        \       <property name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/cdmdata/opendap.gif\"/>\n
+        \     </dataset>\n      <dataset name=\"File download\">\n        <property
+        name=\"ramadda.id\" value=\"synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c2VzRUNPQS9keW5hbW9fYmFzaWNfdjJiXzIwMTFhbGwubmM=\"/>\n
+        \       <property name=\"ramadda.host\" value=\"weather.rsmas.miami.edu\"/>\n
+        \       <access serviceName=\"http\" urlPath=\"/dynamo_basic_v2b_2011all.nc?entryid=synth%3Aa43c1cc4-1cf2-4365-97b9-6768b8201407%3AL3YyYl91c2VzRUNPQS9keW5hbW9fYmFzaWNfdjJiXzIwMTFhbGwubmM%3D\"/>\n
+        \       <property name=\"icon\" value=\"http://weather.rsmas.miami.edu/repository/icons/page.png\"/>\n
+        \     </dataset>\n      <dataSize units=\"bytes\">2935653172</dataSize>\n
+        \     <date type=\"metadataCreated\">2014-04-12 21:11:13 UTC</date>\n      <timeCoverage>\n
+        \       <start>2014-04-12 21:11:13 UTC</start>\n        <end>2014-04-12 21:11:13
+        UTC</end>\n      </timeCoverage>\n    </dataset>\n  </dataset>\n  <service
+        base=\"http://weather.rsmas.miami.edu/repository/entry/get\" name=\"http\"
+        serviceType=\"http\"/>\n  <service base=\"http://weather.rsmas.miami.edu/repository/opendap\"
+        name=\"opendap\" serviceType=\"opendap\"/>\n  <service base=\"http://weather.rsmas.miami.edu/repository/entry/show\"
+        name=\"latest\" serviceType=\"Resolver\"/>\n</catalog>\n"}
+    headers:
+      Connection: [Keep-Alive]
+      Content-Length: ['5790']
+      Content-Type: [text/xml;charset=UTF-8]
+      Date: ['Tue, 31 Oct 2017 22:39:54 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Server: [Apache]
+      Set-Cookie: ['ramadda_repository_session=5ef56a35-e108-48f7-b4fc-b187ebc7dab7_0.5765682928071657;
+          path=/repository; expires=Tue, 26-Oct-2021 23:59:59 GMT']
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: '200'}
+version: 1

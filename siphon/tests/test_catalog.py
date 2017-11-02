@@ -5,7 +5,6 @@
 
 from datetime import datetime
 import logging
-import warnings
 
 import pytest
 
@@ -98,14 +97,12 @@ def test_simple_point_feature_collection_xml():
 
 
 @recorder.use_cassette('html_then_xml_catalog')
-def test_html_link():
+def test_html_link(recwarn):
     """Test that we fall-back when given an HTML catalog page."""
-    with warnings.catch_warnings():
-        warnings.simplefilter('ignore')
-        url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
-               'grib/NCEP/RAP/CONUS_13km/catalog.html')
-        cat = TDSCatalog(url)
-        assert cat
+    url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
+           'grib/NCEP/RAP/CONUS_13km/catalog.html')
+    TDSCatalog(url)
+    assert 'Changing' in str(recwarn.pop(UserWarning).message)
 
 
 @recorder.use_cassette('follow_cat')
@@ -238,3 +235,34 @@ def test_simple_service_within_compound():
     assert (cat.datasets[0].access_urls ==
             {'HTTPServer': 'http://thredds-test.unidata.ucar.edu/thredds/fileServer/noaaport/'
                            'text/tropical/atlantic/hdob/High_density_obs_20170824.txt'})
+
+
+@recorder.use_cassette('rsmas_ramadda')
+def test_ramadda_catalog():
+    """Test parsing a catalog from RAMADDA."""
+    url = 'http://weather.rsmas.miami.edu/repository?output=thredds.catalog'
+    cat = TDSCatalog(url)
+    assert len(cat.catalog_refs) == 12
+
+
+@recorder.use_cassette('rsmas_ramadda_datasets')
+def test_ramadda_access_urls():
+    """Test creating access urls from a catalog from RAMADDA."""
+    url = 'http://weather.rsmas.miami.edu/repository?output=thredds.catalog'
+
+    # Walk down a few levels to where we can get a dataset
+    cat = (TDSCatalog(url).catalog_refs[0].follow().catalog_refs[0].follow()
+                          .catalog_refs[0].follow())
+
+    ds = cat.datasets[3]
+    assert ds.access_urls['opendap'] == ('http://weather.rsmas.miami.edu/repository/opendap/'
+                                         'synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c'
+                                         '2VzRUNPQS9keW5hbW9fYmFzaWNfdjJiXzIwMTFhbGwubmM='
+                                         '/entry.das')
+
+
+@recorder.use_cassette('tds50_catalogref_follow')
+def test_tds50_catalogref_follow():
+    """Test following a catalog ref url on TDS 5."""
+    cat = TDSCatalog('http://thredds-test.unidata.ucar.edu/thredds/catalog.xml')
+    assert len(cat.catalog_refs[0].follow().catalog_refs) == 59
