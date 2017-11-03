@@ -6,6 +6,7 @@
 from __future__ import print_function
 
 import logging
+import re
 
 import numpy as np
 
@@ -76,16 +77,14 @@ class _Types(object):
         """
         if value_type in ['byte', 'short', 'int', 'long']:
             try:
-                val = val.split()
-                val = list(map(int, val))
+                val = [int(v) for v in re.split('[ ,]', val) if v]
             except ValueError:
-                log.warning('Cannot convert %s to int. Keeping type as str.', val)
+                log.warning('Cannot convert "%s" to int. Keeping type as str.', val)
         elif value_type in ['float', 'double']:
             try:
-                val = val.split()
-                val = list(map(float, val))
+                val = [float(v) for v in re.split('[ ,]', val) if v]
             except ValueError:
-                log.warning('Cannot convert %s to float. Keeping type as str.', val)
+                log.warning('Cannot convert "%s" to float. Keeping type as str.', val)
         elif value_type == 'boolean':
             try:
                 # special case for boolean type

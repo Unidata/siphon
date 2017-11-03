@@ -61,7 +61,7 @@ class TestSimpleTypes(object):
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        assert 'Cannot convert [\'a\'] to int. Keeping type as str.' in caplog.text
+        assert 'Cannot convert "a" to int. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_attribute_short(self):
@@ -78,7 +78,7 @@ class TestSimpleTypes(object):
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        assert 'Cannot convert [\'a\'] to int. Keeping type as str.' in caplog.text
+        assert 'Cannot convert "a" to int. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_attribute_int(self):
@@ -95,7 +95,7 @@ class TestSimpleTypes(object):
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        assert 'Cannot convert [\'a\'] to int. Keeping type as str.' in caplog.text
+        assert 'Cannot convert "a" to int. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_attribute_long(self):
@@ -112,7 +112,7 @@ class TestSimpleTypes(object):
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        assert 'Cannot convert [\'a\'] to int. Keeping type as str.' in caplog.text
+        assert 'Cannot convert "a" to int. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_attribute_float(self):
@@ -129,7 +129,7 @@ class TestSimpleTypes(object):
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        assert 'Cannot convert [\'a\'] to float. Keeping type as str.' in caplog.text
+        assert 'Cannot convert "a" to float. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_attribute_float_nan(self):
@@ -157,7 +157,7 @@ class TestSimpleTypes(object):
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        assert 'Cannot convert [\'a\'] to float. Keeping type as str.' in caplog.text
+        assert 'Cannot convert "a" to float. Keeping type as str.' in caplog.text
         assert expected == actual
 
     def test_attribute_double_nan(self):
