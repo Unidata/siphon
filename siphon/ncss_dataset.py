@@ -14,6 +14,13 @@ log.setLevel(logging.WARNING)
 log.addHandler(logging.StreamHandler())
 
 
+def _without_namespace(tagname):
+    """Remove the xml namespace from a tag name."""
+    if '}' in tagname:
+        return tagname.rsplit('}', 1)[-1]
+    return tagname
+
+
 class _Types(object):
     @staticmethod
     def handle_typed_values(val, type_name, value_type):
@@ -191,6 +198,14 @@ class _Types(object):
     def handle_variable(self, element):
         return self.handle_grid(element)
 
+    def lookup(self, handler_name):
+        handler_name = 'handle_' + _without_namespace(handler_name)
+        if handler_name in dir(self):
+            return getattr(self, handler_name)
+        else:
+            msg = 'cannot find handler for element {}'.format(handler_name)
+            log.warning(msg)
+
 
 class NCSSDataset(object):
     """Hold information contained in the dataset.xml NCSS document.
@@ -245,7 +260,6 @@ class NCSSDataset(object):
 
         """
         self._types = _Types()
-        self._types_methods = _Types.__dict__
 
         self.gridsets = {}
         self.variables = {}
@@ -279,12 +293,7 @@ class NCSSDataset(object):
             delattr(self, thing)
 
     def _get_handler(self, handler_name):
-        handler_name = 'handle_' + handler_name
-        if handler_name in self._types_methods:
-            return getattr(self._types, handler_name)
-        else:
-            msg = 'cannot find handler for element {}'.format(handler_name)
-            log.warning(msg)
+        return self._types.lookup(handler_name)
 
     def _parse_element(self, element):
         element_name = element.tag
