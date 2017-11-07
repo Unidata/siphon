@@ -9,8 +9,8 @@ This example shows how to use siphon's `simplewebswervice` support to create a q
 the Wyoming upper air archive.
 """
 
-
 from datetime import datetime
+
 from siphon.simplewebservice.wyoming import WyomingUpperAir
 
 ####################################################
