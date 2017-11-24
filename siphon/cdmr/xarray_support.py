@@ -4,11 +4,34 @@
 """Implement an experimental backend for using xarray to talk to TDS over CDMRemote."""
 
 from xarray import Variable
-from xarray.backends.common import AbstractDataStore
+from xarray.backends.common import AbstractDataStore, BackendArray
 from xarray.core import indexing
 from xarray.core.utils import FrozenOrderedDict
 
 from . import Dataset
+
+
+class CDMArrayWrapper(BackendArray):
+    """Wrap a CDMRemote variable for access by xarray."""
+
+    def __init__(self, variable_name, datastore):
+        """Initialize the wrapper."""
+        self.datastore = datastore
+        self.variable_name = variable_name
+
+        array = self.get_array()
+        self.shape = array.shape
+        self.dtype = array.dtype
+
+    def get_array(self):
+        """Get the actual array data from CDM Remote."""
+        return self.datastore.ds.variables[self.variable_name]
+
+    def __getitem__(self, item):
+        """Wrap getitem around the data."""
+        item = indexing.unwrap_explicit_indexer(
+            item, self, allow=(indexing.BasicIndexer, indexing.OuterIndexer))
+        return self.get_array()[item]
 
 
 class CDMRemoteStore(AbstractDataStore):
@@ -20,15 +43,14 @@ class CDMRemoteStore(AbstractDataStore):
         if deflate is not None:
             self.ds.cdmr.deflate = deflate
 
-    @staticmethod
-    def open_store_variable(var):
+    def open_store_variable(self, name, var):
         """Turn CDMRemote variable into something like a numpy.ndarray."""
-        data = indexing.LazilyIndexedArray(var)
+        data = indexing.LazilyIndexedArray(CDMArrayWrapper(name, self))
         return Variable(var.dimensions, data, {a: getattr(var, a) for a in var.ncattrs()})
 
     def get_variables(self):
         """Get the variables from underlying data set."""
-        return FrozenOrderedDict((k, self.open_store_variable(v))
+        return FrozenOrderedDict((k, self.open_store_variable(k, v))
                                  for k, v in self.ds.variables.items())
 
     def get_attrs(self):
