@@ -41,7 +41,7 @@ class IndexableMapping(OrderedDict):
 class DatasetCollection(IndexableMapping):
     """Extend ``IndexableMapping`` to allow datetime-based filter queries."""
 
-    default_regex = re.compile(r'(?P<year>\d{4})(?P<month>[01]\d)(?P<day>[012]\d)_'
+    default_regex = re.compile(r'(?P<year>\d{4})(?P<month>[01]\d)(?P<day>[0123]\d)_'
                                r'(?P<hour>[012]\d)(?P<minute>[0-5]\d)')
 
     def _get_datasets_with_times(self, regex):
