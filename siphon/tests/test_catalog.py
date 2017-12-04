@@ -176,6 +176,16 @@ def test_datasets_nearest_time():
 
 
 @recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_nearest_time_30():
+    """Test getting dataset by time; check for a day in the 30s (#gh-173)."""
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+    nearest = cat.catalog_refs.filter_time_nearest(datetime(2015, 5, 30, 11))
+    assert nearest.title == 'NAM_CONUS_20km_noaaport_20150530_1200.grib1'
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
 def test_datasets_nearest_time_raises():
     """Test getting dataset by time using filenames."""
     url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
