@@ -6,8 +6,7 @@ import socket
 
 def acisRequest(method, params):
     """
-
-
+    
     This function will make a request to the ACIS Web Services API for data
     based on the given method (StnMeta,StnData,MultiStnData,GridData,General)
     and parameters string. Information about the parameters can be obtained at:
@@ -18,8 +17,8 @@ def acisRequest(method, params):
 
     Parameters
     ----------
-    method - The Web Services request method (MultiStn,StnMeta,etc)
-    params - A JSON array of parameters (See Web Services API)
+    method - The Web Services request method (StnMeta, StnData, MultiStnData, etc)
+    params - A dictionary of parameters (see API documentation)
 
     Returns
     ----------
