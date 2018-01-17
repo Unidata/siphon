@@ -51,8 +51,7 @@ def acis_request(method, params):
     except requests.exceptions.TooManyRedirects:
         raise ACIS_API_Exception("Bad URL. Check your ACIS connection method string.")
     except ValueError:
-        raise ACIS_API_Exception("No data returned! The ACIS parameter dictionary may
-                            be incorrectly formatted")
+        raise ACIS_API_Exception("No data returned! The ACIS parameter dictionary may be incorrectly formatted")
 
 class ACIS_API_Exception(Exception):
     """
