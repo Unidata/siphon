@@ -11,8 +11,6 @@ from siphon.simplewebservice.acis import acis_request
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as feat
-import matplotlib.pyplot as plt
-import numpy as np
 
 ###########################################
 # First, we need to assemble a dictionary containing the information we want.

@@ -20,7 +20,8 @@ import matplotlib.pyplot as plt
 # from January 1, 1997 to December 1, 2017. While we could get the daily data,
 # we will instead request the monthly averages, which the remote service will
 # find for us.
-parameters = {"sid":"KDEN", "sdate":"19970101", "edate":"20171231","elems":[{"name":"avgt","interval":"mly","duration":"mly","reduce":"mean"}]}
+parameters = {"sid":"KDEN", "sdate":"19970101", "edate":"20171231","elems":[
+    {"name":"avgt","interval":"mly","duration":"mly","reduce":"mean"}]}
 
 ###########################################
 # These parameters are used to specify what kind of data we want. We are
