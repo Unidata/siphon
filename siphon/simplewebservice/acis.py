@@ -16,6 +16,15 @@ def acis_request(method, params):
     If a connection to the API fails, then it will raise an exception. Some bad
     calls will also return empty dictionaries.
 
+    ACIS Web Services is a distributed system! A call to the main URL can be
+    delivered to any climate center running a public instance of the service.
+    This makes the calls efficient, but also occasionaly results in failed
+    calls when a server you are directed to is having problems. Generally,
+    reconnecting after waiting a few seconds will resolve a problem. If problems
+    are persistent, contact ACIS developers at the High Plains Regional Climate
+    Center or Northeast Regional Climate Center who will look into server
+    issues.
+
     Parameters
     ----------
     method : str
@@ -34,7 +43,6 @@ def acis_request(method, params):
         unparsable data.
 
     """
-    #params = json.dumps(params).encode('utf8')
 
     base_url = 'http://data.rcc-acis.org/'  # ACIS Web API URL
 
@@ -44,7 +52,7 @@ def acis_request(method, params):
         timeout=60
 
     try:
-        response = requests.post(base_url+method, data=params, timeout=timeout)
+        response = requests.post(base_url+method, json=params, timeout=timeout)
         return response.json()
     except requests.exceptions.Timeout:
         raise ACIS_API_Exception("Connection Timeout")
