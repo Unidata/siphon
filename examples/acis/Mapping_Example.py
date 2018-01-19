@@ -1,4 +1,4 @@
-"""
+'''
 ===============================
 Multi Station Calls and Mapping
 ===============================
@@ -6,7 +6,7 @@ Multi Station Calls and Mapping
 In this example we will be using Siphon's simplewebservice support to query
 ACIS Web Services for multiple stations. We will plot precipitation
 values recorded in Colorado and Wyoming during the 2013 flooding event.
-"""
+'''
 from siphon.simplewebservice.acis import acis_request
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
@@ -21,20 +21,20 @@ import cartopy.feature as feat
 # and ask it to return what the departure from normal precipitation was on
 # this day.
 
-parameters = {"state":"co","sdate":"20130909","edate":"20130912","elems":[
-    {"name":"pcpn","interval":"dly"},
-    {"name":"pcpn","interval":"dly","normal":"departure"}]}
+parameters = {'state': 'co', 'sdate': '20130909', 'edate': '20130912', 'elems': [
+    {'name': 'pcpn', 'interval': 'dly'},
+    {'name': 'pcpn', 'interval': 'dly', 'normal': 'departure'}]}
 
-method = "MultiStnData"
+method = 'MultiStnData'
 ###########################################
 # In this case, rather than using station ID's, we are able to specify a new
 # parameter called 'state'. If we were interested in other states, we could just
-# add another to the list like this: "co,wy". Also notice how we are getting
+# add another to the list like this: 'co,wy'. Also notice how we are getting
 # both the precipitation and departure from normal within one variable. We'll
 # see how this changes the final data dictionary. Now let's make our call and
 # review our data.
 
-myData = acis_request(method,parameters)
+myData = acis_request(method, parameters)
 
 print(myData)
 
@@ -49,11 +49,11 @@ print(myData)
 # than doing it in Python, let's make another ACIS call that prepares this for
 # us.
 
-parameters = {"state":"co","sdate":"20130909","edate":"20130912","elems":[
-    {"name":"pcpn","interval":"dly","smry":"sum","smry_only":1},
-    {"name":"pcpn","interval":"dly","smry":"sum","smry_only":1,"normal":"departure"}]}
+parameters = {'state': 'co', 'sdate': '20130909', 'edate': '20130912', 'elems': [
+    {'name': 'pcpn', 'interval': 'dly', 'smry': 'sum', 'smry_only': 1},
+    {'name': 'pcpn', 'interval': 'dly', 'smry': 'sum', 'smry_only': 1, 'normal': 'departure'}]}
 
-myData = acis_request(method,parameters)
+myData = acis_request(method, parameters)
 
 print(myData)
 
@@ -72,7 +72,7 @@ print(myData)
 # all 4 days of data, we would simply remove that parameter.
 #
 # To wrap up this example, we will finally plot our precipitation sums and
-# departures onto a map using CartoPy and MetPy. To do this we will utilize
+# departures onto a map using CartoPy. To do this we will utilize
 # the meta data that is provided with each station's data. Within the metadata
 # is a 'll' element that contains the latitude and longitude, which is perfect
 # for plotting!

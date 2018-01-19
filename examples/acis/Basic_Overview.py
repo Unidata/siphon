@@ -1,4 +1,4 @@
-"""
+'''
 =============================
 Basic ACIS Web Services Usage
 =============================
@@ -9,7 +9,7 @@ for most station networks in the U.S. and is updated hourly.
 
 In this example we will be querying the service for 20 years of temperature data
 from Denver International Airport.
-"""
+'''
 
 from siphon.simplewebservice.acis import acis_request
 import matplotlib.pyplot as plt
@@ -20,8 +20,8 @@ import matplotlib.pyplot as plt
 # from January 1, 1997 to December 1, 2017. While we could get the daily data,
 # we will instead request the monthly averages, which the remote service will
 # find for us.
-parameters = {"sid":"KDEN", "sdate":"19970101", "edate":"20171231","elems":[
-    {"name":"avgt","interval":"mly","duration":"mly","reduce":"mean"}]}
+parameters = {'sid': 'KDEN', 'sdate': '19970101', 'edate': '20171231', 'elems': [
+    {'name': 'avgt', 'interval': 'mly', 'duration': 'mly', 'reduce': 'mean'}]}
 
 ###########################################
 # These parameters are used to specify what kind of data we want. We are
@@ -49,13 +49,13 @@ parameters = {"sid":"KDEN", "sdate":"19970101", "edate":"20171231","elems":[
 # In this case we are interested in a single station, so we will be using the
 # method set aside for this called, 'StnData'.
 
-method = "StnData"
+method = 'StnData'
 
 ###########################################
 # Now that we have our request information ready, we can call the acis_request
 # function and recieve our data!
 
-myData = acis_request(method,parameters)
+myData = acis_request(method, parameters)
 
 ###########################################
 # The data is also returned in a dictionary format, decoded from a JSON string.
@@ -87,8 +87,8 @@ for obs in myData['data']:
 X = list(range(len(avgt)))
 
 plt.title(stnName)
-plt.ylabel("Average Temperature (F)")
-plt.plot(X,avgt)
-plt.xticks(X,dates,rotation=45)
+plt.ylabel('Average Temperature (F)')
+plt.plot(X, avgt)
+plt.xticks(X, dates, rotation=45)
 
 plt.show()

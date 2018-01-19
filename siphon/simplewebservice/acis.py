@@ -1,7 +1,8 @@
 import requests
+from ..http_util import create_http_session
 
 def acis_request(method, params):
-    """
+    '''
 
     This function will make a request to the ACIS Web Services API for data
     based on the given method (StnMeta,StnData,MultiStnData,GridData,General)
@@ -23,7 +24,7 @@ def acis_request(method, params):
     Parameters
     ----------
     method : str
-        The Web Services request method (MultiStn,StnMeta,etc)
+        The Web Services request method (StnMeta, StnData, MultiStnData, GridData, General)
     params : dict
         A JSON array of parameters (See Web Services API)
 
@@ -37,29 +38,25 @@ def acis_request(method, params):
         When the API is unable to establish a connection or returns
         unparsable data.
 
-    """
+    '''
 
     base_url = 'http://data.rcc-acis.org/'  # ACIS Web API URL
 
-    if method == 'MultiStnData':
-        timeout=300
-    else:
-        timeout=60
+    timeout = 300 if method == 'MultiStnData' else 60
 
     try:
-        response = requests.post(base_url+method, json=params, timeout=timeout)
+        response = create_http_session().post(base_url + method, json=params, timeout=timeout)
         return response.json()
     except requests.exceptions.Timeout:
-        raise ACIS_API_Exception("Connection Timeout")
+        raise ACIS_API_Exception('Connection Timeout')
     except requests.exceptions.TooManyRedirects:
-        raise ACIS_API_Exception("Bad URL. Check your ACIS connection method string.")
+        raise ACIS_API_Exception('Bad URL. Check your ACIS connection method string.')
     except ValueError:
-        raise ACIS_API_Exception("No data returned! The ACIS parameter dictionary\
-                                may be incorrectly formatted")
+        raise ACIS_API_Exception('No data returned! The ACIS parameter dictionary'
+                                 'may be incorrectly formatted')
 
 class ACIS_API_Exception(Exception):
-    """
-
+    '''
     This class handles exceptions raised by the acis_request function.
-    """
+    '''
     pass
