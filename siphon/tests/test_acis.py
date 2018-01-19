@@ -12,6 +12,7 @@ def test_acis_metadata():
 
     assert data['meta'][0]['uid'] == 12527
 
+
 def test_acis_stndata():
     """Testing ACIS Station Data request."""
     data = acis_request('StnData', {'sid': 'klnk', 'elems': [
@@ -28,7 +29,7 @@ def test_acis_multistn():
     """Testing ACIS Multi Station Data request."""
     data = acis_request('MultiStnData', {'sids': 'klnk,kgso', 'elems': [
                         {'name': 'avgt', 'interval': 'dly'},
-                        {'name': 'mint', 'interval': 'dly'}], 'date':'20000101'})
+                        {'name': 'mint', 'interval': 'dly'}], 'date': '20000101'})
 
     assert data['data'][0]['meta']['uid'] == 12527
     assert data['data'][0]['data'][0] == '37.5'
@@ -40,8 +41,8 @@ def test_acis_griddata():
     """Testing ACIS Gridded Data request."""
     data = acis_request('GridData', {'loc': '-95.36, 29.76', 'sdate': '2000-01',
                         'edate': '2000-07', 'grid': '3', 'elems': [
-                        {'name': 'maxt', 'interval': 'mly', 'reduce': 'max', 'smry': 'max'}
-                        ]})
+                        {'name': 'maxt', 'interval': 'mly', 'reduce': 'max',
+                        'smry': 'max'}]})
 
     assert data['data'][0][1] == 81
 

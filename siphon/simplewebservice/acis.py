@@ -1,14 +1,15 @@
-"""Requests data from the ACIS Web Services API"""
+"""Requests data from the ACIS Web Services API."""
 
 import requests
+
 from ..http_util import create_http_session
 
 
 def acis_request(method, params):
-    """
+    """Requests data from the ACIS Web Services API.
 
-    This function will make a request to the ACIS Web Services API for data
-    based on the given method (StnMeta,StnData,MultiStnData,GridData,General)
+    Makes a request from the ACIS Web Services API for data
+    based on a given method (StnMeta,StnData,MultiStnData,GridData,General)
     and parameters string. Information about the parameters can be obtained at:
     http://www.rcc-acis.org/docs_webservices.html
 
@@ -55,9 +56,9 @@ def acis_request(method, params):
         raise AcisApiException('Bad URL. Check your ACIS connection method string.')
     except ValueError:
         raise AcisApiException('No data returned! The ACIS parameter dictionary'
-                                 'may be incorrectly formatted')
+                               'may be incorrectly formatted')
 
-                                 
+
 class AcisApiException(Exception):
     """This class handles exceptions raised by the acis_request function."""
 

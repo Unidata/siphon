@@ -12,6 +12,7 @@ from Denver International Airport.
 """
 
 import matplotlib.pyplot as plt
+
 from siphon.simplewebservice.acis import acis_request
 
 ###########################################
