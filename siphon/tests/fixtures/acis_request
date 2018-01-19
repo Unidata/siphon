@@ -1,0 +1,148 @@
+interactions:
+- request:
+    body: '{"sids": "KLNK"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['16']
+      Content-Type: [application/json]
+      User-Agent: [Siphon (0.6.0+10.g7d00b16.dirty)]
+    method: POST
+    uri: http://data.rcc-acis.org/StnMeta
+  response:
+    body: {string: '{"meta":[
+
+        {"name": "LINCOLN AIRPORT", "ll": [-96.7475, 40.8508], "sids": ["14939 1",
+        "254795 2", "LNK 3", "72551 4", "KLNK 5", "USW00014939 6", "LNK 7"], "state":
+        "NE", "elev": 1190.0, "uid": 12527}]}
+
+        '}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      Date: ['Fri, 19 Jan 2018 19:04:12 GMT']
+      Server: [nginx/1.12.2]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"sid": "klnk", "elems": [{"name": "avgt", "interval": "dly"}, {"name":
+      "mint", "interval": "dly"}], "date": "20000101"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['120']
+      Content-Type: [application/json]
+      User-Agent: [Siphon (0.6.0+10.g7d00b16.dirty)]
+    method: POST
+    uri: http://data.rcc-acis.org/StnData
+  response:
+    body: {string: '{"meta":{"uid": 12527, "ll": [-96.7475, 40.8508], "sids": ["14939
+        1", "254795 2", "LNK 3", "72551 4", "KLNK 5", "USW00014939 6", "LNK 7"], "state":
+        "NE", "elev": 1190.0, "name": "LINCOLN AIRPORT"},
+
+        "data":[["2000-01-01","37.5","26"]]}
+
+        '}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      Date: ['Fri, 19 Jan 2018 19:04:14 GMT']
+      Server: [nginx/1.12.2]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"sids": "klnk,kgso", "elems": [{"name": "avgt", "interval": "dly"}, {"name":
+      "mint", "interval": "dly"}], "date": "20000101"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['126']
+      Content-Type: [application/json]
+      User-Agent: [Siphon (0.6.0+10.g7d00b16.dirty)]
+    method: POST
+    uri: http://data.rcc-acis.org/MultiStnData
+  response:
+    body: {string: '{"data":[
+
+        {"meta":{"uid": 12527, "ll": [-96.7475, 40.8508], "sids": ["14939 1", "254795
+        2", "LNK 3", "72551 4", "KLNK 5", "USW00014939 6", "LNK 7"], "state": "NE",
+        "elev": 1190.0, "name": "LINCOLN AIRPORT"},"data":["37.5","26"]},
+
+        {"meta":{"uid": 13284, "ll": [-79.9432, 36.0969], "sids": ["13723 1", "313630
+        2", "GSO 3", "72317 4", "KGSO 5", "USW00013723 6", "GSO 7"], "state": "NC",
+        "elev": 890.0, "name": "GREENSBORO  AP"},"data":["49.0","37"]}]}
+
+        '}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      Date: ['Fri, 19 Jan 2018 19:04:14 GMT']
+      Server: [nginx/1.12.2]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"loc": "-95.36, 29.76", "sdate": "2000-01", "edate": "2000-07", "grid":
+      "3", "elems": [{"name": "maxt", "interval": "mly", "reduce": "max", "smry":
+      "max"}]}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['157']
+      Content-Type: [application/json]
+      User-Agent: [Siphon (0.6.0+10.g7d00b16.dirty)]
+    method: POST
+    uri: http://data.rcc-acis.org/GridData
+  response:
+    body: {string: '{"data":[["2000-01",81],
+
+        ["2000-02",82],
+
+        ["2000-03",87],
+
+        ["2000-04",89],
+
+        ["2000-05",93],
+
+        ["2000-06",94],
+
+        ["2000-07",103]],
+
+        "smry":[103]}
+
+        '}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      Date: ['Fri, 19 Jan 2018 19:04:15 GMT']
+      Server: [nginx/1.12.2]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"state": "ne"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      User-Agent: [Siphon (0.6.0+10.g7d00b16.dirty)]
+    method: POST
+    uri: http://data.rcc-acis.org/General/state
+  response:
+    body: {string: '{"meta":[
+
+        {"id":"NE","name":"Nebraska"}]}
+
+        '}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      Date: ['Fri, 19 Jan 2018 19:04:15 GMT']
+      Server: [nginx/1.12.2]
+    status: {code: 200, message: OK}
+version: 1
