@@ -1,8 +1,11 @@
+"""Requests data from the ACIS Web Services API"""
+
 import requests
 from ..http_util import create_http_session
 
+
 def acis_request(method, params):
-    '''
+    """
 
     This function will make a request to the ACIS Web Services API for data
     based on the given method (StnMeta,StnData,MultiStnData,GridData,General)
@@ -38,8 +41,7 @@ def acis_request(method, params):
         When the API is unable to establish a connection or returns
         unparsable data.
 
-    '''
-
+    """
     base_url = 'http://data.rcc-acis.org/'  # ACIS Web API URL
 
     timeout = 300 if method == 'MultiStnData' else 60
@@ -48,15 +50,15 @@ def acis_request(method, params):
         response = create_http_session().post(base_url + method, json=params, timeout=timeout)
         return response.json()
     except requests.exceptions.Timeout:
-        raise ACIS_API_Exception('Connection Timeout')
+        raise AcisApiException('Connection Timeout')
     except requests.exceptions.TooManyRedirects:
-        raise ACIS_API_Exception('Bad URL. Check your ACIS connection method string.')
+        raise AcisApiException('Bad URL. Check your ACIS connection method string.')
     except ValueError:
-        raise ACIS_API_Exception('No data returned! The ACIS parameter dictionary'
+        raise AcisApiException('No data returned! The ACIS parameter dictionary'
                                  'may be incorrectly formatted')
 
-class ACIS_API_Exception(Exception):
-    '''
-    This class handles exceptions raised by the acis_request function.
-    '''
+                                 
+class AcisApiException(Exception):
+    """This class handles exceptions raised by the acis_request function."""
+
     pass

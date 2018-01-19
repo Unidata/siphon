@@ -1,4 +1,4 @@
-'''
+"""
 =============================
 Basic ACIS Web Services Usage
 =============================
@@ -9,10 +9,10 @@ for most station networks in the U.S. and is updated hourly.
 
 In this example we will be querying the service for 20 years of temperature data
 from Denver International Airport.
-'''
+"""
 
-from siphon.simplewebservice.acis import acis_request
 import matplotlib.pyplot as plt
+from siphon.simplewebservice.acis import acis_request
 
 ###########################################
 # First, we need to assemble a dictionary containing the information we want.

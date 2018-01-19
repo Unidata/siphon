@@ -1,4 +1,4 @@
-'''
+"""
 ===============================
 Multi Station Calls and Mapping
 ===============================
@@ -6,11 +6,12 @@ Multi Station Calls and Mapping
 In this example we will be using Siphon's simplewebservice support to query
 ACIS Web Services for multiple stations. We will plot precipitation
 values recorded in Colorado and Wyoming during the 2013 flooding event.
-'''
-from siphon.simplewebservice.acis import acis_request
-import matplotlib.pyplot as plt
+"""
+
 import cartopy.crs as ccrs
 import cartopy.feature as feat
+import matplotlib.pyplot as plt
+from siphon.simplewebservice.acis import acis_request
 
 ###########################################
 # First, we need to assemble a dictionary containing the information we want.
@@ -134,14 +135,14 @@ ax.set_extent((-109.9, -101.8, 36.5, 41.3))
 # Plot each station, labeling based on departure
 for stn in range(len(pcpn)):
     if pcpn_dep[stn] >= 0 and pcpn_dep[stn] < 2:
-        ax.plot(lon[stn],lat[stn],'g+', markersize=7, transform=ccrs.Geodetic())
-        ax.text(lon[stn],lat[stn], pcpn[stn], transform=ccrs.Geodetic())
+        ax.plot(lon[stn], lat[stn], 'g+', markersize=7, transform=ccrs.Geodetic())
+        ax.text(lon[stn], lat[stn], pcpn[stn], transform=ccrs.Geodetic())
     elif pcpn_dep[stn] >= 2:
-        ax.plot(lon[stn],lat[stn],'m+', markersize=7, transform=ccrs.Geodetic())
-        ax.text(lon[stn],lat[stn], pcpn[stn], transform=ccrs.Geodetic())
+        ax.plot(lon[stn], lat[stn], 'm+', markersize=7, transform=ccrs.Geodetic())
+        ax.text(lon[stn], lat[stn], pcpn[stn], transform=ccrs.Geodetic())
     elif pcpn_dep[stn] < 0:
-        ax.plot(lon[stn],lat[stn],'r+', markersize=7, transform=ccrs.Geodetic())
-        ax.text(lon[stn],lat[stn], pcpn[stn], transform=ccrs.Geodetic())
+        ax.plot(lon[stn], lat[stn], 'r+', markersize=7, transform=ccrs.Geodetic())
+        ax.text(lon[stn], lat[stn], pcpn[stn], transform=ccrs.Geodetic())
 ax.plot(pcpn)
 
 plt.show()

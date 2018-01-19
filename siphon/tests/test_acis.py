@@ -1,18 +1,19 @@
-'''Test ACIS Web Services API Access'''
+"""Test ACIS Web Services API Access."""
 from siphon.simplewebservice.acis import acis_request
 from siphon.testing import get_recorder
 
 recorder = get_recorder(__file__)
 
+
 @recorder.use_cassette('acis_request')
 def test_acis_metadata():
-    '''Testing ACIS MetaData request.'''
+    """Testing ACIS MetaData request."""
     data = acis_request('StnMeta', {'sids': 'KLNK'})
 
     assert data['meta'][0]['uid'] == 12527
 
 def test_acis_stndata():
-    '''Testing ACIS Station Data request.'''
+    """Testing ACIS Station Data request."""
     data = acis_request('StnData', {'sid': 'klnk', 'elems': [
                         {'name': 'avgt', 'interval': 'dly'},
                         {'name': 'mint', 'interval': 'dly'}], 'date': '20000101'})
@@ -22,8 +23,9 @@ def test_acis_stndata():
     assert data['data'][0][1] == '37.5'
     assert data['data'][0][2] == '26'
 
+
 def test_acis_multistn():
-    '''Testing ACIS Multi Station Data request.'''
+    """Testing ACIS Multi Station Data request."""
     data = acis_request('MultiStnData', {'sids': 'klnk,kgso', 'elems': [
                         {'name': 'avgt', 'interval': 'dly'},
                         {'name': 'mint', 'interval': 'dly'}], 'date':'20000101'})
@@ -33,8 +35,9 @@ def test_acis_multistn():
     assert data['data'][1]['meta']['uid'] == 13284
     assert data['data'][1]['data'][0] == '49.0'
 
+
 def test_acis_griddata():
-    '''Testing ACIS Gridded Data request.'''
+    """Testing ACIS Gridded Data request."""
     data = acis_request('GridData', {'loc': '-95.36, 29.76', 'sdate': '2000-01',
                         'edate': '2000-07', 'grid': '3', 'elems': [
                         {'name': 'maxt', 'interval': 'mly', 'reduce': 'max', 'smry': 'max'}
@@ -42,8 +45,9 @@ def test_acis_griddata():
 
     assert data['data'][0][1] == 81
 
+
 def test_acis_general():
-    '''Testing ACIS General request.'''
+    """Testing ACIS General request."""
     data = acis_request('General/state', {'state': 'ne'})
 
     assert data['meta'][0]['name'] == 'Nebraska'
