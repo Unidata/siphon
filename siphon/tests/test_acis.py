@@ -5,12 +5,13 @@ from siphon.testing import get_recorder
 recorder = get_recorder(__file__)
 
 @recorder.use_cassette('acis_request')
-def test_acis():
+def test_acis_metadata():
     '''Testing each protocol for consistent form.'''
     data = acis_request('StnMeta', {'sids': 'KLNK'})
 
     assert data['meta'][0]['uid'] == 12527
 
+def test_acis_stndata():
     data = acis_request('StnData', {'sid': 'klnk', 'elems': [
                         {'name': 'avgt', 'interval': 'dly'},
                         {'name': 'mint', 'interval': 'dly'}], 'date': '20000101'})
@@ -20,6 +21,7 @@ def test_acis():
     assert data['data'][0][1] == '37.5'
     assert data['data'][0][2] == '26'
 
+def test_acis_multistn():
     data = acis_request('MultiStnData', {'sids': 'klnk,kgso', 'elems': [
                         {'name': 'avgt', 'interval': 'dly'},
                         {'name': 'mint', 'interval': 'dly'}], 'date':'20000101'})
@@ -29,6 +31,7 @@ def test_acis():
     assert data['data'][1]['meta']['uid'] == 13284
     assert data['data'][1]['data'][0] == '49.0'
 
+def test_acis_griddata():
     data = acis_request('GridData', {'loc': '-95.36, 29.76', 'sdate': '2000-01',
                         'edate': '2000-07', 'grid': '3', 'elems': [
                         {'name': 'maxt', 'interval': 'mly', 'reduce': 'max', 'smry': 'max'}
@@ -36,6 +39,7 @@ def test_acis():
 
     assert data['data'][0][1] == 81
 
+def test_acis_general():
     data = acis_request('General/state', {'state': 'ne'})
 
     assert data['meta'][0]['name'] == 'Nebraska'
