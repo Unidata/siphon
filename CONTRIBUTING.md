@@ -10,7 +10,7 @@ should reciprocate that respect in addressing your issue, assessing changes, and
 helping you finalize your pull requests.
 
 We love contributions from community members, just like you! There are many ways
-to contribute, from writing tutorial or example Jupyter notebooks, improvements
+to contribute, from writing tutorials or example Jupyter notebooks, improvements
 to the documentation, submitting bug report and feature requests, or even writing
 code which can be incorporated into Siphon for everyone to use. If you get stuck at
 any point you can create an [issue on GitHub](https://github.com/Unidata/Siphon/issues)

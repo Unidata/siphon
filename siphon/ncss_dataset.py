@@ -6,12 +6,20 @@
 from __future__ import print_function
 
 import logging
+import re
 
 import numpy as np
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.WARNING)
 log.addHandler(logging.StreamHandler())
+
+
+def _without_namespace(tagname):
+    """Remove the xml namespace from a tag name."""
+    if '}' in tagname:
+        return tagname.rsplit('}', 1)[-1]
+    return tagname
 
 
 class _Types(object):
@@ -69,16 +77,14 @@ class _Types(object):
         """
         if value_type in ['byte', 'short', 'int', 'long']:
             try:
-                val = val.split()
-                val = list(map(int, val))
+                val = [int(v) for v in re.split('[ ,]', val) if v]
             except ValueError:
-                log.warning('Cannot convert %s to int. Keeping type as str.', val)
+                log.warning('Cannot convert "%s" to int. Keeping type as str.', val)
         elif value_type in ['float', 'double']:
             try:
-                val = val.split()
-                val = list(map(float, val))
+                val = [float(v) for v in re.split('[ ,]', val) if v]
             except ValueError:
-                log.warning('Cannot convert %s to float. Keeping type as str.', val)
+                log.warning('Cannot convert "%s" to float. Keeping type as str.', val)
         elif value_type == 'boolean':
             try:
                 # special case for boolean type
@@ -191,6 +197,14 @@ class _Types(object):
     def handle_variable(self, element):
         return self.handle_grid(element)
 
+    def lookup(self, handler_name):
+        handler_name = 'handle_' + _without_namespace(handler_name)
+        if handler_name in dir(self):
+            return getattr(self, handler_name)
+        else:
+            msg = 'cannot find handler for element {}'.format(handler_name)
+            log.warning(msg)
+
 
 class NCSSDataset(object):
     """Hold information contained in the dataset.xml NCSS document.
@@ -245,7 +259,6 @@ class NCSSDataset(object):
 
         """
         self._types = _Types()
-        self._types_methods = _Types.__dict__
 
         self.gridsets = {}
         self.variables = {}
@@ -279,12 +292,7 @@ class NCSSDataset(object):
             delattr(self, thing)
 
     def _get_handler(self, handler_name):
-        handler_name = 'handle_' + handler_name
-        if handler_name in self._types_methods:
-            return getattr(self._types, handler_name)
-        else:
-            msg = 'cannot find handler for element {}'.format(handler_name)
-            log.warning(msg)
+        return self._types.lookup(handler_name)
 
     def _parse_element(self, element):
         element_name = element.tag

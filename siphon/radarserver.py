@@ -85,7 +85,7 @@ class RadarServer(HTTPEndPoint):
 
     def _get_stations(self, station_file='stations.xml'):
         resp = self.get_path(station_file)
-        self.stations = parse_station_table(ET.fromstring(resp.text))
+        self.stations = parse_station_table(ET.fromstring(resp.content))
 
     def query(self):
         """Return a new query for the radar server.

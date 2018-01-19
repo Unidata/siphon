@@ -41,7 +41,7 @@ class IndexableMapping(OrderedDict):
 class DatasetCollection(IndexableMapping):
     """Extend ``IndexableMapping`` to allow datetime-based filter queries."""
 
-    default_regex = re.compile(r'(?P<year>\d{4})(?P<month>[01]\d)(?P<day>[012]\d)_'
+    default_regex = re.compile(r'(?P<year>\d{4})(?P<month>[01]\d)(?P<day>[0123]\d)_'
                                r'(?P<hour>[012]\d)(?P<minute>[0-5]\d)')
 
     def _get_datasets_with_times(self, regex):
@@ -133,6 +133,8 @@ class DatasetCollection(IndexableMapping):
         """Return a string representation of the collection."""
         return str(list(self))
 
+    __repr__ = __str__
+
 
 class TDSCatalog(object):
     """
@@ -165,15 +167,15 @@ class TDSCatalog(object):
             The URL of a THREDDS client catalog
 
         """
-        # top level server url
-        self.catalog_url = catalog_url
-        self.base_tds_url = _find_base_tds_url(catalog_url)
-
         session = create_http_session()
 
         # get catalog.xml file
-        resp = session.get(self.catalog_url)
+        resp = session.get(catalog_url)
         resp.raise_for_status()
+
+        # top level server url
+        self.catalog_url = resp.url
+        self.base_tds_url = _find_base_tds_url(self.catalog_url)
 
         # If we were given an HTML link, warn about it and try to fix to xml
         if 'html' in resp.headers['content-type']:
@@ -186,7 +188,7 @@ class TDSCatalog(object):
             resp.raise_for_status()
 
         # begin parsing the xml doc
-        root = ET.fromstring(resp.text)
+        root = ET.fromstring(resp.content)
         self.catalog_name = root.attrib.get('name', 'No name found')
 
         self.datasets = DatasetCollection()
@@ -237,6 +239,10 @@ class TDSCatalog(object):
 
         self._process_datasets()
 
+    def __str__(self):
+        """Return a string representation of the catalog name."""
+        return str(self.catalog_name)
+
     def _process_dataset(self, element):
         catalog_url = ''
         if 'urlPath' in element.attrib:
@@ -277,6 +283,8 @@ class TDSCatalog(object):
                 return TDSCatalog(latest_cat).datasets[0]
         raise AttributeError('"latest" not available for this catalog')
 
+    __repr__ = __str__
+
 
 class CatalogRef(object):
     """
@@ -305,12 +313,16 @@ class CatalogRef(object):
             An :class:`~xml.etree.ElementTree.Element` representing a catalogRef node
 
         """
-        self.name = element_node.attrib['name']
         self.title = element_node.attrib['{http://www.w3.org/1999/xlink}title']
+        self.name = element_node.attrib.get('name', self.title)
 
         # Resolve relative URLs
         href = element_node.attrib['{http://www.w3.org/1999/xlink}href']
         self.href = urljoin(base_url, href)
+
+    def __str__(self):
+        """Return a string representation of the catalog reference."""
+        return str(self.title)
 
     def follow(self):
         """Follow the catalog reference and return a new :class:`TDSCatalog`.
@@ -322,6 +334,8 @@ class CatalogRef(object):
 
         """
         return TDSCatalog(self.href)
+
+    __repr__ = __str__
 
 
 class Dataset(object):
@@ -370,6 +384,10 @@ class Dataset(object):
             else:
                 log.warning('Must pass along the catalog URL to resolve '
                             'the latest.xml dataset!')
+
+    def __str__(self):
+        """Return a string representation of the dataset."""
+        return str(self.name)
 
     def resolve_url(self, catalog_url):
         """Resolve the url of the dataset when reading latest.xml.
@@ -440,21 +458,19 @@ class Dataset(object):
                 # for each SimpleService
                 if isinstance(service, CompoundService):
                     for subservice in service.services:
-                        access_urls[subservice.service_type] = (server_url +
-                                                                subservice.base +
-                                                                self.url_path)
+                        server_base = urljoin(server_url, subservice.base)
+                        access_urls[subservice.service_type] = urljoin(server_base,
+                                                                       self.url_path)
                 else:
-                    access_urls[service.service_type] = (server_url +
-                                                         service.base +
-                                                         self.url_path)
+                    server_base = urljoin(server_url, service.base)
+                    access_urls[service.service_type] = urljoin(server_base, self.url_path)
 
         # process access children of dataset elements
         for service_type in self.access_element_info:
             url_path = self.access_element_info[service_type]
             if service_type in all_service_dict:
-                access_urls[service_type] = (server_url +
-                                             all_service_dict[service_type].base +
-                                             url_path)
+                server_base = urljoin(server_url, all_service_dict[service_type].base)
+                access_urls[service_type] = urljoin(server_base, url_path)
 
         self.access_urls = access_urls
 
@@ -578,6 +594,8 @@ class Dataset(object):
         except KeyError:
             raise ValueError(service + ' is not available for this dataset')
 
+    __repr__ = __str__
+
 
 class SimpleService(object):
     """Hold information about an access service enabled on a dataset.
@@ -611,7 +629,7 @@ class SimpleService(object):
 
     def is_resolver(self):
         """Return whether the service is a resolver service."""
-        return self.service_type.lower() == 'resolver'
+        return self.service_type == 'Resolver'
 
 
 class CompoundService(object):

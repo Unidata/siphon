@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.6.0+16.gce11082.dirty)]
+    method: GET
+    uri: http://weather.rsmas.miami.edu/repository?output=thredds.catalog
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><catalog name=\"RSMAS-UM
+        Repository for atm-ocean data and its science\" xmlns=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\"
+        xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n  <dataset name=\"RSMAS-UM
+        Repository for atm-ocean data and its science\">\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=5c0355aa-bcc1-4b90-808f-48ecc03b7989&amp;output=thredds.catalog\"
+        xlink:title=\"AMIE-DYNAMO data archive\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=e1ae1cc5-4a1e-4bcf-bc24-8497c9c2bffd&amp;output=thredds.catalog\"
+        xlink:title=\"Annual Cycle Explorer software and description: tinyurl.com/MapesACE\"/>\n
+        \   <catalogRef xlink:href=\"/repository/entry/show?entryid=d7ce4aa0-7266-47d7-89d7-e84a505d89e2&amp;output=thredds.catalog\"
+        xlink:title=\"CAROB Miami observatory data archive\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=07f6a773-fee4-4dd6-9a09-619db75e157f&amp;output=thredds.catalog\"
+        xlink:title=\"Chen lab\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=424f384c-91ad-42b3-b6c5-a5b0cc90b53d&amp;output=thredds.catalog\"
+        xlink:title=\"Datasets hosted on this UM server\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=0f166334-728e-4344-87ee-7a847399eca6&amp;output=thredds.catalog\"
+        xlink:title=\"GCM nudging project\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=e0ab8229-9dad-431a-b478-71e5607e37e9&amp;output=thredds.catalog\"
+        xlink:title=\"South Asian Monsoon loops\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=45e3b50b-dbe2-408b-a6c2-2c009749cd53&amp;output=thredds.catalog\"
+        xlink:title=\"The Mapes IDV collection\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=b221d8d3-46d5-44f1-8d8e-d1d5ebc24d2d&amp;output=thredds.catalog\"
+        xlink:title=\"UM course related stuff\"/>\n    <catalogRef xlink:href=\"/repository/entry/show?entryid=08512ac5-7509-411c-971b-88efdc283bda&amp;output=thredds.catalog\"
+        xlink:title=\"Users\"/>\n    <catalogRef xlink:href=\"http://esrl.noaa.gov/gsd/thredds/hrrr.xml\"
+        xlink:title=\"HRRR model from NOAA-GSD\"/>\n    <catalogRef xlink:href=\"http://weather.rsmas.miami.edu/thredds/catalog.xml\"
+        xlink:title=\"THREDDS data catalog on weather.rsmas.miami.edu\"/>\n  </dataset>\n</catalog>\n"}
+    headers:
+      Connection: [Keep-Alive]
+      Content-Length: ['2258']
+      Content-Type: [text/xml;charset=UTF-8]
+      Date: ['Tue, 31 Oct 2017 21:17:47 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Server: [Apache]
+      Set-Cookie: ['ramadda_repository_session=b95d312c-74c4-464e-81d2-1ba4be8597f0_0.468476777107967;
+          path=/repository; expires=Tue, 26-Oct-2021 23:59:59 GMT']
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: '200'}
+version: 1

@@ -1,0 +1,616 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.6.0+19.g94704ea.dirty)]
+    method: GET
+    uri: http://thredds-test.unidata.ucar.edu/thredds/catalog.xml
+  response:
+    body: {string: ''}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [Keep-Alive]
+      Content-Language: [en-US]
+      Content-Length: ['0']
+      Content-Type: [application/xml]
+      Date: ['Wed, 01 Nov 2017 03:51:55 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Location: [/thredds/catalog/catalog.xml]
+      Server: [Apache/2.4.27 (Unix) OpenSSL/1.0.1e-fips mod_jk/1.2.42]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 302, message: '302'}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.6.0+19.g94704ea.dirty)]
+    method: GET
+    uri: http://thredds-test.unidata.ucar.edu/thredds/catalog/catalog.xml
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<catalog xmlns=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\"
+        xmlns:xlink=\"http://www.w3.org/1999/xlink\" name=\"Unidata THREDDS Data Server\"
+        version=\"1.2\">\r\n  <dataset name=\"Realtime data from IDD\">\r\n    <catalogRef
+        xlink:href=\"idd/forecastModels.xml\" xlink:title=\"Forecast Model Data\"
+        name=\"Forecast Model Data\" />\r\n    <catalogRef xlink:href=\"idd/forecastProdsAndAna.xml\"
+        xlink:title=\"Forecast Products and Analyses\" name=\"Forecast Products and
+        Analyses\" />\r\n    <catalogRef xlink:href=\"idd/obsData.xml\" xlink:title=\"Observation
+        Data\" name=\"Observation Data\" />\r\n    <catalogRef xlink:href=\"idd/radars.xml\"
+        xlink:title=\"Radar Data\" name=\"Radar Data\" />\r\n    <catalogRef xlink:href=\"idd/satellite.xml\"
+        xlink:title=\"Satellite Data\" name=\"Satellite Data\" />\r\n  </dataset>\r\n
+        \ <dataset name=\"Other Unidata Data\">\r\n    <catalogRef xlink:href=\"casestudies/catalog.xml\"
+        xlink:title=\"Unidata case studies\" name=\"Unidata case studies\" />\r\n
+        \ </dataset>\r\n  <dataset name=\"Test Datasets\">\r\n    <catalogRef xlink:href=\"testDatasets.xml\"
+        xlink:title=\"Test Datasets\" name=\"Test Datasets\" />\r\n    <catalogRef
+        xlink:href=\"testPointDatasets.xml\" xlink:title=\"Test Point Datasets\" name=\"Test
+        Point Datasets\" />\r\n    <catalogRef xlink:href=\"cf_examples.xml\" xlink:title=\"CF
+        DSG Example Datasets\" name=\"CF DSG Example Datasets\" />\r\n  </dataset>\r\n
+        \ <dataset name=\"For GRIB Indexing Purposes\">\r\n    <catalogRef xlink:href=\"modelsHrrr.xml\"
+        xlink:title=\"Test Point Datasets\" name=\"Test Point Datasets\" />\r\n  </dataset>\r\n</catalog>\r\n"}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [Keep-Alive]
+      Content-Language: [en-US]
+      Content-Type: [application/xml;charset=UTF-8]
+      Date: ['Wed, 01 Nov 2017 03:51:55 GMT']
+      Keep-Alive: ['timeout=5, max=99']
+      Server: [Apache/2.4.27 (Unix) OpenSSL/1.0.1e-fips mod_jk/1.2.42]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: '200'}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.6.0+19.g94704ea.dirty)]
+    method: GET
+    uri: http://thredds-test.unidata.ucar.edu/thredds/catalog/idd/forecastModels.xml
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<catalog xmlns=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\"
+        xmlns:xlink=\"http://www.w3.org/1999/xlink\" name=\"Unidata THREDDS Data Server
+        - NCEP models\" version=\"1.2\">\r\n  <service name=\"latest\" serviceType=\"Resolver\"
+        base=\"\" />\r\n  <service name=\"fullServices\" serviceType=\"Compound\"
+        base=\"\">\r\n    <service name=\"opendap\" serviceType=\"OPENDAP\" base=\"/thredds/dodsC/\"
+        />\r\n    <service name=\"HTTPServer\" serviceType=\"HTTPServer\" base=\"/thredds/fileServer/\"
+        />\r\n    <service name=\"wcs\" serviceType=\"WCS\" base=\"/thredds/wcs/\"
+        />\r\n    <service name=\"wms\" serviceType=\"WMS\" base=\"/thredds/wms/\"
+        />\r\n    <service name=\"ncss\" serviceType=\"NetcdfSubset\" base=\"/thredds/ncss/\"
+        />\r\n    <service name=\"cdmremote\" serviceType=\"CdmRemote\" base=\"/thredds/cdmremote/\"
+        />\r\n    <service name=\"ncml\" serviceType=\"NCML\" base=\"/thredds/ncml/\"
+        />\r\n    <service name=\"uddc\" serviceType=\"UDDC\" base=\"/thredds/uddc/\"
+        />\r\n    <service name=\"iso\" serviceType=\"ISO\" base=\"/thredds/iso/\"
+        />\r\n  </service>\r\n  <dataset name=\"NCEP Forecast Models\">\r\n    <metadata
+        inherited=\"true\">\r\n      <serviceName>fullServices</serviceName>\r\n      <authority>edu.ucar.unidata</authority>\r\n
+        \     <dataType>GRID</dataType>\r\n      <dataFormat>GRIB-2</dataFormat>\r\n
+        \     <documentation xlink:href=\"http://www.emc.ncep.noaa.gov/modelinfo/index.html\"
+        xlink:title=\"NCEP Model documentation\" />\r\n      <documentation type=\"rights\">Freely
+        available</documentation>\r\n      <documentation type=\"processing_level\">Transmitted
+        through Unidata Internet Data Distribution.</documentation>\r\n      <documentation
+        type=\"processing_level\">Read by CDM Grib Collection.</documentation>\r\n
+        \     <documentation xlink:href=\"http://www.nco.ncep.noaa.gov/pmb/nwprod/analysis/\"
+        xlink:title=\"NCEP/NWS Model Analyses and Forecasts page\" />\r\n      <documentation
+        xlink:href=\"http://www.unidata.ucar.edu/data/index.html#model\" xlink:title=\"Unidata
+        IDD Model Data page\" />\r\n      <creator>\r\n        <name vocabulary=\"DIF\">DOC/NOAA/NWS/NCEP</name>\r\n
+        \       <contact url=\"http://www.ncep.noaa.gov/\" email=\"http://www.ncep.noaa.gov/mail_liaison.shtml\"
+        />\r\n      </creator>\r\n      <creator>\r\n        <name vocabulary=\"ADN\">National
+        Oceanic and Atmospheric Administration (NOAA)/National Weather Service (NWS)\r\n
+        \         National Center for Environmental Prediction (NCEP)</name>\r\n        <contact
+        url=\"http://www.ncep.noaa.gov/\" email=\"http://www.ncep.noaa.gov/mail_liaison.shtml\"
+        />\r\n      </creator>\r\n      <publisher>\r\n        <name vocabulary=\"DIF\">UCAR/UNIDATA</name>\r\n
+        \       <contact url=\"http://www.unidata.ucar.edu/\" email=\"support@unidata.ucar.edu\"
+        />\r\n      </publisher>\r\n      <publisher>\r\n        <name vocabulary=\"ADN\">University
+        Corporation for Atmospheric Research (UCAR)/Unidata</name>\r\n        <contact
+        url=\"http://www.unidata.ucar.edu/\" email=\"support@unidata.ucar.edu\" />\r\n
+        \     </publisher>\r\n      <timeCoverage>\r\n        <end>present</end>\r\n
+        \       <duration>45 days</duration>\r\n      </timeCoverage>\r\n    </metadata>\r\n
+        \   <dataset name=\"Global Ensemble Forecasting System (GEFS)\">\r\n      <metadata
+        inherited=\"true\">\r\n        <documentation type=\"summary\">NCEP Global
+        Ensemble Forecasting System (GEFS) Global one degree Lat/Lon grid. Model runs
+        are made at 0, 6, 12, 18 ... hours out to 378 hours (16 days). Horizontal
+        = 181 by 360 points, resolution 1 degree, Lat/Lon projection. Vertical = 2000
+        to 1000 hPa mandatory pressure levels (7 levels); pressure, height above ground,
+        pressure_difference_layers.</documentation>\r\n      </metadata>\r\n      <catalogRef
+        xlink:href=\"/thredds/catalog/grib/NCEP/GEFS/Global_1p0deg_Ensemble/members-analysis/catalog.xml\"
+        xlink:title=\"GEFS Members - Analysis\" name=\"GEFS Members - Analysis\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <documentation type=\"summary\">Ensemble
+        members - Analysis grids only.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GEFS/Global_1p0deg_Ensemble/members/catalog.xml\"
+        xlink:title=\"GEFS Members - Forecasts\" name=\"GEFS Members - Forecasts\"
+        harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">Ensemble members.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GEFS/Global_1p0deg_Ensemble/derived/catalog.xml\"
+        xlink:title=\"GEFS Derived Forecast Products\" name=\"GEFS Derived Forecast
+        Products\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">Ensemble derived products: mean,
+        spread, and probabilities.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \   </dataset>\r\n    <dataset name=\"Global Forecast System (GFS)\">\r\n
+        \     <metadata inherited=\"true\">\r\n        <documentation type=\"summary\">NCEP
+        Global Forecast System Model, previously called AVN/MRF (Medium Range Forecast)</documentation>\r\n
+        \       <documentation xlink:href=\"http://meted.ucar.edu/nwp/pcu2/avintro.htm\"
+        xlink:title=\"COMET MetEd (Meteorology Education and Training) documentation\"
+        />\r\n        <documentation xlink:href=\"http://www.nco.ncep.noaa.gov/pmb/products/gfs/\"
+        xlink:title=\"NCEP Model Notes\" />\r\n      </metadata>\r\n      <dataset
+        name=\"GFS Quarter Degree - Global Coverage\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">NCEP GFS Model : AWIPS 230 (G) Grid.
+        Global Lat/Lon grid. Model runs at 0, 6, 12, and 18Z. Horizontal= 721 by 14400
+        points, resolution 0.25 degree, Lat/Lon projection. Vertical= 1000 to 100
+        hPa mandatory pressure levels (26 levels); surface, height above ground, pressure
+        layers.</documentation>\r\n        </metadata>\r\n        <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Global_0p25deg_ana/catalog.xml\"
+        xlink:title=\"GFS Quarter Degree Analysis\" name=\"GFS Quarter Degree Analysis\"
+        harvest=\"true\">\r\n          <metadata inherited=\"true\">\r\n            <documentation
+        type=\"summary\">Analysis grids only.</documentation>\r\n          </metadata>\r\n
+        \       </catalogRef>\r\n        <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Global_0p25deg/catalog.xml\"
+        xlink:title=\"GFS Quarter Degree Forecast\" name=\"GFS Quarter Degree Forecast\"
+        harvest=\"true\">\r\n          <metadata inherited=\"true\">\r\n            <documentation
+        type=\"summary\">Forecasts grids starting from the 0 hour forecast every 3
+        hours out to 10 days, then 12 hour forecasts for days 10-16.</documentation>\r\n
+        \         </metadata>\r\n        </catalogRef>\r\n      </dataset>\r\n      <dataset
+        name=\"GFS Half Degree - Global Coverage\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">NCEP GFS Model : AWIPS 230 (G) Grid.
+        Global Lat/Lon grid. Model runs at 0, 6, 12, and 18Z. Horizontal= 361 by 720
+        points, resolution 0.5 degree, Lat/Lon projection. Vertical= 1000 to 100 hPa
+        mandatory pressure levels (10 levels); surface, height above ground, pressure
+        layers.</documentation>\r\n        </metadata>\r\n        <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Global_0p5deg_ana/catalog.xml\"
+        xlink:title=\"GFS Half Degree Analysis\" name=\"GFS Half Degree Analysis\"
+        harvest=\"true\">\r\n          <metadata inherited=\"true\">\r\n            <documentation
+        type=\"summary\">Analysis grids only.</documentation>\r\n          </metadata>\r\n
+        \       </catalogRef>\r\n        <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Global_0p5deg/catalog.xml\"
+        xlink:title=\"GFS Half Degree Forecast\" name=\"GFS Half Degree Forecast\"
+        harvest=\"true\">\r\n          <metadata inherited=\"true\">\r\n            <documentation
+        type=\"summary\">Forecasts grids starting from the 0 hour forecast every 3
+        hours out to 10 days, then 12 hour forecasts for days 10-16.</documentation>\r\n
+        \         </metadata>\r\n        </catalogRef>\r\n      </dataset>\r\n      <dataset
+        name=\"GFS One Degree - Global Coverage\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">NCEP GFS Model : AWIPS 229 (F) Grid.
+        Global Lat/Lon grid. Model runs are made at 0, 6, 12, and 18Z. Horizontal
+        = 181 by 360 points, resolution 1 degree, Lat/Lon projection. Vertical = 1000
+        to 100 hPa mandatory pressure levels (10 levels); surface, height above ground,
+        pressure layers.</documentation>\r\n        </metadata>\r\n        <catalogRef
+        xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Global_onedeg_ana/catalog.xml\"
+        xlink:title=\"GFS One Degree Analysis\" name=\"GFS One Degree Analysis\" harvest=\"true\">\r\n
+        \         <metadata inherited=\"true\">\r\n            <documentation type=\"summary\">Analysis
+        grids only.</documentation>\r\n          </metadata>\r\n        </catalogRef>\r\n
+        \       <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Global_onedeg/catalog.xml\"
+        xlink:title=\"GFS One Degree Forecast\" name=\"GFS One Degree Forecast\" harvest=\"true\">\r\n
+        \         <metadata inherited=\"true\">\r\n            <documentation type=\"summary\">Forecasts
+        grids starting from the 0 hour forecast every 3 hours out to 192 hours (8
+        days).</documentation>\r\n          </metadata>\r\n        </catalogRef>\r\n
+        \     </dataset>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Global_2p5deg/catalog.xml\"
+        xlink:title=\"GFS Global 2.5 Degree\" name=\"GFS Global 2.5 Degree\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <documentation type=\"summary\">NCEP
+        GFS Model : AWIPS 228 (A) Grid. Global Lat/Lon grid. Model runs every 12 hours
+        from 204 to 384 hours (8 to 16 days). Horizontal= 73 by 144 points, resolution
+        2.5 degree, Lat/Lon projection. Vertical = 1000 to 100 hPa mandatory pressure
+        levels (10 levels); surface, height above ground, pressure layers.</documentation>\r\n
+        \       </metadata>\r\n      </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Global_onedegree_noaaport/catalog.xml\"
+        xlink:title=\"GFS Global 1.0 Degree (NOAAPORT)\" name=\"GFS Global 1.0 Degree
+        (NOAAPORT)\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">NCEP GFS Model : AWIPS 003 (A) Grid.
+        Global Lat/Lon grid. Model runs are made at 0, 6, 12, and 18Z, with forecasts
+        every 6 hours from 0 to 240 hours (0 to 10 days). Horizontal= 181 by 360 points,
+        resolution 1.0 degree, Lat/Lon projection. Vertical = 1000 to 70 hPa mandatory
+        pressure levels (12 levels); surface, height above ground, pressure layers.</documentation>\r\n
+        \       </metadata>\r\n      </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Pacific_40km/catalog.xml\"
+        xlink:title=\"GFS Pacific 40km\" name=\"GFS Pacific 40km\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <documentation type=\"summary\">NCEP
+        GFS Model : Mercator Grid over most of the Pacific. longitude 110 W to 110
+        E. Model runs are made at 0, 6, 12, and 18Z, with analysis and forecasts every
+        6 hours out 10 days. Horizontal = 300 by 369 points, resolution 40 km, Mercator
+        projection. Vertical = 1000 to 100 hPa mandatory pressure levels (29 levels);
+        surface, height above ground, pressure layers.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Pacific_20km/catalog.xml\"
+        xlink:title=\"GFS Pacific 20km\" name=\"GFS Pacific 20km\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <documentation type=\"summary\">NCEP
+        GFS Model : Mercator Grid over most of the Pacific; longitude 110 W to 110
+        E. Model runs are made at 0, 6, 12, and 18Z, with analysis and forecasts every
+        3 hours out to 84 hours, and every 6 hours out to 10 days. Horizontal = 600
+        by 737 points, resolution 20 km, Mercator projection. Vertical = 1000 to 100
+        hPa mandatory pressure levels (29 levels); surface, height above ground, pressure
+        layers.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Puerto_Rico_0p5deg/catalog.xml\"
+        xlink:title=\"GFS Puerto Rico Half Degree\" name=\"GFS Puerto Rico Half Degree\"
+        harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">NCEP GFS Model : Puerto_Rico 0.5 degree Lat/Lon grid. Model
+        runs are made at 0, 6, 12, 18 hours out to 10 days. Horizontal = 102 by 107
+        points, resolution .5 degree, Lat/Lon projection. Vertical = 1000 to 100 hPa
+        mandatory pressure levels (29 levels); surface, height above ground, pressure
+        layers.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Puerto_Rico_0p25deg/catalog.xml\"
+        xlink:title=\"GFS Puerto Rico Quarter Degree\" name=\"GFS Puerto Rico Quarter
+        Degree\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">NCEP GFS Model : Puerto_Rico 0.25 degree Lat/Lon grid. Model
+        runs are made at 0, 6, 12, and 18Z, with analysis and forecasts every 3 hours
+        out to 84 hours, and every 6 hours out to 10 days. Horizontal = 204 by 213
+        points, resolution 0.25 degree, Lat/Lon projection. Vertical = 1000 to 100
+        hPa mandatory pressure levels (29 levels); surface, height above ground, pressure
+        layers.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/CONUS_80km/catalog.xml\"
+        xlink:title=\"GFS CONUS 80km\" name=\"GFS CONUS 80km\" harvest=\"true\">\r\n
+        \       <dataFormat>GRIB-1</dataFormat>\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">NCEP GFS Model : AWIPS 211 (Q) Grid.
+        Regional - CONUS (Lambert Conformal). Model runs are made at 0, 6, 12, and
+        18Z, with analysis and forecasts every 6 hours out 10 days. Horizontal = 93
+        by 65 points, resolution 81.27 km, LambertConformal projection. Vertical =
+        1000 to 100 hPa pressure levels (29 levels); surface, height above ground,
+        pressure layers.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/CONUS_20km/catalog.xml\"
+        xlink:title=\"GFS CONUS 20km\" name=\"GFS CONUS 20km\" harvest=\"true\">\r\n
+        \       <dataFormat>GRIB-1</dataFormat>\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">NCEP GFS Model : AWIPS 215 (Q) Grid.
+        Regional - CONUS (Lambert Conformal). Model runs are made at 0, 6, 12, and
+        18Z, with analysis and forecasts every 3 hours out to 84 hours, and every
+        6 hours out to 10 days. Horizontal = 372 by 260 points, resolution 20 km,
+        LambertConformal projection. Vertical = 1000 to 100 hPa pressure levels (29
+        levels); surface, height above ground, pressure layers.</documentation>\r\n
+        \       </metadata>\r\n      </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/CONUS_95km/catalog.xml\"
+        xlink:title=\"GFS CONUS 95km\" name=\"GFS CONUS 95km\" harvest=\"true\">\r\n
+        \       <dataFormat>GRIB-2</dataFormat>\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">NCEP GFS Model : AWIPS 213 (H) Grid.
+        National - CONUS - Double Resolution (polar stereographic). Model runs are
+        made at 0, 6, 12, and 18Z, with analysis and forecasts every 6 hours out 4
+        days. Horizontal = 129 by 85 points, resolution 95.25 km, Polar Stereographic
+        projection. Vertical = 1000 to 100 hPa mandatory pressure levels (10 levels);
+        surface, height above ground, pressure layers.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/GFS/Alaska_20km/catalog.xml\"
+        xlink:title=\"GFS Alaska 20km\" name=\"GFS Alaska 20km\" harvest=\"true\">\r\n
+        \       <dataFormat>GRIB-2</dataFormat>\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">NCEP GFS Model : AWIPS 217 (H) Grid.
+        National - Alaska - Double Resolution (polar stereographic). Model runs are
+        made at 0, 6, 12, and 18Z, with analysis and forecasts every 3 hours out to
+        84 hours, and every 6 hours out to 10 days. Horizontal = 520 by 340 points,
+        resolution 20 km, Polar Stereographic projection. Vertical = 1000 to 100 hPa
+        pressure levels (29 levels); surface, height above ground, pressure layers.</documentation>\r\n
+        \       </metadata>\r\n      </catalogRef>\r\n    </dataset>\r\n    <dataset
+        name=\"High Resolution Rapid Refresh (HRRR)\">\r\n      <metadata inherited=\"true\">\r\n
+        \       <serviceName>fullServices</serviceName>\r\n        <authority>edu.ucar.unidata</authority>\r\n
+        \       <dataType>GRID</dataType>\r\n        <dataFormat>GRIB-2</dataFormat>\r\n
+        \     </metadata>\r\n      <dataset name=\"HRRR from NOAA/GSD\">\r\n        <catalogRef
+        xlink:href=\"http://thredds-jumbo.unidata.ucar.edu/thredds/catalog/grib/HRRR/CONUS_3km/surface/catalog.xml\"
+        xlink:title=\"GSD HRRR CONUS 3km surface\" name=\"GSD HRRR CONUS 3km surface\"
+        />\r\n        <catalogRef xlink:href=\"http://thredds-jumbo.unidata.ucar.edu/thredds/catalog/grib/HRRR/CONUS_3km/wrfprs/catalog.xml\"
+        xlink:title=\"GSD HRRR CONUS 3km wrfprs\" name=\"GSD HRRR CONUS 3km wrfprs\"
+        />\r\n      </dataset>\r\n      <dataset name=\"HRRR from NCEP\">\r\n        <metadata
+        inherited=\"true\">\r\n          <documentation type=\"summary\">NCEP High
+        Resolution Rapid Refresh</documentation>\r\n          <documentation xlink:href=\"http://www.nco.ncep.noaa.gov/pmb/products/hrrr/\"
+        xlink:title=\"NCEP Model Notes\" />\r\n          <documentation type=\"summary\">NCEP
+        HRRR Model : AWIPS 184 (C) Grid. 2.5 km NDFD grid over CONUS (Lambert Conformal).
+        Model runs are made hourly. Horizontal = 2145 by 1377 points, resolution 2.5
+        km, Lambert Conformal projection. Vertical = 1000 to 500 hPa mandatory pressure
+        levels (5 levels); surface, height above ground, pressure layers.</documentation>\r\n
+        \       </metadata>\r\n        <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/HRRR/CONUS_2p5km_ANA/catalog.xml\"
+        xlink:title=\"NCEP HRRR CONUS 2.5km Analysis\" name=\"NCEP HRRR CONUS 2.5km
+        Analysis\" harvest=\"true\">\r\n          <dataFormat>GRIB-2</dataFormat>\r\n
+        \         <metadata inherited=\"true\">\r\n            <documentation type=\"summary\">This
+        collection contains analysis grids only.</documentation>\r\n          </metadata>\r\n
+        \       </catalogRef>\r\n        <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/HRRR/CONUS_2p5km/catalog.xml\"
+        xlink:title=\"NCEP HRRR CONUS 2.5km\" name=\"NCEP HRRR CONUS 2.5km\" harvest=\"true\">\r\n
+        \         <dataFormat>GRIB-2</dataFormat>\r\n          <metadata inherited=\"true\">\r\n
+        \           <documentation type=\"summary\">Forecasts grids every hour out
+        15 hours.</documentation>\r\n          </metadata>\r\n        </catalogRef>\r\n
+        \     </dataset>\r\n    </dataset>\r\n    <dataset name=\"North American Model
+        (NAM)\">\r\n      <metadata inherited=\"true\">\r\n        <documentation
+        type=\"summary\">NCEP Nonhydrostatic Mesoscale Model (NMM) and Gridpoint Statistical
+        Interpolation (GSI) analysis, running in the Weather Research and Forecasting
+        (WRF) infrastructure.</documentation>\r\n        <documentation xlink:href=\"http://meted.ucar.edu/nwp/pcu2/NAMWRFjun2006.htm\"
+        xlink:title=\"COMET MetEd (Meteorology Education and Training) documentation\"
+        />\r\n        <documentation xlink:href=\"http://www.nco.ncep.noaa.gov/pmb/products/nam/\"
+        xlink:title=\"NCEP NAM product inventory\" />\r\n      </metadata>\r\n      <catalogRef
+        xlink:href=\"/thredds/catalog/grib/NCEP/NAM/Alaska_11km/catalog.xml\" xlink:title=\"NAM
+        Alaska 11km\" name=\"NAM Alaska 11km\" harvest=\"true\">\r\n        <metadata
+        inherited=\"true\">\r\n          <documentation type=\"summary\">NCEP North
+        American Model: AWIPS 242 (S) Grid over Alaska. Model runs are made at 0,
+        6, 12, 18Z with analysis and forecasts every 3 hours out to 84 hours (3.5
+        days). Horizontal = 553 by 425 points, resolution 11.25 km, Polar Stereographic
+        projection. Vertical = 1000 to 100 hPa pressure levels.</documentation>\r\n
+        \       </metadata>\r\n      </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/Alaska_45km/noaaport/catalog.xml\"
+        xlink:title=\"NAM Alaska 45km from NOAAPORT\" name=\"NAM Alaska 45km from
+        NOAAPORT\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <dataFormat>GRIB-1</dataFormat>\r\n          <documentation type=\"summary\">NCEP
+        North American Model : AWIPS 216 (V) grid over Alaska. Model runs are made
+        at 0 and 12Z, with analysis and forecasts every 3 hours out to 60 hours. Horizontal
+        = 139 by 107 points, resolution 45.0 km, Polar Stereographic projection. Vertical
+        = 1000 to 50 hPa pressure levels.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/Alaska_45km/conduit/catalog.xml\"
+        xlink:title=\"NAM Alaska 45km from CONDUIT\" name=\"NAM Alaska 45km from CONDUIT\"
+        harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">NCEP North American Model : AWIPS 216 (V) grid over Alaska.
+        Model runs are made at 00Z, 06Z, 12Z, and 18Z with analysis and forecasts
+        every 3 hours out to 84 hours (3.5 days). Horizontal = 139 by 107 points,
+        resolution 45.0 km, Polar Stereographic projection. Vertical = 1000 to 50
+        hPa pressure levels.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/Alaska_95km/catalog.xml\"
+        xlink:title=\"NAM Alaska 95km\" name=\"NAM Alaska 95km\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <dataFormat>GRIB-1</dataFormat>\r\n
+        \         <documentation type=\"summary\">NCEP North American Model : AWIPS
+        207 (N) Regional - Alaska. Model runs are made at 0 and 12Z, with analysis
+        and forecasts every 6 hours out to 60 hours. Horizontal = 49 by 35 points,
+        resolution 95.25 km, Stereographic projection. Vertical = 1000 to 100 hPa
+        pressure levels.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_12km/catalog.xml\"
+        xlink:title=\"NAM CONUS 12km from NOAAPORT\" name=\"NAM CONUS 12km from NOAAPORT\"
+        harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">NCEP North American Model : AWIPS 218 (B) grid over the continental
+        United States. Model runs are made at 06Z, 12Z, 18Z and 00Z, with analysis
+        and forecasts every 3 hours out to 84 hours (3.5 days). Horizontal = 614 by
+        428 points, resolution 12.19 km, LambertConformal projection. Vertical = 1000
+        to 100 hPa pressure levels (29).</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_12km/conduit/catalog.xml\"
+        xlink:title=\"NAM CONUS 12km from CONDUIT\" name=\"NAM CONUS 12km from CONDUIT\"
+        harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">NCEP North American Model : AWIPS 218 (B) grid over the continental
+        United States. Model runs are made at 06Z, 12Z, 18Z and 00Z, with analysis
+        and forecasts every hour, out to 36 hours, and then every three hours out
+        to 84 hours (3.5 days). Horizontal = 614 by 428 points, resolution 12.19 km,
+        LambertConformal projection. Vertical = small number of mandatory pressure
+        levels, lots of surface fields.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_20km/noaaport/catalog.xml\"
+        xlink:title=\"NAM CONUS 20km\" name=\"NAM CONUS 20km\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <dataFormat>GRIB-1</dataFormat>\r\n
+        \         <documentation type=\"summary\">Model runs are made at 00Z, and
+        12Z with analysis and forecasts every 3 hours out to 60 hours; and at 06Z,
+        and 18Z with analysis and forecasts every 3 hours out to 48 hours. Vertical
+        = surface, height above ground, and 1000 to 30 hPa pressure levels.</documentation>\r\n
+        \       </metadata>\r\n      </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_40km/conduit/catalog.xml\"
+        xlink:title=\"NAM CONUS 40km\" name=\"NAM CONUS 40km\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <documentation type=\"summary\">NCEP
+        North American Model : AWIPS 212 (R) Regional - CONUS - Double Resolution.
+        Horizontal = 185 by 129 points, resolution 40.63 km; LambertConformal projection.
+        Vertical = surface, 1000 to 50 hPa pressure levels, layers, and depth. Model
+        runs are made at 00Z, 06Z, 12Z, and 18Z and have analysis and forecasts every
+        3 hours out to 84 hours.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/CONUS_80km/catalog.xml\"
+        xlink:title=\"NAM CONUS 80km\" name=\"NAM CONUS 80km\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <dataFormat>GRIB-1</dataFormat>\r\n
+        \         <documentation type=\"summary\">NCEP North American Model : AWIPS
+        211 (Q) Regional - CONUS (Lambert Conformal). Model runs are made at 12Z and
+        00Z, with analysis and forecasts every 6 hours out to 60 hours. Horizontal
+        = 93 by 65 points, resolution 81.27 km, LambertConformal projection. Vertical
+        = 1000 to 100 hPa pressure levels.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/Polar_90km/catalog.xml\"
+        xlink:title=\"NAM Polar 90km\" name=\"NAM Polar 90km\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <documentation type=\"summary\">NCEP
+        North American Model : AWIPS 105 Grid. Model runs are made at 0, 6, 12, and
+        18Z, with analysis and forecasts every 3 hours out to 84 hours. Horizontal
+        = 147 by 110 points, resolution 90.75 km, Polar Stereographic projection.
+        Vertical = 1000 to 50 hPa pressure levels.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/NAM/Firewxnest/catalog.xml\"
+        xlink:title=\"NAM Fireweather Nested\" name=\"NAM Fireweather Nested\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <documentation type=\"summary\">The
+        FWIS runs are high resolution innermost nests of the new NAM that are placeable
+        within either the 4 km CONUS or 6 km Alaska nests that run each cycle at 00z,
+        06z, 12z and 18z, with forecasts to 36 hours. If it is placed inside the CONUS,
+        then it runs with a 1.33 km horizontal spacing using a 375x375x60 grid. If
+        it is placed inside Alaska, then it runs with a 1.5 km horizontal spacing
+        using a 333x333x60 grid. FWIS runs on a rotated lat-long grid and uses a B-grid
+        stagger of variables. The vertical coordinate and resolution are identical
+        to NAM and its nests \u2013 i.e. sigma-pressure hybrid with a top at 2 mb.
+        For FWIS inside CONUS, all output fields are mapped to a 1.27 km Lambert conic
+        conformal grid whose size varies to encompass as completely as possible the
+        FWIS computational domain. For FWIS inside Alaska, all output fields are mapped
+        to a 1.48825 km polar-stereographic grid whose size varies to encompass as
+        completely as possible the FWIS computational domain.</documentation>\r\n
+        \         <documentation xlink:href=\"http://www.emc.ncep.noaa.gov/mmb/mmbpll/firewx/\"
+        xlink:title=\"NCEP NAM Fire weather product inventory\" />\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n    </dataset>\r\n    <dataset name=\"Rapid Refresh
+        (RAP)\">\r\n      <metadata inherited=\"true\">\r\n        <documentation
+        type=\"summary\">NCEP Rapid Refresh (RR / RAP)) Model: frequently updated
+        short-range weather forecasts. Replaced the Rapid Update Cycle (RUC/RUC2)
+        on 05 May 2012 12Z. Model runs are made hourly, with analysis and hourly forecasts
+        out to 3 hours; on the 0, 3, 6, 9, 12, 15, 18, and 21Z runs, the hourly forecasts
+        go out to 12 hours</documentation>\r\n        <documentation xlink:href=\"http://rapidrefresh.noaa.gov/\"
+        xlink:title=\"Earth System Research Laboratory (ESRL)\" />\r\n      </metadata>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/RAP/CONUS_13km/catalog.xml\"
+        xlink:title=\"Rapid Refresh CONUS 13km\" name=\"Rapid Refresh CONUS 13km\"
+        harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">Horizontal = 337 by 451 points, resolution 13.55 km, LambertConformal
+        projection.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/RAP/CONUS_20km/catalog.xml\"
+        xlink:title=\"Rapid Refresh CONUS 20km\" name=\"Rapid Refresh CONUS 20km\"
+        harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">Horizontal = 301 by 225 points, resolution 20.31 km, Lambert
+        Conformal projection.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/RAP/CONUS_40km/catalog.xml\"
+        xlink:title=\"Rapid Refresh CONUS 40km\" name=\"Rapid Refresh CONUS 40km\"
+        harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <dataFormat>GRIB-2</dataFormat>\r\n
+        \         <documentation type=\"summary\">Horizontal = 151 by 113 points,
+        resolution 40.63 km, LambertConformal projection.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n    </dataset>\r\n    <dataset name=\"Short Range Ensemble
+        Forecasting (SREF)\">\r\n      <metadata inherited=\"true\">\r\n        <documentation
+        type=\"summary\">NCEP Short Range Ensemble Forecast (SREF)</documentation>\r\n
+        \       <documentation xlink:href=\"http://w1.spc.woc.noaa.gov/exper/sref/\"
+        xlink:title=\"NCEP/SREF Website\" />\r\n      </metadata>\r\n      <catalogRef
+        xlink:href=\"/thredds/catalog/grib/NCEP/SREF/CONUS_40km/ensprod/catalog.xml\"
+        xlink:title=\"SREF CONUS 40km Ensemble Derived Products\" name=\"SREF CONUS
+        40km Ensemble Derived Products\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">NCEP Short Range Ensemble Forecast
+        (SREF) 40km derived products: mean, spread, and probability, over CONUS with
+        185 by 129 points, resolution 40 km. Models are run daily at 3,9,15,and 21Z.
+        Forecasts every 3 hours from 3 to 87 hours.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/SREF/CONUS_40km/ensprod_biasc/catalog.xml\"
+        xlink:title=\"SREF CONUS 40km Ensemble Derived Products (Bias Corrected)\"
+        name=\"SREF CONUS 40km Ensemble Derived Products (Bias Corrected)\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <documentation type=\"summary\">NCEP
+        Short Range Ensemble Forecast (SREF) 40km derived products: bias-corrected
+        mean, spread, and probability, over CONUS with 185 by 129 points, resolution
+        40 km. Models are run daily at 3,9,15,and 21Z. Forecasts every 3 hours from
+        3 to 87 hours.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/SREF/Alaska_45km/ensprod/catalog.xml\"
+        xlink:title=\"SREF Alaska 45km Ensemble Derived Products\" name=\"SREF Alaska
+        45km Ensemble Derived Products\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">NCEP SREF Alaska 45km derived products:mean,
+        spread, and probability.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/SREF/PacificNE_0p4/ensprod/catalog.xml\"
+        xlink:title=\"SREF Pacific North East 0.4 Degree Ensemble Derived Products\"
+        name=\"SREF Pacific North East 0.4 Degree Ensemble Derived Products\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <documentation type=\"summary\">NCEP
+        SREF Pacific NE 0.4 degree derived products:mean, spread, and probability.</documentation>\r\n
+        \       </metadata>\r\n      </catalogRef>\r\n    </dataset>\r\n    <dataset
+        name=\"Wave Watch III (WW3)\">\r\n      <metadata inherited=\"true\">\r\n
+        \       <documentation type=\"summary\">NCEP Wave Watch III (WW3): US National
+        Weather Service gridded forecasts of sensible weather elements.</documentation>\r\n
+        \       <documentation xlink:href=\"http://polar.ncep.noaa.gov/waves/products.shtml\"
+        xlink:title=\"NWS/WW3 Website\" />\r\n      </metadata>\r\n      <catalogRef
+        xlink:href=\"/thredds/catalog/grib/NCEP/WW3/Global/catalog.xml\" xlink:title=\"Wave
+        Watch III Global\" name=\"Wave Watch III Global\" harvest=\"true\">\r\n        <metadata
+        inherited=\"true\">\r\n          <documentation type=\"summary\">720 by 336
+        points, resolution 30 minute. Models are run daily at 0Z, 6Z, 12Z and 18Z.
+        Forecasts every 3 hours from 0 to 72, every 6 hours from 72 to 180 hours.</documentation>\r\n
+        \       </metadata>\r\n      </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/WW3/Regional_Alaska/catalog.xml\"
+        xlink:title=\"Wave Watch III Regional Alaska\" name=\"Wave Watch III Regional
+        Alaska\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">401 by 187 points, resolution 10 minute. Models are run daily
+        at 0Z, 6Z, 12Z and 18Z. Forecasts every 3 hours from 0 to 72, every 6 hours
+        from 72 to 180 hours.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/WW3/Coastal_Alaska/catalog.xml\"
+        xlink:title=\"Wave Watch III Coastal Alaska\" name=\"Wave Watch III Coastal
+        Alaska\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">548 by 391 points, resolution 4 minute. Models are run daily
+        at 0Z, 6Z, 12Z and 18Z. Forecasts every 3 hours from 0 to 72, every 6 hours
+        from 72 to 180 hours.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/WW3/Regional_Eastern_Pacific/catalog.xml\"
+        xlink:title=\"Wave Watch III Regional Eastern Pacific\" name=\"Wave Watch
+        III Regional Eastern Pacific\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">511 by 301 points, resolution 10
+        minute. Models are run daily at 0Z, 6Z, 12Z and 18Z. Forecasts every 3 hours
+        from 0 to 72, every 6 hours from 72 to 180 hours.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/WW3/Regional_US_East_Coast/catalog.xml\"
+        xlink:title=\"Wave Watch III Regional US East Coast\" name=\"Wave Watch III
+        Regional US East Coast\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">301 by 331 points, resolution 10
+        minute. Models are run daily at 0Z, 6Z, 12Z and 18Z. Forecasts every 3 hours
+        from 0 to 72, every 6 hours from 72 to 180 hours.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/WW3/Regional_US_West_Coast/catalog.xml\"
+        xlink:title=\"Wave Watch III Regional US West Coast\" name=\"Wave Watch III
+        Regional US West Coast\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">241 by 151 points, resolution 10
+        minute. Models are run daily at 0Z, 6Z, 12Z and 18Z. Forecasts every 3 hours
+        from 0 to 72, every 6 hours from 72 to 180 hours.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/WW3/Coastal_US_East_Coast/catalog.xml\"
+        xlink:title=\"Wave Watch III Coastal US East Coast\" name=\"Wave Watch III
+        Coastal US East Coast\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">586 by 481 points, resolution 4
+        minute. Models are run daily at 0Z, 6Z, 12Z and 18Z. Forecasts every 3 hours
+        from 0 to 72, every 6 hours from 72 to 180 hours.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/NCEP/WW3/Coastal_US_West_Coast/catalog.xml\"
+        xlink:title=\"Wave Watch III Coastal US West Coast\" name=\"Wave Watch III
+        Coastal US West Coast\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">736 by 526 points, resolution 4
+        minute. Models are run daily at 0Z, 6Z, 12Z and 18Z. Forecasts every 3 hours
+        from 0 to 72, every 6 hours from 72 to 180 hours.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n    </dataset>\r\n  </dataset>\r\n  <dataset name=\"FNMOC
+        Forecast Models\">\r\n    <metadata inherited=\"true\">\r\n      <serviceName>fullServices</serviceName>\r\n
+        \     <authority>edu.ucar.unidata</authority>\r\n      <dataType>Grid</dataType>\r\n
+        \     <dataFormat>GRIB-1</dataFormat>\r\n      <documentation xlink:href=\"http://www.usno.navy.mil/FNMOC/\"
+        xlink:title=\"FNMOC Home page\" />\r\n      <documentation type=\"rights\">Freely
+        available</documentation>\r\n      <documentation type=\"processing_level\">Transmitted
+        through Unidata Internet Data Distribution.</documentation>\r\n      <documentation
+        type=\"processing_level\">Read by CDM Grib Collection.</documentation>\r\n
+        \     <creator>\r\n        <name vocabulary=\"DIF\">Fleet Numerical Meteorology
+        and Oceanography Center(FNMOC)</name>\r\n        <contact url=\"http://gcmd.nasa.gov/Aboutus/software_docs/help_guide.html\"
+        email=\"http://gcmd.nasa.gov/MailComments/MailComments.jsf?rcpt=gcmduso\"
+        />\r\n      </creator>\r\n      <publisher>\r\n        <name vocabulary=\"ADN\">University
+        Corporation for Atmospheric Research (UCAR)/Unidata</name>\r\n        <contact
+        url=\"http://www.unidata.ucar.edu/\" email=\"support@unidata.ucar.edu\" />\r\n
+        \     </publisher>\r\n      <timeCoverage>\r\n        <end>present</end>\r\n
+        \       <duration>45 days</duration>\r\n      </timeCoverage>\r\n    </metadata>\r\n
+        \   <dataset name=\"NAVy Global Environmental Model (NAVGEM) Model\">\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/FNMOC/NAVGEM/Global_0p5deg/catalog.xml\"
+        xlink:title=\"FNMOC NAVGEM Global 0.5 Degree\" name=\"FNMOC NAVGEM Global
+        0.5 Degree\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">FNMOC NAVGEM Global_0p5deg Model
+        : Global Lat/Lon grid. Model runs are made at 0, 6, 12, and 18Z, with analysis
+        and forecasts every 3 hours out 66 hours. Horizontal = 361 by 720 points,
+        resolution 0.5 degree, Lat/Lon projection. Vertical = 1013 to 4 hPa pressure
+        levels (33 levels); surface, height above ground, pressure layers.</documentation>\r\n
+        \       </metadata>\r\n      </catalogRef>\r\n    </dataset>\r\n    <dataset
+        name=\"Wave Watch 3 (WW3) Model\">\r\n      <metadata inherited=\"true\">\r\n
+        \       <documentation xlink:href=\"https://www.fnmoc.navy.mil/ww3_cgi/index.html\"
+        xlink:title=\"FNMOC WW3 documentation\" />\r\n      </metadata>\r\n      <catalogRef
+        xlink:href=\"/thredds/catalog/grib/FNMOC/WW3/Global_1p0deg/catalog.xml\" xlink:title=\"FNMOC
+        WW3 Global 1.0 Degree\" name=\"FNMOC WW3 Global 1.0 Degree\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <documentation type=\"summary\">FNMOC
+        WW3 Global_1p0deg Model : Global Lat/Lon grid. Model runs are made at 0, and
+        12Z, with analysis and forecasts every 3 hours out 24 hours then every 6 hours
+        out 180 hours. Horizontal= 181 by 360 points, resolution 1 degree, Lat/Lon
+        projection.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/FNMOC/WW3/Europe/catalog.xml\"
+        xlink:title=\"FNMOC WW3 Europe\" name=\"FNMOC WW3 Europe\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <documentation type=\"summary\">FNMOC
+        WW3 Europe Model : Global Lat/Lon grid. Model runs are made at 0, and 12Z,
+        with analysis and forecasts every 6 hours out 72 hours. Horizontal= 188 by
+        301 points, resolution .2 degree, Lat/Lon projection.</documentation>\r\n
+        \       </metadata>\r\n      </catalogRef>\r\n    </dataset>\r\n    <dataset
+        name=\"Forecast of Aerosol Radiative Optical Properties (FAROP) Model\">\r\n
+        \     <metadata inherited=\"true\">\r\n        <documentation xlink:href=\"http://www.bsc.es/wmo/files/Westphal_presentation.pdf\"
+        xlink:title=\"FAROP documentation(pdf)\" />\r\n      </metadata>\r\n      <catalogRef
+        xlink:href=\"/thredds/catalog/grib/FNMOC/FAROP/Global_1p0deg/catalog.xml\"
+        xlink:title=\"FNMOC FAROP Global 1.0 Degree\" name=\"FNMOC FAROP Global 1.0
+        Degree\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">FNMOC FAROP Global_1p0deg Model : Global Lat/Lon grid. Model
+        runs are made at 0, 6, 12, and 18Z, with analysis and forecasts every 3 hours
+        out 9 hours. Horizontal= 181 by 360 points, resolution 1 degree, Lat/Lon projection.</documentation>\r\n
+        \       </metadata>\r\n      </catalogRef>\r\n    </dataset>\r\n    <dataset
+        name=\"Coupled Ocean / Atmosphere Mesoscale Prediction System (COAMPS) Model\">\r\n
+        \     <metadata inherited=\"true\">\r\n        <documentation xlink:href=\"http://www.nrlmry.navy.mil/coamps-web/web/home\"
+        xlink:title=\"COAMPS home page\" />\r\n        <documentation xlink:href=\"http://gcmd.nasa.gov/records/COAMPS.html\"
+        xlink:title=\"GCMD Notes\" />\r\n      </metadata>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/FNMOC/COAMPS/Western_Atlantic/catalog.xml\"
+        xlink:title=\"FNMOC COAMPS Western Atlantic\" name=\"FNMOC COAMPS Western
+        Atlantic\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">FNMOC COAMPS Western Atlantic Model
+        : Global Lat/Lon grid. Model runs are made at 0 and 12Z, with analysis and
+        forecasts every 3 hours out 72 hours. Horizontal= 176 by 191 points, resolution
+        .2 degree, Lat/Lon projection.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/FNMOC/COAMPS/Europe/catalog.xml\"
+        xlink:title=\"FNMOC COAMPS Europe\" name=\"FNMOC COAMPS Europe\" harvest=\"true\">\r\n
+        \       <metadata inherited=\"true\">\r\n          <documentation type=\"summary\">FNMOC
+        COAMPS Europe Model : Global Lat/Lon grid. Model runs are made at 0 and 12Z,
+        with analysis and forecasts every 6 hours out 96 hours. Horizontal= 186 by
+        301 points, resolution .2 degree, Lat/Lon projection.</documentation>\r\n
+        \       </metadata>\r\n      </catalogRef>\r\n      <catalogRef xlink:href=\"/thredds/catalog/grib/FNMOC/COAMPS/Equatorial_America/catalog.xml\"
+        xlink:title=\"FNMOC COAMPS Equatorial America\" name=\"FNMOC COAMPS Equatorial
+        America\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">FNMOC COAMPS Equatorial America Model : Global Lat/Lon grid.
+        Model runs are made at 0 and 12Z, with analysis and forecasts every 3 hours
+        out 48 hours. Horizontal= 298 by 461 points, resolution 0.15 degree, Lat/Lon
+        projection.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/FNMOC/COAMPS/Northeast_Pacific/catalog.xml\"
+        xlink:title=\"FNMOC COAMPS Northeast Pacific\" name=\"FNMOC COAMPS Northeast
+        Pacific\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">FNMOC COAMPS Northeastern Pacific Model : Global Lat/Lon
+        grid. Model runs are made at 0 and 12Z, with analysis and forecasts every
+        3 hours out 48 hours. Horizontal= 156 by 271 points, resolution .2 degree,
+        Lat/Lon projection.</documentation>\r\n        </metadata>\r\n      </catalogRef>\r\n
+        \     <catalogRef xlink:href=\"/thredds/catalog/grib/FNMOC/COAMPS/Southern_California/catalog.xml\"
+        xlink:title=\"FNMOC COAMPS Southern California\" name=\"FNMOC COAMPS Southern
+        California\" harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n
+        \         <documentation type=\"summary\">FNMOC COAMPS Southern California
+        Model : Global Lat/Lon grid. Model runs are made at 0 and 12Z, with analysis
+        and forecasts every 3 hours out 48 hours. Horizontal= 141 by 128 points, resolution
+        .15 degree, Lat/Lon projection.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n    </dataset>\r\n    <dataset name=\"Navy Coupled
+        Ocean Data Assimilation (NCODA) Model\">\r\n      <metadata inherited=\"true\">\r\n
+        \       <documentation xlink:href=\"http://coastalmodeling.rsmas.miami.edu/Application/View/21/MQ==\"
+        xlink:title=\"NCODA documentation\" />\r\n      </metadata>\r\n      <catalogRef
+        xlink:href=\"/thredds/catalog/grib/FNMOC/NCODA/Global_Ocean/catalog.xml\"
+        xlink:title=\"FNMOC NCODA Global Ocean\" name=\"FNMOC NCODA Global Ocean\"
+        harvest=\"true\">\r\n        <metadata inherited=\"true\">\r\n          <documentation
+        type=\"summary\">FNMOC NCODA Model : Global Lat/Lon grid. Model runs are made
+        at 12Z, with analysis and forecasts at 0Z. Horizontal= 721 by 1440 points,
+        resolution .25 degree, Lat/Lon projection.</documentation>\r\n        </metadata>\r\n
+        \     </catalogRef>\r\n    </dataset>\r\n  </dataset>\r\n</catalog>\r\n"}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [Keep-Alive]
+      Content-Language: [en-US]
+      Content-Type: [application/xml;charset=UTF-8]
+      Date: ['Wed, 01 Nov 2017 03:51:55 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Server: [Apache/2.4.27 (Unix) OpenSSL/1.0.1e-fips mod_jk/1.2.42]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: '200'}
+version: 1
