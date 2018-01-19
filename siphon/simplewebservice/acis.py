@@ -6,7 +6,7 @@ from ..http_util import create_http_session
 
 
 def acis_request(method, params):
-    """Requests data from the ACIS Web Services API.
+    """Request data from the ACIS Web Services API.
 
     Makes a request from the ACIS Web Services API for data
     based on a given method (StnMeta,StnData,MultiStnData,GridData,General)

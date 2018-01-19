@@ -39,10 +39,10 @@ def test_acis_multistn():
 
 def test_acis_griddata():
     """Testing ACIS Gridded Data request."""
-    data = acis_request('GridData', {'loc': '-95.36, 29.76', 'sdate': '2000-01',
-                        'edate': '2000-07', 'grid': '3', 'elems': [
-                        {'name': 'maxt', 'interval': 'mly', 'reduce': 'max',
-                        'smry': 'max'}]})
+    data = acis_request('GridData',
+                        {'loc': '-95.36, 29.76', 'sdate': '2000-01', 'edate': '2000-07',
+                         'grid': '3', 'elems': [{'name': 'maxt', 'interval': 'mly',
+                                                 'reduce': 'max', 'smry': 'max'}]})
 
     assert data['data'][0][1] == 81
 
