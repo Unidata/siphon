@@ -79,7 +79,7 @@ stnName = myData['meta']['name']
 avgt = []
 dates = []
 for obs in myData['data']:
-    if obs[0][-2:] == '01':
+    if obs[0].endswith('01'):
         dates.append(obs[0])
     else:
         dates.append('')

@@ -93,7 +93,7 @@ pcpn_dep = []
 
 for stn in myData['data']:
     # Skip threaded stations! They have no lat/lons
-    if stn['meta']['sids'][-1][-1] == '9':
+    if stn['meta']['sids'][-1].endswith('9'):
         continue
     # Skip stations with missing data
     if stn['smry'][0] == 'M' or stn['smry'][1] == 'M':
