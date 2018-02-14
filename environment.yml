@@ -13,7 +13,6 @@ dependencies:
   - sphinx-gallery
   - doc8
   - pytest
-  - pytest-catchlog
   - pytest-cov
   - pytest-flake8
   - pytest-runner
