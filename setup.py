@@ -46,7 +46,7 @@ setup(
     extras_require={
         'netcdf': 'netCDF4>=1.1.0',
         'dev': 'ipython[all]>=3.1',
-        'test': ['pytest', 'pytest-catchlog', 'pytest-flake8', 'pytest-runner',
+        'test': ['pytest', 'pytest-flake8', 'pytest-runner',
                  'netCDF4>=1.1.0',
                  'flake8>3.2.0', 'flake8-builtins', 'flake8-comprehensions',
                  'flake8-copyright', 'flake8-docstrings', 'flake8-import-order',
