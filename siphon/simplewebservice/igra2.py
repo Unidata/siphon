@@ -4,16 +4,17 @@
 """Read upper air data from the Integrated Global Radiosonde Archive version 2."""
 
 import datetime
-import warnings
 import itertools
-import numpy as np
-import pandas as pd
-import sys
-
 from io import BytesIO
 from io import StringIO
-from zipfile import ZipFile
 from urllib.request import urlopen
+from zipfile import ZipFile
+import sys
+import warnings
+import numpy as np
+import pandas as pd
+
+
 from .._tools import get_wind_components
 
 warnings.filterwarnings('ignore', 'Pandas doesn\'t allow columns to be created', UserWarning)
@@ -23,10 +24,8 @@ class IGRAUpperAir:
     """Download and parse data from NCEI's Integrated Radiosonde
     Archive version 2.
     """
-
     def __init__(self):
-        """Set ftp site address and file suffix based on desired dataset"""
-
+        """Set ftp site address and file suffix based on desired dataset."""
         self.ftpsite = 'ftp://ftp.ncdc.noaa.gov/pub/data/igra/'
         self.suffix = ''
         self.begin_date = ''
@@ -40,7 +39,7 @@ class IGRAUpperAir:
         Parameters
         --------
         site_id : str
-            11-character IGRA2 station identifier
+            11-character IGRA2 station identifier.
 
         time : datetime
            The date and time of the desired observation. If list of two times is given,
@@ -48,9 +47,8 @@ class IGRAUpperAir:
 
         Returns
         -------
-            :class: `pandas.DataFrame` containing the data
+            :class: `pandas.DataFrame` containing the data.
         """
-
         igra2 = cls()
         
         # Set parameters for data query
@@ -79,10 +77,9 @@ class IGRAUpperAir:
 
         Return:
         -------
-            :class: `pandas.DataFrame` containing the body data
-            :class: `pandas.DataFrame` containing the header data
+            :class: `pandas.DataFrame` containing the body data.
+            :class: `pandas.DataFrame` containing the header data.
         """
-
         # Split the list of times into begin and end dates. If only
         # one date is supplied, set both begin and end dates equal to that date.
 
@@ -102,10 +99,11 @@ class IGRAUpperAir:
 
     def _get_data_raw(self):
         """Download the IGRA2 file containing site_id observations,
-        and search for observations matching the time range. Returns a tuple
-        with a string for the body, string for the headers, and a list of dates
-        """
+        and search for observations matching the time range.
 
+        Returns a tuple with a string for the body, string for the headers,
+        and a list of dates.
+        """
         with urlopen(self.ftpsite + self.site_id + self.suffix + '.zip') as url:
             f = ZipFile(BytesIO(url.read()), 'r').open(self.site_id + self.suffix)
 
@@ -122,7 +120,7 @@ class IGRAUpperAir:
         Parameters
         -----
         lines: list
-            list of lines from the IGRA2 data file
+            list of lines from the IGRA2 data file.
         """
         headers = []
         num_lev = []
@@ -172,7 +170,8 @@ class IGRAUpperAir:
 
     def _get_fwf_params(self):
         """Produce a dictionary with names, colspecs, and dtype for IGRA2 data.
-        Returns a dict with entries 'body' and 'header'. """
+        Returns a dict with entries 'body' and 'header'.
+        """
 
         def _cdec(power=1):
             """Make a function that takes input string in form value*10^power,
@@ -191,11 +190,9 @@ class IGRAUpperAir:
                 return 0
 
         def _ctime(strformat='MMMSS'):
-            """Returns a function converting time string from
-            MMMSS or HHMM to seconds. Returned function takes
-            a string input "val"
+            """Convert a time string from MMMSS or HHMM to seconds,
+            returning a function that takes a string input "val".
             """
-
             def _ctime_strformat(val):
                 time = val.strip().zfill(5)
 
@@ -278,7 +275,7 @@ class IGRAUpperAir:
                            'month': int,
                            'day': int,
                            'hour': int,
-                           'release_time': _ctime(strformat="HHMM"),
+                           'release_time': _ctime(strformat='HHMM'),
                            'number_levels': int,
                            'precipitable_water': _cdec(power=2),
                            'inv_pressure': _cdec(power=2),
@@ -315,7 +312,7 @@ class IGRAUpperAir:
 
             conv_body = {'lvltyp1': int,
                          'lvltyp2': int,
-                         'etime': _ctime(strformat="MMMSS"),
+                         'etime': _ctime(strformat='MMMSS'),
                          'pressure': _cdec(power=2),
                          'pflag': _cflag,
                          'height': int,
@@ -431,6 +428,6 @@ class IGRAUpperAir:
         else:
             df.units = {'release_time': 's',
                         'latitude': 'degrees',
-                        'latitude': 'degrees'}
+                        'longitude': 'degrees'}
 
         return df
