@@ -454,7 +454,7 @@ class HTTPEndPoint(object):
         """
         resp = self._session.get(path, params=params)
         if resp.status_code != 200:
-            if resp.headers['Content-Type'].startswith('text/html'):
+            if resp.headers.get('Content-Type', '').startswith('text/html'):
                 text = resp.reason
             else:
                 text = resp.text
