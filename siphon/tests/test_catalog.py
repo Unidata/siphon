@@ -302,3 +302,13 @@ def test_catalog_ref_str():
     url = 'http://thredds.ucar.edu/thredds/catalog.xml'
     cat = TDSCatalog(url)
     assert str(cat.catalog_refs[0]) == 'Forecast Model Data'
+
+
+@recorder.use_cassette('ncei_embedded_metadata')
+def test_catalog_with_embedded_metadata_elements():
+    """Test catalog with embedded metadata elements."""
+    url = 'https://www.ncei.noaa.gov/thredds/catalog/namanl/201802/20180220/catalog.xml'
+    cat = TDSCatalog(url)
+    md = cat.metadata
+    assert 'external_metadata' in md
+    assert 'serviceName' in md
