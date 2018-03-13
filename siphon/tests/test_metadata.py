@@ -580,3 +580,38 @@ class TestMetadata(object):
         assert len(md['timeCoverage']) == 1
         assert md['timeCoverage'][0]['end'] == 'present'
         assert md['timeCoverage'][0]['duration'] == '45 days'
+
+    def test_external_metadata(self):
+        """Test an embedded metadata element that points to an external document."""
+        xml = '<metadata inherited="true">' \
+              '<serviceName>ALL</serviceName>' \
+              '<metadata xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=' \
+              '"http://gis.ncdc.noaa.gov/geoportal/rest/document?' \
+              'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}" ' \
+              'xlink:title="ISO 19115-2:2009(E) - Collection Level Metadata"/>' \
+              '</metadata>'
+        element = ET.fromstring(xml)
+        md = TDSCatalogMetadata(element).metadata
+        # make sure other metadata is still captured
+        assert 'serviceName' in md
+        # make sure the embedded metadata element gets processed and added
+        expected_title = 'ISO 19115-2:2009(E) - Collection Level Metadata'
+        expected_href = 'http://gis.ncdc.noaa.gov/geoportal/rest/document?' \
+                        'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}'
+        assert 'external_metadata' in md
+        assert expected_title in md['external_metadata']
+        assert md['external_metadata'][expected_title] == expected_href
+
+    def test_external_metadata_non_xlink(self, caplog):
+        """Test an non-xlink embedded external metadata element."""
+        xml = '<metadata inherited="true">' \
+              '<serviceName>ALL</serviceName>' \
+              '<metadata url="http://gis.ncdc.noaa.gov/geoportal/rest/document?' \
+              'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}" ' \
+              'name="ISO 19115-2:2009(E) - Collection Level Metadata"/>' \
+              '</metadata>'
+        element = ET.fromstring(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert 'serviceName' in md
+        assert 'external_metadata' not in md
+        assert 'Cannot parse embedded metadata element' in caplog.text
