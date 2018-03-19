@@ -12,14 +12,13 @@ class IemAsos:
     """
     IEM ASOS data object. Handles data collection.
     """
-    def __init__(self, state, sites, startDate=None, endDate=None):
+    def __init__(self, sites, startDate=None, endDate=None):
         if startDate is None:
             self.startDate = datetime.datetime.now()
             self.endDate = datetime.datetime.now()
         elif endDate is None:
-            self.endDate = datetime.datetime(today)
+            self.endDate = datetime.datetime.now()
 
-        self.state = state
         self.sites = sites
         self.getData()
         self.parseData()
@@ -52,4 +51,51 @@ class IemAsos:
         """
         Parses IEM ASOS data returned by getData method.
         """
-        print(self.rawData)
+
+        splitData = self.rawData.split('\n')
+
+        i = 0
+        data = []
+        head = []
+        for row in splitData:
+            subRow = row.split(',')
+
+            if i == 0:
+                headCount = 0
+                for element in subRow:
+                    if element == 'valid':
+                        timeSlot = headCount
+                    head.append(element.lstrip())
+                    headCount += 1
+                i += 1
+                continue
+
+            if len(subRow) < len(head):
+                continue
+
+            entry = []
+            elemCount = 0
+            for element in subRow:
+                eType = head[elemCount]
+                if elemCount == timeSlot:
+                    element = datetime.datetime.strptime(element, '%Y-%m-%d %H:%M')
+
+                if eType == 'station' or eType[:4] == 'skyc' or eType[:4] == 'skyl' or eType == 'wxcodes' or eType == 'metar' or eType == 'valid':
+                    entry.append(element)
+                else:
+                    if element == 'M':
+                        entry.append(None)
+                    else:
+                        entry.append(float(element))
+
+                elemCount += 1
+            data.append(entry)
+
+            i += 1
+
+        self.asosData = data
+        self.headers = head
+
+        print(self.headers)
+        print(len(self.asosData[0]))
+        print(self.asosData[1])
