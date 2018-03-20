@@ -57,7 +57,7 @@ class NCSS(HTTPEndPoint):
         meta_xml = self.get_path('dataset.xml').content
         root = ET.fromstring(meta_xml)
         self.metadata = NCSSDataset(root)
-        self.variables = set(self.metadata.variables.keys())
+        self.variables = set(self.metadata.variables)
 
     def query(self):
         """Return a new query for NCSS.
@@ -351,7 +351,7 @@ def parse_xml_dataset(elem, handle_units):
     # Group points by the contents of each point
     datasets = {}
     for p in points:
-        datasets.setdefault(tuple(p.keys()), []).append(p)
+        datasets.setdefault(tuple(p), []).append(p)
 
     all_units = combine_dicts(units)
     return [combine_xml_points(d, all_units, handle_units) for d in datasets.values()]

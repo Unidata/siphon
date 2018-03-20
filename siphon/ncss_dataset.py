@@ -137,7 +137,7 @@ class _Types(object):
                 val = val.split()
         else:
             increment_attrs = ['start', 'increment', 'npts']
-            element_attrs = list(element.attrib.keys())
+            element_attrs = list(element.attrib)
             increment_attrs.sort()
             element_attrs.sort()
             if increment_attrs == element_attrs:
