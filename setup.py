@@ -52,7 +52,7 @@ setup(
                  'flake8-copyright', 'flake8-docstrings', 'flake8-import-order',
                  'flake8-mutable', 'flake8-pep3101', 'flake8-print', 'flake8-quotes',
                  'pep8-naming',
-                 'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3', 'xarray>=0.6'],
+                 'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3', 'xarray>=0.10.2'],
         'doc': ['sphinx>=1.3,!=1.6.4', 'sphinx-gallery', 'doc8', 'recommonmark'],
         # SciPy needed for cartopy; we don't use cartopy[plotting] because
         # that will pull in GDAL.
