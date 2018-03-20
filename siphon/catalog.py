@@ -262,7 +262,8 @@ class TDSCatalog(object):
         self.metadata = TDSCatalogMetadata(element, self.metadata).metadata
 
     def _process_datasets(self):
-        for dsName in list(self.datasets.keys()):
+        # Need to use list (of keys) because we modify the dict while iterating
+        for dsName in list(self.datasets):
             # check to see if dataset needs to have access urls created, if not,
             # remove the dataset
             has_url_path = self.datasets[dsName].url_path is not None
