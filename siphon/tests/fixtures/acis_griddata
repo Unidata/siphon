@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: '{"loc": "-95.36, 29.76", "sdate": "2000-01", "edate": "2000-07", "grid":
+      "3", "elems": [{"name": "maxt", "interval": "mly", "reduce": "max", "smry":
+      "max"}]}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['157']
+      Content-Type: [application/json]
+      User-Agent: [Siphon (0.6.1+42.ga98c956.dirty)]
+    method: POST
+    uri: http://data.rcc-acis.org/GridData
+  response:
+    body: {string: '{"data":[["2000-01",81],
+
+        ["2000-02",82],
+
+        ["2000-03",87],
+
+        ["2000-04",89],
+
+        ["2000-05",93],
+
+        ["2000-06",94],
+
+        ["2000-07",103]],
+
+        "smry":[103]}
+
+'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      Date: ['Tue, 20 Mar 2018 20:13:09 GMT']
+      Server: [nginx/1.12.2]
+    status: {code: 200, message: OK}
+version: 1
