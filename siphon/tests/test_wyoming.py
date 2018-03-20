@@ -16,7 +16,7 @@ recorder = get_recorder(__file__)
 
 @recorder.use_cassette('wyoming_sounding')
 def test_wyoming():
-    """Test that we are properly parsing data from the wyoming archive."""
+    """Test that we are properly parsing data from the Wyoming archive."""
     df = WyomingUpperAir.request_data(datetime(1999, 5, 4, 0), 'OUN')
 
     assert_almost_equal(df['pressure'][5], 867.9, 2)
@@ -49,3 +49,5 @@ def test_high_alt_wyoming():
     assert_almost_equal(df['dewpoint'][2], 3.9, 2)
     assert_almost_equal(df['u_wind'][2], -0.42, 2)
     assert_almost_equal(df['v_wind'][2], 5.99, 2)
+    assert_almost_equal(df['speed'][2], 6.0, 1)
+    assert_almost_equal(df['direction'][2], 176.0, 1)
