@@ -1,0 +1,26 @@
+interactions:
+- request:
+    body: '{"state": "ne"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      User-Agent: [Siphon (0.6.1+42.ga98c956.dirty)]
+    method: POST
+    uri: http://data.rcc-acis.org/General/state
+  response:
+    body: {string: '{"meta":[
+
+        {"id":"NE","name":"Nebraska"}]}
+
+'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      Date: ['Tue, 20 Mar 2018 20:13:10 GMT']
+      Server: [nginx/1.12.2]
+    status: {code: 200, message: OK}
+version: 1
