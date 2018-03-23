@@ -48,7 +48,7 @@ query.variables('Temperature_isobaric').accept('netcdf')
 # this NetCDF data (using the `netCDF4` module). If we print out the variable names, we
 # see our requested variables, as well as a few others (more metadata information)
 data = ncss.get_data(query)
-list(data.variables.keys())
+list(data.variables)
 
 ###########################################
 # We'll pull out the temperature  and time variables.
