@@ -21,8 +21,7 @@ warnings.filterwarnings('ignore', 'Pandas doesn\'t allow columns to be created',
 
 
 class IGRAUpperAir:
-    """Download and parse data from NCEI's Integrated Radiosonde
-    Archive version 2.
+    """Download and parse data from NCEI's Integrated Radiosonde Archive version 2.
     """
     def __init__(self):
         """Set ftp site address and file suffix based on desired dataset."""
@@ -32,6 +31,7 @@ class IGRAUpperAir:
         self.end_date = ''
         self.site_id = ''
 
+        
     @classmethod
     def request_data(cls, time, site_id, derived=False):
         """Retreive IGRA version 2 data for one station.
@@ -72,8 +72,7 @@ class IGRAUpperAir:
         return df, headers
 
     def _get_data(self):
-        """Process the IGRA2 text file for observations at site_id
-        matching time.
+        """Process the IGRA2 text file for observations at site_id matching time.
 
         Return:
         -------
@@ -98,8 +97,7 @@ class IGRAUpperAir:
         return df_body, df_header
 
     def _get_data_raw(self):
-        """Download the IGRA2 file containing site_id observations,
-        and search for observations matching the time range.
+        """Download observations matching the time range.
 
         Returns a tuple with a string for the body, string for the headers,
         and a list of dates.
@@ -114,8 +112,7 @@ class IGRAUpperAir:
         return body, header, dates_long, dates
 
     def _select_date_range(self, lines):
-        """Run through the data and identify lines containing
-        headers within the range begin_date to end_date.
+        """Identify lines containing headers within the range begin_date to end_date.
 
         Parameters
         -----
@@ -160,7 +157,7 @@ class IGRAUpperAir:
         selector[headers] = False
         body = ''.join([line for line in itertools.compress(lines, selector)])
 
-        selector[begin_idx:end_idx+1] = ~selector[begin_idx:end_idx+1]
+        selector[begin_idx:end_idx + 1] = ~selector[begin_idx:end_idx + 1]
         header = ''.join([line for line in itertools.compress(lines, selector)])
 
         # expand date vector to match length of the body dataframe.
@@ -170,18 +167,18 @@ class IGRAUpperAir:
 
     def _get_fwf_params(self):
         """Produce a dictionary with names, colspecs, and dtype for IGRA2 data.
+        
         Returns a dict with entries 'body' and 'header'.
         """
 
         def _cdec(power=1):
-            """Make a function that takes input string in form value*10^power,
-            and return as float."""
+            """Make a function to convert string 'value*10^power' to float."""
             def _cdec_power(val):
                 return float(val)/10**power
             return _cdec_power
 
         def _cflag(val):
-            """Replace alphabetic flags A and B with numeric"""
+            """Replace alphabetic flags A and B with numeric."""
             if val == 'A':
                 return 1
             elif val == 'B':
@@ -190,8 +187,7 @@ class IGRAUpperAir:
                 return 0
 
         def _ctime(strformat='MMMSS'):
-            """Convert a time string from MMMSS or HHMM to seconds,
-            returning a function that takes a string input "val".
+            """Returns a function converting a string from MMMSS or HHMM to seconds.
             """
             def _ctime_strformat(val):
                 time = val.strip().zfill(5)
@@ -204,11 +200,11 @@ class IGRAUpperAir:
                     if strformat == 'MMMSS':
                         minutes = int(time[0:3])
                         seconds = int(time[3:5])
-                        time_seconds = minutes*60 + seconds
+                        time_seconds = minutes * 60 + seconds
                     elif strformat == 'HHMM':
                         hours = int(time[0:2])
                         minutes = int(time[2:4])
-                        time_seconds = hours*3600 + minutes*60
+                        time_seconds = hours * 3600 + minutes * 60
                     else:
                         sys.exit('Unrecognized time format')
 
@@ -217,8 +213,8 @@ class IGRAUpperAir:
 
         def _clatlon(x):
             n = len(x)
-            deg = x[0:n-4]
-            dec = x[n-4:]
+            deg = x[0:n - 4]
+            dec = x[n - 4:]
             return float(deg + '.' + dec)
 
         if self.suffix == '-drvd.txt':
@@ -334,7 +330,7 @@ class IGRAUpperAir:
 
             na_vals = ['-8888', '-9999']
 
-            conv_header = {'release_time': _ctime(strformat="HHMM"),
+            conv_header = {'release_time': _ctime(strformat='HHMM'),
                            'number_levels': int,
                            'latitude': _clatlon,
                            'longitude': _clatlon}
@@ -352,7 +348,6 @@ class IGRAUpperAir:
 
     def _clean_body_df(self, df):
         """Format the dataframe, remove empty rows, and add units attribute."""
-
         if self.suffix == '-drvd.txt':
             df = df.dropna(subset=('temperature', 'reported_relative_humidity',
                                    'u_wind', 'v_wind'), how='all').reset_index(drop=True)
@@ -400,7 +395,7 @@ class IGRAUpperAir:
         return df
 
     def _clean_header_df(self, df):
-        """Format the header dataframe and add units"""
+        """Format the header dataframe and add units."""
         if self.suffix == '-drvd.txt':
             df.units = {'release_time': 'second',
                         'precipitable_water': 'millimeter',

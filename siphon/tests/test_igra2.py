@@ -84,7 +84,7 @@ def test_igra2_drvd():
     assert(df.units['saturation_vapor_pressure'] == 'Pascal')
     assert(df.units['reported_relative_humidity'] == 'percent')
     assert(df.units['calculated_relative_humidity'] == 'percent')
-    assert(df.units['u_wind'] == 'meter/ssecond')
+    assert(df.units['u_wind'] == 'meter / second')
     assert(df.units['u_wind_gradient'] == '(meter / second) / kilometer)')
     assert(df.units['v_wind'] == 'meter / second')
     assert(df.units['v_wind_gradient'] == '(meter / second) / kilometer)')
