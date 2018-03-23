@@ -4,16 +4,16 @@
 """Read upper air data from the Integrated Global Radiosonde Archive version 2."""
 
 import datetime
-import itertools
 from io import BytesIO
 from io import StringIO
-from urllib.request import urlopen
-from zipfile import ZipFile
+import itertools
 import sys
+from urllib.request import urlopen
 import warnings
+from zipfile import ZipFile
+
 import numpy as np
 import pandas as pd
-
 
 from .._tools import get_wind_components
 
@@ -354,28 +354,27 @@ class IGRAUpperAir:
         """Format the dataframe, remove empty rows, and add units attribute."""
 
         if self.suffix == '-drvd.txt':
-
-            df.units = {'pressure': 'hPa',
-                        'reported_height': 'm',
-                        'calculated_height': 'm',
-                        'temperature': 'K',
-                        'temperature_gradient': 'K/km',
-                        'potential_temperature': 'K',
-                        'potential_temperature_gradient': 'K/km',
-                        'virtual_temperature': 'K',
-                        'virtual_potential_temperature': 'K',
-                        'vapor_pressure': 'Pa',
-                        'saturation_vapor_pressure': 'Pa',
-                        'reported_relative_humidity': '%',
-                        'calculated_relative_humidity': '%',
-                        'u_wind': 'm/s',
-                        'u_wind_gradient': '(m/s) / km)',
-                        'v_wind': 'meter/second',
-                        'v_wind_gradient': '(m/s) / km)',
-                        'refractive_index': 'unitless'}
-
             df = df.dropna(subset=('temperature', 'reported_relative_humidity',
                                    'u_wind', 'v_wind'), how='all').reset_index(drop=True)
+
+            df.units = {'pressure': 'hPa',
+                        'reported_height': 'meter',
+                        'calculated_height': 'meter',
+                        'temperature': 'Kelvin',
+                        'temperature_gradient': 'Kelvin / kilometer',
+                        'potential_temperature': 'Kelvin',
+                        'potential_temperature_gradient': 'Kelvin / kilometer',
+                        'virtual_temperature': 'Kelvin',
+                        'virtual_potential_temperature': 'Kelvin',
+                        'vapor_pressure': 'Pascal',
+                        'saturation_vapor_pressure': 'Pascal',
+                        'reported_relative_humidity': 'percent',
+                        'calculated_relative_humidity': 'percent',
+                        'u_wind': 'meter / second',
+                        'u_wind_gradient': '(meter / second) / kilometer)',
+                        'v_wind': 'meter / second',
+                        'v_wind_gradient': '(meter / second) / kilometer)',
+                        'refractive_index': 'unitless'}
 
         else:
             df['u_wind'], df['v_wind'] = get_wind_components(df['speed'],
@@ -388,45 +387,45 @@ class IGRAUpperAir:
             df = df.dropna(subset=('temperature', 'dewpoint', 'direction', 'speed',
                                    'u_wind', 'v_wind'), how='all').reset_index(drop=True)
 
-            df.units = {'etime': 's',
+            df.units = {'etime': 'second',
                         'pressure': 'hPa',
-                        'height': 'm',
+                        'height': 'meter',
                         'temperature': 'degC',
                         'dewpoint': 'degC',
                         'direction': 'degrees',
-                        'speed': 'm/s',
-                        'u_wind': 'm/s',
-                        'v_wind': 'm/s'}
+                        'speed': 'meter / second',
+                        'u_wind': 'meter / second',
+                        'v_wind': 'meter / second'}
 
         return df
 
     def _clean_header_df(self, df):
         """Format the header dataframe and add units"""
         if self.suffix == '-drvd.txt':
-            df.units = {'release_time': 's',
-                        'precipitable_water': 'mm',
+            df.units = {'release_time': 'second',
+                        'precipitable_water': 'millimeter',
                         'inv_pressure': 'hPa',
-                        'inv_height': 'm',
-                        'inv_strength': 'K',
+                        'inv_height': 'meter',
+                        'inv_strength': 'Kelvin',
                         'mixed_layer_pressure': 'hPa',
-                        'mixed_layer_height': 'm',
+                        'mixed_layer_height': 'meter',
                         'freezing_point_pressure': 'hPa',
-                        'freezing_point_height': 'm',
+                        'freezing_point_height': 'meter',
                         'lcl_pressure': 'hPa',
-                        'lcl_height': 'm',
+                        'lcl_height': 'meter',
                         'lfc_pressure': 'hPa',
-                        'lfc_height': 'm',
+                        'lfc_height': 'meter',
                         'lnb_pressure': 'hPa',
-                        'lnb_height': 'm',
+                        'lnb_height': 'meter',
                         'lifted_index': 'degC',
                         'showalter_index': 'degC',
                         'k_index': 'degC',
                         'total_totals_index': 'degC',
-                        'cape': 'J/kg',
-                        'convective_inhibition': 'J/kg'}
+                        'cape': 'Joule / kilogram',
+                        'convective_inhibition': 'Joule / kilogram'}
 
         else:
-            df.units = {'release_time': 's',
+            df.units = {'release_time': 'second',
                         'latitude': 'degrees',
                         'longitude': 'degrees'}
 
