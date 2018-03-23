@@ -1,0 +1,49 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.4.0+209.gde8764c.dirty)]
+    method: GET
+    uri: https://www.ncei.noaa.gov/thredds/catalog/namanl/201802/20180220/catalog.xml
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Access-Control-Allow-Headers: ['X-Requested-With, Content-Type']
+      Access-Control-Allow-Origin: ['*']
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Language: [en-US]
+      Content-Type: [application/xml;charset=UTF-8]
+      Date: ['Sat, 24 Feb 2018 02:16:17 GMT']
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Accept-Encoding]
+    status: {code: 200, message: OK}
+version: 1

@@ -138,6 +138,17 @@ def test_data_query_add():
     assert str(dr) == 'foo=bar'
 
 
+@recorder.use_cassette('gfs-error-no-header')
+def test_http_error_no_header():
+    """Test getting an error back without Content-Type."""
+    endpoint = HTTPEndPoint('http://thredds.ucar.edu/thredds/ncss/grib/NCEP/GFS/'
+                            'Global_0p5deg/GFS_Global_0p5deg_20180223_1200.grib2')
+    query = endpoint.query().variables('u-component_of_wind_isobaric')
+    query.time(datetime(2018, 2, 23, 22, 28, 49))
+    with pytest.raises(HTTPError):
+        endpoint.get_query(query)
+
+
 class TestEndPoint(object):
     """Test the HTTPEndPoint."""
 
