@@ -1,0 +1,33 @@
+interactions:
+- request:
+    body: '{"sids": "klnk,kgso", "elems": [{"name": "avgt", "interval": "dly"}, {"name":
+      "mint", "interval": "dly"}], "date": "20000101"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['126']
+      Content-Type: [application/json]
+      User-Agent: [Siphon (0.6.1+42.ga98c956.dirty)]
+    method: POST
+    uri: http://data.rcc-acis.org/MultiStnData
+  response:
+    body: {string: '{"data":[
+
+        {"meta":{"uid": 12527, "ll": [-96.7475, 40.8508], "sids": ["14939 1", "254795
+        2", "LNK 3", "72551 4", "KLNK 5", "USW00014939 6", "LNK 7"], "state": "NE",
+        "elev": 1190.0, "name": "LINCOLN AIRPORT"},"data":["37.5","26"]},
+
+        {"meta":{"uid": 13284, "ll": [-79.9432, 36.0969], "sids": ["13723 1", "313630
+        2", "GSO 3", "72317 4", "KGSO 5", "USW00013723 6", "GSO 7"], "state": "NC",
+        "elev": 890.0, "name": "GREENSBORO  AP"},"data":["49.0","37"]}]}
+
+'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      Date: ['Tue, 20 Mar 2018 20:13:09 GMT']
+      Server: [nginx/1.12.2]
+    status: {code: 200, message: OK}
+version: 1

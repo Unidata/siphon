@@ -80,7 +80,7 @@ class RadarServer(HTTPEndPoint):
     def _get_metadata(self):
         ds_cat = TDSCatalog(self.url_path('dataset.xml'))
         self.metadata = ds_cat.metadata
-        self.variables = {k.split('/')[0] for k in self.metadata['variables'].keys()}
+        self.variables = {k.split('/')[0] for k in self.metadata['variables']}
         self._get_stations()
 
     def _get_stations(self, station_file='stations.xml'):

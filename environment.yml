@@ -29,6 +29,6 @@ dependencies:
   - flake8-quotes
   - pep8-naming
   - matplotlib
-  - xarray
+  - xarray >=0.10.2
   - cartopy
   - beautifulsoup4
