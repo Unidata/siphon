@@ -7,18 +7,19 @@ from datetime import datetime
 
 from numpy.testing import assert_almost_equal
 
-from siphon.simplewebservice.igra2 import IGRA2UpperAir
+from siphon.simplewebservice.igra2 import IGRAUpperAir
 from siphon.testing import get_recorder
 
 
 recorder = get_recorder(__file__)
+
 
 @recorder.use_cassette('igra2_sounding')
 def test_igra2():
     """Test that we are properly parsing data from the IGRA2 archive."""
     df, header = IGRAUpperAir.request_data(datetime(2010, 6, 1, 12), 'USM00070026')
 
-    assert_almost_equal(df['lvltyp1'][5],1, 1)
+    assert_almost_equal(df['lvltyp1'][5], 1, 1)
     assert_almost_equal(df['lvltyp2'][5], 0, 1)
     assert_almost_equal(df['etime'][5], 126, 2)
     assert_almost_equal(df['pressure'][5], 925.0, 2)
@@ -31,7 +32,7 @@ def test_igra2():
     assert_almost_equal(df['direction'][5], 33.0, 2)
     assert_almost_equal(df['speed'][5], 8.2, 2)
     assert_almost_equal(df['u_wind'][5], -4.5, 2)
-    assert_almost_equal(df['v_wind'][5],-6.9, 2)
+    assert_almost_equal(df['v_wind'][5], -6.9, 2)
     assert_almost_equal(df['dewpoint'][5], -3.7, 2)
 
     assert(df.units['pressure'] == 'hPa')
@@ -44,10 +45,12 @@ def test_igra2():
     assert(df.units['direction'] == 'degrees')
     assert(df.units['etime'] == 'second')
 
+
 @recorder.use_cassette('igra2_derived')
 def test_igra2_drvd():
     """Test that we are properly parsing data from the IGRA2 archive."""
-    df, header = IGRAUpperAir.request_data(datetime(2014, 9, 10, 0), 'USM00070026', derived=True)
+    df, header = IGRAUpperAir.request_data(datetime(2014, 9, 10, 0),
+                                           'USM00070026', derived=True)
 
     assert_almost_equal(df['pressure'][5], 947.43, 2)
     assert_almost_equal(df['reported_height'][5], 610., 2)

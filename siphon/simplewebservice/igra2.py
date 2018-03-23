@@ -50,7 +50,7 @@ class IGRAUpperAir:
             :class: `pandas.DataFrame` containing the data.
         """
         igra2 = cls()
-        
+
         # Set parameters for data query
         if derived:
             igra2.ftpsite = igra2.ftpsite + 'derived/derived-por/'
