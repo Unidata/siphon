@@ -26,6 +26,8 @@ df, header = IGRAUpperAir.request_data(date, station)
 ####################################################
 # Inspect data columns in the dataframe.
 print(df.columns)
+
+# Inspect metadata from the data headers
 print(header.columns)
 
 ####################################################
@@ -47,6 +49,9 @@ print(df.units['pressure'])
 date = [datetime(2014, 9, 10, 0), datetime(2015, 9, 10, 12)]
 station = 'USM00070026'
 df, header = IGRAUpperAir.request_data(date, station)
+
+print(df.head())
+print(header.head())
 
 ####################################################
 # IGRA2-Derived data can be accessed using the keyword derived=True.

@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
+# Copyright (c) 2018 University Corporation for Atmospheric Research/Unidata.
 # Distributed under the terms of the MIT License.
 # SPDX-License-Identifier: MIT
 """Read upper air data from the Integrated Global Radiosonde Archive version 2."""
@@ -8,7 +8,6 @@ from io import BytesIO
 from io import StringIO
 import itertools
 import sys
-from urllib.request import urlopen
 import warnings
 from zipfile import ZipFile
 
@@ -16,13 +15,14 @@ import numpy as np
 import pandas as pd
 
 from .._tools import get_wind_components
+from urllib.request import urlopen
 
 warnings.filterwarnings('ignore', 'Pandas doesn\'t allow columns to be created', UserWarning)
 
 
 class IGRAUpperAir:
-    """Download and parse data from NCEI's Integrated Radiosonde Archive version 2.
-    """
+    """Download and parse data from NCEI's Integrated Radiosonde Archive version 2."""
+    
     def __init__(self):
         """Set ftp site address and file suffix based on desired dataset."""
         self.ftpsite = 'ftp://ftp.ncdc.noaa.gov/pub/data/igra/'
@@ -31,7 +31,6 @@ class IGRAUpperAir:
         self.end_date = ''
         self.site_id = ''
 
-        
     @classmethod
     def request_data(cls, time, site_id, derived=False):
         """Retreive IGRA version 2 data for one station.
@@ -49,6 +48,7 @@ class IGRAUpperAir:
         -------
             :class: `pandas.DataFrame` containing the data.
         """
+
         igra2 = cls()
 
         # Set parameters for data query
@@ -119,6 +119,7 @@ class IGRAUpperAir:
         lines: list
             list of lines from the IGRA2 data file.
         """
+
         headers = []
         num_lev = []
         dates = []
@@ -153,7 +154,7 @@ class IGRAUpperAir:
 
         # Make a boolean vector that selects only list indices within the time range
         selector = np.zeros(len(lines), dtype=bool)
-        selector[begin_idx:end_idx+1] = True
+        selector[begin_idx:end_idx + 1] = True
         selector[headers] = False
         body = ''.join([line for line in itertools.compress(lines, selector)])
 
@@ -167,7 +168,7 @@ class IGRAUpperAir:
 
     def _get_fwf_params(self):
         """Produce a dictionary with names, colspecs, and dtype for IGRA2 data.
-        
+
         Returns a dict with entries 'body' and 'header'.
         """
 
@@ -179,6 +180,7 @@ class IGRAUpperAir:
 
         def _cflag(val):
             """Replace alphabetic flags A and B with numeric."""
+
             if val == 'A':
                 return 1
             elif val == 'B':
@@ -187,8 +189,7 @@ class IGRAUpperAir:
                 return 0
 
         def _ctime(strformat='MMMSS'):
-            """Returns a function converting a string from MMMSS or HHMM to seconds.
-            """
+            """Return a function converting a string from MMMSS or HHMM to seconds."""
             def _ctime_strformat(val):
                 time = val.strip().zfill(5)
 
