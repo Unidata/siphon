@@ -15,8 +15,11 @@ import numpy as np
 import pandas as pd
 
 from .._tools import get_wind_components
-from urllib.request import urlopen
-
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
+    
 warnings.filterwarnings('ignore', 'Pandas doesn\'t allow columns to be created', UserWarning)
 
 
