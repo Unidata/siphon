@@ -5,8 +5,8 @@
 IGRA2 Upper Air Data Request
 ==============================
 
-This example shows how to use siphon's `simplewebswervice` support to create a query to
-the Integrated Global Radiosonde Archive version 2.
+This example shows how to use siphon's `simplewebswervice` support to create a
+query to the Integrated Global Radiosonde Archive version 2.
 """
 
 from datetime import datetime
@@ -36,8 +36,8 @@ print(df['pressure'])
 print(header['latitude'])
 
 ####################################################
-# Units are stored in a dictionary with the variable name as the key in the `units` attribute
-# of the dataframe.
+# Units are stored in a dictionary with the variable name as the key in the `units`
+# attribute of the dataframe.
 print(df.units)
 print(header.units)
 
