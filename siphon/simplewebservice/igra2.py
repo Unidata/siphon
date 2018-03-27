@@ -3,8 +3,8 @@
 # SPDX-License-Identifier: MIT
 """Read upper air data from the Integrated Global Radiosonde Archive version 2."""
 
-import datetime
 from contextlib import closing
+import datetime
 from io import BytesIO
 from io import StringIO
 import itertools
