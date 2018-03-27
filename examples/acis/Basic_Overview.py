@@ -75,7 +75,7 @@ print(myData)
 # year temperature data using MatPlotLib! Notice that the data is decoded as
 # a string, so you should convert those back into numbers before use.
 #
-# *Note: Missing data is recorded as M!
+# * Note: Missing data is recorded as M!
 
 stnName = myData['meta']['name']
 
