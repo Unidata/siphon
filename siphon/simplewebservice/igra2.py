@@ -4,6 +4,7 @@
 """Read upper air data from the Integrated Global Radiosonde Archive version 2."""
 
 import datetime
+from contextlib import closing
 from io import BytesIO
 from io import StringIO
 import itertools
@@ -19,13 +20,13 @@ try:
     from urllib.request import urlopen
 except ImportError:
     from urllib2 import urlopen
-    
+
 warnings.filterwarnings('ignore', 'Pandas doesn\'t allow columns to be created', UserWarning)
 
 
 class IGRAUpperAir:
     """Download and parse data from NCEI's Integrated Radiosonde Archive version 2."""
-    
+
     def __init__(self):
         """Set ftp site address and file suffix based on desired dataset."""
         self.ftpsite = 'ftp://ftp.ncdc.noaa.gov/pub/data/igra/'
@@ -50,8 +51,8 @@ class IGRAUpperAir:
         Returns
         -------
             :class: `pandas.DataFrame` containing the data.
-        """
 
+        """
         igra2 = cls()
 
         # Set parameters for data query
@@ -105,7 +106,7 @@ class IGRAUpperAir:
         Returns a tuple with a string for the body, string for the headers,
         and a list of dates.
         """
-        with urlopen(self.ftpsite + self.site_id + self.suffix + '.zip') as url:
+        with closing(urlopen(self.ftpsite + self.site_id + self.suffix + '.zip')) as url:
             f = ZipFile(BytesIO(url.read()), 'r').open(self.site_id + self.suffix)
 
         lines = [line.decode('utf-8') for line in f.readlines()]
@@ -121,8 +122,8 @@ class IGRAUpperAir:
         -----
         lines: list
             list of lines from the IGRA2 data file.
-        """
 
+        """
         headers = []
         num_lev = []
         dates = []
@@ -174,16 +175,14 @@ class IGRAUpperAir:
 
         Returns a dict with entries 'body' and 'header'.
         """
-
         def _cdec(power=1):
             """Make a function to convert string 'value*10^power' to float."""
             def _cdec_power(val):
-                return float(val)/10**power
+                return float(val) / 10**power
             return _cdec_power
 
         def _cflag(val):
             """Replace alphabetic flags A and B with numeric."""
-
             if val == 'A':
                 return 1
             elif val == 'B':
