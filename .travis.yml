@@ -90,14 +90,14 @@ install:
 
 script:
   - if [[ $TASK == "docs" ]]; then
+      doc8 README.rst docs;
+      export DOC_BUILD_RESULT=$?;
       pushd docs;
       make clean html linkcheck;
-      export DOC_BUILD_RESULT=$?;
-      popd;
-      doc8 README.rst docs;
       if [[ $DOC_BUILD_RESULT -ne 0 || $? -ne 0 ]]; then
         false;
       fi;
+      popd;
     else
       flake8 --version;
       python setup.py test --addopts "-s $TEST_OPTS --no-print-logs";
