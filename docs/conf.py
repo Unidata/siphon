@@ -82,7 +82,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Siphon'
-copyright = '2015, Unidata'
+copyright = '2018, Siphon Contributors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
