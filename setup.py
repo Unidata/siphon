@@ -1,6 +1,6 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2015 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Setup script for installing Siphon."""
 
 from __future__ import print_function
@@ -25,7 +25,7 @@ setup(
     packages=find_packages(),
     author='Unidata Development Team',
     author_email='support-python@unidata.ucar.edu',
-    license='MIT',
+    license='BSD 3-Clause',
     url='https://github.com/Unidata/siphon',
     description=('A collection of Python utilities for interacting with the '
                  'Unidata technology stack.'),
@@ -40,7 +40,7 @@ setup(
                  'Topic :: Scientific/Engineering',
                  'Intended Audience :: Science/Research',
                  'Operating System :: OS Independent',
-                 'License :: OSI Approved :: MIT License'],
+                 'License :: OSI Approved :: BSD License'],
 
     install_requires=dependencies,
     extras_require={

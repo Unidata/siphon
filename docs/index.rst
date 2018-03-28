@@ -67,7 +67,7 @@ Other Resources
 License
 -------
 
-Siphon is available under the terms of the open source `MIT license`__.
+Siphon is available under the terms of the open source `BSD 3-Clause license`__.
 
 __ https://raw.githubusercontent.com/Unidata/siphon/master/LICENSE
 
