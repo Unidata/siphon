@@ -1,6 +1,6 @@
-# Copyright (c) 2017 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2017 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Test Iowa State upper air dataset access."""
 
 from datetime import datetime

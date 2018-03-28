@@ -1,3 +1,6 @@
+# Copyright (c) 2018 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Test ACIS Web Services API Access."""
 from siphon.simplewebservice.acis import acis_request
 from siphon.testing import get_recorder

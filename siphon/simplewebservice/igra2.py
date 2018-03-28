@@ -1,6 +1,6 @@
-# Copyright (c) 2018 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2018 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Read upper air data from the Integrated Global Radiosonde Archive version 2."""
 
 from contextlib import closing

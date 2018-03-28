@@ -82,7 +82,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Siphon'
-copyright = '2015, Unidata'
+copyright = '2018, Siphon Contributors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -153,6 +153,8 @@ def setup(app):
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {'canonical_url': 'https://unidata.github.io/siphon/latest/'}
+if 'sphinx_rtd_theme' in vars() and sphinx_rtd_theme.__version__ == '0.2.5b1.post1':
+    html_theme_options['versions'] = {'latest': '../latest', 'dev': '../dev'}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []

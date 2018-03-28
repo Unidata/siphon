@@ -1,4 +1,4 @@
-# Copyright (c) 2016 University Corporation for Atmospheric Research/Unidata.
+# Copyright (c) 2016 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 """Implement an experimental backend for using xarray to talk to TDS over CDMRemote."""
