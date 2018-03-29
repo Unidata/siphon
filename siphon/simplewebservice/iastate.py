@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Read upper air data from the IA State archives."""
 
+from datetime import datetime
 import json
 import warnings
 
@@ -64,9 +65,8 @@ class IAStateUpperAir(HTTPEndPoint):
 
         """
         json_data = self._get_data_raw(time, site_id)
-
         data = {}
-        for pt in json_data:
+        for pt in json_data['profiles'][0]['profile']:
             for field in ('drct', 'dwpc', 'hght', 'pres', 'sknt', 'tmpc'):
                 data.setdefault(field, []).append(np.nan if pt[field] is None else pt[field])
 
@@ -90,6 +90,10 @@ class IAStateUpperAir(HTTPEndPoint):
         df = df.dropna(subset=('temperature', 'dewpoint', 'direction', 'speed',
                                'u_wind', 'v_wind'), how='all').reset_index(drop=True)
 
+        df['station'] = json_data['profiles'][0]['station']
+        df['time'] = datetime.strptime(json_data['profiles'][0]['valid'],
+                                       '%Y-%m-%dT%H:%M:%SZ')
+
         # Add unit dictionary
         df.units = {'pressure': 'hPa',
                     'height': 'meter',
@@ -98,8 +102,9 @@ class IAStateUpperAir(HTTPEndPoint):
                     'direction': 'degrees',
                     'speed': 'knot',
                     'u_wind': 'knot',
-                    'v_wind': 'knot'}
-
+                    'v_wind': 'knot',
+                    'station': None,
+                    'time': None}
         return df
 
     def _get_data_raw(self, time, site_id):
@@ -119,10 +124,10 @@ class IAStateUpperAir(HTTPEndPoint):
         """
         path = ('raob.py?ts={time:%Y%m%d%H}00&station={stid}').format(time=time, stid=site_id)
         resp = self.get_path(path)
-        json_data = json.loads(resp.text)['profiles'][0]['profile']
+        json_data = json.loads(resp.text)
 
         # See if the return is valid, but has no data
-        if not json_data:
+        if not json_data['profiles'][0]['profile']:
             raise ValueError('No data available for {time:%Y-%m-%d %HZ} '
                              'for station {stid}.'.format(time=time, stid=site_id))
         return json_data
