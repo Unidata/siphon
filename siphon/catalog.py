@@ -21,9 +21,8 @@ except ImportError:
 from .http_util import create_http_session, urlopen
 from .metadata import TDSCatalogMetadata
 
+logging.basicConfig(level=logging.ERROR)
 log = logging.getLogger(__name__)
-log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
-log.setLevel(logging.ERROR)
 
 
 class IndexableMapping(OrderedDict):

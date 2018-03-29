@@ -10,9 +10,8 @@ import warnings
 from .cdmremotefeature import CDMRemoteFeature
 from .dataset import AttributeContainer
 
+logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger(__name__)
-log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
-log.setLevel(logging.WARNING)
 
 
 def reindent_lines(new_leader, source):

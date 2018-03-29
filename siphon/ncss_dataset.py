@@ -10,9 +10,8 @@ import re
 
 import numpy as np
 
+logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger(__name__)
-log.setLevel(logging.WARNING)
-log.addHandler(logging.StreamHandler())
 
 
 def _without_namespace(tagname):
