@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. image:: _static/tds-logo.png
+.. image:: _static/siphon_150x150.png
    :width: 150 px
    :align: left
 
