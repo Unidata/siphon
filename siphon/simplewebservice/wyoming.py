@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Read upper air data from the Wyoming archives."""
 
+from datetime import datetime
 from io import StringIO
 import warnings
 
@@ -69,14 +70,33 @@ class WyomingUpperAir(HTTPEndPoint):
 
         """
         raw_data = self._get_data_raw(time, site_id, region)
+        soup = BeautifulSoup(raw_data, 'html.parser')
+        tabular_data = StringIO(soup.find_all('pre')[0].contents[0])
         col_names = ['pressure', 'height', 'temperature', 'dewpoint', 'direction', 'speed']
-        df = pd.read_fwf(raw_data, skiprows=5, usecols=[0, 1, 2, 3, 6, 7], names=col_names)
+        df = pd.read_fwf(tabular_data, skiprows=5, usecols=[0, 1, 2, 3, 6, 7], names=col_names)
         df['u_wind'], df['v_wind'] = get_wind_components(df['speed'],
                                                          np.deg2rad(df['direction']))
 
         # Drop any rows with all NaN values for T, Td, winds
         df = df.dropna(subset=('temperature', 'dewpoint', 'direction', 'speed',
                                'u_wind', 'v_wind'), how='all').reset_index(drop=True)
+
+        # Parse metadata
+        meta_data = soup.find_all('pre')[1].contents[0]
+        lines = meta_data.splitlines()
+        station = lines[1].split(':')[1].strip()
+        station_number = int(lines[2].split(':')[1].strip())
+        sounding_time = datetime.strptime(lines[3].split(':')[1].strip(), '%y%m%d/%H%M')
+        latitude = float(lines[4].split(':')[1].strip())
+        longitude = float(lines[5].split(':')[1].strip())
+        elevation = float(lines[6].split(':')[1].strip())
+
+        df['station'] = station
+        df['station_number'] = station_number
+        df['time'] = sounding_time
+        df['latitude'] = latitude
+        df['longitude'] = longitude
+        df['elevation'] = elevation
 
         # Add unit dictionary
         df.units = {'pressure': 'hPa',
@@ -86,7 +106,13 @@ class WyomingUpperAir(HTTPEndPoint):
                     'direction': 'degrees',
                     'speed': 'knot',
                     'u_wind': 'knot',
-                    'v_wind': 'knot'}
+                    'v_wind': 'knot',
+                    'station': None,
+                    'station_number': None,
+                    'time': None,
+                    'latitude': 'degrees',
+                    'longitude': 'degrees',
+                    'elevation': 'meter'}
         return df
 
     def _get_data_raw(self, time, site_id, region='naconf'):
@@ -103,7 +129,7 @@ class WyomingUpperAir(HTTPEndPoint):
 
         Returns
         -------
-        a file-like object from which to read the data
+        text of the server response
 
         """
         path = ('?region={region}&TYPE=TEXT%3ALIST'
@@ -118,5 +144,4 @@ class WyomingUpperAir(HTTPEndPoint):
                 'for station {stid}.'.format(time=time, region=region,
                                              stid=site_id))
 
-        soup = BeautifulSoup(resp.text, 'html.parser')
-        return StringIO(soup.find_all('pre')[0].contents[0])
+        return resp.text
