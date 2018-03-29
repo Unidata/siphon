@@ -13,7 +13,6 @@ from siphon.testing import get_recorder
 
 log = logging.getLogger('siphon.catalog')
 log.setLevel(logging.WARNING)
-log.addHandler(logging.StreamHandler())
 
 recorder = get_recorder(__file__)
 
