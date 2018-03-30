@@ -46,10 +46,10 @@ class WyomingUpperAir(HTTPEndPoint):
 
         """
         endpoint = cls()
-        df = endpoint._get_data(time, site_id, **kwargs)
+        df = endpoint._get_data(time, site_id)
         return df
 
-    def _get_data(self, time, site_id, region='naconf'):
+    def _get_data(self, time, site_id):
         r"""Download and parse upper air observations from an online archive.
 
         Parameters
@@ -61,15 +61,12 @@ class WyomingUpperAir(HTTPEndPoint):
             The three letter ICAO identifier of the station for which data should be
             downloaded.
 
-        region
-            Region to request data from
-
         Returns
         -------
             :class:`pandas.DataFrame` containing the data
 
         """
-        raw_data = self._get_data_raw(time, site_id, region)
+        raw_data = self._get_data_raw(time, site_id)
         soup = BeautifulSoup(raw_data, 'html.parser')
         tabular_data = StringIO(soup.find_all('pre')[0].contents[0])
         col_names = ['pressure', 'height', 'temperature', 'dewpoint', 'direction', 'speed']
@@ -115,7 +112,7 @@ class WyomingUpperAir(HTTPEndPoint):
                     'elevation': 'meter'}
         return df
 
-    def _get_data_raw(self, time, site_id, region='naconf'):
+    def _get_data_raw(self, time, site_id):
         """Download data from the University of Wyoming's upper air archive.
 
         Parameters
@@ -124,24 +121,21 @@ class WyomingUpperAir(HTTPEndPoint):
             Date and time for which data should be downloaded
         site_id : str
             Site id for which data should be downloaded
-        region : str
-            The region in which the station resides. Defaults to `naconf`.
 
         Returns
         -------
         text of the server response
 
         """
-        path = ('?region={region}&TYPE=TEXT%3ALIST'
+        path = ('?region=naconf&TYPE=TEXT%3ALIST'
                 '&YEAR={time:%Y}&MONTH={time:%m}&FROM={time:%d%H}&TO={time:%d%H}'
-                '&STNM={stid}').format(region=region, time=time, stid=site_id)
+                '&STNM={stid}').format(time=time, stid=site_id)
 
         resp = self.get_path(path)
         # See if the return is valid, but has no data
         if resp.text.find('Can\'t') != -1:
             raise ValueError(
-                'No data available for {time:%Y-%m-%d %HZ} from region {region} '
-                'for station {stid}.'.format(time=time, region=region,
-                                             stid=site_id))
+                'No data available for {time:%Y-%m-%d %HZ} '
+                'for station {stid}.'.format(time=time, stid=site_id))
 
         return resp.text
