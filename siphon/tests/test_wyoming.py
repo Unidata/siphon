@@ -6,6 +6,7 @@
 from datetime import datetime
 
 from numpy.testing import assert_almost_equal
+import pytest
 
 from siphon.simplewebservice.wyoming import WyomingUpperAir
 from siphon.testing import get_recorder
@@ -86,3 +87,10 @@ def test_high_alt_wyoming():
     assert(df.units['station'] is None)
     assert(df.units['station_number'] is None)
     assert(df.units['time'] is None)
+
+
+@recorder.use_cassette('wyoming_no_data')
+def test_no_data_wyoming():
+    """Test Wyoming data when no data are available."""
+    with pytest.raises(ValueError):
+        WyomingUpperAir.request_data(datetime(2010, 12, 9, 1), 'BOI')
