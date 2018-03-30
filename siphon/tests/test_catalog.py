@@ -311,3 +311,17 @@ def test_catalog_with_embedded_metadata_elements():
     md = cat.metadata
     assert 'external_metadata' in md
     assert 'serviceName' in md
+
+
+@recorder.use_cassette('latest_resolver_on_latest_dataset')
+def test_latest_resolver_fail():
+    """Test getting latest on catalog that does not have a resolver."""
+    cat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/'
+                     'Global_0p25deg_ana/latest.xml')
+
+    latest = ''
+    with pytest.raises(AttributeError) as excinfo:
+        latest = cat.latest
+
+    assert latest == ''
+    assert '"latest" not available for this catalog' in str(excinfo.value)

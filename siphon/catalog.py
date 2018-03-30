@@ -668,6 +668,14 @@ class CompoundService(object):
         self.services = services
         self.number_of_subservices = subservices
 
+    def is_resolver(self):
+        """Return whether the service is a resolver service.
+
+        For a compound service, this is always False because it will never be
+        a resolver.
+        """
+        return False
+
 
 def _find_base_tds_url(catalog_url):
     """Identify the base URL of the THREDDS server from the catalog URL.
