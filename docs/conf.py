@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Siphon documentation build configuration file, created by
-# sphinx-quickstart on Wed Apr 22 15:27:44 2015.
-#
 # This file is execfile()d with the current directory set to its
 # containing dir.
 #
@@ -15,6 +12,8 @@
 
 import sys
 import os
+
+import siphon
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -37,19 +36,9 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
-    'sphinx_gallery.gen_gallery',
-    'sphinx.ext.viewcode'
+    'sphinx.ext.viewcode',
+    'sphinx_gallery.gen_gallery'
 ]
-
-mathjax_path = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
-#autosummary_generate = True
-
-# Set up mapping for other projects' docs
-intersphinx_mapping = {
-                       'python': ('https://docs.python.org/3/', None),
-                       'numpy': ('https://docs.scipy.org/doc/numpy/', None),
-                       'requests': ('http://docs.python-requests.org/en/master/', None),
-                       }
 
 sphinx_gallery_conf = {
     'doc_module': ('siphon',),
@@ -70,6 +59,12 @@ source_parsers = {
    '.md': 'recommonmark.parser.CommonMarkParser',
 }
 
+# Set up mapping for other projects' docs
+intersphinx_mapping = {
+                       'python': ('https://docs.python.org/3/', None),
+                       'numpy': ('https://docs.scipy.org/doc/numpy/', None),
+                       'requests': ('http://docs.python-requests.org/en/master/', None),
+                       }
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -92,9 +87,8 @@ copyright = '2018, Siphon Contributors'
 # built documents.
 #
 # The short X.Y version.
-import siphon
 verinfo = siphon.__version__
-version = verinfo.split('+')[0]
+version = verinfo.split('+')[0].rsplit('.', 1)[0]
 # The full version, including alpha/beta/rc tags.
 release = verinfo
 
@@ -114,7 +108,7 @@ exclude_patterns = []
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
-#default_role = None
+default_role = 'autolink'
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
 #add_function_parentheses = True
@@ -190,7 +184,7 @@ html_static_path = ['_static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
-#html_last_updated_fmt = '%b %d, %Y'
+html_last_updated_fmt = '%b %d, %Y at %H:%M:%S'
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
@@ -281,7 +275,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'Siphon', 'Siphon Documentation',
-     ['Unidata'], 1)
+     ['Siphon Contributors'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -295,7 +289,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'Siphon', 'Siphon Documentation',
-   'Unidata', 'Siphon', 'One line description of project.',
+   'Siphon Contributors', 'Siphon', 'One line description of project.',
    'Miscellaneous'),
 ]
 
