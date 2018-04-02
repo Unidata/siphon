@@ -127,7 +127,7 @@ class IAStateUpperAir(HTTPEndPoint):
         json_data = json.loads(resp.text)
 
         # See if the return is valid, but has no data
-        if not json_data['profiles'][0]['profile']:
+        if not (json_data['profiles'] and json_data['profiles'][0]['profile']):
             raise ValueError('No data available for {time:%Y-%m-%d %HZ} '
                              'for station {stid}.'.format(time=time, stid=site_id))
         return json_data

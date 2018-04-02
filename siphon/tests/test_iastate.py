@@ -6,6 +6,7 @@
 from datetime import datetime
 
 from numpy.testing import assert_almost_equal
+import pytest
 
 from siphon.simplewebservice.iastate import IAStateUpperAir
 from siphon.testing import get_recorder
@@ -70,3 +71,17 @@ def test_high_alt_iastate():
     assert(df.units['direction'] == 'degrees')
     assert(df.units['station'] is None)
     assert(df.units['time'] is None)
+
+
+@recorder.use_cassette('iastate_no_data')
+def test_no_data_iastate():
+    """Test Iowa State data when no data are available."""
+    with pytest.raises(ValueError):
+        IAStateUpperAir.request_data(datetime(2010, 12, 9, 1), 'BOI')
+
+
+@recorder.use_cassette('iastate_no_future_data')
+def test_no_future_data_iastate():
+    """Test Iowa State data when future data are requested."""
+    with pytest.raises(ValueError):
+        IAStateUpperAir.request_data(datetime(2999, 12, 9, 12), 'BOI')
