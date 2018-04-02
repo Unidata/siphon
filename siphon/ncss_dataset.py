@@ -92,7 +92,7 @@ class _Types(object):
                 for potential_bool in val:
                     if potential_bool not in ['true', 'false']:
                         raise ValueError
-                val = [True if bool == 'true' else False for bool in val]
+                val = [True if item == 'true' else False for item in val]
             except ValueError:
                 msg = 'Cannot convert values %s to boolean.'
                 msg += ' Keeping type as str.'
