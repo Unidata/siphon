@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Siphon documentation build configuration file, created by
-# sphinx-quickstart on Wed Apr 22 15:27:44 2015.
-#
 # This file is execfile()d with the current directory set to its
 # containing dir.
 #
@@ -15,6 +12,8 @@
 
 import sys
 import os
+
+import siphon
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -37,19 +36,9 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
-    'sphinx_gallery.gen_gallery',
-    'sphinx.ext.viewcode'
+    'sphinx.ext.viewcode',
+    'sphinx_gallery.gen_gallery'
 ]
-
-mathjax_path = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
-#autosummary_generate = True
-
-# Set up mapping for other projects' docs
-intersphinx_mapping = {
-                       'python': ('https://docs.python.org/3/', None),
-                       'numpy': ('https://docs.scipy.org/doc/numpy/', None),
-                       'requests': ('http://docs.python-requests.org/en/master/', None),
-                       }
 
 sphinx_gallery_conf = {
     'doc_module': ('siphon',),
@@ -70,6 +59,12 @@ source_parsers = {
    '.md': 'recommonmark.parser.CommonMarkParser',
 }
 
+# Set up mapping for other projects' docs
+intersphinx_mapping = {
+                       'python': ('https://docs.python.org/3/', None),
+                       'numpy': ('https://docs.scipy.org/doc/numpy/', None),
+                       'requests': ('http://docs.python-requests.org/en/master/', None),
+                       }
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -92,9 +87,8 @@ copyright = '2018, Siphon Contributors'
 # built documents.
 #
 # The short X.Y version.
-import siphon
 verinfo = siphon.__version__
-version = verinfo.split('+')[0]
+version = verinfo.split('+')[0].rsplit('.', 1)[0]
 # The full version, including alpha/beta/rc tags.
 release = verinfo
 
@@ -114,7 +108,7 @@ exclude_patterns = []
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
-#default_role = None
+default_role = 'autolink'
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
 #add_function_parentheses = True
@@ -159,19 +153,27 @@ html_theme_options = {'canonical_url': 'https://unidata.github.io/siphon/latest/
 if 'sphinx_rtd_theme' in vars() and sphinx_rtd_theme.__version__ == '0.2.5b1.post1':
     html_theme_options['versions'] = {'latest': '../latest', 'dev': '../dev'}
 
+# Extra variables that will be available to the templates. Used to create the
+# links to the Github repository sources and issues
+html_context = {
+    'doc_path': 'docs',
+    'github_repo': 'Unidata/siphon',
+    'github_version': 'master',  # Make changes to the master branch
+}
+
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-#html_title = None
+html_title = ' '.join((project, version))
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-#html_logo = None
+html_logo = os.path.join('_static', 'siphon_150x150.png')
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -190,7 +192,7 @@ html_static_path = ['_static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
-#html_last_updated_fmt = '%b %d, %Y'
+html_last_updated_fmt = '%b %d, %Y at %H:%M:%S'
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
@@ -281,7 +283,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'Siphon', 'Siphon Documentation',
-     ['Unidata'], 1)
+     ['Siphon Contributors'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -295,7 +297,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'Siphon', 'Siphon Documentation',
-   'Unidata', 'Siphon', 'One line description of project.',
+   'Siphon Contributors', 'Siphon', 'One line description of project.',
    'Miscellaneous'),
 ]
 
