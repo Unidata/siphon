@@ -8,6 +8,7 @@ dependencies:
   - requests
   - protobuf
   - netcdf4
+  - metpy
   - jupyter
   - sphinx
   - sphinx-gallery

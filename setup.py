@@ -56,7 +56,7 @@ setup(
         'doc': ['sphinx>=1.3,!=1.6.4', 'sphinx-gallery', 'doc8', 'recommonmark'],
         # SciPy needed for cartopy; we don't use cartopy[plotting] because
         # that will pull in GDAL.
-        'examples': ['matplotlib>=1.3', 'cartopy>=0.13.1', 'scipy']
+        'examples': ['matplotlib>=1.3', 'cartopy>=0.13.1', 'scipy', 'metpy']
     },
 
     download_url='https://github.com/Unidata/siphon/archive/v{}.tar.gz'.format(ver),

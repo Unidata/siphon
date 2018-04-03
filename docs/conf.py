@@ -47,9 +47,9 @@ sphinx_gallery_conf = {
         'matplotlib': 'http://matplotlib.org',
         'numpy': 'http://docs.scipy.org/doc/numpy/',
         'requests': 'http://docs.python-requests.org/en/master/'},
-    'examples_dirs': ['../examples'],
+    'examples_dirs': [os.path.join('..', 'examples')],
     'gallery_dirs': ['examples'],
-    'filename_pattern': '/',
+    'filename_pattern': '\.py',
     'backreferences_dir': 'api/generated',
     'default_thumb_file': os.path.join('_static', 'siphon_150x150_white_bg.png'),
     'abort_on_example_error': True
