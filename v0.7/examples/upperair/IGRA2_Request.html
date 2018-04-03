@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>IGRA2 Upper Air Data Request &mdash; Siphon 0.7</title>
+  
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/examples/upperair/IGRA2_Request.html"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Siphon 0.7" href="../../index.html"/>
+        <link rel="up" title="Siphon Examples" href="../index.html"/>
+        <link rel="next" title="Developer’s Guide" href="../../developerguide.html"/>
+        <link rel="prev" title="Wyoming Upper Air Data Request" href="Wyoming_Request.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Siphon
+          
+
+          
+            
+            <img src="../../_static/siphon_150x150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.7</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installguide.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The Siphon API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Siphon Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#general-examples">General Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ncss">NCSS</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#upper-air">Upper Air</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Wyoming_Request.html">Wyoming Upper Air Data Request</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">IGRA2 Upper Air Data Request</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Siphon</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Siphon</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Siphon Examples</a> &raquo;</li>
+        
+      <li>IGRA2 Upper Air Data Request</li>
+    
+    
+    <li class="source-link">
+        
+            
+                
+                
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20examples/upperair/IGRA2_Request&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
+        
+    </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="igra2-upper-air-data-request">
+<span id="sphx-glr-examples-upperair-igra2-request-py"></span><h1>IGRA2 Upper Air Data Request<a class="headerlink" href="#igra2-upper-air-data-request" title="Permalink to this headline">¶</a></h1>
+<p>This example shows how to use siphon’s <em class="xref py py-obj">simplewebswervice</em> support to create a
+query to the Integrated Global Radiosonde Archive version 2.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">siphon.simplewebservice.igra2</span> <span class="kn">import</span> <span class="n">IGRAUpperAir</span>
+</pre></div>
+</div>
+<p>Create a datetime object for the sounding and string of the station identifier.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">station</span> <span class="o">=</span> <span class="s1">&#39;USM00070026&#39;</span>
+</pre></div>
+</div>
+<p>Make the request. IGRAUpperAir returns a dataframe containing the sounding data and
+a dataframe with station metadata from the sounding header.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="n">IGRAUpperAir</span><span class="o">.</span><span class="n">request_data</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">station</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Inspect data columns in the dataframe.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="c1"># Inspect metadata from the data headers</span>
+<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;lvltyp1&#39;</span><span class="p">,</span> <span class="s1">&#39;lvltyp2&#39;</span><span class="p">,</span> <span class="s1">&#39;etime&#39;</span><span class="p">,</span> <span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;pflag&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;zflag&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;tflag&#39;</span><span class="p">,</span> <span class="s1">&#39;relative_humidity&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;u_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;dewpoint&#39;</span><span class="p">],</span>
+      <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+<span class="n">Index</span><span class="p">([</span><span class="s1">&#39;site_id&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;release_time&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;number_levels&#39;</span><span class="p">,</span> <span class="s1">&#39;pressure_source_code&#39;</span><span class="p">,</span> <span class="s1">&#39;non_pressure_source_code&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">],</span>
+      <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Pull out a specific column of data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>      <span class="mf">1020.95</span>
+<span class="mi">1</span>      <span class="mf">1018.16</span>
+<span class="mi">2</span>      <span class="mf">1003.21</span>
+<span class="mi">3</span>      <span class="mf">1000.00</span>
+<span class="mi">4</span>       <span class="mf">983.95</span>
+<span class="mi">5</span>       <span class="mf">947.43</span>
+<span class="mi">6</span>       <span class="mf">938.76</span>
+<span class="mi">7</span>       <span class="mf">932.56</span>
+<span class="mi">8</span>       <span class="mf">925.00</span>
+<span class="mi">9</span>       <span class="mf">911.84</span>
+<span class="mi">10</span>      <span class="mf">905.46</span>
+<span class="mi">11</span>      <span class="mf">895.82</span>
+<span class="mi">12</span>      <span class="mf">866.93</span>
+<span class="mi">13</span>      <span class="mf">856.50</span>
+<span class="mi">14</span>      <span class="mf">850.00</span>
+<span class="mi">15</span>      <span class="mf">847.10</span>
+<span class="mi">16</span>      <span class="mf">831.60</span>
+<span class="mi">17</span>      <span class="mf">824.15</span>
+<span class="mi">18</span>      <span class="mf">817.16</span>
+<span class="mi">19</span>      <span class="mf">812.43</span>
+<span class="mi">20</span>      <span class="mf">809.70</span>
+<span class="mi">21</span>      <span class="mf">796.87</span>
+<span class="mi">22</span>      <span class="mf">758.79</span>
+<span class="mi">23</span>      <span class="mf">748.42</span>
+<span class="mi">24</span>      <span class="mf">736.53</span>
+<span class="mi">25</span>      <span class="mf">729.74</span>
+<span class="mi">26</span>      <span class="mf">700.00</span>
+<span class="mi">27</span>      <span class="mf">691.76</span>
+<span class="mi">28</span>      <span class="mf">676.16</span>
+<span class="mi">29</span>      <span class="mf">669.49</span>
+        <span class="o">...</span>
+<span class="mi">201</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">202</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">203</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">204</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">205</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">206</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">207</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">208</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">209</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">210</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">211</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">212</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">213</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">214</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">215</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">216</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">217</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">218</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">219</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">220</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">221</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">222</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">223</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">224</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">225</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">226</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">227</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">228</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">229</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="mi">230</span>     <span class="o">-</span><span class="mf">99.99</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">pressure</span><span class="p">,</span> <span class="n">Length</span><span class="p">:</span> <span class="mi">231</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+<span class="mi">0</span>    <span class="mf">71.2889</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<p>Units are stored in a dictionary with the variable name as the key in the <em class="xref py py-obj">units</em>
+attribute of the dataframe.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;etime&#39;</span><span class="p">:</span> <span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span> <span class="s1">&#39;dewpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">:</span> <span class="s1">&#39;meter / second&#39;</span><span class="p">,</span> <span class="s1">&#39;u_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;meter / second&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;meter / second&#39;</span><span class="p">}</span>
+<span class="p">{</span><span class="s1">&#39;release_time&#39;</span><span class="p">:</span> <span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hPa</span>
+</pre></div>
+</div>
+<p>Multiple records can be extracted simultaneously:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">)]</span>
+<span class="n">station</span> <span class="o">=</span> <span class="s1">&#39;USM00070026&#39;</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="n">IGRAUpperAir</span><span class="o">.</span><span class="n">request_data</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">station</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lvltyp1</span>  <span class="n">lvltyp2</span>  <span class="n">etime</span>  <span class="n">pressure</span>  <span class="n">pflag</span>  <span class="n">height</span>  <span class="n">zflag</span>  <span class="n">temperature</span>  \
+<span class="mi">0</span>        <span class="mi">2</span>        <span class="mi">1</span>      <span class="mi">0</span>   <span class="mf">1020.95</span>      <span class="mi">2</span>      <span class="mi">15</span>      <span class="mi">0</span>          <span class="mf">1.7</span>
+<span class="mi">1</span>        <span class="mi">2</span>        <span class="mi">0</span>      <span class="mi">5</span>   <span class="mf">1018.16</span>      <span class="mi">2</span>      <span class="mi">37</span>      <span class="mi">2</span>          <span class="mf">1.4</span>
+<span class="mi">2</span>        <span class="mi">2</span>        <span class="mi">0</span>     <span class="mi">32</span>   <span class="mf">1003.21</span>      <span class="mi">0</span>     <span class="mi">156</span>      <span class="mi">2</span>          <span class="mf">0.0</span>
+<span class="mi">3</span>        <span class="mi">1</span>        <span class="mi">0</span>     <span class="mi">38</span>   <span class="mf">1000.00</span>      <span class="mi">0</span>     <span class="mi">182</span>      <span class="mi">2</span>         <span class="o">-</span><span class="mf">0.3</span>
+<span class="mi">4</span>        <span class="mi">2</span>        <span class="mi">0</span>     <span class="mi">69</span>    <span class="mf">983.95</span>      <span class="mi">0</span>     <span class="mi">311</span>      <span class="mi">2</span>         <span class="o">-</span><span class="mf">1.7</span>
+
+   <span class="n">tflag</span>  <span class="n">relative_humidity</span>  <span class="n">direction</span>  <span class="n">speed</span>       <span class="n">date</span>  <span class="n">u_wind</span>  <span class="n">v_wind</span>  \
+<span class="mi">0</span>      <span class="mi">2</span>               <span class="mf">82.0</span>       <span class="mf">57.0</span>    <span class="mf">7.2</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">10</span>    <span class="o">-</span><span class="mf">6.0</span>    <span class="o">-</span><span class="mf">3.9</span>
+<span class="mi">1</span>      <span class="mi">2</span>               <span class="mf">75.1</span>       <span class="mf">64.0</span>    <span class="mf">7.0</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">10</span>    <span class="o">-</span><span class="mf">6.3</span>    <span class="o">-</span><span class="mf">3.1</span>
+<span class="mi">2</span>      <span class="mi">2</span>               <span class="mf">81.4</span>       <span class="mf">89.0</span>    <span class="mf">7.5</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">10</span>    <span class="o">-</span><span class="mf">7.5</span>    <span class="o">-</span><span class="mf">0.1</span>
+<span class="mi">3</span>      <span class="mi">2</span>               <span class="mf">82.8</span>       <span class="mf">88.0</span>    <span class="mf">7.7</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">10</span>    <span class="o">-</span><span class="mf">7.7</span>    <span class="o">-</span><span class="mf">0.3</span>
+<span class="mi">4</span>      <span class="mi">2</span>               <span class="mf">89.9</span>       <span class="mf">78.0</span>    <span class="mf">9.2</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">10</span>    <span class="o">-</span><span class="mf">9.0</span>    <span class="o">-</span><span class="mf">1.9</span>
+
+   <span class="n">dewpoint</span>
+<span class="mi">0</span>      <span class="o">-</span><span class="mf">1.0</span>
+<span class="mi">1</span>      <span class="o">-</span><span class="mf">2.5</span>
+<span class="mi">2</span>      <span class="o">-</span><span class="mf">2.8</span>
+<span class="mi">3</span>      <span class="o">-</span><span class="mf">2.9</span>
+<span class="mi">4</span>      <span class="o">-</span><span class="mf">3.1</span>
+       <span class="n">site_id</span>  <span class="n">year</span>  <span class="n">month</span>  <span class="n">day</span>  <span class="n">hour</span>  <span class="n">release_time</span>  <span class="n">number_levels</span>  \
+<span class="mi">0</span>  <span class="n">USM00070026</span>  <span class="mi">2014</span>      <span class="mi">9</span>   <span class="mi">10</span>     <span class="mi">0</span>          <span class="mi">9000</span>            <span class="mi">231</span>
+<span class="mi">1</span>  <span class="n">USM00070026</span>  <span class="mi">2014</span>      <span class="mi">9</span>   <span class="mi">10</span>    <span class="mi">12</span>          <span class="mi">4200</span>            <span class="mi">210</span>
+<span class="mi">2</span>  <span class="n">USM00070026</span>  <span class="mi">2014</span>      <span class="mi">9</span>   <span class="mi">11</span>     <span class="mi">0</span>          <span class="mi">9000</span>            <span class="mi">209</span>
+<span class="mi">3</span>  <span class="n">USM00070026</span>  <span class="mi">2014</span>      <span class="mi">9</span>   <span class="mi">11</span>    <span class="mi">12</span>          <span class="mi">4200</span>            <span class="mi">216</span>
+<span class="mi">4</span>  <span class="n">USM00070026</span>  <span class="mi">2014</span>      <span class="mi">9</span>   <span class="mi">12</span>     <span class="mi">0</span>          <span class="mi">9000</span>            <span class="mi">220</span>
+
+  <span class="n">pressure_source_code</span> <span class="n">non_pressure_source_code</span>  <span class="n">latitude</span>  <span class="n">longitude</span>  \
+<span class="mi">0</span>             <span class="n">ncdc6301</span>                 <span class="n">ncdc6301</span>   <span class="mf">71.2889</span>  <span class="o">-</span><span class="mf">156.7833</span>
+<span class="mi">1</span>             <span class="n">ncdc6301</span>                 <span class="n">ncdc6301</span>   <span class="mf">71.2889</span>  <span class="o">-</span><span class="mf">156.7833</span>
+<span class="mi">2</span>             <span class="n">ncdc6301</span>                 <span class="n">ncdc6301</span>   <span class="mf">71.2889</span>  <span class="o">-</span><span class="mf">156.7833</span>
+<span class="mi">3</span>             <span class="n">ncdc6301</span>                 <span class="n">ncdc6301</span>   <span class="mf">71.2889</span>  <span class="o">-</span><span class="mf">156.7833</span>
+<span class="mi">4</span>             <span class="n">ncdc6301</span>                 <span class="n">ncdc6301</span>   <span class="mf">71.2889</span>  <span class="o">-</span><span class="mf">156.7833</span>
+
+                 <span class="n">date</span>
+<span class="mi">0</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">10</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+<span class="mi">1</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">10</span> <span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+<span class="mi">2</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">11</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+<span class="mi">3</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">11</span> <span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+<span class="mi">4</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">12</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+</pre></div>
+</div>
+<p>IGRA2-Derived data can be accessed using the keyword derived=True.
+This data has much more information in the headers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="n">IGRAUpperAir</span><span class="o">.</span><span class="n">request_data</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">station</span><span class="p">,</span> <span class="n">derived</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Inspect data columns in the dataframe.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;reported_height&#39;</span><span class="p">,</span> <span class="s1">&#39;calculated_height&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;temperature_gradient&#39;</span><span class="p">,</span> <span class="s1">&#39;potential_temperature&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;potential_temperature_gradient&#39;</span><span class="p">,</span> <span class="s1">&#39;virtual_temperature&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;virtual_potential_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;vapor_pressure&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;saturation_vapor_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;reported_relative_humidity&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;calculated_relative_humidity&#39;</span><span class="p">,</span> <span class="s1">&#39;u_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;u_wind_gradient&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;v_wind_gradient&#39;</span><span class="p">,</span> <span class="s1">&#39;refractive_index&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">],</span>
+      <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+<span class="n">Index</span><span class="p">([</span><span class="s1">&#39;site_id&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;release_time&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;number_levels&#39;</span><span class="p">,</span> <span class="s1">&#39;precipitable_water&#39;</span><span class="p">,</span> <span class="s1">&#39;inv_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;inv_height&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;inv_strength&#39;</span><span class="p">,</span> <span class="s1">&#39;mixed_layer_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;mixed_layer_height&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;freezing_point_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;freezing_point_height&#39;</span><span class="p">,</span> <span class="s1">&#39;lcl_pressure&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;lcl_height&#39;</span><span class="p">,</span> <span class="s1">&#39;lfc_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;lfc_height&#39;</span><span class="p">,</span> <span class="s1">&#39;lnb_pressure&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;lnb_height&#39;</span><span class="p">,</span> <span class="s1">&#39;lifted_index&#39;</span><span class="p">,</span> <span class="s1">&#39;showalter_index&#39;</span><span class="p">,</span> <span class="s1">&#39;k_index&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;total_totals_index&#39;</span><span class="p">,</span> <span class="s1">&#39;cape&#39;</span><span class="p">,</span> <span class="s1">&#39;convective_inhibition&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">],</span>
+      <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  52.848 seconds)</p>
+<div class="sphx-glr-footer docutils container">
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" href="../../_downloads/IGRA2_Request.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">IGRA2_Request.py</span></code></a></div>
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" href="../../_downloads/IGRA2_Request.ipynb" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">IGRA2_Request.ipynb</span></code></a></div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../developerguide.html" class="btn btn-neutral float-right" title="Developer’s Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Wyoming_Request.html" class="btn btn-neutral" title="Wyoming Upper Air Data Request" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 22:02:19.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<p>Do you enjoy using Siphon?
+  <a href="https://saythanks.io/to/unidata" class="btn btn-neutral" title="Installation Guide" accesskey="n">Say Thanks!</a>
+</p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.7.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
