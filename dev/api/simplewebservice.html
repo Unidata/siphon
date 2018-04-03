@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>siphon.simplewebservice &mdash; Siphon 0.6.0+36.g03d1047 documentation</title>
+  <title>siphon.simplewebservice &mdash; Siphon 0.6</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Siphon 0.6.0+36.g03d1047 documentation" href="../index.html"/>
+    <link rel="top" title="Siphon 0.6" href="../index.html"/>
         <link rel="up" title="The Siphon API" href="index.html"/>
         <link rel="next" title="Siphon Examples" href="../examples/index.html"/>
         <link rel="prev" title="siphon.radarserver" href="radarserver.html"/> 
@@ -67,13 +67,31 @@
           
 
           
+            
+            <img src="../_static/siphon_150x150.png" class="logo" />
+          
           </a>
 
           
             
             
               <div class="version">
-                0.6.0
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.6</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
               </div>
             
           
@@ -100,14 +118,14 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">The Siphon API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="docutils literal"><span class="pre">siphon.catalog</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="docutils literal"><span class="pre">siphon.metadata</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="docutils literal"><span class="pre">siphon.ncss_dataset</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="docutils literal"><span class="pre">siphon.http_util</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="docutils literal"><span class="pre">siphon.ncss</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal"><span class="pre">siphon.radarserver</span></code></a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-siphon.simplewebservice.wyoming"><code class="docutils literal"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-siphon.simplewebservice.wyoming"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -152,6 +170,7 @@
 
 
 
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -160,17 +179,20 @@
         
           <li><a href="index.html">The Siphon API</a> &raquo;</li>
         
-      <li><code class="docutils literal"><span class="pre">siphon.simplewebservice</span></code></li>
+      <li><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></li>
     
     
-      <li class="wy-breadcrumbs-aside">
+    <li class="source-link">
         
             
-            <a href="../_sources/api/simplewebservice.rst.txt" rel="nofollow"> View page source</a>
-          
+                
+                
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20api/simplewebservice&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
         
-      </li>
-    
+    </li>
+
   </ul>
 
   
@@ -180,32 +202,32 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-siphon.simplewebservice">
-<span id="siphon-simplewebservice"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice" title="siphon.simplewebservice"><code class="xref py py-mod docutils literal"><span class="pre">siphon.simplewebservice</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice" title="Permalink to this headline">¶</a></h1>
+<span id="siphon-simplewebservice"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice" title="siphon.simplewebservice"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice" title="Permalink to this headline">¶</a></h1>
 <p>Contains functionality for retrieving simple web service data.</p>
 </div>
 <div class="section" id="module-siphon.simplewebservice.wyoming">
-<span id="siphon-simplewebservice-wyoming"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.wyoming" title="siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal"><span class="pre">siphon.simplewebservice.wyoming</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.wyoming" title="Permalink to this headline">¶</a></h1>
+<span id="siphon-simplewebservice-wyoming"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.wyoming" title="siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.wyoming" title="Permalink to this headline">¶</a></h1>
 <p>Read upper air data from the Wyoming archives.</p>
 <dl class="class">
 <dt id="siphon.simplewebservice.wyoming.WyomingUpperAir">
-<em class="property">class </em><code class="descclassname">siphon.simplewebservice.wyoming.</code><code class="descname">WyomingUpperAir</code><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">siphon.simplewebservice.wyoming.</code><code class="descname">WyomingUpperAir</code><a class="reference internal" href="../_modules/siphon/simplewebservice/wyoming.html#WyomingUpperAir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download and parse data from the University of Wyoming’s upper air archive.</p>
 <dl class="method">
 <dt id="siphon.simplewebservice.wyoming.WyomingUpperAir.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/wyoming.html#WyomingUpperAir.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up endpoint.</p>
 </dd></dl>
 
 <dl class="classmethod">
 <dt id="siphon.simplewebservice.wyoming.WyomingUpperAir.request_data">
-<em class="property">classmethod </em><code class="descname">request_data</code><span class="sig-paren">(</span><em>time</em>, <em>site_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">request_data</code><span class="sig-paren">(</span><em>time</em>, <em>site_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/wyoming.html#WyomingUpperAir.request_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve upper air observations from the Wyoming archive.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#module-datetime" title="(in Python v3.6)"><em>datetime</em></a>) – The date and time of the desired observation.</li>
+<li><strong>time</strong> (<em>datetime</em>) – The date and time of the desired observation.</li>
 <li><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – The three letter ICAO identifier of the station for which data should be
 downloaded.</li>
 <li><strong>kwargs</strong> – Arbitrary keyword arguments to use to initialize source</li>
@@ -215,7 +237,7 @@ downloaded.</li>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code> containing the data</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing the data</p>
 </td>
 </tr>
 </tbody>
@@ -248,7 +270,8 @@ downloaded.</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Unidata.
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 19:48:16.
 
     </p>
   </div>
@@ -285,7 +308,8 @@ downloaded.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.6.0+36.g03d1047',
+            VERSION:'0.6.1+104.g9f7bf0f',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -295,7 +319,7 @@ downloaded.</li>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

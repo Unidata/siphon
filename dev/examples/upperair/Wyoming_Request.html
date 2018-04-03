@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Wyoming Upper Air Data Request &mdash; Siphon 0.6.0+36.g03d1047 documentation</title>
+  <title>Wyoming Upper Air Data Request &mdash; Siphon 0.6</title>
   
 
   
@@ -41,9 +41,9 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Siphon 0.6.0+36.g03d1047 documentation" href="../../index.html"/>
+    <link rel="top" title="Siphon 0.6" href="../../index.html"/>
         <link rel="up" title="Siphon Examples" href="../index.html"/>
-        <link rel="next" title="Developer’s Guide" href="../../developerguide.html"/>
+        <link rel="next" title="IGRA2 Upper Air Data Request" href="IGRA2_Request.html"/>
         <link rel="prev" title="NCSS and CartoPy" href="../ncss/NCSS_Cartopy_Example.html"/> 
 
   
@@ -67,13 +67,31 @@
           
 
           
+            
+            <img src="../../_static/siphon_150x150.png" class="logo" />
+          
           </a>
 
           
             
             
               <div class="version">
-                0.6.0
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.6</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
               </div>
             
           
@@ -105,6 +123,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#ncss">NCSS</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#upper-air">Upper Air</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Wyoming Upper Air Data Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IGRA2_Request.html">IGRA2 Upper Air Data Request</a></li>
 </ul>
 </li>
 </ul>
@@ -150,6 +169,7 @@
 
 
 
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -161,14 +181,17 @@
       <li>Wyoming Upper Air Data Request</li>
     
     
-      <li class="wy-breadcrumbs-aside">
+    <li class="source-link">
         
             
-            <a href="../../_sources/examples/upperair/Wyoming_Request.rst.txt" rel="nofollow"> View page source</a>
-          
+                
+                
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20examples/upperair/Wyoming_Request&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
         
-      </li>
-    
+    </li>
+
   </ul>
 
   
@@ -179,37 +202,41 @@
             
   <div class="section" id="wyoming-upper-air-data-request">
 <span id="sphx-glr-examples-upperair-wyoming-request-py"></span><h1>Wyoming Upper Air Data Request<a class="headerlink" href="#wyoming-upper-air-data-request" title="Permalink to this headline">¶</a></h1>
-<p>This example shows how to use siphon’s <cite>simplewebswervice</cite> support to create a query to
+<p>This example shows how to use siphon’s <em class="xref py py-obj">simplewebswervice</em> support to create a query to
 the Wyoming upper air archive.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">metpy.units</span> <span class="kn">import</span> <span class="n">units</span>
+
 <span class="kn">from</span> <span class="nn">siphon.simplewebservice.wyoming</span> <span class="kn">import</span> <span class="n">WyomingUpperAir</span>
 </pre></div>
 </div>
 <p>Create a datetime object for the sounding and string of the station identifier.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="n">station</span> <span class="o">=</span> <span class="s1">&#39;MFL&#39;</span>
 </pre></div>
 </div>
 <p>Make the request (a pandas dataframe is returned).</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data" title="View documentation for siphon.simplewebservice.wyoming.WyomingUpperAir.request_data"><span class="n">WyomingUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">station</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data" title="View documentation for siphon.simplewebservice.wyoming.WyomingUpperAir.request_data"><span class="n">WyomingUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">station</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Inspect data columns in the dataframe.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;dewpoint&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">,</span>
-       <span class="s1">&#39;u_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind&#39;</span><span class="p">],</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;dewpoint&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;u_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;station&#39;</span><span class="p">,</span> <span class="s1">&#39;station_number&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;elevation&#39;</span><span class="p">],</span>
       <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Pull out a specific column of data.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span>     <span class="mf">1002.0</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>     <span class="mf">1002.0</span>
 <span class="mi">1</span>     <span class="mf">1000.0</span>
 <span class="mi">2</span>      <span class="mf">994.0</span>
 <span class="mi">3</span>      <span class="mf">978.0</span>
@@ -272,28 +299,36 @@ the Wyoming upper air archive.</p>
 <span class="n">Name</span><span class="p">:</span> <span class="n">pressure</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
 </pre></div>
 </div>
-<p>Units are stored in a dictionary with the variable name as the key in the <cite>units</cite> attribute
+<p>Units are stored in a dictionary with the variable name as the key in the <em class="xref py py-obj">units</em> attribute
 of the dataframe.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span> <span class="s1">&#39;dewpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">:</span> <span class="s1">&#39;knot&#39;</span><span class="p">,</span> <span class="s1">&#39;u_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;knot&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;knot&#39;</span><span class="p">}</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span> <span class="s1">&#39;dewpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">:</span> <span class="s1">&#39;knot&#39;</span><span class="p">,</span> <span class="s1">&#39;u_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;knot&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;knot&#39;</span><span class="p">,</span> <span class="s1">&#39;station&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;station_number&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span> <span class="s1">&#39;elevation&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">hPa</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hPa</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.947 seconds)</p>
+<p>Units can then be attached to the values from the dataframe.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pressure</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">])</span>
+<span class="n">dewpoint</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">])</span>
+<span class="n">u_wind</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;u_wind&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="s1">&#39;u_wind&#39;</span><span class="p">])</span>
+<span class="n">v_wind</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;v_wind&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="s1">&#39;v_wind&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  1.378 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" href="../../_downloads/Wyoming_Request.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Wyoming_Request.py</span></code></a></div>
+<a class="reference download internal" href="../../_downloads/Wyoming_Request.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Wyoming_Request.py</span></code></a></div>
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" href="../../_downloads/Wyoming_Request.ipynb" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">Wyoming_Request.ipynb</span></code></a></div>
+<a class="reference download internal" href="../../_downloads/Wyoming_Request.ipynb" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">Wyoming_Request.ipynb</span></code></a></div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>
@@ -308,7 +343,7 @@ of the dataframe.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../developerguide.html" class="btn btn-neutral float-right" title="Developer’s Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="IGRA2_Request.html" class="btn btn-neutral float-right" title="IGRA2 Upper Air Data Request" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../ncss/NCSS_Cartopy_Example.html" class="btn btn-neutral" title="NCSS and CartoPy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -320,7 +355,8 @@ of the dataframe.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Unidata.
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 19:48:16.
 
     </p>
   </div>
@@ -357,7 +393,8 @@ of the dataframe.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.6.0+36.g03d1047',
+            VERSION:'0.6.1+104.g9f7bf0f',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -367,7 +404,7 @@ of the dataframe.</p>
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

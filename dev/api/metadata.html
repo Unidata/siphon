@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>siphon.metadata &mdash; Siphon 0.6.0+36.g03d1047 documentation</title>
+  <title>siphon.metadata &mdash; Siphon 0.6</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Siphon 0.6.0+36.g03d1047 documentation" href="../index.html"/>
+    <link rel="top" title="Siphon 0.6" href="../index.html"/>
         <link rel="up" title="The Siphon API" href="index.html"/>
         <link rel="next" title="siphon.ncss_dataset" href="ncssdataset.html"/>
         <link rel="prev" title="siphon.catalog" href="catalog.html"/> 
@@ -67,13 +67,31 @@
           
 
           
+            
+            <img src="../_static/siphon_150x150.png" class="logo" />
+          
           </a>
 
           
             
             
               <div class="version">
-                0.6.0
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.6</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
               </div>
             
           
@@ -100,14 +118,14 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">The Siphon API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="docutils literal"><span class="pre">siphon.catalog</span></code></a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">siphon.metadata</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="docutils literal"><span class="pre">siphon.ncss_dataset</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="docutils literal"><span class="pre">siphon.http_util</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="docutils literal"><span class="pre">siphon.ncss</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal"><span class="pre">siphon.radarserver</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -152,6 +170,7 @@
 
 
 
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -160,17 +179,20 @@
         
           <li><a href="index.html">The Siphon API</a> &raquo;</li>
         
-      <li><code class="docutils literal"><span class="pre">siphon.metadata</span></code></li>
+      <li><code class="docutils literal notranslate"><span class="pre">siphon.metadata</span></code></li>
     
     
-      <li class="wy-breadcrumbs-aside">
+    <li class="source-link">
         
             
-            <a href="../_sources/api/metadata.rst.txt" rel="nofollow"> View page source</a>
-          
+                
+                
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20api/metadata&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
         
-      </li>
-    
+    </li>
+
   </ul>
 
   
@@ -180,11 +202,11 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-siphon.metadata">
-<span id="siphon-metadata"></span><h1><a class="reference internal" href="#module-siphon.metadata" title="siphon.metadata"><code class="xref py py-mod docutils literal"><span class="pre">siphon.metadata</span></code></a><a class="headerlink" href="#module-siphon.metadata" title="Permalink to this headline">¶</a></h1>
+<span id="siphon-metadata"></span><h1><a class="reference internal" href="#module-siphon.metadata" title="siphon.metadata"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a><a class="headerlink" href="#module-siphon.metadata" title="Permalink to this headline">¶</a></h1>
 <p>Helps support reading and parsing metadata elements from a TDS client catalog.</p>
 <dl class="class">
 <dt id="siphon.metadata.TDSCatalogMetadata">
-<em class="property">class </em><code class="descclassname">siphon.metadata.</code><code class="descname">TDSCatalogMetadata</code><span class="sig-paren">(</span><em>element</em>, <em>metadata_in=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.metadata.TDSCatalogMetadata" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">siphon.metadata.</code><code class="descname">TDSCatalogMetadata</code><span class="sig-paren">(</span><em>element</em>, <em>metadata_in=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/metadata.html#TDSCatalogMetadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.metadata.TDSCatalogMetadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hold information contained in the catalog Metadata tag.</p>
 <dl class="attribute">
 <dt id="siphon.metadata.TDSCatalogMetadata.metadata">
@@ -194,14 +216,14 @@
 
 <dl class="method">
 <dt id="siphon.metadata.TDSCatalogMetadata.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>element</em>, <em>metadata_in=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.metadata.TDSCatalogMetadata.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize a <a class="reference internal" href="#siphon.metadata.TDSCatalogMetadata" title="siphon.metadata.TDSCatalogMetadata"><code class="xref py py-class docutils literal"><span class="pre">TDSCatalogMetadata</span></code></a> object.</p>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>element</em>, <em>metadata_in=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/metadata.html#TDSCatalogMetadata.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.metadata.TDSCatalogMetadata.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a <a class="reference internal" href="#siphon.metadata.TDSCatalogMetadata" title="siphon.metadata.TDSCatalogMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">TDSCatalogMetadata</span></code></a> object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">Element</span></code></a> representing a metadata node</li>
+<li><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a metadata node</li>
 <li><strong>metadata_in</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><em>object</em></a><em>]</em><em>, </em><em>optional</em>) – Parent metadata to inherit, if appropriate. Defaults to None.</li>
 </ul>
 </td>
@@ -236,7 +258,8 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Unidata.
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 19:48:16.
 
     </p>
   </div>
@@ -273,7 +296,8 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.6.0+36.g03d1047',
+            VERSION:'0.6.1+104.g9f7bf0f',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -283,7 +307,7 @@
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

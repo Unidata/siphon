@@ -136,7 +136,7 @@ subsets of remote datasets in netCDF format.
 Upper Air
 ---------
 
-Examples of requesting upper air (balloon) data from the Wyoming data service.
+Examples of requesting upper air (balloon) data from the Wyoming data service and from the Integrated Global Radiosonde Archive.
 
 
 
@@ -159,6 +159,26 @@ Examples of requesting upper air (balloon) data from the Wyoming data service.
    :hidden:
 
    /examples/upperair/Wyoming_Request
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s `simplewebswervice` support to create a query to the Int...">
+
+.. only:: html
+
+    .. figure:: /examples/upperair/images/thumb/sphx_glr_IGRA2_Request_thumb.png
+
+        :ref:`sphx_glr_examples_upperair_IGRA2_Request.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/upperair/IGRA2_Request
 .. raw:: html
 
     <div style='clear:both'></div>

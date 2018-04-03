@@ -1,6 +1,6 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2015 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """
 ================
 NCSS Time Series
@@ -48,7 +48,7 @@ query.variables('Temperature_isobaric').accept('netcdf')
 # this NetCDF data (using the `netCDF4` module). If we print out the variable names, we
 # see our requested variables, as well as a few others (more metadata information)
 data = ncss.get_data(query)
-list(data.variables.keys())
+list(data.variables)
 
 ###########################################
 # We'll pull out the temperature  and time variables.

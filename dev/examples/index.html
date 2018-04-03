@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Siphon Examples &mdash; Siphon 0.6.0+36.g03d1047 documentation</title>
+  <title>Siphon Examples &mdash; Siphon 0.6</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Siphon 0.6.0+36.g03d1047 documentation" href="../index.html"/>
+    <link rel="top" title="Siphon 0.6" href="../index.html"/>
         <link rel="next" title="THREDDS Catalog" href="Basic_Usage.html"/>
         <link rel="prev" title="siphon.simplewebservice" href="../api/simplewebservice.html"/> 
 
@@ -66,13 +66,31 @@
           
 
           
+            
+            <img src="../_static/siphon_150x150.png" class="logo" />
+          
           </a>
 
           
             
             
               <div class="version">
-                0.6.0
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.6</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
               </div>
             
           
@@ -113,6 +131,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#upper-air">Upper Air</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="upperair/Wyoming_Request.html">Wyoming Upper Air Data Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="upperair/IGRA2_Request.html">IGRA2 Upper Air Data Request</a></li>
 </ul>
 </li>
 </ul>
@@ -158,6 +177,7 @@
 
 
 
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -167,14 +187,17 @@
       <li>Siphon Examples</li>
     
     
-      <li class="wy-breadcrumbs-aside">
+    <li class="source-link">
         
             
-            <a href="../_sources/examples/index.rst.txt" rel="nofollow"> View page source</a>
-          
+                
+                
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20examples/index&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
         
-      </li>
-    
+    </li>
+
   </ul>
 
   
@@ -226,18 +249,24 @@ subsets of remote datasets in netCDF format.</p>
 <div style='clear:both'></div></div>
 <div class="section" id="upper-air">
 <span id="upperair-examples"></span><h2>Upper Air<a class="headerlink" href="#upper-air" title="Permalink to this headline">¶</a></h2>
-<p>Examples of requesting upper air (balloon) data from the Wyoming data service.</p>
+<p>Examples of requesting upper air (balloon) data from the Wyoming data service and from the Integrated Global Radiosonde Archive.</p>
 <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s `simplewebswervice` support to create a query to the Wyo..."><div class="figure" id="id7">
 <img alt="../_images/sphx_glr_Wyoming_Request_thumb.png" src="../_images/sphx_glr_Wyoming_Request_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="upperair/Wyoming_Request.html#sphx-glr-examples-upperair-wyoming-request-py"><span class="std std-ref">Wyoming Upper Air Data Request</span></a></span></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
+<div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s `simplewebswervice` support to create a query to the Int..."><div class="figure" id="id8">
+<img alt="../_images/sphx_glr_IGRA2_Request_thumb.png" src="../_images/sphx_glr_IGRA2_Request_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="upperair/IGRA2_Request.html#sphx-glr-examples-upperair-igra2-request-py"><span class="std std-ref">IGRA2 Upper Air Data Request</span></a></span></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
 <div style='clear:both'></div><div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" href="../_downloads/examples_python.zip" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">examples_python.zip</span></code></a></div>
+<a class="reference download internal" href="../_downloads/examples_python.zip" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">examples_python.zip</span></code></a></div>
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" href="../_downloads/examples_jupyter.zip" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Jupyter</span> <span class="pre">notebooks:</span> <span class="pre">examples_jupyter.zip</span></code></a></div>
+<a class="reference download internal" href="../_downloads/examples_jupyter.zip" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Jupyter</span> <span class="pre">notebooks:</span> <span class="pre">examples_jupyter.zip</span></code></a></div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>
@@ -265,7 +294,8 @@ subsets of remote datasets in netCDF format.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Unidata.
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 19:48:16.
 
     </p>
   </div>
@@ -302,7 +332,8 @@ subsets of remote datasets in netCDF format.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.6.0+36.g03d1047',
+            VERSION:'0.6.1+104.g9f7bf0f',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -312,7 +343,7 @@ subsets of remote datasets in netCDF format.</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

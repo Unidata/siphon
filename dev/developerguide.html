@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developer’s Guide &mdash; Siphon 0.6.0+36.g03d1047 documentation</title>
+  <title>Developer’s Guide &mdash; Siphon 0.6</title>
   
 
   
@@ -41,9 +41,9 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Siphon 0.6.0+36.g03d1047 documentation" href="index.html"/>
+    <link rel="top" title="Siphon 0.6" href="index.html"/>
         <link rel="next" title="Contributing" href="CONTRIBUTING.html"/>
-        <link rel="prev" title="Wyoming Upper Air Data Request" href="examples/upperair/Wyoming_Request.html"/> 
+        <link rel="prev" title="IGRA2 Upper Air Data Request" href="examples/upperair/IGRA2_Request.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -66,13 +66,31 @@
           
 
           
+            
+            <img src="_static/siphon_150x150.png" class="logo" />
+          
           </a>
 
           
             
             
               <div class="version">
-                0.6.0
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.6</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
               </div>
             
           
@@ -154,6 +172,7 @@
 
 
 
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -163,14 +182,15 @@
       <li>Developer’s Guide</li>
     
     
-      <li class="wy-breadcrumbs-aside">
+    <li class="source-link">
         
             
-            <a href="_sources/developerguide.rst.txt" rel="nofollow"> View page source</a>
-          
+                <a href="https://github.com/Unidata/siphon/edit/master/docs/developerguide.rst"
+                   class="fa fa-github"> Improve this page</a>
+            
         
-      </li>
-    
+    </li>
+
   </ul>
 
   
@@ -195,20 +215,20 @@
 <h3>Conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h3>
 <p>Settings up a development environment in Siphon is as easy as (from the
 base of the repository):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span>
 <span class="n">conda</span> <span class="n">develop</span> <span class="o">-</span><span class="n">n</span> <span class="n">devel</span> <span class="o">.</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">environment.yml</span></code> contains all of the configuration needed to easily
-set up the environment, called <code class="docutils literal"><span class="pre">devel</span></code>. The second line sets up conda to
+<p>The <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> contains all of the configuration needed to easily
+set up the environment, called <code class="docutils literal notranslate"><span class="pre">devel</span></code>. The second line sets up conda to
 run directly out of the git repository.</p>
 </div>
 </div>
 <div class="section" id="making-changes">
 <h2>Making Changes<a class="headerlink" href="#making-changes" title="Permalink to this headline">¶</a></h2>
 <p>The changes to the Siphon source (and documentation) should be made via GitHub pull requests
-against <code class="docutils literal"><span class="pre">master</span></code>, even for those with administration rights. While it’s tempting to make
-changes directly to <code class="docutils literal"><span class="pre">master</span></code> and push them up, it is better to make a pull request so that
+against <code class="docutils literal notranslate"><span class="pre">master</span></code>, even for those with administration rights. While it’s tempting to make
+changes directly to <code class="docutils literal notranslate"><span class="pre">master</span></code> and push them up, it is better to make a pull request so that
 others can give feedback. If nothing else, this gives a chance for the automated tests to run
 on the PR. This can eliminate “brown paper bag” moments with buggy commits on the master
 branch.</p>
@@ -216,26 +236,26 @@ branch.</p>
 and squash together smaller commits. It’s not necessary to flatten the entire branch, but it
 can be nice to eliminate small fixes and get the merge down to logically arranged commit. This
 can also be used to hide sins from history–this is the only chance, since once it hits
-<code class="docutils literal"><span class="pre">master</span></code>, it’s there forever!</p>
+<code class="docutils literal notranslate"><span class="pre">master</span></code>, it’s there forever!</p>
 </div>
 <div class="section" id="versioning">
 <h2>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">¶</a></h2>
-<p>To manage identifying the version of the code, Siphon relies upon <a class="reference external" href="https://github.com/warner/python-versioneer">versioneer</a>. <code class="docutils literal"><span class="pre">versioneer</span></code> takes the current version of
+<p>To manage identifying the version of the code, Siphon relies upon <a class="reference external" href="https://github.com/warner/python-versioneer">versioneer</a>. <code class="docutils literal notranslate"><span class="pre">versioneer</span></code> takes the current version of
 the source from git tags and any additional commits. For development, the version will have a
-string like <code class="docutils literal"><span class="pre">0.1.1+76.g136e37b.dirty</span></code>, which comes from <code class="docutils literal"><span class="pre">git</span> <span class="pre">describe</span></code>. This version means
-that the current code is 76 commits past the 0.1.1 tag, on git hash <code class="docutils literal"><span class="pre">136e37b</span></code>, with local
-changes on top (indicated by <code class="docutils literal"><span class="pre">dirty</span></code>). For a release, or non-git repo source dir, the version
-will just come from the most recent tag (i.e. <code class="docutils literal"><span class="pre">v0.1.1</span></code>).</p>
-<p>To make a new version, simply add a new tag with a name like <code class="docutils literal"><span class="pre">vMajor.Minor.Bugfix</span></code> and push
+string like <code class="docutils literal notranslate"><span class="pre">0.1.1+76.g136e37b.dirty</span></code>, which comes from <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">describe</span></code>. This version means
+that the current code is 76 commits past the 0.1.1 tag, on git hash <code class="docutils literal notranslate"><span class="pre">136e37b</span></code>, with local
+changes on top (indicated by <code class="docutils literal notranslate"><span class="pre">dirty</span></code>). For a release, or non-git repo source dir, the version
+will just come from the most recent tag (i.e. <code class="docutils literal notranslate"><span class="pre">v0.1.1</span></code>).</p>
+<p>To make a new version, simply add a new tag with a name like <code class="docutils literal notranslate"><span class="pre">vMajor.Minor.Bugfix</span></code> and push
 to GitHub. Github will add a new release with a source archive.zip file. Running</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">sdist</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">sdist</span>
 </pre></div>
 </div>
 <p>will build a new source distribution with the appropriately generated version file as well.
 This will also create a new stable set of documentation.</p>
-<p><code class="docutils literal"><span class="pre">versioneer</span></code> is installed in the base of the repository. To update, install the latest copy
-using <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">versioneer</span></code>. Then recreate the <code class="docutils literal"><span class="pre">_version.py</span></code> file using:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">versioneer</span>
+<p><code class="docutils literal notranslate"><span class="pre">versioneer</span></code> is installed in the base of the repository. To update, install the latest copy
+using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">versioneer</span></code>. Then recreate the <code class="docutils literal notranslate"><span class="pre">_version.py</span></code> file using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">versioneer</span>
 </pre></div>
 </div>
 </div>
@@ -243,19 +263,19 @@ using <code class="docutils literal"><span class="pre">pip</span> <span class="p
 <h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
 <p>Unit tests are the lifeblood of the project, as it ensures that we can continue to add and
 change the code and stay confident that things have not broken. Running the tests requires
-<code class="docutils literal"><span class="pre">pytest</span></code>, which is easily available through <code class="docutils literal"><span class="pre">conda</span></code> or <code class="docutils literal"><span class="pre">pip</span></code>. Running the tests can be
+<code class="docutils literal notranslate"><span class="pre">pytest</span></code>, which is easily available through <code class="docutils literal notranslate"><span class="pre">conda</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span></code>. Running the tests can be
 done via either:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">test</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">test</span>
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span>
 </pre></div>
 </div>
-<p>Using <code class="docutils literal"><span class="pre">py.test</span></code> also gives you the option of passing a path to the directory with tests to
+<p>Using <code class="docutils literal notranslate"><span class="pre">py.test</span></code> also gives you the option of passing a path to the directory with tests to
 run, which can speed running only the tests of interest when doing development. For instance,
-to only run the tests in the <code class="docutils literal"><span class="pre">siphon/cdmr</span></code> directory, use:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span> <span class="n">siphon</span><span class="o">/</span><span class="n">cdmr</span>
+to only run the tests in the <code class="docutils literal notranslate"><span class="pre">siphon/cdmr</span></code> directory, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span> <span class="n">siphon</span><span class="o">/</span><span class="n">cdmr</span>
 </pre></div>
 </div>
 </div>
@@ -268,9 +288,9 @@ good target, but some times longer lines are needed.</p>
 that go through and correct code style, Siphon has adopted this style from the outset.
 Therefore, it makes sense to enforce this style as code is added to keep everything clean and
 uniform. To this end, part of the automated testing for Siphon checks style. To check style
-locally within the source directory you can use the <code class="docutils literal"><span class="pre">flake8</span></code> tool. Running it from the root
+locally within the source directory you can use the <code class="docutils literal notranslate"><span class="pre">flake8</span></code> tool. Running it from the root
 of the source directory is as easy as:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">flake8</span> <span class="n">siphon</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flake8</span> <span class="n">siphon</span>
 </pre></div>
 </div>
 </div>
@@ -279,18 +299,18 @@ of the source directory is as easy as:</p>
 <p>Siphon’s documentation is built using sphinx &gt;= 1.4. API documentation is automatically
 generated from docstrings, written using the
 <a class="reference external" href="https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt">NumPy docstring standard</a>.
-There are also examples in the <code class="docutils literal"><span class="pre">examples/</span></code> directory.</p>
+There are also examples in the <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory.</p>
 <p>The documentation is hosted on <a class="reference external" href="https://unidata.github.io/siphon">GitHub Pages</a>. The docs are
-built automatically from <code class="docutils literal"><span class="pre">master</span></code> with every build on Travis-CI; every merged PR will
+built automatically from <code class="docutils literal notranslate"><span class="pre">master</span></code> with every build on Travis-CI; every merged PR will
 have the built docs upload to GitHub Pages. As part of the build, the documentation is also
-checked with <code class="docutils literal"><span class="pre">doc8</span></code>. To see what the docs will look like, you also need to install the
-<code class="docutils literal"><span class="pre">sphinx-rtd-theme</span></code> package.</p>
+checked with <code class="docutils literal notranslate"><span class="pre">doc8</span></code>. To see what the docs will look like, you also need to install the
+<code class="docutils literal notranslate"><span class="pre">sphinx-rtd-theme</span></code> package.</p>
 </div>
 <div class="section" id="other-tools">
 <h2>Other Tools<a class="headerlink" href="#other-tools" title="Permalink to this headline">¶</a></h2>
 <p>Continuous integration is performed by <a class="reference external" href="http://www.travis-ci.org/Unidata/siphon">Travis CI</a>.
 This service runs the unit tests on all support versions, as well as runs against the minimum
-package versions. <code class="docutils literal"><span class="pre">flake8</span></code> is also run against the code to check formatting. Travis is also
+package versions. <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is also run against the code to check formatting. Travis is also
 used to build the documentation and to run the examples to ensure they stay working.</p>
 <p>Test coverage is monitored by <a class="reference external" href="https://codecov.io/github/Unidata/siphon">Codecov.io</a>.</p>
 </div>
@@ -301,15 +321,15 @@ used to build the documentation and to run the examples to ensure they stay work
 <li>Go to the GitHub page and make a new release. The tag should be a sensible version number,
 like v1.0.0. Add a name (can just be the version) and add some notes on what the big
 changes are.</li>
-<li>Do a pull locally to grab the new tag. This will ensure that <code class="docutils literal"><span class="pre">versioneer</span></code> will give you
+<li>Do a pull locally to grab the new tag. This will ensure that <code class="docutils literal notranslate"><span class="pre">versioneer</span></code> will give you
 the proper version.</li>
-<li>(optional) Perform a <code class="docutils literal"><span class="pre">git</span> <span class="pre">clean</span> <span class="pre">-f</span> <span class="pre">-x</span> <span class="pre">-d</span></code> from the root of the repository. This will
+<li>(optional) Perform a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clean</span> <span class="pre">-f</span> <span class="pre">-x</span> <span class="pre">-d</span></code> from the root of the repository. This will
 <strong>delete</strong> everything not tracked by git, but will also ensure clean source distribution.
-<code class="docutils literal"><span class="pre">MANIFEST.in</span></code> is set to include/exclude mostly correctly, but could miss some things.</li>
-<li>Run <code class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">sdist</span> <span class="pre">bdist_wheel</span></code> (this requires <code class="docutils literal"><span class="pre">wheel</span></code> is installed).</li>
-<li>Upload using <code class="docutils literal"><span class="pre">twine</span></code>: <code class="docutils literal"><span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">dist/*</span></code>, assuming the <code class="docutils literal"><span class="pre">dist/</span></code> directory contains
-only files for this release. This upload process will include any changes to the <code class="docutils literal"><span class="pre">README</span></code>
-as well as any updated flags from <code class="docutils literal"><span class="pre">setup.py</span></code>.</li>
+<code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code> is set to include/exclude mostly correctly, but could miss some things.</li>
+<li>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">sdist</span> <span class="pre">bdist_wheel</span></code> (this requires <code class="docutils literal notranslate"><span class="pre">wheel</span></code> is installed).</li>
+<li>Upload using <code class="docutils literal notranslate"><span class="pre">twine</span></code>: <code class="docutils literal notranslate"><span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">dist/*</span></code>, assuming the <code class="docutils literal notranslate"><span class="pre">dist/</span></code> directory contains
+only files for this release. This upload process will include any changes to the <code class="docutils literal notranslate"><span class="pre">README</span></code>
+as well as any updated flags from <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.</li>
 </ol>
 </div>
 </div>
@@ -327,7 +347,7 @@ as well as any updated flags from <code class="docutils literal"><span class="pr
         <a href="CONTRIBUTING.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="examples/upperair/Wyoming_Request.html" class="btn btn-neutral" title="Wyoming Upper Air Data Request" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="examples/upperair/IGRA2_Request.html" class="btn btn-neutral" title="IGRA2 Upper Air Data Request" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -336,7 +356,8 @@ as well as any updated flags from <code class="docutils literal"><span class="pr
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Unidata.
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 19:48:16.
 
     </p>
   </div>
@@ -373,7 +394,8 @@ as well as any updated flags from <code class="docutils literal"><span class="pr
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.6.0+36.g03d1047',
+            VERSION:'0.6.1+104.g9f7bf0f',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -383,7 +405,7 @@ as well as any updated flags from <code class="docutils literal"><span class="pr
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -1,0 +1,1002 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>siphon.metadata &mdash; Siphon 0.6</title>
+  
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/_modules/siphon/metadata.html"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Siphon 0.6" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Siphon
+          
+
+          
+            
+            <img src="../../_static/siphon_150x150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.6</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installguide.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The Siphon API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Siphon Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Siphon</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Siphon</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>siphon.metadata</li>
+    
+    
+    <li class="source-link">
+        
+    </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for siphon.metadata</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) 2013-2015 Siphon Contributors.</span>
+<span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="sd">&quot;&quot;&quot;Helps support reading and parsing metadata elements from a TDS client catalog.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">xlink_href_attr</span> <span class="o">=</span> <span class="s1">&#39;{http://www.w3.org/1999/xlink}href&#39;</span>
+<span class="n">xlink_title_attr</span> <span class="o">=</span> <span class="s1">&#39;{http://www.w3.org/1999/xlink}title&#39;</span>
+
+
+<span class="k">class</span> <span class="nc">_SimpleTypes</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_valid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dataFormat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_valid_data_format_types</span><span class="p">(),</span>
+                       <span class="s1">&#39;upOrDown&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_valid_up_or_down</span><span class="p">(),</span>
+                       <span class="s1">&#39;dataType&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_valid_data_types</span><span class="p">()}</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_load_valid_data_types</span><span class="p">():</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;grid&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;image&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;point&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;radial&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;station&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;swath&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;trajectory&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">valid</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_load_valid_data_format_types</span><span class="p">():</span>
+        <span class="kn">import</span> <span class="nn">mimetypes</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BUFR&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;ESML&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;GEMPAK&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;GINI&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;GRIB-1&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;GRIB-2&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;HDF4&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;HDF5&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;McIDAS-AREA&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;NcML&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;NetCDF&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;NetCDF-4&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;NEXRAD2&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;NIDS&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;image/gif&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;image/jpeg&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;image/tiff&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;text/csv&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;text/html&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;text/plain&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;text/tab-separated-values&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;text/xml&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;video/mpeg&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;video/quicktime&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;video/realtime&#39;</span><span class="p">]</span>
+
+        <span class="n">valid_mime_types</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">mimetypes</span><span class="o">.</span><span class="n">types_map</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">valid</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">valid_mime_types</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">valid</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_load_valid_up_or_down</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;up&#39;</span><span class="p">,</span> <span class="s1">&#39;down&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">handle_upOrDown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+        <span class="c1"># name=&quot;upOrDown&quot;</span>
+        <span class="c1">#   &lt;xsd:restriction base=&quot;xsd:token&quot;&gt;</span>
+        <span class="c1">#    &lt;xsd:enumeration value=&quot;up&quot;/&gt;</span>
+        <span class="c1">#    &lt;xsd:enumeration value=&quot;down&quot;/&gt;</span>
+        <span class="c1">#   &lt;/xsd:restriction&gt;</span>
+        <span class="c1">#</span>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">&#39;upOrDown&#39;</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valid</span><span class="p">[</span><span class="n">type_name</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">attrib</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="n">attr</span> <span class="o">=</span> <span class="n">attrib</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">val</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Value </span><span class="si">%s</span><span class="s1"> not valid for type </span><span class="si">%s</span><span class="s1">: must be </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                            <span class="n">val</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">valid</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">attr</span><span class="p">:</span> <span class="n">val</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">handle_dataFormat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+        <span class="c1"># name=&quot;dataFormatTypes&quot;</span>
+        <span class="c1">#   &lt;xsd:union memberTypes=&quot;xsd:token mimeType&quot;&gt;</span>
+        <span class="c1">#     &lt;xsd:simpleType&gt;</span>
+        <span class="c1">#       &lt;xsd:restriction base=&quot;xsd:token&quot;&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;BUFR&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;ESML&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;GEMPAK&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;GINI&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;GRIB-1&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;GRIB-2&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;HDF4&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;HDF5&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;McIDAS-AREA&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;NcML&quot;/&gt;</span>
+        <span class="c1"># 		  &lt;xsd:enumeration value=&quot;NetCDF&quot;/&gt;</span>
+        <span class="c1"># 		  &lt;xsd:enumeration value=&quot;NetCDF-4&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;NEXRAD2&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;NIDS&quot;/&gt;</span>
+        <span class="c1">#</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;image/gif&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;image/jpeg&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;image/tiff&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;text/csv&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;text/html&quot;/&gt;</span>
+        <span class="c1"># 		  &lt;xsd:enumeration value=&quot;text/plain&quot;/&gt;</span>
+        <span class="c1"># 		  &lt;xsd:enumeration value=&quot;text/tab-separated-values&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;text/xml&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;video/mpeg&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;video/quicktime&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;video/realtime&quot;/&gt;</span>
+        <span class="c1">#       &lt;/xsd:restriction&gt;</span>
+        <span class="c1">#     &lt;/xsd:simpleType&gt;</span>
+        <span class="c1">#   &lt;/xsd:union&gt;</span>
+        <span class="c1">#</span>
+        <span class="c1"># name=&quot;mimeType&quot;</span>
+        <span class="c1">#   &lt;xsd:restriction base=&quot;xsd:token&quot;&gt;</span>
+        <span class="c1">#     &lt;xsd:annotation&gt;</span>
+        <span class="c1">#       &lt;xsd:documentation&gt;any valid mime type</span>
+        <span class="c1">#         (see http://www.iana.org/assignments/media-types/)</span>
+        <span class="c1">#       &lt;/xsd:documentation&gt;</span>
+        <span class="c1">#     &lt;/xsd:annotation&gt;</span>
+        <span class="c1">#   &lt;/xsd:restriction&gt;</span>
+        <span class="c1">#   NOTE: to see if mimetype is valude, check against</span>
+        <span class="c1">#         mimetypes.types_map.values</span>
+        <span class="c1">#</span>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">&#39;dataFormat&#39;</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valid</span><span class="p">[</span><span class="n">type_name</span><span class="p">]</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Value </span><span class="si">%s</span><span class="s1"> not valid for type </span><span class="si">%s</span><span class="s1">: must be </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="n">val</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">valid</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">type_name</span><span class="p">:</span> <span class="n">val</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">handle_dataType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+        <span class="c1"># name=&quot;dataTypes&quot;</span>
+        <span class="c1">#   &lt;xsd:union memberTypes=&quot;xsd:token&quot;&gt;</span>
+        <span class="c1">#     &lt;xsd:simpleType&gt;</span>
+        <span class="c1">#       &lt;xsd:restriction base=&quot;xsd:token&quot;&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;Grid&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;Image&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;Point&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;Radial&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;Station&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;Swath&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:enumeration value=&quot;Trajectory&quot;/&gt;</span>
+        <span class="c1">#       &lt;/xsd:restriction&gt;</span>
+        <span class="c1">#     &lt;/xsd:simpleType&gt;</span>
+        <span class="c1">#   &lt;/xsd:union&gt;</span>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">&#39;dataType&#39;</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valid</span><span class="p">[</span><span class="n">type_name</span><span class="p">]</span>
+        <span class="c1"># case insensitive</span>
+
+        <span class="n">val</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="n">val</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Value </span><span class="si">%s</span><span class="s1"> not valid for type </span><span class="si">%s</span><span class="s1">: must be </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="n">val</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">valid</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">type_name</span><span class="p">:</span> <span class="n">val</span><span class="p">}</span>
+
+
+<span class="k">class</span> <span class="nc">_ComplexTypes</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_tag_name</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;}&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="p">:</span>
+            <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span>
+        <span class="k">return</span> <span class="n">element_name</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_spatial_range_req_children</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_spatial_range_opt_children</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;resolution&#39;</span><span class="p">,</span> <span class="s1">&#39;units&#39;</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_date_type_formatted_valid_attrs</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;format&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_controlled_vocatulary_opt_attrs</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;vocabulary&#39;</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_variable_opt_attrs</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;vocabulary_name&#39;</span><span class="p">,</span> <span class="s1">&#39;units&#39;</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_variable_req_attrs</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_variables_opt_attrs</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;vocabulary&#39;</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_data_size_req_attrs</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span>
+
+    <span class="c1">#</span>
+    <span class="c1"># complex types:</span>
+    <span class="c1"># ==============</span>
+    <span class="k">def</span> <span class="nf">handle_spatialRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+        <span class="c1"># name=&quot;spatialRange&quot;&gt;</span>
+        <span class="c1">#   &lt;xsd:sequence&gt;</span>
+        <span class="c1">#    &lt;xsd:element name=&quot;start&quot; type=&quot;xsd:double&quot;  /&gt;</span>
+        <span class="c1">#    &lt;xsd:element name=&quot;size&quot; type=&quot;xsd:double&quot; /&gt;</span>
+        <span class="c1">#    &lt;xsd:element name=&quot;resolution&quot; type=&quot;xsd:double&quot; minOccurs=&quot;0&quot; /&gt;</span>
+        <span class="c1">#    &lt;xsd:element name=&quot;units&quot; type=&quot;xsd:string&quot; minOccurs=&quot;0&quot; /&gt;</span>
+        <span class="c1">#   &lt;/xsd:sequence&gt;</span>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">&#39;spatialRange&#39;</span>
+        <span class="n">req_children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_spatial_range_req_children</span><span class="p">()</span>
+        <span class="n">opt_children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_spatial_range_opt_children</span><span class="p">()</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="n">req_children</span> <span class="o">+</span> <span class="n">opt_children</span>
+
+        <span class="n">spatial_range</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
+            <span class="n">child_name</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span>
+            <span class="k">if</span> <span class="n">child_name</span> <span class="ow">in</span> <span class="n">valid</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">child_name</span> <span class="o">!=</span> <span class="s1">&#39;units&#39;</span><span class="p">:</span>
+                    <span class="n">spatial_range</span><span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">spatial_range</span><span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">text</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># child not valid</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is not valid for type </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                            <span class="n">child_name</span><span class="p">,</span> <span class="n">type_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">spatial_range</span>
+
+    <span class="k">def</span> <span class="nf">handle_controlledVocabulary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+        <span class="c1">#</span>
+        <span class="c1"># type=&quot;controlledVocabulary&quot;</span>
+        <span class="c1">#   &lt;xsd:simpleContent&gt;</span>
+        <span class="c1">#    &lt;xsd:extension base=&quot;xsd:string&quot;&gt;</span>
+        <span class="c1">#     &lt;xsd:attribute name=&quot;vocabulary&quot; type=&quot;xsd:string&quot; /&gt;</span>
+        <span class="c1">#    &lt;/xsd:extension&gt;</span>
+        <span class="c1">#   &lt;/xsd:simpleContent&gt;</span>
+        <span class="c1">#</span>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">&#39;controlledVocabulary&#39;</span>
+
+        <span class="n">opt_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_controlled_vocatulary_opt_attrs</span><span class="p">()</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">opt_attrs</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> not a valid attribute for </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span>
+                            <span class="n">attr</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">val</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
+
+        <span class="n">name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">val</span><span class="p">:</span>
+            <span class="n">tmp</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tmp</span>
+
+    <span class="k">def</span> <span class="nf">handle_dateTypeFormatted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+        <span class="c1"># name=&quot;dateTypeFormatted&quot;</span>
+        <span class="c1">#   &lt;xsd:simpleContent&gt;</span>
+        <span class="c1">#     &lt;xsd:extension base=&quot;dateType&quot;&gt;</span>
+        <span class="c1">#       &lt;xsd:attribute name=&quot;format&quot; type=&quot;xsd:string&quot; /&gt; // from</span>
+        <span class="c1">#                                        java.text.SimpleDateFormat</span>
+        <span class="c1">#       &lt;xsd:attribute name=&quot;type&quot; type=&quot;dateEnumTypes&quot; /&gt;</span>
+        <span class="c1">#     &lt;/xsd:extension&gt;</span>
+        <span class="c1">#</span>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">&#39;dateTypeFormatted&#39;</span>
+        <span class="n">valid_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_date_type_formatted_valid_attrs</span><span class="p">()</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_attrs</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is not a valid attribute for </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span>
+                            <span class="n">type_name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">val</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
+
+        <span class="n">val</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+
+        <span class="k">return</span> <span class="n">val</span>
+
+    <span class="k">def</span> <span class="nf">handle_sourceType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+        <span class="c1"># name=&quot;sourceType&quot;</span>
+        <span class="c1">#   &lt;xsd:sequence&gt;</span>
+        <span class="c1">#     &lt;xsd:element name=&quot;name&quot; type=&quot;controlledVocabulary&quot;/&gt;</span>
+        <span class="c1">#     &lt;xsd:element name=&quot;contact&quot;&gt;</span>
+        <span class="c1">#       &lt;xsd:complexType&gt;</span>
+        <span class="c1">#         &lt;xsd:attribute name=&quot;email&quot; type=&quot;xsd:string&quot;</span>
+        <span class="c1">#                                     use=&quot;required&quot;/&gt;</span>
+        <span class="c1">#         &lt;xsd:attribute name=&quot;url&quot; type=&quot;xsd:anyURI&quot;/&gt;</span>
+        <span class="c1">#       &lt;/xsd:complexType&gt;</span>
+        <span class="c1">#     &lt;/xsd:element&gt;</span>
+        <span class="c1">#   &lt;/xsd:sequence&gt;</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_controlledVocabulary</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s1">&#39;contact&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;url&#39;</span> <span class="ow">in</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+                    <span class="n">value</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="s1">&#39;email&#39;</span> <span class="ow">in</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+                    <span class="n">value</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;&#39;contact&#39; must have an attribute: &#39;email&#39;&quot;</span><span class="p">)</span>
+                    <span class="n">value</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;missing&#39;</span>
+            <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+                <span class="n">parsed</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">parsed</span>
+
+    <span class="k">def</span> <span class="nf">handle_timeCoverageType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+        <span class="c1"># name=&quot;timeCoverageType&quot;&gt;</span>
+        <span class="c1">#   &lt;xsd:sequence&gt;</span>
+        <span class="c1">#     &lt;xsd:choice minOccurs=&quot;2&quot; maxOccurs=&quot;3&quot; &gt;</span>
+        <span class="c1">#       &lt;xsd:element name=&quot;start&quot; type=&quot;dateTypeFormatted&quot;/&gt;</span>
+        <span class="c1">#       &lt;xsd:element name=&quot;end&quot; type=&quot;dateTypeFormatted&quot;/&gt;</span>
+        <span class="c1">#       &lt;xsd:element name=&quot;duration&quot; type=&quot;duration&quot;/&gt;</span>
+        <span class="c1">#     &lt;/xsd:choice&gt;</span>
+        <span class="c1">#     &lt;xsd:element name=&quot;resolution&quot; type=&quot;duration&quot; minOccurs=&quot;0&quot;/&gt;</span>
+        <span class="c1">#   &lt;/xsd:sequence&gt;</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
+            <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+        <span class="n">valid_num_elements</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="o">&amp;</span> <span class="nb">len</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">3</span>
+        <span class="k">if</span> <span class="n">valid_num_elements</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]:</span>
+                    <span class="n">processed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_dateTypeFormatted</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+                    <span class="n">value</span><span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">processed</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span> <span class="s1">&#39;resolution&#39;</span><span class="p">]:</span>
+                    <span class="n">value</span><span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">text</span>
+                <span class="n">parsed</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Not enough elements to make a valid timeCoverage&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">parsed</span>
+
+    <span class="k">def</span> <span class="nf">handle_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="c1"># element_name=&quot;variable&quot;</span>
+        <span class="c1">#   &lt;xsd:complexType mixed=&quot;true&quot;&gt;</span>
+        <span class="c1">#     &lt;xsd:attribute name=&quot;name&quot; type=&quot;xsd:string&quot; use=&quot;required&quot;/&gt;</span>
+        <span class="c1">#     &lt;xsd:attribute name=&quot;vocabulary_name&quot; type=&quot;xsd:string&quot;</span>
+        <span class="c1">#                    use=&quot;optional&quot;/&gt;</span>
+        <span class="c1">#     &lt;xsd:attribute name=&quot;units&quot; type=&quot;xsd:string&quot;/&gt;</span>
+        <span class="c1">#   &lt;/xsd:complexType&gt;</span>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">&#39;variable&#39;</span>
+        <span class="n">opt_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variable_opt_attrs</span><span class="p">()</span>
+        <span class="n">req_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variable_req_attrs</span><span class="p">()</span>
+        <span class="n">valid_attrs</span> <span class="o">=</span> <span class="n">opt_attrs</span> <span class="o">+</span> <span class="n">req_attrs</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">variable</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">req_attr</span> <span class="ow">in</span> <span class="n">req_attrs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">req_attr</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+                <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> must have an attribute </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span>
+                            <span class="n">req_attr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">valid</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+                <span class="n">variable</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">valid_attrs</span><span class="p">:</span>
+                    <span class="n">variable</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">variable</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">handle_variableMap</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+        <span class="c1"># element_name=&quot;variableMap&quot;</span>
+        <span class="c1">#   &lt;xsd:complexType&gt;</span>
+        <span class="c1">#     &lt;xsd:attributeGroup ref=&quot;XLink&quot;/&gt;</span>
+        <span class="c1">#   &lt;/xsd:complexType&gt;</span>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">&#39;variableMap&#39;</span>  <span class="c1"># noqa</span>
+        <span class="n">var_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="n">var_map</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">var_map</span>
+
+    <span class="k">def</span> <span class="nf">handle_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="c1"># element_name=&quot;variables&quot;</span>
+        <span class="c1">#   &lt;xsd:complexType&gt;</span>
+        <span class="c1">#     &lt;xsd:choice&gt;</span>
+        <span class="c1">#       &lt;xsd:element ref=&quot;variable&quot; minOccurs=&quot;0&quot;</span>
+        <span class="c1">#                    maxOccurs=&quot;unbounded&quot;/&gt;</span>
+        <span class="c1">#       &lt;xsd:element ref=&quot;variableMap&quot; minOccurs=&quot;0&quot;/&gt;</span>
+        <span class="c1">#     &lt;/xsd:choice&gt;</span>
+        <span class="c1">#     &lt;xsd:attribute name=&quot;vocabulary&quot; type=&quot;variableNameVocabulary&quot;</span>
+        <span class="c1">#                    use=&quot;optional&quot;/&gt;</span>
+        <span class="c1">#     &lt;xsd:attributeGroup ref=&quot;XLink&quot;/&gt;</span>
+        <span class="c1">#   &lt;/xsd:complexType&gt;</span>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">&#39;variables&#39;</span>  <span class="c1"># noqa</span>
+        <span class="n">variables</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">variable_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">variable_map_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
+            <span class="n">child_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tag_name</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">child_type</span> <span class="o">==</span> <span class="s1">&#39;variable&#39;</span><span class="p">:</span>
+                <span class="n">var</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_variable</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+                <span class="n">variable_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">child_type</span> <span class="o">==</span> <span class="s1">&#39;variableMap&#39;</span><span class="p">:</span>
+                <span class="n">var_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_variableMap</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+                <span class="n">variable_map_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">var_map</span><span class="p">)</span>
+
+        <span class="n">opt_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variables_opt_attrs</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">opt_attrs</span><span class="p">:</span>
+                <span class="n">variables</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">variable_list</span><span class="p">:</span>
+            <span class="n">variables</span><span class="p">[</span><span class="s1">&#39;variables&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_list</span>
+
+        <span class="k">if</span> <span class="n">variable_map_list</span><span class="p">:</span>
+            <span class="n">variables</span><span class="p">[</span><span class="s1">&#39;variableMaps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_map_list</span>
+        <span class="k">return</span> <span class="n">variables</span>
+
+    <span class="k">def</span> <span class="nf">handle_dataSize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+        <span class="c1">#   &lt;xsd:complexType&gt;</span>
+        <span class="c1">#     &lt;xsd:simpleContent&gt;</span>
+        <span class="c1">#     &lt;xsd:extension base=&quot;xsd:string&quot;&gt;</span>
+        <span class="c1">#       &lt;xsd:attribute name=&quot;units&quot; type=&quot;xsd:string&quot; use=&quot;required&quot;/&gt;</span>
+        <span class="c1">#     &lt;/xsd:extension&gt;</span>
+        <span class="c1">#     &lt;/xsd:simpleContent&gt;</span>
+        <span class="c1">#   &lt;/xsd:complexType&gt;</span>
+        <span class="c1">#</span>
+        <span class="n">req_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_size_req_attrs</span><span class="p">()</span>
+        <span class="n">data_size</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">text</span><span class="p">)}</span>
+
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">req_attrs</span><span class="p">:</span>
+                <span class="n">data_size</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">data_size</span>
+
+
+<div class="viewcode-block" id="TDSCatalogMetadata"><a class="viewcode-back" href="../../api/metadata.html#siphon.metadata.TDSCatalogMetadata">[docs]</a><span class="k">class</span> <span class="nc">TDSCatalogMetadata</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Hold information contained in the catalog Metadata tag.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    metadata : dict[str, object]</span>
+<span class="sd">        The dictionary containing the metadata entries</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TDSCatalogMetadata.__init__"><a class="viewcode-back" href="../../api/metadata.html#siphon.metadata.TDSCatalogMetadata.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">metadata_in</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a :class:`TDSCatalogMetadata` object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element : :class:`~xml.etree.ElementTree.Element`</span>
+<span class="sd">            An :class:`~xml.etree.ElementTree.Element` representing a metadata node</span>
+<span class="sd">        metadata_in : dict[str, object], optional</span>
+<span class="sd">            Parent metadata to inherit, if appropriate. Defaults to None.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span> <span class="o">=</span> <span class="n">_ComplexTypes</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_st</span> <span class="o">=</span> <span class="n">_SimpleTypes</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sts</span> <span class="o">=</span> <span class="n">_SimpleTypes</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cts</span> <span class="o">=</span> <span class="n">_ComplexTypes</span><span class="o">.</span><span class="vm">__dict__</span>
+
+        <span class="n">inherited</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s1">&#39;inherited&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="n">inherited</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;inherited&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">inherited</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span><span class="p">:</span>
+                <span class="n">inherited</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">inherited</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">metadata_in</span> <span class="ow">and</span> <span class="p">(</span><span class="n">inherited</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_external_metadata_doc</span><span class="p">(</span><span class="n">element</span><span class="p">)):</span>
+            <span class="c1"># only inherit metadata passed in if the new metadata</span>
+            <span class="c1"># element has inherit set to True or if the new</span>
+            <span class="c1"># metadata element is pointing to an external metadata</span>
+            <span class="c1"># document using an xlink</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata_in</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;inherited&#39;</span><span class="p">:</span> <span class="n">inherited</span><span class="p">}</span>
+
+        <span class="n">element_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tag_name</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">element_name</span> <span class="o">==</span> <span class="s1">&#39;metadata&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parse_element</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parse_element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_tag_name</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;}&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="p">:</span>
+            <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span>
+        <span class="k">return</span> <span class="n">element_name</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_is_external_metadata_doc</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+        <span class="n">attributes</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span>
+        <span class="n">has_xlink_title</span> <span class="o">=</span> <span class="n">xlink_title_attr</span> <span class="ow">in</span> <span class="n">attributes</span>
+        <span class="n">has_xlink_href</span> <span class="o">=</span> <span class="n">xlink_href_attr</span> <span class="ow">in</span> <span class="n">attributes</span>
+        <span class="k">return</span> <span class="n">has_xlink_title</span> <span class="ow">and</span> <span class="n">has_xlink_href</span>
+
+    <span class="k">def</span> <span class="nf">_get_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">):</span>
+        <span class="n">handler_name</span> <span class="o">=</span> <span class="s1">&#39;handle_&#39;</span> <span class="o">+</span> <span class="n">handler_name</span>
+        <span class="k">if</span> <span class="n">handler_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cts</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">handler_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sts</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_st</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;cannot find handler for element </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">handler_name</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+
+        <span class="n">element_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tag_name</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+        <span class="n">parser</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;documentation&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_documentation</span><span class="p">,</span>
+                  <span class="s1">&#39;property&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_property</span><span class="p">,</span>
+                  <span class="s1">&#39;contributor&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_contributor</span><span class="p">,</span>
+                  <span class="s1">&#39;geospatialCoverage&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_geospatial_coverage</span><span class="p">,</span>
+                  <span class="s1">&#39;serviceName&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_service_name</span><span class="p">,</span>
+                  <span class="s1">&#39;authority&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_authority</span><span class="p">,</span>
+                  <span class="s1">&#39;publisher&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_publisher</span><span class="p">,</span>
+                  <span class="s1">&#39;creator&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_creator</span><span class="p">,</span>
+                  <span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_keyword</span><span class="p">,</span>
+                  <span class="s1">&#39;project&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_project</span><span class="p">,</span>
+                  <span class="s1">&#39;dataFormat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_data_format</span><span class="p">,</span>
+                  <span class="s1">&#39;dataType&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_data_type</span><span class="p">,</span>
+                  <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_date</span><span class="p">,</span>
+                  <span class="s1">&#39;timeCoverage&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_timeCoverage</span><span class="p">,</span>
+                  <span class="s1">&#39;variableMap&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_variableMap</span><span class="p">,</span>
+                  <span class="s1">&#39;variables&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_variables</span><span class="p">,</span>
+                  <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_embedded_metadata</span><span class="p">}</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">parser</span><span class="p">[</span><span class="n">element_name</span><span class="p">](</span><span class="n">element</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No parser found for element </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">element_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_documentation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="c1"># &lt;xsd:simpleType name=&quot;documentationEnumTypes&quot;&gt;</span>
+        <span class="c1">#  &lt;xsd:union memberTypes=&quot;xsd:token&quot;&gt;</span>
+        <span class="c1">#   &lt;xsd:simpleType&gt;</span>
+        <span class="c1">#    &lt;xsd:restriction base=&quot;xsd:token&quot;&gt;</span>
+        <span class="c1">#     &lt;xsd:enumeration value=&quot;funding&quot;/&gt;</span>
+        <span class="c1">#     &lt;xsd:enumeration value=&quot;history&quot;/&gt;</span>
+        <span class="c1">#     &lt;xsd:enumeration value=&quot;processing_level&quot;/&gt;</span>
+        <span class="c1">#     &lt;xsd:enumeration value=&quot;rights&quot;/&gt;</span>
+        <span class="c1">#     &lt;xsd:enumeration value=&quot;summary&quot;/&gt;</span>
+        <span class="c1">#    &lt;/xsd:restriction&gt;</span>
+        <span class="c1">#   &lt;/xsd:simpleType&gt;</span>
+        <span class="c1">#  &lt;/xsd:union&gt;</span>
+        <span class="c1"># &lt;/xsd:simpleType&gt;</span>
+        <span class="c1">#</span>
+        <span class="c1"># &lt;xsd:complexType name=&quot;documentationType&quot; mixed=&quot;true&quot;&gt;</span>
+        <span class="c1">#  &lt;xsd:sequence&gt;</span>
+        <span class="c1">#   &lt;xsd:any namespace=&quot;http://www.w3.org/1999/xhtml&quot; minOccurs=&quot;0&quot;</span>
+        <span class="c1">#         maxOccurs=&quot;unbounded&quot; processContents=&quot;strict&quot;/&gt;</span>
+        <span class="c1">#  &lt;/xsd:sequence&gt;</span>
+        <span class="c1">#  &lt;xsd:attribute name=&quot;type&quot; type=&quot;documentationEnumTypes&quot;/&gt;</span>
+        <span class="c1">#  &lt;xsd:attributeGroup ref=&quot;XLink&quot; /&gt;</span>
+        <span class="c1"># &lt;/xsd:complexType&gt;</span>
+
+        <span class="c1"># doc_enum_types = (&quot;funding&quot;, &quot;history&quot;, &quot;processing_level&quot;, &quot;rights&quot;,</span>
+        <span class="c1">#                  &quot;summary&quot;)</span>
+        <span class="n">known</span> <span class="o">=</span> <span class="s1">&#39;type&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span>
+        <span class="c1"># document element has no attributes</span>
+        <span class="n">plain_doc</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span>
+        <span class="n">md</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span>
+        <span class="n">md</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;documentation&#39;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="k">if</span> <span class="n">known</span> <span class="ow">or</span> <span class="n">plain_doc</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">known</span><span class="p">:</span>
+                <span class="n">doc_type</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">doc_type</span> <span class="o">=</span> <span class="s1">&#39;generic&#39;</span>
+            <span class="n">md</span><span class="p">[</span><span class="s1">&#39;documentation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">doc_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">xlink_href_attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">xlink_title_attr</span><span class="p">]</span>
+            <span class="n">href</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">xlink_href_attr</span><span class="p">]</span>
+            <span class="n">xlink</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span> <span class="s1">&#39;href&#39;</span><span class="p">:</span> <span class="n">href</span><span class="p">}</span>
+            <span class="n">md</span><span class="p">[</span><span class="s1">&#39;documentation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;xlink&#39;</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xlink</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">md</span>
+
+    <span class="k">def</span> <span class="nf">_parse_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="c1"># &lt;xsd:element name=&quot;property&quot;&gt;</span>
+        <span class="c1">#  &lt;xsd:complexType&gt;</span>
+        <span class="c1">#   &lt;xsd:attribute name=&quot;name&quot; type=&quot;xsd:string&quot;/&gt;</span>
+        <span class="c1">#   &lt;xsd:attribute name=&quot;value&quot; type=&quot;xsd:string&quot;/&gt;</span>
+        <span class="c1">#  &lt;/xsd:complexType&gt;</span>
+        <span class="c1"># &lt;/xsd:element&gt;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;property&#39;</span><span class="p">,</span> <span class="p">{})[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">_parse_contributor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="c1"># &lt;xsd:element name=&quot;contributor&quot;&gt;</span>
+        <span class="c1">#   &lt;xsd:complexType&gt;</span>
+        <span class="c1">#     &lt;xsd:simpleContent&gt;</span>
+        <span class="c1">#       &lt;xsd:extension base=&quot;xsd:string&quot;&gt;</span>
+        <span class="c1">#         &lt;xsd:attribute name=&quot;role&quot; type=&quot;xsd:string&quot;</span>
+        <span class="c1">#                        use=&quot;required&quot;/&gt;</span>
+        <span class="c1">#       &lt;/xsd:extension&gt;</span>
+        <span class="c1">#     &lt;/xsd:simpleContent&gt;</span>
+        <span class="c1">#   &lt;/xsd:complexType&gt;</span>
+        <span class="c1"># &lt;/xsd:element&gt;</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;contributor&#39;</span>
+        <span class="n">role</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;role&#39;</span><span class="p">]</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_geospatial_coverage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;geospatialCoverage&#39;</span>
+        <span class="n">md</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># &lt;xsd:element name=&quot;geospatialCoverage&quot;&gt;</span>
+        <span class="c1">#  &lt;xsd:complexType&gt;</span>
+        <span class="c1">#   &lt;xsd:sequence&gt;</span>
+        <span class="c1">#    &lt;xsd:element name=&quot;northsouth&quot; type=&quot;spatialRange&quot;</span>
+        <span class="c1">#                 minOccurs=&quot;0&quot; /&gt;</span>
+        <span class="c1">#    &lt;xsd:element name=&quot;eastwest&quot; type=&quot;spatialRange&quot;</span>
+        <span class="c1">#                 minOccurs=&quot;0&quot; /&gt;</span>
+        <span class="c1">#    &lt;xsd:element name=&quot;updown&quot; type=&quot;spatialRange&quot;</span>
+        <span class="c1">#                 minOccurs=&quot;0&quot; /&gt;</span>
+        <span class="c1">#    &lt;xsd:element name=&quot;name&quot; type=&quot;controlledVocabulary&quot;</span>
+        <span class="c1">#                 minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;</span>
+        <span class="c1">#   &lt;/xsd:sequence&gt;</span>
+        <span class="c1">#</span>
+        <span class="c1">#   &lt;xsd:attribute name=&quot;zpositive&quot; type=&quot;upOrDown&quot; default=&quot;up&quot;/&gt;</span>
+        <span class="c1">#  &lt;/xsd:complexType&gt;</span>
+        <span class="c1"># &lt;/xsd:element&gt;</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;northsouth&#39;</span><span class="p">:</span> <span class="s1">&#39;spatialRange&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;eastwest&#39;</span><span class="p">:</span> <span class="s1">&#39;spatialRange&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;updown&#39;</span><span class="p">:</span> <span class="s1">&#39;spatialRange&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;controlledVocabulary&#39;</span>
+                    <span class="p">}</span>
+        <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;zpositive&#39;</span><span class="p">:</span> <span class="s1">&#39;upOrDown&#39;</span><span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
+                    <span class="n">handler_name</span> <span class="o">=</span> <span class="n">attrs</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
+                    <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_handler</span><span class="p">(</span><span class="n">handler_name</span><span class="p">)</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">handler</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+                    <span class="n">md</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">attr</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Attr on </span><span class="si">%s</span><span class="s1"> : </span><span class="si">%s</span><span class="s1"> not captured&#39;</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span>
+                                <span class="n">element_type</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
+            <span class="n">child_name</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span>
+            <span class="k">if</span> <span class="n">child_name</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+                <span class="n">handler_name</span> <span class="o">=</span> <span class="n">elements</span><span class="p">[</span><span class="n">child_name</span><span class="p">]</span>
+                <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_handler</span><span class="p">(</span><span class="n">handler_name</span><span class="p">)</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">handler</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+                <span class="n">md</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_service_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="c1"># can only have one serviceName</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;serviceName&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">element_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+
+    <span class="k">def</span> <span class="nf">_parse_authority</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;authority&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_publisher</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;publisher&#39;</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_sourceType</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;creator&#39;</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_sourceType</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_keyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;keyword&#39;</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_controlledVocabulary</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;project&#39;</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_controlledVocabulary</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_data_format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;dataFormat&#39;</span>  <span class="c1"># noqa</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_st</span><span class="o">.</span><span class="n">handle_dataFormat</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_data_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;dataType&#39;</span>  <span class="c1"># noqa</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_st</span><span class="o">.</span><span class="n">handle_dataType</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_dateTypeFormatted</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_timeCoverage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;timeCoverage&#39;</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_timeCoverageType</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_variableMap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;variableMap&#39;</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_variableMap</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;variables&#39;</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_variables</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">parsed</span><span class="p">[</span><span class="s1">&#39;variables&#39;</span><span class="p">]:</span>
+            <span class="n">var_name</span> <span class="o">=</span> <span class="n">variable</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+            <span class="n">variable</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">{})[</span><span class="n">var_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable</span>
+
+    <span class="k">def</span> <span class="nf">_parse_embedded_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;external_metadata&#39;</span>
+        <span class="k">if</span> <span class="n">xlink_href_attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">xlink_title_attr</span><span class="p">]</span>
+            <span class="n">href</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">xlink_href_attr</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">{})[</span><span class="n">title</span><span class="p">]</span> <span class="o">=</span> <span class="n">href</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Cannot parse embedded metadata element </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 19:48:16.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<p>Do you enjoy using Siphon?
+  <a href="https://saythanks.io/to/unidata" class="btn btn-neutral" title="Installation Guide" accesskey="n">Say Thanks!</a>
+</p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.6.1+104.g9f7bf0f',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

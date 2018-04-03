@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation Guide &mdash; Siphon 0.6.0+36.g03d1047 documentation</title>
+  <title>Installation Guide &mdash; Siphon 0.6</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Siphon 0.6.0+36.g03d1047 documentation" href="index.html"/>
+    <link rel="top" title="Siphon 0.6" href="index.html"/>
         <link rel="next" title="The Siphon API" href="api/index.html"/>
         <link rel="prev" title="Siphon" href="index.html"/> 
 
@@ -66,13 +66,31 @@
           
 
           
+            
+            <img src="_static/siphon_150x150.png" class="logo" />
+          
           </a>
 
           
             
             
               <div class="version">
-                0.6.0
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.6</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
               </div>
             
           
@@ -146,6 +164,7 @@
 
 
 
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -155,14 +174,15 @@
       <li>Installation Guide</li>
     
     
-      <li class="wy-breadcrumbs-aside">
+    <li class="source-link">
         
             
-            <a href="_sources/installguide.rst.txt" rel="nofollow"> View page source</a>
-          
+                <a href="https://github.com/Unidata/siphon/edit/master/docs/installguide.rst"
+                   class="fa fa-github"> Improve this page</a>
+            
         
-      </li>
-    
+    </li>
+
   </ul>
 
   
@@ -190,20 +210,20 @@
 </div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>The easiest way to install Siphon is through <code class="docutils literal"><span class="pre">pip</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">siphon</span>
+<p>The easiest way to install Siphon is through <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">siphon</span>
 </pre></div>
 </div>
 <p>The source code can also be grabbed from <a class="reference external" href="https://github.com/Unidata/siphon">GitHub</a>. From
 the base of the source directory, run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
 </pre></div>
 </div>
 <p>This will build and install Siphon into your current Python installation.</p>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>The Siphon source comes with a set of examples in the <code class="docutils literal"><span class="pre">examples/</span></code> directory.</p>
+<p>The Siphon source comes with a set of examples in the <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory.</p>
 <p>These examples are also seen within the documentation in the <a class="reference internal" href="examples/index.html#examples-index"><span class="std std-ref">Siphon Examples</span></a>.</p>
 </div>
 </div>
@@ -230,7 +250,8 @@ the base of the source directory, run:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Unidata.
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 19:48:16.
 
     </p>
   </div>
@@ -267,7 +288,8 @@ the base of the source directory, run:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.6.0+36.g03d1047',
+            VERSION:'0.6.1+104.g9f7bf0f',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -277,7 +299,7 @@ the base of the source directory, run:</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

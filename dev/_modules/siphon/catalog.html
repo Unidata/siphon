@@ -1,0 +1,981 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>siphon.catalog &mdash; Siphon 0.6</title>
+  
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/_modules/siphon/catalog.html"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Siphon 0.6" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Siphon
+          
+
+          
+            
+            <img src="../../_static/siphon_150x150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.6</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installguide.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The Siphon API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Siphon Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Siphon</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Siphon</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>siphon.catalog</li>
+    
+    
+    <li class="source-link">
+        
+    </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for siphon.catalog</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) 2013-2017 Siphon Contributors.</span>
+<span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Code to support reading and parsing catalog files from a THREDDS Data Server (TDS).</span>
+
+<span class="sd">They help identifying the latest dataset and finding proper URLs to access the data.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urlparse</span> <span class="k">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">urlparse</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c1"># Python 3</span>
+    <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">urlparse</span>
+
+<span class="kn">from</span> <span class="nn">.http_util</span> <span class="k">import</span> <span class="n">create_http_session</span><span class="p">,</span> <span class="n">urlopen</span>
+<span class="kn">from</span> <span class="nn">.metadata</span> <span class="k">import</span> <span class="n">TDSCatalogMetadata</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="IndexableMapping"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.IndexableMapping">[docs]</a><span class="k">class</span> <span class="nc">IndexableMapping</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extend ``OrderedDict`` to allow index-based access to values.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return an item either by index or name.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">item</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># Raises if item not a string</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">IndexableMapping</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="n">item</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="DatasetCollection"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection">[docs]</a><span class="k">class</span> <span class="nc">DatasetCollection</span><span class="p">(</span><span class="n">IndexableMapping</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extend ``IndexableMapping`` to allow datetime-based filter queries.&quot;&quot;&quot;</span>
+
+    <span class="n">default_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?P&lt;year&gt;\d</span><span class="si">{4}</span><span class="s1">)(?P&lt;month&gt;[01]\d)(?P&lt;day&gt;[0123]\d)_&#39;</span>
+                               <span class="sa">r</span><span class="s1">&#39;(?P&lt;hour&gt;[012]\d)(?P&lt;minute&gt;[0-5]\d)&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_datasets_with_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regex</span><span class="p">):</span>
+        <span class="c1"># Set the default regex if we don&#39;t have one</span>
+        <span class="k">if</span> <span class="n">regex</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">regex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_regex</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span>
+
+        <span class="c1"># Loop over the collection looking for keys that match our regex</span>
+        <span class="n">found_date</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+
+            <span class="c1"># If we find one, make a datetime and yield it along with the value</span>
+            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                <span class="n">found_date</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">date_parts</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+                <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                              <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                              <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;minute&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                              <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                              <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;microsecond&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+                <span class="k">yield</span> <span class="n">dt</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
+
+        <span class="c1"># If we never found any keys that match, we should let the user know that rather</span>
+        <span class="c1"># than have it be the same as if nothing matched filters</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">found_date</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No datasets with times found.&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DatasetCollection.filter_time_nearest"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection.filter_time_nearest">[docs]</a>    <span class="k">def</span> <span class="nf">filter_time_nearest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Filter keys for an item closest to the desired time.</span>
+
+<span class="sd">        Loops over all keys in the collection and uses `regex` to extract and build</span>
+<span class="sd">        `datetime`s. The collection of `datetime`s is compared to `start` and the value that</span>
+<span class="sd">        has a `datetime` closest to that requested is returned.If none of the keys in the</span>
+<span class="sd">        collection match the regex, indicating that the keys are not date/time-based,</span>
+<span class="sd">        a ``ValueError`` is raised.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        time : ``datetime.datetime``</span>
+<span class="sd">            The desired time</span>
+<span class="sd">        regex : str, optional</span>
+<span class="sd">            The regular expression to use to extract date/time information from the key. If</span>
+<span class="sd">            given, this should contain named groups: &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;hour&#39;, &#39;minute&#39;,</span>
+<span class="sd">            &#39;second&#39;, and &#39;microsecond&#39;, as appropriate. When a match is found, any of those</span>
+<span class="sd">            groups missing from the pattern will be assigned a value of 0. The default pattern</span>
+<span class="sd">            looks for patterns like: 20171118_2356.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The value with a time closest to that desired</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_datasets_with_times</span><span class="p">(</span><span class="n">regex</span><span class="p">),</span>
+                   <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="nb">abs</span><span class="p">((</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()))[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="DatasetCollection.filter_time_range"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection.filter_time_range">[docs]</a>    <span class="k">def</span> <span class="nf">filter_time_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Filter keys for all items within the desired time range.</span>
+
+<span class="sd">        Loops over all keys in the collection and uses `regex` to extract and build</span>
+<span class="sd">        `datetime`s. From the collection of `datetime`s, all values within `start` and `end`</span>
+<span class="sd">        (inclusive) are returned. If none of the keys in the collection match the regex,</span>
+<span class="sd">        indicating that the keys are not date/time-based, a ``ValueError`` is raised.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : ``datetime.datetime``</span>
+<span class="sd">            The start of the desired time range, inclusive</span>
+<span class="sd">        end : ``datetime.datetime``</span>
+<span class="sd">            The end of the desired time range, inclusive</span>
+<span class="sd">        regex : str, optional</span>
+<span class="sd">            The regular expression to use to extract date/time information from the key. If</span>
+<span class="sd">            given, this should contain named groups: &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;hour&#39;, &#39;minute&#39;,</span>
+<span class="sd">            &#39;second&#39;, and &#39;microsecond&#39;, as appropriate. When a match is found, any of those</span>
+<span class="sd">            groups missing from the pattern will be assigned a value of 0. The default pattern</span>
+<span class="sd">            looks for patterns like: 20171118_2356.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            All values corresponding to times within the specified range</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_datasets_with_times</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string representation of the collection.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+
+    <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span></div>
+
+
+<div class="viewcode-block" id="TDSCatalog"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.TDSCatalog">[docs]</a><span class="k">class</span> <span class="nc">TDSCatalog</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse information from a THREDDS Client Catalog.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    catalog_url : str</span>
+<span class="sd">        The url path of the catalog to parse.</span>
+<span class="sd">    base_tds_url : str</span>
+<span class="sd">        The top level server address</span>
+<span class="sd">    datasets : DatasetCollection[str, Dataset]</span>
+<span class="sd">        A dictionary of :class:`Dataset` objects, whose keys are the name of the</span>
+<span class="sd">        dataset&#39;s name</span>
+<span class="sd">    services : List</span>
+<span class="sd">        A list of :class:`SimpleService` listed in the catalog</span>
+<span class="sd">    catalog_refs : DatasetCollection[str, CatalogRef]</span>
+<span class="sd">        A dictionary of :class:`CatalogRef` objects whose keys are the name of the</span>
+<span class="sd">        catalog ref title.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TDSCatalog.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.TDSCatalog.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalog_url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the TDSCatalog object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        catalog_url : str</span>
+<span class="sd">            The URL of a THREDDS client catalog</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="n">create_http_session</span><span class="p">()</span>
+
+        <span class="c1"># get catalog.xml file</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span>
+        <span class="n">resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+        <span class="c1"># top level server url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_tds_url</span> <span class="o">=</span> <span class="n">_find_base_tds_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="p">)</span>
+
+        <span class="c1"># If we were given an HTML link, warn about it and try to fix to xml</span>
+        <span class="k">if</span> <span class="s1">&#39;html&#39;</span> <span class="ow">in</span> <span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;content-type&#39;</span><span class="p">]:</span>
+            <span class="kn">import</span> <span class="nn">warnings</span>
+            <span class="n">new_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;xml&#39;</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;URL </span><span class="si">{}</span><span class="s1"> returned HTML. Changing to: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="p">,</span>
+                                                                         <span class="n">new_url</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span> <span class="o">=</span> <span class="n">new_url</span>
+            <span class="n">resp</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="p">)</span>
+            <span class="n">resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+        <span class="c1"># begin parsing the xml doc</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">catalog_name</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;No name found&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span> <span class="o">=</span> <span class="n">DatasetCollection</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">services</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">catalog_refs</span> <span class="o">=</span> <span class="n">DatasetCollection</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ds_with_access_elements_to_process</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">service_skip_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">service_skip</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">current_dataset</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">previous_dataset</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">iter</span><span class="p">():</span>
+            <span class="n">tag_type</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;dataset&#39;</span><span class="p">:</span>
+                <span class="n">current_dataset</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_process_dataset</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">previous_dataset</span><span class="p">:</span>
+                    <span class="c1"># see if the previously processed dataset has access elements as children</span>
+                    <span class="c1"># if so, these datasets need to be processed specially when making</span>
+                    <span class="c1"># access_urls</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">previous_dataset</span><span class="p">]</span><span class="o">.</span><span class="n">access_element_info</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">ds_with_access_elements_to_process</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">previous_dataset</span><span class="p">)</span>
+
+                <span class="n">previous_dataset</span> <span class="o">=</span> <span class="n">current_dataset</span>
+
+            <span class="k">elif</span> <span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;access&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">current_dataset</span><span class="p">]</span><span class="o">.</span><span class="n">add_access_element_info</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;catalogRef&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_process_catalog_ref</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;metadata&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_process_metadata</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">tag_type</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;service&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;Compound&#39;</span><span class="p">:</span>
+                    <span class="c1"># we do not want to process single services if they</span>
+                    <span class="c1"># are already contained within a compound service, so</span>
+                    <span class="c1"># we need to skip over those cases.</span>
+                    <span class="k">if</span> <span class="n">service_skip_count</span> <span class="o">&gt;=</span> <span class="n">service_skip</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SimpleService</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
+                        <span class="n">service_skip</span> <span class="o">=</span> <span class="mi">0</span>
+                        <span class="n">service_skip_count</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">service_skip_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CompoundService</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
+                    <span class="n">service_skip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">services</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">number_of_subservices</span>
+                    <span class="n">service_skip_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_process_datasets</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string representation of the catalog name.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_process_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">catalog_url</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="s1">&#39;urlPath&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;urlPath&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;latest.xml&#39;</span><span class="p">:</span>
+                <span class="n">catalog_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span>
+
+        <span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">catalog_url</span><span class="o">=</span><span class="n">catalog_url</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">ds</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span>
+
+    <span class="k">def</span> <span class="nf">_process_catalog_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">catalog_ref</span> <span class="o">=</span> <span class="n">CatalogRef</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">catalog_refs</span><span class="p">[</span><span class="n">catalog_ref</span><span class="o">.</span><span class="n">title</span><span class="p">]</span> <span class="o">=</span> <span class="n">catalog_ref</span>
+
+    <span class="k">def</span> <span class="nf">_process_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">tag_type</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Trying empty tag type as metadata&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">TDSCatalogMetadata</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span><span class="o">.</span><span class="n">metadata</span>
+
+    <span class="k">def</span> <span class="nf">_process_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Need to use list (of keys) because we modify the dict while iterating</span>
+        <span class="k">for</span> <span class="n">dsName</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">):</span>
+            <span class="c1"># check to see if dataset needs to have access urls created, if not,</span>
+            <span class="c1"># remove the dataset</span>
+            <span class="n">has_url_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">dsName</span><span class="p">]</span><span class="o">.</span><span class="n">url_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="n">is_ds_with_access_elements_to_process</span> <span class="o">=</span> \
+                <span class="n">dsName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds_with_access_elements_to_process</span>
+            <span class="k">if</span> <span class="n">has_url_path</span> <span class="ow">or</span> <span class="n">is_ds_with_access_elements_to_process</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">dsName</span><span class="p">]</span><span class="o">.</span><span class="n">make_access_urls</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">base_tds_url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">services</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">dsName</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">latest</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the latest dataset, if available.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">services</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">service</span><span class="o">.</span><span class="n">is_resolver</span><span class="p">():</span>
+                <span class="n">latest_cat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;catalog.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;latest.xml&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">TDSCatalog</span><span class="p">(</span><span class="n">latest_cat</span><span class="p">)</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;&quot;latest&quot; not available for this catalog&#39;</span><span class="p">)</span>
+
+    <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span></div>
+
+
+<div class="viewcode-block" id="CatalogRef"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CatalogRef">[docs]</a><span class="k">class</span> <span class="nc">CatalogRef</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An object for holding catalog references obtained from a THREDDS Client Catalog.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        The name of the :class:`CatalogRef` element</span>
+<span class="sd">    href : str</span>
+<span class="sd">        url to the :class:`CatalogRef`&#39;s THREDDS Client Catalog</span>
+<span class="sd">    title : str</span>
+<span class="sd">        Title of the :class:`CatalogRef` element</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CatalogRef.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CatalogRef.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">element_node</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the catalogRef object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        base_url : str</span>
+<span class="sd">            URL to the base catalog that owns this reference</span>
+<span class="sd">        element_node : :class:`~xml.etree.ElementTree.Element`</span>
+<span class="sd">            An :class:`~xml.etree.ElementTree.Element` representing a catalogRef node</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">element_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;{http://www.w3.org/1999/xlink}title&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">element_node</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="c1"># Resolve relative URLs</span>
+        <span class="n">href</span> <span class="o">=</span> <span class="n">element_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;{http://www.w3.org/1999/xlink}href&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">href</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">href</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string representation of the catalog reference.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CatalogRef.follow"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CatalogRef.follow">[docs]</a>    <span class="k">def</span> <span class="nf">follow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Follow the catalog reference and return a new :class:`TDSCatalog`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        TDSCatalog</span>
+<span class="sd">            The referenced catalog</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">TDSCatalog</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">href</span><span class="p">)</span></div>
+
+    <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span></div>
+
+
+<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An object for holding Datasets obtained from a THREDDS Client Catalog.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        The name of the :class:`Dataset` element</span>
+<span class="sd">    url_path : str</span>
+<span class="sd">        url to the accessible dataset</span>
+<span class="sd">    access_urls : dict[str, str]</span>
+<span class="sd">        A dictionary of access urls whose keywords are the access service</span>
+<span class="sd">        types defined in the catalog (for example, &quot;OPENDAP&quot;, &quot;NetcdfSubset&quot;,</span>
+<span class="sd">        &quot;WMS&quot;, etc.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Dataset.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_node</span><span class="p">,</span> <span class="n">catalog_url</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the Dataset object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element_node : :class:`~xml.etree.ElementTree.Element`</span>
+<span class="sd">            An :class:`~xml.etree.ElementTree.Element` representing a Dataset node</span>
+<span class="sd">        catalog_url : str</span>
+<span class="sd">            The top level server url</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">element_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;urlPath&#39;</span> <span class="ow">in</span> <span class="n">element_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span> <span class="o">=</span> <span class="n">element_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;urlPath&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">catalog_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">access_element_info</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resolved</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resolverUrl</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># if latest.xml, resolve the latest url</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span> <span class="o">==</span> <span class="s1">&#39;latest.xml&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">catalog_url</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_resolved</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_resolverUrl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve_url</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Must pass along the catalog URL to resolve &#39;</span>
+                            <span class="s1">&#39;the latest.xml dataset!&#39;</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string representation of the dataset.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Dataset.resolve_url"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.resolve_url">[docs]</a>    <span class="k">def</span> <span class="nf">resolve_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalog_url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Resolve the url of the dataset when reading latest.xml.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        catalog_url : str</span>
+<span class="sd">            The catalog url to be resolved</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">catalog_url</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">resolver_base</span> <span class="o">=</span> <span class="n">catalog_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;catalog.xml&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">resolver_url</span> <span class="o">=</span> <span class="n">resolver_base</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span>
+            <span class="n">resolver_xml</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">resolver_url</span><span class="p">)</span>
+            <span class="n">tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">resolver_xml</span><span class="p">)</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+            <span class="k">if</span> <span class="s1">&#39;name&#39;</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">catalog_name</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">catalog_name</span> <span class="o">=</span> <span class="s1">&#39;No name found&#39;</span>
+            <span class="n">resolved_url</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">iter</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+                    <span class="n">tag_type</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;dataset&#39;</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="s1">&#39;urlPath&#39;</span> <span class="ow">in</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+                            <span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+                            <span class="n">resolved_url</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">url_path</span>
+                            <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">resolved_url</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;no dataset url path found in latest.xml!&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Dataset.make_access_urls"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.make_access_urls">[docs]</a>    <span class="k">def</span> <span class="nf">make_access_urls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalog_url</span><span class="p">,</span> <span class="n">all_services</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make fully qualified urls for the access methods enabled on the dataset.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        catalog_url : str</span>
+<span class="sd">            The top level server url</span>
+<span class="sd">        all_services : List[SimpleService]</span>
+<span class="sd">            list of :class:`SimpleService` objects associated with the dataset</span>
+<span class="sd">        metadata : dict</span>
+<span class="sd">            Metadata from the :class:`TDSCatalog`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">all_service_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">all_services</span><span class="p">:</span>
+            <span class="n">all_service_dict</span><span class="p">[</span><span class="n">service</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">service</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">CompoundService</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">subservice</span> <span class="ow">in</span> <span class="n">service</span><span class="o">.</span><span class="n">services</span><span class="p">:</span>
+                    <span class="n">all_service_dict</span><span class="p">[</span><span class="n">subservice</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">subservice</span>
+
+        <span class="n">service_name</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;serviceName&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="n">access_urls</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">server_url</span> <span class="o">=</span> <span class="n">_find_base_tds_url</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span>
+
+        <span class="c1"># process access urls for datasets that reference top</span>
+        <span class="c1"># level catalog services (individual or compound service</span>
+        <span class="c1"># types).</span>
+        <span class="k">if</span> <span class="n">service_name</span> <span class="ow">in</span> <span class="n">all_service_dict</span><span class="p">:</span>
+            <span class="n">service</span> <span class="o">=</span> <span class="n">all_service_dict</span><span class="p">[</span><span class="n">service_name</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">service</span><span class="o">.</span><span class="n">service_type</span> <span class="o">!=</span> <span class="s1">&#39;Resolver&#39;</span><span class="p">:</span>
+                <span class="c1"># if service is a CompoundService, create access url</span>
+                <span class="c1"># for each SimpleService</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">CompoundService</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">subservice</span> <span class="ow">in</span> <span class="n">service</span><span class="o">.</span><span class="n">services</span><span class="p">:</span>
+                        <span class="n">server_base</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="n">subservice</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+                        <span class="n">access_urls</span><span class="p">[</span><span class="n">subservice</span><span class="o">.</span><span class="n">service_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_base</span><span class="p">,</span>
+                                                                       <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">server_base</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="n">service</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+                    <span class="n">access_urls</span><span class="p">[</span><span class="n">service</span><span class="o">.</span><span class="n">service_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_base</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span><span class="p">)</span>
+
+        <span class="c1"># process access children of dataset elements</span>
+        <span class="k">for</span> <span class="n">service_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_element_info</span><span class="p">:</span>
+            <span class="n">url_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_element_info</span><span class="p">[</span><span class="n">service_type</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">service_type</span> <span class="ow">in</span> <span class="n">all_service_dict</span><span class="p">:</span>
+                <span class="n">server_base</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="n">all_service_dict</span><span class="p">[</span><span class="n">service_type</span><span class="p">]</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+                <span class="n">access_urls</span><span class="p">[</span><span class="n">service_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_base</span><span class="p">,</span> <span class="n">url_path</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span> <span class="o">=</span> <span class="n">access_urls</span></div>
+
+<div class="viewcode-block" id="Dataset.add_access_element_info"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.add_access_element_info">[docs]</a>    <span class="k">def</span> <span class="nf">add_access_element_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">access_element</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create an access method from a catalog element.&quot;&quot;&quot;</span>
+        <span class="n">service_name</span> <span class="o">=</span> <span class="n">access_element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceName&#39;</span><span class="p">]</span>
+        <span class="n">url_path</span> <span class="o">=</span> <span class="n">access_element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;urlPath&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">access_element_info</span><span class="p">[</span><span class="n">service_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">url_path</span></div>
+
+<div class="viewcode-block" id="Dataset.download"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.download">[docs]</a>    <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Download the dataset to a local file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            The full path to which the dataset will be saved</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote_open</span><span class="p">()</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="Dataset.remote_open"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.remote_open">[docs]</a>    <span class="k">def</span> <span class="nf">remote_open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Open the remote dataset for random access.</span>
+
+<span class="sd">        Get a file-like object for reading from the remote dataset, providing random access,</span>
+<span class="sd">        similar to a local file.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        A random access, file-like object</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="s1">&#39;HTTPServer&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Dataset.remote_access"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.remote_access">[docs]</a>    <span class="k">def</span> <span class="nf">remote_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Access the remote dataset.</span>
+
+<span class="sd">        Open the remote dataset and get a netCDF4-compatible `Dataset` object providing</span>
+<span class="sd">        index-based subsetting capabilities.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        service : str, optional</span>
+<span class="sd">            The name of the service to use for access to the dataset, either</span>
+<span class="sd">            &#39;CdmRemote&#39; or &#39;OPENDAP&#39;. Defaults to &#39;CdmRemote&#39;.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Dataset</span>
+<span class="sd">            Object for netCDF4-like access to the dataset</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">service</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">service</span> <span class="o">=</span> <span class="s1">&#39;CdmRemote&#39;</span> <span class="k">if</span> <span class="s1">&#39;CdmRemote&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span> <span class="k">else</span> <span class="s1">&#39;OPENDAP&#39;</span>
+
+        <span class="k">if</span> <span class="n">service</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;CdmRemote&#39;</span><span class="p">,</span> <span class="s1">&#39;OPENDAP&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not a valid service for remote_access&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="n">service</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Dataset.subset"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.subset">[docs]</a>    <span class="k">def</span> <span class="nf">subset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Subset the dataset.</span>
+
+<span class="sd">        Open the remote dataset and get a client for talking to ``service``.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        service : str, optional</span>
+<span class="sd">            The name of the service for subsetting the dataset. Defaults to &#39;NetcdfSubset&#39;.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        a client for communicating using ``service``</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">service</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">service</span> <span class="o">=</span> <span class="s1">&#39;NetcdfSubset&#39;</span>
+
+        <span class="k">if</span> <span class="n">service</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;NetcdfSubset&#39;</span><span class="p">,):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not a valid service for subset&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="n">service</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Dataset.access_with_service"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.access_with_service">[docs]</a>    <span class="k">def</span> <span class="nf">access_with_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Access the dataset using a particular service.</span>
+
+<span class="sd">        Return an Python object capable of communicating with the server using the particular</span>
+<span class="sd">        service. For instance, for &#39;HTTPServer&#39; this is a file-like object capable of</span>
+<span class="sd">        HTTP communication; for OPENDAP this is a netCDF4 dataset.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        service : str</span>
+<span class="sd">            The name of the service for accessing the dataset</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            An instance appropriate for communicating using ``service``.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;CdmRemote&#39;</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">.cdmr</span> <span class="k">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">CDMRDataset</span>
+            <span class="n">provider</span> <span class="o">=</span> <span class="n">CDMRDataset</span>
+        <span class="k">elif</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;OPENDAP&#39;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">netCDF4</span> <span class="k">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">NC4Dataset</span>
+                <span class="n">provider</span> <span class="o">=</span> <span class="n">NC4Dataset</span>
+            <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;OPENDAP access requires netCDF4-python to be installed.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;NetcdfSubset&#39;</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">.ncss</span> <span class="k">import</span> <span class="n">NCSS</span>
+            <span class="n">provider</span> <span class="o">=</span> <span class="n">NCSS</span>
+        <span class="k">elif</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;HTTPServer&#39;</span><span class="p">:</span>
+            <span class="n">provider</span> <span class="o">=</span> <span class="n">urlopen</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not an access method supported by Siphon&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">provider</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span><span class="p">[</span><span class="n">service</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not available for this dataset&#39;</span><span class="p">)</span></div>
+
+    <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span></div>
+
+
+<div class="viewcode-block" id="SimpleService"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.SimpleService">[docs]</a><span class="k">class</span> <span class="nc">SimpleService</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Hold information about an access service enabled on a dataset.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        The name of the service</span>
+<span class="sd">    service_type : str</span>
+<span class="sd">        The service type (i.e. &quot;OPENDAP&quot;, &quot;NetcdfSubset&quot;, &quot;WMS&quot;, etc.)</span>
+<span class="sd">    access_urls : dict[str, str]</span>
+<span class="sd">        A dictionary of access urls whose keywords are the access service</span>
+<span class="sd">        types defined in the catalog (for example, &quot;OPENDAP&quot;, &quot;NetcdfSubset&quot;,</span>
+<span class="sd">        &quot;WMS&quot;, etc.)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SimpleService.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.SimpleService.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_node</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the Dataset object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        service_node : :class:`~xml.etree.ElementTree.Element`</span>
+<span class="sd">            An :class:`~xml.etree.ElementTree.Element` representing a service node</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service_type</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;base&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+<div class="viewcode-block" id="SimpleService.is_resolver"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.SimpleService.is_resolver">[docs]</a>    <span class="k">def</span> <span class="nf">is_resolver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return whether the service is a resolver service.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_type</span> <span class="o">==</span> <span class="s1">&#39;Resolver&#39;</span></div></div>
+
+
+<div class="viewcode-block" id="CompoundService"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CompoundService">[docs]</a><span class="k">class</span> <span class="nc">CompoundService</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Hold information about compound services.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        The name of the compound service</span>
+<span class="sd">    service_type : str</span>
+<span class="sd">        The service type (for this object, service type will always be</span>
+<span class="sd">        &quot;COMPOUND&quot;)</span>
+<span class="sd">    services : list[SimpleService]</span>
+<span class="sd">        A list of :class:`SimpleService` objects</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CompoundService.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CompoundService.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_node</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a :class:`CompoundService` object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        service_node : :class:`~xml.etree.ElementTree.Element`</span>
+<span class="sd">            An :class:`~xml.etree.ElementTree.Element` representing a compound service node</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service_type</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;base&#39;</span><span class="p">]</span>
+        <span class="n">services</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">subservices</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">service_node</span><span class="p">):</span>
+            <span class="n">services</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SimpleService</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
+            <span class="n">subservices</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">services</span> <span class="o">=</span> <span class="n">services</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_subservices</span> <span class="o">=</span> <span class="n">subservices</span></div>
+
+<div class="viewcode-block" id="CompoundService.is_resolver"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CompoundService.is_resolver">[docs]</a>    <span class="k">def</span> <span class="nf">is_resolver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return whether the service is a resolver service.</span>
+
+<span class="sd">        For a compound service, this is always False because it will never be</span>
+<span class="sd">        a resolver.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_find_base_tds_url</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Identify the base URL of the THREDDS server from the catalog URL.</span>
+
+<span class="sd">    Will retain URL scheme, host, port and username/password when present.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">url_components</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">url_components</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">catalog_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">url_components</span><span class="o">.</span><span class="n">path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">catalog_url</span>
+
+
+<div class="viewcode-block" id="get_latest_access_url"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.get_latest_access_url">[docs]</a><span class="k">def</span> <span class="nf">get_latest_access_url</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">,</span> <span class="n">access_method</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the data access url to the latest data using a specified access method.</span>
+
+<span class="sd">    These are available for a data available from a top level dataset catalog (url).</span>
+<span class="sd">    Currently only supports the existence of one &quot;latest&quot; dataset.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    catalog_url : str</span>
+<span class="sd">        The URL of a top level data catalog</span>
+<span class="sd">    access_method : str</span>
+<span class="sd">        desired data access method (i.e. &quot;OPENDAP&quot;, &quot;NetcdfSubset&quot;, &quot;WMS&quot;, etc)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    access_url : str</span>
+<span class="sd">        Data access URL to be used to access the latest data available from a</span>
+<span class="sd">        given catalog using the specified `access_method`. Typically a single string,</span>
+<span class="sd">        but not always.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">TDSCatalog</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span><span class="o">.</span><span class="n">latest</span><span class="o">.</span><span class="n">access_urls</span><span class="p">[</span><span class="n">access_method</span><span class="p">]</span></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 19:48:16.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<p>Do you enjoy using Siphon?
+  <a href="https://saythanks.io/to/unidata" class="btn btn-neutral" title="Installation Guide" accesskey="n">Say Thanks!</a>
+</p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.6.1+104.g9f7bf0f',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

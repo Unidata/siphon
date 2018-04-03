@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>The Siphon API &mdash; Siphon 0.6.0+36.g03d1047 documentation</title>
+  <title>The Siphon API &mdash; Siphon 0.6</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Siphon 0.6.0+36.g03d1047 documentation" href="../index.html"/>
+    <link rel="top" title="Siphon 0.6" href="../index.html"/>
         <link rel="next" title="siphon.catalog" href="catalog.html"/>
         <link rel="prev" title="Installation Guide" href="../installguide.html"/> 
 
@@ -66,13 +66,31 @@
           
 
           
+            
+            <img src="../_static/siphon_150x150.png" class="logo" />
+          
           </a>
 
           
             
             
               <div class="version">
-                0.6.0
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.6</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
               </div>
             
           
@@ -99,14 +117,14 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">The Siphon API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="docutils literal"><span class="pre">siphon.catalog</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="docutils literal"><span class="pre">siphon.metadata</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="docutils literal"><span class="pre">siphon.ncss_dataset</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="docutils literal"><span class="pre">siphon.http_util</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="docutils literal"><span class="pre">siphon.ncss</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal"><span class="pre">siphon.radarserver</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -151,6 +169,7 @@
 
 
 
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -160,14 +179,17 @@
       <li>The Siphon API</li>
     
     
-      <li class="wy-breadcrumbs-aside">
+    <li class="source-link">
         
             
-            <a href="../_sources/api/index.rst.txt" rel="nofollow"> View page source</a>
-          
+                
+                
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20api/index&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
         
-      </li>
-    
+    </li>
+
   </ul>
 
   
@@ -180,14 +202,14 @@
 <span id="api-index"></span><h1>The Siphon API<a class="headerlink" href="#the-siphon-api" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="catalog.html"><code class="docutils literal"><span class="pre">siphon.catalog</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="metadata.html"><code class="docutils literal"><span class="pre">siphon.metadata</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="ncssdataset.html"><code class="docutils literal"><span class="pre">siphon.ncss_dataset</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="http_util.html"><code class="docutils literal"><span class="pre">siphon.http_util</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="ncss.html"><code class="docutils literal"><span class="pre">siphon.ncss</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="radarserver.html"><code class="docutils literal"><span class="pre">siphon.radarserver</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="catalog.html"><code class="docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html"><code class="docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ncssdataset.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="http_util.html"><code class="docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ncss.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="radarserver.html"><code class="docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
 </ul>
 </div>
 <ul class="simple">
@@ -218,7 +240,8 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Unidata.
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 19:48:16.
 
     </p>
   </div>
@@ -255,7 +278,8 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.6.0+36.g03d1047',
+            VERSION:'0.6.1+104.g9f7bf0f',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -265,7 +289,7 @@
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

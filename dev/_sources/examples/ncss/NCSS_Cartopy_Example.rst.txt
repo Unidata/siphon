@@ -129,7 +129,7 @@ the data).
 
  Out::
 
-    ['Temperature_surface', 'reftime', 'time', 'lat', 'lon']
+    ['Temperature_surface', 'reftime1', 'time1', 'lat', 'lon']
 
 
 We'll pull out the useful variables for temperature, latitude, and longitude, and time
@@ -196,12 +196,7 @@ Now we can plot these up using matplotlib and cartopy.
     ax.set_extent([-100., -111., 35, 43])
 
     # Add state boundaries to plot
-    states_provinces = cfeature.NaturalEarthFeature(
-        category='cultural',
-        name='admin_1_states_provinces_lines',
-        scale='50m',
-        facecolor='none')
-    ax.add_feature(states_provinces, edgecolor='black', linewidth=2)
+    ax.add_feature(cfeature.STATES.with_scale('50m'), linewidth=2)
 
     # Contour temperature at each lat/long
     cf = ax.contourf(lon_2d, lat_2d, temp_vals, 200, transform=ccrs.PlateCarree(), zorder=0,
@@ -226,7 +221,7 @@ Now we can plot these up using matplotlib and cartopy.
 
 
 
-**Total running time of the script:** ( 0 minutes  1.266 seconds)
+**Total running time of the script:** ( 0 minutes  1.739 seconds)
 
 
 

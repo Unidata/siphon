@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>siphon.http_util &mdash; Siphon 0.6.0+36.g03d1047 documentation</title>
+  <title>siphon.http_util &mdash; Siphon 0.6</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Siphon 0.6.0+36.g03d1047 documentation" href="../index.html"/>
+    <link rel="top" title="Siphon 0.6" href="../index.html"/>
         <link rel="up" title="The Siphon API" href="index.html"/>
         <link rel="next" title="siphon.ncss" href="ncss.html"/>
         <link rel="prev" title="siphon.ncss_dataset" href="ncssdataset.html"/> 
@@ -67,13 +67,31 @@
           
 
           
+            
+            <img src="../_static/siphon_150x150.png" class="logo" />
+          
           </a>
 
           
             
             
               <div class="version">
-                0.6.0
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.6</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
               </div>
             
           
@@ -100,14 +118,14 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">The Siphon API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="docutils literal"><span class="pre">siphon.catalog</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="docutils literal"><span class="pre">siphon.metadata</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="docutils literal"><span class="pre">siphon.ncss_dataset</span></code></a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">siphon.http_util</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="docutils literal"><span class="pre">siphon.ncss</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal"><span class="pre">siphon.radarserver</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -152,6 +170,7 @@
 
 
 
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -160,17 +179,20 @@
         
           <li><a href="index.html">The Siphon API</a> &raquo;</li>
         
-      <li><code class="docutils literal"><span class="pre">siphon.http_util</span></code></li>
+      <li><code class="docutils literal notranslate"><span class="pre">siphon.http_util</span></code></li>
     
     
-      <li class="wy-breadcrumbs-aside">
+    <li class="source-link">
         
             
-            <a href="../_sources/api/http_util.rst.txt" rel="nofollow"> View page source</a>
-          
+                
+                
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20api/http_util&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
         
-      </li>
-    
+    </li>
+
   </ul>
 
   
@@ -180,29 +202,29 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-siphon.http_util">
-<span id="siphon-http-util"></span><h1><a class="reference internal" href="#module-siphon.http_util" title="siphon.http_util"><code class="xref py py-mod docutils literal"><span class="pre">siphon.http_util</span></code></a><a class="headerlink" href="#module-siphon.http_util" title="Permalink to this headline">¶</a></h1>
+<span id="siphon-http-util"></span><h1><a class="reference internal" href="#module-siphon.http_util" title="siphon.http_util"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a><a class="headerlink" href="#module-siphon.http_util" title="Permalink to this headline">¶</a></h1>
 <p>Utility code to support making requests using HTTP.</p>
 <dl class="exception">
 <dt id="siphon.http_util.BadQueryError">
-<em class="property">exception </em><code class="descclassname">siphon.http_util.</code><code class="descname">BadQueryError</code><a class="headerlink" href="#siphon.http_util.BadQueryError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">siphon.http_util.</code><code class="descname">BadQueryError</code><a class="reference internal" href="../_modules/siphon/http_util.html#BadQueryError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.BadQueryError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exception raised when a query fails.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="siphon.http_util.DataQuery">
-<em class="property">class </em><code class="descclassname">siphon.http_util.</code><code class="descname">DataQuery</code><a class="headerlink" href="#siphon.http_util.DataQuery" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">siphon.http_util.</code><code class="descname">DataQuery</code><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent a query for data from a THREDDS server.</p>
 <p>This object provides a clear API to formulate a query for data, including
 a spatial query, a time query, and possibly some variables or other parameters.
-These objects provide a dictionary-like interface, (<a class="reference internal" href="#siphon.http_util.DataQuery.items" title="siphon.http_util.DataQuery.items"><code class="xref py py-meth docutils literal"><span class="pre">items()</span></code></a> and <code class="xref py py-meth docutils literal"><span class="pre">__iter__()</span></code>)
+These objects provide a dictionary-like interface, (<a class="reference internal" href="#siphon.http_util.DataQuery.items" title="siphon.http_util.DataQuery.items"><code class="xref py py-meth docutils literal notranslate"><span class="pre">items()</span></code></a> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code>)
 sufficient to be passed to functions expecting a dictionary representing a URL query.
 Instances of this object can also be turned into a string, which will yield a
 properly escaped string for a URL.</p>
 <dl class="method">
 <dt id="siphon.http_util.DataQuery.add_query_parameter">
-<code class="descname">add_query_parameter</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.DataQuery.add_query_parameter" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_query_parameter</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.add_query_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.add_query_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add arbitrary query element (name=value) to the request.</p>
-<p>This modifies the query in-place, but returns <cite>self</cite> so that multiple
+<p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple
 queries can be chained together on one line.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -220,10 +242,10 @@ queries can be chained together on one line.</p>
 
 <dl class="method">
 <dt id="siphon.http_util.DataQuery.all_times">
-<code class="descname">all_times</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.DataQuery.all_times" title="Permalink to this definition">¶</a></dt>
+<code class="descname">all_times</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.all_times"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.all_times" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a request for all times to the query.</p>
-<p>This adds a request for all times (<cite>temporal=all</cite>). This modifies the query
-in-place, but returns <cite>self</cite> so that multiple queries can be chained together on
+<p>This adds a request for all times (<em class="xref py py-obj">temporal=all</em>). This modifies the query
+in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries can be chained together on
 one line.</p>
 <p>This replaces any existing temporal queries that have been set.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -240,7 +262,7 @@ one line.</p>
 
 <dl class="method">
 <dt id="siphon.http_util.DataQuery.items">
-<code class="descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.DataQuery.items" title="Permalink to this definition">¶</a></dt>
+<code class="descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.items" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the various name=value pairs that compose the query.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -256,11 +278,11 @@ one line.</p>
 
 <dl class="method">
 <dt id="siphon.http_util.DataQuery.lonlat_box">
-<code class="descname">lonlat_box</code><span class="sig-paren">(</span><em>west</em>, <em>east</em>, <em>south</em>, <em>north</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.DataQuery.lonlat_box" title="Permalink to this definition">¶</a></dt>
+<code class="descname">lonlat_box</code><span class="sig-paren">(</span><em>west</em>, <em>east</em>, <em>south</em>, <em>north</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.lonlat_box"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.lonlat_box" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a latitude/longitude bounding box to the query.</p>
 <p>This adds a request for a spatial bounding box, bounded by (‘north’, ‘south’)
 for latitude and (‘east’, ‘west’) for the longitude. This modifies the query
-in-place, but returns <cite>self</cite> so that multiple queries can be chained together
+in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries can be chained together
 on one line.</p>
 <p>This replaces any existing spatial queries that have been set.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -287,10 +309,10 @@ on one line.</p>
 
 <dl class="method">
 <dt id="siphon.http_util.DataQuery.lonlat_point">
-<code class="descname">lonlat_point</code><span class="sig-paren">(</span><em>lon</em>, <em>lat</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.DataQuery.lonlat_point" title="Permalink to this definition">¶</a></dt>
+<code class="descname">lonlat_point</code><span class="sig-paren">(</span><em>lon</em>, <em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.lonlat_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.lonlat_point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a latitude/longitude point to the query.</p>
-<p>This adds a request for a (<cite>lon</cite>, <cite>lat</cite>) point. This modifies the query
-in-place, but returns <cite>self</cite> so that multiple queries can be chained together on
+<p>This adds a request for a (<em class="xref py py-obj">lon</em>, <em class="xref py py-obj">lat</em>) point. This modifies the query
+in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries can be chained together on
 one line.</p>
 <p>This replaces any existing spatial queries that have been set.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -315,9 +337,9 @@ one line.</p>
 
 <dl class="method">
 <dt id="siphon.http_util.DataQuery.time">
-<code class="descname">time</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.DataQuery.time" title="Permalink to this definition">¶</a></dt>
+<code class="descname">time</code><span class="sig-paren">(</span><em>time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a request for a specific time to the query.</p>
-<p>This modifies the query in-place, but returns <cite>self</cite> so that multiple queries
+<p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries
 can be chained together on one line.</p>
 <p>This replaces any existing temporal queries that have been set.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -336,9 +358,9 @@ can be chained together on one line.</p>
 
 <dl class="method">
 <dt id="siphon.http_util.DataQuery.time_range">
-<code class="descname">time_range</code><span class="sig-paren">(</span><em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.DataQuery.time_range" title="Permalink to this definition">¶</a></dt>
+<code class="descname">time_range</code><span class="sig-paren">(</span><em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.time_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.time_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a request for a time range to the query.</p>
-<p>This modifies the query in-place, but returns <cite>self</cite> so that multiple queries
+<p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries
 can be chained together on one line.</p>
 <p>This replaces any existing temporal queries that have been set.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -363,10 +385,10 @@ can be chained together on one line.</p>
 
 <dl class="method">
 <dt id="siphon.http_util.DataQuery.variables">
-<code class="descname">variables</code><span class="sig-paren">(</span><em>*var_names</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.DataQuery.variables" title="Permalink to this definition">¶</a></dt>
+<code class="descname">variables</code><span class="sig-paren">(</span><em>*var_names</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.variables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.variables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specify one or more variables for the query.</p>
 <p>This function ensures that variable names are not repeated.</p>
-<p>This modifies the query in-place, but returns <cite>self</cite> so that multiple
+<p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple
 queries can be chained together on one line.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -386,13 +408,13 @@ queries can be chained together on one line.</p>
 
 <dl class="class">
 <dt id="siphon.http_util.HTTPEndPoint">
-<em class="property">class </em><code class="descclassname">siphon.http_util.</code><code class="descname">HTTPEndPoint</code><span class="sig-paren">(</span><em>url</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.HTTPEndPoint" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">siphon.http_util.</code><code class="descname">HTTPEndPoint</code><span class="sig-paren">(</span><em>url</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object representing an endpoint on a server that is accessed using HTTP.</p>
 <p>This provides a simple way to point to a URL, formulate appropriate queries and
 validate them, parse metadata as appropriate, and parse returns from requests.</p>
 <dl class="method">
 <dt id="siphon.http_util.HTTPEndPoint.get">
-<code class="descname">get</code><span class="sig-paren">(</span><em>path</em>, <em>params=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.get" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get</code><span class="sig-paren">(</span><em>path</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a GET request, optionally including a parameters, to a path.</p>
 <p>The path of the request is the full URL.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -411,20 +433,20 @@ validate them, parse metadata as appropriate, and parse returns from requests.</
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="http://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.18.4)">requests.Response</a></p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">HTTPError</span></code> – If the server returns anything other than a 200 (OK) code</p>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">HTTPError</span></code> – If the server returns anything other than a 200 (OK) code</p>
 </td>
 </tr>
 </tbody>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get_query" title="siphon.http_util.HTTPEndPoint.get_query"><code class="xref py py-meth docutils literal"><span class="pre">get_query()</span></code></a>, <a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get" title="siphon.http_util.HTTPEndPoint.get"><code class="xref py py-meth docutils literal"><span class="pre">get()</span></code></a></p>
+<p class="last"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get_query" title="siphon.http_util.HTTPEndPoint.get_query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_query()</span></code></a>, <a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get" title="siphon.http_util.HTTPEndPoint.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a></p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="siphon.http_util.HTTPEndPoint.get_path">
-<code class="descname">get_path</code><span class="sig-paren">(</span><em>path</em>, <em>query=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.get_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_path</code><span class="sig-paren">(</span><em>path</em>, <em>query=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.get_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.get_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a GET request, optionally including a query, to a relative path.</p>
 <p>The path of the request includes a path on top of the base URL
 assigned to the endpoint.</p>
@@ -448,13 +470,13 @@ assigned to the endpoint.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get_query" title="siphon.http_util.HTTPEndPoint.get_query"><code class="xref py py-meth docutils literal"><span class="pre">get_query()</span></code></a>, <a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get" title="siphon.http_util.HTTPEndPoint.get"><code class="xref py py-meth docutils literal"><span class="pre">get()</span></code></a>, <a class="reference internal" href="#siphon.http_util.HTTPEndPoint.url_path" title="siphon.http_util.HTTPEndPoint.url_path"><code class="xref py py-meth docutils literal"><span class="pre">url_path()</span></code></a></p>
+<p class="last"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get_query" title="siphon.http_util.HTTPEndPoint.get_query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_query()</span></code></a>, <a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get" title="siphon.http_util.HTTPEndPoint.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a>, <a class="reference internal" href="#siphon.http_util.HTTPEndPoint.url_path" title="siphon.http_util.HTTPEndPoint.url_path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">url_path()</span></code></a></p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="siphon.http_util.HTTPEndPoint.get_query">
-<code class="descname">get_query</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.get_query" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_query</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.get_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.get_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a GET request, including a query, to the endpoint.</p>
 <p>The path of the request is to the base URL assigned to the endpoint.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -471,22 +493,22 @@ assigned to the endpoint.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get_path" title="siphon.http_util.HTTPEndPoint.get_path"><code class="xref py py-meth docutils literal"><span class="pre">get_path()</span></code></a>, <a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get" title="siphon.http_util.HTTPEndPoint.get"><code class="xref py py-meth docutils literal"><span class="pre">get()</span></code></a></p>
+<p class="last"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get_path" title="siphon.http_util.HTTPEndPoint.get_path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path()</span></code></a>, <a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get" title="siphon.http_util.HTTPEndPoint.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a></p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="siphon.http_util.HTTPEndPoint.query">
-<code class="descname">query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.query" title="Permalink to this definition">¶</a></dt>
+<code class="descname">query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new query object.</p>
-<p>Returns a new <a class="reference internal" href="#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><code class="xref py py-class docutils literal"><span class="pre">DataQuery</span></code></a> instance appropriate for this endpoint.</p>
-<p>The default implementation returns a <a class="reference internal" href="#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><code class="xref py py-class docutils literal"><span class="pre">DataQuery</span></code></a> instance. Subclasses can
+<p>Returns a new <a class="reference internal" href="#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataQuery</span></code></a> instance appropriate for this endpoint.</p>
+<p>The default implementation returns a <a class="reference internal" href="#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataQuery</span></code></a> instance. Subclasses can
 override to return a subclass specific to this endpoint.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>valid</strong> – Whether <cite>query</cite> is valid.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>valid</strong> – Whether <a class="reference internal" href="#siphon.http_util.HTTPEndPoint.query" title="siphon.http_util.HTTPEndPoint.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a> is valid.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)">bool</a></td>
 </tr>
@@ -496,7 +518,7 @@ override to return a subclass specific to this endpoint.</p>
 
 <dl class="method">
 <dt id="siphon.http_util.HTTPEndPoint.url_path">
-<code class="descname">url_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.url_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">url_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.url_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.url_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Assemble the full url to a path.</p>
 <p>Given a path relative to the base URL, assemble the full URL.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -505,7 +527,7 @@ override to return a subclass specific to this endpoint.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – The path, relative to the endpoint</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>url</strong> – The full URL to <cite>path</cite></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>url</strong> – The full URL to <em class="xref py py-obj">path</em></td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)">str</a></td>
 </tr>
@@ -513,13 +535,13 @@ override to return a subclass specific to this endpoint.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get_path" title="siphon.http_util.HTTPEndPoint.get_path"><code class="xref py py-meth docutils literal"><span class="pre">get_path()</span></code></a></p>
+<p class="last"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get_path" title="siphon.http_util.HTTPEndPoint.get_path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path()</span></code></a></p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="siphon.http_util.HTTPEndPoint.validate_query">
-<code class="descname">validate_query</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.validate_query" title="Permalink to this definition">¶</a></dt>
+<code class="descname">validate_query</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.validate_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.validate_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Validate a query.</p>
 <p>Determines whether a query is well-formed. This includes checking for all
 required parameters, as well as checking parameters for valid values.</p>
@@ -531,7 +553,7 @@ implement this to do more detailed checking as appropriate.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference internal" href="#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><em>DataQuery</em></a><em> (or </em><em>subclass</em><em>)</em>) – </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>valid</strong> – Whether <cite>query</cite> is valid.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>valid</strong> – Whether <a class="reference internal" href="#siphon.http_util.HTTPEndPoint.query" title="siphon.http_util.HTTPEndPoint.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a> is valid.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)">bool</a></td>
 </tr>
@@ -543,23 +565,23 @@ implement this to do more detailed checking as appropriate.</p>
 
 <dl class="class">
 <dt id="siphon.http_util.UTC">
-<em class="property">class </em><code class="descclassname">siphon.http_util.</code><code class="descname">UTC</code><a class="headerlink" href="#siphon.http_util.UTC" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">siphon.http_util.</code><code class="descname">UTC</code><a class="reference internal" href="../_modules/siphon/http_util.html#UTC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.UTC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent UTC timezone.</p>
 <dl class="method">
 <dt id="siphon.http_util.UTC.dst">
-<code class="descname">dst</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.UTC.dst" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dst</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#UTC.dst"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.UTC.dst" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get whether the timezone uses Daylight Savings Time.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="siphon.http_util.UTC.tzname">
-<code class="descname">tzname</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.UTC.tzname" title="Permalink to this definition">¶</a></dt>
+<code class="descname">tzname</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#UTC.tzname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.UTC.tzname" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the name of the timezone.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="siphon.http_util.UTC.utcoffset">
-<code class="descname">utcoffset</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.UTC.utcoffset" title="Permalink to this definition">¶</a></dt>
+<code class="descname">utcoffset</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#UTC.utcoffset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.UTC.utcoffset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the offset from UTC.</p>
 </dd></dl>
 
@@ -567,7 +589,7 @@ implement this to do more detailed checking as appropriate.</p>
 
 <dl class="function">
 <dt id="siphon.http_util.create_http_session">
-<code class="descclassname">siphon.http_util.</code><code class="descname">create_http_session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.create_http_session" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">siphon.http_util.</code><code class="descname">create_http_session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#create_http_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.create_http_session" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new HTTP session with our user-agent set.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -581,13 +603,13 @@ implement this to do more detailed checking as appropriate.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#siphon.http_util.urlopen" title="siphon.http_util.urlopen"><code class="xref py py-func docutils literal"><span class="pre">urlopen()</span></code></a></p>
+<p class="last"><a class="reference internal" href="#siphon.http_util.urlopen" title="siphon.http_util.urlopen"><code class="xref py py-func docutils literal notranslate"><span class="pre">urlopen()</span></code></a></p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="siphon.http_util.parse_iso_date">
-<code class="descclassname">siphon.http_util.</code><code class="descname">parse_iso_date</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.parse_iso_date" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">siphon.http_util.</code><code class="descname">parse_iso_date</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#parse_iso_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.parse_iso_date" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse a string containing an ISO-8601 formatted date.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -605,9 +627,9 @@ implement this to do more detailed checking as appropriate.</p>
 
 <dl class="function">
 <dt id="siphon.http_util.urlopen">
-<code class="descclassname">siphon.http_util.</code><code class="descname">urlopen</code><span class="sig-paren">(</span><em>url</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.http_util.urlopen" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">siphon.http_util.</code><code class="descname">urlopen</code><span class="sig-paren">(</span><em>url</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#urlopen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.urlopen" title="Permalink to this definition">¶</a></dt>
 <dd><p>GET a file-like object for a URL using HTTP.</p>
-<p>This is a thin wrapper around <a class="reference external" href="http://docs.python-requests.org/en/master/api/#requests.Session.get" title="(in Requests v2.18.4)"><code class="xref py py-meth docutils literal"><span class="pre">requests.Session.get()</span></code></a> that returns a file-like object
+<p>This is a thin wrapper around <a class="reference external" href="http://docs.python-requests.org/en/master/api/#requests.Session.get" title="(in Requests v2.18.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">requests.Session.get()</span></code></a> that returns a file-like object
 wrapped around the resulting content.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -615,7 +637,7 @@ wrapped around the resulting content.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – The URL to request</li>
-<li><strong>kwargs</strong> (<em>arbitrary keyword arguments</em>) – Additional keyword arguments to pass to <a class="reference external" href="http://docs.python-requests.org/en/master/api/#requests.Session.get" title="(in Requests v2.18.4)"><code class="xref py py-meth docutils literal"><span class="pre">requests.Session.get()</span></code></a>.</li>
+<li><strong>kwargs</strong> (<em>arbitrary keyword arguments</em>) – Additional keyword arguments to pass to <a class="reference external" href="http://docs.python-requests.org/en/master/api/#requests.Session.get" title="(in Requests v2.18.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">requests.Session.get()</span></code></a>.</li>
 </ul>
 </td>
 </tr>
@@ -629,7 +651,7 @@ wrapped around the resulting content.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference external" href="http://docs.python-requests.org/en/master/api/#requests.Session.get" title="(in Requests v2.18.4)"><code class="xref py py-meth docutils literal"><span class="pre">requests.Session.get()</span></code></a></p>
+<p class="last"><a class="reference external" href="http://docs.python-requests.org/en/master/api/#requests.Session.get" title="(in Requests v2.18.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">requests.Session.get()</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -657,7 +679,8 @@ wrapped around the resulting content.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Unidata.
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 19:48:16.
 
     </p>
   </div>
@@ -694,7 +717,8 @@ wrapped around the resulting content.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.6.0+36.g03d1047',
+            VERSION:'0.6.1+104.g9f7bf0f',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -704,7 +728,7 @@ wrapped around the resulting content.</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

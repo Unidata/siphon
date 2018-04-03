@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>siphon.catalog &mdash; Siphon 0.6.0+36.g03d1047 documentation</title>
+  <title>siphon.catalog &mdash; Siphon 0.6</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Siphon 0.6.0+36.g03d1047 documentation" href="../index.html"/>
+    <link rel="top" title="Siphon 0.6" href="../index.html"/>
         <link rel="up" title="The Siphon API" href="index.html"/>
         <link rel="next" title="siphon.metadata" href="metadata.html"/>
         <link rel="prev" title="The Siphon API" href="index.html"/> 
@@ -67,13 +67,31 @@
           
 
           
+            
+            <img src="../_static/siphon_150x150.png" class="logo" />
+          
           </a>
 
           
             
             
               <div class="version">
-                0.6.0
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.6</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
               </div>
             
           
@@ -100,14 +118,14 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">The Siphon API</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">siphon.catalog</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="docutils literal"><span class="pre">siphon.metadata</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="docutils literal"><span class="pre">siphon.ncss_dataset</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="docutils literal"><span class="pre">siphon.http_util</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="docutils literal"><span class="pre">siphon.ncss</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal"><span class="pre">siphon.radarserver</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -152,6 +170,7 @@
 
 
 
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -160,17 +179,20 @@
         
           <li><a href="index.html">The Siphon API</a> &raquo;</li>
         
-      <li><code class="docutils literal"><span class="pre">siphon.catalog</span></code></li>
+      <li><code class="docutils literal notranslate"><span class="pre">siphon.catalog</span></code></li>
     
     
-      <li class="wy-breadcrumbs-aside">
+    <li class="source-link">
         
             
-            <a href="../_sources/api/catalog.rst.txt" rel="nofollow"> View page source</a>
-          
+                
+                
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20api/catalog&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
         
-      </li>
-    
+    </li>
+
   </ul>
 
   
@@ -180,34 +202,34 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-siphon.catalog">
-<span id="siphon-catalog"></span><h1><a class="reference internal" href="#module-siphon.catalog" title="siphon.catalog"><code class="xref py py-mod docutils literal"><span class="pre">siphon.catalog</span></code></a><a class="headerlink" href="#module-siphon.catalog" title="Permalink to this headline">¶</a></h1>
+<span id="siphon-catalog"></span><h1><a class="reference internal" href="#module-siphon.catalog" title="siphon.catalog"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a><a class="headerlink" href="#module-siphon.catalog" title="Permalink to this headline">¶</a></h1>
 <p>Code to support reading and parsing catalog files from a THREDDS Data Server (TDS).</p>
 <p>They help identifying the latest dataset and finding proper URLs to access the data.</p>
 <dl class="class">
 <dt id="siphon.catalog.CatalogRef">
-<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">CatalogRef</code><span class="sig-paren">(</span><em>base_url</em>, <em>element_node</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.CatalogRef" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">CatalogRef</code><span class="sig-paren">(</span><em>base_url</em>, <em>element_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CatalogRef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.CatalogRef" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object for holding catalog references obtained from a THREDDS Client Catalog.</p>
 <dl class="attribute">
 <dt id="siphon.catalog.CatalogRef.name">
 <code class="descname">name</code><a class="headerlink" href="#siphon.catalog.CatalogRef.name" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – The name of the <a class="reference internal" href="#siphon.catalog.CatalogRef" title="siphon.catalog.CatalogRef"><code class="xref py py-class docutils literal"><span class="pre">CatalogRef</span></code></a> element</p>
+<dd><p><em>str</em> – The name of the <a class="reference internal" href="#siphon.catalog.CatalogRef" title="siphon.catalog.CatalogRef"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogRef</span></code></a> element</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="siphon.catalog.CatalogRef.href">
 <code class="descname">href</code><a class="headerlink" href="#siphon.catalog.CatalogRef.href" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – url to the <a class="reference internal" href="#siphon.catalog.CatalogRef" title="siphon.catalog.CatalogRef"><code class="xref py py-class docutils literal"><span class="pre">CatalogRef</span></code></a>’s THREDDS Client Catalog</p>
+<dd><p><em>str</em> – url to the <a class="reference internal" href="#siphon.catalog.CatalogRef" title="siphon.catalog.CatalogRef"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogRef</span></code></a>’s THREDDS Client Catalog</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="siphon.catalog.CatalogRef.title">
 <code class="descname">title</code><a class="headerlink" href="#siphon.catalog.CatalogRef.title" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – Title of the <a class="reference internal" href="#siphon.catalog.CatalogRef" title="siphon.catalog.CatalogRef"><code class="xref py py-class docutils literal"><span class="pre">CatalogRef</span></code></a> element</p>
+<dd><p><em>str</em> – Title of the <a class="reference internal" href="#siphon.catalog.CatalogRef" title="siphon.catalog.CatalogRef"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogRef</span></code></a> element</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="siphon.catalog.CatalogRef.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>base_url</em>, <em>element_node</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.CatalogRef.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>base_url</em>, <em>element_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CatalogRef.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.CatalogRef.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the catalogRef object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -215,7 +237,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>base_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – URL to the base catalog that owns this reference</li>
-<li><strong>element_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">Element</span></code></a> representing a catalogRef node</li>
+<li><strong>element_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a catalogRef node</li>
 </ul>
 </td>
 </tr>
@@ -225,8 +247,8 @@
 
 <dl class="method">
 <dt id="siphon.catalog.CatalogRef.follow">
-<code class="descname">follow</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.CatalogRef.follow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Follow the catalog reference and return a new <a class="reference internal" href="#siphon.catalog.TDSCatalog" title="siphon.catalog.TDSCatalog"><code class="xref py py-class docutils literal"><span class="pre">TDSCatalog</span></code></a>.</p>
+<code class="descname">follow</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CatalogRef.follow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.CatalogRef.follow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Follow the catalog reference and return a new <a class="reference internal" href="#siphon.catalog.TDSCatalog" title="siphon.catalog.TDSCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">TDSCatalog</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -243,7 +265,7 @@
 
 <dl class="class">
 <dt id="siphon.catalog.CompoundService">
-<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">CompoundService</code><span class="sig-paren">(</span><em>service_node</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.CompoundService" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">CompoundService</code><span class="sig-paren">(</span><em>service_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CompoundService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.CompoundService" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hold information about compound services.</p>
 <dl class="attribute">
 <dt id="siphon.catalog.CompoundService.name">
@@ -261,33 +283,41 @@
 <dl class="attribute">
 <dt id="siphon.catalog.CompoundService.services">
 <code class="descname">services</code><a class="headerlink" href="#siphon.catalog.CompoundService.services" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>list[SimpleService]</em> – A list of <a class="reference internal" href="#siphon.catalog.SimpleService" title="siphon.catalog.SimpleService"><code class="xref py py-class docutils literal"><span class="pre">SimpleService</span></code></a> objects</p>
+<dd><p><em>list[SimpleService]</em> – A list of <a class="reference internal" href="#siphon.catalog.SimpleService" title="siphon.catalog.SimpleService"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleService</span></code></a> objects</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="siphon.catalog.CompoundService.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>service_node</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.CompoundService.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize a <a class="reference internal" href="#siphon.catalog.CompoundService" title="siphon.catalog.CompoundService"><code class="xref py py-class docutils literal"><span class="pre">CompoundService</span></code></a> object.</p>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>service_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CompoundService.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.CompoundService.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a <a class="reference internal" href="#siphon.catalog.CompoundService" title="siphon.catalog.CompoundService"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompoundService</span></code></a> object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">Element</span></code></a> representing a compound service node</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a compound service node</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="siphon.catalog.CompoundService.is_resolver">
+<code class="descname">is_resolver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CompoundService.is_resolver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.CompoundService.is_resolver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the service is a resolver service.</p>
+<p>For a compound service, this is always False because it will never be
+a resolver.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="siphon.catalog.Dataset">
-<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">Dataset</code><span class="sig-paren">(</span><em>element_node</em>, <em>catalog_url=''</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.Dataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">Dataset</code><span class="sig-paren">(</span><em>element_node</em>, <em>catalog_url=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object for holding Datasets obtained from a THREDDS Client Catalog.</p>
 <dl class="attribute">
 <dt id="siphon.catalog.Dataset.name">
 <code class="descname">name</code><a class="headerlink" href="#siphon.catalog.Dataset.name" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>str</em> – The name of the <a class="reference internal" href="#siphon.catalog.Dataset" title="siphon.catalog.Dataset"><code class="xref py py-class docutils literal"><span class="pre">Dataset</span></code></a> element</p>
+<dd><p><em>str</em> – The name of the <a class="reference internal" href="#siphon.catalog.Dataset" title="siphon.catalog.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> element</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -306,14 +336,14 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 
 <dl class="method">
 <dt id="siphon.catalog.Dataset.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>element_node</em>, <em>catalog_url=''</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.Dataset.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>element_node</em>, <em>catalog_url=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the Dataset object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">Element</span></code></a> representing a Dataset node</li>
+<li><strong>element_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a Dataset node</li>
 <li><strong>catalog_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – The top level server url</li>
 </ul>
 </td>
@@ -324,7 +354,7 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 
 <dl class="method">
 <dt id="siphon.catalog.Dataset.access_with_service">
-<code class="descname">access_with_service</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.Dataset.access_with_service" title="Permalink to this definition">¶</a></dt>
+<code class="descname">access_with_service</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.access_with_service"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.access_with_service" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access the dataset using a particular service.</p>
 <p>Return an Python object capable of communicating with the server using the particular
 service. For instance, for ‘HTTPServer’ this is a file-like object capable of
@@ -337,7 +367,7 @@ HTTP communication; for OPENDAP this is a netCDF4 dataset.</p>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">An instance appropriate for communicating using <code class="docutils literal"><span class="pre">service</span></code>.</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">An instance appropriate for communicating using <code class="docutils literal notranslate"><span class="pre">service</span></code>.</td>
 </tr>
 </tbody>
 </table>
@@ -345,13 +375,13 @@ HTTP communication; for OPENDAP this is a netCDF4 dataset.</p>
 
 <dl class="method">
 <dt id="siphon.catalog.Dataset.add_access_element_info">
-<code class="descname">add_access_element_info</code><span class="sig-paren">(</span><em>access_element</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.Dataset.add_access_element_info" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_access_element_info</code><span class="sig-paren">(</span><em>access_element</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.add_access_element_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.add_access_element_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an access method from a catalog element.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="siphon.catalog.Dataset.download">
-<code class="descname">download</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.Dataset.download" title="Permalink to this definition">¶</a></dt>
+<code class="descname">download</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.download" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download the dataset to a local file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -365,7 +395,7 @@ HTTP communication; for OPENDAP this is a netCDF4 dataset.</p>
 
 <dl class="method">
 <dt id="siphon.catalog.Dataset.make_access_urls">
-<code class="descname">make_access_urls</code><span class="sig-paren">(</span><em>catalog_url</em>, <em>all_services</em>, <em>metadata=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.Dataset.make_access_urls" title="Permalink to this definition">¶</a></dt>
+<code class="descname">make_access_urls</code><span class="sig-paren">(</span><em>catalog_url</em>, <em>all_services</em>, <em>metadata=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.make_access_urls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.make_access_urls" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make fully qualified urls for the access methods enabled on the dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -373,8 +403,8 @@ HTTP communication; for OPENDAP this is a netCDF4 dataset.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>catalog_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – The top level server url</li>
-<li><strong>all_services</strong> (<em>List</em><em>[</em><a class="reference internal" href="#siphon.catalog.SimpleService" title="siphon.catalog.SimpleService"><em>SimpleService</em></a><em>]</em>) – list of <a class="reference internal" href="#siphon.catalog.SimpleService" title="siphon.catalog.SimpleService"><code class="xref py py-class docutils literal"><span class="pre">SimpleService</span></code></a> objects associated with the dataset</li>
-<li><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – Metadata from the <a class="reference internal" href="#siphon.catalog.TDSCatalog" title="siphon.catalog.TDSCatalog"><code class="xref py py-class docutils literal"><span class="pre">TDSCatalog</span></code></a></li>
+<li><strong>all_services</strong> (<em>List</em><em>[</em><a class="reference internal" href="#siphon.catalog.SimpleService" title="siphon.catalog.SimpleService"><em>SimpleService</em></a><em>]</em>) – list of <a class="reference internal" href="#siphon.catalog.SimpleService" title="siphon.catalog.SimpleService"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleService</span></code></a> objects associated with the dataset</li>
+<li><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – Metadata from the <a class="reference internal" href="#siphon.catalog.TDSCatalog" title="siphon.catalog.TDSCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">TDSCatalog</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -384,9 +414,9 @@ HTTP communication; for OPENDAP this is a netCDF4 dataset.</p>
 
 <dl class="method">
 <dt id="siphon.catalog.Dataset.remote_access">
-<code class="descname">remote_access</code><span class="sig-paren">(</span><em>service=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.Dataset.remote_access" title="Permalink to this definition">¶</a></dt>
+<code class="descname">remote_access</code><span class="sig-paren">(</span><em>service=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.remote_access"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.remote_access" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access the remote dataset.</p>
-<p>Open the remote dataset and get a netCDF4-compatible <cite>Dataset</cite> object providing
+<p>Open the remote dataset and get a netCDF4-compatible <a class="reference internal" href="#siphon.catalog.Dataset" title="siphon.catalog.Dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code></a> object providing
 index-based subsetting capabilities.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -405,7 +435,7 @@ index-based subsetting capabilities.</p>
 
 <dl class="method">
 <dt id="siphon.catalog.Dataset.remote_open">
-<code class="descname">remote_open</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.Dataset.remote_open" title="Permalink to this definition">¶</a></dt>
+<code class="descname">remote_open</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.remote_open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.remote_open" title="Permalink to this definition">¶</a></dt>
 <dd><p>Open the remote dataset for random access.</p>
 <p>Get a file-like object for reading from the remote dataset, providing random access,
 similar to a local file.</p>
@@ -423,7 +453,7 @@ similar to a local file.</p>
 
 <dl class="method">
 <dt id="siphon.catalog.Dataset.resolve_url">
-<code class="descname">resolve_url</code><span class="sig-paren">(</span><em>catalog_url</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.Dataset.resolve_url" title="Permalink to this definition">¶</a></dt>
+<code class="descname">resolve_url</code><span class="sig-paren">(</span><em>catalog_url</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.resolve_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.resolve_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resolve the url of the dataset when reading latest.xml.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -437,9 +467,9 @@ similar to a local file.</p>
 
 <dl class="method">
 <dt id="siphon.catalog.Dataset.subset">
-<code class="descname">subset</code><span class="sig-paren">(</span><em>service=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.Dataset.subset" title="Permalink to this definition">¶</a></dt>
+<code class="descname">subset</code><span class="sig-paren">(</span><em>service=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.subset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.subset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Subset the dataset.</p>
-<p>Open the remote dataset and get a client for talking to <code class="docutils literal"><span class="pre">service</span></code>.</p>
+<p>Open the remote dataset and get a client for talking to <code class="docutils literal notranslate"><span class="pre">service</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -448,7 +478,7 @@ similar to a local file.</p>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">a client for communicating using <code class="docutils literal"><span class="pre">service</span></code></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">a client for communicating using <code class="docutils literal notranslate"><span class="pre">service</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -458,23 +488,23 @@ similar to a local file.</p>
 
 <dl class="class">
 <dt id="siphon.catalog.DatasetCollection">
-<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">DatasetCollection</code><a class="headerlink" href="#siphon.catalog.DatasetCollection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extend <code class="docutils literal"><span class="pre">IndexableMapping</span></code> to allow datetime-based filter queries.</p>
+<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">DatasetCollection</code><a class="reference internal" href="../_modules/siphon/catalog.html#DatasetCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.DatasetCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend <code class="docutils literal notranslate"><span class="pre">IndexableMapping</span></code> to allow datetime-based filter queries.</p>
 <dl class="method">
 <dt id="siphon.catalog.DatasetCollection.filter_time_nearest">
-<code class="descname">filter_time_nearest</code><span class="sig-paren">(</span><em>time</em>, <em>regex=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.DatasetCollection.filter_time_nearest" title="Permalink to this definition">¶</a></dt>
+<code class="descname">filter_time_nearest</code><span class="sig-paren">(</span><em>time</em>, <em>regex=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#DatasetCollection.filter_time_nearest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.DatasetCollection.filter_time_nearest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filter keys for an item closest to the desired time.</p>
-<p>Loops over all keys in the collection and uses <cite>regex</cite> to extract and build
-<cite>datetime`s. The collection of `datetime`s is compared to `start</cite> and the value that
-has a <cite>datetime</cite> closest to that requested is returned.If none of the keys in the
+<p>Loops over all keys in the collection and uses <em class="xref py py-obj">regex</em> to extract and build
+<em class="xref py py-obj">datetime`s. The collection of `datetime`s is compared to `start</em> and the value that
+has a <a class="reference external" href="https://docs.python.org/3/library/datetime.html#module-datetime" title="(in Python v3.6)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datetime</span></code></a> closest to that requested is returned.If none of the keys in the
 collection match the regex, indicating that the keys are not date/time-based,
-a <code class="docutils literal"><span class="pre">ValueError</span></code> is raised.</p>
+a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> is raised.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>time</strong> (<code class="docutils literal"><span class="pre">datetime.datetime</span></code>) – The desired time</li>
+<li><strong>time</strong> (<code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code>) – The desired time</li>
 <li><strong>regex</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>, </em><em>optional</em>) – The regular expression to use to extract date/time information from the key. If
 given, this should contain named groups: ‘year’, ‘month’, ‘day’, ‘hour’, ‘minute’,
 ‘second’, and ‘microsecond’, as appropriate. When a match is found, any of those
@@ -495,19 +525,19 @@ looks for patterns like: 20171118_2356.</li>
 
 <dl class="method">
 <dt id="siphon.catalog.DatasetCollection.filter_time_range">
-<code class="descname">filter_time_range</code><span class="sig-paren">(</span><em>start</em>, <em>end</em>, <em>regex=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.DatasetCollection.filter_time_range" title="Permalink to this definition">¶</a></dt>
+<code class="descname">filter_time_range</code><span class="sig-paren">(</span><em>start</em>, <em>end</em>, <em>regex=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#DatasetCollection.filter_time_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.DatasetCollection.filter_time_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filter keys for all items within the desired time range.</p>
-<p>Loops over all keys in the collection and uses <cite>regex</cite> to extract and build
-<cite>datetime`s. From the collection of `datetime`s, all values within `start</cite> and <cite>end</cite>
+<p>Loops over all keys in the collection and uses <em class="xref py py-obj">regex</em> to extract and build
+<em class="xref py py-obj">datetime`s. From the collection of `datetime`s, all values within `start</em> and <em class="xref py py-obj">end</em>
 (inclusive) are returned. If none of the keys in the collection match the regex,
-indicating that the keys are not date/time-based, a <code class="docutils literal"><span class="pre">ValueError</span></code> is raised.</p>
+indicating that the keys are not date/time-based, a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> is raised.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>start</strong> (<code class="docutils literal"><span class="pre">datetime.datetime</span></code>) – The start of the desired time range, inclusive</li>
-<li><strong>end</strong> (<code class="docutils literal"><span class="pre">datetime.datetime</span></code>) – The end of the desired time range, inclusive</li>
+<li><strong>start</strong> (<code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code>) – The start of the desired time range, inclusive</li>
+<li><strong>end</strong> (<code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code>) – The end of the desired time range, inclusive</li>
 <li><strong>regex</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>, </em><em>optional</em>) – The regular expression to use to extract date/time information from the key. If
 given, this should contain named groups: ‘year’, ‘month’, ‘day’, ‘hour’, ‘minute’,
 ‘second’, and ‘microsecond’, as appropriate. When a match is found, any of those
@@ -530,13 +560,13 @@ looks for patterns like: 20171118_2356.</li>
 
 <dl class="class">
 <dt id="siphon.catalog.IndexableMapping">
-<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">IndexableMapping</code><a class="headerlink" href="#siphon.catalog.IndexableMapping" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extend <code class="docutils literal"><span class="pre">OrderedDict</span></code> to allow index-based access to values.</p>
+<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">IndexableMapping</code><a class="reference internal" href="../_modules/siphon/catalog.html#IndexableMapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.IndexableMapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend <code class="docutils literal notranslate"><span class="pre">OrderedDict</span></code> to allow index-based access to values.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="siphon.catalog.SimpleService">
-<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">SimpleService</code><span class="sig-paren">(</span><em>service_node</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.SimpleService" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">SimpleService</code><span class="sig-paren">(</span><em>service_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#SimpleService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.SimpleService" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hold information about an access service enabled on a dataset.</p>
 <dl class="attribute">
 <dt id="siphon.catalog.SimpleService.name">
@@ -560,13 +590,13 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 
 <dl class="method">
 <dt id="siphon.catalog.SimpleService.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>service_node</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.SimpleService.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>service_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#SimpleService.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.SimpleService.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the Dataset object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">Element</span></code></a> representing a service node</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a service node</td>
 </tr>
 </tbody>
 </table>
@@ -574,7 +604,7 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 
 <dl class="method">
 <dt id="siphon.catalog.SimpleService.is_resolver">
-<code class="descname">is_resolver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.SimpleService.is_resolver" title="Permalink to this definition">¶</a></dt>
+<code class="descname">is_resolver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#SimpleService.is_resolver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.SimpleService.is_resolver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return whether the service is a resolver service.</p>
 </dd></dl>
 
@@ -582,7 +612,7 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 
 <dl class="class">
 <dt id="siphon.catalog.TDSCatalog">
-<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">TDSCatalog</code><span class="sig-paren">(</span><em>catalog_url</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.TDSCatalog" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">TDSCatalog</code><span class="sig-paren">(</span><em>catalog_url</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#TDSCatalog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.TDSCatalog" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse information from a THREDDS Client Catalog.</p>
 <dl class="attribute">
 <dt id="siphon.catalog.TDSCatalog.catalog_url">
@@ -599,26 +629,26 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 <dl class="attribute">
 <dt id="siphon.catalog.TDSCatalog.datasets">
 <code class="descname">datasets</code><a class="headerlink" href="#siphon.catalog.TDSCatalog.datasets" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>DatasetCollection[str, Dataset]</em> – A dictionary of <a class="reference internal" href="#siphon.catalog.Dataset" title="siphon.catalog.Dataset"><code class="xref py py-class docutils literal"><span class="pre">Dataset</span></code></a> objects, whose keys are the name of the
+<dd><p><em>DatasetCollection[str, Dataset]</em> – A dictionary of <a class="reference internal" href="#siphon.catalog.Dataset" title="siphon.catalog.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> objects, whose keys are the name of the
 dataset’s name</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="siphon.catalog.TDSCatalog.services">
 <code class="descname">services</code><a class="headerlink" href="#siphon.catalog.TDSCatalog.services" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>List</em> – A list of <a class="reference internal" href="#siphon.catalog.SimpleService" title="siphon.catalog.SimpleService"><code class="xref py py-class docutils literal"><span class="pre">SimpleService</span></code></a> listed in the catalog</p>
+<dd><p><em>List</em> – A list of <a class="reference internal" href="#siphon.catalog.SimpleService" title="siphon.catalog.SimpleService"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleService</span></code></a> listed in the catalog</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="siphon.catalog.TDSCatalog.catalog_refs">
 <code class="descname">catalog_refs</code><a class="headerlink" href="#siphon.catalog.TDSCatalog.catalog_refs" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>DatasetCollection[str, CatalogRef]</em> – A dictionary of <a class="reference internal" href="#siphon.catalog.CatalogRef" title="siphon.catalog.CatalogRef"><code class="xref py py-class docutils literal"><span class="pre">CatalogRef</span></code></a> objects whose keys are the name of the
+<dd><p><em>DatasetCollection[str, CatalogRef]</em> – A dictionary of <a class="reference internal" href="#siphon.catalog.CatalogRef" title="siphon.catalog.CatalogRef"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogRef</span></code></a> objects whose keys are the name of the
 catalog ref title.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="siphon.catalog.TDSCatalog.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>catalog_url</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.TDSCatalog.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>catalog_url</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#TDSCatalog.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.TDSCatalog.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the TDSCatalog object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -640,7 +670,7 @@ catalog ref title.</p>
 
 <dl class="function">
 <dt id="siphon.catalog.get_latest_access_url">
-<code class="descclassname">siphon.catalog.</code><code class="descname">get_latest_access_url</code><span class="sig-paren">(</span><em>catalog_url</em>, <em>access_method</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.catalog.get_latest_access_url" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">siphon.catalog.</code><code class="descname">get_latest_access_url</code><span class="sig-paren">(</span><em>catalog_url</em>, <em>access_method</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#get_latest_access_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.get_latest_access_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the data access url to the latest data using a specified access method.</p>
 <p>These are available for a data available from a top level dataset catalog (url).
 Currently only supports the existence of one “latest” dataset.</p>
@@ -655,7 +685,7 @@ Currently only supports the existence of one “latest” dataset.</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>access_url</strong> – Data access URL to be used to access the latest data available from a
-given catalog using the specified <cite>access_method</cite>. Typically a single string,
+given catalog using the specified <em class="xref py py-obj">access_method</em>. Typically a single string,
 but not always.</p>
 </td>
 </tr>
@@ -690,7 +720,8 @@ but not always.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Unidata.
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 19:48:16.
 
     </p>
   </div>
@@ -727,7 +758,8 @@ but not always.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.6.0+36.g03d1047',
+            VERSION:'0.6.1+104.g9f7bf0f',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -737,7 +769,7 @@ but not always.</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

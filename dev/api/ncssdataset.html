@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>siphon.ncss_dataset &mdash; Siphon 0.6.0+36.g03d1047 documentation</title>
+  <title>siphon.ncss_dataset &mdash; Siphon 0.6</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Siphon 0.6.0+36.g03d1047 documentation" href="../index.html"/>
+    <link rel="top" title="Siphon 0.6" href="../index.html"/>
         <link rel="up" title="The Siphon API" href="index.html"/>
         <link rel="next" title="siphon.http_util" href="http_util.html"/>
         <link rel="prev" title="siphon.metadata" href="metadata.html"/> 
@@ -67,13 +67,31 @@
           
 
           
+            
+            <img src="../_static/siphon_150x150.png" class="logo" />
+          
           </a>
 
           
             
             
               <div class="version">
-                0.6.0
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.6</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
               </div>
             
           
@@ -100,14 +118,14 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">The Siphon API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="docutils literal"><span class="pre">siphon.catalog</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="docutils literal"><span class="pre">siphon.metadata</span></code></a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">siphon.ncss_dataset</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="docutils literal"><span class="pre">siphon.http_util</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="docutils literal"><span class="pre">siphon.ncss</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal"><span class="pre">siphon.radarserver</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -152,6 +170,7 @@
 
 
 
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -160,17 +179,20 @@
         
           <li><a href="index.html">The Siphon API</a> &raquo;</li>
         
-      <li><code class="docutils literal"><span class="pre">siphon.ncss_dataset</span></code></li>
+      <li><code class="docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></li>
     
     
-      <li class="wy-breadcrumbs-aside">
+    <li class="source-link">
         
             
-            <a href="../_sources/api/ncssdataset.rst.txt" rel="nofollow"> View page source</a>
-          
+                
+                
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20api/ncssdataset&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
         
-      </li>
-    
+    </li>
+
   </ul>
 
   
@@ -180,17 +202,17 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-siphon.ncss_dataset">
-<span id="siphon-ncss-dataset"></span><h1><a class="reference internal" href="#module-siphon.ncss_dataset" title="siphon.ncss_dataset"><code class="xref py py-mod docutils literal"><span class="pre">siphon.ncss_dataset</span></code></a><a class="headerlink" href="#module-siphon.ncss_dataset" title="Permalink to this headline">¶</a></h1>
+<span id="siphon-ncss-dataset"></span><h1><a class="reference internal" href="#module-siphon.ncss_dataset" title="siphon.ncss_dataset"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a><a class="headerlink" href="#module-siphon.ncss_dataset" title="Permalink to this headline">¶</a></h1>
 <p>Support reading and parsing the dataset.xml documents from the netCDF Subset Service.</p>
 <dl class="class">
 <dt id="siphon.ncss_dataset.NCSSDataset">
-<em class="property">class </em><code class="descclassname">siphon.ncss_dataset.</code><code class="descname">NCSSDataset</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss_dataset.NCSSDataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">siphon.ncss_dataset.</code><code class="descname">NCSSDataset</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss_dataset.html#NCSSDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss_dataset.NCSSDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hold information contained in the dataset.xml NCSS document.</p>
 <p>In general, if a dataset.xml NCSS document is missing the information
 needed to construct an attribute, that attribute will not show up as
-part of the <cite>NCSSDataset</cite> object.</p>
+part of the <a class="reference internal" href="#siphon.ncss_dataset.NCSSDataset" title="siphon.ncss_dataset.NCSSDataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NCSSDataset</span></code></a> object.</p>
 <p>Note that only gridded ncss datasets may contain the attributes
-<cite>gridsets</cite>, <cite>axes</cite>, <cite>coordinate_transforms</cite>, and <cite>lat_lon_box</cite>.</p>
+<em class="xref py py-obj">gridsets</em>, <em class="xref py py-obj">axes</em>, <em class="xref py py-obj">coordinate_transforms</em>, and <em class="xref py py-obj">lat_lon_box</em>.</p>
 <dl class="attribute">
 <dt id="siphon.ncss_dataset.NCSSDataset.variables">
 <code class="descname">variables</code><a class="headerlink" href="#siphon.ncss_dataset.NCSSDataset.variables" title="Permalink to this definition">¶</a></dt>
@@ -243,13 +265,13 @@ longitude bounds of the dataset (in degree_east, degree_north)</p>
 
 <dl class="method">
 <dt id="siphon.ncss_dataset.NCSSDataset.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss_dataset.NCSSDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss_dataset.html#NCSSDataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss_dataset.NCSSDataset.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize a NCSSDataset object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">Element</span></code></a> representing the top level
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing the top level
 node of an NCSS dataset.xml doc</td>
 </tr>
 </tbody>
@@ -282,7 +304,8 @@ node of an NCSS dataset.xml doc</td>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Unidata.
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Apr 03, 2018 at 19:48:16.
 
     </p>
   </div>
@@ -319,7 +342,8 @@ node of an NCSS dataset.xml doc</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.6.0+36.g03d1047',
+            VERSION:'0.6.1+104.g9f7bf0f',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -329,7 +353,7 @@ node of an NCSS dataset.xml doc</td>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

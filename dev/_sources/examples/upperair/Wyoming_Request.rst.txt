@@ -14,8 +14,10 @@ the Wyoming upper air archive.
 .. code-block:: python
 
 
-
     from datetime import datetime
+
+    from metpy.units import units
+
     from siphon.simplewebservice.wyoming import WyomingUpperAir
 
 
@@ -70,7 +72,8 @@ Inspect data columns in the dataframe.
  Out::
 
     Index(['pressure', 'height', 'temperature', 'dewpoint', 'direction', 'speed',
-           'u_wind', 'v_wind'],
+           'u_wind', 'v_wind', 'station', 'station_number', 'time', 'latitude',
+           'longitude', 'elevation'],
           dtype='object')
 
 
@@ -170,13 +173,14 @@ of the dataframe.
 
  Out::
 
-    {'pressure': 'hPa', 'height': 'meter', 'temperature': 'degC', 'dewpoint': 'degC', 'direction': 'degrees', 'speed': 'knot', 'u_wind': 'knot', 'v_wind': 'knot'}
+    {'pressure': 'hPa', 'height': 'meter', 'temperature': 'degC', 'dewpoint': 'degC', 'direction': 'degrees', 'speed': 'knot', 'u_wind': 'knot', 'v_wind': 'knot', 'station': None, 'station_number': None, 'time': None, 'latitude': 'degrees', 'longitude': 'degrees', 'elevation': 'meter'}
 
 
 
 .. code-block:: python
 
     print(df.units['pressure'])
+
 
 
 
@@ -188,7 +192,24 @@ of the dataframe.
     hPa
 
 
-**Total running time of the script:** ( 0 minutes  0.947 seconds)
+Units can then be attached to the values from the dataframe.
+
+
+
+.. code-block:: python
+
+    pressure = df['pressure'].values * units(df.units['pressure'])
+    temperature = df['temperature'].values * units(df.units['temperature'])
+    dewpoint = df['dewpoint'].values * units(df.units['dewpoint'])
+    u_wind = df['u_wind'].values * units(df.units['u_wind'])
+    v_wind = df['v_wind'].values * units(df.units['v_wind'])
+
+
+
+
+
+
+**Total running time of the script:** ( 0 minutes  1.378 seconds)
 
 
 
