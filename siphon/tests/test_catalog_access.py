@@ -88,7 +88,7 @@ def test_dataset_invalid_service_remote_access(nids_url):
     cat = TDSCatalog(nids_url)
     with pytest.raises(ValueError) as err:
         cat.datasets[0].remote_access('foobar')
-        assert 'not a valid service for' in str(err.value)
+    assert 'not a valid service for' in str(err.value)
 
 
 @recorder.use_cassette('cat_to_open')
@@ -97,7 +97,7 @@ def test_dataset_invalid_service_subset(nids_url):
     cat = TDSCatalog(nids_url)
     with pytest.raises(ValueError) as err:
         cat.datasets[0].subset('OPENDAP')
-        assert 'not a valid service for' in str(err.value)
+    assert 'not a valid service for' in str(err.value)
 
 
 @recorder.use_cassette('cat_to_open')
@@ -106,7 +106,7 @@ def test_dataset_subset_unavailable(nids_url):
     cat = TDSCatalog(nids_url)
     with pytest.raises(RuntimeError) as err:
         cat.datasets[0].subset()
-        assert 'Subset access is not available' in str(err.value)
+    assert 'Subset access is not available' in str(err.value)
 
 
 @recorder.use_cassette('cat_to_open')
@@ -115,7 +115,7 @@ def test_dataset_unavailable_service(nids_url):
     cat = TDSCatalog(nids_url)
     with pytest.raises(ValueError) as err:
         cat.datasets[0].access_with_service('NetcdfSubset')
-        assert 'not available' in str(err.value)
+    assert 'not available' in str(err.value)
 
 
 @recorder.use_cassette('cat_to_open')
@@ -124,4 +124,4 @@ def test_dataset_no_handler(nids_url):
     cat = TDSCatalog(nids_url)
     with pytest.raises(ValueError) as err:
         cat.datasets[0].access_with_service('UDDC')
-        assert 'is not an access method supported' in str(err.value)
+    assert 'is not an access method supported' in str(err.value)
