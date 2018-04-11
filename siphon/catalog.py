@@ -355,6 +355,8 @@ class Dataset(object):
 
     """
 
+    ncssServiceNames = ('NetcdfSubset', 'NetcdfServer')
+
     def __init__(self, element_node, catalog_url=''):
         """Initialize the Dataset object.
 
@@ -540,7 +542,9 @@ class Dataset(object):
         Parameters
         ----------
         service : str, optional
-            The name of the service for subsetting the dataset. Defaults to 'NetcdfSubset'.
+            The name of the service for subsetting the dataset. Defaults to 'NetcdfSubset'
+            or 'NetcdfServer', in that order, depending on the services listed in the
+            catalog.
 
         Returns
         -------
@@ -548,10 +552,15 @@ class Dataset(object):
 
         """
         if service is None:
-            service = 'NetcdfSubset'
-
-        if service not in ('NetcdfSubset',):
-            raise ValueError(service + ' is not a valid service for subset')
+            for serviceName in self.ncssServiceNames:
+                if serviceName in self.access_urls:
+                    service = serviceName
+                    break
+            else:
+                raise RuntimeError('Subset access is not available for this dataset.')
+        elif service not in self.ncssServiceNames:
+            raise ValueError(service + ' is not a valid service for subset. Options are: ' +
+                             ', '.join(self.ncssServiceNames))
 
         return self.access_with_service(service)
 
@@ -581,7 +590,7 @@ class Dataset(object):
                 provider = NC4Dataset
             except ImportError:
                 raise ImportError('OPENDAP access requires netCDF4-python to be installed.')
-        elif service == 'NetcdfSubset':
+        elif service in self.ncssServiceNames:
             from .ncss import NCSS
             provider = NCSS
         elif service == 'HTTPServer':

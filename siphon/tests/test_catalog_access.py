@@ -33,6 +33,16 @@ def test_dataset_subset():
     assert 'VIS' in subset.variables
 
 
+@recorder.use_cassette('ncei_cat_to_subset')
+def test_dataset_subset_ncei():
+    """Test using the subset method to request NCSS access from NCEI servers."""
+    cat = TDSCatalog('https://www.ncei.noaa.gov/thredds/catalog/narr-a-files/199303/'
+                     '19930313/catalog.xml')
+    subset = cat.datasets[0].subset()
+    assert isinstance(subset, NCSS)
+    assert 'Temperature_isobaric' in subset.variables
+
+
 @recorder.use_cassette('cat_to_open')
 def test_dataset_remote_open(nids_url):
     """Test using the remote_open method to request HTTP access."""
@@ -78,7 +88,7 @@ def test_dataset_invalid_service_remote_access(nids_url):
     cat = TDSCatalog(nids_url)
     with pytest.raises(ValueError) as err:
         cat.datasets[0].remote_access('foobar')
-        assert 'not a valid service for' in str(err.value)
+    assert 'not a valid service for' in str(err.value)
 
 
 @recorder.use_cassette('cat_to_open')
@@ -87,7 +97,16 @@ def test_dataset_invalid_service_subset(nids_url):
     cat = TDSCatalog(nids_url)
     with pytest.raises(ValueError) as err:
         cat.datasets[0].subset('OPENDAP')
-        assert 'not a valid service for' in str(err.value)
+    assert 'not a valid service for' in str(err.value)
+
+
+@recorder.use_cassette('cat_to_open')
+def test_dataset_subset_unavailable(nids_url):
+    """Test requesting subset on a dataset that does not have it gives a RuntimeError."""
+    cat = TDSCatalog(nids_url)
+    with pytest.raises(RuntimeError) as err:
+        cat.datasets[0].subset()
+    assert 'Subset access is not available' in str(err.value)
 
 
 @recorder.use_cassette('cat_to_open')
@@ -96,7 +115,7 @@ def test_dataset_unavailable_service(nids_url):
     cat = TDSCatalog(nids_url)
     with pytest.raises(ValueError) as err:
         cat.datasets[0].access_with_service('NetcdfSubset')
-        assert 'not available' in str(err.value)
+    assert 'not available' in str(err.value)
 
 
 @recorder.use_cassette('cat_to_open')
@@ -105,4 +124,4 @@ def test_dataset_no_handler(nids_url):
     cat = TDSCatalog(nids_url)
     with pytest.raises(ValueError) as err:
         cat.datasets[0].access_with_service('UDDC')
-        assert 'is not an access method supported' in str(err.value)
+    assert 'is not an access method supported' in str(err.value)
