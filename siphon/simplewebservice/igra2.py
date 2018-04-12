@@ -178,7 +178,10 @@ class IGRAUpperAir:
         def _cdec(power=1):
             """Make a function to convert string 'value*10^power' to float."""
             def _cdec_power(val):
-                return float(val) / 10**power
+                if val in ['-9999', '-8888', '-99999']:
+                    return np.nan
+                else:
+                    return float(val) / 10**power
             return _cdec_power
 
         def _cflag(val):
