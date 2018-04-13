@@ -75,7 +75,10 @@ Important Links
 
 - Source code repository: https://github.com/Unidata/siphon
 - HTML Documentation: http://unidata.github.io/siphon/
+- Unidata Python Gallery: https://unidata.github.io/python-gallery/
 - Issue tracker: http://github.com/Unidata/siphon/issues
+- "python-siphon" tagged questions on Stack Overflow: https://stackoverflow.com/questions/tagged/python-siphon
+- Gitter chat room: https://gitter.im/Unidata/siphon
 
 Dependencies
 ------------

@@ -15,7 +15,8 @@ Siphon
 
 Siphon is a collection of Python utilities for downloading data from remote
 data services. Much of Siphon's current functionality focuses on access to
-data hosted on a `THREDDS Data Server`__.
+data hosted on a `THREDDS Data Server`__. It also provides clients to a variety
+of simple web services.
 
 __ https://www.unidata.ucar.edu/software/thredds/current/tds/
 
@@ -34,17 +35,21 @@ We support Python >= 3.4 and currently support Python 2.7.
 Contact Us
 ----------
 
-* For questions and discussion about Siphon, join Unidata's python-users_
-  mailing list
+* For questions about Siphon, please ask them using the "python-siphon" tag on StackOverflow_.
+  Our developers are actively monitoring for questions there.
+* You can also email `Unidata's
+  python support email address <mailto: support-python@unidata.ucar.edu>`_
 * The source code is available on GitHub_
 * Bug reports and feature requests should be directed to the
   `GitHub issue tracker`__
 * Siphon has a Gitter_ chatroom for more "live" communication
 * If you use Siphon in a publication, please see :ref:`Citing_Siphon`.
+* For release announcements, join Unidata's python-users_ mailing list
 
 .. _python-users: https://www.unidata.ucar.edu/support/#mailinglists
 .. _GitHub: https://github.com/Unidata/siphon
 .. _Gitter: https://gitter.im/Unidata/siphon
+.. _StackOverflow: https://stackoverflow.com/questions/tagged/python-siphon
 __ https://github.com/Unidata/siphon/issues
 
 ---------------
