@@ -24,7 +24,11 @@ Siphon is still in an early stage of development, and as such
 just for fun, many things may still change as we work through
 design issues.
 
-We support Python 2.7 as well as Python >= 3.4.
+We support Python >= 3.4 and currently support Python 2.7.
+
+.. warning::
+  We are dropping support for Python 2.7 in the Fall of 2019. For more details and rationale
+  behind this decision, see :ref:`python27`.
 
 ----------
 Contact Us

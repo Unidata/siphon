@@ -56,7 +56,11 @@ Siphon is still in an early stage of development, and as such
 just for fun, many things may still change as we work through
 design issues.
 
-We support Python 2.7 as well as Python >= 3.4.
+We support Python >= 3.4 and currently support Python 2.7.
+
+NOTE: We are dropping support for Python 2.7 in Fall 2019. See
+`here <https://github.com/Unidata/siphon/blob/master/docs/installguide.rst>`_ for more
+information.
 
 Installation
 ------------
@@ -79,6 +83,8 @@ Dependencies
 - requests>=1.2
 - numpy>=1.8
 - protobuf>=3.0.0a3
+- beautifulsoup4>=4.6
+- pandas
 
 Developer Dependencies
 ----------------------
