@@ -51,24 +51,17 @@ data technologies. See our `support page`__ for ways to get help with Siphon.
 
 __ https://github.com/Unidata/siphon/blob/master/SUPPORT.md
 
-Siphon is still in an early stage of development, and as such
-**no APIs are considered stable.** While we won't break things
-just for fun, many things may still change as we work through
-design issues.
+Siphon follows `semantic versioning <https://semver.org>`_ in its version number. With our
+current 0.x version, that implies that Siphon's APIs (application programming interfaces) are
+still evolving (we won't break things just for fun, but many things are still changing as we
+work through design issues). Also, for a version `0.x.y`, we change `x` when we
+release new features, and `y` when we make a release with only bug fixes.
 
 We support Python >= 3.4 and currently support Python 2.7.
 
 NOTE: We are dropping support for Python 2.7 in Fall 2019. See
 `here <https://github.com/Unidata/siphon/blob/master/docs/installguide.rst>`_ for more
 information.
-
-Installation
-------------
-::
-
-    git clone https://github.com/Unidata/siphon.git
-    cd siphon
-    python setup.py install
 
 Important Links
 ---------------
