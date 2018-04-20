@@ -64,7 +64,7 @@ def test_igra2_drvd():
     assert_almost_equal(df['vapor_pressure'][5], 4.268, 2)
     assert_almost_equal(df['saturation_vapor_pressure'][5], 4.533, 2)
     assert_almost_equal(df['reported_relative_humidity'][5], 93.9, 2)
-    assert_almost_equal(df['calculated_relative_humidity'][5], 94.1., 2)
+    assert_almost_equal(df['calculated_relative_humidity'][5], 94.1, 2)
     assert_almost_equal(df['u_wind'][5], -75.3, 2)
     assert_almost_equal(df['u_wind_gradient'][5], -7.8, 2)
     assert_almost_equal(df['v_wind'][5], 9.6, 2)
