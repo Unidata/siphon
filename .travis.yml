@@ -68,6 +68,7 @@ before_install:
       export PKG_CONFIG_PATH="$HOME/local/lib/pkgconfig";
       export LD_LIBRARY_PATH="$HOME/local/lib";
       pkg-config --modversion proj;
+      pip install git+http://github.com/sphinx-gallery/sphinx-gallery;
     else
       export TEST_OPTS="--flake8";
       if [[ $TASK == "coverage" ]]; then
