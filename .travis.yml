@@ -35,8 +35,6 @@ env:
 
 matrix:
   include:
-    - python: 3.4
-      env:
     - python: 3.5
       env:
     - python: "3.6-dev"
@@ -70,6 +68,7 @@ before_install:
       export PKG_CONFIG_PATH="$HOME/local/lib/pkgconfig";
       export LD_LIBRARY_PATH="$HOME/local/lib";
       pkg-config --modversion proj;
+      pip install git+http://github.com/sphinx-gallery/sphinx-gallery;
     else
       export TEST_OPTS="--flake8";
       if [[ $TASK == "coverage" ]]; then
