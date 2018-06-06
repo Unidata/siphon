@@ -83,6 +83,22 @@ def test_dataset_download(nids_url):
 
 
 @recorder.use_cassette('cat_to_open')
+def test_dataset_default_download(nids_url):
+    """Test using the download method using default filename."""
+    cat = TDSCatalog(nids_url)
+    temp = os.path.join(tempfile.gettempdir(), cat.datasets[0].name)
+    wkdir = os.getcwd()
+    try:
+        os.chdir(tempfile.gettempdir())
+        assert not os.path.exists(temp)
+        cat.datasets[0].download()
+        assert os.path.exists(temp)
+    finally:
+        os.remove(temp)
+        os.chdir(wkdir)
+
+
+@recorder.use_cassette('cat_to_open')
 def test_dataset_invalid_service_remote_access(nids_url):
     """Test requesting an invalid service for remote_access gives a ValueError."""
     cat = TDSCatalog(nids_url)
