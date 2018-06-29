@@ -16,10 +16,6 @@ import numpy as np
 import pandas as pd
 
 from .._tools import get_wind_components
-try:
-    from urllib.request import urlopen
-except ImportError:
-    from urllib2 import urlopen
 
 warnings.filterwarnings('ignore', 'Pandas doesn\'t allow columns to be created', UserWarning)
 
@@ -106,6 +102,13 @@ class IGRAUpperAir:
         Returns a tuple with a string for the body, string for the headers,
         and a list of dates.
         """
+        # Import need to be here so we can monkeypatch urlopen for testing and avoid
+        # downloading live data for testing
+        try:
+            from urllib.request import urlopen
+        except ImportError:
+            from urllib2 import urlopen
+
         with closing(urlopen(self.ftpsite + self.site_id + self.suffix + '.zip')) as url:
             f = ZipFile(BytesIO(url.read()), 'r').open(self.site_id + self.suffix)
 
