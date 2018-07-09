@@ -9,6 +9,7 @@ import logging
 import pytest
 
 from siphon.catalog import get_latest_access_url, TDSCatalog
+from siphon._tools import contains_ignore_case, get_value_ignore_case
 from siphon.testing import get_recorder
 
 log = logging.getLogger('siphon.catalog')
@@ -40,7 +41,16 @@ def test_access():
            'NCEP/GFS/Global_0p5deg/latest.xml')
     cat = TDSCatalog(url)
     ds = list(cat.datasets.values())[0]
-    assert 'OPENDAP' in ds.access_urls
+    assert contains_ignore_case('OPENDAP', ds.access_urls)
+
+
+@recorder.use_cassette('thredds-test-default-5-0')
+def test_access_default_catalog():
+    """Test catalog parsing of access methods."""
+    url = ('http://localhost:8081/thredds/catalog/catalog.xml')
+    cat = TDSCatalog(url)
+    ds = list(cat.datasets.values())[0]
+    assert contains_ignore_case('OPENDAP', ds.access_urls)
 
 
 @recorder.use_cassette('top_level_20km_rap_catalog')
@@ -54,10 +64,10 @@ def test_virtual_access():
         if 'Full Collection' in dataset.name:
             ds = dataset
             break
-    assert 'OPENDAP' in ds.access_urls
+    assert contains_ignore_case('OPENDAP', ds.access_urls)
     # TwoD is a virtual dataset, so HTTPServer
     # should not be listed here
-    assert 'HTTPServer' not in ds.access_urls
+    assert not contains_ignore_case('HTTPServer', ds.access_urls)
 
 
 @recorder.use_cassette('latest_rap_catalog')
@@ -242,7 +252,7 @@ def test_non_standard_context_path():
     ds = cat.datasets['A20020101.P1A.ANN_MIM_RMP.nc']
     expected = ('http://ereeftds.bom.gov.au/ereefs/tds/dodsC/ereef/mwq/'
                 'P1A/A20020101.P1A.ANN_MIM_RMP.nc')
-    assert ds.access_urls['OPENDAP'] == expected
+    assert get_value_ignore_case('opendap', ds.access_urls) == expected
 
 
 @recorder.use_cassette('cat_access_elements')
@@ -282,13 +292,12 @@ def test_ramadda_access_urls():
                           .catalog_refs[0].follow())
 
     ds = cat.datasets[3]
-    assert ds.access_urls['opendap'] == ('http://weather.rsmas.miami.edu/repository/opendap/'
-                                         'synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c'
-                                         '2VzRUNPQS9keW5hbW9fYmFzaWNfdjJiXzIwMTFhbGwubmM='
-                                         '/entry.das')
+    assert get_value_ignore_case('opendap', ds.access_urls) == \
+           ('http://weather.rsmas.miami.edu/repository/opendap/synth:a43c1cc4-1cf2-4365'
+            '-97b9-6768b8201407:L3YyYl91c2VzRUNPQS9keW5hbW9fYmFzaWNfdjJiXzIwMTFhbGwubmM'
+            '=/entry.das')
 
 
-@recorder.use_cassette('tds50_catalogref_follow')
 def test_tds50_catalogref_follow():
     """Test following a catalog ref url on TDS 5."""
     cat = TDSCatalog('http://thredds-test.unidata.ucar.edu/thredds/catalog.xml')

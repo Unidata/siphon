@@ -18,8 +18,10 @@ except ImportError:
     # Python 3
     from urllib.parse import urljoin, urlparse
 
-from .http_util import create_http_session, urlopen
-from .metadata import TDSCatalogMetadata
+from siphon._tools import contains_ignore_case, get_value_ignore_case,\
+                        str_compare_equals_ignore_case
+from siphon.http_util import create_http_session, urlopen
+from siphon.metadata import TDSCatalogMetadata
 
 logging.basicConfig(level=logging.ERROR)
 log = logging.getLogger(__name__)
@@ -201,7 +203,7 @@ class TDSCatalog(object):
         previous_dataset = None
         for child in root.iter():
             tag_type = child.tag.split('}')[-1]
-            if tag_type == 'dataset':
+            if str_compare_equals_ignore_case(tag_type, 'dataset'):
                 current_dataset = child.attrib['name']
                 self._process_dataset(child)
 
@@ -214,14 +216,14 @@ class TDSCatalog(object):
 
                 previous_dataset = current_dataset
 
-            elif tag_type == 'access':
+            elif str_compare_equals_ignore_case(tag_type, 'access'):
                 self.datasets[current_dataset].add_access_element_info(child)
-            elif tag_type == 'catalogRef':
+            elif str_compare_equals_ignore_case(tag_type, 'catalogRef'):
                 self._process_catalog_ref(child)
-            elif (tag_type == 'metadata') or (tag_type == ''):
+            elif str_compare_equals_ignore_case(tag_type, 'metadata') or (tag_type == ''):
                 self._process_metadata(child, tag_type)
-            elif tag_type == 'service':
-                if child.attrib['serviceType'] != 'Compound':
+            elif str_compare_equals_ignore_case(tag_type, 'service'):
+                if str_compare_equals_ignore_case(child.attrib['serviceType'], 'compound'):
                     # we do not want to process single services if they
                     # are already contained within a compound service, so
                     # we need to skip over those cases.
@@ -415,7 +417,7 @@ class Dataset(object):
             for child in root.iter():
                 if not found:
                     tag_type = child.tag.split('}')[-1]
-                    if tag_type == 'dataset':
+                    if str_compare_equals_ignore_case(tag_type, 'dataset'):
                         if 'urlPath' in child.attrib:
                             ds = Dataset(child)
                             resolved_url = ds.url_path
@@ -453,9 +455,9 @@ class Dataset(object):
         # process access urls for datasets that reference top
         # level catalog services (individual or compound service
         # types).
-        if service_name in all_service_dict:
-            service = all_service_dict[service_name]
-            if service.service_type != 'Resolver':
+        if contains_ignore_case(service_name, all_service_dict):
+            service = get_value_ignore_case(service_name, all_service_dict)
+            if str_compare_equals_ignore_case(service.service_type, 'Resolver'):
                 # if service is a CompoundService, create access url
                 # for each SimpleService
                 if isinstance(service, CompoundService):
@@ -470,7 +472,7 @@ class Dataset(object):
         # process access children of dataset elements
         for service_type in self.access_element_info:
             url_path = self.access_element_info[service_type]
-            if service_type in all_service_dict:
+            if contains_ignore_case(service_type, all_service_dict):
                 server_base = urljoin(server_url, all_service_dict[service_type].base)
                 access_urls[service_type] = urljoin(server_base, url_path)
 
@@ -529,9 +531,10 @@ class Dataset(object):
 
         """
         if service is None:
-            service = 'CdmRemote' if 'CdmRemote' in self.access_urls else 'OPENDAP'
+            service = 'CdmRemote' if contains_ignore_case('CdmRemote', self.access_urls)\
+                else 'OPENDAP'
 
-        if service not in ('CdmRemote', 'OPENDAP'):
+        if not contains_ignore_case(service, ('CdmRemote', 'OPENDAP')):
             raise ValueError(service + ' is not a valid service for remote_access')
 
         return self.access_with_service(service)
@@ -555,12 +558,12 @@ class Dataset(object):
         """
         if service is None:
             for serviceName in self.ncssServiceNames:
-                if serviceName in self.access_urls:
+                if contains_ignore_case(serviceName, self.access_urls):
                     service = serviceName
                     break
             else:
                 raise RuntimeError('Subset access is not available for this dataset.')
-        elif service not in self.ncssServiceNames:
+        elif not contains_ignore_case(service, self.ncssServiceNames):
             raise ValueError(service + ' is not a valid service for subset. Options are: ' +
                              ', '.join(self.ncssServiceNames))
 
@@ -583,19 +586,19 @@ class Dataset(object):
             An instance appropriate for communicating using ``service``.
 
         """
-        if service == 'CdmRemote':
+        if str_compare_equals_ignore_case(service, 'CdmRemote'):
             from .cdmr import Dataset as CDMRDataset
             provider = CDMRDataset
-        elif service == 'OPENDAP':
+        elif str_compare_equals_ignore_case(service, 'OPENDAP'):
             try:
                 from netCDF4 import Dataset as NC4Dataset
                 provider = NC4Dataset
             except ImportError:
                 raise ImportError('OPENDAP access requires netCDF4-python to be installed.')
-        elif service in self.ncssServiceNames:
+        elif contains_ignore_case(service, self.ncssServiceNames):
             from .ncss import NCSS
             provider = NCSS
-        elif service == 'HTTPServer':
+        elif str_compare_equals_ignore_case(service, 'HTTPServer'):
             provider = urlopen
         else:
             raise ValueError(service + ' is not an access method supported by Siphon')
@@ -640,7 +643,7 @@ class SimpleService(object):
 
     def is_resolver(self):
         """Return whether the service is a resolver service."""
-        return self.service_type == 'Resolver'
+        return str_compare_equals_ignore_case(self.service_type, 'Resolver')
 
 
 class CompoundService(object):
