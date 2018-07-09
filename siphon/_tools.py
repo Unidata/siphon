@@ -27,3 +27,51 @@ def get_wind_components(speed, wdir):
     u = -speed * np.sin(wdir)
     v = -speed * np.cos(wdir)
     return u, v
+
+
+def str_compare_equals_ignore_case(str1, str2):
+    """Case-insensitive string comparison."""
+    if not str1 or not str2:
+        return False;
+    return str1.lower() == str2.lower()
+
+
+def contains_ignore_case(target, container):
+    """Calculate the U, V wind vector components from the speed and direction.
+
+    Parameters
+    ----------
+    target : str
+        A case-insensitive string value.
+    container : array_like
+        The object that is checked for containing 'target'.
+
+    Returns
+    -------
+    Boolean value signifying whether case-insensitive 'target'
+    is a member of 'container'
+
+    """
+    if not target:
+        return False;
+    return target.lower() in [x.lower() for x in container]
+
+
+def get_value_ignore_case(key, container):
+    """Return a value from a dictionary using a case-insensitive lookup.
+
+    Parameters
+    ----------
+    key : str
+        Case insensitive key to look up
+    container : dictionary
+        The dictionary containing 'key'
+
+    Returns
+    -------
+    The value associated with case-insensitive 'key', if it exists.
+
+    """
+    if not key:
+        return None;
+    return {k.lower(): v for k, v in container.items()}[key.lower()]
