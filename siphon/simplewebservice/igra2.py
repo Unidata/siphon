@@ -359,7 +359,7 @@ class IGRAUpperAir:
         """Format the dataframe, remove empty rows, and add units attribute."""
         if self.suffix == '-drvd.txt':
             df = df.dropna(subset=('temperature', 'reported_relative_humidity',
-                                   'u_wind', 'v_wind'), how='all').reset_index(drop=True)
+                           'u_wind', 'v_wind'), how='all').reset_index(drop=True)
 
             df.units = {'pressure': 'hPa',
                         'reported_height': 'meter',
@@ -385,11 +385,14 @@ class IGRAUpperAir:
                                                              np.deg2rad(df['direction']))
             df['u_wind'] = np.round(df['u_wind'], 1)
             df['v_wind'] = np.round(df['v_wind'], 1)
+
+            df = df.dropna(subset=('temperature', 'direction', 'speed',
+                           'dewpoint_depression', 'u_wind', 'v_wind'),
+                           how='all').reset_index(drop=True)
+
             df['dewpoint'] = df['temperature'] - df['dewpoint_depression']
 
             df.drop('dewpoint_depression', axis=1, inplace=True)
-            df = df.dropna(subset=('temperature', 'dewpoint', 'direction', 'speed',
-                                   'u_wind', 'v_wind'), how='all').reset_index(drop=True)
 
             df.units = {'etime': 'second',
                         'pressure': 'hPa',
