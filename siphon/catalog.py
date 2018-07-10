@@ -135,12 +135,12 @@ class DatasetCollection(IndexableMapping):
     __repr__ = __str__
 
 
-def _try_lower(obj):
+def _try_lower(arg):
     try:
-        obj = obj.lower()
+        arg = arg.lower()
     except (TypeError, AttributeError, ValueError):
         pass
-    return obj
+    return arg
 
 
 class CaseInsensitiveStr(str):
@@ -179,6 +179,14 @@ class CaseInsensitiveStr(str):
         return str.__ne__(self._lowered, _try_lower(other))
 
 
+def _try_case_insensitive(arg):
+    try:
+        arg = CaseInsensitiveStr(arg)
+    except (TypeError, AttributeError, ValueError):
+        pass
+    return arg
+
+
 class CaseInsensitiveDict(dict):
     """Extend ``dict`` to use a case-insensitive key set."""
 
@@ -193,30 +201,26 @@ class CaseInsensitiveDict(dict):
 
     def __getitem__(self, key):
         """Return value from case-insensitive lookup of ``key``."""
-        return super(CaseInsensitiveDict, self).__getitem__(_try_lower(key))
+        return super(CaseInsensitiveDict, self).__getitem__(_try_case_insensitive(key))
 
     def __setitem__(self, key, value):
         """Set value with lowercase ``key``."""
-        super(CaseInsensitiveDict, self).__setitem__(_try_lower(key), value)
+        super(CaseInsensitiveDict, self).__setitem__(_try_case_insensitive(key), value)
 
     def __delitem__(self, key):
         """Delete value associated with case-insensitive lookup of ``key``."""
-        return super(CaseInsensitiveDict, self).__delitem__(_try_lower(key))
+        return super(CaseInsensitiveDict, self).__delitem__(_try_case_insensitive(key))
 
     def __contains__(self, key):
         """Return true if key set includes case-insensitive ``key``."""
-        return super(CaseInsensitiveDict, self).__contains__(_try_lower(key))
-
-    def get(self, key, *args, **kwargs):
-        """Return value from case-insensitive lookup of ``key``."""
-        return super(CaseInsensitiveDict, self).get(_try_lower(key), *args, **kwargs)
+        return super(CaseInsensitiveDict, self).__contains__(_try_case_insensitive(key))
 
     def _keys_to_lower(self):
         """Convert key set to lowercase."""
         for k in list(self.keys()):
             val = super(CaseInsensitiveDict, self).__getitem__(k)
             super(CaseInsensitiveDict, self).__delitem__(k)
-            self.__setitem__(_try_lower(k), val)
+            self.__setitem__(_try_case_insensitive(k), val)
 
 
 class TDSCatalog(object):
