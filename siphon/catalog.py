@@ -544,7 +544,7 @@ class Dataset(object):
         # types).
         if service_name in all_service_dict:
             service = all_service_dict[service_name]
-            if CaseInsensitiveStr(service.service_type) != CaseInsensitiveStr('Resolver'):
+            if service.service_type != 'Resolver':
                 # if service is a CompoundService, create access url
                 # for each SimpleService
                 if isinstance(service, CompoundService):
@@ -724,13 +724,13 @@ class SimpleService(object):
 
         """
         self.name = service_node.attrib['name']
-        self.service_type = service_node.attrib['serviceType']
+        self.service_type = CaseInsensitiveStr(service_node.attrib['serviceType'])
         self.base = service_node.attrib['base']
         self.access_urls = {}
 
     def is_resolver(self):
         """Return whether the service is a resolver service."""
-        return CaseInsensitiveStr(self.service_type) == 'Resolver'
+        return self.service_type == 'Resolver'
 
 
 class CompoundService(object):
@@ -758,7 +758,7 @@ class CompoundService(object):
 
         """
         self.name = service_node.attrib['name']
-        self.service_type = service_node.attrib['serviceType']
+        self.service_type = CaseInsensitiveStr(service_node.attrib['serviceType'])
         self.base = service_node.attrib['base']
         services = []
         subservices = 0
