@@ -18,8 +18,8 @@ except ImportError:
     # Python 3
     from urllib.parse import urljoin, urlparse
 
-from .http_util import create_http_session, urlopen
-from .metadata import TDSCatalogMetadata
+from siphon.http_util import create_http_session, urlopen
+from siphon.metadata import TDSCatalogMetadata
 
 logging.basicConfig(level=logging.ERROR)
 log = logging.getLogger(__name__)

@@ -49,7 +49,6 @@ def test_access_default_catalog():
     url = ('http://localhost:8081/thredds/catalog/catalog.xml')
     cat = TDSCatalog(url)
     ds = list(cat.datasets.values())[0]
-    assert 'opendap' in ds.access_urls
     assert 'OPENDAP' in ds.access_urls
 
 
