@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Test dataset access method helpers."""
 
+
+import logging
 import os
 import tempfile
 
@@ -12,6 +14,8 @@ from siphon.catalog import TDSCatalog
 from siphon.ncss import NCSS
 from siphon.testing import get_recorder
 
+log = logging.getLogger('siphon.catalog')
+log.setLevel(logging.WARNING)
 
 recorder = get_recorder(__file__)
 
@@ -141,3 +145,39 @@ def test_dataset_no_handler(nids_url):
     with pytest.raises(ValueError) as err:
         cat.datasets[0].access_with_service('UDDC')
     assert 'is not an access method supported' in str(err.value)
+
+
+@recorder.use_cassette('cat_only_http')
+def test_case_insensitive_access(caplog):
+    """Test case-insensitive parsing of access methods in default catalog."""
+    url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/noaaport/text/'
+           'tropical/atlantic/hdob/catalog.xml')
+    cat = TDSCatalog(url)
+    access_name = list(cat.datasets[0].access_urls.keys())[0]
+    assert access_name == 'HTTPSERVER'  # test __eq__
+    assert not access_name != 'HTTPSERVER'  # test __eq__
+    assert access_name > 'a'  # test __gt__
+    assert access_name >= 'a'  # test __ge__
+    assert access_name < 'Z'  # test __lt__
+    assert access_name <= 'Z'  # test __le__
+    assert not access_name == 1  # test fail on _try_lower
+    assert 'Could not convert 1 to lowercase.' in caplog.text
+
+
+@recorder.use_cassette('cat_only_http')
+def test_manage_access_types_case_insensitive(caplog):
+    """Test case-insensitive parsing of access methods in default catalog."""
+    url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/noaaport/text/'
+           'tropical/atlantic/hdob/catalog.xml')
+    cat = TDSCatalog(url)
+    ds = cat.datasets[0]
+    wrong_case_key = 'HTTPSERVER'
+    test_string = 'test'
+    http_url = ('http://thredds-test.unidata.ucar.edu/thredds/fileServer/noaaport/'
+                'text/tropical/atlantic/hdob/High_density_obs_20170824.txt')
+    assert ds.access_urls == {'HTTPSERVER': http_url}  # test __eq__
+    assert ds.access_urls[wrong_case_key] == http_url  # test __getitem___
+    assert wrong_case_key in ds.access_urls  # test __contains__
+    ds.access_urls[wrong_case_key] = test_string
+    assert ds.access_urls[wrong_case_key] == test_string  # test __setitem__
+    assert ds.access_urls.pop(wrong_case_key) == test_string  # test __delitem__

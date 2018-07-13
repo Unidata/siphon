@@ -43,6 +43,15 @@ def test_access():
     assert 'OPENDAP' in ds.access_urls
 
 
+@recorder.use_cassette('thredds-test-default-5-0')
+def test_access_default_catalog():
+    """Test case-insensitive parsing of access methods in default catalog."""
+    url = ('http://localhost:8081/thredds/catalog/catalog.xml')
+    cat = TDSCatalog(url)
+    ds = list(cat.datasets.values())[0]
+    assert 'OPENDAP' in ds.access_urls
+
+
 @recorder.use_cassette('top_level_20km_rap_catalog')
 def test_virtual_access():
     """Test access of virtual datasets."""

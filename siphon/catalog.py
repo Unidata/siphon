@@ -135,6 +135,90 @@ class DatasetCollection(IndexableMapping):
     __repr__ = __str__
 
 
+def _try_lower(arg):
+    try:
+        arg = arg.lower()
+    except (TypeError, AttributeError, ValueError):
+        log.warning('Could not convert %s to lowercase.', arg)
+    return arg
+
+
+class CaseInsensitiveStr(str):
+    """Extend ``str`` to use case-insensitive comparison and lookup."""
+
+    def __init__(self, *args):
+        """Create str with a _lowered property."""
+        self._lowered = _try_lower(self)
+
+    def __hash__(self):
+        """Hash str using _lowered property."""
+        return str.__hash__(self._lowered)
+
+    def __eq__(self, other):
+        """Return true if other is case-insensitive equal to self."""
+        return str.__eq__(self._lowered, _try_lower(other))
+
+    def __gt__(self, other):
+        """Return true if other is case-insensitive greater than self."""
+        return str.__gt__(self._lowered, _try_lower(other))
+
+    def __ge__(self, other):
+        """Return true if other is case-insensitive greater than or equal to self."""
+        return str.__ge__(self._lowered, _try_lower(other))
+
+    def __lt__(self, other):
+        """Return true if other is case-insensitive less than self."""
+        return str.__lt__(self._lowered, _try_lower(other))
+
+    def __le__(self, other):
+        """Return true if other is case-insensitive less than or equal to to self."""
+        return str.__le__(self._lowered, _try_lower(other))
+
+    def __ne__(self, other):
+        """Return true if other is case-insensitive unequal to self."""
+        return str.__ne__(self._lowered, _try_lower(other))
+
+
+class CaseInsensitiveDict(dict):
+    """Extend ``dict`` to use a case-insensitive key set."""
+
+    def __init__(self, *args, **kwargs):
+        """Create a dict with a set of lowercase keys."""
+        super(CaseInsensitiveDict, self).__init__(*args, **kwargs)
+        self._keys_to_lower()
+
+    def __eq__(self, other):
+        """Return true if other is case-insensitive equal to self."""
+        return super(CaseInsensitiveDict, self).__eq__(CaseInsensitiveDict(other))
+
+    def __getitem__(self, key):
+        """Return value from case-insensitive lookup of ``key``."""
+        return super(CaseInsensitiveDict, self).__getitem__(CaseInsensitiveStr(key))
+
+    def __setitem__(self, key, value):
+        """Set value with lowercase ``key``."""
+        super(CaseInsensitiveDict, self).__setitem__(CaseInsensitiveStr(key), value)
+
+    def __delitem__(self, key):
+        """Delete value associated with case-insensitive lookup of ``key``."""
+        return super(CaseInsensitiveDict, self).__delitem__(CaseInsensitiveStr(key))
+
+    def __contains__(self, key):
+        """Return true if key set includes case-insensitive ``key``."""
+        return super(CaseInsensitiveDict, self).__contains__(CaseInsensitiveStr(key))
+
+    def pop(self, key, *args, **kwargs):
+        """Remove and return the value associated with case-insensitive ``key``."""
+        return super(CaseInsensitiveDict, self).pop(CaseInsensitiveStr(key))
+
+    def _keys_to_lower(self):
+        """Convert key set to lowercase."""
+        for k in list(self.keys()):
+            val = super(CaseInsensitiveDict, self).__getitem__(k)
+            super(CaseInsensitiveDict, self).__delitem__(k)
+            self.__setitem__(CaseInsensitiveStr(k), val)
+
+
 class TDSCatalog(object):
     """
     Parse information from a THREDDS Client Catalog.
@@ -221,7 +305,8 @@ class TDSCatalog(object):
             elif (tag_type == 'metadata') or (tag_type == ''):
                 self._process_metadata(child, tag_type)
             elif tag_type == 'service':
-                if child.attrib['serviceType'] != 'Compound':
+                if CaseInsensitiveStr(child.attrib['serviceType'])\
+                        != CaseInsensitiveStr('Compound'):
                     # we do not want to process single services if they
                     # are already contained within a compound service, so
                     # we need to skip over those cases.
@@ -348,14 +433,14 @@ class Dataset(object):
         The name of the :class:`Dataset` element
     url_path : str
         url to the accessible dataset
-    access_urls : dict[str, str]
+    access_urls : CaseInsensitiveDict[str, str]
         A dictionary of access urls whose keywords are the access service
         types defined in the catalog (for example, "OPENDAP", "NetcdfSubset",
         "WMS", etc.
 
     """
 
-    ncssServiceNames = ('NetcdfSubset', 'NetcdfServer')
+    ncssServiceNames = (CaseInsensitiveStr('NetcdfSubset'), CaseInsensitiveStr('NetcdfServer'))
 
     def __init__(self, element_node, catalog_url=''):
         """Initialize the Dataset object.
@@ -438,7 +523,7 @@ class Dataset(object):
             Metadata from the :class:`TDSCatalog`
 
         """
-        all_service_dict = {}
+        all_service_dict = CaseInsensitiveDict({})
         for service in all_services:
             all_service_dict[service.name] = service
             if isinstance(service, CompoundService):
@@ -447,7 +532,7 @@ class Dataset(object):
 
         service_name = metadata.get('serviceName', None)
 
-        access_urls = {}
+        access_urls = CaseInsensitiveDict({})
         server_url = _find_base_tds_url(catalog_url)
 
         # process access urls for datasets that reference top
@@ -531,7 +616,7 @@ class Dataset(object):
         if service is None:
             service = 'CdmRemote' if 'CdmRemote' in self.access_urls else 'OPENDAP'
 
-        if service not in ('CdmRemote', 'OPENDAP'):
+        if service not in (CaseInsensitiveStr('CdmRemote'), CaseInsensitiveStr('OPENDAP')):
             raise ValueError(service + ' is not a valid service for remote_access')
 
         return self.access_with_service(service)
@@ -583,6 +668,7 @@ class Dataset(object):
             An instance appropriate for communicating using ``service``.
 
         """
+        service = CaseInsensitiveStr(service)
         if service == 'CdmRemote':
             from .cdmr import Dataset as CDMRDataset
             provider = CDMRDataset
@@ -634,7 +720,7 @@ class SimpleService(object):
 
         """
         self.name = service_node.attrib['name']
-        self.service_type = service_node.attrib['serviceType']
+        self.service_type = CaseInsensitiveStr(service_node.attrib['serviceType'])
         self.base = service_node.attrib['base']
         self.access_urls = {}
 
@@ -668,7 +754,7 @@ class CompoundService(object):
 
         """
         self.name = service_node.attrib['name']
-        self.service_type = service_node.attrib['serviceType']
+        self.service_type = CaseInsensitiveStr(service_node.attrib['serviceType'])
         self.base = service_node.attrib['base']
         services = []
         subservices = 0
