@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Test dataset access method helpers."""
 
+
+import logging
 import os
 import tempfile
 
@@ -12,6 +14,8 @@ from siphon.catalog import TDSCatalog
 from siphon.ncss import NCSS
 from siphon.testing import get_recorder
 
+log = logging.getLogger('siphon.catalog')
+log.setLevel(logging.WARNING)
 
 recorder = get_recorder(__file__)
 
@@ -144,7 +148,7 @@ def test_dataset_no_handler(nids_url):
 
 
 @recorder.use_cassette('cat_only_http')
-def test_case_insensitive_access():
+def test_case_insensitive_access(caplog):
     """Test case-insensitive parsing of access methods in default catalog."""
     url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/noaaport/text/'
            'tropical/atlantic/hdob/catalog.xml')
@@ -156,10 +160,12 @@ def test_case_insensitive_access():
     assert access_name >= 'a'  # test __ge__
     assert access_name < 'Z'  # test __lt__
     assert access_name <= 'Z'  # test __le__
+    assert not access_name == 1  # test fail on _try_lower
+    assert 'Could not convert 1 to lowercase.' in caplog.text
 
 
 @recorder.use_cassette('cat_only_http')
-def test_manage_access_types_case_insensitive():
+def test_manage_access_types_case_insensitive(caplog):
     """Test case-insensitive parsing of access methods in default catalog."""
     url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/noaaport/text/'
            'tropical/atlantic/hdob/catalog.xml')
@@ -174,7 +180,4 @@ def test_manage_access_types_case_insensitive():
     assert wrong_case_key in ds.access_urls  # test __contains__
     ds.access_urls[wrong_case_key] = test_string
     assert ds.access_urls[wrong_case_key] == test_string  # test __setitem__
-    try:
-        del ds.access_urls[wrong_case_key]  # test__delitem
-    except KeyError:
-        pytest.fail('KeyError: ' + wrong_case_key)
+    assert ds.access_urls.pop(wrong_case_key) == test_string  # test __delitem__

@@ -18,8 +18,8 @@ except ImportError:
     # Python 3
     from urllib.parse import urljoin, urlparse
 
-from siphon.http_util import create_http_session, urlopen
-from siphon.metadata import TDSCatalogMetadata
+from .http_util import create_http_session, urlopen
+from .metadata import TDSCatalogMetadata
 
 logging.basicConfig(level=logging.ERROR)
 log = logging.getLogger(__name__)
@@ -139,7 +139,7 @@ def _try_lower(arg):
     try:
         arg = arg.lower()
     except (TypeError, AttributeError, ValueError):
-        pass
+        log.warning('Could not convert %s to lowercase.', arg)
     return arg
 
 
@@ -179,14 +179,6 @@ class CaseInsensitiveStr(str):
         return str.__ne__(self._lowered, _try_lower(other))
 
 
-def _try_case_insensitive(arg):
-    try:
-        arg = CaseInsensitiveStr(arg)
-    except (TypeError, AttributeError, ValueError):
-        pass
-    return arg
-
-
 class CaseInsensitiveDict(dict):
     """Extend ``dict`` to use a case-insensitive key set."""
 
@@ -201,26 +193,30 @@ class CaseInsensitiveDict(dict):
 
     def __getitem__(self, key):
         """Return value from case-insensitive lookup of ``key``."""
-        return super(CaseInsensitiveDict, self).__getitem__(_try_case_insensitive(key))
+        return super(CaseInsensitiveDict, self).__getitem__(CaseInsensitiveStr(key))
 
     def __setitem__(self, key, value):
         """Set value with lowercase ``key``."""
-        super(CaseInsensitiveDict, self).__setitem__(_try_case_insensitive(key), value)
+        super(CaseInsensitiveDict, self).__setitem__(CaseInsensitiveStr(key), value)
 
     def __delitem__(self, key):
         """Delete value associated with case-insensitive lookup of ``key``."""
-        return super(CaseInsensitiveDict, self).__delitem__(_try_case_insensitive(key))
+        return super(CaseInsensitiveDict, self).__delitem__(CaseInsensitiveStr(key))
 
     def __contains__(self, key):
         """Return true if key set includes case-insensitive ``key``."""
-        return super(CaseInsensitiveDict, self).__contains__(_try_case_insensitive(key))
+        return super(CaseInsensitiveDict, self).__contains__(CaseInsensitiveStr(key))
+
+    def pop(self, key, *args, **kwargs):
+        """Remove and return the value associated with case-insensitive ``key``."""
+        return super(CaseInsensitiveDict, self).pop(CaseInsensitiveStr(key))
 
     def _keys_to_lower(self):
         """Convert key set to lowercase."""
         for k in list(self.keys()):
             val = super(CaseInsensitiveDict, self).__getitem__(k)
             super(CaseInsensitiveDict, self).__delitem__(k)
-            self.__setitem__(_try_case_insensitive(k), val)
+            self.__setitem__(CaseInsensitiveStr(k), val)
 
 
 class TDSCatalog(object):
