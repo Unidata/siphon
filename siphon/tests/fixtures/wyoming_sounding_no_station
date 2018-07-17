@@ -1,0 +1,110 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.7.0+34.gb41b402.dirty)]
+    method: GET
+    uri: http://weather.uwyo.edu/cgi-bin/sounding/?region=naconf&TYPE=TEXT%3ALIST&YEAR=1976&MONTH=03&FROM=0400&TO=0400&STNM=72349
+  response:
+    body: {string: "<HTML>\n<TITLE>University of Wyoming - Radiosonde Data</TITLE>\n<LINK
+        REL=\"StyleSheet\" HREF=\"/resources/select.css\" TYPE=\"text/css\">\n<BODY
+        BGCOLOR=\"white\">\n<H2>72349 Observations at 00Z 04 Mar 1976</H2>\n<PRE>\n-----------------------------------------------------------------------------\n
+        \  PRES   HGHT   TEMP   DWPT   RELH   MIXR   DRCT   SKNT   THTA   THTE   THTV\n
+        \   hPa     m      C      C      %    g/kg    deg   knot     K      K      K
+        \n-----------------------------------------------------------------------------\n
+        1000.0    108                                                               \n
+        \ 961.0    438    5.6    5.3     98   5.84     80     15  281.9  298.2  282.9\n
+        \ 952.0    515    5.4    5.4    100   5.94     91     16  282.5  299.1  283.5\n
+        \ 941.4    609    8.5    8.5    100   7.43    105     18  286.5  307.5  287.8\n
+        \ 921.0    791   14.4   14.4    100  11.32    123     22  294.4  327.0  296.4\n
+        \ 907.8    914   14.5   13.8     96  11.07    135     24  295.7  327.8  297.6\n
+        \ 884.0   1140   14.6   12.8     89  10.61    157     28  298.1  329.2  300.0\n
+        \ 875.7   1219   14.0   12.5     91  10.51    165     30  298.2  329.1  300.1\n
+        \ 850.0   1471   12.0   11.6     97  10.19    195     33  298.7  328.7  300.5\n
+        \ 814.0   1828    9.8    9.5     98   9.21    225     41  300.1  327.4  301.7\n
+        \ 784.5   2133    7.9    7.6     98   8.43    215     43  301.2  326.4  302.7\n
+        \ 756.0   2438    6.0    5.8     99   7.71    210     44  302.3  325.6  303.7\n
+        \ 728.6   2743    4.1    4.0     99   7.03    215     43  303.5  324.8  304.8\n
+        \ 700.0   3073    2.0    2.0    100   6.36    215     42  304.7  324.1  305.8\n
+        \ 650.0   3657   -2.0   -2.4     97   4.94    225     45  306.6  322.1  307.6\n
+        \ 601.5   4267   -6.2   -7.1     94   3.76    225     55  308.6  320.6  309.3\n
+        \ 556.8   4876  -10.4  -11.7     90   2.82    225     58  310.6  319.8  311.1\n
+        \ 544.0   5059  -11.7  -13.1     89   2.58    225     63  311.1  319.6  311.6\n
+        \ 535.3   5181  -12.5  -14.1     88   2.41    225     66  311.6  319.5  312.0\n
+        \ 500.0   5700  -16.1  -18.4     82   1.80    225     65  313.4  319.4  313.7\n
+        \ 473.9   6096  -18.9  -21.4     81   1.47    225     63  314.7  319.7  314.9\n
+        \ 454.8   6400  -21.1  -23.8     79   1.24    235     54  315.7  320.0  315.9\n
+        \ 401.9   7315  -27.6  -30.7     75   0.74    235     70  318.5  321.2  318.7\n
+        \ 400.0   7350  -27.9  -31.0     75   0.72    235     65  318.6  321.3  318.8\n
+        \ 384.9   7620  -29.8  -33.1     73   0.61    240     61  319.6  321.9  319.7\n
+        \ 319.0   8934  -39.3  -43.6     64   0.25    240     48  324.1  325.1  324.2\n
+        \ 309.3   9144  -41.1                         240     46  324.5         324.5\n
+        \ 300.0   9350  -42.9                         240     45  324.8         324.8\n
+        \ 282.2   9753  -46.6                         240     41  325.2         325.2\n
+        \ 257.2  10363  -52.2                         235     61  325.7         325.7\n
+        \ 250.0  10550  -53.9                         235     57  325.8         325.8\n
+        \ 245.3  10668  -54.8                         240     55  326.2         326.2\n
+        \ 233.7  10972  -57.1                         235     48  327.3         327.3\n
+        \ 200.0  11950  -64.5                         245     48  330.5         330.5\n
+        \ 187.0  12358  -67.5                         245     54  332.0         332.0\n
+        \ 178.0  12656  -67.5                         249     54  336.7         336.7\n
+        \ 165.5  13106  -59.6                         255     54  357.0         357.0\n
+        \ 164.0  13161  -58.7                         255     56  359.5         359.5\n
+        \ 150.0  13720  -60.1                         250     80  366.3         366.3\n
+        \ 145.0  13931  -60.5                         255     84  369.1         369.1\n
+        \ 142.9  14020  -60.7                         255     84  370.4         370.4\n
+        \ 117.5  15240  -63.2                         260     54  387.1         387.1\n
+        \ 115.0  15373  -63.5                         259     50  388.9         388.9\n
+        \ 106.5  15849  -62.4                         255     36  399.6         399.6\n
+        \ 100.0  16240  -61.5                         255     31  408.6         408.6\n
+        \  84.0  17302  -67.9                         260     32  416.5         416.5\n
+        \  70.0  18390  -70.1                         265     34  434.1         434.1\n
+        \  67.0  18651  -71.1                         268     33  437.4         437.4\n
+        \  60.0  19314  -66.1                         274     32  462.6         462.6\n
+        \  50.0  20420  -67.3                         285     30  484.5         484.5\n
+        \  47.0  20792  -67.5                         290     30  492.6         492.6\n
+        \  40.0  21777  -61.5                         302     30  530.9         530.9\n
+        \  30.0  23560  -61.1                         325     29  577.5         577.5\n
+        \  26.0  24457  -57.1                                     612.9         612.9\n
+        \  23.0  25232  -57.1                                     634.8         634.8\n</PRE><H3>Station
+        information and sounding indices</H3><PRE>\n                             Station
+        number: 72349\n                           Observation time: 760304/0000\n
+        \                          Station latitude: 36.88\n                          Station
+        longitude: -93.90\n                          Station elevation: 438.0\n                            Showalter
+        index: -4.13\n                               Lifted index: 4.14\n    LIFT
+        computed using virtual temperature: 4.18\n                                SWEAT
+        index: 493.70\n                                    K index: 39.70\n                         Cross
+        totals index: 27.70\n                      Vertical totals index: 28.10\n
+        \                       Totals totals index: 55.80\n      Convective Available
+        Potential Energy: 0.00\n             CAPE using virtual temperature: 0.00\n
+        \                     Convective Inhibition: 0.00\n             CINS using
+        virtual temperature: 0.00\n                     Bulk Richardson Number: 0.00\n
+        \         Bulk Richardson Number using CAPV: 0.00\n  Temp [K] of the Lifted
+        Condensation Level: 283.45\nPres [hPa] of the Lifted Condensation Level: 931.26\n
+        \    Mean mixed layer potential temperature: 289.32\n              Mean mixed
+        layer mixing ratio: 8.80\n              1000 hPa to 500 hPa thickness: 5592.00\nPrecipitable
+        water [mm] for entire sounding: 33.03\n</PRE>\n<P>Description of the \n<A
+        HREF=\"/upperair/columns.html\">data columns</A>\nor <A HREF=\"/upperair/indices.html\">sounding
+        indices</A>.\n\n<P>\n<FORM>\n<INPUT CLASS=\"button\" TYPE=\"button\" VALUE=\"
+        Close this window \" \n onClick=\"window.close();\">\n<INPUT CLASS=\"button\"
+        TYPE=\"button\" VALUE=\" Select another map \" \n onClick=\"window.blur();\">\n</FORM>\n<HR
+        SIZE=\"1\">\n<I>Interested in graduate studies in atmospheric science?\nCheck
+        out our program at the\n<a href=\"http://www.uwyo.edu/atsc/howtoapply/\"\ntarget=_top>University
+        of Wyoming\n</a></I>\n<HR SIZE=\"1\"><FONT SIZE=\"-1\">\nQuestions about the
+        weather data provided by this site can be\naddressed to <A HREF=\"mailto:ldoolman@uwyo.edu\">\nLarry
+        Oolman (ldoolman@uwyo.edu)</A></FONT>\n<HR SIZE=\"1\">\n<SCRIPT TYPE=\"text/javascript\">\n<!--\nwindow.focus();\n//
+        -->\n</SCRIPT>\n</BODY>\n</HTML>\n"}
+    headers:
+      Accept-Ranges: [bytes]
+      Connection: [close]
+      Content-Length: ['6969']
+      Content-Type: [text/html; charset=UTF-8]
+      Date: ['Tue, 17 Jul 2018 16:42:10 GMT']
+      ETag: ['"22e5f78-1b39-5713293e5ed2f"']
+      Last-Modified: ['Tue, 17 Jul 2018 14:15:27 GMT']
+      Server: [Apache/2.2.15 (Red Hat)]
+    status: {code: 200, message: OK}
+version: 1
