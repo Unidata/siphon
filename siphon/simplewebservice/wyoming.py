@@ -81,6 +81,12 @@ class WyomingUpperAir(HTTPEndPoint):
         # Parse metadata
         meta_data = soup.find_all('pre')[1].contents[0]
         lines = meta_data.splitlines()
+
+        # If the station doesn't have a name identified we need to insert a
+        # record showing this for parsing to proceed.
+        if 'Station number' in lines[1]:
+            lines.insert(1, 'Station identifier: ')
+
         station = lines[1].split(':')[1].strip()
         station_number = int(lines[2].split(':')[1].strip())
         sounding_time = datetime.strptime(lines[3].split(':')[1].strip(), '%y%m%d/%H%M')
