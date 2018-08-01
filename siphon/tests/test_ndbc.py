@@ -266,3 +266,18 @@ def test_ndbc_latest():
     assert(df.units['3hr_pressure_tendency'] == 'hPa')
     assert(df.units['water_level_above_mean'] == 'feet')
     assert(df.units['time'] is None)
+
+
+@recorder.use_cassette('ndbc_buoy_data_types')
+def test_ndbc_buoy_data_types():
+    """Test determination of available buoy data."""
+    resp = NDBC.buoy_data_types('41002')
+    truth = {'txt': 'standard meteorological data',
+             'spec': 'spectral wave summaries',
+             'data_spec': 'raw spectral wave data',
+             'swdir': 'spectral wave data (alpha1)',
+             'swdir2': 'spectral wave data (alpha2)',
+             'swr1': 'spectral wave data (r1)',
+             'swr2': 'spectral wave data (r2)',
+             'supl': 'supplemental measurements data'}
+    assert(resp == truth)
