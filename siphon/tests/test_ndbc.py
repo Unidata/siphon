@@ -56,7 +56,7 @@ def test_ndbc_realtime_txt():
 @recorder.use_cassette('ndbc_realtime_drift')
 def test_ndbc_realtime_drift():
     """Test that we are properly parsing realtime drift observations."""
-    df = NDBC.realtime_observations('22101', type='drift')
+    df = NDBC.realtime_observations('22101', data_type='drift')
 
     assert_almost_equal(df['latitude'][3], 37.24, 2)
     assert_almost_equal(df['longitude'][3], 126.02, 2)
@@ -84,7 +84,7 @@ def test_ndbc_realtime_drift():
 @recorder.use_cassette('ndbc_realtime_cwind')
 def test_ndbc_realtime_cwind():
     """Test that we are properly parsing realtime cwind observations."""
-    df = NDBC.realtime_observations('41008', type='cwind')
+    df = NDBC.realtime_observations('41008', data_type='cwind')
 
     assert_almost_equal(df['wind_direction'][3], 156, 1)
     assert_almost_equal(df['wind_speed'][3], 6.7, 1)
@@ -104,7 +104,7 @@ def test_ndbc_realtime_cwind():
 @recorder.use_cassette('ndbc_realtime_spec')
 def test_ndbc_realtime_spec():
     """Test that we are properly parsing realtime spec observations."""
-    df = NDBC.realtime_observations('41002', type='spec')
+    df = NDBC.realtime_observations('41002', data_type='spec')
 
     assert_almost_equal(df['significant_wave_height'][3], 1.2, 1)
     assert_almost_equal(df['swell_height'][3], 0.7, 1)
@@ -134,7 +134,7 @@ def test_ndbc_realtime_spec():
 @recorder.use_cassette('ndbc_realtime_ocean')
 def test_ndbc_realtime_ocean():
     """Test that we are properly parsing realtime ocean observations."""
-    df = NDBC.realtime_observations('45183', type='ocean')
+    df = NDBC.realtime_observations('45183', data_type='ocean')
 
     assert_almost_equal(df['measurement_depth'][3], 1.0, 1)
     assert_equal(df['ocean_temperature'][3], np.nan)
@@ -164,7 +164,7 @@ def test_ndbc_realtime_ocean():
 @recorder.use_cassette('ndbc_realtime_srad')
 def test_ndbc_realtime_srad():
     """Test that we are properly parsing realtime srad observations."""
-    df = NDBC.realtime_observations('45027', type='srad')
+    df = NDBC.realtime_observations('45027', data_type='srad')
 
     assert_almost_equal(df['shortwave_radiation_licor'][3], 51.6, 1)
     assert_equal(df['shortwave_radiation_eppley'][3], np.nan)
@@ -180,7 +180,7 @@ def test_ndbc_realtime_srad():
 @recorder.use_cassette('ndbc_realtime_dart')
 def test_ndbc_realtime_dart():
     """Test that we are properly parsing realtime dart observations."""
-    df = NDBC.realtime_observations('41421', type='dart')
+    df = NDBC.realtime_observations('41421', data_type='dart')
 
     assert_almost_equal(df['measurement_type'][3], 15, 1)
     assert_almost_equal(df['height'][3], 5806.845, 3)
@@ -194,7 +194,7 @@ def test_ndbc_realtime_dart():
 @recorder.use_cassette('ndbc_realtime_supl')
 def test_ndbc_realtime_supl():
     """Test that we are properly parsing realtime supl observations."""
-    df = NDBC.realtime_observations('PVGF1', type='supl')
+    df = NDBC.realtime_observations('PVGF1', data_type='supl')
 
     assert_almost_equal(df['hourly_low_pressure'][3], 1019.0, 1)
     assert_equal(df['hourly_low_pressure_time'][3], datetime(2018, 7, 31, 14, 36))
@@ -214,7 +214,7 @@ def test_ndbc_realtime_supl():
 @recorder.use_cassette('ndbc_realtime_rain')
 def test_ndbc_realtime_rain():
     """Test that we are properly parsing realtime rain observations."""
-    df = NDBC.realtime_observations('BDVF1', type='rain')
+    df = NDBC.realtime_observations('BDVF1', data_type='rain')
 
     assert_almost_equal(df['hourly_accumulation'][3], 0.0, 1)
     assert_equal(df['time'][3], datetime(2018, 8, 1, 11))

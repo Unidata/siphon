@@ -23,24 +23,14 @@ class NDBC(HTTPEndPoint):
         super(NDBC, self).__init__('https://www.ndbc.noaa.gov/')
 
     @classmethod
-    def station_observations(cls):
-        """Retrieve the most recent 45 days of data for a buoy from NDBC.
-
-        Returns
-        -------
-            :class:`pandas.DataFrame` containing the data
-
-        """
-
-    @classmethod
-    def realtime_observations(cls, buoy, type='txt'):  # noqa: A002
+    def realtime_observations(cls, buoy, data_type='txt'):
         """Retrieve the realtime buoy data from NDBC.
 
         Parameters
         ----------
         buoy : str
             Name of buoy
-        type : str
+        data_type : str
             Type of data requested, must be one of:
             'txt': standard meteorological data
             'drift': meteorological data from drifting buoys and limited moored buoy data
@@ -69,8 +59,8 @@ class NDBC(HTTPEndPoint):
                    'supl': endpoint._parse_supl,
                    'rain': endpoint._parse_rain}
         endpoint = cls()
-        raw_data = endpoint.raw_buoy_data(buoy, type=type)
-        return parsers[type](raw_data)
+        raw_data = endpoint.raw_buoy_data(buoy, data_type=data_type)
+        return parsers[data_type](raw_data)
 
     @staticmethod
     def _parse_met(content):
@@ -523,14 +513,14 @@ class NDBC(HTTPEndPoint):
         return available_data
 
     @classmethod
-    def raw_buoy_data(cls, buoy, type='txt'):  # noqa: A002
+    def raw_buoy_data(cls, buoy, data_type='txt'):
         """Retrieve the raw buoy data contents from NDBC.
 
         Parameters
         ----------
         buoy : str
             Name of buoy
-        type : str
+        data_type : str
             Type of data requested, must be one of:
             'txt': standard meteorological data
             'drift': meteorological data from drifting buoys and limited moored buoy data
@@ -556,5 +546,5 @@ class NDBC(HTTPEndPoint):
 
         """
         endpoint = cls()
-        resp = endpoint.get_path('data/realtime2/{}.{}'.format(buoy, type))
+        resp = endpoint.get_path('data/realtime2/{}.{}'.format(buoy, data_type))
         return resp.text
