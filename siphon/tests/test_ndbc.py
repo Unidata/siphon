@@ -7,6 +7,7 @@ from datetime import datetime
 
 import numpy as np
 from numpy.testing import assert_almost_equal, assert_equal
+import pytest
 
 from siphon.simplewebservice.ndbc import NDBC
 from siphon.testing import get_recorder
@@ -281,3 +282,9 @@ def test_ndbc_buoy_data_types():
              'swr2': 'spectral wave data (r2)',
              'supl': 'supplemental measurements data'}
     assert(resp == truth)
+
+
+def test_ndbc_realtime_keyerror():
+    """Ensure an error is raised for invalid parsed data type requests."""
+    with pytest.raises(KeyError):
+        NDBC.realtime_observations('41002', data_type='dartt')

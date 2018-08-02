@@ -58,7 +58,11 @@ class NDBC(HTTPEndPoint):
                    'dart': endpoint._parse_dart,
                    'supl': endpoint._parse_supl,
                    'rain': endpoint._parse_rain}
-        endpoint = cls()
+
+        if data_type not in parsers:
+            raise KeyError('Data type must be txt, drift, cwind, spec, ocean, srad, dart,'
+                           'supl, or rain for parsed realtime data.')
+
         raw_data = endpoint.raw_buoy_data(buoy, data_type=data_type)
         return parsers[data_type](raw_data)
 
@@ -76,7 +80,6 @@ class NDBC(HTTPEndPoint):
             :class:`pandas.DataFrame` containing the data
 
         """
-        widths = [4, 2, 2, 2, 2, 3, 4, 4, 5, 5, 5, 3, 6, 5, 5, 5, 4, 4, 5]
         col_names = ['year', 'month', 'day', 'hour', 'minute',
                      'wind_direction', 'wind_speed', 'wind_gust',
                      'wave_height', 'dominant_wave_period', 'average_wave_period',
