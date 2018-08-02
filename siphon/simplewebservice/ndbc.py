@@ -31,20 +31,20 @@ class NDBC(HTTPEndPoint):
         buoy : str
             Name of buoy
         data_type : str
-            Type of data requested, must be one of:
-            'txt': standard meteorological data
-            'drift': meteorological data from drifting buoys and limited moored buoy data
-                     mainly from international partners
-            'cwind': continuous winds data (10 minute average)
-            'spec': spectral wave summaries
-            'ocean': oceanographic data
-            'srad': solar radiation data
-            'dart': water column height
-            'supl': supplemental measurements data
-            'rain': hourly rain data
+            Type of data requested, must be one of
+            'txt' standard meteorological data
+            'drift' meteorological data from drifting buoys and limited moored buoy data
+            mainly from international partners
+            'cwind' continuous winds data (10 minute average)
+            'spec' spectral wave summaries
+            'ocean' oceanographic data
+            'srad' solar radiation data
+            'dart' water column height
+            'supl' supplemental measurements data
+            'rain' hourly rain data
 
-            Returns
-            -------
+        Returns
+        -------
             Raw data string
 
         """
@@ -76,6 +76,7 @@ class NDBC(HTTPEndPoint):
             :class:`pandas.DataFrame` containing the data
 
         """
+        widths = [4, 2, 2, 2, 2, 3, 4, 4, 5, 5, 5, 3, 6, 5, 5, 5, 4, 4, 5]
         col_names = ['year', 'month', 'day', 'hour', 'minute',
                      'wind_direction', 'wind_speed', 'wind_gust',
                      'wave_height', 'dominant_wave_period', 'average_wave_period',
@@ -99,7 +100,8 @@ class NDBC(HTTPEndPoint):
                      'water_level_above_mean': 'feet',
                      'time': None}
 
-        df = pd.read_fwf(StringIO(content), skiprows=2, na_values='MM', names=col_names)
+        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
+                           names=col_names, sep='\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -136,8 +138,8 @@ class NDBC(HTTPEndPoint):
                      '3hr_pressure_tendency': 'hPa',
                      'time': None}
 
-        df = pd.read_fwf(StringIO(content), skiprows=2,
-                         na_values='MM', names=col_names)
+        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
+                           names=col_names, sep='\s+')
         df['hour'] = np.floor(df['hour_minute'] / 100)
         df['minute'] = df['hour_minute'] - df['hour'] * 100
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
@@ -170,8 +172,8 @@ class NDBC(HTTPEndPoint):
                      'gust_time': None,
                      'time': None}
 
-        df = pd.read_fwf(StringIO(content), skiprows=2,
-                         na_values='MM', names=col_names)
+        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
+                           names=col_names, sep='\s+')
         df['gust_direction'] = df['gust_direction'].replace(999, np.nan)
         df['wind_gust'] = df['wind_gust'].replace(99.0, np.nan)
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
@@ -218,8 +220,8 @@ class NDBC(HTTPEndPoint):
                      'dominant_wave_direction': 'degrees',
                      'time': None}
 
-        df = pd.read_fwf(StringIO(content), skiprows=2,
-                         na_values=['MM', 'N/A'], names=col_names)
+        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
+                           names=col_names, sep='\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -257,8 +259,8 @@ class NDBC(HTTPEndPoint):
                      'Eh': 'millivolts',
                      'time': None}
 
-        df = pd.read_fwf(StringIO(content), skiprows=2,
-                         na_values='MM', names=col_names)
+        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
+                           names=col_names, sep='\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -287,8 +289,8 @@ class NDBC(HTTPEndPoint):
                      'longwave_radiation': 'watts/meter^2',
                      'time': None}
 
-        df = pd.read_fwf(StringIO(content), skiprows=2,
-                         na_values='MM', names=col_names)
+        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
+                           names=col_names, sep='\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -315,8 +317,8 @@ class NDBC(HTTPEndPoint):
                      'height': 'meters',
                      'time': None}
 
-        df = pd.read_fwf(StringIO(content), skiprows=2,
-                         na_values='MM', names=col_names)
+        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
+                           names=col_names, sep='\s+')
 
         # Replace measurement type integer with minute value
         # 1 = 15-minute measurement
@@ -352,8 +354,8 @@ class NDBC(HTTPEndPoint):
         col_units = {'hourly_accumulation': 'millimeters',
                      'time': None}
 
-        df = pd.read_fwf(StringIO(content), skiprows=2,
-                         na_values='MM', names=col_names)
+        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
+                           names=col_names, sep='\s+')
 
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
@@ -386,8 +388,8 @@ class NDBC(HTTPEndPoint):
                      'hourly_high_wind_time': None,
                      'time': None}
 
-        df = pd.read_fwf(StringIO(content), skiprows=2,
-                         na_values='MM', names=col_names)
+        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
+                           names=col_names, sep='\s+')
 
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
 
@@ -446,8 +448,8 @@ class NDBC(HTTPEndPoint):
                      'time': None}
         resp = endpoint.get_path('data/latest_obs/latest_obs.txt')
 
-        df = pd.read_fwf(StringIO(resp.text), skiprows=2,
-                         na_values='MM', names=col_names)
+        df = pd.read_table(StringIO(resp.text), comment='#', na_values='MM',
+                           names=col_names, sep='\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -520,25 +522,26 @@ class NDBC(HTTPEndPoint):
         ----------
         buoy : str
             Name of buoy
+
         data_type : str
-            Type of data requested, must be one of:
-            'txt': standard meteorological data
-            'drift': meteorological data from drifting buoys and limited moored buoy data
-                     mainly from international partners
-            'cwind': continuous winds data (10 minute average)
-            'spec': spectral wave summaries
-            'data_spec': raw spectral wave data
-            'swdir': spectral wave data (alpha1)
-            'swdir2': spectral wave data (alpha2)
-            'swr1': spectral wave data (r1)
-            'swr2': spectral wave data (r2)
-            'adcp': acoustic doppler current profiler
-            'ocean': oceanographic data
-            'tide': tide data
-            'srad': solar radiation data
-            'dart': water column height
-            'supl': supplemental measurements data
-            'rain': hourly rain data
+            Type of data requested, must be one of
+            'txt' standard meteorological data
+            'drift' meteorological data from drifting buoys and limited moored buoy data
+            mainly from international partners
+            'cwind' continuous winds data (10 minute average)
+            'spec' spectral wave summaries
+            'data_spec' raw spectral wave data
+            'swdir' spectral wave data (alpha1)
+            'swdir2' spectral wave data (alpha2)
+            'swr1' spectral wave data (r1)
+            'swr2' spectral wave data (r2)
+            'adcp' acoustic doppler current profiler
+            'ocean' oceanographic data
+            'tide' tide data
+            'srad' solar radiation data
+            'dart' water column height
+            'supl' supplemental measurements data
+            'rain' hourly rain data
 
         Returns
         -------
