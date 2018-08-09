@@ -458,9 +458,10 @@ class HTTPEndPoint(object):
                 text = resp.reason
             else:
                 text = resp.text
-            raise requests.HTTPError('Error accessing {0}: {1:d} {2}'.format(resp.request.url,
-                                                                             resp.status_code,
-                                                                             text))
+            raise requests.HTTPError('Error accessing {0}\n'
+                                     'Server Error ({1:d}: {2})'.format(resp.request.url,
+                                                                        resp.status_code,
+                                                                        text))
         return resp
 
     def _get_metadata(self):
