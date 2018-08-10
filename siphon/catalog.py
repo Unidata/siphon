@@ -18,7 +18,7 @@ except ImportError:
     # Python 3
     from urllib.parse import urljoin, urlparse
 
-from .http_util import create_http_session, urlopen
+from .http_util import session_manager
 from .metadata import TDSCatalogMetadata
 
 logging.basicConfig(level=logging.ERROR)
@@ -250,7 +250,7 @@ class TDSCatalog(object):
             The URL of a THREDDS client catalog
 
         """
-        session = create_http_session()
+        session = session_manager.create_session()
 
         # get catalog.xml file
         resp = session.get(catalog_url)
@@ -488,7 +488,7 @@ class Dataset(object):
         if catalog_url != '':
             resolver_base = catalog_url.split('catalog.xml')[0]
             resolver_url = resolver_base + self.url_path
-            resolver_xml = urlopen(resolver_url)
+            resolver_xml = session_manager.urlopen(resolver_url)
             tree = ET.parse(resolver_xml)
             root = tree.getroot()
             if 'name' in root.attrib:
@@ -682,7 +682,7 @@ class Dataset(object):
             from .ncss import NCSS
             provider = NCSS
         elif service == 'HTTPServer':
-            provider = urlopen
+            provider = session_manager.urlopen
         else:
             raise ValueError(service + ' is not an access method supported by Siphon')
 
