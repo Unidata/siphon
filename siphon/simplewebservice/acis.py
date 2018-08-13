@@ -5,7 +5,7 @@
 
 import requests
 
-from ..http_util import create_http_session
+from ..http_util import session_manager
 
 
 def acis_request(method, params):
@@ -51,7 +51,8 @@ def acis_request(method, params):
     timeout = 300 if method == 'MultiStnData' else 60
 
     try:
-        response = create_http_session().post(base_url + method, json=params, timeout=timeout)
+        response = session_manager.create_session().post(base_url + method, json=params,
+                                                         timeout=timeout)
         return response.json()
     except requests.exceptions.Timeout:
         raise AcisApiException('Connection Timeout')

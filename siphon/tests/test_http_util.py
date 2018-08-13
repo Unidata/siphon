@@ -7,8 +7,8 @@ from datetime import datetime, timedelta
 
 import pytest
 
-from siphon.http_util import (create_http_session, DataQuery, HTTPEndPoint, HTTPError,
-                              parse_iso_date, urlopen, utc)
+from siphon.http_util import (DataQuery, HTTPEndPoint, HTTPError,
+                              parse_iso_date, session_manager, utc)
 import siphon.testing
 
 recorder = siphon.testing.get_recorder(__file__)
@@ -17,16 +17,28 @@ recorder = siphon.testing.get_recorder(__file__)
 @recorder.use_cassette('top_thredds_catalog')
 def test_urlopen():
     """Test siphon's urlopen wrapper."""
-    fobj = urlopen('http://thredds-test.unidata.ucar.edu/thredds/catalog.xml')
+    fobj = session_manager.urlopen('http://thredds-test.unidata.ucar.edu/thredds/catalog.xml')
     assert fobj.read(2) == b'<?'
 
 
 @recorder.use_cassette('top_thredds_catalog')
 def test_session():
-    """Test that https sessions contain the proper user agent."""
-    session = create_http_session()
+    """Test that http sessions contain the proper user agent."""
+    session = session_manager.create_session()
     resp = session.get('http://thredds-test.unidata.ucar.edu/thredds/catalog.xml')
     assert resp.request.headers['user-agent'].startswith('Siphon')
+
+
+@recorder.use_cassette('top_thredds_catalog')
+def test_session_options():
+    """Test that http sessions receive proper options."""
+    auth = ('foo', 'bar')
+    session_manager.set_session_options(auth=auth)
+    try:
+        session = session_manager.create_session()
+        assert session.auth == auth
+    finally:
+        session_manager.set_session_options()
 
 
 def test_parse_iso():

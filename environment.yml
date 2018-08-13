@@ -12,6 +12,7 @@ dependencies:
   - jupyter
   - sphinx
   - sphinx-gallery
+  - pillow
   - doc8
   - pytest
   - pytest-cov
