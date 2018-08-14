@@ -1,4 +1,8 @@
+.. note::
+    :class: sphx-glr-download-link-note
 
+    Click :ref:`here <sphx_glr_download_examples_ncss_NCSS_Example.py>` to download the full example code
+.. rst-class:: sphx-glr-example-title
 
 .. _sphx_glr_examples_ncss_NCSS_Example.py:
 
@@ -8,7 +12,6 @@ Basic NCSS
 ==========
 
 Use Siphon to query the NetCDF Subset Service (NCSS).
-
 
 
 .. code-block:: python
@@ -30,7 +33,6 @@ this case TDS' "Best" virtual dataset for the GFS global 0.5 degree collection o
 GRIB files. We see this catalog contains a single dataset.
 
 
-
 .. code-block:: python
 
     best_gfs = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/'
@@ -43,13 +45,14 @@ GRIB files. We see this catalog contains a single dataset.
 
 .. rst-class:: sphx-glr-script-out
 
- Out::
+ Out:
+
+ .. code-block:: none
 
     ['Best GFS Half Degree Forecast Time Series']
 
 
 We pull out this dataset and get the NCSS access point
-
 
 
 .. code-block:: python
@@ -65,7 +68,6 @@ We pull out this dataset and get the NCSS access point
 
 We can then use the `ncss` object to create a new query object, which
 facilitates asking for data from the server.
-
 
 
 .. code-block:: python
@@ -85,7 +87,6 @@ vertical levels for a single point and single time. Note the string representati
 the query is a properly encoded query string.
 
 
-
 .. code-block:: python
 
     query.lonlat_point(-105, 40).time(datetime.utcnow())
@@ -101,7 +102,6 @@ the query is a properly encoded query string.
 We now request data from the server using this query. The `NCSS` class handles parsing
 this NetCDF data (using the `netCDF4` module). If we print out the variable names,
 we see our requested variables, as well as a few others (more metadata information)
-
 
 
 .. code-block:: python
@@ -121,7 +121,6 @@ relative humidity, we look at the `coordinates` attribute. The last of the varia
 listed in `coordinates` is the pressure dimension.
 
 
-
 .. code-block:: python
 
     temp = data.variables['Temperature_isobaric']
@@ -137,7 +136,6 @@ listed in `coordinates` is the pressure dimension.
 
 
 Now we can plot these up using matplotlib.
-
 
 
 .. code-block:: python
@@ -157,18 +155,22 @@ Now we can plot these up using matplotlib.
 
 
 .. image:: /examples/ncss/images/sphx_glr_NCSS_Example_001.png
-    :align: center
+    :class: sphx-glr-single-img
 
 
 
 
-**Total running time of the script:** ( 0 minutes  2.214 seconds)
+**Total running time of the script:** ( 0 minutes  1.869 seconds)
 
+
+.. _sphx_glr_download_examples_ncss_NCSS_Example.py:
 
 
 .. only :: html
 
  .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
 
 
   .. container:: sphx-glr-download

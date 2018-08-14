@@ -1,4 +1,8 @@
+.. note::
+    :class: sphx-glr-download-link-note
 
+    Click :ref:`here <sphx_glr_download_examples_ncss_NCSS_Timeseries_Examples.py>` to download the full example code
+.. rst-class:: sphx-glr-example-title
 
 .. _sphx_glr_examples_ncss_NCSS_Timeseries_Examples.py:
 
@@ -8,7 +12,6 @@ NCSS Time Series
 ================
 
 Use Siphon to query the NetCDF Subset Service for a timeseries.
-
 
 
 .. code-block:: python
@@ -31,7 +34,6 @@ this case TDS' "Best" virtual dataset for the GFS global 0.5 degree collection o
 GRIB files. We see this catalog contains a single dataset.
 
 
-
 .. code-block:: python
 
     best_gfs = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/'
@@ -44,13 +46,14 @@ GRIB files. We see this catalog contains a single dataset.
 
 .. rst-class:: sphx-glr-script-out
 
- Out::
+ Out:
+
+ .. code-block:: none
 
     ['Best GFS Half Degree Forecast Time Series']
 
 
 We pull out this dataset and get the NCSS access point
-
 
 
 .. code-block:: python
@@ -66,7 +69,6 @@ We pull out this dataset and get the NCSS access point
 
 We can then use the `ncss` object to create a new query object, which
 facilitates asking for data from the server.
-
 
 
 .. code-block:: python
@@ -86,7 +88,6 @@ This request will return all times in the range for a single point. Note the str
 representation of the query is a properly encoded query string.
 
 
-
 .. code-block:: python
 
     now = datetime.utcnow()
@@ -104,7 +105,6 @@ this NetCDF data (using the `netCDF4` module). If we print out the variable name
 see our requested variables, as well as a few others (more metadata information)
 
 
-
 .. code-block:: python
 
     data = ncss.get_data(query)
@@ -117,7 +117,6 @@ see our requested variables, as well as a few others (more metadata information)
 
 
 We'll pull out the temperature  and time variables.
-
 
 
 .. code-block:: python
@@ -137,7 +136,6 @@ Python `datetime` objects. We can see the first 5 element output by the function
 reasonable.
 
 
-
 .. code-block:: python
 
     time_vals = num2date(time[:].squeeze(), time.units)
@@ -149,16 +147,17 @@ reasonable.
 
 .. rst-class:: sphx-glr-script-out
 
- Out::
+ Out:
 
-    [datetime.datetime(2018, 4, 3, 21, 0) datetime.datetime(2018, 4, 4, 0, 0)
-     datetime.datetime(2018, 4, 4, 3, 0) datetime.datetime(2018, 4, 4, 6, 0)
-     datetime.datetime(2018, 4, 4, 9, 0)]
+ .. code-block:: none
+
+    [datetime.datetime(2018, 8, 14, 21, 0)
+     datetime.datetime(2018, 8, 15, 0, 0) datetime.datetime(2018, 8, 15, 3, 0)
+     datetime.datetime(2018, 8, 15, 6, 0) datetime.datetime(2018, 8, 15, 9, 0)]
 
 
 Now we can plot these up using matplotlib, which has ready-made support for `datetime`
 objects.
-
 
 
 .. code-block:: python
@@ -172,18 +171,22 @@ objects.
 
 
 .. image:: /examples/ncss/images/sphx_glr_NCSS_Timeseries_Examples_001.png
-    :align: center
+    :class: sphx-glr-single-img
 
 
 
 
-**Total running time of the script:** ( 0 minutes  0.933 seconds)
+**Total running time of the script:** ( 0 minutes  2.035 seconds)
 
+
+.. _sphx_glr_download_examples_ncss_NCSS_Timeseries_Examples.py:
 
 
 .. only :: html
 
  .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
 
 
   .. container:: sphx-glr-download

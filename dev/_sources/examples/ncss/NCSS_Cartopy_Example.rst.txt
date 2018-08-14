@@ -1,4 +1,8 @@
+.. note::
+    :class: sphx-glr-download-link-note
 
+    Click :ref:`here <sphx_glr_download_examples_ncss_NCSS_Cartopy_Example.py>` to download the full example code
+.. rst-class:: sphx-glr-example-title
 
 .. _sphx_glr_examples_ncss_NCSS_Cartopy_Example.py:
 
@@ -11,7 +15,6 @@ Use Siphon to query the NetCDF Subset Service (NCSS) and plot on a map.
 
 This example uses Siphon's NCSS class to provide temperature data
 for contouring a basic map using CartoPy.
-
 
 
 .. code-block:: python
@@ -38,7 +41,6 @@ GRIB files. This will give us a good resolution for our map. This catalog contai
 single dataset.
 
 
-
 .. code-block:: python
 
     best_gfs = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/'
@@ -51,13 +53,14 @@ single dataset.
 
 .. rst-class:: sphx-glr-script-out
 
- Out::
+ Out:
+
+ .. code-block:: none
 
     ['Best GFS Quarter Degree Forecast Time Series']
 
 
 We pull out this dataset and get the NCSS access point
-
 
 
 .. code-block:: python
@@ -73,7 +76,6 @@ We pull out this dataset and get the NCSS access point
 
 We can then use the `ncss` object to create a new query object, which
 facilitates asking for data from the server.
-
 
 
 .. code-block:: python
@@ -96,7 +98,6 @@ nearest to that requested. Note the string representation of the query is a prop
 query string.
 
 
-
 .. code-block:: python
 
     query.lonlat_box(north=43, south=35, east=-100, west=-111).time(datetime.utcnow())
@@ -115,7 +116,6 @@ our requested variable, as well as the coordinate variables (needed to properly 
 the data).
 
 
-
 .. code-block:: python
 
     data = ncss.get_data(query)
@@ -127,14 +127,15 @@ the data).
 
 .. rst-class:: sphx-glr-script-out
 
- Out::
+ Out:
+
+ .. code-block:: none
 
     ['Temperature_surface', 'reftime1', 'time1', 'lat', 'lon']
 
 
 We'll pull out the useful variables for temperature, latitude, and longitude, and time
 (which is the time, in hours since the forecast run).
-
 
 
 .. code-block:: python
@@ -155,7 +156,6 @@ We'll pull out the useful variables for temperature, latitude, and longitude, an
 
 
 Now we make our data suitable for plotting.
-
 
 
 .. code-block:: python
@@ -182,7 +182,6 @@ Now we make our data suitable for plotting.
 
 
 Now we can plot these up using matplotlib and cartopy.
-
 
 
 .. code-block:: python
@@ -216,18 +215,22 @@ Now we can plot these up using matplotlib and cartopy.
 
 
 .. image:: /examples/ncss/images/sphx_glr_NCSS_Cartopy_Example_001.png
-    :align: center
+    :class: sphx-glr-single-img
 
 
 
 
-**Total running time of the script:** ( 0 minutes  1.739 seconds)
+**Total running time of the script:** ( 0 minutes  6.163 seconds)
 
+
+.. _sphx_glr_download_examples_ncss_NCSS_Cartopy_Example.py:
 
 
 .. only :: html
 
  .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
 
 
   .. container:: sphx-glr-download

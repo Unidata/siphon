@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>siphon.catalog &mdash; Siphon 0.6</title>
+  <title>siphon.catalog &mdash; Siphon 0.7</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Siphon 0.6" href="../../index.html"/>
+    <link rel="top" title="Siphon 0.7" href="../../index.html"/>
         <link rel="up" title="Module code" href="../index.html"/> 
 
   
@@ -77,7 +77,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.6</option>
+                      <option value=''>0.7</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -203,7 +203,7 @@
     <span class="c1"># Python 3</span>
     <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">urlparse</span>
 
-<span class="kn">from</span> <span class="nn">.http_util</span> <span class="k">import</span> <span class="n">create_http_session</span><span class="p">,</span> <span class="n">urlopen</span>
+<span class="kn">from</span> <span class="nn">.http_util</span> <span class="k">import</span> <span class="n">session_manager</span>
 <span class="kn">from</span> <span class="nn">.metadata</span> <span class="k">import</span> <span class="n">TDSCatalogMetadata</span>
 
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
@@ -320,6 +320,90 @@
     <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span></div>
 
 
+<span class="k">def</span> <span class="nf">_try_lower</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">arg</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Could not convert </span><span class="si">%s</span><span class="s1"> to lowercase.&#39;</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">arg</span>
+
+
+<div class="viewcode-block" id="CaseInsensitiveStr"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveStr">[docs]</a><span class="k">class</span> <span class="nc">CaseInsensitiveStr</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extend ``str`` to use case-insensitive comparison and lookup.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CaseInsensitiveStr.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveStr.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create str with a _lowered property.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span> <span class="o">=</span> <span class="n">_try_lower</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Hash str using _lowered property.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive equal to self.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">,</span> <span class="n">_try_lower</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive greater than self.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">,</span> <span class="n">_try_lower</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive greater than or equal to self.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">,</span> <span class="n">_try_lower</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive less than self.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">,</span> <span class="n">_try_lower</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive less than or equal to to self.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">,</span> <span class="n">_try_lower</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive unequal to self.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">,</span> <span class="n">_try_lower</span><span class="p">(</span><span class="n">other</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="CaseInsensitiveDict"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveDict">[docs]</a><span class="k">class</span> <span class="nc">CaseInsensitiveDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extend ``dict`` to use a case-insensitive key set.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CaseInsensitiveDict.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveDict.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a dict with a set of lowercase keys.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_keys_to_lower</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive equal to self.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return value from case-insensitive lookup of ``key``.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set value with lowercase ``key``.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete value associated with case-insensitive lookup of ``key``.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__delitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if key set includes case-insensitive ``key``.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+
+<div class="viewcode-block" id="CaseInsensitiveDict.pop"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveDict.pop">[docs]</a>    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove and return the value associated with case-insensitive ``key``.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span></div>
+
+    <span class="k">def</span> <span class="nf">_keys_to_lower</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert key set to lowercase.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__delitem__</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">val</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="TDSCatalog"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.TDSCatalog">[docs]</a><span class="k">class</span> <span class="nc">TDSCatalog</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parse information from a THREDDS Client Catalog.</span>
@@ -351,7 +435,7 @@
 <span class="sd">            The URL of a THREDDS client catalog</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">session</span> <span class="o">=</span> <span class="n">create_http_session</span><span class="p">()</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="n">session_manager</span><span class="o">.</span><span class="n">create_session</span><span class="p">()</span>
 
         <span class="c1"># get catalog.xml file</span>
         <span class="n">resp</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span>
@@ -406,7 +490,8 @@
             <span class="k">elif</span> <span class="p">(</span><span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;metadata&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_process_metadata</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">tag_type</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;service&#39;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;Compound&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">])</span>\
+                        <span class="o">!=</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;Compound&#39;</span><span class="p">):</span>
                     <span class="c1"># we do not want to process single services if they</span>
                     <span class="c1"># are already contained within a compound service, so</span>
                     <span class="c1"># we need to skip over those cases.</span>
@@ -533,12 +618,14 @@
 <span class="sd">        The name of the :class:`Dataset` element</span>
 <span class="sd">    url_path : str</span>
 <span class="sd">        url to the accessible dataset</span>
-<span class="sd">    access_urls : dict[str, str]</span>
+<span class="sd">    access_urls : CaseInsensitiveDict[str, str]</span>
 <span class="sd">        A dictionary of access urls whose keywords are the access service</span>
 <span class="sd">        types defined in the catalog (for example, &quot;OPENDAP&quot;, &quot;NetcdfSubset&quot;,</span>
 <span class="sd">        &quot;WMS&quot;, etc.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ncssServiceNames</span> <span class="o">=</span> <span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;NetcdfSubset&#39;</span><span class="p">),</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;NetcdfServer&#39;</span><span class="p">))</span>
 
 <div class="viewcode-block" id="Dataset.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_node</span><span class="p">,</span> <span class="n">catalog_url</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize the Dataset object.</span>
@@ -586,7 +673,7 @@
         <span class="k">if</span> <span class="n">catalog_url</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
             <span class="n">resolver_base</span> <span class="o">=</span> <span class="n">catalog_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;catalog.xml&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">resolver_url</span> <span class="o">=</span> <span class="n">resolver_base</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span>
-            <span class="n">resolver_xml</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">resolver_url</span><span class="p">)</span>
+            <span class="n">resolver_xml</span> <span class="o">=</span> <span class="n">session_manager</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">resolver_url</span><span class="p">)</span>
             <span class="n">tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">resolver_xml</span><span class="p">)</span>
             <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
             <span class="k">if</span> <span class="s1">&#39;name&#39;</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
@@ -621,7 +708,7 @@
 <span class="sd">            Metadata from the :class:`TDSCatalog`</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">all_service_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">all_service_dict</span> <span class="o">=</span> <span class="n">CaseInsensitiveDict</span><span class="p">({})</span>
         <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">all_services</span><span class="p">:</span>
             <span class="n">all_service_dict</span><span class="p">[</span><span class="n">service</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">service</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">CompoundService</span><span class="p">):</span>
@@ -630,7 +717,7 @@
 
         <span class="n">service_name</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;serviceName&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-        <span class="n">access_urls</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">access_urls</span> <span class="o">=</span> <span class="n">CaseInsensitiveDict</span><span class="p">({})</span>
         <span class="n">server_url</span> <span class="o">=</span> <span class="n">_find_base_tds_url</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span>
 
         <span class="c1"># process access urls for datasets that reference top</span>
@@ -665,15 +752,17 @@
         <span class="n">url_path</span> <span class="o">=</span> <span class="n">access_element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;urlPath&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">access_element_info</span><span class="p">[</span><span class="n">service_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">url_path</span></div>
 
-<div class="viewcode-block" id="Dataset.download"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.download">[docs]</a>    <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.download"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.download">[docs]</a>    <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Download the dataset to a local file.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        filename : str</span>
+<span class="sd">        filename : str, optional</span>
 <span class="sd">            The full path to which the dataset will be saved</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote_open</span><span class="p">()</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
                 <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">())</span></div>
@@ -691,7 +780,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="s1">&#39;HTTPServer&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Dataset.remote_access"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.remote_access">[docs]</a>    <span class="k">def</span> <span class="nf">remote_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.remote_access"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.remote_access">[docs]</a>    <span class="k">def</span> <span class="nf">remote_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_xarray</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Access the remote dataset.</span>
 
 <span class="sd">        Open the remote dataset and get a netCDF4-compatible `Dataset` object providing</span>
@@ -712,10 +801,10 @@
         <span class="k">if</span> <span class="n">service</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">service</span> <span class="o">=</span> <span class="s1">&#39;CdmRemote&#39;</span> <span class="k">if</span> <span class="s1">&#39;CdmRemote&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span> <span class="k">else</span> <span class="s1">&#39;OPENDAP&#39;</span>
 
-        <span class="k">if</span> <span class="n">service</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;CdmRemote&#39;</span><span class="p">,</span> <span class="s1">&#39;OPENDAP&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">service</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;CdmRemote&#39;</span><span class="p">),</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;OPENDAP&#39;</span><span class="p">)):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not a valid service for remote_access&#39;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="n">service</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">use_xarray</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Dataset.subset"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.subset">[docs]</a>    <span class="k">def</span> <span class="nf">subset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Subset the dataset.</span>
@@ -725,7 +814,9 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        service : str, optional</span>
-<span class="sd">            The name of the service for subsetting the dataset. Defaults to &#39;NetcdfSubset&#39;.</span>
+<span class="sd">            The name of the service for subsetting the dataset. Defaults to &#39;NetcdfSubset&#39;</span>
+<span class="sd">            or &#39;NetcdfServer&#39;, in that order, depending on the services listed in the</span>
+<span class="sd">            catalog.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -733,14 +824,19 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">service</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">service</span> <span class="o">=</span> <span class="s1">&#39;NetcdfSubset&#39;</span>
-
-        <span class="k">if</span> <span class="n">service</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;NetcdfSubset&#39;</span><span class="p">,):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not a valid service for subset&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">serviceName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncssServiceNames</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">serviceName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span><span class="p">:</span>
+                    <span class="n">service</span> <span class="o">=</span> <span class="n">serviceName</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Subset access is not available for this dataset.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">service</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncssServiceNames</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not a valid service for subset. Options are: &#39;</span> <span class="o">+</span>
+                             <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ncssServiceNames</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="n">service</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Dataset.access_with_service"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.access_with_service">[docs]</a>    <span class="k">def</span> <span class="nf">access_with_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.access_with_service"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.access_with_service">[docs]</a>    <span class="k">def</span> <span class="nf">access_with_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">use_xarray</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Access the dataset using a particular service.</span>
 
 <span class="sd">        Return an Python object capable of communicating with the server using the particular</span>
@@ -757,20 +853,36 @@
 <span class="sd">            An instance appropriate for communicating using ``service``.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;CdmRemote&#39;</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">.cdmr</span> <span class="k">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">CDMRDataset</span>
-            <span class="n">provider</span> <span class="o">=</span> <span class="n">CDMRDataset</span>
+            <span class="k">if</span> <span class="n">use_xarray</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">.cdmr.xarray_support</span> <span class="k">import</span> <span class="n">CDMRemoteStore</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+                    <span class="n">provider</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">url</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">CDMRemoteStore</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>  <span class="c1"># noqa: E731</span>
+                <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;CdmRemote access needs xarray to be installed.&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">.cdmr</span> <span class="k">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">CDMRDataset</span>
+                <span class="n">provider</span> <span class="o">=</span> <span class="n">CDMRDataset</span>
         <span class="k">elif</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;OPENDAP&#39;</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="kn">from</span> <span class="nn">netCDF4</span> <span class="k">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">NC4Dataset</span>
-                <span class="n">provider</span> <span class="o">=</span> <span class="n">NC4Dataset</span>
-            <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;OPENDAP access requires netCDF4-python to be installed.&#39;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;NetcdfSubset&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">use_xarray</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+                    <span class="n">provider</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span>
+                <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;xarray to be installed if `use_xarray` is True.&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="kn">from</span> <span class="nn">netCDF4</span> <span class="k">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">NC4Dataset</span>
+                    <span class="n">provider</span> <span class="o">=</span> <span class="n">NC4Dataset</span>
+                <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;OPENDAP access needs netCDF4-python to be installed.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">service</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncssServiceNames</span><span class="p">:</span>
             <span class="kn">from</span> <span class="nn">.ncss</span> <span class="k">import</span> <span class="n">NCSS</span>
             <span class="n">provider</span> <span class="o">=</span> <span class="n">NCSS</span>
         <span class="k">elif</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;HTTPServer&#39;</span><span class="p">:</span>
-            <span class="n">provider</span> <span class="o">=</span> <span class="n">urlopen</span>
+            <span class="n">provider</span> <span class="o">=</span> <span class="n">session_manager</span><span class="o">.</span><span class="n">urlopen</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not an access method supported by Siphon&#39;</span><span class="p">)</span>
 
@@ -808,7 +920,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">service_type</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service_type</span> <span class="o">=</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;base&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span> <span class="o">=</span> <span class="p">{}</span></div>
 
@@ -842,7 +954,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">service_type</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service_type</span> <span class="o">=</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;base&#39;</span><span class="p">]</span>
         <span class="n">services</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">subservices</span> <span class="o">=</span> <span class="mi">0</span>
@@ -911,7 +1023,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Apr 03, 2018 at 19:48:16.
+      Last updated on Aug 14, 2018 at 18:17:43.
 
     </p>
   </div>
@@ -948,7 +1060,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.6.1+104.g9f7bf0f',
+            VERSION:'0.7.0+54.g4910d1e',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

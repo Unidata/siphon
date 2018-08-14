@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation Guide &mdash; Siphon 0.6</title>
+  <title>Installation Guide &mdash; Siphon 0.7</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Siphon 0.6" href="index.html"/>
+    <link rel="top" title="Siphon 0.7" href="index.html"/>
         <link rel="next" title="The Siphon API" href="api/index.html"/>
         <link rel="prev" title="Siphon" href="index.html"/> 
 
@@ -78,7 +78,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.6</option>
+                      <option value=''>0.7</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -116,6 +116,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#python-2-7-support">Python 2.7 Support</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
@@ -193,15 +194,42 @@
             
   <div class="section" id="installation-guide">
 <h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="python-2-7-support">
+<span id="python27"></span><h2>Python 2.7 Support<a class="headerlink" href="#python-2-7-support" title="Permalink to this headline">¶</a></h2>
+<p>In the Fall 2019, we will be dropping support for Python 2.7. This follows movement from
+other packages within the <a class="reference external" href="http://python3statement.org/">scientific Python ecosystem</a>.
+This includes:</p>
+<ul class="simple">
+<li>Core Python developers will
+<a class="reference external" href="https://pythonclock.org/">stop support for Python 2.7 January 1, 2020</a></li>
+<li>NumPy feature releases will be
+<a class="reference external" href="http://www.numpy.org/neps/nep-0014-dropping-python2.7-proposal.html">Python 3 only starting January 1, 2019</a>,
+and support for the last release supporting Python 2 will end January 1, 2020.</li>
+<li>XArray will drop
+<a class="reference external" href="https://github.com/pydata/xarray/issues/1830">2.7 January 1, 2019 as well</a></li>
+<li>Matplotlib’s 3.0 release, tentatively Summer 2018,
+<a class="reference external" href="https://mail.python.org/pipermail/matplotlib-devel/2017-October/000892.html">will be Python 3 only</a>;
+the current 2.2 release will be the last long term release that supports 2.7, and its support
+will cease January 1, 2020.</li>
+</ul>
+<p>The last release of Siphon before this time (Spring or Summer 2019) will be the last that
+support Python 2.7. This version of Siphon will <strong>not</strong> receive any long term support or
+additional bug fix releases after the next minor release. The packages for this version <em>will</em>
+remain available on Conda or PyPI.</p>
+</div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Siphon supports Python 2.7 as well as Python &gt;= 3.4. Python 3.6 is the recommended version.</p>
+<p>In general, Siphon tries to support minor versions of dependencies released within the last two
+years. For Python itself, that means supporting the last two minor releases, as well as
+currently supporting Python 2.7.</p>
 <dl class="docutils">
-<dt>Siphon requires the following packages:</dt>
+<dt>Siphon currently supports the following versions of required dependencies:</dt>
 <dd><ul class="first last simple">
 <li>requests &gt;= 1.2</li>
 <li>numpy &gt;= 1.8.0</li>
 <li>protobuf &gt;= 3.0.0</li>
+<li>beautifulsoup4&gt;=4.6</li>
+<li>pandas</li>
 </ul>
 </dd>
 <dt>Installation Instructions for NumPy can be found at:</dt>
@@ -251,7 +279,7 @@ the base of the source directory, run:</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Apr 03, 2018 at 19:48:16.
+      Last updated on Aug 14, 2018 at 18:17:43.
 
     </p>
   </div>
@@ -288,7 +316,7 @@ the base of the source directory, run:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.6.1+104.g9f7bf0f',
+            VERSION:'0.7.0+54.g4910d1e',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

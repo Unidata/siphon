@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>siphon.catalog &mdash; Siphon 0.6</title>
+  <title>siphon.catalog &mdash; Siphon 0.7</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Siphon 0.6" href="../index.html"/>
+    <link rel="top" title="Siphon 0.7" href="../index.html"/>
         <link rel="up" title="The Siphon API" href="index.html"/>
         <link rel="next" title="siphon.metadata" href="metadata.html"/>
         <link rel="prev" title="The Siphon API" href="index.html"/> 
@@ -79,7 +79,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.6</option>
+                      <option value=''>0.7</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -126,6 +126,10 @@
 <li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.iastate"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.igra2"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.acis"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.ndbc"><code class="docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -206,6 +210,36 @@
 <p>Code to support reading and parsing catalog files from a THREDDS Data Server (TDS).</p>
 <p>They help identifying the latest dataset and finding proper URLs to access the data.</p>
 <dl class="class">
+<dt id="siphon.catalog.CaseInsensitiveDict">
+<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">CaseInsensitiveDict</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend <code class="docutils literal notranslate"><span class="pre">dict</span></code> to use a case-insensitive key set.</p>
+<dl class="method">
+<dt id="siphon.catalog.CaseInsensitiveDict.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveDict.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveDict.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a dict with a set of lowercase keys.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="siphon.catalog.CaseInsensitiveDict.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><em>key</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveDict.pop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveDict.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove and return the value associated with case-insensitive <code class="docutils literal notranslate"><span class="pre">key</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="siphon.catalog.CaseInsensitiveStr">
+<em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">CaseInsensitiveStr</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveStr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveStr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend <code class="docutils literal notranslate"><span class="pre">str</span></code> to use case-insensitive comparison and lookup.</p>
+<dl class="method">
+<dt id="siphon.catalog.CaseInsensitiveStr.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveStr.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveStr.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create str with a _lowered property.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="siphon.catalog.CatalogRef">
 <em class="property">class </em><code class="descclassname">siphon.catalog.</code><code class="descname">CatalogRef</code><span class="sig-paren">(</span><em>base_url</em>, <em>element_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CatalogRef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.CatalogRef" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object for holding catalog references obtained from a THREDDS Client Catalog.</p>
@@ -236,8 +270,8 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>base_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – URL to the base catalog that owns this reference</li>
-<li><strong>element_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a catalogRef node</li>
+<li><strong>base_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – URL to the base catalog that owns this reference</li>
+<li><strong>element_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a catalogRef node</li>
 </ul>
 </td>
 </tr>
@@ -294,7 +328,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a compound service node</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a compound service node</td>
 </tr>
 </tbody>
 </table>
@@ -329,7 +363,7 @@ a resolver.</p>
 <dl class="attribute">
 <dt id="siphon.catalog.Dataset.access_urls">
 <code class="descname">access_urls</code><a class="headerlink" href="#siphon.catalog.Dataset.access_urls" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>dict[str, str]</em> – A dictionary of access urls whose keywords are the access service
+<dd><p><em>CaseInsensitiveDict[str, str]</em> – A dictionary of access urls whose keywords are the access service
 types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 “WMS”, etc.</p>
 </dd></dl>
@@ -343,8 +377,8 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a Dataset node</li>
-<li><strong>catalog_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – The top level server url</li>
+<li><strong>element_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a Dataset node</li>
+<li><strong>catalog_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The top level server url</li>
 </ul>
 </td>
 </tr>
@@ -354,7 +388,7 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 
 <dl class="method">
 <dt id="siphon.catalog.Dataset.access_with_service">
-<code class="descname">access_with_service</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.access_with_service"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.access_with_service" title="Permalink to this definition">¶</a></dt>
+<code class="descname">access_with_service</code><span class="sig-paren">(</span><em>service</em>, <em>use_xarray=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.access_with_service"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.access_with_service" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access the dataset using a particular service.</p>
 <p>Return an Python object capable of communicating with the server using the particular
 service. For instance, for ‘HTTPServer’ this is a file-like object capable of
@@ -363,7 +397,7 @@ HTTP communication; for OPENDAP this is a netCDF4 dataset.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – The name of the service for accessing the dataset</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the service for accessing the dataset</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
@@ -381,13 +415,13 @@ HTTP communication; for OPENDAP this is a netCDF4 dataset.</p>
 
 <dl class="method">
 <dt id="siphon.catalog.Dataset.download">
-<code class="descname">download</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.download" title="Permalink to this definition">¶</a></dt>
+<code class="descname">download</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.download" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download the dataset to a local file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – The full path to which the dataset will be saved</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – The full path to which the dataset will be saved</td>
 </tr>
 </tbody>
 </table>
@@ -402,9 +436,9 @@ HTTP communication; for OPENDAP this is a netCDF4 dataset.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>catalog_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – The top level server url</li>
+<li><strong>catalog_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The top level server url</li>
 <li><strong>all_services</strong> (<em>List</em><em>[</em><a class="reference internal" href="#siphon.catalog.SimpleService" title="siphon.catalog.SimpleService"><em>SimpleService</em></a><em>]</em>) – list of <a class="reference internal" href="#siphon.catalog.SimpleService" title="siphon.catalog.SimpleService"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleService</span></code></a> objects associated with the dataset</li>
-<li><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – Metadata from the <a class="reference internal" href="#siphon.catalog.TDSCatalog" title="siphon.catalog.TDSCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">TDSCatalog</span></code></a></li>
+<li><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Metadata from the <a class="reference internal" href="#siphon.catalog.TDSCatalog" title="siphon.catalog.TDSCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">TDSCatalog</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -414,7 +448,7 @@ HTTP communication; for OPENDAP this is a netCDF4 dataset.</p>
 
 <dl class="method">
 <dt id="siphon.catalog.Dataset.remote_access">
-<code class="descname">remote_access</code><span class="sig-paren">(</span><em>service=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.remote_access"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.remote_access" title="Permalink to this definition">¶</a></dt>
+<code class="descname">remote_access</code><span class="sig-paren">(</span><em>service=None</em>, <em>use_xarray=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.remote_access"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.catalog.Dataset.remote_access" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access the remote dataset.</p>
 <p>Open the remote dataset and get a netCDF4-compatible <a class="reference internal" href="#siphon.catalog.Dataset" title="siphon.catalog.Dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code></a> object providing
 index-based subsetting capabilities.</p>
@@ -422,7 +456,7 @@ index-based subsetting capabilities.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>, </em><em>optional</em>) – The name of the service to use for access to the dataset, either
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – The name of the service to use for access to the dataset, either
 ‘CdmRemote’ or ‘OPENDAP’. Defaults to ‘CdmRemote’.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Object for netCDF4-like access to the dataset</td>
@@ -459,7 +493,7 @@ similar to a local file.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>catalog_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – The catalog url to be resolved</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>catalog_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The catalog url to be resolved</td>
 </tr>
 </tbody>
 </table>
@@ -474,7 +508,9 @@ similar to a local file.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>, </em><em>optional</em>) – The name of the service for subsetting the dataset. Defaults to ‘NetcdfSubset’.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – The name of the service for subsetting the dataset. Defaults to ‘NetcdfSubset’
+or ‘NetcdfServer’, in that order, depending on the services listed in the
+catalog.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
@@ -496,7 +532,7 @@ similar to a local file.</p>
 <dd><p>Filter keys for an item closest to the desired time.</p>
 <p>Loops over all keys in the collection and uses <em class="xref py py-obj">regex</em> to extract and build
 <em class="xref py py-obj">datetime`s. The collection of `datetime`s is compared to `start</em> and the value that
-has a <a class="reference external" href="https://docs.python.org/3/library/datetime.html#module-datetime" title="(in Python v3.6)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datetime</span></code></a> closest to that requested is returned.If none of the keys in the
+has a <a class="reference external" href="https://docs.python.org/3/library/datetime.html#module-datetime" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datetime</span></code></a> closest to that requested is returned.If none of the keys in the
 collection match the regex, indicating that the keys are not date/time-based,
 a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> is raised.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -505,7 +541,7 @@ a <code class="docutils literal notranslate"><span class="pre">ValueError</span>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>time</strong> (<code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code>) – The desired time</li>
-<li><strong>regex</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>, </em><em>optional</em>) – The regular expression to use to extract date/time information from the key. If
+<li><strong>regex</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – The regular expression to use to extract date/time information from the key. If
 given, this should contain named groups: ‘year’, ‘month’, ‘day’, ‘hour’, ‘minute’,
 ‘second’, and ‘microsecond’, as appropriate. When a match is found, any of those
 groups missing from the pattern will be assigned a value of 0. The default pattern
@@ -538,7 +574,7 @@ indicating that the keys are not date/time-based, a <code class="docutils litera
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>start</strong> (<code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code>) – The start of the desired time range, inclusive</li>
 <li><strong>end</strong> (<code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code>) – The end of the desired time range, inclusive</li>
-<li><strong>regex</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>, </em><em>optional</em>) – The regular expression to use to extract date/time information from the key. If
+<li><strong>regex</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – The regular expression to use to extract date/time information from the key. If
 given, this should contain named groups: ‘year’, ‘month’, ‘day’, ‘hour’, ‘minute’,
 ‘second’, and ‘microsecond’, as appropriate. When a match is found, any of those
 groups missing from the pattern will be assigned a value of 0. The default pattern
@@ -596,7 +632,7 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a service node</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a>) – An <a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> representing a service node</td>
 </tr>
 </tbody>
 </table>
@@ -654,7 +690,7 @@ catalog ref title.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>catalog_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – The URL of a THREDDS client catalog</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>catalog_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The URL of a THREDDS client catalog</td>
 </tr>
 </tbody>
 </table>
@@ -679,8 +715,8 @@ Currently only supports the existence of one “latest” dataset.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>catalog_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – The URL of a top level data catalog</li>
-<li><strong>access_method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – desired data access method (i.e. “OPENDAP”, “NetcdfSubset”, “WMS”, etc)</li>
+<li><strong>catalog_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The URL of a top level data catalog</li>
+<li><strong>access_method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – desired data access method (i.e. “OPENDAP”, “NetcdfSubset”, “WMS”, etc)</li>
 </ul>
 </td>
 </tr>
@@ -689,7 +725,7 @@ given catalog using the specified <em class="xref py py-obj">access_method</em>.
 but not always.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)">str</a></p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
 </td>
 </tr>
 </tbody>
@@ -721,7 +757,7 @@ but not always.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Apr 03, 2018 at 19:48:16.
+      Last updated on Aug 14, 2018 at 18:17:43.
 
     </p>
   </div>
@@ -758,7 +794,7 @@ but not always.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.6.1+104.g9f7bf0f',
+            VERSION:'0.7.0+54.g4910d1e',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

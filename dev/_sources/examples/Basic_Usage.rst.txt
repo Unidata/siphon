@@ -1,4 +1,8 @@
+.. note::
+    :class: sphx-glr-download-link-note
 
+    Click :ref:`here <sphx_glr_download_examples_Basic_Usage.py>` to download the full example code
+.. rst-class:: sphx-glr-example-title
 
 .. _sphx_glr_examples_Basic_Usage.py:
 
@@ -13,7 +17,6 @@ This example grabs a remote catalog and prints out the catalog references
 contained within.
 
 
-
 .. code-block:: python
 
 
@@ -21,6 +24,7 @@ contained within.
     from __future__ import print_function
 
     from siphon.catalog import TDSCatalog
+    from siphon.http_util import session_manager
 
 
 
@@ -37,20 +41,41 @@ contained within.
 
 
 
+
 .. rst-class:: sphx-glr-script-out
 
- Out::
+ Out:
+
+ .. code-block:: none
 
     ['Forecast Model Data', 'Forecast Products and Analyses', 'Observation Data', 'Radar Data', 'Satellite Data', 'Unidata case studies']
 
 
-**Total running time of the script:** ( 0 minutes  0.140 seconds)
+Basic HTTP authentication can also be used by using the HTTP session manager
+and setting some default options for HTTP sessions
 
+
+.. code-block:: python
+
+    session_manager.set_session_options(auth=('username', 'password'))
+    cat = TDSCatalog('https://rda.ucar.edu/thredds/catalog.xml')
+
+
+
+
+
+
+**Total running time of the script:** ( 0 minutes  0.475 seconds)
+
+
+.. _sphx_glr_download_examples_Basic_Usage.py:
 
 
 .. only :: html
 
  .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
 
 
   .. container:: sphx-glr-download

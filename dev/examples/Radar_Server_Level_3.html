@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TDS Radar Query Service &mdash; Siphon 0.6</title>
+  <title>TDS Radar Query Service &mdash; Siphon 0.7</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Siphon 0.6" href="../index.html"/>
+    <link rel="top" title="Siphon 0.7" href="../index.html"/>
         <link rel="up" title="Siphon Examples" href="index.html"/>
         <link rel="next" title="NCSS Time Series" href="ncss/NCSS_Timeseries_Examples.html"/>
         <link rel="prev" title="THREDDS Catalog" href="Basic_Usage.html"/> 
@@ -79,7 +79,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.6</option>
+                      <option value=''>0.7</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -125,6 +125,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#ncss">NCSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#national-data-buoy-center-ndbc">National Data Buoy Center (NDBC)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#upper-air">Upper Air</a></li>
 </ul>
 </li>
@@ -200,7 +201,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="tds-radar-query-service">
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Click <a class="reference internal" href="#sphx-glr-download-examples-radar-server-level-3-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="tds-radar-query-service">
 <span id="sphx-glr-examples-radar-server-level-3-py"></span><h1>TDS Radar Query Service<a class="headerlink" href="#tds-radar-query-service" title="Permalink to this headline">¶</a></h1>
 <p>Use Siphon to get NEXRAD Level 3 data from a TDS.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
@@ -219,7 +224,7 @@ available.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;NEXRAD Level II Radar for Case Study CCS039&#39;</span><span class="p">,</span> <span class="s1">&#39;NEXRAD Level II Radar from IDD&#39;</span><span class="p">,</span> <span class="s1">&#39;NEXRAD Level III Radar for Case Study CCS039&#39;</span><span class="p">,</span> <span class="s1">&#39;NEXRAD Level III Radar from IDD&#39;</span><span class="p">,</span> <span class="s1">&#39;TDWR Level III Radar from IDD&#39;</span><span class="p">]</span>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;NEXRAD Level II Radar for Case Study CCS039&#39;, &#39;NEXRAD Level II Radar from IDD&#39;, &#39;NEXRAD Level III Radar for Case Study CCS039&#39;, &#39;NEXRAD Level III Radar from IDD&#39;, &#39;TDWR Level III Radar from IDD&#39;]
 </pre></div>
 </div>
 <p>Now create an instance of RadarServer to point to the appropriate
@@ -233,7 +238,7 @@ radar server access URL. This is pulled from the catalog reference url.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;N0U&#39;</span><span class="p">,</span> <span class="s1">&#39;HHC&#39;</span><span class="p">,</span> <span class="s1">&#39;N0Q&#39;</span><span class="p">,</span> <span class="s1">&#39;NAM&#39;</span><span class="p">,</span> <span class="s1">&#39;N0K&#39;</span><span class="p">,</span> <span class="s1">&#39;N3K&#39;</span><span class="p">,</span> <span class="s1">&#39;N3C&#39;</span><span class="p">,</span> <span class="s1">&#39;DOD&#39;</span><span class="p">,</span> <span class="s1">&#39;N1M&#39;</span><span class="p">,</span> <span class="s1">&#39;NCR&#39;</span><span class="p">,</span> <span class="s1">&#39;NET&#39;</span><span class="p">,</span> <span class="s1">&#39;N2X&#39;</span><span class="p">,</span> <span class="s1">&#39;N0C&#39;</span><span class="p">,</span> <span class="s1">&#39;N2K&#39;</span><span class="p">,</span> <span class="s1">&#39;N3S&#39;</span><span class="p">,</span> <span class="s1">&#39;N1X&#39;</span><span class="p">,</span> <span class="s1">&#39;NVL&#39;</span><span class="p">,</span> <span class="s1">&#39;NBH&#39;</span><span class="p">,</span> <span class="s1">&#39;N0R&#39;</span><span class="p">,</span> <span class="s1">&#39;DU3&#39;</span><span class="p">,</span> <span class="s1">&#39;NBK&#39;</span><span class="p">,</span> <span class="s1">&#39;NBQ&#39;</span><span class="p">,</span> <span class="s1">&#39;NBU&#39;</span><span class="p">,</span> <span class="s1">&#39;N0M&#39;</span><span class="p">,</span> <span class="s1">&#39;N3Q&#39;</span><span class="p">,</span> <span class="s1">&#39;NAU&#39;</span><span class="p">,</span> <span class="s1">&#39;N1U&#39;</span><span class="p">,</span> <span class="s1">&#39;OHA&#39;</span><span class="p">,</span> <span class="s1">&#39;N1S&#39;</span><span class="p">,</span> <span class="s1">&#39;N2H&#39;</span><span class="p">,</span> <span class="s1">&#39;NAQ&#39;</span><span class="p">,</span> <span class="s1">&#39;N2Q&#39;</span><span class="p">,</span> <span class="s1">&#39;DPA&#39;</span><span class="p">,</span> <span class="s1">&#39;PTA&#39;</span><span class="p">,</span> <span class="s1">&#39;N2U&#39;</span><span class="p">,</span> <span class="s1">&#39;N3U&#39;</span><span class="p">,</span> <span class="s1">&#39;N0S&#39;</span><span class="p">,</span> <span class="s1">&#39;NMD&#39;</span><span class="p">,</span> <span class="s1">&#39;NBC&#39;</span><span class="p">,</span> <span class="s1">&#39;NAC&#39;</span><span class="p">,</span> <span class="s1">&#39;N1P&#39;</span><span class="p">,</span> <span class="s1">&#39;NAK&#39;</span><span class="p">,</span> <span class="s1">&#39;N1K&#39;</span><span class="p">,</span> <span class="s1">&#39;N2S&#39;</span><span class="p">,</span> <span class="s1">&#39;N3X&#39;</span><span class="p">,</span> <span class="s1">&#39;EET&#39;</span><span class="p">,</span> <span class="s1">&#39;NBX&#39;</span><span class="p">,</span> <span class="s1">&#39;N0H&#39;</span><span class="p">,</span> <span class="s1">&#39;N2M&#39;</span><span class="p">,</span> <span class="s1">&#39;N0V&#39;</span><span class="p">,</span> <span class="s1">&#39;N2C&#39;</span><span class="p">,</span> <span class="s1">&#39;DSD&#39;</span><span class="p">,</span> <span class="s1">&#39;DSP&#39;</span><span class="p">,</span> <span class="s1">&#39;N0Z&#39;</span><span class="p">,</span> <span class="s1">&#39;DVL&#39;</span><span class="p">,</span> <span class="s1">&#39;N3M&#39;</span><span class="p">,</span> <span class="s1">&#39;NVW&#39;</span><span class="p">,</span> <span class="s1">&#39;N0X&#39;</span><span class="p">,</span> <span class="s1">&#39;DAA&#39;</span><span class="p">,</span> <span class="s1">&#39;NAX&#39;</span><span class="p">,</span> <span class="s1">&#39;NTP&#39;</span><span class="p">,</span> <span class="s1">&#39;DHR&#39;</span><span class="p">,</span> <span class="s1">&#39;DPR&#39;</span><span class="p">,</span> <span class="s1">&#39;NBM&#39;</span><span class="p">,</span> <span class="s1">&#39;N1H&#39;</span><span class="p">,</span> <span class="s1">&#39;NST&#39;</span><span class="p">,</span> <span class="s1">&#39;N1C&#39;</span><span class="p">,</span> <span class="s1">&#39;NAH&#39;</span><span class="p">,</span> <span class="s1">&#39;DU6&#39;</span><span class="p">,</span> <span class="s1">&#39;N1Q&#39;</span><span class="p">,</span> <span class="s1">&#39;DTA&#39;</span><span class="p">,</span> <span class="s1">&#39;N3H&#39;</span><span class="p">}</span>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;N1C&#39;, &#39;N3U&#39;, &#39;NAM&#39;, &#39;DVL&#39;, &#39;N0Z&#39;, &#39;HHC&#39;, &#39;DOD&#39;, &#39;N1Q&#39;, &#39;DSP&#39;, &#39;DU6&#39;, &#39;NBQ&#39;, &#39;N1H&#39;, &#39;DHR&#39;, &#39;N0H&#39;, &#39;N0V&#39;, &#39;N3Q&#39;, &#39;NBX&#39;, &#39;NAX&#39;, &#39;N3S&#39;, &#39;N2M&#39;, &#39;N0S&#39;, &#39;NBH&#39;, &#39;N1S&#39;, &#39;NBM&#39;, &#39;N2S&#39;, &#39;NBU&#39;, &#39;NAC&#39;, &#39;N1K&#39;, &#39;N2Q&#39;, &#39;N0C&#39;, &#39;NBK&#39;, &#39;N0K&#39;, &#39;N3H&#39;, &#39;DPA&#39;, &#39;DPR&#39;, &#39;N3X&#39;, &#39;N0U&#39;, &#39;N2U&#39;, &#39;N2X&#39;, &#39;N1P&#39;, &#39;NAQ&#39;, &#39;N2H&#39;, &#39;N3M&#39;, &#39;N1U&#39;, &#39;N0X&#39;, &#39;N3C&#39;, &#39;OHA&#39;, &#39;NTP&#39;, &#39;N2C&#39;, &#39;NBC&#39;, &#39;N0M&#39;, &#39;N2K&#39;, &#39;N0Q&#39;, &#39;DTA&#39;, &#39;NAH&#39;, &#39;DU3&#39;, &#39;N3K&#39;, &#39;NMD&#39;, &#39;DAA&#39;, &#39;DSD&#39;, &#39;NET&#39;, &#39;PTA&#39;, &#39;EET&#39;, &#39;N0R&#39;, &#39;NST&#39;, &#39;NAU&#39;, &#39;NCR&#39;, &#39;NVL&#39;, &#39;N1M&#39;, &#39;N1X&#39;, &#39;NVW&#39;, &#39;NAK&#39;}
 </pre></div>
 </div>
 <p>Create a new query object to help request the data. Using the chaining
@@ -261,7 +266,7 @@ find one NIDS file in the return.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;Level3_FTG_N0Q_20180403_1943.nids&#39;</span><span class="p">]</span>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;Level3_FTG_N0Q_20180814_1807.nids&#39;]
 </pre></div>
 </div>
 <p>We can pull that dataset out of the dictionary and look at the available access URLs.
@@ -271,7 +276,7 @@ We see URLs for OPeNDAP, CDMRemote, and HTTPServer (direct download).</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;OPENDAP&#39;</span><span class="p">:</span> <span class="s1">&#39;http://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0Q/FTG/20180403/Level3_FTG_N0Q_20180403_1943.nids&#39;</span><span class="p">,</span> <span class="s1">&#39;HTTPServer&#39;</span><span class="p">:</span> <span class="s1">&#39;http://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0Q/FTG/20180403/Level3_FTG_N0Q_20180403_1943.nids&#39;</span><span class="p">,</span> <span class="s1">&#39;CdmRemote&#39;</span><span class="p">:</span> <span class="s1">&#39;http://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0Q/FTG/20180403/Level3_FTG_N0Q_20180403_1943.nids&#39;</span><span class="p">}</span>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;OPENDAP&#39;: &#39;http://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0Q/FTG/20180814/Level3_FTG_N0Q_20180814_1807.nids&#39;, &#39;HTTPServer&#39;: &#39;http://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0Q/FTG/20180814/Level3_FTG_N0Q_20180814_1807.nids&#39;, &#39;CdmRemote&#39;: &#39;http://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0Q/FTG/20180814/Level3_FTG_N0Q_20180814_1807.nids&#39;}
 </pre></div>
 </div>
 <p>We’ll use the CDMRemote reader in Siphon and pass it the appropriate access URL.</p>
@@ -300,9 +305,9 @@ the data itself.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">460</span><span class="p">,</span> <span class="mi">460</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/sphx_glr_Radar_Server_Level_3_001.png" class="align-center" src="../_images/sphx_glr_Radar_Server_Level_3_001.png" />
-<p><strong>Total running time of the script:</strong> ( 0 minutes  1.600 seconds)</p>
-<div class="sphx-glr-footer docutils container">
+<img alt="../_images/sphx_glr_Radar_Server_Level_3_001.png" class="sphx-glr-single-img" src="../_images/sphx_glr_Radar_Server_Level_3_001.png" />
+<p><strong>Total running time of the script:</strong> ( 0 minutes  2.252 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-radar-server-level-3-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../_downloads/Radar_Server_Level_3.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Radar_Server_Level_3.py</span></code></a></div>
 <div class="sphx-glr-download docutils container">
@@ -334,7 +339,7 @@ the data itself.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Apr 03, 2018 at 19:48:16.
+      Last updated on Aug 14, 2018 at 18:17:43.
 
     </p>
   </div>
@@ -371,7 +376,7 @@ the data itself.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.6.1+104.g9f7bf0f',
+            VERSION:'0.7.0+54.g4910d1e',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

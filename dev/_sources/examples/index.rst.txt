@@ -131,6 +131,78 @@ subsets of remote datasets in netCDF format.
 
     <div style='clear:both'></div>
 
+.. _ndbc_examples:
+
+National Data Buoy Center (NDBC)
+--------------------------------
+
+Examples of requesting data from the National Data Buoy Center latest and realtime
+data sources.
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The NDBC keeps a 40-day recent rolling file for each buoy. This examples shows how to access th...">
+
+.. only:: html
+
+    .. figure:: /examples/ndbc/images/thumb/sphx_glr_buoy_type_request_thumb.png
+
+        :ref:`sphx_glr_examples_ndbc_buoy_type_request.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/ndbc/buoy_type_request
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The NDBC keeps a 45-day recent rolling file for each buoy. This examples shows how to access th...">
+
+.. only:: html
+
+    .. figure:: /examples/ndbc/images/thumb/sphx_glr_buoy_met_request_thumb.png
+
+        :ref:`sphx_glr_examples_ndbc_buoy_met_request.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/ndbc/buoy_met_request
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s `simplewebswervice` support query the most recent observ...">
+
+.. only:: html
+
+    .. figure:: /examples/ndbc/images/thumb/sphx_glr_latest_request_thumb.png
+
+        :ref:`sphx_glr_examples_ndbc_latest_request.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/ndbc/latest_request
+.. raw:: html
+
+    <div style='clear:both'></div>
+
 .. _upperair_examples:
 
 Upper Air
@@ -188,6 +260,7 @@ Examples of requesting upper air (balloon) data from the Wyoming data service an
 .. only :: html
 
  .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-gallery
 
 
   .. container:: sphx-glr-download

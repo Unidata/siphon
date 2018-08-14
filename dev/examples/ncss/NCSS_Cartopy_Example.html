@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NCSS and CartoPy &mdash; Siphon 0.6</title>
+  <title>NCSS and CartoPy &mdash; Siphon 0.7</title>
   
 
   
@@ -41,9 +41,9 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Siphon 0.6" href="../../index.html"/>
+    <link rel="top" title="Siphon 0.7" href="../../index.html"/>
         <link rel="up" title="Siphon Examples" href="../index.html"/>
-        <link rel="next" title="Wyoming Upper Air Data Request" href="../upperair/Wyoming_Request.html"/>
+        <link rel="next" title="NDBC Buoy Data Request (of any type)" href="../ndbc/buoy_type_request.html"/>
         <link rel="prev" title="Basic NCSS" href="NCSS_Example.html"/> 
 
   
@@ -79,7 +79,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.6</option>
+                      <option value=''>0.7</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -126,6 +126,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">NCSS and CartoPy</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#national-data-buoy-center-ndbc">National Data Buoy Center (NDBC)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#upper-air">Upper Air</a></li>
 </ul>
 </li>
@@ -201,7 +202,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ncss-and-cartopy">
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Click <a class="reference internal" href="#sphx-glr-download-examples-ncss-ncss-cartopy-example-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="ncss-and-cartopy">
 <span id="sphx-glr-examples-ncss-ncss-cartopy-example-py"></span><h1>NCSS and CartoPy<a class="headerlink" href="#ncss-and-cartopy" title="Permalink to this headline">¶</a></h1>
 <p>Use Siphon to query the NetCDF Subset Service (NCSS) and plot on a map.</p>
 <p>This example uses Siphon’s NCSS class to provide temperature data
@@ -227,7 +232,7 @@ single dataset.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;Best GFS Quarter Degree Forecast Time Series&#39;</span><span class="p">]</span>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;Best GFS Quarter Degree Forecast Time Series&#39;]
 </pre></div>
 </div>
 <p>We pull out this dataset and get the NCSS access point</p>
@@ -261,7 +266,7 @@ the data).</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;Temperature_surface&#39;</span><span class="p">,</span> <span class="s1">&#39;reftime1&#39;</span><span class="p">,</span> <span class="s1">&#39;time1&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">]</span>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;Temperature_surface&#39;, &#39;reftime1&#39;, &#39;time1&#39;, &#39;lat&#39;, &#39;lon&#39;]
 </pre></div>
 </div>
 <p>We’ll pull out the useful variables for temperature, latitude, and longitude, and time
@@ -319,9 +324,9 @@ the data).</p>
         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" class="align-center" src="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" />
-<p><strong>Total running time of the script:</strong> ( 0 minutes  1.739 seconds)</p>
-<div class="sphx-glr-footer docutils container">
+<img alt="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" />
+<p><strong>Total running time of the script:</strong> ( 0 minutes  6.163 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ncss-ncss-cartopy-example-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/NCSS_Cartopy_Example.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">NCSS_Cartopy_Example.py</span></code></a></div>
 <div class="sphx-glr-download docutils container">
@@ -340,7 +345,7 @@ the data).</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../upperair/Wyoming_Request.html" class="btn btn-neutral float-right" title="Wyoming Upper Air Data Request" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../ndbc/buoy_type_request.html" class="btn btn-neutral float-right" title="NDBC Buoy Data Request (of any type)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="NCSS_Example.html" class="btn btn-neutral" title="Basic NCSS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -353,7 +358,7 @@ the data).</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Apr 03, 2018 at 19:48:16.
+      Last updated on Aug 14, 2018 at 18:17:43.
 
     </p>
   </div>
@@ -390,7 +395,7 @@ the data).</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.6.1+104.g9f7bf0f',
+            VERSION:'0.7.0+54.g4910d1e',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
