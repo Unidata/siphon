@@ -1,0 +1,281 @@
+:orphan:
+
+.. _examples-index:
+
+Siphon Examples
+===============
+
+
+.. _general-examples:
+
+General Examples
+----------------
+
+Examples of using Siphon's functionality
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Read a catalog from THREDDS Data Server.">
+
+.. only:: html
+
+    .. figure:: /examples/images/thumb/sphx_glr_Basic_Usage_thumb.png
+
+        :ref:`sphx_glr_examples_Basic_Usage.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Basic_Usage
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to get NEXRAD Level 3 data from a TDS. ">
+
+.. only:: html
+
+    .. figure:: /examples/images/thumb/sphx_glr_Radar_Server_Level_3_thumb.png
+
+        :ref:`sphx_glr_examples_Radar_Server_Level_3.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/Radar_Server_Level_3
+.. raw:: html
+
+    <div style='clear:both'></div>
+
+.. _ncss_examples:
+
+NCSS
+----
+
+Examples of using the netCDF Subset Service (NCSS) to download
+subsets of remote datasets in netCDF format.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service for a timeseries. ">
+
+.. only:: html
+
+    .. figure:: /examples/ncss/images/thumb/sphx_glr_NCSS_Timeseries_Examples_thumb.png
+
+        :ref:`sphx_glr_examples_ncss_NCSS_Timeseries_Examples.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/ncss/NCSS_Timeseries_Examples
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service (NCSS). ">
+
+.. only:: html
+
+    .. figure:: /examples/ncss/images/thumb/sphx_glr_NCSS_Example_thumb.png
+
+        :ref:`sphx_glr_examples_ncss_NCSS_Example.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/ncss/NCSS_Example
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service (NCSS) and plot on a map.">
+
+.. only:: html
+
+    .. figure:: /examples/ncss/images/thumb/sphx_glr_NCSS_Cartopy_Example_thumb.png
+
+        :ref:`sphx_glr_examples_ncss_NCSS_Cartopy_Example.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/ncss/NCSS_Cartopy_Example
+.. raw:: html
+
+    <div style='clear:both'></div>
+
+.. _ndbc_examples:
+
+National Data Buoy Center (NDBC)
+--------------------------------
+
+Examples of requesting data from the National Data Buoy Center latest and realtime
+data sources.
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The NDBC keeps a 40-day recent rolling file for each buoy. This examples shows how to access th...">
+
+.. only:: html
+
+    .. figure:: /examples/ndbc/images/thumb/sphx_glr_buoy_type_request_thumb.png
+
+        :ref:`sphx_glr_examples_ndbc_buoy_type_request.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/ndbc/buoy_type_request
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The NDBC keeps a 45-day recent rolling file for each buoy. This examples shows how to access th...">
+
+.. only:: html
+
+    .. figure:: /examples/ndbc/images/thumb/sphx_glr_buoy_met_request_thumb.png
+
+        :ref:`sphx_glr_examples_ndbc_buoy_met_request.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/ndbc/buoy_met_request
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s `simplewebswervice` support query the most recent observ...">
+
+.. only:: html
+
+    .. figure:: /examples/ndbc/images/thumb/sphx_glr_latest_request_thumb.png
+
+        :ref:`sphx_glr_examples_ndbc_latest_request.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/ndbc/latest_request
+.. raw:: html
+
+    <div style='clear:both'></div>
+
+.. _upperair_examples:
+
+Upper Air
+---------
+
+Examples of requesting upper air (balloon) data from the Wyoming data service and from the Integrated Global Radiosonde Archive.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s `simplewebswervice` support to create a query to the Wyo...">
+
+.. only:: html
+
+    .. figure:: /examples/upperair/images/thumb/sphx_glr_Wyoming_Request_thumb.png
+
+        :ref:`sphx_glr_examples_upperair_Wyoming_Request.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/upperair/Wyoming_Request
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s `simplewebswervice` support to create a query to the Int...">
+
+.. only:: html
+
+    .. figure:: /examples/upperair/images/thumb/sphx_glr_IGRA2_Request_thumb.png
+
+        :ref:`sphx_glr_examples_upperair_IGRA2_Request.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/upperair/IGRA2_Request
+.. raw:: html
+
+    <div style='clear:both'></div>
+
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-gallery
+
+
+  .. container:: sphx-glr-download
+
+    :download:`Download all examples in Python source code: examples_python.zip <//home/travis/build/Unidata/siphon/docs/examples/examples_python.zip>`
+
+
+
+  .. container:: sphx-glr-download
+
+    :download:`Download all examples in Jupyter notebooks: examples_jupyter.zip <//home/travis/build/Unidata/siphon/docs/examples/examples_jupyter.zip>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.readthedocs.io>`_

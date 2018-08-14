@@ -1,0 +1,708 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>siphon.ncss &mdash; Siphon 0.8</title>
+  
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/_modules/siphon/ncss.html"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Siphon 0.8" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Siphon
+          
+
+          
+            
+            <img src="../../_static/siphon_150x150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.8</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installguide.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The Siphon API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Siphon Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Siphon</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Siphon</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>siphon.ncss</li>
+    
+    
+    <li class="source-link">
+        
+    </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for siphon.ncss</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) 2013-2015 Siphon Contributors.</span>
+<span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="sd">&quot;&quot;&quot;Support making data requests to the NetCDF subset service (NCSS) on a TDS.</span>
+
+<span class="sd">This includes forming proper queries as well as parsing the returned data.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">atexit</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="k">import</span> <span class="n">BytesIO</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">remove</span>
+<span class="kn">import</span> <span class="nn">platform</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">.http_util</span> <span class="k">import</span> <span class="n">DataQuery</span><span class="p">,</span> <span class="n">HTTPEndPoint</span><span class="p">,</span> <span class="n">parse_iso_date</span>
+<span class="kn">from</span> <span class="nn">.ncss_dataset</span> <span class="k">import</span> <span class="n">NCSSDataset</span>
+
+
+<div class="viewcode-block" id="default_unit_handler"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.default_unit_handler">[docs]</a><span class="k">def</span> <span class="nf">default_unit_handler</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># pylint:disable=unused-argument</span>
+    <span class="sd">&quot;&quot;&quot;Handle units in the default manner.</span>
+
+<span class="sd">    Ignores units and just returns :func:`numpy.array`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NCSS"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.NCSS">[docs]</a><span class="k">class</span> <span class="nc">NCSS</span><span class="p">(</span><span class="n">HTTPEndPoint</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wrap access to the NetCDF Subset Service (NCSS) on a THREDDS server.</span>
+
+<span class="sd">    Simplifies access via HTTP to the NCSS endpoint. Parses the metadata, provides</span>
+<span class="sd">    data download and parsing based on the appropriate query.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    metadata : NCSSDataset</span>
+<span class="sd">        Contains the result of parsing the NCSS endpoint&#39;s dataset.xml. This has</span>
+<span class="sd">        information about the time and space coverage, as well as full information</span>
+<span class="sd">        about all of the variables.</span>
+<span class="sd">    variables : set(str)</span>
+<span class="sd">        Names of all variables available in this dataset</span>
+<span class="sd">    unit_handler : callable</span>
+<span class="sd">        Function to handle units that come with CSV/XML data. Should be a callable that</span>
+<span class="sd">        takes a list of string values and unit str (can be :data:`None`), and returns the</span>
+<span class="sd">        desired representation of values. Defaults to ignoring units and returning</span>
+<span class="sd">        :func:`numpy.array`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Need staticmethod to keep this from becoming a bound method, where self</span>
+    <span class="c1"># is passed implicitly</span>
+    <span class="n">unit_handler</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">default_unit_handler</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Need to use .content here to avoid decode problems</span>
+        <span class="n">meta_xml</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;dataset.xml&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">meta_xml</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">NCSSDataset</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variables</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span>
+
+<div class="viewcode-block" id="NCSS.query"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.NCSS.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a new query for NCSS.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        query : NCSSQuery</span>
+<span class="sd">            The newly created query</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">NCSSQuery</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="NCSS.validate_query"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.NCSS.validate_query">[docs]</a>    <span class="k">def</span> <span class="nf">validate_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Validate a query.</span>
+
+<span class="sd">        Determines whether `query` is well-formed. This includes checking for all</span>
+<span class="sd">        required parameters, as well as checking parameters for valid values.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        query : NCSSQuery</span>
+<span class="sd">            The query to validate</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        valid : bool</span>
+<span class="sd">            Whether `query` is valid.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Make sure all variables are in the dataset</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">var</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">var</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">query</span><span class="o">.</span><span class="n">var</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NCSS.get_data"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.NCSS.get_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fetch parsed data from a THREDDS server using NCSS.</span>
+
+<span class="sd">        Requests data from the NCSS endpoint given the parameters in `query` and</span>
+<span class="sd">        handles parsing of the returned content based on the mimetype.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        query : NCSSQuery</span>
+<span class="sd">            The parameters to send to the NCSS endpoint</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Parsed data response from the server. Exact format depends on the format of the</span>
+<span class="sd">        response.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        get_data_raw</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response_handlers</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_handler</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NCSS.get_data_raw"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.NCSS.get_data_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_data_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fetch raw data from a THREDDS server using NCSS.</span>
+
+<span class="sd">        Requests data from the NCSS endpoint given the parameters in `query` and</span>
+<span class="sd">        returns the raw bytes of the response.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        query : NCSSQuery</span>
+<span class="sd">            The parameters to send to the NCSS endpoint</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        content : bytes</span>
+<span class="sd">            The raw, un-parsed, data returned by the server</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        get_data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">content</span></div></div>
+
+
+<div class="viewcode-block" id="NCSSQuery"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.NCSSQuery">[docs]</a><span class="k">class</span> <span class="nc">NCSSQuery</span><span class="p">(</span><span class="n">DataQuery</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represent a query to the NetCDF Subset Service (NCSS).</span>
+
+<span class="sd">    Expands on the queries supported by :class:`~siphon.http_util.DataQuery` to add queries</span>
+<span class="sd">    specific to NCSS.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="NCSSQuery.projection_box"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.NCSSQuery.projection_box">[docs]</a>    <span class="k">def</span> <span class="nf">projection_box</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">max_y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a bounding box in projected (native) coordinates to the query.</span>
+
+<span class="sd">        This adds a request for a spatial bounding box, bounded by (`min_x`, `max_x`) for</span>
+<span class="sd">        x direction and (`min_y`, `max_y`) for the y direction. This modifies the query</span>
+<span class="sd">        in-place, but returns ``self`` so that multiple queries can be chained together</span>
+<span class="sd">        on one line.</span>
+
+<span class="sd">        This replaces any existing spatial queries that have been set.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        min_x : float</span>
+<span class="sd">            The left edge of the bounding box</span>
+<span class="sd">        min_y : float</span>
+<span class="sd">            The bottom edge of the bounding box</span>
+<span class="sd">        max_x : float</span>
+<span class="sd">            The right edge of the bounding box</span>
+<span class="sd">        max_y: float</span>
+<span class="sd">            The top edge of the bounding box</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : NCSSQuery</span>
+<span class="sd">            Returns self for chaining calls</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spatial_query</span><span class="p">,</span> <span class="n">minx</span><span class="o">=</span><span class="n">min_x</span><span class="p">,</span> <span class="n">miny</span><span class="o">=</span><span class="n">min_y</span><span class="p">,</span>
+                        <span class="n">maxx</span><span class="o">=</span><span class="n">max_x</span><span class="p">,</span> <span class="n">maxy</span><span class="o">=</span><span class="n">max_y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="NCSSQuery.accept"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.NCSSQuery.accept">[docs]</a>    <span class="k">def</span> <span class="nf">accept</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fmt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set format for data returned from NCSS.</span>
+
+<span class="sd">        This modifies the query in-place, but returns `self` so that multiple queries</span>
+<span class="sd">        can be chained together on one line.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fmt : str</span>
+<span class="sd">            The format to send to the server.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : NCSSQuery</span>
+<span class="sd">            Returns self for chaining calls</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_query_parameter</span><span class="p">(</span><span class="n">accept</span><span class="o">=</span><span class="n">fmt</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NCSSQuery.add_lonlat"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.NCSSQuery.add_lonlat">[docs]</a>    <span class="k">def</span> <span class="nf">add_lonlat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set whether NCSS should add latitude/longitude to returned data.</span>
+
+<span class="sd">        This is only used on grid requests. Used to make returned data CF-compliant.</span>
+<span class="sd">        This modifies the query in-place, but returns `self` so that multiple queries</span>
+<span class="sd">        can be chained together on one line.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        value : bool, optional</span>
+<span class="sd">            Whether to add latitude/longitude information. Defaults to True.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : NCSSQuery</span>
+<span class="sd">            Returns self for chaining calls</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_query_parameter</span><span class="p">(</span><span class="n">addLatLon</span><span class="o">=</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NCSSQuery.strides"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.NCSSQuery.strides">[docs]</a>    <span class="k">def</span> <span class="nf">strides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spatial</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set time and/or spatial (horizontal) strides.</span>
+
+<span class="sd">        This is only used on grid requests. Used to skip points in the returned data.</span>
+<span class="sd">        This modifies the query in-place, but returns `self` so that multiple queries</span>
+<span class="sd">        can be chained together on one line.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        time : int, optional</span>
+<span class="sd">            Stride for times returned. Defaults to None, which is equivalent to 1.</span>
+<span class="sd">        spatial : int, optional</span>
+<span class="sd">            Stride for horizontal grid. Defaults to None, which is equivalent to 1.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : NCSSQuery</span>
+<span class="sd">            Returns self for chaining calls</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">time</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_query_parameter</span><span class="p">(</span><span class="n">timeStride</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">spatial</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_query_parameter</span><span class="p">(</span><span class="n">horizStride</span><span class="o">=</span><span class="n">spatial</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="NCSSQuery.vertical_level"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.NCSSQuery.vertical_level">[docs]</a>    <span class="k">def</span> <span class="nf">vertical_level</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set vertical level for which data should be retrieved.</span>
+
+<span class="sd">        The value depends on the coordinate values for the vertical dimension of the</span>
+<span class="sd">        requested variable.</span>
+
+<span class="sd">        This modifies the query in-place, but returns `self` so that multiple queries</span>
+<span class="sd">        can be chained together on one line.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        level : float</span>
+<span class="sd">            The value of the desired level</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : NCSSQuery</span>
+<span class="sd">            Returns self for chaining calls</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_query_parameter</span><span class="p">(</span><span class="n">vertCoord</span><span class="o">=</span><span class="n">level</span><span class="p">)</span></div></div>
+
+
+<span class="c1">#</span>
+<span class="c1"># The remainder of the file is not considered part of the public API.</span>
+<span class="c1"># Use at your own risk!</span>
+<span class="c1">#</span>
+
+<div class="viewcode-block" id="ResponseRegistry"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.ResponseRegistry">[docs]</a><span class="k">class</span> <span class="nc">ResponseRegistry</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Register functions to be called based on the mimetype in the response headers.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ResponseRegistry.__init__"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.ResponseRegistry.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the registry.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reg</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+<div class="viewcode-block" id="ResponseRegistry.register"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.ResponseRegistry.register">[docs]</a>    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mimetype</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Register a function to handle a particular mimetype.&quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reg</span><span class="p">[</span><span class="n">mimetype</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span>
+            <span class="k">return</span> <span class="n">func</span>
+        <span class="k">return</span> <span class="n">dec</span></div>
+
+<div class="viewcode-block" id="ResponseRegistry.default"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.ResponseRegistry.default">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">units</span><span class="p">):</span>  <span class="c1"># pylint:disable=unused-argument</span>
+        <span class="sd">&quot;&quot;&quot;Handle a mimetype when no function is registered.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">content</span></div>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resp</span><span class="p">,</span> <span class="n">unit_handler</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Process the HTTP response using the appropriate handler.&quot;&quot;&quot;</span>
+        <span class="n">mimetype</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;content-type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mimetype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default</span><span class="p">)(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">unit_handler</span><span class="p">)</span></div>
+
+
+<span class="n">response_handlers</span> <span class="o">=</span> <span class="n">ResponseRegistry</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="squish"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.squish">[docs]</a><span class="k">def</span> <span class="nf">squish</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;If list contains only 1 element, return it instead.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">l</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="combine_dicts"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.combine_dicts">[docs]</a><span class="k">def</span> <span class="nf">combine_dicts</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Combine a list of dictionaries into single one.&quot;&quot;&quot;</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">l</span><span class="p">:</span>
+        <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span></div>
+
+
+<span class="c1"># Parsing of XML returns from NCSS</span>
+<div class="viewcode-block" id="parse_xml"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.parse_xml">[docs]</a><span class="nd">@response_handlers</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;application/xml&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">parse_xml</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">handle_units</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse XML data returned by NCSS.&quot;&quot;&quot;</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">squish</span><span class="p">(</span><span class="n">parse_xml_dataset</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">handle_units</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="parse_xml_point"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.parse_xml_point">[docs]</a><span class="k">def</span> <span class="nf">parse_xml_point</span><span class="p">(</span><span class="n">elem</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse an XML point tag.&quot;&quot;&quot;</span>
+    <span class="n">point</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">units</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+        <span class="n">unit</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;units&#39;</span><span class="p">)</span>
+        <span class="n">point</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="s1">&#39;date&#39;</span> <span class="k">else</span> <span class="n">parse_iso_date</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">unit</span><span class="p">:</span>
+            <span class="n">units</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">unit</span>
+    <span class="k">return</span> <span class="n">point</span><span class="p">,</span> <span class="n">units</span></div>
+
+
+<div class="viewcode-block" id="combine_xml_points"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.combine_xml_points">[docs]</a><span class="k">def</span> <span class="nf">combine_xml_points</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">handle_units</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Combine multiple Point tags into an array.&quot;&quot;&quot;</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">l</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">ret</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">ret</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">handle_units</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">units</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">ret</span></div>
+
+
+<div class="viewcode-block" id="parse_xml_dataset"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.parse_xml_dataset">[docs]</a><span class="k">def</span> <span class="nf">parse_xml_dataset</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">handle_units</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a netCDF-like dataset from XML data.&quot;&quot;&quot;</span>
+    <span class="n">points</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">parse_xml_point</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;point&#39;</span><span class="p">)])</span>
+    <span class="c1"># Group points by the contents of each point</span>
+    <span class="n">datasets</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+        <span class="n">datasets</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+    <span class="n">all_units</span> <span class="o">=</span> <span class="n">combine_dicts</span><span class="p">(</span><span class="n">units</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">combine_xml_points</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">all_units</span><span class="p">,</span> <span class="n">handle_units</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span></div>
+
+
+<span class="c1"># Handling of netCDF 3/4 from NCSS</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">netCDF4</span> <span class="k">import</span> <span class="n">Dataset</span>
+    <span class="kn">from</span> <span class="nn">tempfile</span> <span class="k">import</span> <span class="n">NamedTemporaryFile</span>
+
+<div class="viewcode-block" id="read_netcdf"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.read_netcdf">[docs]</a>    <span class="nd">@response_handlers</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">)</span>
+    <span class="nd">@response_handlers</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf4&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">read_netcdf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">handle_units</span><span class="p">):</span>  <span class="c1"># pylint:disable=unused-argument</span>
+        <span class="sd">&quot;&quot;&quot;Handle HTTP responses in netCDF format.&quot;&quot;&quot;</span>
+        <span class="n">ostype</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">architecture</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">ostype</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;windowspe&#39;</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">tmp_file</span><span class="p">:</span>
+                <span class="n">tmp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="n">tmp_file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+                <span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">deletetempfile</span><span class="p">,</span> <span class="n">tmp_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">tmp_file</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">NamedTemporaryFile</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmp_file</span><span class="p">:</span>
+                <span class="n">tmp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="n">tmp_file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">tmp_file</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span></div>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">warnings</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;netCDF4 module not installed. &#39;</span>
+                  <span class="s1">&#39;Will be unable to handle NetCDF returns from NCSS.&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="deletetempfile"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.deletetempfile">[docs]</a><span class="k">def</span> <span class="nf">deletetempfile</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Delete a temporary file.</span>
+
+<span class="sd">    Warn on any exceptions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">remove</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">warnings</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;temporary netcdf dataset file not deleted. &#39;</span>
+                      <span class="s1">&#39;to delete temporary dataset file in the future &#39;</span>
+                      <span class="s1">&#39;be sure to use dataset.close() when finished.&#39;</span><span class="p">)</span></div>
+
+
+<span class="c1"># Parsing of CSV data returned from NCSS</span>
+<div class="viewcode-block" id="parse_csv_response"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.parse_csv_response">[docs]</a><span class="nd">@response_handlers</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">parse_csv_response</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">unit_handler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Handle CSV-formatted HTTP responses.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">squish</span><span class="p">([</span><span class="n">parse_csv_dataset</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">unit_handler</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)])</span></div>
+
+
+<div class="viewcode-block" id="parse_csv_header"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.parse_csv_header">[docs]</a><span class="k">def</span> <span class="nf">parse_csv_header</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse the CSV header returned by TDS.&quot;&quot;&quot;</span>
+    <span class="n">units</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="p">))</span>
+            <span class="k">continue</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="p">[:</span><span class="n">start</span><span class="p">]))</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+        <span class="n">unitstr</span> <span class="o">=</span> <span class="n">var</span><span class="p">[</span><span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+        <span class="n">eq</span> <span class="o">=</span> <span class="n">unitstr</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">eq</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># go past = and &quot;, skip final &quot;</span>
+            <span class="n">units</span><span class="p">[</span><span class="n">names</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">unitstr</span><span class="p">[</span><span class="n">eq</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">names</span><span class="p">,</span> <span class="n">units</span></div>
+
+
+<div class="viewcode-block" id="parse_csv_dataset"><a class="viewcode-back" href="../../api/ncss.html#siphon.ncss.parse_csv_dataset">[docs]</a><span class="k">def</span> <span class="nf">parse_csv_dataset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">handle_units</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse CSV data into a netCDF-like dataset.&quot;&quot;&quot;</span>
+    <span class="n">fobj</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">names</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="n">parse_csv_header</span><span class="p">(</span><span class="n">fobj</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+    <span class="n">arrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">fobj</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                         <span class="n">converters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">parse_iso_date</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))})</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">arrs</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">fields</span><span class="p">:</span>
+        <span class="n">dat</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">f</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">dat</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">object</span><span class="p">:</span>
+            <span class="n">dat</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">handle_units</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">units</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">d</span></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Aug 14, 2018 at 21:17:04.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<p>Do you enjoy using Siphon?
+  <a href="https://saythanks.io/to/unidata" class="btn btn-neutral" title="Installation Guide" accesskey="n">Say Thanks!</a>
+</p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

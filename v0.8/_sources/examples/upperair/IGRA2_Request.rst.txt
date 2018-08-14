@@ -1,0 +1,330 @@
+.. note::
+    :class: sphx-glr-download-link-note
+
+    Click :ref:`here <sphx_glr_download_examples_upperair_IGRA2_Request.py>` to download the full example code
+.. rst-class:: sphx-glr-example-title
+
+.. _sphx_glr_examples_upperair_IGRA2_Request.py:
+
+
+IGRA2 Upper Air Data Request
+==============================
+
+This example shows how to use siphon's `simplewebswervice` support to create a
+query to the Integrated Global Radiosonde Archive version 2.
+
+
+.. code-block:: python
+
+
+    from datetime import datetime
+
+    from siphon.simplewebservice.igra2 import IGRAUpperAir
+
+
+
+
+
+
+
+Create a datetime object for the sounding and string of the station identifier.
+
+
+.. code-block:: python
+
+    date = datetime(2014, 9, 10, 0)
+    station = 'USM00070026'
+
+
+
+
+
+
+
+Make the request. IGRAUpperAir returns a dataframe containing the sounding data and
+a dataframe with station metadata from the sounding header.
+
+
+.. code-block:: python
+
+    df, header = IGRAUpperAir.request_data(date, station)
+
+
+
+
+
+
+
+Inspect data columns in the dataframe.
+
+
+.. code-block:: python
+
+    print(df.columns)
+
+    # Inspect metadata from the data headers
+    print(header.columns)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Index(['lvltyp1', 'lvltyp2', 'etime', 'pressure', 'pflag', 'height', 'zflag',
+           'temperature', 'tflag', 'relative_humidity', 'direction', 'speed',
+           'date', 'u_wind', 'v_wind', 'dewpoint'],
+          dtype='object')
+    Index(['site_id', 'year', 'month', 'day', 'hour', 'release_time',
+           'number_levels', 'pressure_source_code', 'non_pressure_source_code',
+           'latitude', 'longitude', 'date'],
+          dtype='object')
+
+
+Pull out a specific column of data.
+
+
+.. code-block:: python
+
+    print(df['pressure'])
+    print(header['latitude'])
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    0      1020.95
+    1      1018.16
+    2      1003.21
+    3      1000.00
+    4       983.95
+    5       947.43
+    6       938.76
+    7       932.56
+    8       925.00
+    9       911.84
+    10      905.46
+    11      895.82
+    12      866.93
+    13      856.50
+    14      850.00
+    15      847.10
+    16      831.60
+    17      824.15
+    18      817.16
+    19      812.43
+    20      809.70
+    21      796.87
+    22      758.79
+    23      748.42
+    24      736.53
+    25      729.74
+    26      700.00
+    27      691.76
+    28      676.16
+    29      669.49
+            ...   
+    201        NaN
+    202        NaN
+    203        NaN
+    204        NaN
+    205        NaN
+    206        NaN
+    207        NaN
+    208        NaN
+    209        NaN
+    210        NaN
+    211        NaN
+    212        NaN
+    213        NaN
+    214        NaN
+    215        NaN
+    216        NaN
+    217        NaN
+    218        NaN
+    219        NaN
+    220        NaN
+    221        NaN
+    222        NaN
+    223        NaN
+    224        NaN
+    225        NaN
+    226        NaN
+    227        NaN
+    228        NaN
+    229        NaN
+    230        NaN
+    Name: pressure, Length: 231, dtype: float64
+    0    71.2889
+    Name: latitude, dtype: float64
+
+
+Units are stored in a dictionary with the variable name as the key in the `units`
+attribute of the dataframe.
+
+
+.. code-block:: python
+
+    print(df.units)
+    print(header.units)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    {'etime': 'second', 'pressure': 'hPa', 'height': 'meter', 'temperature': 'degC', 'dewpoint': 'degC', 'direction': 'degrees', 'speed': 'meter / second', 'u_wind': 'meter / second', 'v_wind': 'meter / second'}
+    {'release_time': 'second', 'latitude': 'degrees', 'longitude': 'degrees'}
+
+
+
+.. code-block:: python
+
+    print(df.units['pressure'])
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    hPa
+
+
+Multiple records can be extracted simultaneously:
+
+
+.. code-block:: python
+
+    date = [datetime(2014, 9, 10, 0), datetime(2015, 9, 10, 12)]
+    station = 'USM00070026'
+    df, header = IGRAUpperAir.request_data(date, station)
+
+    print(df.head())
+    print(header.head())
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    lvltyp1  lvltyp2  etime    ...     u_wind  v_wind  dewpoint
+    0        2        1      0    ...       -6.0    -3.9      -1.0
+    1        2        0      5    ...       -6.3    -3.1      -2.5
+    2        2        0     32    ...       -7.5    -0.1      -2.8
+    3        1        0     38    ...       -7.7    -0.3      -2.9
+    4        2        0     69    ...       -9.0    -1.9      -3.1
+
+    [5 rows x 16 columns]
+           site_id  year         ...          longitude                date
+    0  USM00070026  2014         ...          -156.7833 2014-09-10 00:00:00
+    1  USM00070026  2014         ...          -156.7833 2014-09-10 12:00:00
+    2  USM00070026  2014         ...          -156.7833 2014-09-11 00:00:00
+    3  USM00070026  2014         ...          -156.7833 2014-09-11 12:00:00
+    4  USM00070026  2014         ...          -156.7833 2014-09-12 00:00:00
+
+    [5 rows x 12 columns]
+
+
+IGRA2-Derived data can be accessed using the keyword derived=True.
+This data has much more information in the headers.
+
+
+.. code-block:: python
+
+    df, header = IGRAUpperAir.request_data(date, station, derived=True)
+
+
+
+
+
+
+
+Inspect data columns in the dataframe.
+
+
+.. code-block:: python
+
+    print(df.columns)
+    print(header.columns)
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Index(['pressure', 'reported_height', 'calculated_height', 'temperature',
+           'temperature_gradient', 'potential_temperature',
+           'potential_temperature_gradient', 'virtual_temperature',
+           'virtual_potential_temperature', 'vapor_pressure',
+           'saturation_vapor_pressure', 'reported_relative_humidity',
+           'calculated_relative_humidity', 'u_wind', 'u_wind_gradient', 'v_wind',
+           'v_wind_gradient', 'refractive_index', 'date'],
+          dtype='object')
+    Index(['site_id', 'year', 'month', 'day', 'hour', 'release_time',
+           'number_levels', 'precipitable_water', 'inv_pressure', 'inv_height',
+           'inv_strength', 'mixed_layer_pressure', 'mixed_layer_height',
+           'freezing_point_pressure', 'freezing_point_height', 'lcl_pressure',
+           'lcl_height', 'lfc_pressure', 'lfc_height', 'lnb_pressure',
+           'lnb_height', 'lifted_index', 'showalter_index', 'k_index',
+           'total_totals_index', 'cape', 'convective_inhibition', 'date'],
+          dtype='object')
+
+
+**Total running time of the script:** ( 1 minutes  43.634 seconds)
+
+
+.. _sphx_glr_download_examples_upperair_IGRA2_Request.py:
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Python source code: IGRA2_Request.py <IGRA2_Request.py>`
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: IGRA2_Request.ipynb <IGRA2_Request.ipynb>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.readthedocs.io>`_

@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>siphon.http_util &mdash; Siphon 0.8</title>
+  
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/_modules/siphon/http_util.html"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Siphon 0.8" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Siphon
+          
+
+          
+            
+            <img src="../../_static/siphon_150x150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                
+                  <div class="version-dropdown">
+                    <select class="version-list" id="version-list">
+                      <option value=''>0.8</option>
+                      
+                        
+                          <option value="../latest">latest</option>
+                        
+                      
+                        
+                          <option value="../dev">dev</option>
+                        
+                      
+                    </select>
+                  </div>
+                
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installguide.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The Siphon API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Siphon Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Siphon</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Siphon</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>siphon.http_util</li>
+    
+    
+    <li class="source-link">
+        
+    </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for siphon.http_util</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) 2013-2015 Siphon Contributors.</span>
+<span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="sd">&quot;&quot;&quot;Utility code to support making requests using HTTP.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span><span class="p">,</span> <span class="n">tzinfo</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="k">import</span> <span class="n">BytesIO</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">chain</span>
+<span class="kn">import</span> <span class="nn">posixpath</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">urlencode</span><span class="p">,</span> <span class="n">urljoin</span>  <span class="c1"># noqa</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib</span> <span class="k">import</span> <span class="n">urlencode</span>
+    <span class="kn">from</span> <span class="nn">urlparse</span> <span class="k">import</span> <span class="n">urljoin</span>  <span class="c1"># noqa</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">__version__</span>
+
+<span class="n">HTTPError</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">HTTPError</span>
+
+
+<div class="viewcode-block" id="BadQueryError"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.BadQueryError">[docs]</a><span class="k">class</span> <span class="nc">BadQueryError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Exception raised when a query fails.&quot;&quot;&quot;</span></div>
+
+
+<span class="c1"># A UTC class. Taken from standard library docs.</span>
+<div class="viewcode-block" id="UTC"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.UTC">[docs]</a><span class="k">class</span> <span class="nc">UTC</span><span class="p">(</span><span class="n">tzinfo</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represent UTC timezone.&quot;&quot;&quot;</span>
+
+    <span class="n">ZERO</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<div class="viewcode-block" id="UTC.utcoffset"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.UTC.utcoffset">[docs]</a>    <span class="k">def</span> <span class="nf">utcoffset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>  <span class="c1"># pylint:disable=unused-argument</span>
+        <span class="sd">&quot;&quot;&quot;Get the offset from UTC.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ZERO</span></div>
+
+<div class="viewcode-block" id="UTC.tzname"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.UTC.tzname">[docs]</a>    <span class="k">def</span> <span class="nf">tzname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>  <span class="c1"># pylint:disable=unused-argument</span>
+        <span class="sd">&quot;&quot;&quot;Get the name of the timezone.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">r</span><span class="s1">&#39;UTC&#39;</span></div>
+
+<div class="viewcode-block" id="UTC.dst"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.UTC.dst">[docs]</a>    <span class="k">def</span> <span class="nf">dst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>  <span class="c1"># pylint:disable=unused-argument</span>
+        <span class="sd">&quot;&quot;&quot;Get whether the timezone uses Daylight Savings Time.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ZERO</span></div></div>
+
+
+<span class="n">utc</span> <span class="o">=</span> <span class="n">UTC</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="HTTPSessionManager"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.HTTPSessionManager">[docs]</a><span class="k">class</span> <span class="nc">HTTPSessionManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Manage the creation of sessions for HTTP access.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize ``HTTPSessionManager``.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_agent</span> <span class="o">=</span> <span class="s1">&#39;Siphon (</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">__version__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="HTTPSessionManager.set_session_options"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.HTTPSessionManager.set_session_options">[docs]</a>    <span class="k">def</span> <span class="nf">set_session_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set options for created session instances.</span>
+
+<span class="sd">        Takes keyword arguments and sets them as attributes on the returned</span>
+<span class="sd">        :class:`requests.Session` instance.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        create_session</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">kwargs</span></div>
+
+<div class="viewcode-block" id="HTTPSessionManager.create_session"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.HTTPSessionManager.create_session">[docs]</a>    <span class="k">def</span> <span class="nf">create_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a new HTTP session with our user-agent set.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        session : requests.Session</span>
+<span class="sd">            The created session</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        urlopen, set_session_options</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+        <span class="n">ret</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_agent</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="HTTPSessionManager.urlopen"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.HTTPSessionManager.urlopen">[docs]</a>    <span class="k">def</span> <span class="nf">urlopen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;GET a file-like object for a URL using HTTP.</span>
+
+<span class="sd">        This is a thin wrapper around :meth:`requests.Session.get` that returns a file-like</span>
+<span class="sd">        object wrapped around the resulting content.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        url : str</span>
+<span class="sd">            The URL to request</span>
+
+<span class="sd">        kwargs : arbitrary keyword arguments</span>
+<span class="sd">            Additional keyword arguments to pass to :meth:`requests.Session.get`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        fobj : file-like object</span>
+<span class="sd">            A file-like interface to the content in the response</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        :meth:`requests.Session.get`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">BytesIO</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">create_session</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">)</span></div></div>
+
+
+<span class="n">session_manager</span> <span class="o">=</span> <span class="n">HTTPSessionManager</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="parse_iso_date"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.parse_iso_date">[docs]</a><span class="k">def</span> <span class="nf">parse_iso_date</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse a string containing an ISO-8601 formatted date.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    s : str</span>
+<span class="sd">        The string to be parsed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dt : datetime.datetime</span>
+<span class="sd">        The results of parsing the string</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%SZ&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">utc</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DataQuery"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.DataQuery">[docs]</a><span class="k">class</span> <span class="nc">DataQuery</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represent a query for data from a THREDDS server.</span>
+
+<span class="sd">    This object provides a clear API to formulate a query for data, including</span>
+<span class="sd">    a spatial query, a time query, and possibly some variables or other parameters.</span>
+<span class="sd">    These objects provide a dictionary-like interface, (:meth:`items` and :meth:`__iter__`)</span>
+<span class="sd">    sufficient to be passed to functions expecting a dictionary representing a URL query.</span>
+<span class="sd">    Instances of this object can also be turned into a string, which will yield a</span>
+<span class="sd">    properly escaped string for a URL.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct an empty :class:`DataQuery`.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_query</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spatial_query</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_params</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+
+<div class="viewcode-block" id="DataQuery.variables"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.DataQuery.variables">[docs]</a>    <span class="k">def</span> <span class="nf">variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">var_names</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Specify one or more variables for the query.</span>
+
+<span class="sd">        This function ensures that variable names are not repeated.</span>
+
+<span class="sd">        This modifies the query in-place, but returns `self` so that multiple</span>
+<span class="sd">        queries can be chained together on one line.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        var_names : one or more strings</span>
+<span class="sd">            One or more names of variables to request. Use &#39;all&#39; to request all.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : DataQuery</span>
+<span class="sd">            Returns self for chaining calls</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">var_names</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="DataQuery.add_query_parameter"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.DataQuery.add_query_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">add_query_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add arbitrary query element (name=value) to the request.</span>
+
+<span class="sd">        This modifies the query in-place, but returns `self` so that multiple</span>
+<span class="sd">        queries can be chained together on one line.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        kwargs : one or more strings passed as keyword arguments</span>
+<span class="sd">            Names and values of parameters to add to the query</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : DataQuery</span>
+<span class="sd">            Returns self for chaining calls</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="DataQuery.lonlat_box"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.DataQuery.lonlat_box">[docs]</a>    <span class="k">def</span> <span class="nf">lonlat_box</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">west</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">north</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a latitude/longitude bounding box to the query.</span>
+
+<span class="sd">        This adds a request for a spatial bounding box, bounded by (&#39;north&#39;, &#39;south&#39;)</span>
+<span class="sd">        for latitude and (&#39;east&#39;, &#39;west&#39;) for the longitude. This modifies the query</span>
+<span class="sd">        in-place, but returns `self` so that multiple queries can be chained together</span>
+<span class="sd">        on one line.</span>
+
+<span class="sd">        This replaces any existing spatial queries that have been set.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        west: float</span>
+<span class="sd">            The bounding longitude to the west, in degrees east of the prime meridian</span>
+<span class="sd">        east : float</span>
+<span class="sd">            The bounding longitude to the east, in degrees east of the prime meridian</span>
+<span class="sd">        south : float</span>
+<span class="sd">            The bounding latitude to the south, in degrees north of the equator</span>
+<span class="sd">        north : float</span>
+<span class="sd">            The bounding latitude to the north, in degrees north of the equator</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : DataQuery</span>
+<span class="sd">            Returns self for chaining calls</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spatial_query</span><span class="p">,</span> <span class="n">west</span><span class="o">=</span><span class="n">west</span><span class="p">,</span> <span class="n">east</span><span class="o">=</span><span class="n">east</span><span class="p">,</span> <span class="n">south</span><span class="o">=</span><span class="n">south</span><span class="p">,</span>
+                        <span class="n">north</span><span class="o">=</span><span class="n">north</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="DataQuery.lonlat_point"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.DataQuery.lonlat_point">[docs]</a>    <span class="k">def</span> <span class="nf">lonlat_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a latitude/longitude point to the query.</span>
+
+<span class="sd">        This adds a request for a (`lon`, `lat`) point. This modifies the query</span>
+<span class="sd">        in-place, but returns `self` so that multiple queries can be chained together on</span>
+<span class="sd">        one line.</span>
+
+<span class="sd">        This replaces any existing spatial queries that have been set.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        lon: float</span>
+<span class="sd">            The longitude to request</span>
+<span class="sd">        lat : float</span>
+<span class="sd">            The latitude to request</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : DataQuery</span>
+<span class="sd">            Returns self for chaining calls</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spatial_query</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="n">lon</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="n">lat</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="c1"># Helper for resetting a dict</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_set_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DataQuery.all_times"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.DataQuery.all_times">[docs]</a>    <span class="k">def</span> <span class="nf">all_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a request for all times to the query.</span>
+
+<span class="sd">        This adds a request for all times (`temporal=all`). This modifies the query</span>
+<span class="sd">        in-place, but returns `self` so that multiple queries can be chained together on</span>
+<span class="sd">        one line.</span>
+
+<span class="sd">        This replaces any existing temporal queries that have been set.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : DataQuery</span>
+<span class="sd">            Returns self for chaining calls</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_query</span><span class="p">,</span> <span class="n">temporal</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="DataQuery.time"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.DataQuery.time">[docs]</a>    <span class="k">def</span> <span class="nf">time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a request for a specific time to the query.</span>
+
+<span class="sd">        This modifies the query in-place, but returns `self` so that multiple queries</span>
+<span class="sd">        can be chained together on one line.</span>
+
+<span class="sd">        This replaces any existing temporal queries that have been set.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        time : datetime.datetime</span>
+<span class="sd">            The time to request</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : DataQuery</span>
+<span class="sd">            Returns self for chaining calls</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_query</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_format_time</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="DataQuery.time_range"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.DataQuery.time_range">[docs]</a>    <span class="k">def</span> <span class="nf">time_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a request for a time range to the query.</span>
+
+<span class="sd">        This modifies the query in-place, but returns `self` so that multiple queries</span>
+<span class="sd">        can be chained together on one line.</span>
+
+<span class="sd">        This replaces any existing temporal queries that have been set.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : datetime.datetime</span>
+<span class="sd">            The start of the requested time range</span>
+<span class="sd">        end : datetime.datetime</span>
+<span class="sd">            The end of the requested time range</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : DataQuery</span>
+<span class="sd">            Returns self for chaining calls</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_query</span><span class="p">,</span> <span class="n">time_start</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_format_time</span><span class="p">(</span><span class="n">start</span><span class="p">),</span>
+                        <span class="n">time_end</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_format_time</span><span class="p">(</span><span class="n">end</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="c1"># Helper for formatting times appropriately</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_format_time</span><span class="p">(</span><span class="n">dt</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">dt</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return an iterator of the various items (name=value pairs) that compose the query.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        items : iterator</span>
+<span class="sd">            Sequence of tuples of name, value representing the query.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">chain</span><span class="p">([(</span><span class="s1">&#39;var&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">)],</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_query</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+                     <span class="bp">self</span><span class="o">.</span><span class="n">spatial_query</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra_params</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+<div class="viewcode-block" id="DataQuery.items"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.DataQuery.items">[docs]</a>    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the various name=value pairs that compose the query.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        items : iterator</span>
+<span class="sd">            Sequence of tuples of name, value representing the query.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Format query as a urlencoded string.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">urlencode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doseq</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Format query as a urlencoded string.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="HTTPEndPoint"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.HTTPEndPoint">[docs]</a><span class="k">class</span> <span class="nc">HTTPEndPoint</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An object representing an endpoint on a server that is accessed using HTTP.</span>
+
+<span class="sd">    This provides a simple way to point to a URL, formulate appropriate queries and</span>
+<span class="sd">    validate them, parse metadata as appropriate, and parse returns from requests.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create an HTTPEndPoint instance.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        url : str</span>
+<span class="sd">            The base URL for the endpoint</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_base</span> <span class="o">=</span> <span class="n">url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">session_manager</span><span class="o">.</span><span class="n">create_session</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_get_metadata</span><span class="p">()</span>
+
+<div class="viewcode-block" id="HTTPEndPoint.get_query"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.HTTPEndPoint.get_query">[docs]</a>    <span class="k">def</span> <span class="nf">get_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make a GET request, including a query, to the endpoint.</span>
+
+<span class="sd">        The path of the request is to the base URL assigned to the endpoint.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        query : DataQuery</span>
+<span class="sd">            The query to pass when making the request</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        resp : requests.Response</span>
+<span class="sd">            The server&#39;s response to the request</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        get_path, get</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HTTPEndPoint.url_path"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.HTTPEndPoint.url_path">[docs]</a>    <span class="k">def</span> <span class="nf">url_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Assemble the full url to a path.</span>
+
+<span class="sd">        Given a path relative to the base URL, assemble the full URL.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            The path, relative to the endpoint</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        url : str</span>
+<span class="sd">            The full URL to `path`</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        get_path</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">posixpath</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_base</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HTTPEndPoint.get_path"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.HTTPEndPoint.get_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make a GET request, optionally including a query, to a relative path.</span>
+
+<span class="sd">        The path of the request includes a path on top of the base URL</span>
+<span class="sd">        assigned to the endpoint.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            The path to request, relative to the endpoint</span>
+<span class="sd">        query : DataQuery, optional</span>
+<span class="sd">            The query to pass when making the request</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        resp : requests.Response</span>
+<span class="sd">            The server&#39;s response to the request</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        get_query, get, url_path</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url_path</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">query</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HTTPEndPoint.get"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.HTTPEndPoint.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make a GET request, optionally including a parameters, to a path.</span>
+
+<span class="sd">        The path of the request is the full URL.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            The URL to request</span>
+<span class="sd">        params : DataQuery, optional</span>
+<span class="sd">            The query to pass when making the request</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        resp : requests.Response</span>
+<span class="sd">            The server&#39;s response to the request</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        HTTPError</span>
+<span class="sd">            If the server returns anything other than a 200 (OK) code</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        get_query, get</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;text/html&#39;</span><span class="p">):</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">reason</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span>
+            <span class="k">raise</span> <span class="n">requests</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">(</span><span class="s1">&#39;Error accessing </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                                     <span class="s1">&#39;Server Error (</span><span class="si">{1:d}</span><span class="s1">: </span><span class="si">{2}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+                                                                        <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+                                                                        <span class="n">text</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">resp</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the metadata associated with the endpoint.</span>
+
+<span class="sd">        It is intended that this be implemented by subclasses as necessary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="HTTPEndPoint.validate_query"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.HTTPEndPoint.validate_query">[docs]</a>    <span class="k">def</span> <span class="nf">validate_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Validate a query.</span>
+
+<span class="sd">        Determines whether a query is well-formed. This includes checking for all</span>
+<span class="sd">        required parameters, as well as checking parameters for valid values.</span>
+
+<span class="sd">        The default implementation does nothing. It is presumed that subclasses</span>
+<span class="sd">        implement this to do more detailed checking as appropriate.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        query : DataQuery (or subclass)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        valid : bool</span>
+<span class="sd">            Whether `query` is valid.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span>  <span class="c1"># Ensure not empty</span></div>
+
+<div class="viewcode-block" id="HTTPEndPoint.query"><a class="viewcode-back" href="../../api/http_util.html#siphon.http_util.HTTPEndPoint.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a new query object.</span>
+
+<span class="sd">        Returns a new :class:`DataQuery` instance appropriate for this endpoint.</span>
+
+<span class="sd">        The default implementation returns a :class:`DataQuery` instance. Subclasses can</span>
+<span class="sd">        override to return a subclass specific to this endpoint.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        valid : bool</span>
+<span class="sd">            Whether `query` is valid.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">DataQuery</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Siphon Contributors.
+      Last updated on Aug 14, 2018 at 21:17:04.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<p>Do you enjoy using Siphon?
+  <a href="https://saythanks.io/to/unidata" class="btn btn-neutral" title="Installation Guide" accesskey="n">Say Thanks!</a>
+</p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
