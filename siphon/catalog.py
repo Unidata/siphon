@@ -595,7 +595,7 @@ class Dataset(object):
         """
         return self.access_with_service('HTTPServer')
 
-    def remote_access(self, service=None):
+    def remote_access(self, service=None, use_xarray=None):
         """Access the remote dataset.
 
         Open the remote dataset and get a netCDF4-compatible `Dataset` object providing
@@ -619,7 +619,7 @@ class Dataset(object):
         if service not in (CaseInsensitiveStr('CdmRemote'), CaseInsensitiveStr('OPENDAP')):
             raise ValueError(service + ' is not a valid service for remote_access')
 
-        return self.access_with_service(service)
+        return self.access_with_service(service, use_xarray)
 
     def subset(self, service=None):
         """Subset the dataset.
@@ -651,7 +651,7 @@ class Dataset(object):
 
         return self.access_with_service(service)
 
-    def access_with_service(self, service):
+    def access_with_service(self, service, use_xarray=None):
         """Access the dataset using a particular service.
 
         Return an Python object capable of communicating with the server using the particular
@@ -670,14 +670,29 @@ class Dataset(object):
         """
         service = CaseInsensitiveStr(service)
         if service == 'CdmRemote':
-            from .cdmr import Dataset as CDMRDataset
-            provider = CDMRDataset
+            if use_xarray:
+                from .cdmr.xarray_support import CDMRemoteStore
+                try:
+                    import xarray as xr
+                    provider = lambda url: xr.open_dataset(CDMRemoteStore(url))  # noqa: E731
+                except ImportError:
+                    raise ImportError('CdmRemote access needs xarray to be installed.')
+            else:
+                from .cdmr import Dataset as CDMRDataset
+                provider = CDMRDataset
         elif service == 'OPENDAP':
-            try:
-                from netCDF4 import Dataset as NC4Dataset
-                provider = NC4Dataset
-            except ImportError:
-                raise ImportError('OPENDAP access requires netCDF4-python to be installed.')
+            if use_xarray:
+                try:
+                    import xarray as xr
+                    provider = xr.open_dataset
+                except ImportError:
+                    raise ImportError('xarray to be installed if `use_xarray` is True.')
+            else:
+                try:
+                    from netCDF4 import Dataset as NC4Dataset
+                    provider = NC4Dataset
+                except ImportError:
+                    raise ImportError('OPENDAP access needs netCDF4-python to be installed.')
         elif service in self.ncssServiceNames:
             from .ncss import NCSS
             provider = NCSS

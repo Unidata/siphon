@@ -73,6 +73,15 @@ def test_dataset_remote_access_cdmr(nids_url):
     assert ds.title == 'Nexrad Level 3 Data'
 
 
+@recorder.use_cassette('cat_to_cdmr')
+def test_dataset_remote_access_cdmr_xarray(nids_url):
+    """Test using the remote_access method to request CDMR using xarray."""
+    cat = TDSCatalog(nids_url)
+    ds = cat.datasets[0].remote_access(use_xarray=True)
+    assert not ds.variables
+    assert ds.attrs['title'] == 'Nexrad Level 3 Data'
+
+
 @recorder.use_cassette('cat_to_open')
 def test_dataset_download(nids_url):
     """Test using the download method to download entire dataset."""
