@@ -454,6 +454,10 @@ class Dataset(object):
 
         """
         self.name = element_node.attrib['name']
+        if 'ID' in element_node.attrib:
+            self.id = element_node.attrib['ID']
+        else:
+            self.id = self.name
         if 'urlPath' in element_node.attrib:
             self.url_path = element_node.attrib['urlPath']
         else:
