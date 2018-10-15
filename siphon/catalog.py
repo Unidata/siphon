@@ -454,10 +454,8 @@ class Dataset(object):
 
         """
         self.name = element_node.attrib['name']
-        if 'urlPath' in element_node.attrib:
-            self.url_path = element_node.attrib['urlPath']
-        else:
-            self.url_path = None
+        self.id = element_node.attrib.get('ID', None)
+        self.url_path = element_node.attrib.get('urlPath', None)
         self.catalog_name = ''
         self.access_element_info = {}
         self._resolved = False
