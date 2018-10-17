@@ -268,9 +268,10 @@ def test_simple_service_within_compound():
     url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/noaaport/text/'
            'tropical/atlantic/hdob/catalog.xml')
     cat = TDSCatalog(url)
-    assert (cat.datasets[0].access_urls ==
-            {'HTTPServer': 'http://thredds-test.unidata.ucar.edu/thredds/fileServer/noaaport/'
-                           'text/tropical/atlantic/hdob/High_density_obs_20170824.txt'})
+    assert (cat.datasets[0].access_urls
+            == {'HTTPServer': 'http://thredds-test.unidata.ucar.edu/thredds/'
+                              'fileServer/noaaport/text/tropical/atlantic/hdob/'
+                              'High_density_obs_20170824.txt'})
 
 
 @recorder.use_cassette('rsmas_ramadda')
