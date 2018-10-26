@@ -1,6 +1,6 @@
-# Copyright (c) 2014-2016 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2014-2016 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Handle binary stream returns in NCStream format."""
 
 from __future__ import print_function
@@ -25,9 +25,8 @@ MAGIC_ERR = b'\xab\xad\xba\xda'
 MAGIC_HEADERCOV = b'\xad\xed\xde\xda'
 MAGIC_DATACOV = b'\xab\xed\xde\xba'
 
+logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger(__name__)
-log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
-log.setLevel(logging.WARNING)
 
 
 #
@@ -356,7 +355,7 @@ def unpack_variable(var):
             data = var.data
         else:
             # Always sent big endian
-            data = np.fromstring(var.data, dtype=dt.newbyteorder('>'))
+            data = np.frombuffer(var.data, dtype=dt.newbyteorder('>'))
     else:
         data = None
 
@@ -382,10 +381,10 @@ def unpack_attribute(att):
     elif att.dataType == stream.STRING:  # Then look for new datatype string
         val = att.sdata
     elif att.dataType:  # Then a non-zero new data type
-        val = np.fromstring(att.data,
+        val = np.frombuffer(att.data,
                             dtype='>' + _dtypeLookup[att.dataType], count=att.len)
     elif att.type:  # Then non-zero old-data type0
-        val = np.fromstring(att.data,
+        val = np.frombuffer(att.data,
                             dtype=_attrConverters[att.type], count=att.len)
     elif att.sdata:  # This leaves both 0, try old string
         val = att.sdata

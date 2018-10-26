@@ -1,6 +1,6 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2015 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Support making data requests to the radar data query service (radar server) on a TDS.
 
 This includes forming proper queries as well as parsing the returned catalog.
@@ -80,7 +80,7 @@ class RadarServer(HTTPEndPoint):
     def _get_metadata(self):
         ds_cat = TDSCatalog(self.url_path('dataset.xml'))
         self.metadata = ds_cat.metadata
-        self.variables = {k.split('/')[0] for k in self.metadata['variables'].keys()}
+        self.variables = {k.split('/')[0] for k in self.metadata['variables']}
         self._get_stations()
 
     def _get_stations(self, station_file='stations.xml'):

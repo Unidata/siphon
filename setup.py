@@ -1,6 +1,6 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2015 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Setup script for installing Siphon."""
 
 from __future__ import print_function
@@ -25,7 +25,7 @@ setup(
     packages=find_packages(),
     author='Unidata Development Team',
     author_email='support-python@unidata.ucar.edu',
-    license='MIT',
+    license='BSD 3-Clause',
     url='https://github.com/Unidata/siphon',
     description=('A collection of Python utilities for interacting with the '
                  'Unidata technology stack.'),
@@ -34,29 +34,28 @@ setup(
                  'Programming Language :: Python :: 2',
                  'Programming Language :: Python :: 2.7',
                  'Programming Language :: Python :: 3',
-                 'Programming Language :: Python :: 3.4',
                  'Programming Language :: Python :: 3.5',
                  'Programming Language :: Python :: 3.6',
                  'Topic :: Scientific/Engineering',
                  'Intended Audience :: Science/Research',
                  'Operating System :: OS Independent',
-                 'License :: OSI Approved :: MIT License'],
+                 'License :: OSI Approved :: BSD License'],
 
     install_requires=dependencies,
     extras_require={
         'netcdf': 'netCDF4>=1.1.0',
         'dev': 'ipython[all]>=3.1',
-        'test': ['pytest', 'pytest-catchlog', 'pytest-flake8', 'pytest-runner',
+        'test': ['pytest', 'pytest-flake8', 'pytest-runner',
                  'netCDF4>=1.1.0',
                  'flake8>3.2.0', 'flake8-builtins', 'flake8-comprehensions',
                  'flake8-copyright', 'flake8-docstrings', 'flake8-import-order',
                  'flake8-mutable', 'flake8-pep3101', 'flake8-print', 'flake8-quotes',
                  'pep8-naming',
-                 'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3', 'xarray>=0.6'],
+                 'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3', 'xarray>=0.10.2'],
         'doc': ['sphinx>=1.3,!=1.6.4', 'sphinx-gallery', 'doc8', 'recommonmark'],
         # SciPy needed for cartopy; we don't use cartopy[plotting] because
         # that will pull in GDAL.
-        'examples': ['matplotlib>=1.3', 'cartopy>=0.13.1', 'scipy']
+        'examples': ['matplotlib>=1.3', 'cartopy>=0.13.1', 'scipy', 'metpy']
     },
 
     download_url='https://github.com/Unidata/siphon/archive/v{}.tar.gz'.format(ver),

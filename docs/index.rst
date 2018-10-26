@@ -1,12 +1,3 @@
-.. Siphon documentation master file, created by
-   sphinx-quickstart on Wed Apr 22 15:27:44 2015.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-.. image:: _static/tds-logo.png
-   :width: 150 px
-   :align: left
-
 .. toctree::
   :maxdepth: 1
   :hidden:
@@ -22,34 +13,44 @@
 Siphon
 ======
 
-Siphon is a collection of Python utilities for downloading data from Unidata
-data technologies. Siphon's current functionality focuses on access to data hosted on a
-`THREDDS Data Server`__.
+Siphon is a collection of Python utilities for downloading data from remote
+data services. Much of Siphon's current functionality focuses on access to
+data hosted on a `THREDDS Data Server`__. It also provides clients to a variety
+of simple web services.
 
 __ https://www.unidata.ucar.edu/software/thredds/current/tds/
 
-Siphon is still in an early stage of development, and as such
-**no APIs are considered stable.** While we won't break things
-just for fun, many things may still change as we work through
-design issues.
+Siphon follows `semantic versioning <https://semver.org>`_ in its version number. With our
+current 0.x version, that implies that Siphon's APIs (application programming interfaces) are
+still evolving (we won't break things just for fun, but many things are still changing as we
+work through design issues). Also, for a version `0.x.y`, we change `x` when we
+release new features, and `y` when we make a release with only bug fixes.
 
-We support Python 2.7 as well as Python >= 3.4.
+We support Python >= 3.5 and currently support Python 2.7.
+
+.. warning::
+  We are dropping support for Python 2.7 in the Fall of 2019. For more details and rationale
+  behind this decision, see :ref:`python27`.
 
 ----------
 Contact Us
 ----------
 
-* For questions and discussion about Siphon, join Unidata's python-users_
-  mailing list
+* For questions about Siphon, please ask them using the "python-siphon" tag on StackOverflow_.
+  Our developers are actively monitoring for questions there.
+* You can also email `Unidata's
+  python support email address <mailto: support-python@unidata.ucar.edu>`_
 * The source code is available on GitHub_
 * Bug reports and feature requests should be directed to the
   `GitHub issue tracker`__
 * Siphon has a Gitter_ chatroom for more "live" communication
 * If you use Siphon in a publication, please see :ref:`Citing_Siphon`.
+* For release announcements, join Unidata's python-users_ mailing list
 
 .. _python-users: https://www.unidata.ucar.edu/support/#mailinglists
 .. _GitHub: https://github.com/Unidata/siphon
 .. _Gitter: https://gitter.im/Unidata/siphon
+.. _StackOverflow: https://stackoverflow.com/questions/tagged/python-siphon
 __ https://github.com/Unidata/siphon/issues
 
 ---------------
@@ -67,7 +68,7 @@ Other Resources
 License
 -------
 
-Siphon is available under the terms of the open source `MIT license`__.
+Siphon is available under the terms of the open source `BSD 3-Clause license`__.
 
 __ https://raw.githubusercontent.com/Unidata/siphon/master/LICENSE
 

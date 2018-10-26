@@ -1,6 +1,6 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2015 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """
 ================
 NCSS and CartoPy
@@ -101,12 +101,7 @@ ax = plt.axes(projection=ccrs.PlateCarree())
 ax.set_extent([-100., -111., 35, 43])
 
 # Add state boundaries to plot
-states_provinces = cfeature.NaturalEarthFeature(
-    category='cultural',
-    name='admin_1_states_provinces_lines',
-    scale='50m',
-    facecolor='none')
-ax.add_feature(states_provinces, edgecolor='black', linewidth=2)
+ax.add_feature(cfeature.STATES.with_scale('50m'), linewidth=2)
 
 # Contour temperature at each lat/long
 cf = ax.contourf(lon_2d, lat_2d, temp_vals, 200, transform=ccrs.PlateCarree(), zorder=0,

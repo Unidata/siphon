@@ -1,6 +1,6 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2015 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Provide a netCDF4-like interface on top of CDMRemote and NCStream."""
 
 from __future__ import print_function
@@ -12,9 +12,8 @@ import logging
 from .cdmremote import CDMRemote
 from .ncstream import unpack_attribute, unpack_variable
 
+logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger(__name__)
-log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
-log.setLevel(logging.WARNING)
 
 
 class AttributeContainer(object):
@@ -299,12 +298,12 @@ class Variable(AttributeContainer):
         self.ndim = len(var.shape)
         self._unpack_attrs(var.atts)
 
-        data, dt, typeName = unpack_variable(var)
+        data, dt, type_name = unpack_variable(var)
         if data is not None:
             data = data.reshape(self.shape)
         self._data = data
         self.dtype = dt
-        self.datatype = typeName
+        self.datatype = type_name
 
         if hasattr(var, 'enumType') and var.enumType:
             self.datatype = var.enumType

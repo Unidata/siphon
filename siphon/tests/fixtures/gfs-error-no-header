@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.6.1+29.g0a00acf.dirty)]
+    method: GET
+    uri: http://thredds.ucar.edu/thredds/ncss/grib/NCEP/GFS/Global_0p5deg/GFS_Global_0p5deg_20180223_1200.grib2?var=u-component_of_wind_isobaric&time=2018-02-23T22%3A28%3A49
+  response:
+    body: {string: 'Requested time 2018-02-23T22:28:49Z does not intersect actual
+        time range 2018-02-26T06:00:00Z - 2018-02-26T06:00:00Z'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [close]
+      Date: ['Fri, 23 Feb 2018 23:06:26 GMT']
+      Server: [Apache]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 400, message: '400'}
+version: 1

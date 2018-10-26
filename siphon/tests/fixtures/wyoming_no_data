@@ -1,0 +1,28 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.6.1+84.g3f57e2f.dirty)]
+    method: GET
+    uri: http://weather.uwyo.edu/cgi-bin/sounding/?region=naconf&TYPE=TEXT%3ALIST&YEAR=2010&MONTH=12&FROM=0901&TO=0901&STNM=BOI
+  response:
+    body: {string: "<BODY BGCOLOR=white>\nCan't get 72681 BOI Boise Observations at
+        01Z 09 Dec 2010.\n\n<P>\n<FORM>\n<INPUT CLASS=\"button\" TYPE=\"button\" VALUE=\"
+        Close this window \" \n onClick=\"window.close();\">\n<INPUT CLASS=\"button\"
+        TYPE=\"button\" VALUE=\" Select another map \" \n onClick=\"window.blur();\">\n</FORM>\n<HR
+        SIZE=\"1\">\n<I>Interested in graduate studies in atmospheric science?\nCheck
+        out our program at the\n<a href=\"http://www.uwyo.edu/atsc/howtoapply/\"\ntarget=_top>University
+        of Wyoming\n</a></I>\n<HR SIZE=\"1\"><FONT SIZE=\"-1\">\nQuestions about the
+        weather data provided by this site can be\naddressed to <A HREF=\"mailto:ldoolman@uwyo.edu\">\nLarry
+        Oolman (ldoolman@uwyo.edu)</A></FONT>\n<HR SIZE=\"1\">\n<SCRIPT TYPE=\"text/javascript\">\n<!--\nwindow.focus();\n//
+        -->\n</SCRIPT>\n</BODY>\n</HTML>\n"}
+    headers:
+      Connection: [close]
+      Content-Type: [text/html; charset=UTF-8]
+      Date: ['Fri, 30 Mar 2018 18:49:43 GMT']
+      Server: [Apache/2.2.15 (Red Hat)]
+    status: {code: 200, message: OK}
+version: 1

@@ -1,6 +1,6 @@
-# Copyright (c) 2017 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2017 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """
 Wyoming Upper Air Data Request
 ==============================
@@ -10,6 +10,8 @@ the Wyoming upper air archive.
 """
 
 from datetime import datetime
+
+from metpy.units import units
 
 from siphon.simplewebservice.wyoming import WyomingUpperAir
 
@@ -37,3 +39,11 @@ print(df.units)
 
 ####################################################
 print(df.units['pressure'])
+
+####################################################
+# Units can then be attached to the values from the dataframe.
+pressure = df['pressure'].values * units(df.units['pressure'])
+temperature = df['temperature'].values * units(df.units['temperature'])
+dewpoint = df['dewpoint'].values * units(df.units['dewpoint'])
+u_wind = df['u_wind'].values * units(df.units['u_wind'])
+v_wind = df['v_wind'].values * units(df.units['v_wind'])

@@ -1,0 +1,94 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.6.1+36.gd605722.dirty)]
+    method: GET
+    uri: http://mesonet.agron.iastate.edu/json/raob.py?ts=199905040000&station=OUN
+  response:
+    body: {string: '{"profiles": [{"profile": [{"dwpc": null, "pres": 1000.0, "sknt":
+        null, "drct": null, "tmpc": null, "hght": 0.0}, {"dwpc": 19.1, "pres": 959.0,
+        "sknt": 18.0, "drct": 160.0, "tmpc": 22.3, "hght": 362.0}, {"dwpc": 17.7,
+        "pres": 952.3, "sknt": 22.0, "drct": 161.0, "tmpc": 22.2, "hght": 418.0},
+        {"dwpc": 17.1, "pres": 925.0, "sknt": 38.0, "drct": 164.0, "tmpc": 19.8, "hght":
+        671.0}, {"dwpc": null, "pres": 921.7, "sknt": 40.0, "drct": 164.0, "tmpc":
+        null, "hght": 702.0}, {"dwpc": 16.8, "pres": 892.4, "sknt": 38.0, "drct":
+        178.0, "tmpc": 18.0, "hght": 980.0}, {"dwpc": null, "pres": 889.6, "sknt":
+        38.0, "drct": 179.0, "tmpc": null, "hght": 1007.0}, {"dwpc": 15.1, "pres":
+        872.7, "sknt": 38.0, "drct": 187.0, "tmpc": 18.2, "hght": 1172.0}, {"dwpc":
+        null, "pres": 859.6, "sknt": 38.0, "drct": 194.0, "tmpc": null, "hght": 1301.0},
+        {"dwpc": 12.6, "pres": 850.0, "sknt": 38.0, "drct": 196.0, "tmpc": 17.1, "hght":
+        1397.0}, {"dwpc": null, "pres": 830.3, "sknt": 37.0, "drct": 201.0, "tmpc":
+        null, "hght": 1597.0}, {"dwpc": 5.3, "pres": 813.8, "sknt": 37.0, "drct":
+        205.0, "tmpc": 15.4, "hght": 1768.0}, {"dwpc": null, "pres": 801.0, "sknt":
+        37.0, "drct": 209.0, "tmpc": null, "hght": 1902.0}, {"dwpc": -8.5, "pres":
+        797.8, "sknt": 38.0, "drct": 210.0, "tmpc": 15.8, "hght": 1936.0}, {"dwpc":
+        -11.0, "pres": 789.9, "sknt": 39.0, "drct": 211.0, "tmpc": 15.6, "hght": 2021.0},
+        {"dwpc": null, "pres": 772.0, "sknt": 42.0, "drct": 215.0, "tmpc": null, "hght":
+        2213.0}, {"dwpc": null, "pres": 743.0, "sknt": 42.0, "drct": 218.0, "tmpc":
+        null, "hght": 2533.0}, {"dwpc": -13.6, "pres": 726.2, "sknt": 40.0, "drct":
+        219.0, "tmpc": 9.6, "hght": 2726.0}, {"dwpc": null, "pres": 715.6, "sknt":
+        39.0, "drct": 220.0, "tmpc": null, "hght": 2846.0}, {"dwpc": -10.3, "pres":
+        700.0, "sknt": 37.0, "drct": 221.0, "tmpc": 7.0, "hght": 3028.0}, {"dwpc":
+        null, "pres": 688.6, "sknt": 36.0, "drct": 221.0, "tmpc": null, "hght": 3162.0},
+        {"dwpc": -13.4, "pres": 671.9, "sknt": 37.0, "drct": 220.0, "tmpc": 4.4, "hght":
+        3363.0}, {"dwpc": null, "pres": 660.5, "sknt": 37.0, "drct": 219.0, "tmpc":
+        null, "hght": 3502.0}, {"dwpc": -16.4, "pres": 654.8, "sknt": 37.0, "drct":
+        220.0, "tmpc": 2.2, "hght": 3572.0}, {"dwpc": -12.6, "pres": 638.4, "sknt":
+        38.0, "drct": 222.0, "tmpc": 0.2, "hght": 3776.0}, {"dwpc": null, "pres":
+        634.0, "sknt": 38.0, "drct": 223.0, "tmpc": null, "hght": 3831.0}, {"dwpc":
+        null, "pres": 612.6, "sknt": 37.0, "drct": 228.0, "tmpc": null, "hght": 4104.0},
+        {"dwpc": -15.8, "pres": 602.2, "sknt": 39.0, "drct": 227.0, "tmpc": -4.4,
+        "hght": 4240.0}, {"dwpc": null, "pres": 592.6, "sknt": 41.0, "drct": 227.0,
+        "tmpc": null, "hght": 4365.0}, {"dwpc": null, "pres": 573.8, "sknt": 37.0,
+        "drct": 227.0, "tmpc": null, "hght": 4616.0}, {"dwpc": null, "pres": 555.6,
+        "sknt": 38.0, "drct": 220.0, "tmpc": null, "hght": 4867.0}, {"dwpc": -14.6,
+        "pres": 550.3, "sknt": 41.0, "drct": 220.0, "tmpc": -10.1, "hght": 4942.0},
+        {"dwpc": null, "pres": 536.8, "sknt": 47.0, "drct": 219.0, "tmpc": null, "hght":
+        5132.0}, {"dwpc": null, "pres": 518.1, "sknt": 40.0, "drct": 222.0, "tmpc":
+        null, "hght": 5403.0}, {"dwpc": -18.8, "pres": 500.0, "sknt": 36.0, "drct":
+        227.0, "tmpc": -14.8, "hght": 5674.0}, {"dwpc": null, "pres": 478.8, "sknt":
+        41.0, "drct": 232.0, "tmpc": null, "hght": 5998.0}, {"dwpc": null, "pres":
+        458.5, "sknt": 47.0, "drct": 235.0, "tmpc": null, "hght": 6323.0}, {"dwpc":
+        -22.8, "pres": 448.7, "sknt": 47.0, "drct": 235.0, "tmpc": -20.1, "hght":
+        6485.0}, {"dwpc": null, "pres": 437.6, "sknt": 48.0, "drct": 235.0, "tmpc":
+        null, "hght": 6668.0}, {"dwpc": null, "pres": 416.3, "sknt": 43.0, "drct":
+        235.0, "tmpc": null, "hght": 7033.0}, {"dwpc": -30.1, "pres": 400.0, "sknt":
+        40.0, "drct": 237.0, "tmpc": -26.7, "hght": 7326.0}, {"dwpc": null, "pres":
+        395.5, "sknt": 39.0, "drct": 237.0, "tmpc": null, "hght": 7406.0}, {"dwpc":
+        null, "pres": 373.7, "sknt": 40.0, "drct": 237.0, "tmpc": null, "hght": 7811.0},
+        {"dwpc": -35.5, "pres": 365.3, "sknt": 41.0, "drct": 237.0, "tmpc": -32.1,
+        "hght": 7973.0}, {"dwpc": null, "pres": 355.1, "sknt": 42.0, "drct": 237.0,
+        "tmpc": null, "hght": 8170.0}, {"dwpc": null, "pres": 338.8, "sknt": 47.0,
+        "drct": 235.0, "tmpc": null, "hght": 8499.0}, {"dwpc": -41.1, "pres": 335.6,
+        "sknt": 46.0, "drct": 235.0, "tmpc": -37.1, "hght": 8565.0}, {"dwpc": -42.7,
+        "pres": 327.0, "sknt": 44.0, "drct": 236.0, "tmpc": -38.7, "hght": 8744.0},
+        {"dwpc": null, "pres": 325.3, "sknt": 43.0, "drct": 236.0, "tmpc": null, "hght":
+        8780.0}, {"dwpc": -44.1, "pres": 317.7, "sknt": 37.0, "drct": 238.0, "tmpc":
+        -40.1, "hght": 8942.0}, {"dwpc": null, "pres": 316.4, "sknt": 36.0, "drct":
+        238.0, "tmpc": null, "hght": 8970.0}, {"dwpc": null, "pres": 303.7, "sknt":
+        37.0, "drct": 241.0, "tmpc": null, "hght": 9247.0}, {"dwpc": -47.5, "pres":
+        300.0, "sknt": 38.0, "drct": 244.0, "tmpc": -43.5, "hght": 9330.0}, {"dwpc":
+        null, "pres": 291.8, "sknt": 40.0, "drct": 250.0, "tmpc": null, "hght": 9515.0},
+        {"dwpc": null, "pres": 280.4, "sknt": 60.0, "drct": 245.0, "tmpc": null, "hght":
+        9780.0}, {"dwpc": -51.4, "pres": 278.2, "sknt": 62.0, "drct": 245.0, "tmpc":
+        -47.2, "hght": 9833.0}, {"dwpc": null, "pres": 268.9, "sknt": 72.0, "drct":
+        244.0, "tmpc": null, "hght": 10055.0}, {"dwpc": -54.0, "pres": 266.7, "sknt":
+        71.0, "drct": 245.0, "tmpc": -50.0, "hght": 10110.0}, {"dwpc": null, "pres":
+        258.9, "sknt": 69.0, "drct": 248.0, "tmpc": null, "hght": 10302.0}, {"dwpc":
+        -56.6, "pres": 250.5, "sknt": null, "drct": null, "tmpc": -52.4, "hght": 10517.0}],
+        "station": "KOUN", "valid": "1999-05-04T00:00:00Z"}]}'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [Keep-Alive]
+      Content-Type: [application/json]
+      Date: ['Mon, 19 Mar 2018 19:32:56 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Server: [Apache/2.4.6 (Red Hat Enterprise Linux) OpenSSL/1.0.2k-fips mod_fcgid/2.3.9
+          mod_wsgi/4.6.2 Python/2.7]
+      X-IEM-ServerID: [iemvs108.local]
+    status: {code: 200, message: OK}
+version: 1

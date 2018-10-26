@@ -1,6 +1,6 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2015 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Support reading and parsing the dataset.xml documents from the netCDF Subset Service."""
 
 from __future__ import print_function
@@ -10,9 +10,8 @@ import re
 
 import numpy as np
 
+logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger(__name__)
-log.setLevel(logging.WARNING)
-log.addHandler(logging.StreamHandler())
 
 
 def _without_namespace(tagname):
@@ -93,7 +92,7 @@ class _Types(object):
                 for potential_bool in val:
                     if potential_bool not in ['true', 'false']:
                         raise ValueError
-                val = [True if bool == 'true' else False for bool in val]
+                val = [True if item == 'true' else False for item in val]
             except ValueError:
                 msg = 'Cannot convert values %s to boolean.'
                 msg += ' Keeping type as str.'
@@ -137,7 +136,7 @@ class _Types(object):
                 val = val.split()
         else:
             increment_attrs = ['start', 'increment', 'npts']
-            element_attrs = list(element.attrib.keys())
+            element_attrs = list(element.attrib)
             increment_attrs.sort()
             element_attrs.sort()
             if increment_attrs == element_attrs:

@@ -1,4 +1,4 @@
-# Copyright (c) 2016 University Corporation for Atmospheric Research/Unidata.
+# Copyright (c) 2016 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 """Implement an experimental backend for using xarray to talk to TDS over CDMRemote."""
@@ -29,9 +29,15 @@ class CDMArrayWrapper(BackendArray):
 
     def __getitem__(self, item):
         """Wrap getitem around the data."""
-        item = indexing.unwrap_explicit_indexer(
-            item, self, allow=(indexing.BasicIndexer, indexing.OuterIndexer))
-        return self.get_array()[item]
+        item, np_inds = indexing.decompose_indexer(item, self.shape,
+                                                   indexing.IndexingSupport.BASIC)
+        with self.datastore:
+            array = self.get_array()[item.tuple]
+
+        if len(np_inds.tuple) > 0:
+            array = indexing.NumpyIndexingAdapter(array)[np_inds]
+
+        return array
 
 
 class CDMRemoteStore(AbstractDataStore):
@@ -45,7 +51,7 @@ class CDMRemoteStore(AbstractDataStore):
 
     def open_store_variable(self, name, var):
         """Turn CDMRemote variable into something like a numpy.ndarray."""
-        data = indexing.LazilyIndexedArray(CDMArrayWrapper(name, self))
+        data = indexing.LazilyOuterIndexedArray(CDMArrayWrapper(name, self))
         return Variable(var.dimensions, data, {a: getattr(var, a) for a in var.ncattrs()})
 
     def get_variables(self):

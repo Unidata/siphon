@@ -1,3 +1,6 @@
+# Copyright (c) 2018 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """
 =============================
 Basic ACIS Web Services Usage
@@ -72,7 +75,7 @@ print(myData)
 # year temperature data using MatPlotLib! Notice that the data is decoded as
 # a string, so you should convert those back into numbers before use.
 #
-# *Note: Missing data is recorded as M!
+# * Note: Missing data is recorded as M!
 
 stnName = myData['meta']['name']
 

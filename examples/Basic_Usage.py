@@ -1,6 +1,6 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2015 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """
 ===============
 THREDDS Catalog
@@ -16,7 +16,14 @@ contained within.
 from __future__ import print_function
 
 from siphon.catalog import TDSCatalog
+from siphon.http_util import session_manager
 
 ###########################################
 cat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog.xml')
 print(list(cat.catalog_refs))
+
+###########################################
+# Basic HTTP authentication can also be used by using the HTTP session manager
+# and setting some default options for HTTP sessions
+session_manager.set_session_options(auth=('username', 'password'))
+cat = TDSCatalog('https://rda.ucar.edu/thredds/catalog.xml')

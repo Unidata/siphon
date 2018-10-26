@@ -1,15 +1,17 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2015 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Helps support reading and parsing metadata elements from a TDS client catalog."""
 
 from __future__ import print_function
 
 import logging
 
+logging.basicConfig(level=logging.ERROR)
 log = logging.getLogger(__name__)
-log.setLevel(logging.ERROR)
-log.addHandler(logging.StreamHandler())
+
+xlink_href_attr = '{http://www.w3.org/1999/xlink}href'
+xlink_title_attr = '{http://www.w3.org/1999/xlink}title'
 
 
 class _SimpleTypes(object):
@@ -473,9 +475,11 @@ class TDSCatalogMetadata(object):
             else:
                 inherited = False
 
-        if metadata_in and inherited:
+        if metadata_in and (inherited or self._is_external_metadata_doc(element)):
             # only inherit metadata passed in if the new metadata
-            # element has inherit set to True
+            # element has inherit set to True or if the new
+            # metadata element is pointing to an external metadata
+            # document using an xlink
             self.metadata = metadata_in
         else:
             self.metadata = {'inherited': inherited}
@@ -494,6 +498,13 @@ class TDSCatalogMetadata(object):
         else:
             element_name = element.tag
         return element_name
+
+    @staticmethod
+    def _is_external_metadata_doc(element):
+        attributes = element.attrib
+        has_xlink_title = xlink_title_attr in attributes
+        has_xlink_href = xlink_href_attr in attributes
+        return has_xlink_title and has_xlink_href
 
     def _get_handler(self, handler_name):
         handler_name = 'handle_' + handler_name
@@ -524,7 +535,8 @@ class TDSCatalogMetadata(object):
                   'date': self._parse_date,
                   'timeCoverage': self._parse_timeCoverage,
                   'variableMap': self._parse_variableMap,
-                  'variables': self._parse_variables}
+                  'variables': self._parse_variables,
+                  'metadata': self._parse_embedded_metadata}
 
         try:
             parser[element_name](element)
@@ -554,8 +566,6 @@ class TDSCatalogMetadata(object):
         #  <xsd:attribute name="type" type="documentationEnumTypes"/>
         #  <xsd:attributeGroup ref="XLink" />
         # </xsd:complexType>
-        xlink_href_attr = '{http://www.w3.org/1999/xlink}href'
-        xlink_title_attr = '{http://www.w3.org/1999/xlink}title'
 
         # doc_enum_types = ("funding", "history", "processing_level", "rights",
         #                  "summary")
@@ -711,3 +721,14 @@ class TDSCatalogMetadata(object):
             var_name = variable['name']
             variable.pop('name', None)
             self.metadata.setdefault(element_type, {})[var_name] = variable
+
+    def _parse_embedded_metadata(self, element):
+        element_type = 'external_metadata'
+        if xlink_href_attr in element.attrib:
+            title = element.attrib[xlink_title_attr]
+            href = element.attrib[xlink_href_attr]
+
+            self.metadata.setdefault(element_type, {})[title] = href
+        else:
+            log.warning('Cannot parse embedded metadata element %s: %s',
+                        element.tag, element.attrib)

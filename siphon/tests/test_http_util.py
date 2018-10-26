@@ -1,14 +1,14 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2015 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Test Siphon's base HTTP helper functionality."""
 
 from datetime import datetime, timedelta
 
 import pytest
 
-from siphon.http_util import (create_http_session, DataQuery, HTTPEndPoint, HTTPError,
-                              parse_iso_date, urlopen, utc)
+from siphon.http_util import (DataQuery, HTTPEndPoint, HTTPError,
+                              parse_iso_date, session_manager, utc)
 import siphon.testing
 
 recorder = siphon.testing.get_recorder(__file__)
@@ -17,16 +17,28 @@ recorder = siphon.testing.get_recorder(__file__)
 @recorder.use_cassette('top_thredds_catalog')
 def test_urlopen():
     """Test siphon's urlopen wrapper."""
-    fobj = urlopen('http://thredds-test.unidata.ucar.edu/thredds/catalog.xml')
+    fobj = session_manager.urlopen('http://thredds-test.unidata.ucar.edu/thredds/catalog.xml')
     assert fobj.read(2) == b'<?'
 
 
 @recorder.use_cassette('top_thredds_catalog')
 def test_session():
-    """Test that https sessions contain the proper user agent."""
-    session = create_http_session()
+    """Test that http sessions contain the proper user agent."""
+    session = session_manager.create_session()
     resp = session.get('http://thredds-test.unidata.ucar.edu/thredds/catalog.xml')
     assert resp.request.headers['user-agent'].startswith('Siphon')
+
+
+@recorder.use_cassette('top_thredds_catalog')
+def test_session_options():
+    """Test that http sessions receive proper options."""
+    auth = ('foo', 'bar')
+    session_manager.set_session_options(auth=auth)
+    try:
+        session = session_manager.create_session()
+        assert session.auth == auth
+    finally:
+        session_manager.set_session_options()
 
 
 def test_parse_iso():
@@ -136,6 +148,17 @@ def test_data_query_add():
     """Test adding custom parameters to a query."""
     dr = DataQuery().add_query_parameter(foo='bar')
     assert str(dr) == 'foo=bar'
+
+
+@recorder.use_cassette('gfs-error-no-header')
+def test_http_error_no_header():
+    """Test getting an error back without Content-Type."""
+    endpoint = HTTPEndPoint('http://thredds.ucar.edu/thredds/ncss/grib/NCEP/GFS/'
+                            'Global_0p5deg/GFS_Global_0p5deg_20180223_1200.grib2')
+    query = endpoint.query().variables('u-component_of_wind_isobaric')
+    query.time(datetime(2018, 2, 23, 22, 28, 49))
+    with pytest.raises(HTTPError):
+        endpoint.get_query(query)
 
 
 class TestEndPoint(object):

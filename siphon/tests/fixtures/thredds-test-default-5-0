@@ -1,0 +1,46 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.7.0+28.g20c017a.dirty)]
+    method: GET
+    uri: http://localhost:8081/thredds/catalog/catalog.xml
+  response:
+    body: {string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<catalog xmlns=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\"
+        xmlns:xlink=\"http://www.w3.org/1999/xlink\" name=\"THREDDS Server Default
+        Catalog : You must change this to fit your server!\" version=\"1.2\">\r\n
+        \ <service name=\"all\" serviceType=\"compound\" base=\"\">\r\n    <service
+        name=\"odap\" serviceType=\"OpenDAP\" base=\"/thredds/dodsC/\" />\r\n    <service
+        name=\"dap4\" serviceType=\"DAP4\" base=\"/thredds/dap4/\" />\r\n    <service
+        name=\"http\" serviceType=\"HTTPServer\" base=\"/thredds/fileServer/\" />\r\n
+        \   <service name=\"wcs\" serviceType=\"WCS\" base=\"/thredds/wcs/\" />\r\n
+        \   <service name=\"wms\" serviceType=\"WMS\" base=\"/thredds/wms/\" />\r\n
+        \   <service name=\"ncssGrid\" serviceType=\"NetcdfSubset\" base=\"/thredds/ncss/grid/\"
+        />\r\n    <service name=\"ncssPoint\" serviceType=\"NetcdfSubset\" base=\"/thredds/ncss/point/\"
+        />\r\n    <service name=\"cdmremote\" serviceType=\"CdmRemote\" base=\"/thredds/cdmremote/\"
+        />\r\n    <service name=\"cdmrFeature\" serviceType=\"CdmrFeature\" base=\"/thredds/cdmrfeature/grid/\"
+        />\r\n    <service name=\"iso\" serviceType=\"ISO\" base=\"/thredds/iso/\"
+        />\r\n    <service name=\"ncml\" serviceType=\"NCML\" base=\"/thredds/ncml/\"
+        />\r\n    <service name=\"uddc\" serviceType=\"UDDC\" base=\"/thredds/uddc/\"
+        />\r\n  </service>\r\n  <dataset name=\"Test Grid Dataset\" ID=\"testGrid\"
+        urlPath=\"test/crossSeamProjection.nc\">\r\n    <serviceName>all</serviceName>\r\n
+        \   <dataType>Grid</dataType>\r\n  </dataset>\r\n  <dataset name=\"Test Point
+        Dataset\" ID=\"testPoint\" urlPath=\"test/H.1.1.nc\">\r\n    <serviceName>all</serviceName>\r\n
+        \   <dataType>Point</dataType>\r\n  </dataset>\r\n  <dataset name=\"Test Station
+        Dataset\" ID=\"testStation\" urlPath=\"test/H.2.1.1.nc\">\r\n    <serviceName>all</serviceName>\r\n
+        \   <dataType>Point</dataType>\r\n  </dataset>\r\n  <catalogRef xlink:href=\"/thredds/catalog/testAll/catalog.xml\"
+        xlink:title=\"Test all files in a directory\" ID=\"testDatasetScan\" name=\"Test
+        all files in a directory\">\r\n    <property name=\"DatasetScan\" value=\"true\"
+        />\r\n    <metadata inherited=\"true\">\r\n      <serviceName>all</serviceName>\r\n
+        \   </metadata>\r\n  </catalogRef>\r\n  <catalogRef xlink:href=\"enhancedCatalog.xml\"
+        xlink:title=\"Test Enhanced Catalog\" name=\"Test Enhanced Catalog\" />\r\n</catalog>\r\n"}
+    headers:
+      Content-Language: [en-US]
+      Content-Type: [application/xml;charset=UTF-8]
+      Date: ['Tue, 10 Jul 2018 17:27:42 GMT']
+      Server: [Apache-Coyote/1.1]
+    status: {code: 200, message: OK}
+version: 1

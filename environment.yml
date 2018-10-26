@@ -8,12 +8,13 @@ dependencies:
   - requests
   - protobuf
   - netcdf4
+  - metpy
   - jupyter
   - sphinx
   - sphinx-gallery
+  - pillow
   - doc8
   - pytest
-  - pytest-catchlog
   - pytest-cov
   - pytest-flake8
   - pytest-runner
@@ -30,6 +31,6 @@ dependencies:
   - flake8-quotes
   - pep8-naming
   - matplotlib
-  - xarray
+  - xarray >=0.10.2
   - cartopy
   - beautifulsoup4

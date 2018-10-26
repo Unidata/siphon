@@ -1,6 +1,6 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2015 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Utility code to support making requests using HTTP."""
 
 from collections import OrderedDict
@@ -17,8 +17,6 @@ except ImportError:
 import requests
 
 from . import __version__
-
-user_agent = 'Siphon ({})'.format(__version__)
 
 HTTPError = requests.HTTPError
 
@@ -49,49 +47,74 @@ class UTC(tzinfo):
 utc = UTC()
 
 
-def create_http_session():
-    """Create a new HTTP session with our user-agent set.
+class HTTPSessionManager(object):
+    """Manage the creation of sessions for HTTP access."""
 
-    Returns
-    -------
-    session : requests.Session
-        The created session
+    def __init__(self):
+        """Initialize ``HTTPSessionManager``."""
+        self.user_agent = 'Siphon ({})'.format(__version__)
+        self.options = {}
 
-    See Also
-    --------
-    urlopen
+    def set_session_options(self, **kwargs):
+        """Set options for created session instances.
 
-    """
-    ret = requests.Session()
-    ret.headers['User-Agent'] = user_agent
-    return ret
+        Takes keyword arguments and sets them as attributes on the returned
+        :class:`requests.Session` instance.
+
+        See Also
+        --------
+        create_session
+
+        """
+        self.options = kwargs
+
+    def create_session(self):
+        """Create a new HTTP session with our user-agent set.
+
+        Returns
+        -------
+        session : requests.Session
+            The created session
+
+        See Also
+        --------
+        urlopen, set_session_options
+
+        """
+        ret = requests.Session()
+        ret.headers['User-Agent'] = self.user_agent
+        for k, v in self.options.items():
+            setattr(ret, k, v)
+        return ret
+
+    def urlopen(self, url, **kwargs):
+        """GET a file-like object for a URL using HTTP.
+
+        This is a thin wrapper around :meth:`requests.Session.get` that returns a file-like
+        object wrapped around the resulting content.
+
+        Parameters
+        ----------
+        url : str
+            The URL to request
+
+        kwargs : arbitrary keyword arguments
+            Additional keyword arguments to pass to :meth:`requests.Session.get`.
+
+        Returns
+        -------
+        fobj : file-like object
+            A file-like interface to the content in the response
+
+        See Also
+        --------
+        :meth:`requests.Session.get`
+
+        """
+        return BytesIO(self.create_session().get(url, **kwargs).content)
 
 
-def urlopen(url, **kwargs):
-    """GET a file-like object for a URL using HTTP.
-
-    This is a thin wrapper around :meth:`requests.Session.get` that returns a file-like object
-    wrapped around the resulting content.
-
-    Parameters
-    ----------
-    url : str
-        The URL to request
-
-    kwargs : arbitrary keyword arguments
-        Additional keyword arguments to pass to :meth:`requests.Session.get`.
-
-    Returns
-    -------
-    fobj : file-like object
-        A file-like interface to the content in the response
-
-    See Also
-    --------
-    :meth:`requests.Session.get`
-
-    """
-    return BytesIO(create_http_session().get(url, **kwargs).content)
+session_manager = HTTPSessionManager()
 
 
 def parse_iso_date(s):
@@ -352,7 +375,7 @@ class HTTPEndPoint(object):
 
         """
         self._base = url
-        self._session = create_http_session()
+        self._session = session_manager.create_session()
         self._get_metadata()
 
     def get_query(self, query):
@@ -454,13 +477,14 @@ class HTTPEndPoint(object):
         """
         resp = self._session.get(path, params=params)
         if resp.status_code != 200:
-            if resp.headers['Content-Type'].startswith('text/html'):
+            if resp.headers.get('Content-Type', '').startswith('text/html'):
                 text = resp.reason
             else:
                 text = resp.text
-            raise requests.HTTPError('Error accessing {0}: {1:d} {2}'.format(resp.request.url,
-                                                                             resp.status_code,
-                                                                             text))
+            raise requests.HTTPError('Error accessing {0}\n'
+                                     'Server Error ({1:d}: {2})'.format(resp.request.url,
+                                                                        resp.status_code,
+                                                                        text))
         return resp
 
     def _get_metadata(self):

@@ -1,6 +1,6 @@
-# Copyright (c) 2013-2015 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2015 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Test parsing of metadata from a TDS client catalog."""
 
 import logging
@@ -369,11 +369,9 @@ class TestGeospatialCoverage(object):
         """Test parsing geospatialCoverage with zpositive."""
         # can we detect this:
         # <geospatialCoverage zpositive="down">
-        if self.md1[self.element_name]:
-            if 'zpositive' in self.md1[self.element_name]:
-                possible_values = ['up', 'down']
-                value = self.md1[self.element_name]['zpositive']
-                assert value in possible_values
+        for entry in self.md1[self.element_name]:
+            if 'zpositive' in entry:
+                assert entry['zpositive']['zpositive'] in {'up', 'down'}
 
 
 class TestMetadata(object):
@@ -580,3 +578,38 @@ class TestMetadata(object):
         assert len(md['timeCoverage']) == 1
         assert md['timeCoverage'][0]['end'] == 'present'
         assert md['timeCoverage'][0]['duration'] == '45 days'
+
+    def test_external_metadata(self):
+        """Test an embedded metadata element that points to an external document."""
+        xml = '<metadata inherited="true">' \
+              '<serviceName>ALL</serviceName>' \
+              '<metadata xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=' \
+              '"http://gis.ncdc.noaa.gov/geoportal/rest/document?' \
+              'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}" ' \
+              'xlink:title="ISO 19115-2:2009(E) - Collection Level Metadata"/>' \
+              '</metadata>'
+        element = ET.fromstring(xml)
+        md = TDSCatalogMetadata(element).metadata
+        # make sure other metadata is still captured
+        assert 'serviceName' in md
+        # make sure the embedded metadata element gets processed and added
+        expected_title = 'ISO 19115-2:2009(E) - Collection Level Metadata'
+        expected_href = 'http://gis.ncdc.noaa.gov/geoportal/rest/document?' \
+                        'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}'
+        assert 'external_metadata' in md
+        assert expected_title in md['external_metadata']
+        assert md['external_metadata'][expected_title] == expected_href
+
+    def test_external_metadata_non_xlink(self, caplog):
+        """Test an non-xlink embedded external metadata element."""
+        xml = '<metadata inherited="true">' \
+              '<serviceName>ALL</serviceName>' \
+              '<metadata url="http://gis.ncdc.noaa.gov/geoportal/rest/document?' \
+              'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}" ' \
+              'name="ISO 19115-2:2009(E) - Collection Level Metadata"/>' \
+              '</metadata>'
+        element = ET.fromstring(xml)
+        md = TDSCatalogMetadata(element).metadata
+        assert 'serviceName' in md
+        assert 'external_metadata' not in md
+        assert 'Cannot parse embedded metadata element' in caplog.text

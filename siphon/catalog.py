@@ -1,6 +1,6 @@
-# Copyright (c) 2013-2017 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2017 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """
 Code to support reading and parsing catalog files from a THREDDS Data Server (TDS).
 
@@ -18,12 +18,11 @@ except ImportError:
     # Python 3
     from urllib.parse import urljoin, urlparse
 
-from .http_util import create_http_session, urlopen
+from .http_util import session_manager
 from .metadata import TDSCatalogMetadata
 
+logging.basicConfig(level=logging.ERROR)
 log = logging.getLogger(__name__)
-log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
-log.setLevel(logging.ERROR)
 
 
 class IndexableMapping(OrderedDict):
@@ -136,6 +135,90 @@ class DatasetCollection(IndexableMapping):
     __repr__ = __str__
 
 
+def _try_lower(arg):
+    try:
+        arg = arg.lower()
+    except (TypeError, AttributeError, ValueError):
+        log.warning('Could not convert %s to lowercase.', arg)
+    return arg
+
+
+class CaseInsensitiveStr(str):
+    """Extend ``str`` to use case-insensitive comparison and lookup."""
+
+    def __init__(self, *args):
+        """Create str with a _lowered property."""
+        self._lowered = _try_lower(self)
+
+    def __hash__(self):
+        """Hash str using _lowered property."""
+        return str.__hash__(self._lowered)
+
+    def __eq__(self, other):
+        """Return true if other is case-insensitive equal to self."""
+        return str.__eq__(self._lowered, _try_lower(other))
+
+    def __gt__(self, other):
+        """Return true if other is case-insensitive greater than self."""
+        return str.__gt__(self._lowered, _try_lower(other))
+
+    def __ge__(self, other):
+        """Return true if other is case-insensitive greater than or equal to self."""
+        return str.__ge__(self._lowered, _try_lower(other))
+
+    def __lt__(self, other):
+        """Return true if other is case-insensitive less than self."""
+        return str.__lt__(self._lowered, _try_lower(other))
+
+    def __le__(self, other):
+        """Return true if other is case-insensitive less than or equal to to self."""
+        return str.__le__(self._lowered, _try_lower(other))
+
+    def __ne__(self, other):
+        """Return true if other is case-insensitive unequal to self."""
+        return str.__ne__(self._lowered, _try_lower(other))
+
+
+class CaseInsensitiveDict(dict):
+    """Extend ``dict`` to use a case-insensitive key set."""
+
+    def __init__(self, *args, **kwargs):
+        """Create a dict with a set of lowercase keys."""
+        super(CaseInsensitiveDict, self).__init__(*args, **kwargs)
+        self._keys_to_lower()
+
+    def __eq__(self, other):
+        """Return true if other is case-insensitive equal to self."""
+        return super(CaseInsensitiveDict, self).__eq__(CaseInsensitiveDict(other))
+
+    def __getitem__(self, key):
+        """Return value from case-insensitive lookup of ``key``."""
+        return super(CaseInsensitiveDict, self).__getitem__(CaseInsensitiveStr(key))
+
+    def __setitem__(self, key, value):
+        """Set value with lowercase ``key``."""
+        super(CaseInsensitiveDict, self).__setitem__(CaseInsensitiveStr(key), value)
+
+    def __delitem__(self, key):
+        """Delete value associated with case-insensitive lookup of ``key``."""
+        return super(CaseInsensitiveDict, self).__delitem__(CaseInsensitiveStr(key))
+
+    def __contains__(self, key):
+        """Return true if key set includes case-insensitive ``key``."""
+        return super(CaseInsensitiveDict, self).__contains__(CaseInsensitiveStr(key))
+
+    def pop(self, key, *args, **kwargs):
+        """Remove and return the value associated with case-insensitive ``key``."""
+        return super(CaseInsensitiveDict, self).pop(CaseInsensitiveStr(key))
+
+    def _keys_to_lower(self):
+        """Convert key set to lowercase."""
+        for k in list(self.keys()):
+            val = super(CaseInsensitiveDict, self).__getitem__(k)
+            super(CaseInsensitiveDict, self).__delitem__(k)
+            self.__setitem__(CaseInsensitiveStr(k), val)
+
+
 class TDSCatalog(object):
     """
     Parse information from a THREDDS Client Catalog.
@@ -167,7 +250,7 @@ class TDSCatalog(object):
             The URL of a THREDDS client catalog
 
         """
-        session = create_http_session()
+        session = session_manager.create_session()
 
         # get catalog.xml file
         resp = session.get(catalog_url)
@@ -222,7 +305,8 @@ class TDSCatalog(object):
             elif (tag_type == 'metadata') or (tag_type == ''):
                 self._process_metadata(child, tag_type)
             elif tag_type == 'service':
-                if child.attrib['serviceType'] != 'Compound':
+                if CaseInsensitiveStr(child.attrib['serviceType'])\
+                        != CaseInsensitiveStr('Compound'):
                     # we do not want to process single services if they
                     # are already contained within a compound service, so
                     # we need to skip over those cases.
@@ -262,7 +346,8 @@ class TDSCatalog(object):
         self.metadata = TDSCatalogMetadata(element, self.metadata).metadata
 
     def _process_datasets(self):
-        for dsName in list(self.datasets.keys()):
+        # Need to use list (of keys) because we modify the dict while iterating
+        for dsName in list(self.datasets):
             # check to see if dataset needs to have access urls created, if not,
             # remove the dataset
             has_url_path = self.datasets[dsName].url_path is not None
@@ -348,12 +433,14 @@ class Dataset(object):
         The name of the :class:`Dataset` element
     url_path : str
         url to the accessible dataset
-    access_urls : dict[str, str]
+    access_urls : CaseInsensitiveDict[str, str]
         A dictionary of access urls whose keywords are the access service
         types defined in the catalog (for example, "OPENDAP", "NetcdfSubset",
         "WMS", etc.
 
     """
+
+    ncssServiceNames = (CaseInsensitiveStr('NetcdfSubset'), CaseInsensitiveStr('NetcdfServer'))
 
     def __init__(self, element_node, catalog_url=''):
         """Initialize the Dataset object.
@@ -367,10 +454,8 @@ class Dataset(object):
 
         """
         self.name = element_node.attrib['name']
-        if 'urlPath' in element_node.attrib:
-            self.url_path = element_node.attrib['urlPath']
-        else:
-            self.url_path = None
+        self.id = element_node.attrib.get('ID', None)
+        self.url_path = element_node.attrib.get('urlPath', None)
         self.catalog_name = ''
         self.access_element_info = {}
         self._resolved = False
@@ -401,7 +486,7 @@ class Dataset(object):
         if catalog_url != '':
             resolver_base = catalog_url.split('catalog.xml')[0]
             resolver_url = resolver_base + self.url_path
-            resolver_xml = urlopen(resolver_url)
+            resolver_xml = session_manager.urlopen(resolver_url)
             tree = ET.parse(resolver_xml)
             root = tree.getroot()
             if 'name' in root.attrib:
@@ -436,7 +521,7 @@ class Dataset(object):
             Metadata from the :class:`TDSCatalog`
 
         """
-        all_service_dict = {}
+        all_service_dict = CaseInsensitiveDict({})
         for service in all_services:
             all_service_dict[service.name] = service
             if isinstance(service, CompoundService):
@@ -445,7 +530,7 @@ class Dataset(object):
 
         service_name = metadata.get('serviceName', None)
 
-        access_urls = {}
+        access_urls = CaseInsensitiveDict({})
         server_url = _find_base_tds_url(catalog_url)
 
         # process access urls for datasets that reference top
@@ -480,15 +565,17 @@ class Dataset(object):
         url_path = access_element.attrib['urlPath']
         self.access_element_info[service_name] = url_path
 
-    def download(self, filename):
+    def download(self, filename=None):
         """Download the dataset to a local file.
 
         Parameters
         ----------
-        filename : str
+        filename : str, optional
             The full path to which the dataset will be saved
 
         """
+        if filename is None:
+            filename = self.name
         with self.remote_open() as infile:
             with open(filename, 'wb') as outfile:
                 outfile.write(infile.read())
@@ -506,7 +593,7 @@ class Dataset(object):
         """
         return self.access_with_service('HTTPServer')
 
-    def remote_access(self, service=None):
+    def remote_access(self, service=None, use_xarray=None):
         """Access the remote dataset.
 
         Open the remote dataset and get a netCDF4-compatible `Dataset` object providing
@@ -527,10 +614,10 @@ class Dataset(object):
         if service is None:
             service = 'CdmRemote' if 'CdmRemote' in self.access_urls else 'OPENDAP'
 
-        if service not in ('CdmRemote', 'OPENDAP'):
+        if service not in (CaseInsensitiveStr('CdmRemote'), CaseInsensitiveStr('OPENDAP')):
             raise ValueError(service + ' is not a valid service for remote_access')
 
-        return self.access_with_service(service)
+        return self.access_with_service(service, use_xarray)
 
     def subset(self, service=None):
         """Subset the dataset.
@@ -540,7 +627,9 @@ class Dataset(object):
         Parameters
         ----------
         service : str, optional
-            The name of the service for subsetting the dataset. Defaults to 'NetcdfSubset'.
+            The name of the service for subsetting the dataset. Defaults to 'NetcdfSubset'
+            or 'NetcdfServer', in that order, depending on the services listed in the
+            catalog.
 
         Returns
         -------
@@ -548,14 +637,19 @@ class Dataset(object):
 
         """
         if service is None:
-            service = 'NetcdfSubset'
-
-        if service not in ('NetcdfSubset',):
-            raise ValueError(service + ' is not a valid service for subset')
+            for serviceName in self.ncssServiceNames:
+                if serviceName in self.access_urls:
+                    service = serviceName
+                    break
+            else:
+                raise RuntimeError('Subset access is not available for this dataset.')
+        elif service not in self.ncssServiceNames:
+            raise ValueError(service + ' is not a valid service for subset. Options are: '
+                             + ', '.join(self.ncssServiceNames))
 
         return self.access_with_service(service)
 
-    def access_with_service(self, service):
+    def access_with_service(self, service, use_xarray=None):
         """Access the dataset using a particular service.
 
         Return an Python object capable of communicating with the server using the particular
@@ -572,20 +666,36 @@ class Dataset(object):
             An instance appropriate for communicating using ``service``.
 
         """
+        service = CaseInsensitiveStr(service)
         if service == 'CdmRemote':
-            from .cdmr import Dataset as CDMRDataset
-            provider = CDMRDataset
+            if use_xarray:
+                from .cdmr.xarray_support import CDMRemoteStore
+                try:
+                    import xarray as xr
+                    provider = lambda url: xr.open_dataset(CDMRemoteStore(url))  # noqa: E731
+                except ImportError:
+                    raise ImportError('CdmRemote access needs xarray to be installed.')
+            else:
+                from .cdmr import Dataset as CDMRDataset
+                provider = CDMRDataset
         elif service == 'OPENDAP':
-            try:
-                from netCDF4 import Dataset as NC4Dataset
-                provider = NC4Dataset
-            except ImportError:
-                raise ImportError('OPENDAP access requires netCDF4-python to be installed.')
-        elif service == 'NetcdfSubset':
+            if use_xarray:
+                try:
+                    import xarray as xr
+                    provider = xr.open_dataset
+                except ImportError:
+                    raise ImportError('xarray to be installed if `use_xarray` is True.')
+            else:
+                try:
+                    from netCDF4 import Dataset as NC4Dataset
+                    provider = NC4Dataset
+                except ImportError:
+                    raise ImportError('OPENDAP access needs netCDF4-python to be installed.')
+        elif service in self.ncssServiceNames:
             from .ncss import NCSS
             provider = NCSS
         elif service == 'HTTPServer':
-            provider = urlopen
+            provider = session_manager.urlopen
         else:
             raise ValueError(service + ' is not an access method supported by Siphon')
 
@@ -623,7 +733,7 @@ class SimpleService(object):
 
         """
         self.name = service_node.attrib['name']
-        self.service_type = service_node.attrib['serviceType']
+        self.service_type = CaseInsensitiveStr(service_node.attrib['serviceType'])
         self.base = service_node.attrib['base']
         self.access_urls = {}
 
@@ -657,7 +767,7 @@ class CompoundService(object):
 
         """
         self.name = service_node.attrib['name']
-        self.service_type = service_node.attrib['serviceType']
+        self.service_type = CaseInsensitiveStr(service_node.attrib['serviceType'])
         self.base = service_node.attrib['base']
         services = []
         subservices = 0
@@ -667,6 +777,14 @@ class CompoundService(object):
 
         self.services = services
         self.number_of_subservices = subservices
+
+    def is_resolver(self):
+        """Return whether the service is a resolver service.
+
+        For a compound service, this is always False because it will never be
+        a resolver.
+        """
+        return False
 
 
 def _find_base_tds_url(catalog_url):

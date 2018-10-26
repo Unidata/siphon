@@ -1,6 +1,6 @@
-# Copyright (c) 2013-2017 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2013-2017 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Test the catalog access API."""
 
 from datetime import datetime
@@ -13,7 +13,6 @@ from siphon.testing import get_recorder
 
 log = logging.getLogger('siphon.catalog')
 log.setLevel(logging.WARNING)
-log.addHandler(logging.StreamHandler())
 
 recorder = get_recorder(__file__)
 
@@ -39,6 +38,15 @@ def test_access():
     """Test catalog parsing of access methods."""
     url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/grib/'
            'NCEP/GFS/Global_0p5deg/latest.xml')
+    cat = TDSCatalog(url)
+    ds = list(cat.datasets.values())[0]
+    assert 'OPENDAP' in ds.access_urls
+
+
+@recorder.use_cassette('thredds-test-default-5-0')
+def test_access_default_catalog():
+    """Test case-insensitive parsing of access methods in default catalog."""
+    url = ('http://localhost:8081/thredds/catalog/catalog.xml')
     cat = TDSCatalog(url)
     ds = list(cat.datasets.values())[0]
     assert 'OPENDAP' in ds.access_urls
@@ -260,9 +268,10 @@ def test_simple_service_within_compound():
     url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/noaaport/text/'
            'tropical/atlantic/hdob/catalog.xml')
     cat = TDSCatalog(url)
-    assert (cat.datasets[0].access_urls ==
-            {'HTTPServer': 'http://thredds-test.unidata.ucar.edu/thredds/fileServer/noaaport/'
-                           'text/tropical/atlantic/hdob/High_density_obs_20170824.txt'})
+    assert (cat.datasets[0].access_urls
+            == {'HTTPServer': 'http://thredds-test.unidata.ucar.edu/thredds/'
+                              'fileServer/noaaport/text/tropical/atlantic/hdob/'
+                              'High_density_obs_20170824.txt'})
 
 
 @recorder.use_cassette('rsmas_ramadda')
@@ -302,3 +311,27 @@ def test_catalog_ref_str():
     url = 'http://thredds.ucar.edu/thredds/catalog.xml'
     cat = TDSCatalog(url)
     assert str(cat.catalog_refs[0]) == 'Forecast Model Data'
+
+
+@recorder.use_cassette('ncei_embedded_metadata')
+def test_catalog_with_embedded_metadata_elements():
+    """Test catalog with embedded metadata elements."""
+    url = 'https://www.ncei.noaa.gov/thredds/catalog/namanl/201802/20180220/catalog.xml'
+    cat = TDSCatalog(url)
+    md = cat.metadata
+    assert 'external_metadata' in md
+    assert 'serviceName' in md
+
+
+@recorder.use_cassette('latest_resolver_on_latest_dataset')
+def test_latest_resolver_fail():
+    """Test getting latest on catalog that does not have a resolver."""
+    cat = TDSCatalog('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/'
+                     'Global_0p25deg_ana/latest.xml')
+
+    latest = ''
+    with pytest.raises(AttributeError) as excinfo:
+        latest = cat.latest
+
+    assert latest == ''
+    assert '"latest" not available for this catalog' in str(excinfo.value)

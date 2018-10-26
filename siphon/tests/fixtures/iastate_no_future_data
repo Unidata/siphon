@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [Siphon (0.6.1+85.g9ac81b9.dirty)]
+    method: GET
+    uri: http://mesonet.agron.iastate.edu/json/raob.py?ts=299912091200&station=BOI
+  response:
+    body: {string: '{"profiles": []}'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [Keep-Alive]
+      Content-Type: [application/json]
+      Date: ['Fri, 30 Mar 2018 21:27:40 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Server: [Apache/2.4.6 (Red Hat Enterprise Linux) OpenSSL/1.0.2k-fips mod_fcgid/2.3.9
+          mod_wsgi/4.6.2 Python/2.7]
+      X-IEM-ServerID: [iemvs107.local]
+    status: {code: 200, message: OK}
+version: 1

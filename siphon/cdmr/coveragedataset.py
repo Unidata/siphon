@@ -1,6 +1,6 @@
-# Copyright (c) 2016 University Corporation for Atmospheric Research/Unidata.
-# Distributed under the terms of the MIT License.
-# SPDX-License-Identifier: MIT
+# Copyright (c) 2016 Siphon Contributors.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
 """Provide access to a TDS Coverage Dataset."""
 
 from collections import OrderedDict
@@ -10,9 +10,8 @@ import warnings
 from .cdmremotefeature import CDMRemoteFeature
 from .dataset import AttributeContainer
 
+logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger(__name__)
-log.addHandler(logging.StreamHandler())  # Python 2.7 needs a handler set
-log.setLevel(logging.WARNING)
 
 
 def reindent_lines(new_leader, source):
