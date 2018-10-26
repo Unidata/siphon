@@ -11,10 +11,10 @@ from ..http_util import create_http_session
 
 class IemAsos:
     """Handles data collection of ASOS data from IEM.
-    
+
     This handles the collection of ASOS data from the Iowa
     Environmental Mesonet, via their asos.py request URL.
-    
+
     Attributes
     ----------
     startDate : datetime
@@ -25,14 +25,14 @@ class IemAsos:
         Station IDs in the dataset
     data : pandas.DataFrame
         Pandas dataframe containing the IEM ASOS data
-    
+
     """
     def __init__(self, sites, startDate=None, endDate=None):
         """Initialize the IemAsos object.
-        
+
         Initialization will set the datetime objects and
         start the data call
-        
+
         Parameters
         ----------
         sites : list
@@ -57,7 +57,7 @@ class IemAsos:
 
     def getData(self):
         """ Downloads IEM ASOS data """
-        
+
         # Build the URL
         URL = 'http://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?'
 
@@ -74,15 +74,16 @@ class IemAsos:
         URL = URL + '&month2='+str(self.endDate.month)
         URL = URL + '&day2='+str(self.endDate.day)
 
-        URL = URL + '&tz=Etc%2FUTC&format=onlycomma&latlon=yes&direct=no&report_type=1&report_type=2'
-        
+        URL = URL + '&tz=Etc%2FUTC&format=onlycomma&latlon=yes&direct=no' \
+                    '&report_type=1&report_type=2'
+
         # Collect the data
         try:
             response = create_http_session().post(URL)
             csvData = StringIO(response.text)
         except requests.exceptions.Timeout:
             raise IemAsosException('Connection Timeout')
-        
+
         # Process the data into a dataframe
         '''
         Convert the response text into a DataFrame. The index_col ensures that the first
@@ -90,9 +91,9 @@ class IemAsos:
         as row indices.
         '''
         df = pd.read_csv(csvData, header=0, sep=',', index_col=False)
-        
+
         # Strip whitespace from the column names
-        df.columns =  df.columns.str.strip()
+        df.columns = df.columns.str.strip()
 
         df['valid'] = pd.to_datetime(df['valid'], format="%Y-%m-%d %H:%M:%S")
 
