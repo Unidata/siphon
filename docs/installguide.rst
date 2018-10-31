@@ -53,6 +53,11 @@ The easiest way to install Siphon is through ``pip``:
 
 .. parsed-literal::
     pip install siphon
+    
+Siphon can also be installed through ``conda``:
+
+.. parsed-literal::
+    conda install -c unidata siphon
 
 The source code can also be grabbed from `GitHub <https://github.com/Unidata/siphon>`_. From
 the base of the source directory, run:
