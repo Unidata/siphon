@@ -104,7 +104,7 @@ class NDBC(HTTPEndPoint):
                      'time': None}
 
         df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep='\s+')
+                           names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -142,7 +142,7 @@ class NDBC(HTTPEndPoint):
                      'time': None}
 
         df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep='\s+')
+                           names=col_names, sep=r'\s+')
         df['hour'] = np.floor(df['hour_minute'] / 100)
         df['minute'] = df['hour_minute'] - df['hour'] * 100
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
@@ -176,7 +176,7 @@ class NDBC(HTTPEndPoint):
                      'time': None}
 
         df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep='\s+')
+                           names=col_names, sep=r'\s+')
         df['gust_direction'] = df['gust_direction'].replace(999, np.nan)
         df['wind_gust'] = df['wind_gust'].replace(99.0, np.nan)
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
@@ -224,7 +224,7 @@ class NDBC(HTTPEndPoint):
                      'time': None}
 
         df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep='\s+')
+                           names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -263,7 +263,7 @@ class NDBC(HTTPEndPoint):
                      'time': None}
 
         df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep='\s+')
+                           names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -293,7 +293,7 @@ class NDBC(HTTPEndPoint):
                      'time': None}
 
         df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep='\s+')
+                           names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -321,7 +321,7 @@ class NDBC(HTTPEndPoint):
                      'time': None}
 
         df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep='\s+')
+                           names=col_names, sep=r'\s+')
 
         # Replace measurement type integer with minute value
         # 1 = 15-minute measurement
@@ -358,7 +358,7 @@ class NDBC(HTTPEndPoint):
                      'time': None}
 
         df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep='\s+')
+                           names=col_names, sep=r'\s+')
 
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
@@ -392,7 +392,7 @@ class NDBC(HTTPEndPoint):
                      'time': None}
 
         df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep='\s+')
+                           names=col_names, sep=r'\s+')
 
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
 
@@ -452,7 +452,7 @@ class NDBC(HTTPEndPoint):
         resp = endpoint.get_path('data/latest_obs/latest_obs.txt')
 
         df = pd.read_table(StringIO(resp.text), comment='#', na_values='MM',
-                           names=col_names, sep='\s+')
+                           names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
