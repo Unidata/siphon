@@ -53,7 +53,7 @@ The easiest way to install Siphon is through ``pip``:
 
 .. parsed-literal::
     pip install siphon
-    
+
 Siphon can also be installed through ``conda``:
 
 .. parsed-literal::
