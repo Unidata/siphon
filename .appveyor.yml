@@ -27,7 +27,6 @@ install:
     - cmd: activate devel
     - cmd: python --version
     - cmd: conda list
-    - cmd: if %PYTHON_VERSION% == 2.7 conda install enum34
     - cmd: pip install ".[test,doc,examples]"
 
 # Skip .NET project specific build phase.
