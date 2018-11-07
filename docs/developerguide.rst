@@ -134,7 +134,7 @@ checked with ``doc8``. To see what the docs will look like, you also need to ins
 Other Tools
 -----------
 
-Continuous integration is performed by `Travis CI <http://www.travis-ci.org/Unidata/siphon>`_.
+Continuous integration is performed by `Travis CI <https://www.travis-ci.org/Unidata/siphon>`_.
 This service runs the unit tests on all support versions, as well as runs against the minimum
 package versions. ``flake8`` is also run against the code to check formatting. Travis is also
 used to build the documentation and to run the examples to ensure they stay working.

@@ -62,7 +62,7 @@ Other Resources
   using Siphon.
 
 .. _gallery: https://unidata.github.io/python-gallery
-.. _materials: https://unidata.github.io/unidata-python-workshop
+.. _materials: https://unidata.github.io/python-workshop
 
 -------
 License
