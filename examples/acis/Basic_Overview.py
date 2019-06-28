@@ -59,12 +59,12 @@ method = 'StnData'
 # Now that we have our request information ready, we can call the acis_request
 # function and recieve our data!
 
-myData = acis_request(method, parameters)
+my_data = acis_request(method, parameters)
 
 ###########################################
 # The data is also returned in a dictionary format, decoded from a JSON string.
 
-print(myData)
+print(my_data)
 
 ###########################################
 # We can see there are two parts to this data: The metadata, and the data. The
@@ -77,11 +77,11 @@ print(myData)
 #
 # * Note: Missing data is recorded as M!
 
-stnName = myData['meta']['name']
+stn_name = my_data['meta']['name']
 
 avgt = []
 dates = []
-for obs in myData['data']:
+for obs in my_data['data']:
     if obs[0].endswith('01'):
         dates.append(obs[0])
     else:
@@ -90,7 +90,7 @@ for obs in myData['data']:
 
 X = list(range(len(avgt)))
 
-plt.title(stnName)
+plt.title(stn_name)
 plt.ylabel('Average Temperature (F)')
 plt.plot(X, avgt)
 plt.xticks(X, dates, rotation=45)

@@ -14,7 +14,7 @@ import pandas as pd
 from .._tools import get_wind_components
 from ..http_util import HTTPEndPoint
 
-warnings.filterwarnings('ignore', 'Pandas doesn\'t allow columns to be created', UserWarning)
+warnings.filterwarnings('ignore', 'Pandas does not allow columns to be created', UserWarning)
 
 
 class IAStateUpperAir(HTTPEndPoint):
