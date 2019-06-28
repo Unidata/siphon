@@ -12,7 +12,8 @@ import requests
 
 from ..http_util import HTTPEndPoint
 
-warnings.filterwarnings('ignore', 'Pandas doesn\'t allow columns to be created', UserWarning)
+warnings.filterwarnings('ignore', "Pandas doesn\'t not allow columns to be created",
+                        UserWarning)
 
 
 class NDBC(HTTPEndPoint):
@@ -103,8 +104,8 @@ class NDBC(HTTPEndPoint):
                      'water_level_above_mean': 'feet',
                      'time': None}
 
-        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep=r'\s+')
+        df = pd.read_csv(StringIO(content), comment='#', na_values='MM',
+                         names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -141,8 +142,8 @@ class NDBC(HTTPEndPoint):
                      '3hr_pressure_tendency': 'hPa',
                      'time': None}
 
-        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep=r'\s+')
+        df = pd.read_csv(StringIO(content), comment='#', na_values='MM',
+                         names=col_names, sep=r'\s+')
         df['hour'] = np.floor(df['hour_minute'] / 100)
         df['minute'] = df['hour_minute'] - df['hour'] * 100
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
@@ -175,8 +176,8 @@ class NDBC(HTTPEndPoint):
                      'gust_time': None,
                      'time': None}
 
-        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep=r'\s+')
+        df = pd.read_csv(StringIO(content), comment='#', na_values='MM',
+                         names=col_names, sep=r'\s+')
         df['gust_direction'] = df['gust_direction'].replace(999, np.nan)
         df['wind_gust'] = df['wind_gust'].replace(99.0, np.nan)
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
@@ -223,8 +224,8 @@ class NDBC(HTTPEndPoint):
                      'dominant_wave_direction': 'degrees',
                      'time': None}
 
-        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep=r'\s+')
+        df = pd.read_csv(StringIO(content), comment='#', na_values='MM',
+                         names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -262,8 +263,8 @@ class NDBC(HTTPEndPoint):
                      'Eh': 'millivolts',
                      'time': None}
 
-        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep=r'\s+')
+        df = pd.read_csv(StringIO(content), comment='#', na_values='MM',
+                         names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -292,8 +293,8 @@ class NDBC(HTTPEndPoint):
                      'longwave_radiation': 'watts/meter^2',
                      'time': None}
 
-        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep=r'\s+')
+        df = pd.read_csv(StringIO(content), comment='#', na_values='MM',
+                         names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
@@ -320,8 +321,8 @@ class NDBC(HTTPEndPoint):
                      'height': 'meters',
                      'time': None}
 
-        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep=r'\s+')
+        df = pd.read_csv(StringIO(content), comment='#', na_values='MM',
+                         names=col_names, sep=r'\s+')
 
         # Replace measurement type integer with minute value
         # 1 = 15-minute measurement
@@ -357,8 +358,8 @@ class NDBC(HTTPEndPoint):
         col_units = {'hourly_accumulation': 'millimeters',
                      'time': None}
 
-        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep=r'\s+')
+        df = pd.read_csv(StringIO(content), comment='#', na_values='MM',
+                         names=col_names, sep=r'\s+')
 
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
@@ -391,8 +392,8 @@ class NDBC(HTTPEndPoint):
                      'hourly_high_wind_time': None,
                      'time': None}
 
-        df = pd.read_table(StringIO(content), comment='#', na_values='MM',
-                           names=col_names, sep=r'\s+')
+        df = pd.read_csv(StringIO(content), comment='#', na_values='MM',
+                         names=col_names, sep=r'\s+')
 
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
 
@@ -451,8 +452,8 @@ class NDBC(HTTPEndPoint):
                      'time': None}
         resp = endpoint.get_path('data/latest_obs/latest_obs.txt')
 
-        df = pd.read_table(StringIO(resp.text), comment='#', na_values='MM',
-                           names=col_names, sep=r'\s+')
+        df = pd.read_csv(StringIO(resp.text), comment='#', na_values='MM',
+                         names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
         df.units = col_units
