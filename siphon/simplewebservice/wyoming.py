@@ -14,8 +14,12 @@ import pandas as pd
 from .._tools import get_wind_components
 from ..http_util import HTTPEndPoint
 
+<<<<<<< HEAD
 warnings.filterwarnings('ignore', "Pandas doesn\'t not allow columns to be created",
                         UserWarning)
+=======
+warnings.filterwarnings('ignore', 'Pandas does not allow columns to be created', UserWarning)
+>>>>>>> 4aab50d72af9fe6b9169fda0d371439d692717b9
 
 
 class WyomingUpperAir(HTTPEndPoint):
@@ -140,7 +144,11 @@ class WyomingUpperAir(HTTPEndPoint):
 
         resp = self.get_path(path)
         # See if the return is valid, but has no data
+<<<<<<< HEAD
         if resp.text.find("Can\'t") != -1:
+=======
+        if resp.text.find('Cannot') != -1:
+>>>>>>> 4aab50d72af9fe6b9169fda0d371439d692717b9
             raise ValueError(
                 'No data available for {time:%Y-%m-%d %HZ} '
                 'for station {stid}.'.format(time=time, stid=site_id))

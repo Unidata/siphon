@@ -529,7 +529,7 @@ class Dataset(object):
                 for subservice in service.services:
                     all_service_dict[subservice.name] = subservice
 
-        service_name = metadata.get('serviceName', None)
+        service_name = metadata.get('service_name', None)
 
         access_urls = CaseInsensitiveDict({})
         server_url = _find_base_tds_url(catalog_url)
@@ -562,7 +562,7 @@ class Dataset(object):
 
     def add_access_element_info(self, access_element):
         """Create an access method from a catalog element."""
-        service_name = access_element.attrib['serviceName']
+        service_name = access_element.attrib['service_name']
         url_path = access_element.attrib['urlPath']
         self.access_element_info[service_name] = url_path
 

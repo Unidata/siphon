@@ -17,8 +17,12 @@ import pandas as pd
 
 from .._tools import get_wind_components
 
+<<<<<<< HEAD
 warnings.filterwarnings('ignore', "Pandas doesn\'t not allow columns to be created",
                         UserWarning)
+=======
+warnings.filterwarnings('ignore', 'Pandas does not allow columns to be created', UserWarning)
+>>>>>>> 4aab50d72af9fe6b9169fda0d371439d692717b9
 
 
 class IGRAUpperAir:
