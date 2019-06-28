@@ -7,7 +7,7 @@ This includes forming proper queries as well as parsing the returned catalog.
 """
 
 from collections import namedtuple
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as Et
 
 from .catalog import TDSCatalog
 from .http_util import BadQueryError, DataQuery, HTTPEndPoint, urljoin
@@ -85,7 +85,7 @@ class RadarServer(HTTPEndPoint):
 
     def _get_stations(self, station_file='stations.xml'):
         resp = self.get_path(station_file)
-        self.stations = parse_station_table(ET.fromstring(resp.content))
+        self.stations = parse_station_table(Et.fromstring(resp.content))
 
     def query(self):
         """Return a new query for the radar server.
@@ -157,7 +157,7 @@ class RadarServer(HTTPEndPoint):
             url = self._base[:-1] if self._base[-1] == '/' else self._base
             url += '?' + str(query)
             return TDSCatalog(url)
-        except ET.ParseError:
+        except Et.ParseError:
             raise BadQueryError(self.get_catalog_raw(query))
 
     def get_catalog_raw(self, query):

@@ -39,9 +39,9 @@ method = 'MultiStnData'
 # see how this changes the final data dictionary. Now let's make our call and
 # review our data.
 
-myData = acis_request(method, parameters)
+my_data = acis_request(method, parameters)
 
-print(myData)
+print(my_data)
 
 ###########################################
 # MultiStnData calls take longer to return than single stations, especially when
@@ -58,9 +58,9 @@ parameters = {'state': 'co', 'sdate': '20130909', 'edate': '20130912', 'elems': 
     {'name': 'pcpn', 'interval': 'dly', 'smry': 'sum', 'smry_only': 1},
     {'name': 'pcpn', 'interval': 'dly', 'smry': 'sum', 'smry_only': 1, 'normal': 'departure'}]}
 
-myData = acis_request(method, parameters)
+my_data = acis_request(method, parameters)
 
-print(myData)
+print(my_data)
 
 ###########################################
 # First of all, we have two new components to our elements: 'smry' and 'smry_only'.
@@ -94,7 +94,7 @@ lon = []
 pcpn = []
 pcpn_dep = []
 
-for stn in myData['data']:
+for stn in my_data['data']:
     # Skip threaded stations! They have no lat/lons
     if stn['meta']['sids'][-1].endswith('9'):
         continue

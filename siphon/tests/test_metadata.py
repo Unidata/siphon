@@ -4,7 +4,7 @@
 """Test parsing of metadata from a TDS client catalog."""
 
 import logging
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as Et
 
 from siphon.metadata import _ComplexTypes, _SimpleTypes, TDSCatalogMetadata
 
@@ -69,7 +69,7 @@ class TestSimpleTypes(object):
         """Test parsing of zpositive attribute."""
         xml = '<geospatialCoverage zpositive="down" />'
         expected = {'zpositive': 'down'}
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         assert element.attrib
         val = self.st.handle_upOrDown(element)
         assert val == expected
@@ -78,7 +78,7 @@ class TestSimpleTypes(object):
         """Test parsing of dataFormat tag."""
         xml = '<dataFormat>NcML</dataFormat>'
         expected = {'dataFormat': 'NcML'}
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         assert not element.attrib
         assert element.text
         val = self.st.handle_dataFormat(element)
@@ -88,7 +88,7 @@ class TestSimpleTypes(object):
         """Test parsing of dataType tag."""
         xml = '<dataType>GRID</dataType>'
         expected = {'dataType': 'GRID'}
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
 
         assert not element.attrib
         assert element.text
@@ -112,7 +112,7 @@ class TestComplexTypes(object):
         expected = {'start': 44.1,
                     'size': 20.6,
                     'units': 'degrees_north'}
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         actual = self.st.handle_spatialRange(element)
 
         assert actual == expected
@@ -123,7 +123,7 @@ class TestComplexTypes(object):
               'NOAA and NCEP</name>'
         expected = {'vocabulary': 'MyVocabName',
                     'name': 'NOAA and NCEP'}
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         actual = self.st.handle_controlledVocabulary(element)
         assert expected == actual
 
@@ -133,7 +133,7 @@ class TestComplexTypes(object):
         expected = {'format': 'yyyy DDD',
                     'type': 'created',
                     'value': '1999 189'}
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         actual = self.st.handle_dateTypeFormatted(element)
         assert expected == actual
 
@@ -143,7 +143,7 @@ class TestComplexTypes(object):
               '<contact url="http://dataportal.ucar.edu" ' \
               'email="cdp@ucar.edu"/></publisher>'
 
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         expected = {'vocabulary': 'DIF',
                     'name': 'UCAR/NCAR/CDP',
                     'email': 'cdp@ucar.edu',
@@ -155,7 +155,7 @@ class TestComplexTypes(object):
         """Test parsing of one form of timeCoverage tag."""
         xml = '<timeCoverage><end>present</end><duration>10 days</duration>' \
             '<resolution>15 minutes</resolution></timeCoverage>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         expected = {'end': 'present',
                     'duration': '10 days',
                     'resolution': '15 minutes'}
@@ -166,7 +166,7 @@ class TestComplexTypes(object):
         """Test parsing of a second form of timeCoverage tag."""
         xml = '<timeCoverage><start>1999-11-16T12:00:00</start>' \
             '<end>present</end></timeCoverage>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         expected = {'end': 'present',
                     'start': '1999-11-16T12:00:00'}
         actual = self.st.handle_timeCoverageType(element)
@@ -176,7 +176,7 @@ class TestComplexTypes(object):
         """Test parsing of a third type of timeCoverage tag."""
         xml = '<timeCoverage><start>1999-11-16T12:00:00</start>' \
             '<duration>P3M</duration></timeCoverage>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         expected = {'duration': 'P3M',
                     'start': '1999-11-16T12:00:00'}
         actual = self.st.handle_timeCoverageType(element)
@@ -186,7 +186,7 @@ class TestComplexTypes(object):
         """Test parsing of variable tags."""
         xml = '<variable name="wdir" vocabulary_name="Wind Direction" ' \
               'units= "degrees">Wind Direction @ surface</variable>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         expected = {'name': 'wdir',
                     'vocabulary_name': 'Wind Direction',
                     'units': 'degrees',
@@ -197,7 +197,7 @@ class TestComplexTypes(object):
     def test_variable2(self):
         """Test parsing another variable tag."""
         xml = '<variable name="wdir"></variable>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         expected = {'name': 'wdir'}
         actual = self.st.handle_variable(element)
         assert expected == actual
@@ -205,7 +205,7 @@ class TestComplexTypes(object):
     def test_variable3(self):
         """Test parsing a third variable tag."""
         xml = '<variable name="wdir">Wind Direction @ surface</variable>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         expected = {'name': 'wdir',
                     'description': 'Wind Direction @ surface'}
         actual = self.st.handle_variable(element)
@@ -215,7 +215,7 @@ class TestComplexTypes(object):
         """Test parsing a variableMap tag."""
         xml = '<variableMap xmlns:xlink="http://www.w3.org/1999/xlink" ' \
               'xlink:href="../standardQ/Eta.xml" />'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         expected = {
             '{http://www.w3.org/1999/xlink}href': '../standardQ/Eta.xml'}
         actual = self.st.handle_variableMap(element)
@@ -225,7 +225,7 @@ class TestComplexTypes(object):
         """Test parsing another form of VariableMap tag."""
         xml = '<variableMap xmlns:xlink="http://www.w3.org/1999/xlink" ' \
               'xlink:href="../standardQ/Eta.xml" xlink:title="variables"/>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         expected = {'{http://www.w3.org/1999/xlink}href':
                     '../standardQ/Eta.xml',
                     '{http://www.w3.org/1999/xlink}title':
@@ -243,7 +243,7 @@ class TestComplexTypes(object):
               '<variable name="o3c" vocabulary_name="Ozone Concentration"' \
               ' units="g/g">Ozone Concentration @ surface</variable>' \
               '</variables>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         actual = self.st.handle_variables(element)
         assert 'vocabulary' in actual
         assert actual['vocabulary'] == 'CF-1.0'
@@ -258,7 +258,7 @@ class TestComplexTypes(object):
               'xlink:href="http://www.unidata.ucar.edu/GRIB-NCEPtable2.xml">' \
               '<variableMap xlink:href="../standardQ/Eta.xml" />' \
               '</variables>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         actual = self.st.handle_variables(element)
         assert 'vocabulary' in actual
         assert actual['vocabulary'] == 'GRIB-NCEP'
@@ -269,7 +269,7 @@ class TestComplexTypes(object):
     def test_data_size(self):
         """Test parsing dataSize tag."""
         xml = '<dataSize units="Kbytes">123</dataSize>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         actual = self.st.handle_dataSize(element)
         assert 'units' in actual
         assert actual['units'] == 'Kbytes'
@@ -283,7 +283,7 @@ class TestProperty(object):
     def setup_class(cls):
         """Set up testing."""
         xml = '<property name="Conventions" value="CF-1.6" />'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         cls.md = TDSCatalogMetadata(element).metadata
         cls.element_name = 'property'
 
@@ -304,7 +304,7 @@ class TestContributor:
     def setup_class(cls):
         """Set up testing with common metadata tag."""
         xml = '<contributor role="PI">Jane Doe</contributor>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         cls.md = TDSCatalogMetadata(element).metadata
         cls.element_name = 'contributor'
 
@@ -356,8 +356,8 @@ class TestGeospatialCoverage(object):
         cls.xml_warn2 = '<geospatialCoverage zpositive="waka-waka">' \
             '</geospatialCoverage>'
 
-        cls.md1 = TDSCatalogMetadata(ET.fromstring(xml1)).metadata
-        cls.md2 = TDSCatalogMetadata(ET.fromstring(xml2)).metadata
+        cls.md1 = TDSCatalogMetadata(Et.fromstring(xml1)).metadata
+        cls.md2 = TDSCatalogMetadata(Et.fromstring(xml2)).metadata
 
     def test_geospatial_coverage_attr1(self):
         """Test parsing of geospatialCoverage."""
@@ -379,7 +379,7 @@ class TestMetadata(object):
 
     @staticmethod
     def _make_element(xml_str):
-        return ET.fromstring(xml_str)
+        return Et.fromstring(xml_str)
 
     def test_documentation_element_no_type(self):
         """Test parsing generic documentation."""
@@ -588,7 +588,7 @@ class TestMetadata(object):
               'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}" ' \
               'xlink:title="ISO 19115-2:2009(E) - Collection Level Metadata"/>' \
               '</metadata>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         md = TDSCatalogMetadata(element).metadata
         # make sure other metadata is still captured
         assert 'serviceName' in md
@@ -608,7 +608,7 @@ class TestMetadata(object):
               'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}" ' \
               'name="ISO 19115-2:2009(E) - Collection Level Metadata"/>' \
               '</metadata>'
-        element = ET.fromstring(xml)
+        element = Et.fromstring(xml)
         md = TDSCatalogMetadata(element).metadata
         assert 'serviceName' in md
         assert 'external_metadata' not in md
