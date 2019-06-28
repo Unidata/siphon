@@ -11,7 +11,7 @@ from collections import OrderedDict
 from datetime import datetime
 import logging
 import re
-import xml.etree.ElementTree as Et
+import xml.etree.ElementTree as ET  # noqa:N814
 try:
     from urlparse import urljoin, urlparse
 except ImportError:
@@ -271,7 +271,7 @@ class TDSCatalog(object):
             resp.raise_for_status()
 
         # begin parsing the xml doc
-        root = Et.fromstring(resp.content)
+        root = ET.fromstring(resp.content)
         self.catalog_name = root.attrib.get('name', 'No name found')
 
         self.datasets = DatasetCollection()
@@ -488,7 +488,7 @@ class Dataset(object):
             resolver_base = catalog_url.split('catalog.xml')[0]
             resolver_url = resolver_base + self.url_path
             resolver_xml = session_manager.urlopen(resolver_url)
-            tree = Et.parse(resolver_xml)
+            tree = ET.parse(resolver_xml)
             root = tree.getroot()
             if 'name' in root.attrib:
                 self.catalog_name = root.attrib['name']

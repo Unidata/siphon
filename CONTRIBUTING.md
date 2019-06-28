@@ -67,9 +67,10 @@ We love pull requests from everyone. Fork, then clone the repo:
 
     git clone git@github.com:your-username/siphon.git
 
-Navigate inside the ``siphon`` folder via ``cd siphon``. Create the development environment
+Navigate into the ``siphon`` folder by executing ``cd siphon``. Create the development conda environment
 with the command ``conda env create`` and activate the environment with ``conda activate devel``. 
-Then install siphon:
+
+Then install the development version of siphon:
 
     pip install .
 
@@ -78,8 +79,8 @@ Install py.test (at least version 2.4) and make sure the tests pass:
     pip install pytest
     py.test
 
-Create a new branch within your respository and make your change. 
-Add tests for your change. Make the tests pass:
+Create a new branch within your local repository and make your change(s). 
+Add tests for your change(s). Make the tests pass:
 
     py.test
 

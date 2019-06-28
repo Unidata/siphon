@@ -10,7 +10,7 @@ import atexit
 from io import BytesIO
 from os import remove
 import platform
-import xml.etree.ElementTree as Et
+import xml.etree.ElementTree as ET  # noqa:N814
 
 import numpy as np
 
@@ -55,7 +55,7 @@ class NCSS(HTTPEndPoint):
     def _get_metadata(self):
         # Need to use .content here to avoid decode problems
         meta_xml = self.get_path('dataset.xml').content
-        root = Et.fromstring(meta_xml)
+        root = ET.fromstring(meta_xml)
         self.metadata = NCSSDataset(root)
         self.variables = set(self.metadata.variables)
 
@@ -314,7 +314,7 @@ def combine_dicts(l):
 @response_handlers.register('application/xml')
 def parse_xml(data, handle_units):
     """Parse XML data returned by NCSS."""
-    root = Et.fromstring(data)
+    root = ET.fromstring(data)
     return squish(parse_xml_dataset(root, handle_units))
 
 

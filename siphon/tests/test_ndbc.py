@@ -3,12 +3,13 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Test National Data Buoy Center (NDBC) dataset access."""
 
-from datetime import datetime, timezone
+from datetime import datetime
 
 import numpy as np
 from numpy.testing import assert_almost_equal, assert_equal
 import pytest
 
+from siphon.http_util import utc
 from siphon.simplewebservice.ndbc import NDBC
 from siphon.testing import get_recorder
 
@@ -35,8 +36,7 @@ def test_ndbc_realtime_txt():
     assert_equal(df['visibility'][3], np.nan)
     assert_equal(df['3hr_pressure_tendency'][3], np.nan)
     assert_equal(df['water_level_above_mean'][3], np.nan)
-    assert_equal(df['time'][3].to_pydatetime(), datetime(2018, 8, 1, 14, 40,
-                                                         tzinfo=timezone.utc))
+    assert df['time'][3] == datetime(2018, 8, 1, 14, 40, tzinfo=utc)
 
     assert(df.units['wind_direction'] == 'degrees')
     assert(df.units['wind_speed'] == 'meters/second')
@@ -69,8 +69,7 @@ def test_ndbc_realtime_drift():
     assert_equal(df['3hr_pressure_tendency'][3], np.nan)
     assert_almost_equal(df['air_temperature'][3], 25.3, 1)
     assert_almost_equal(df['water_temperature'][3], 22.8, 1)
-    assert_equal(df['time'][3].to_pydatetime(), datetime(2018, 8, 1, 8, 0,
-                                                         tzinfo=timezone.utc))
+    assert df['time'][3] == datetime(2018, 8, 1, 8, 0, tzinfo=utc)
 
     assert(df.units['latitude'] == 'degrees')
     assert(df.units['longitude'] == 'degrees')
@@ -93,10 +92,8 @@ def test_ndbc_realtime_cwind():
     assert_almost_equal(df['wind_speed'][3], 6.7, 1)
     assert_equal(df['gust_direction'][3], np.nan)
     assert_almost_equal(df['wind_gust'][0], 9.0, 1)
-    assert_equal(df['gust_time'][0].to_pydatetime(), datetime(2018, 8, 1, 14, 49, 0,
-                                                              tzinfo=timezone.utc))
-    assert_equal(df['time'][0].to_pydatetime(), datetime(2018, 8, 1, 14, 50, 0,
-                                                         tzinfo=timezone.utc))
+    assert df['gust_time'][0] == datetime(2018, 8, 1, 14, 49, 0, tzinfo=utc)
+    assert df['time'][0] == datetime(2018, 8, 1, 14, 50, 0, tzinfo=utc)
 
     assert(df.units['wind_direction'] == 'degrees')
     assert(df.units['wind_speed'] == 'meters/second')
@@ -121,8 +118,7 @@ def test_ndbc_realtime_spec():
     assert(df['steepness'][3] == 'STEEP')
     assert_almost_equal(df['average_wave_period'][3], 4.5, 1)
     assert_almost_equal(df['dominant_wave_direction'][3], 150, 1)
-    assert_equal(df['time'][3].to_pydatetime(), datetime(2018, 8, 1, 11, 40, 0,
-                                                         tzinfo=timezone.utc))
+    assert df['time'][3] == datetime(2018, 8, 1, 11, 40, 0, tzinfo=utc)
 
     assert(df.units['significant_wave_height'] == 'meters')
     assert(df.units['swell_height'] == 'meters')
@@ -152,8 +148,7 @@ def test_ndbc_realtime_ocean():
     assert_almost_equal(df['turbidity'][3], 0, 1)
     assert_almost_equal(df['pH'][3], 8.38, 1)
     assert_equal(df['Eh'][3], np.nan)
-    assert_equal(df['time'][3].to_pydatetime(), datetime(2018, 8, 1, 13, 30, 0,
-                                                         tzinfo=timezone.utc))
+    assert df['time'][3] == datetime(2018, 8, 1, 13, 30, 0, tzinfo=utc)
 
     assert (df.units['measurement_depth'] == 'meters')
     assert (df.units['ocean_temperature'] == 'degC')
@@ -176,8 +171,7 @@ def test_ndbc_realtime_srad():
     assert_almost_equal(df['shortwave_radiation_licor'][3], 51.6, 1)
     assert_equal(df['shortwave_radiation_eppley'][3], np.nan)
     assert_equal(df['longwave_radiation'][3], np.nan)
-    assert_equal(df['time'][3].to_pydatetime(), datetime(2018, 8, 1, 14, 30,
-                                                         tzinfo=timezone.utc))
+    assert df['time'][3] == datetime(2018, 8, 1, 14, 30, tzinfo=utc)
 
     assert (df.units['shortwave_radiation_licor'] == 'watts/meter^2')
     assert (df.units['shortwave_radiation_eppley'] == 'watts/meter^2')
@@ -192,8 +186,7 @@ def test_ndbc_realtime_dart():
 
     assert_almost_equal(df['measurement_type'][3], 15, 1)
     assert_almost_equal(df['height'][3], 5806.845, 3)
-    assert_equal(df['time'][3].to_pydatetime(), datetime(2018, 8, 1, 11, 15,
-                                                         tzinfo=timezone.utc))
+    assert df['time'][3] == datetime(2018, 8, 1, 11, 15, tzinfo=utc)
 
     assert (df.units['measurement_type'] == 'minutes')
     assert (df.units['height'] == 'meters')
@@ -206,14 +199,13 @@ def test_ndbc_realtime_supl():
     df = NDBC.realtime_observations('PVGF1', data_type='supl')
 
     assert_almost_equal(df['hourly_low_pressure'][3], 1019.0, 1)
-    assert_equal(df['hourly_low_pressure_time'][3].to_pydatetime(),
-                 datetime(2018, 7, 31, 14, 36, tzinfo=timezone.utc))
+    assert df['hourly_low_pressure_time'][3] == datetime(2018, 7, 31, 14, 36,
+                                                         tzinfo=utc)
     assert_almost_equal(df['hourly_high_wind'][3], 6, 1)
     assert_equal(df['hourly_high_wind_direction'][3], np.nan)
-    assert_equal(df['hourly_high_wind_time'][3].to_pydatetime(),
-                 datetime(2018, 7, 31, 14, 36, tzinfo=timezone.utc))
-    assert_equal(df['time'][3].to_pydatetime(), datetime(2018, 7, 31, 14, 42,
-                                                         tzinfo=timezone.utc))
+    assert df['hourly_high_wind_time'][3] == datetime(2018, 7, 31, 14, 36,
+                                                      tzinfo=utc)
+    assert df['time'][3] == datetime(2018, 7, 31, 14, 42, tzinfo=utc)
 
     assert (df.units['hourly_low_pressure'] == 'hPa')
     assert (df.units['hourly_low_pressure_time'] is None)
@@ -229,7 +221,7 @@ def test_ndbc_realtime_rain():
     df = NDBC.realtime_observations('BDVF1', data_type='rain')
 
     assert_almost_equal(df['hourly_accumulation'][3], 0.0, 1)
-    assert_equal(df['time'][3].to_pydatetime(), datetime(2018, 8, 1, 11, tzinfo=timezone.utc))
+    assert df['time'][3] == datetime(2018, 8, 1, 11, tzinfo=utc)
 
     assert (df.units['hourly_accumulation'] == 'millimeters')
     assert (df.units['time'] is None)
@@ -258,8 +250,7 @@ def test_ndbc_latest():
     assert_equal(df['visibility'][10], np.nan)
     assert_equal(df['3hr_pressure_tendency'][10], np.nan)
     assert_equal(df['water_level_above_mean'][10], np.nan)
-    assert_equal(df['time'][10].to_pydatetime(), datetime(2018, 7, 30, 21, 10,
-                                                          tzinfo=timezone.utc))
+    assert df['time'][10] == datetime(2018, 7, 30, 21, 10, tzinfo=utc)
 
     assert(df.units['station'] is None)
     assert(df.units['latitude'] == 'degrees')
