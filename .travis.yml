@@ -1,7 +1,8 @@
 # After changing this file, check it on:
 #   http://lint.travis-ci.org/
 language: python
-sudo: false
+sudo: falsei
+dist: xenial
 
 addons:
   artifacts:
@@ -14,6 +15,7 @@ addons:
     - libnetcdf-dev
 
 python:
+  - 3.7
   - 3.6
   - 2.7
 
@@ -35,8 +37,6 @@ env:
 
 matrix:
   include:
-    - python: 3.5
-      env:
     - python: "3.6-dev"
       env: PRE="--pre"
     - python: nightly
