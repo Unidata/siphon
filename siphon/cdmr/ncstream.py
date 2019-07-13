@@ -355,7 +355,7 @@ def unpack_variable(var):
             data = var.data
         else:
             # Always sent big endian
-            data = np.fromstring(var.data, dtype=dt.newbyteorder('>'))
+            data = np.frombuffer(var.data, dtype=dt.newbyteorder('>'))
     else:
         data = None
 
@@ -381,10 +381,10 @@ def unpack_attribute(att):
     elif att.dataType == stream.STRING:  # Then look for new datatype string
         val = att.sdata
     elif att.dataType:  # Then a non-zero new data type
-        val = np.fromstring(att.data,
+        val = np.frombuffer(att.data,
                             dtype='>' + _dtypeLookup[att.dataType], count=att.len)
     elif att.type:  # Then non-zero old-data type0
-        val = np.fromstring(att.data,
+        val = np.frombuffer(att.data,
                             dtype=_attrConverters[att.type], count=att.len)
     elif att.sdata:  # This leaves both 0, try old string
         val = att.sdata

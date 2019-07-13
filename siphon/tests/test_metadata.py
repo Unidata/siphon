@@ -369,11 +369,9 @@ class TestGeospatialCoverage(object):
         """Test parsing geospatialCoverage with zpositive."""
         # can we detect this:
         # <geospatialCoverage zpositive="down">
-        if self.md1[self.element_name]:
-            if 'zpositive' in self.md1[self.element_name]:
-                possible_values = ['up', 'down']
-                value = self.md1[self.element_name]['zpositive']
-                assert value in possible_values
+        for entry in self.md1[self.element_name]:
+            if 'zpositive' in entry:
+                assert entry['zpositive']['zpositive'] in {'up', 'down'}
 
 
 class TestMetadata(object):

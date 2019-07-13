@@ -16,10 +16,6 @@ import numpy as np
 import pandas as pd
 
 from .._tools import get_wind_components
-try:
-    from urllib.request import urlopen
-except ImportError:
-    from urllib2 import urlopen
 
 warnings.filterwarnings('ignore', 'Pandas doesn\'t allow columns to be created', UserWarning)
 
@@ -106,6 +102,13 @@ class IGRAUpperAir:
         Returns a tuple with a string for the body, string for the headers,
         and a list of dates.
         """
+        # Import need to be here so we can monkeypatch urlopen for testing and avoid
+        # downloading live data for testing
+        try:
+            from urllib.request import urlopen
+        except ImportError:
+            from urllib2 import urlopen
+
         with closing(urlopen(self.ftpsite + self.site_id + self.suffix + '.zip')) as url:
             f = ZipFile(BytesIO(url.read()), 'r').open(self.site_id + self.suffix)
 
@@ -178,7 +181,10 @@ class IGRAUpperAir:
         def _cdec(power=1):
             """Make a function to convert string 'value*10^power' to float."""
             def _cdec_power(val):
-                return float(val) / 10**power
+                if val in ['-9999', '-8888', '-99999']:
+                    return np.nan
+                else:
+                    return float(val) / 10**power
             return _cdec_power
 
         def _cflag(val):
@@ -245,8 +251,8 @@ class IGRAUpperAir:
                          'virtual_potential_temperature': _cdec(),
                          'vapor_pressure': _cdec(power=3),
                          'saturation_vapor_pressure': _cdec(power=3),
-                         'reported_relative_humidity': int,
-                         'calculated_relative_humidity': int,
+                         'reported_relative_humidity': _cdec(),
+                         'calculated_relative_humidity': _cdec(),
                          'u_wind': _cdec(),
                          'u_wind_gradient': _cdec(),
                          'v_wind': _cdec(),
@@ -353,7 +359,7 @@ class IGRAUpperAir:
         """Format the dataframe, remove empty rows, and add units attribute."""
         if self.suffix == '-drvd.txt':
             df = df.dropna(subset=('temperature', 'reported_relative_humidity',
-                                   'u_wind', 'v_wind'), how='all').reset_index(drop=True)
+                           'u_wind', 'v_wind'), how='all').reset_index(drop=True)
 
             df.units = {'pressure': 'hPa',
                         'reported_height': 'meter',
@@ -379,11 +385,14 @@ class IGRAUpperAir:
                                                              np.deg2rad(df['direction']))
             df['u_wind'] = np.round(df['u_wind'], 1)
             df['v_wind'] = np.round(df['v_wind'], 1)
+
+            df = df.dropna(subset=('temperature', 'direction', 'speed',
+                           'dewpoint_depression', 'u_wind', 'v_wind'),
+                           how='all').reset_index(drop=True)
+
             df['dewpoint'] = df['temperature'] - df['dewpoint_depression']
 
             df.drop('dewpoint_depression', axis=1, inplace=True)
-            df = df.dropna(subset=('temperature', 'dewpoint', 'direction', 'speed',
-                                   'u_wind', 'v_wind'), how='all').reset_index(drop=True)
 
             df.units = {'etime': 'second',
                         'pressure': 'hPa',

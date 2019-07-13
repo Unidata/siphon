@@ -6,7 +6,7 @@
 import logging
 import xml.etree.ElementTree as ET
 
-from siphon.http_util import urlopen
+from siphon.http_util import session_manager
 from siphon.ncss_dataset import _Types, NCSSDataset
 from siphon.testing import get_recorder
 
@@ -559,7 +559,7 @@ def test_dataset_elements_full_ncss_station():
     """Test parsing the dataset from a full ncss station page."""
     url = ('http://thredds.ucar.edu/thredds/ncss/nws/synoptic/'
            'ncdecoded/Surface_Synoptic_Point_Data_fc.cdmr/dataset.xml')
-    element = ET.fromstring(urlopen(url).read())
+    element = ET.fromstring(session_manager.urlopen(url).read())
     parsed = NCSSDataset(element)
     assert parsed
 
@@ -570,7 +570,7 @@ def test_dataset_elements_full_ncss_grid():
     url = ('http://thredds.ucar.edu/thredds/ncss/grib/NCEP/GFS/'
            'Global_0p5deg/GFS_Global_0p5deg_20150602_0000.grib2/'
            'dataset.xml')
-    element = ET.fromstring(urlopen(url).read())
+    element = ET.fromstring(session_manager.urlopen(url).read())
     parsed = NCSSDataset(element)
     assert parsed
 
@@ -580,6 +580,6 @@ def test_dataset_parsing_tds5(recwarn):
     """Test parsing the dataset from TDS 5."""
     url = ('http://thredds-test.unidata.ucar.edu/thredds/ncss/grid/casestudies/irma/model/'
            'gfs/GFS_Global_0p5deg_20170903_1200.grib2/dataset.xml')
-    element = ET.fromstring(urlopen(url).read())
+    element = ET.fromstring(session_manager.urlopen(url).read())
     NCSSDataset(element)
     assert len(recwarn) == 0

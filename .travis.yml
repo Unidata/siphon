@@ -35,8 +35,6 @@ env:
 
 matrix:
   include:
-    - python: 3.4
-      env:
     - python: 3.5
       env:
     - python: "3.6-dev"
@@ -70,6 +68,7 @@ before_install:
       export PKG_CONFIG_PATH="$HOME/local/lib/pkgconfig";
       export LD_LIBRARY_PATH="$HOME/local/lib";
       pkg-config --modversion proj;
+      pip install git+http://github.com/sphinx-gallery/sphinx-gallery;
     else
       export TEST_OPTS="--flake8";
       if [[ $TASK == "coverage" ]]; then
@@ -80,13 +79,15 @@ before_install:
   - mkdir $WHEELDIR;
   - pip download -d $WHEELDIR ".[$EXTRAS]" $EXTRA_PACKAGES -f $WHEELHOUSE $PRE $VERSIONS;
   - touch $WHEELDIR/download_marker && ls -lrt $WHEELDIR;
-  - travis_wait pip wheel -w $WHEELDIR $EXTRA_PACKAGES -f $WHEELHOUSE $PRE $VERSIONS;
-  - pip install $EXTRA_PACKAGES --upgrade --no-index -f file://$PWD/$WHEELDIR $VERSIONS;
+  - if [[ $EXTRA_PACKAGES != "" ]]; then
+      travis_wait pip wheel -w $WHEELDIR $EXTRA_PACKAGES -f $WHEELHOUSE $PRE $VERSIONS;
+      pip install $EXTRA_PACKAGES --upgrade --upgrade-strategy=eager --no-index -f file://$PWD/$WHEELDIR $VERSIONS;
+    fi;
   - travis_wait pip wheel -w $WHEELDIR ".[$EXTRAS]" $EXTRA_PACKAGES -f $WHEELHOUSE $PRE $VERSIONS;
   - rm -f $WHEELDIR/siphon*.whl;
 
 install:
-  - pip install ".[$EXTRAS]" --upgrade --no-index $PRE -f file://$PWD/$WHEELDIR $VERSIONS;
+  - pip install ".[$EXTRAS]" --upgrade --upgrade-strategy=eager --no-index $PRE -f file://$PWD/$WHEELDIR $VERSIONS;
 
 script:
   - if [[ $TASK == "docs" ]]; then

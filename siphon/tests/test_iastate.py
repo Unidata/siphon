@@ -85,3 +85,70 @@ def test_no_future_data_iastate():
     """Test Iowa State data when future data are requested."""
     with pytest.raises(ValueError):
         IAStateUpperAir.request_data(datetime(2999, 12, 9, 12), 'BOI')
+
+
+@recorder.use_cassette('iastate_all_data_single_pressure')
+def test_all_data_single_pressure_iastate():
+    """Test Iowa State request for all data at a single pressure level."""
+    df = IAStateUpperAir.request_all_data(datetime(1999, 5, 4, 0), pressure=500)
+    idx = df.loc[df.station == 'KDDC'].index[0]
+
+    assert(df['time'][idx] == datetime(1999, 5, 4, 0))
+    assert(df['station'][idx] == 'KDDC')
+
+    assert_almost_equal(df['pressure'][idx], 500.0, 2)
+    assert_almost_equal(df['height'][idx], 5606.0, 2)
+    assert_almost_equal(df['temperature'][idx], -17.2, 2)
+    assert_almost_equal(df['dewpoint'][idx], -22.9, 2)
+    assert_almost_equal(df['u_wind'][idx], 30.834774, 2)
+    assert_almost_equal(df['v_wind'][idx], 35.47135, 2)
+    assert_almost_equal(df['speed'][idx], 47.0, 1)
+    assert_almost_equal(df['direction'][idx], 221.0, 1)
+
+    assert(df.units['pressure'] == 'hPa')
+    assert(df.units['height'] == 'meter')
+    assert(df.units['temperature'] == 'degC')
+    assert(df.units['dewpoint'] == 'degC')
+    assert(df.units['u_wind'] == 'knot')
+    assert(df.units['v_wind'] == 'knot')
+    assert(df.units['speed'] == 'knot')
+    assert(df.units['direction'] == 'degrees')
+    assert(df.units['station'] is None)
+    assert(df.units['time'] is None)
+
+
+@recorder.use_cassette('iastate_all_data_all_levels')
+def test_all_data_all_levels_iastate():
+    """Test Iowa State request for all data at all levels."""
+    df = IAStateUpperAir.request_all_data(datetime(1999, 5, 4, 0))
+    idx = df.loc[df.station == 'KDDC'].index[12]
+
+    assert(df['time'][idx] == datetime(1999, 5, 4, 0))
+    assert(df['station'][idx] == 'KDDC')
+
+    assert_almost_equal(df['pressure'][idx], 700.0, 2)
+    assert_almost_equal(df['height'][idx], 2969.0, 2)
+    assert_almost_equal(df['temperature'][idx], 5.8, 2)
+    assert_almost_equal(df['dewpoint'][idx], -11.7, 2)
+    assert_almost_equal(df['u_wind'][idx], 33.234, 2)
+    assert_almost_equal(df['v_wind'][idx], 33.234, 2)
+    assert_almost_equal(df['speed'][idx], 47.0, 1)
+    assert_almost_equal(df['direction'][idx], 225.0, 1)
+
+    assert(df.units['pressure'] == 'hPa')
+    assert(df.units['height'] == 'meter')
+    assert(df.units['temperature'] == 'degC')
+    assert(df.units['dewpoint'] == 'degC')
+    assert(df.units['u_wind'] == 'knot')
+    assert(df.units['v_wind'] == 'knot')
+    assert(df.units['speed'] == 'knot')
+    assert(df.units['direction'] == 'degrees')
+    assert(df.units['station'] is None)
+    assert(df.units['time'] is None)
+
+
+@recorder.use_cassette('iastate_no_future_data_with_pressure')
+def test_no_future_data_with_pressure_iastate():
+    """Test Iowa State data when future data are requested with the pressure argument."""
+    with pytest.raises(ValueError):
+        IAStateUpperAir.request_all_data(datetime(2999, 12, 9, 12), pressure=850.)
