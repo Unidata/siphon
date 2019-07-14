@@ -11,6 +11,7 @@ Use Siphon to query the NetCDF Subset Service (NCSS).
 from datetime import datetime
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 from siphon.catalog import TDSCatalog
 
@@ -60,10 +61,16 @@ press_name = relh.coordinates.split()[-1]
 press = data.variables[press_name]
 press_vals = press[:].squeeze()
 
+# Due to a different number of vertical levels find where they are common
+lev_temp = data['isobaric4']
+lev_relh = data['isobaric']
+_, _, common_ind = np.intersect1d(lev_relh, lev_temp, return_indices=True)
+temp_filtered = temp[:, :, common_ind]
+
 ###########################################
 # Now we can plot these up using matplotlib.
 fig, ax = plt.subplots(1, 1, figsize=(9, 8))
-ax.plot(temp[:].squeeze(), press_vals, 'r', linewidth=2)
+ax.plot(temp_filtered[:].squeeze(), press_vals, 'r', linewidth=2)
 ax.set_xlabel('{} ({})'.format(temp.standard_name, temp.units))
 ax.set_ylabel('{} ({})'.format(press.standard_name, press.units))
 
