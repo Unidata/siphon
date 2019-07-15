@@ -10,7 +10,7 @@ import atexit
 from io import BytesIO
 from os import remove
 import platform
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # noqa:N814
 
 import numpy as np
 

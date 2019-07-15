@@ -7,7 +7,7 @@ This includes forming proper queries as well as parsing the returned catalog.
 """
 
 from collections import namedtuple
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # noqa:N814
 
 from .catalog import TDSCatalog
 from .http_util import BadQueryError, DataQuery, HTTPEndPoint, urljoin
