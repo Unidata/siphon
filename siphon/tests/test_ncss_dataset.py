@@ -4,7 +4,7 @@
 """Test the parsing of the NCSS dataset.xml."""
 
 import logging
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # noqa:N814
 
 from siphon.http_util import session_manager
 from siphon.ncss_dataset import _Types, NCSSDataset
@@ -210,7 +210,7 @@ class TestSimpleTypes(object):
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        assert 'Cannot convert values [\'a\'] to boolean. Keeping type as str.' in caplog.text
+        assert "Cannot convert values [\'a\'] to boolean. Keeping type as str." in caplog.text
         assert expected == actual
 
     def test_value_1(self):

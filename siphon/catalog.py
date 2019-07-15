@@ -11,7 +11,7 @@ from collections import OrderedDict
 from datetime import datetime
 import logging
 import re
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # noqa:N814
 try:
     from urlparse import urljoin, urlparse
 except ImportError:
@@ -347,17 +347,17 @@ class TDSCatalog(object):
 
     def _process_datasets(self):
         # Need to use list (of keys) because we modify the dict while iterating
-        for dsName in list(self.datasets):
+        for ds_name in list(self.datasets):
             # check to see if dataset needs to have access urls created, if not,
             # remove the dataset
-            has_url_path = self.datasets[dsName].url_path is not None
+            has_url_path = self.datasets[ds_name].url_path is not None
             is_ds_with_access_elements_to_process = \
-                dsName in self.ds_with_access_elements_to_process
+                ds_name in self.ds_with_access_elements_to_process
             if has_url_path or is_ds_with_access_elements_to_process:
-                self.datasets[dsName].make_access_urls(
+                self.datasets[ds_name].make_access_urls(
                     self.base_tds_url, self.services, metadata=self.metadata)
             else:
-                self.datasets.pop(dsName)
+                self.datasets.pop(ds_name)
 
     @property
     def latest(self):
@@ -440,7 +440,8 @@ class Dataset(object):
 
     """
 
-    ncssServiceNames = (CaseInsensitiveStr('NetcdfSubset'), CaseInsensitiveStr('NetcdfServer'))
+    ncss_service_names = (CaseInsensitiveStr('NetcdfSubset'),
+                          CaseInsensitiveStr('NetcdfServer'))
 
     def __init__(self, element_node, catalog_url=''):
         """Initialize the Dataset object.
@@ -637,15 +638,15 @@ class Dataset(object):
 
         """
         if service is None:
-            for serviceName in self.ncssServiceNames:
-                if serviceName in self.access_urls:
-                    service = serviceName
+            for service_name in self.ncss_service_names:
+                if service_name in self.access_urls:
+                    service = service_name
                     break
             else:
                 raise RuntimeError('Subset access is not available for this dataset.')
-        elif service not in self.ncssServiceNames:
+        elif service not in self.ncss_service_names:
             raise ValueError(service + ' is not a valid service for subset. Options are: '
-                             + ', '.join(self.ncssServiceNames))
+                             + ', '.join(self.ncss_service_names))
 
         return self.access_with_service(service)
 
@@ -691,7 +692,7 @@ class Dataset(object):
                     provider = NC4Dataset
                 except ImportError:
                     raise ImportError('OPENDAP access needs netCDF4-python to be installed.')
-        elif service in self.ncssServiceNames:
+        elif service in self.ncss_service_names:
             from .ncss import NCSS
             provider = NCSS
         elif service == 'HTTPServer':

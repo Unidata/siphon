@@ -4,7 +4,7 @@
 """Test parsing of metadata from a TDS client catalog."""
 
 import logging
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # noqa:N814
 
 from siphon.metadata import _ComplexTypes, _SimpleTypes, TDSCatalogMetadata
 

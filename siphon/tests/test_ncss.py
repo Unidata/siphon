@@ -73,13 +73,13 @@ class TestNCSS(object):
     """Test NCSS queries and response parsing."""
 
     server = 'http://thredds.ucar.edu/thredds/ncss/'
-    urlPath = 'grib/NCEP/GFS/Global_0p5deg/GFS_Global_0p5deg_20150612_1200.grib2'
+    url_path = 'grib/NCEP/GFS/Global_0p5deg/GFS_Global_0p5deg_20150612_1200.grib2'
 
     @recorder.use_cassette('ncss_test_metadata')
     def setup(self):
         """Set up for tests with a default valid query."""
         dt = datetime(2015, 6, 12, 15, 0, 0)
-        self.ncss = NCSS(self.server + self.urlPath)
+        self.ncss = NCSS(self.server + self.url_path)
         self.nq = self.ncss.query().lonlat_point(-105, 40).time(dt)
         self.nq.variables('Temperature_isobaric', 'Relative_humidity_isobaric')
 
