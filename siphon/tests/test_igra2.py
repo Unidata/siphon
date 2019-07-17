@@ -1,14 +1,9 @@
-# Copyright (c) 2018 Siphon Contributors.
+# Copyright (c) 2018,2019 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 """Test IGRA2 upper air dataset access."""
 
 from datetime import datetime
-import os.path
-try:
-    from urllib import request
-except ImportError:
-    import urllib2 as request
 
 from numpy.testing import assert_almost_equal
 
@@ -20,13 +15,9 @@ recorder = get_recorder(__file__)
 
 
 @recorder.use_cassette('igra2_sounding')
-def test_igra2(monkeypatch):
+def test_igra2():
     """Test that we are properly parsing data from the IGRA2 archive."""
-    with monkeypatch.context() as m:
-        m.setattr(request, 'urlopen',
-                  lambda _: open(os.path.join(os.path.dirname(__file__),
-                                              'fixtures', 'USM00070026.zip'), 'rb'))
-        df, header = IGRAUpperAir.request_data(datetime(2010, 6, 1, 12), 'USM00070026')
+    df, header = IGRAUpperAir.request_data(datetime(2010, 6, 1, 12), 'USM00070026')
 
     assert_almost_equal(df['lvltyp1'][5], 1, 1)
     assert_almost_equal(df['lvltyp2'][5], 0, 1)
@@ -56,14 +47,10 @@ def test_igra2(monkeypatch):
 
 
 @recorder.use_cassette('igra2_derived')
-def test_igra2_drvd(monkeypatch):
+def test_igra2_drvd():
     """Test that we are properly parsing data from the IGRA2 archive."""
-    with monkeypatch.context() as m:
-        m.setattr(request, 'urlopen',
-                  lambda _: open(os.path.join(os.path.dirname(__file__),
-                                              'fixtures', 'USM00070026-derived.zip'), 'rb'))
-        df, header = IGRAUpperAir.request_data(datetime(2014, 9, 10, 0),
-                                               'USM00070026', derived=True)
+    df, header = IGRAUpperAir.request_data(datetime(2014, 9, 10, 0),
+                                           'USM00070026', derived=True)
 
     assert_almost_equal(df['pressure'][5], 947.43, 2)
     assert_almost_equal(df['reported_height'][5], 610., 2)

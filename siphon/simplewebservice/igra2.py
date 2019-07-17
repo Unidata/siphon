@@ -1,9 +1,8 @@
-# Copyright (c) 2018 Siphon Contributors.
+# Copyright (c) 2018,2019 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 """Read upper air data from the Integrated Global Radiosonde Archive version 2."""
 
-from contextlib import closing
 import datetime
 from io import BytesIO
 from io import StringIO
@@ -16,20 +15,22 @@ import numpy as np
 import pandas as pd
 
 from .._tools import get_wind_components
+from ..http_util import HTTPEndPoint, HTTPError
 
 warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created", UserWarning)
 
 
-class IGRAUpperAir:
+class IGRAUpperAir(HTTPEndPoint):
     """Download and parse data from NCEI's Integrated Radiosonde Archive version 2."""
 
     def __init__(self):
-        """Set ftp site address and file suffix based on desired dataset."""
-        self.ftpsite = 'ftp://ftp.ncdc.noaa.gov/pub/data/igra/'
+        """Set http site address and file suffix based on desired dataset."""
         self.suffix = ''
         self.begin_date = ''
         self.end_date = ''
         self.site_id = ''
+        self.folder = ''
+        super(IGRAUpperAir, self).__init__('https://www1.ncdc.noaa.gov/pub/data/igra/')
 
     @classmethod
     def request_data(cls, time, site_id, derived=False):
@@ -53,10 +54,10 @@ class IGRAUpperAir:
 
         # Set parameters for data query
         if derived:
-            igra2.ftpsite = igra2.ftpsite + 'derived/derived-por/'
+            igra2.folder = 'derived/derived-por/'
             igra2.suffix = igra2.suffix + '-drvd.txt'
         else:
-            igra2.ftpsite = igra2.ftpsite + 'data/data-por/'
+            igra2.folder = 'data/data-por/'
             igra2.suffix = igra2.suffix + '-data.txt'
 
         if type(time) == datetime.datetime:
@@ -102,15 +103,18 @@ class IGRAUpperAir:
         Returns a tuple with a string for the body, string for the headers,
         and a list of dates.
         """
-        # Import need to be here so we can monkeypatch urlopen for testing and avoid
-        # downloading live data for testing
-        try:
-            from urllib.request import urlopen
-        except ImportError:
-            from urllib2 import urlopen
+        path = self.folder + self.site_id + self.suffix + '.zip'
 
-        with closing(urlopen(self.ftpsite + self.site_id + self.suffix + '.zip')) as url:
-            f = ZipFile(BytesIO(url.read()), 'r').open(self.site_id + self.suffix)
+        resp = self.get_path(path)
+        # See if the return is valid, but has no data
+        try:
+            resp.raise_for_status()
+        except HTTPError:
+            raise ValueError('No data available for {time:%Y-%m-%d %HZ} '
+                             'for station {stid}.'.format(time=self.time, stid=self.site_id))
+
+        file_info = ZipFile(BytesIO(resp.content)).infolist()[0]
+        f = ZipFile(BytesIO(resp.content)).open(file_info)
 
         lines = [line.decode('utf-8') for line in f.readlines()]
 
