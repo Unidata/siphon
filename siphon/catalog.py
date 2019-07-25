@@ -79,7 +79,7 @@ class DatasetCollection(IndexableMapping):
             raise ValueError('No datasets with times found.')
 
     def filter_time_nearest(self, time, regex=None, strptime=None):
-        """Filter keys for an item closest to the desired time.
+        r"""Filter keys for an item closest to the desired time.
 
         Loops over all keys in the collection and uses `regex` to extract and build
         `datetime`s. The collection of `datetime`s is compared to `start` and the value that
@@ -114,7 +114,7 @@ class DatasetCollection(IndexableMapping):
                    key=lambda i: abs((i[0] - time).total_seconds()))[-1]
 
     def filter_time_range(self, start, end, regex=None, strptime=None):
-        """Filter keys for all items within the desired time range.
+        r"""Filter keys for all items within the desired time range.
 
         Loops over all keys in the collection and uses `regex` to extract and build
         `datetime`s. From the collection of `datetime`s, all values within `start` and `end`
