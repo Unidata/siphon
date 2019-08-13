@@ -43,8 +43,9 @@ class DatasetCollection(IndexableMapping):
     default_regex = re.compile(r'(?P<year>\d{4})(?P<month>[01]\d)(?P<day>[0123]\d)_'
                                r'(?P<hour>[012]\d)(?P<minute>[0-5]\d)')
 
-    def _get_datasets_with_times(self, regex):
+    def _get_datasets_with_times(self, regex, strptime=None):
         # Set the default regex if we don't have one
+        # If strptime is provided, pass the regex group named 'strptime' to strptime
         if regex is None:
             regex = self.default_regex
         else:
@@ -59,11 +60,17 @@ class DatasetCollection(IndexableMapping):
             if match:
                 found_date = True
                 date_parts = match.groupdict()
-                dt = datetime(int(date_parts.get('year', 0)), int(date_parts.get('month', 0)),
-                              int(date_parts.get('day', 0)), int(date_parts.get('hour', 0)),
-                              int(date_parts.get('minute', 0)),
-                              int(date_parts.get('second', 0)),
-                              int(date_parts.get('microsecond', 0)))
+                if strptime is not None:
+                    date_str = date_parts.get('strptime', 0)
+                    dt = datetime.strptime(date_str, strptime)
+                else:
+                    dt = datetime(int(date_parts.get('year', 0)),
+                                  int(date_parts.get('month', 0)),
+                                  int(date_parts.get('day', 0)),
+                                  int(date_parts.get('hour', 0)),
+                                  int(date_parts.get('minute', 0)),
+                                  int(date_parts.get('second', 0)),
+                                  int(date_parts.get('microsecond', 0)))
                 yield dt, self[ds]
 
         # If we never found any keys that match, we should let the user know that rather
@@ -71,8 +78,8 @@ class DatasetCollection(IndexableMapping):
         if not found_date:
             raise ValueError('No datasets with times found.')
 
-    def filter_time_nearest(self, time, regex=None):
-        """Filter keys for an item closest to the desired time.
+    def filter_time_nearest(self, time, regex=None, strptime=None):
+        r"""Filter keys for an item closest to the desired time.
 
         Loops over all keys in the collection and uses `regex` to extract and build
         `datetime`s. The collection of `datetime`s is compared to `start` and the value that
@@ -86,21 +93,28 @@ class DatasetCollection(IndexableMapping):
             The desired time
         regex : str, optional
             The regular expression to use to extract date/time information from the key. If
-            given, this should contain named groups: 'year', 'month', 'day', 'hour', 'minute',
-            'second', and 'microsecond', as appropriate. When a match is found, any of those
-            groups missing from the pattern will be assigned a value of 0. The default pattern
-            looks for patterns like: 20171118_2356.
+            given, this should contain either
+            1. named groups: 'year', 'month', 'day', 'hour', 'minute', 'second',
+            and 'microsecond', as appropriate. When a match is found, any of those groups
+            missing from the pattern will be assigned a value of 0. The default pattern looks
+            for patterns like: 20171118_2356.
+            or
+            2. a group named 'strptime' (e.g., r'_s(?P<strptime>\d{13})' for GOES-16 data)
+            to be parsed with strptime.
+        strptime : str, optional
+            the format string that corresponds to regex option (2) above. For example, GOES-16
+            data with a julian date matching the regex above is parsed with '%Y%j%H%M%S'.
 
         Returns
         -------
             The value with a time closest to that desired
 
         """
-        return min(self._get_datasets_with_times(regex),
+        return min(self._get_datasets_with_times(regex, strptime),
                    key=lambda i: abs((i[0] - time).total_seconds()))[-1]
 
-    def filter_time_range(self, start, end, regex=None):
-        """Filter keys for all items within the desired time range.
+    def filter_time_range(self, start, end, regex=None, strptime=None):
+        r"""Filter keys for all items within the desired time range.
 
         Loops over all keys in the collection and uses `regex` to extract and build
         `datetime`s. From the collection of `datetime`s, all values within `start` and `end`
@@ -115,17 +129,24 @@ class DatasetCollection(IndexableMapping):
             The end of the desired time range, inclusive
         regex : str, optional
             The regular expression to use to extract date/time information from the key. If
-            given, this should contain named groups: 'year', 'month', 'day', 'hour', 'minute',
-            'second', and 'microsecond', as appropriate. When a match is found, any of those
-            groups missing from the pattern will be assigned a value of 0. The default pattern
-            looks for patterns like: 20171118_2356.
+            given, this should contain either
+            1. named groups: 'year', 'month', 'day', 'hour', 'minute', 'second',
+            and 'microsecond', as appropriate. When a match is found, any of those groups
+            missing from the pattern will be assigned a value of 0. The default pattern looks
+            for patterns like: 20171118_2356.
+            or
+            2. a group named 'strptime' (e.g., r'_s(?P<strptime>\d{13})' for GOES-16 data)
+            to be parsed with strptime.
+        strptime : str, optional
+            the format string that corresponds to regex option (2) above. For example, GOES-16
+            data with a julian date matching the regex above is parsed with '%Y%j%H%M%S'.
 
         Returns
         -------
             All values corresponding to times within the specified range
 
         """
-        return [item[-1] for item in self._get_datasets_with_times(regex)
+        return [item[-1] for item in self._get_datasets_with_times(regex, strptime)
                 if start <= item[0] <= end]
 
     def __str__(self):

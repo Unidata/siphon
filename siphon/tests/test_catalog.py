@@ -222,6 +222,45 @@ def test_datasets_time_range():
 
 
 @recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_time_range_regex():
+    """Test getting datasets by time range using filenames, with manual regex."""
+    # This is DatasetCollection.default_regex, but tests passing it explicitly
+    regex = (r'(?P<year>\d{4})(?P<month>[01]\d)(?P<day>[0123]\d)_'
+             r'(?P<hour>[012]\d)(?P<minute>[0-5]\d)')
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+    in_range = cat.catalog_refs.filter_time_range(datetime(2015, 5, 28, 0),
+                                                  datetime(2015, 5, 29, 0),
+                                                  regex=regex)
+    titles = [item.title for item in in_range]
+    assert titles == ['NAM_CONUS_20km_noaaport_20150528_0000.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_0600.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_1200.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_1800.grib1',
+                      'NAM_CONUS_20km_noaaport_20150529_0000.grib1']
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_time_range_strptime():
+    """Test getting datasets by time range using filenames, with strptime."""
+    regex = r'noaaport_(?P<strptime>\d{8}_\d{4})'
+    strptime = '%Y%m%d_%H%M'
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+    in_range = cat.catalog_refs.filter_time_range(datetime(2015, 5, 28, 0),
+                                                  datetime(2015, 5, 29, 0),
+                                                  regex=regex, strptime=strptime)
+    titles = [item.title for item in in_range]
+    assert titles == ['NAM_CONUS_20km_noaaport_20150528_0000.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_0600.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_1200.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_1800.grib1',
+                      'NAM_CONUS_20km_noaaport_20150529_0000.grib1']
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
 def test_datasets_time_range_raises():
     """Test getting datasets by time range using filenames."""
     url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'

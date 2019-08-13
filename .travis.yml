@@ -30,6 +30,7 @@ env:
     - WHEELHOUSE="https://unidata-python.s3.amazonaws.com/wheelhouse/index.html"
     - WHEELDIR="wheelhouse/"
     - EXTRAS="test"
+    - EXTRA_PACKAGES="pydocstyle<4.0"
     - GH_PAGES_DIR="$HOME/gh-pages"
   matrix:
     - TASK="coverage"
