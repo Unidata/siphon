@@ -105,13 +105,13 @@ class IGRAUpperAir(HTTPEndPoint):
         """
         path = self.folder + self.site_id + self.suffix + '.zip'
 
-        resp = self.get_path(path)
-        # See if the return is valid, but has no data
+        # Get the data and handle if there is none matching what was requested
         try:
-            resp.raise_for_status()
+            resp = self.get_path(path)
         except HTTPError:
             raise ValueError('No data available for {time:%Y-%m-%d %HZ} '
-                             'for station {stid}.'.format(time=self.time, stid=self.site_id))
+                             'for station {stid}.'.format(time=self.begin_date,
+                                                          stid=self.site_id))
 
         file_info = ZipFile(BytesIO(resp.content)).infolist()[0]
         f = ZipFile(BytesIO(resp.content)).open(file_info)

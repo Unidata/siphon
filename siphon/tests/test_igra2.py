@@ -6,6 +6,7 @@
 from datetime import datetime
 
 from numpy.testing import assert_almost_equal
+import pytest
 
 from siphon.simplewebservice.igra2 import IGRAUpperAir
 from siphon.testing import get_recorder
@@ -133,3 +134,12 @@ def test_igra2_drvd():
     assert(df.units['v_wind'] == 'meter / second')
     assert(df.units['v_wind_gradient'] == '(meter / second) / kilometer)')
     assert(df.units['refractive_index'] == 'unitless')
+
+
+@recorder.use_cassette('igra2_nodata')
+def test_igra2_nonexistent():
+    """Test behavior when requesting non-existent data."""
+    with pytest.raises(ValueError) as err:
+        IGRAUpperAir.request_data(datetime.utcnow(), 'NOSUCHSTATION')
+
+    assert 'No data' in str(err.value)
