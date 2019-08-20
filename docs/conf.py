@@ -37,7 +37,8 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
-    'sphinx_gallery.gen_gallery'
+    'sphinx_gallery.gen_gallery',
+    'm2r'
 ]
 
 sphinx_gallery_conf = {
@@ -53,10 +54,6 @@ sphinx_gallery_conf = {
     'backreferences_dir': 'api/generated',
     'default_thumb_file': os.path.join('_static', 'siphon_150x150_white_bg.png'),
     'abort_on_example_error': True
-}
-
-source_parsers = {
-   '.md': 'recommonmark.parser.CommonMarkParser',
 }
 
 # Set up mapping for other projects' docs

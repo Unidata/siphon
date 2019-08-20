@@ -34,3 +34,4 @@ dependencies:
   - xarray >=0.10.2
   - cartopy
   - beautifulsoup4
+  - m2r
