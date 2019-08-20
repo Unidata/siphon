@@ -79,6 +79,7 @@ class IGRAUpperAir(HTTPEndPoint):
         -------
             :class: `pandas.DataFrame` containing the body data.
             :class: `pandas.DataFrame` containing the header data.
+
         """
         # Split the list of times into begin and end dates. If only
         # one date is supplied, set both begin and end dates equal to that date.
