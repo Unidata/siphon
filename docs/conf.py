@@ -45,9 +45,7 @@ sphinx_gallery_conf = {
     'doc_module': ('siphon',),
     'reference_url': {
         'siphon': None,
-        'matplotlib': 'http://matplotlib.org',
-        'numpy': 'http://docs.scipy.org/doc/numpy/',
-        'requests': 'http://docs.python-requests.org/en/master/'},
+        },
     'examples_dirs': [os.path.join('..', 'examples')],
     'gallery_dirs': ['examples'],
     'filename_pattern': '\.py',
@@ -60,7 +58,8 @@ sphinx_gallery_conf = {
 intersphinx_mapping = {
                        'python': ('https://docs.python.org/3/', None),
                        'numpy': ('https://docs.scipy.org/doc/numpy/', None),
-                       'requests': ('http://docs.python-requests.org/en/master/', None),
+                       'matplotlib': ('https://matplotlib.org', None),
+                       'requests': ('https://2.python-requests.org/en/master/', None),
                        }
 
 # Add any paths that contain templates here, relative to this directory.
