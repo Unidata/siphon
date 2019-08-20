@@ -14,7 +14,50 @@ from siphon.testing import get_recorder
 recorder = get_recorder(__file__)
 
 
-@recorder.use_cassette('igra2_sounding')
+def subset_date(dt):
+    """Create response filter to subset IGRA2 data for a specific date."""
+    def subsetter(response):
+        """Given a http response, subset the returned zipped data."""
+        from io import BytesIO
+        from zipfile import ZipFile
+
+        # We're unpacking the zipfile that's returned to reduce the number of lines
+        saved_lines = []
+        with ZipFile(BytesIO(response['body']['string'])) as zip_product:
+            # Open the only file that's in this zip file
+            target_filename = zip_product.namelist()[0]
+            with zip_product.open(target_filename, 'r') as target_file:
+                # Look for the start of useful data based on date string being in the line
+                # that starts a data block
+                date_str = dt.strftime('%Y %m %d').encode('ascii')
+                for line in target_file:
+                    if line.startswith(b'#') and date_str in line:
+                        break
+
+                # Save all lines from what we found until we get a start block *without*
+                # that date string
+                saved_lines.append(line)
+                for line in target_file:
+                    # Putting this first ensures we have at least one extra line in the saved
+                    # data so that this code is executed even when running from cassettes
+                    saved_lines.append(line)
+                    if line.startswith(b'#') and date_str not in line:
+                        break
+
+        # Now that we have our lines, make a new zipfile with a single file with the same
+        # name that contains only these lines.
+        with BytesIO() as modified_bytes:
+            with ZipFile(modified_bytes, 'w') as modified_file:
+                modified_file.writestr(target_filename, b''.join(saved_lines))
+            response['body']['string'] = modified_bytes.getvalue()
+
+        return response
+
+    return subsetter
+
+
+@recorder.use_cassette('igra2_sounding',
+                       before_record_response=subset_date(datetime(2010, 6, 1)))
 def test_igra2():
     """Test that we are properly parsing data from the IGRA2 archive."""
     df, header = IGRAUpperAir.request_data(datetime(2010, 6, 1, 12), 'USM00070026')
@@ -46,7 +89,8 @@ def test_igra2():
     assert(df.units['etime'] == 'second')
 
 
-@recorder.use_cassette('igra2_derived')
+@recorder.use_cassette('igra2_derived',
+                       before_record_response=subset_date(datetime(2014, 9, 10)))
 def test_igra2_drvd():
     """Test that we are properly parsing data from the IGRA2 archive."""
     df, header = IGRAUpperAir.request_data(datetime(2014, 9, 10, 0),
