@@ -73,6 +73,9 @@ before_install:
       pkg-config --modversion proj;
     else
       export TEST_OPTS="--flake8";
+      if [[ $TRAVIS_PYTHON_VERSION != 2.7 ]]; then
+        export EXTRA_PACKAGES="$EXTRA_PACKAGES flake8-bugbear";
+      fi;
       if [[ $TASK == "coverage" ]]; then
         export TEST_OPTS="$TEST_OPTS --cov=siphon";
         pip install pytest-cov;
