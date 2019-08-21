@@ -1,0 +1,51 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.8.0+19.g402658a.dirty)
+    method: GET
+    uri: https://www1.ncdc.noaa.gov/pub/data/igra/data/data-por/NOSUCHSTATION-data.txt.zip
+  response:
+    body:
+      string: '<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+
+        <html><head>
+
+        <title>404 Not Found</title>
+
+        </head><body>
+
+        <h1>Not Found</h1>
+
+        <p>The requested URL /pub/data/igra/data/data-por/NOSUCHSTATION-data.txt.zip
+        was not found on this server.</p>
+
+        </body></html>
+
+'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - close
+      Content-Length:
+      - '252'
+      Content-Type:
+      - text/html; charset=iso-8859-1
+      Date:
+      - Tue, 20 Aug 2019 18:53:17 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=31536000
+    status:
+      code: 404
+      message: Not Found
+version: 1
