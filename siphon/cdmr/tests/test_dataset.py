@@ -112,7 +112,7 @@ def test_tds5_attr():
     """Test handling TDS 5's new attributes."""
     ds = Dataset('http://localhost:8080/thredds/cdmremote/nc4/vlen/tst_vl.nc4')
     var = ds.variables['var']
-    assert getattr(var, '_ChunkSizes') == 3
+    assert var._ChunkSizes == 3
 
 
 @recorder.use_cassette('tds5_vlen')
