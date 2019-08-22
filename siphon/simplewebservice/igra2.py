@@ -37,7 +37,7 @@ class IGRAUpperAir(HTTPEndPoint):
         """Retreive IGRA version 2 data for one station.
 
         Parameters
-        --------
+        ----------
         site_id : str
             11-character IGRA2 station identifier.
 
@@ -127,7 +127,7 @@ class IGRAUpperAir(HTTPEndPoint):
         """Identify lines containing headers within the range begin_date to end_date.
 
         Parameters
-        -----
+        ----------
         lines: list
             list of lines from the IGRA2 data file.
 
