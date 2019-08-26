@@ -64,6 +64,6 @@ def acis_request(method, params):
 
 
 class AcisApiException(Exception):
-    """This class handles exceptions raised by the acis_request function."""
+    """Handle exceptions raised by the acis_request function."""
 
     pass
