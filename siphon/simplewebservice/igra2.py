@@ -75,7 +75,7 @@ class IGRAUpperAir(HTTPEndPoint):
     def _get_data(self):
         """Process the IGRA2 text file for observations at site_id matching time.
 
-        Return:
+        Returns
         -------
             :class: `pandas.DataFrame` containing the body data.
             :class: `pandas.DataFrame` containing the header data.
