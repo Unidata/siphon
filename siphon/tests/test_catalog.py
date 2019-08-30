@@ -33,6 +33,19 @@ def test_catalog_representation():
     assert str(cat) == 'Unidata THREDDS Data Server'
 
 
+@recorder.use_cassette('thredds-test-toplevel-catalog')
+def test_catalog_session():
+    """Test of catalog session."""
+    url = 'http://thredds-test.unidata.ucar.edu/thredds/catalog.xml'
+    cat = TDSCatalog(url)
+    assert 'Forecast Model Data' in cat.catalog_refs
+    
+    # nothing is returned from the session close nor can you check it
+    # but the ability to close is what is desired
+    cat.session.close()
+    
+
+
 @recorder.use_cassette('thredds-test-latest-gfs-0p5')
 def test_access():
     """Test catalog parsing of access methods."""
