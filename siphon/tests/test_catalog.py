@@ -39,11 +39,9 @@ def test_catalog_session():
     url = 'http://thredds-test.unidata.ucar.edu/thredds/catalog.xml'
     cat = TDSCatalog(url)
     assert 'Forecast Model Data' in cat.catalog_refs
-    
     # nothing is returned from the session close nor can you check it
     # but the ability to close is what is desired
     cat.session.close()
-    
 
 
 @recorder.use_cassette('thredds-test-latest-gfs-0p5')
