@@ -349,7 +349,7 @@ class TDSCatalog(object):
         return str(self.catalog_name)
 
     def __del__(self):
-        """ When TDSCatalog is deleted, close any open sessions """
+        """When TDSCatalog is deleted, close any open sessions."""
         self.session.close()
 
     def _process_dataset(self, element):
