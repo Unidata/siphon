@@ -271,10 +271,10 @@ class TDSCatalog(object):
             The URL of a THREDDS client catalog
 
         """
-        session = session_manager.create_session()
+        self.session = session_manager.create_session()
 
         # get catalog.xml file
-        resp = session.get(catalog_url)
+        resp = self.session.get(catalog_url)
         resp.raise_for_status()
 
         # top level server url
@@ -288,7 +288,7 @@ class TDSCatalog(object):
             warnings.warn('URL {} returned HTML. Changing to: {}'.format(self.catalog_url,
                                                                          new_url))
             self.catalog_url = new_url
-            resp = session.get(self.catalog_url)
+            resp = self.session.get(self.catalog_url)
             resp.raise_for_status()
 
         # begin parsing the xml doc
@@ -347,6 +347,10 @@ class TDSCatalog(object):
     def __str__(self):
         """Return a string representation of the catalog name."""
         return str(self.catalog_name)
+
+    def __del__(self):
+        """When TDSCatalog is deleted, close any open sessions."""
+        self.session.close()
 
     def _process_dataset(self, element):
         catalog_url = ''
