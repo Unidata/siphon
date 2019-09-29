@@ -29,8 +29,8 @@ def get_test_latest_url(query=None):
 @recorder.use_cassette('latest_rap_ncstream_header')
 def get_header_remote():
     """Get a header from a remote data source."""
-    from siphon.http_util import urlopen
-    return urlopen(get_test_latest_url('req=header'))
+    from siphon.http_util import session_manager
+    return session_manager.urlopen(get_test_latest_url('req=header'))
 
 
 @pytest.mark.parametrize('src, result', [(b'\xb6\xe0\x02', 45110), (b'\x17\n\x0b', 23)])

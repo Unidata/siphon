@@ -34,14 +34,14 @@ setup(
                  'Programming Language :: Python :: 2',
                  'Programming Language :: Python :: 2.7',
                  'Programming Language :: Python :: 3',
-                 'Programming Language :: Python :: 3.4',
-                 'Programming Language :: Python :: 3.5',
                  'Programming Language :: Python :: 3.6',
+                 'Programming Language :: Python :: 3.7',
                  'Topic :: Scientific/Engineering',
                  'Intended Audience :: Science/Research',
                  'Operating System :: OS Independent',
                  'License :: OSI Approved :: BSD License'],
 
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*',
     install_requires=dependencies,
     extras_require={
         'netcdf': 'netCDF4>=1.1.0',
@@ -51,9 +51,9 @@ setup(
                  'flake8>3.2.0', 'flake8-builtins', 'flake8-comprehensions',
                  'flake8-copyright', 'flake8-docstrings', 'flake8-import-order',
                  'flake8-mutable', 'flake8-pep3101', 'flake8-print', 'flake8-quotes',
-                 'pep8-naming',
+                 'flake8-rst-docstrings', 'pep8-naming',
                  'vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3', 'xarray>=0.10.2'],
-        'doc': ['sphinx>=1.3,!=1.6.4', 'sphinx-gallery', 'doc8', 'recommonmark'],
+        'doc': ['sphinx>=1.3,!=1.6.4', 'sphinx-gallery', 'doc8', 'm2r'],
         # SciPy needed for cartopy; we don't use cartopy[plotting] because
         # that will pull in GDAL.
         'examples': ['matplotlib>=1.3', 'cartopy>=0.13.1', 'scipy', 'metpy']

@@ -49,7 +49,7 @@ def read_ncstream_data(fobj):
             return np.array([np.frombuffer(b, dtype=dt) for b in blocks])
         else:
             return np.array(blocks, dtype=dt)
-    elif data.dataType in _dtypeLookup:
+    elif data.dataType in _dtype_lookup:
         log.debug('Reading array data')
         bin_data = read_block(fobj)
         log.debug('Binary data: %s', bin_data)
@@ -299,17 +299,17 @@ def reshape_array(data_header, array):
 
 # STRUCTURE = 8;
 # SEQUENCE = 9;
-_dtypeLookup = {stream.CHAR: 'S1', stream.BYTE: 'b', stream.SHORT: 'i2',
-                stream.INT: 'i4', stream.LONG: 'i8', stream.FLOAT: 'f4',
-                stream.DOUBLE: 'f8', stream.STRING: 'O',
-                stream.ENUM1: 'B', stream.ENUM2: 'u2', stream.ENUM4: 'u4',
-                stream.OPAQUE: 'O', stream.UBYTE: 'B', stream.USHORT: 'u2',
-                stream.UINT: 'u4', stream.ULONG: 'u8'}
+_dtype_lookup = {stream.CHAR: 'S1', stream.BYTE: 'b', stream.SHORT: 'i2',
+                 stream.INT: 'i4', stream.LONG: 'i8', stream.FLOAT: 'f4',
+                 stream.DOUBLE: 'f8', stream.STRING: 'O',
+                 stream.ENUM1: 'B', stream.ENUM2: 'u2', stream.ENUM4: 'u4',
+                 stream.OPAQUE: 'O', stream.UBYTE: 'B', stream.USHORT: 'u2',
+                 stream.UINT: 'u4', stream.ULONG: 'u8'}
 
 
 def data_type_to_numpy(datatype, unsigned=False):
     """Convert an ncstream datatype to a numpy one."""
-    basic_type = _dtypeLookup[datatype]
+    basic_type = _dtype_lookup[datatype]
 
     if datatype in (stream.STRING, stream.OPAQUE):
         return np.dtype(basic_type)
@@ -355,19 +355,19 @@ def unpack_variable(var):
             data = var.data
         else:
             # Always sent big endian
-            data = np.fromstring(var.data, dtype=dt.newbyteorder('>'))
+            data = np.frombuffer(var.data, dtype=dt.newbyteorder('>'))
     else:
         data = None
 
     return data, dt, type_name
 
 
-_attrConverters = {stream.Attribute.BYTE: np.dtype('>b'),
-                   stream.Attribute.SHORT: np.dtype('>i2'),
-                   stream.Attribute.INT: np.dtype('>i4'),
-                   stream.Attribute.LONG: np.dtype('>i8'),
-                   stream.Attribute.FLOAT: np.dtype('>f4'),
-                   stream.Attribute.DOUBLE: np.dtype('>f8')}
+_attr_converters = {stream.Attribute.BYTE: np.dtype('>b'),
+                    stream.Attribute.SHORT: np.dtype('>i2'),
+                    stream.Attribute.INT: np.dtype('>i4'),
+                    stream.Attribute.LONG: np.dtype('>i8'),
+                    stream.Attribute.FLOAT: np.dtype('>f4'),
+                    stream.Attribute.DOUBLE: np.dtype('>f8')}
 
 
 def unpack_attribute(att):
@@ -381,15 +381,15 @@ def unpack_attribute(att):
     elif att.dataType == stream.STRING:  # Then look for new datatype string
         val = att.sdata
     elif att.dataType:  # Then a non-zero new data type
-        val = np.fromstring(att.data,
-                            dtype='>' + _dtypeLookup[att.dataType], count=att.len)
+        val = np.frombuffer(att.data,
+                            dtype='>' + _dtype_lookup[att.dataType], count=att.len)
     elif att.type:  # Then non-zero old-data type0
-        val = np.fromstring(att.data,
-                            dtype=_attrConverters[att.type], count=att.len)
+        val = np.frombuffer(att.data,
+                            dtype=_attr_converters[att.type], count=att.len)
     elif att.sdata:  # This leaves both 0, try old string
         val = att.sdata
     else:  # Assume new datatype is Char (0)
-        val = np.array(att.data, dtype=_dtypeLookup[att.dataType])
+        val = np.array(att.data, dtype=_dtype_lookup[att.dataType])
 
     if att.len == 1:
         val = val[0]

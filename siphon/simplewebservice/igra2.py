@@ -1,9 +1,8 @@
-# Copyright (c) 2018 Siphon Contributors.
+# Copyright (c) 2018,2019 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 """Read upper air data from the Integrated Global Radiosonde Archive version 2."""
 
-from contextlib import closing
 import datetime
 from io import BytesIO
 from io import StringIO
@@ -16,31 +15,29 @@ import numpy as np
 import pandas as pd
 
 from .._tools import get_wind_components
-try:
-    from urllib.request import urlopen
-except ImportError:
-    from urllib2 import urlopen
+from ..http_util import HTTPEndPoint, HTTPError
 
-warnings.filterwarnings('ignore', 'Pandas doesn\'t allow columns to be created', UserWarning)
+warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created", UserWarning)
 
 
-class IGRAUpperAir:
+class IGRAUpperAir(HTTPEndPoint):
     """Download and parse data from NCEI's Integrated Radiosonde Archive version 2."""
 
     def __init__(self):
-        """Set ftp site address and file suffix based on desired dataset."""
-        self.ftpsite = 'ftp://ftp.ncdc.noaa.gov/pub/data/igra/'
+        """Set http site address and file suffix based on desired dataset."""
         self.suffix = ''
         self.begin_date = ''
         self.end_date = ''
         self.site_id = ''
+        self.folder = ''
+        super(IGRAUpperAir, self).__init__('https://www1.ncdc.noaa.gov/pub/data/igra/')
 
     @classmethod
     def request_data(cls, time, site_id, derived=False):
         """Retreive IGRA version 2 data for one station.
 
         Parameters
-        --------
+        ----------
         site_id : str
             11-character IGRA2 station identifier.
 
@@ -57,10 +54,10 @@ class IGRAUpperAir:
 
         # Set parameters for data query
         if derived:
-            igra2.ftpsite = igra2.ftpsite + 'derived/derived-por/'
+            igra2.folder = 'derived/derived-por/'
             igra2.suffix = igra2.suffix + '-drvd.txt'
         else:
-            igra2.ftpsite = igra2.ftpsite + 'data/data-por/'
+            igra2.folder = 'data/data-por/'
             igra2.suffix = igra2.suffix + '-data.txt'
 
         if type(time) == datetime.datetime:
@@ -78,10 +75,11 @@ class IGRAUpperAir:
     def _get_data(self):
         """Process the IGRA2 text file for observations at site_id matching time.
 
-        Return:
+        Returns
         -------
             :class: `pandas.DataFrame` containing the body data.
             :class: `pandas.DataFrame` containing the header data.
+
         """
         # Split the list of times into begin and end dates. If only
         # one date is supplied, set both begin and end dates equal to that date.
@@ -106,8 +104,18 @@ class IGRAUpperAir:
         Returns a tuple with a string for the body, string for the headers,
         and a list of dates.
         """
-        with closing(urlopen(self.ftpsite + self.site_id + self.suffix + '.zip')) as url:
-            f = ZipFile(BytesIO(url.read()), 'r').open(self.site_id + self.suffix)
+        path = self.folder + self.site_id + self.suffix + '.zip'
+
+        # Get the data and handle if there is none matching what was requested
+        try:
+            resp = self.get_path(path)
+        except HTTPError:
+            raise ValueError('No data available for {time:%Y-%m-%d %HZ} '
+                             'for station {stid}.'.format(time=self.begin_date,
+                                                          stid=self.site_id))
+
+        file_info = ZipFile(BytesIO(resp.content)).infolist()[0]
+        f = ZipFile(BytesIO(resp.content)).open(file_info)
 
         lines = [line.decode('utf-8') for line in f.readlines()]
 
@@ -119,7 +127,7 @@ class IGRAUpperAir:
         """Identify lines containing headers within the range begin_date to end_date.
 
         Parameters
-        -----
+        ----------
         lines: list
             list of lines from the IGRA2 data file.
 
@@ -178,7 +186,10 @@ class IGRAUpperAir:
         def _cdec(power=1):
             """Make a function to convert string 'value*10^power' to float."""
             def _cdec_power(val):
-                return float(val) / 10**power
+                if val in ['-9999', '-8888', '-99999']:
+                    return np.nan
+                else:
+                    return float(val) / 10**power
             return _cdec_power
 
         def _cflag(val):
@@ -245,8 +256,8 @@ class IGRAUpperAir:
                          'virtual_potential_temperature': _cdec(),
                          'vapor_pressure': _cdec(power=3),
                          'saturation_vapor_pressure': _cdec(power=3),
-                         'reported_relative_humidity': int,
-                         'calculated_relative_humidity': int,
+                         'reported_relative_humidity': _cdec(),
+                         'calculated_relative_humidity': _cdec(),
                          'u_wind': _cdec(),
                          'u_wind_gradient': _cdec(),
                          'v_wind': _cdec(),
@@ -353,7 +364,7 @@ class IGRAUpperAir:
         """Format the dataframe, remove empty rows, and add units attribute."""
         if self.suffix == '-drvd.txt':
             df = df.dropna(subset=('temperature', 'reported_relative_humidity',
-                                   'u_wind', 'v_wind'), how='all').reset_index(drop=True)
+                           'u_wind', 'v_wind'), how='all').reset_index(drop=True)
 
             df.units = {'pressure': 'hPa',
                         'reported_height': 'meter',
@@ -379,11 +390,14 @@ class IGRAUpperAir:
                                                              np.deg2rad(df['direction']))
             df['u_wind'] = np.round(df['u_wind'], 1)
             df['v_wind'] = np.round(df['v_wind'], 1)
+
+            df = df.dropna(subset=('temperature', 'direction', 'speed',
+                           'dewpoint_depression', 'u_wind', 'v_wind'),
+                           how='all').reset_index(drop=True)
+
             df['dewpoint'] = df['temperature'] - df['dewpoint_depression']
 
             df.drop('dewpoint_depression', axis=1, inplace=True)
-            df = df.dropna(subset=('temperature', 'dewpoint', 'direction', 'speed',
-                                   'u_wind', 'v_wind'), how='all').reset_index(drop=True)
 
             df.units = {'etime': 'second',
                         'pressure': 'hPa',

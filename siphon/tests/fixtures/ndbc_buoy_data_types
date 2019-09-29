@@ -1,0 +1,389 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.txt
+  response:
+    body: {string: ''}
+    headers:
+      Accept-Ranges: [bytes]
+      Cache-Control: [must-revalidate]
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Length: ['59218']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [text/plain; charset=ISO-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:52 GMT']
+      Last-Modified: ['Wed, 01 Aug 2018 16:27:46 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.drift
+  response:
+    body: {string: ''}
+    headers:
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Length: ['20']
+      Content-Type: [text/html; charset=iso-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:52 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+    status: {code: 404, message: Not Found}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.cwind
+  response:
+    body: {string: ''}
+    headers:
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Length: ['20']
+      Content-Type: [text/html; charset=iso-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:53 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+    status: {code: 404, message: Not Found}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.spec
+  response:
+    body: {string: ''}
+    headers:
+      Accept-Ranges: [bytes]
+      Cache-Control: [must-revalidate]
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Length: ['13600']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [text/plain; charset=ISO-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:53 GMT']
+      Last-Modified: ['Wed, 01 Aug 2018 16:06:06 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.data_spec
+  response:
+    body: {string: ''}
+    headers:
+      Accept-Ranges: [bytes]
+      Cache-Control: [must-revalidate]
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [text/plain; charset=ISO-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:54 GMT']
+      Last-Modified: ['Wed, 01 Aug 2018 16:06:08 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.swdir
+  response:
+    body: {string: ''}
+    headers:
+      Accept-Ranges: [bytes]
+      Cache-Control: [must-revalidate]
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [text/plain; charset=ISO-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:54 GMT']
+      Last-Modified: ['Wed, 01 Aug 2018 16:06:10 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.swdir2
+  response:
+    body: {string: ''}
+    headers:
+      Accept-Ranges: [bytes]
+      Cache-Control: [must-revalidate]
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [text/plain; charset=ISO-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:55 GMT']
+      Last-Modified: ['Wed, 01 Aug 2018 16:06:11 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.swr1
+  response:
+    body: {string: ''}
+    headers:
+      Accept-Ranges: [bytes]
+      Cache-Control: [must-revalidate]
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [text/plain; charset=ISO-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:55 GMT']
+      Last-Modified: ['Wed, 01 Aug 2018 16:06:13 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.swr2
+  response:
+    body: {string: ''}
+    headers:
+      Accept-Ranges: [bytes]
+      Cache-Control: [must-revalidate]
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [text/plain; charset=ISO-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:56 GMT']
+      Last-Modified: ['Wed, 01 Aug 2018 16:06:15 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.adcp
+  response:
+    body: {string: ''}
+    headers:
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Length: ['20']
+      Content-Type: [text/html; charset=iso-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:57 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+    status: {code: 404, message: Not Found}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.ocean
+  response:
+    body: {string: ''}
+    headers:
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Length: ['20']
+      Content-Type: [text/html; charset=iso-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:57 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+    status: {code: 404, message: Not Found}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.tide
+  response:
+    body: {string: ''}
+    headers:
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Length: ['20']
+      Content-Type: [text/html; charset=iso-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:58 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+    status: {code: 404, message: Not Found}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.srad
+  response:
+    body: {string: ''}
+    headers:
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Length: ['20']
+      Content-Type: [text/html; charset=iso-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:58 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+    status: {code: 404, message: Not Found}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.dart
+  response:
+    body: {string: ''}
+    headers:
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Length: ['20']
+      Content-Type: [text/html; charset=iso-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:59 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+    status: {code: 404, message: Not Found}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.supl
+  response:
+    body: {string: ''}
+    headers:
+      Accept-Ranges: [bytes]
+      Cache-Control: [must-revalidate]
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Length: ['36974']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [text/plain; charset=ISO-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:36:59 GMT']
+      Last-Modified: ['Wed, 01 Aug 2018 16:27:25 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: HEAD
+    uri: https://www.ndbc.noaa.gov/data/realtime2/41002.rain
+  response:
+    body: {string: ''}
+    headers:
+      Connection: [close]
+      Content-Encoding: [gzip]
+      Content-Length: ['20']
+      Content-Type: [text/html; charset=iso-8859-1]
+      Date: ['Wed, 01 Aug 2018 16:37:00 GMT']
+      Server: [Apache]
+      Strict-Transport-Security: [max-age=31536000;]
+      Vary: [Accept-Encoding]
+    status: {code: 404, message: Not Found}
+version: 1

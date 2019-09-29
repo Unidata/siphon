@@ -12,6 +12,7 @@ dependencies:
   - jupyter
   - sphinx
   - sphinx-gallery
+  - pillow
   - doc8
   - pytest
   - pytest-cov
@@ -28,8 +29,10 @@ dependencies:
   - flake8-pep3101
   - flake8-print
   - flake8-quotes
+  - flake8-rst-docstrings
   - pep8-naming
   - matplotlib
   - xarray >=0.10.2
   - cartopy
   - beautifulsoup4
+  - m2r

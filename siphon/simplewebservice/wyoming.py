@@ -14,7 +14,7 @@ import pandas as pd
 from .._tools import get_wind_components
 from ..http_util import HTTPEndPoint
 
-warnings.filterwarnings('ignore', 'Pandas doesn\'t allow columns to be created', UserWarning)
+warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created", UserWarning)
 
 
 class WyomingUpperAir(HTTPEndPoint):
@@ -81,6 +81,12 @@ class WyomingUpperAir(HTTPEndPoint):
         # Parse metadata
         meta_data = soup.find_all('pre')[1].contents[0]
         lines = meta_data.splitlines()
+
+        # If the station doesn't have a name identified we need to insert a
+        # record showing this for parsing to proceed.
+        if 'Station number' in lines[1]:
+            lines.insert(1, 'Station identifier: ')
+
         station = lines[1].split(':')[1].strip()
         station_number = int(lines[2].split(':')[1].strip())
         sounding_time = datetime.strptime(lines[3].split(':')[1].strip(), '%y%m%d/%H%M')
@@ -133,7 +139,7 @@ class WyomingUpperAir(HTTPEndPoint):
 
         resp = self.get_path(path)
         # See if the return is valid, but has no data
-        if resp.text.find('Can\'t') != -1:
+        if resp.text.find("Can't") != -1:
             raise ValueError(
                 'No data available for {time:%Y-%m-%d %HZ} '
                 'for station {stid}.'.format(time=time, stid=site_id))

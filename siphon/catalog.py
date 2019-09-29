@@ -11,14 +11,14 @@ from collections import OrderedDict
 from datetime import datetime
 import logging
 import re
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # noqa:N814
 try:
     from urlparse import urljoin, urlparse
 except ImportError:
     # Python 3
     from urllib.parse import urljoin, urlparse
 
-from .http_util import create_http_session, urlopen
+from .http_util import session_manager
 from .metadata import TDSCatalogMetadata
 
 logging.basicConfig(level=logging.ERROR)
@@ -43,8 +43,9 @@ class DatasetCollection(IndexableMapping):
     default_regex = re.compile(r'(?P<year>\d{4})(?P<month>[01]\d)(?P<day>[0123]\d)_'
                                r'(?P<hour>[012]\d)(?P<minute>[0-5]\d)')
 
-    def _get_datasets_with_times(self, regex):
+    def _get_datasets_with_times(self, regex, strptime=None):
         # Set the default regex if we don't have one
+        # If strptime is provided, pass the regex group named 'strptime' to strptime
         if regex is None:
             regex = self.default_regex
         else:
@@ -59,11 +60,17 @@ class DatasetCollection(IndexableMapping):
             if match:
                 found_date = True
                 date_parts = match.groupdict()
-                dt = datetime(int(date_parts.get('year', 0)), int(date_parts.get('month', 0)),
-                              int(date_parts.get('day', 0)), int(date_parts.get('hour', 0)),
-                              int(date_parts.get('minute', 0)),
-                              int(date_parts.get('second', 0)),
-                              int(date_parts.get('microsecond', 0)))
+                if strptime is not None:
+                    date_str = date_parts.get('strptime', 0)
+                    dt = datetime.strptime(date_str, strptime)
+                else:
+                    dt = datetime(int(date_parts.get('year', 0)),
+                                  int(date_parts.get('month', 0)),
+                                  int(date_parts.get('day', 0)),
+                                  int(date_parts.get('hour', 0)),
+                                  int(date_parts.get('minute', 0)),
+                                  int(date_parts.get('second', 0)),
+                                  int(date_parts.get('microsecond', 0)))
                 yield dt, self[ds]
 
         # If we never found any keys that match, we should let the user know that rather
@@ -71,8 +78,8 @@ class DatasetCollection(IndexableMapping):
         if not found_date:
             raise ValueError('No datasets with times found.')
 
-    def filter_time_nearest(self, time, regex=None):
-        """Filter keys for an item closest to the desired time.
+    def filter_time_nearest(self, time, regex=None, strptime=None):
+        r"""Filter keys for an item closest to the desired time.
 
         Loops over all keys in the collection and uses `regex` to extract and build
         `datetime`s. The collection of `datetime`s is compared to `start` and the value that
@@ -86,21 +93,28 @@ class DatasetCollection(IndexableMapping):
             The desired time
         regex : str, optional
             The regular expression to use to extract date/time information from the key. If
-            given, this should contain named groups: 'year', 'month', 'day', 'hour', 'minute',
-            'second', and 'microsecond', as appropriate. When a match is found, any of those
-            groups missing from the pattern will be assigned a value of 0. The default pattern
-            looks for patterns like: 20171118_2356.
+            given, this should contain either
+            1. named groups: 'year', 'month', 'day', 'hour', 'minute', 'second',
+            and 'microsecond', as appropriate. When a match is found, any of those groups
+            missing from the pattern will be assigned a value of 0. The default pattern looks
+            for patterns like: 20171118_2356.
+            or
+            2. a group named 'strptime' (e.g., r'_s(?P<strptime>\d{13})' for GOES-16 data)
+            to be parsed with strptime.
+        strptime : str, optional
+            the format string that corresponds to regex option (2) above. For example, GOES-16
+            data with a julian date matching the regex above is parsed with '%Y%j%H%M%S'.
 
         Returns
         -------
             The value with a time closest to that desired
 
         """
-        return min(self._get_datasets_with_times(regex),
+        return min(self._get_datasets_with_times(regex, strptime),
                    key=lambda i: abs((i[0] - time).total_seconds()))[-1]
 
-    def filter_time_range(self, start, end, regex=None):
-        """Filter keys for all items within the desired time range.
+    def filter_time_range(self, start, end, regex=None, strptime=None):
+        r"""Filter keys for all items within the desired time range.
 
         Loops over all keys in the collection and uses `regex` to extract and build
         `datetime`s. From the collection of `datetime`s, all values within `start` and `end`
@@ -115,17 +129,24 @@ class DatasetCollection(IndexableMapping):
             The end of the desired time range, inclusive
         regex : str, optional
             The regular expression to use to extract date/time information from the key. If
-            given, this should contain named groups: 'year', 'month', 'day', 'hour', 'minute',
-            'second', and 'microsecond', as appropriate. When a match is found, any of those
-            groups missing from the pattern will be assigned a value of 0. The default pattern
-            looks for patterns like: 20171118_2356.
+            given, this should contain either
+            1. named groups: 'year', 'month', 'day', 'hour', 'minute', 'second',
+            and 'microsecond', as appropriate. When a match is found, any of those groups
+            missing from the pattern will be assigned a value of 0. The default pattern looks
+            for patterns like: 20171118_2356.
+            or
+            2. a group named 'strptime' (e.g., r'_s(?P<strptime>\d{13})' for GOES-16 data)
+            to be parsed with strptime.
+        strptime : str, optional
+            the format string that corresponds to regex option (2) above. For example, GOES-16
+            data with a julian date matching the regex above is parsed with '%Y%j%H%M%S'.
 
         Returns
         -------
             All values corresponding to times within the specified range
 
         """
-        return [item[-1] for item in self._get_datasets_with_times(regex)
+        return [item[-1] for item in self._get_datasets_with_times(regex, strptime)
                 if start <= item[0] <= end]
 
     def __str__(self):
@@ -133,6 +154,90 @@ class DatasetCollection(IndexableMapping):
         return str(list(self))
 
     __repr__ = __str__
+
+
+def _try_lower(arg):
+    try:
+        arg = arg.lower()
+    except (TypeError, AttributeError, ValueError):
+        log.warning('Could not convert %s to lowercase.', arg)
+    return arg
+
+
+class CaseInsensitiveStr(str):
+    """Extend ``str`` to use case-insensitive comparison and lookup."""
+
+    def __init__(self, *args):
+        """Create str with a _lowered property."""
+        self._lowered = _try_lower(self)
+
+    def __hash__(self):
+        """Hash str using _lowered property."""
+        return str.__hash__(self._lowered)
+
+    def __eq__(self, other):
+        """Return true if other is case-insensitive equal to self."""
+        return str.__eq__(self._lowered, _try_lower(other))
+
+    def __gt__(self, other):
+        """Return true if other is case-insensitive greater than self."""
+        return str.__gt__(self._lowered, _try_lower(other))
+
+    def __ge__(self, other):
+        """Return true if other is case-insensitive greater than or equal to self."""
+        return str.__ge__(self._lowered, _try_lower(other))
+
+    def __lt__(self, other):
+        """Return true if other is case-insensitive less than self."""
+        return str.__lt__(self._lowered, _try_lower(other))
+
+    def __le__(self, other):
+        """Return true if other is case-insensitive less than or equal to to self."""
+        return str.__le__(self._lowered, _try_lower(other))
+
+    def __ne__(self, other):
+        """Return true if other is case-insensitive unequal to self."""
+        return str.__ne__(self._lowered, _try_lower(other))
+
+
+class CaseInsensitiveDict(dict):
+    """Extend ``dict`` to use a case-insensitive key set."""
+
+    def __init__(self, *args, **kwargs):
+        """Create a dict with a set of lowercase keys."""
+        super(CaseInsensitiveDict, self).__init__(*args, **kwargs)
+        self._keys_to_lower()
+
+    def __eq__(self, other):
+        """Return true if other is case-insensitive equal to self."""
+        return super(CaseInsensitiveDict, self).__eq__(CaseInsensitiveDict(other))
+
+    def __getitem__(self, key):
+        """Return value from case-insensitive lookup of ``key``."""
+        return super(CaseInsensitiveDict, self).__getitem__(CaseInsensitiveStr(key))
+
+    def __setitem__(self, key, value):
+        """Set value with lowercase ``key``."""
+        super(CaseInsensitiveDict, self).__setitem__(CaseInsensitiveStr(key), value)
+
+    def __delitem__(self, key):
+        """Delete value associated with case-insensitive lookup of ``key``."""
+        return super(CaseInsensitiveDict, self).__delitem__(CaseInsensitiveStr(key))
+
+    def __contains__(self, key):
+        """Return true if key set includes case-insensitive ``key``."""
+        return super(CaseInsensitiveDict, self).__contains__(CaseInsensitiveStr(key))
+
+    def pop(self, key, *args, **kwargs):
+        """Remove and return the value associated with case-insensitive ``key``."""
+        return super(CaseInsensitiveDict, self).pop(CaseInsensitiveStr(key))
+
+    def _keys_to_lower(self):
+        """Convert key set to lowercase."""
+        for k in list(self.keys()):
+            val = super(CaseInsensitiveDict, self).__getitem__(k)
+            super(CaseInsensitiveDict, self).__delitem__(k)
+            self.__setitem__(CaseInsensitiveStr(k), val)
 
 
 class TDSCatalog(object):
@@ -166,10 +271,10 @@ class TDSCatalog(object):
             The URL of a THREDDS client catalog
 
         """
-        session = create_http_session()
+        self.session = session_manager.create_session()
 
         # get catalog.xml file
-        resp = session.get(catalog_url)
+        resp = self.session.get(catalog_url)
         resp.raise_for_status()
 
         # top level server url
@@ -183,7 +288,7 @@ class TDSCatalog(object):
             warnings.warn('URL {} returned HTML. Changing to: {}'.format(self.catalog_url,
                                                                          new_url))
             self.catalog_url = new_url
-            resp = session.get(self.catalog_url)
+            resp = self.session.get(self.catalog_url)
             resp.raise_for_status()
 
         # begin parsing the xml doc
@@ -221,7 +326,8 @@ class TDSCatalog(object):
             elif (tag_type == 'metadata') or (tag_type == ''):
                 self._process_metadata(child, tag_type)
             elif tag_type == 'service':
-                if child.attrib['serviceType'] != 'Compound':
+                if CaseInsensitiveStr(child.attrib['serviceType'])\
+                        != CaseInsensitiveStr('Compound'):
                     # we do not want to process single services if they
                     # are already contained within a compound service, so
                     # we need to skip over those cases.
@@ -241,6 +347,10 @@ class TDSCatalog(object):
     def __str__(self):
         """Return a string representation of the catalog name."""
         return str(self.catalog_name)
+
+    def __del__(self):
+        """When TDSCatalog is deleted, close any open sessions."""
+        self.session.close()
 
     def _process_dataset(self, element):
         catalog_url = ''
@@ -262,17 +372,17 @@ class TDSCatalog(object):
 
     def _process_datasets(self):
         # Need to use list (of keys) because we modify the dict while iterating
-        for dsName in list(self.datasets):
+        for ds_name in list(self.datasets):
             # check to see if dataset needs to have access urls created, if not,
             # remove the dataset
-            has_url_path = self.datasets[dsName].url_path is not None
+            has_url_path = self.datasets[ds_name].url_path is not None
             is_ds_with_access_elements_to_process = \
-                dsName in self.ds_with_access_elements_to_process
+                ds_name in self.ds_with_access_elements_to_process
             if has_url_path or is_ds_with_access_elements_to_process:
-                self.datasets[dsName].make_access_urls(
+                self.datasets[ds_name].make_access_urls(
                     self.base_tds_url, self.services, metadata=self.metadata)
             else:
-                self.datasets.pop(dsName)
+                self.datasets.pop(ds_name)
 
     @property
     def latest(self):
@@ -348,12 +458,15 @@ class Dataset(object):
         The name of the :class:`Dataset` element
     url_path : str
         url to the accessible dataset
-    access_urls : dict[str, str]
+    access_urls : CaseInsensitiveDict[str, str]
         A dictionary of access urls whose keywords are the access service
         types defined in the catalog (for example, "OPENDAP", "NetcdfSubset",
         "WMS", etc.
 
     """
+
+    ncss_service_names = (CaseInsensitiveStr('NetcdfSubset'),
+                          CaseInsensitiveStr('NetcdfServer'))
 
     def __init__(self, element_node, catalog_url=''):
         """Initialize the Dataset object.
@@ -367,10 +480,8 @@ class Dataset(object):
 
         """
         self.name = element_node.attrib['name']
-        if 'urlPath' in element_node.attrib:
-            self.url_path = element_node.attrib['urlPath']
-        else:
-            self.url_path = None
+        self.id = element_node.attrib.get('ID', None)
+        self.url_path = element_node.attrib.get('urlPath', None)
         self.catalog_name = ''
         self.access_element_info = {}
         self._resolved = False
@@ -401,7 +512,7 @@ class Dataset(object):
         if catalog_url != '':
             resolver_base = catalog_url.split('catalog.xml')[0]
             resolver_url = resolver_base + self.url_path
-            resolver_xml = urlopen(resolver_url)
+            resolver_xml = session_manager.urlopen(resolver_url)
             tree = ET.parse(resolver_xml)
             root = tree.getroot()
             if 'name' in root.attrib:
@@ -436,7 +547,7 @@ class Dataset(object):
             Metadata from the :class:`TDSCatalog`
 
         """
-        all_service_dict = {}
+        all_service_dict = CaseInsensitiveDict({})
         for service in all_services:
             all_service_dict[service.name] = service
             if isinstance(service, CompoundService):
@@ -445,7 +556,7 @@ class Dataset(object):
 
         service_name = metadata.get('serviceName', None)
 
-        access_urls = {}
+        access_urls = CaseInsensitiveDict({})
         server_url = _find_base_tds_url(catalog_url)
 
         # process access urls for datasets that reference top
@@ -480,15 +591,17 @@ class Dataset(object):
         url_path = access_element.attrib['urlPath']
         self.access_element_info[service_name] = url_path
 
-    def download(self, filename):
+    def download(self, filename=None):
         """Download the dataset to a local file.
 
         Parameters
         ----------
-        filename : str
+        filename : str, optional
             The full path to which the dataset will be saved
 
         """
+        if filename is None:
+            filename = self.name
         with self.remote_open() as infile:
             with open(filename, 'wb') as outfile:
                 outfile.write(infile.read())
@@ -506,7 +619,7 @@ class Dataset(object):
         """
         return self.access_with_service('HTTPServer')
 
-    def remote_access(self, service=None):
+    def remote_access(self, service=None, use_xarray=None):
         """Access the remote dataset.
 
         Open the remote dataset and get a netCDF4-compatible `Dataset` object providing
@@ -527,10 +640,10 @@ class Dataset(object):
         if service is None:
             service = 'CdmRemote' if 'CdmRemote' in self.access_urls else 'OPENDAP'
 
-        if service not in ('CdmRemote', 'OPENDAP'):
+        if service not in (CaseInsensitiveStr('CdmRemote'), CaseInsensitiveStr('OPENDAP')):
             raise ValueError(service + ' is not a valid service for remote_access')
 
-        return self.access_with_service(service)
+        return self.access_with_service(service, use_xarray)
 
     def subset(self, service=None):
         """Subset the dataset.
@@ -540,7 +653,9 @@ class Dataset(object):
         Parameters
         ----------
         service : str, optional
-            The name of the service for subsetting the dataset. Defaults to 'NetcdfSubset'.
+            The name of the service for subsetting the dataset. Defaults to 'NetcdfSubset'
+            or 'NetcdfServer', in that order, depending on the services listed in the
+            catalog.
 
         Returns
         -------
@@ -548,14 +663,19 @@ class Dataset(object):
 
         """
         if service is None:
-            service = 'NetcdfSubset'
-
-        if service not in ('NetcdfSubset',):
-            raise ValueError(service + ' is not a valid service for subset')
+            for service_name in self.ncss_service_names:
+                if service_name in self.access_urls:
+                    service = service_name
+                    break
+            else:
+                raise RuntimeError('Subset access is not available for this dataset.')
+        elif service not in self.ncss_service_names:
+            raise ValueError(service + ' is not a valid service for subset. Options are: '
+                             + ', '.join(self.ncss_service_names))
 
         return self.access_with_service(service)
 
-    def access_with_service(self, service):
+    def access_with_service(self, service, use_xarray=None):
         """Access the dataset using a particular service.
 
         Return an Python object capable of communicating with the server using the particular
@@ -572,20 +692,36 @@ class Dataset(object):
             An instance appropriate for communicating using ``service``.
 
         """
+        service = CaseInsensitiveStr(service)
         if service == 'CdmRemote':
-            from .cdmr import Dataset as CDMRDataset
-            provider = CDMRDataset
+            if use_xarray:
+                from .cdmr.xarray_support import CDMRemoteStore
+                try:
+                    import xarray as xr
+                    provider = lambda url: xr.open_dataset(CDMRemoteStore(url))  # noqa: E731
+                except ImportError:
+                    raise ImportError('CdmRemote access needs xarray to be installed.')
+            else:
+                from .cdmr import Dataset as CDMRDataset
+                provider = CDMRDataset
         elif service == 'OPENDAP':
-            try:
-                from netCDF4 import Dataset as NC4Dataset
-                provider = NC4Dataset
-            except ImportError:
-                raise ImportError('OPENDAP access requires netCDF4-python to be installed.')
-        elif service == 'NetcdfSubset':
+            if use_xarray:
+                try:
+                    import xarray as xr
+                    provider = xr.open_dataset
+                except ImportError:
+                    raise ImportError('xarray to be installed if `use_xarray` is True.')
+            else:
+                try:
+                    from netCDF4 import Dataset as NC4Dataset
+                    provider = NC4Dataset
+                except ImportError:
+                    raise ImportError('OPENDAP access needs netCDF4-python to be installed.')
+        elif service in self.ncss_service_names:
             from .ncss import NCSS
             provider = NCSS
         elif service == 'HTTPServer':
-            provider = urlopen
+            provider = session_manager.urlopen
         else:
             raise ValueError(service + ' is not an access method supported by Siphon')
 
@@ -623,7 +759,7 @@ class SimpleService(object):
 
         """
         self.name = service_node.attrib['name']
-        self.service_type = service_node.attrib['serviceType']
+        self.service_type = CaseInsensitiveStr(service_node.attrib['serviceType'])
         self.base = service_node.attrib['base']
         self.access_urls = {}
 
@@ -657,7 +793,7 @@ class CompoundService(object):
 
         """
         self.name = service_node.attrib['name']
-        self.service_type = service_node.attrib['serviceType']
+        self.service_type = CaseInsensitiveStr(service_node.attrib['serviceType'])
         self.base = service_node.attrib['base']
         services = []
         subservices = 0

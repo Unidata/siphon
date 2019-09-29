@@ -33,11 +33,31 @@ def test_catalog_representation():
     assert str(cat) == 'Unidata THREDDS Data Server'
 
 
+@recorder.use_cassette('thredds-test-toplevel-catalog')
+def test_catalog_session():
+    """Test of catalog session."""
+    url = 'http://thredds-test.unidata.ucar.edu/thredds/catalog.xml'
+    cat = TDSCatalog(url)
+    assert 'Forecast Model Data' in cat.catalog_refs
+    # nothing is returned from the session close nor can you check it
+    # but the ability to close is what is desired
+    cat.session.close()
+
+
 @recorder.use_cassette('thredds-test-latest-gfs-0p5')
 def test_access():
     """Test catalog parsing of access methods."""
     url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/grib/'
            'NCEP/GFS/Global_0p5deg/latest.xml')
+    cat = TDSCatalog(url)
+    ds = list(cat.datasets.values())[0]
+    assert 'OPENDAP' in ds.access_urls
+
+
+@recorder.use_cassette('thredds-test-default-5-0')
+def test_access_default_catalog():
+    """Test case-insensitive parsing of access methods in default catalog."""
+    url = ('http://localhost:8081/thredds/catalog/catalog.xml')
     cat = TDSCatalog(url)
     ds = list(cat.datasets.values())[0]
     assert 'OPENDAP' in ds.access_urls
@@ -213,6 +233,45 @@ def test_datasets_time_range():
 
 
 @recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_time_range_regex():
+    """Test getting datasets by time range using filenames, with manual regex."""
+    # This is DatasetCollection.default_regex, but tests passing it explicitly
+    regex = (r'(?P<year>\d{4})(?P<month>[01]\d)(?P<day>[0123]\d)_'
+             r'(?P<hour>[012]\d)(?P<minute>[0-5]\d)')
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+    in_range = cat.catalog_refs.filter_time_range(datetime(2015, 5, 28, 0),
+                                                  datetime(2015, 5, 29, 0),
+                                                  regex=regex)
+    titles = [item.title for item in in_range]
+    assert titles == ['NAM_CONUS_20km_noaaport_20150528_0000.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_0600.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_1200.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_1800.grib1',
+                      'NAM_CONUS_20km_noaaport_20150529_0000.grib1']
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_time_range_strptime():
+    """Test getting datasets by time range using filenames, with strptime."""
+    regex = r'noaaport_(?P<strptime>\d{8}_\d{4})'
+    strptime = '%Y%m%d_%H%M'
+    url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+           'CONUS_20km/noaaport/catalog.xml')
+    cat = TDSCatalog(url)
+    in_range = cat.catalog_refs.filter_time_range(datetime(2015, 5, 28, 0),
+                                                  datetime(2015, 5, 29, 0),
+                                                  regex=regex, strptime=strptime)
+    titles = [item.title for item in in_range]
+    assert titles == ['NAM_CONUS_20km_noaaport_20150528_0000.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_0600.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_1200.grib1',
+                      'NAM_CONUS_20km_noaaport_20150528_1800.grib1',
+                      'NAM_CONUS_20km_noaaport_20150529_0000.grib1']
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
 def test_datasets_time_range_raises():
     """Test getting datasets by time range using filenames."""
     url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
@@ -259,9 +318,10 @@ def test_simple_service_within_compound():
     url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/noaaport/text/'
            'tropical/atlantic/hdob/catalog.xml')
     cat = TDSCatalog(url)
-    assert (cat.datasets[0].access_urls ==
-            {'HTTPServer': 'http://thredds-test.unidata.ucar.edu/thredds/fileServer/noaaport/'
-                           'text/tropical/atlantic/hdob/High_density_obs_20170824.txt'})
+    assert (cat.datasets[0].access_urls
+            == {'HTTPServer': 'http://thredds-test.unidata.ucar.edu/thredds/'
+                              'fileServer/noaaport/text/tropical/atlantic/hdob/'
+                              'High_density_obs_20170824.txt'})
 
 
 @recorder.use_cassette('rsmas_ramadda')

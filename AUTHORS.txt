@@ -2,8 +2,11 @@ University Corporation for Atmospheric Research/Unidata
 Daniel Watkins
 Derek Groenendyk
 Filipe Fernandes
+Hailey Johnson
+Hannah Story
 Joel Rahman
 John Leeman
+Jon Thielen
 Joshua Clark
 Julien Chastang
 Pete Pokrandt
@@ -11,4 +14,7 @@ Ryan May
 Scott Collis
 Scott Wales
 Sean Arms
+Steve Nesbitt
 Warren Pettee
+Zachary Bruick 
+Scott Havens
