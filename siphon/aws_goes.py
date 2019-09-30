@@ -177,7 +177,7 @@ def save_s3_product(s3obj, path):
     it will overwrite a previous file with the same name.
     """
     obj = s3obj
-    filename = obj.key
+    filename = obj.key.split('/')[-1]
     outfile = os.path.join(path, filename)
     print(filename)
     with open(outfile, 'wb') as f:
