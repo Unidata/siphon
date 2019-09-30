@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2015 Siphon Contributors.
+# Copyright (c) 2013-2019 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 """Test Siphon's base HTTP helper functionality."""
@@ -100,6 +100,14 @@ def test_data_query_time_format():
     dr = DataQuery().time(dt)
     query = str(dr)
     assert query == 'time=2015-06-15T12%3A00%3A00'
+
+
+def test_data_query_bad_time_range():
+    """Test that time queries are properly formatted."""
+    with pytest.warns(UserWarning):
+        dt = datetime(2015, 6, 15, 12, 0, 0)
+        dt2 = datetime(2015, 6, 14, 12, 0, 0)
+        DataQuery().time_range(dt, dt2)
 
 
 def test_data_query_spatial_reset():

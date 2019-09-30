@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2017 Siphon Contributors.
+# Copyright (c) 2013-2019 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 """Test the catalog access API."""
@@ -230,6 +230,18 @@ def test_datasets_time_range():
                       'NAM_CONUS_20km_noaaport_20150528_1200.grib1',
                       'NAM_CONUS_20km_noaaport_20150528_1800.grib1',
                       'NAM_CONUS_20km_noaaport_20150529_0000.grib1']
+
+
+@recorder.use_cassette('top_level_20km_rap_catalog')
+def test_datasets_bad_time_range():
+    """Test warning message for bad time range."""
+    with pytest.warns(UserWarning):
+        url = ('http://thredds.ucar.edu/thredds/catalog/grib/NCEP/NAM/'
+               'CONUS_20km/noaaport/catalog.xml')
+        cat = TDSCatalog(url)
+        in_range = cat.catalog_refs.filter_time_range(datetime(2015, 5, 29, 0),
+                                                      datetime(2015, 5, 28, 0))
+        assert in_range == []
 
 
 @recorder.use_cassette('top_level_20km_rap_catalog')
