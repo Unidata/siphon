@@ -397,3 +397,14 @@ def test_latest_resolver_fail():
 
     assert latest == ''
     assert '"latest" not available for this catalog' in str(excinfo.value)
+
+
+@recorder.use_cassette('unnamed_catalog_test')
+def test_no_catalog_name():
+    """Test the repr of an unnamed catalog."""
+    cat_url = ('https://www.ncei.noaa.gov/thredds/catalog/'
+               'avhrr-patmos-x-cloudprops-files/catalog.xml')
+    cat = TDSCatalog(cat_url)
+    assert cat.__repr__() == 'TDSCatalog: unnamed catalog'
+    assert cat.catalog_refs.__repr__() == "<class 'siphon.catalog.DatasetCollection'>"
+    assert cat.catalog_refs['1979'].__repr__() == "<class 'siphon.catalog.CatalogRef'> 1979"

@@ -157,7 +157,9 @@ class DatasetCollection(IndexableMapping):
         """Return a string representation of the collection."""
         return str(list(self))
 
-    __repr__ = __str__
+    def __repr__(self):
+        """Return informative repr for DatasetCollection."""
+        return str(DatasetCollection)
 
 
 def _try_lower(arg):
@@ -297,7 +299,7 @@ class TDSCatalog(object):
 
         # begin parsing the xml doc
         root = ET.fromstring(resp.content)
-        self.catalog_name = root.attrib.get('name', 'No name found')
+        self.catalog_name = root.attrib.get('name', 'unnamed catalog')
 
         self.datasets = DatasetCollection()
         self.services = []
@@ -397,7 +399,9 @@ class TDSCatalog(object):
                 return TDSCatalog(latest_cat).datasets[0]
         raise AttributeError('"latest" not available for this catalog')
 
-    __repr__ = __str__
+    def __repr__(self):
+        """Return informative repr for TDSCatalog."""
+        return TDSCatalog.__name__ + ': ' + self.catalog_name
 
 
 class CatalogRef(object):
@@ -449,7 +453,9 @@ class CatalogRef(object):
         """
         return TDSCatalog(self.href)
 
-    __repr__ = __str__
+    def __repr__(self):
+        """Return repr of CatalogRef."""
+        return str(CatalogRef) + ' ' + str(self.title)
 
 
 class Dataset(object):
