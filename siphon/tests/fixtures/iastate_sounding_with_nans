@@ -1,0 +1,135 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.8.0+46.gc0def67.dirty)
+    method: GET
+    uri: http://mesonet.agron.iastate.edu/json/raob.py?ts=201104141800&station=OUN
+  response:
+    body:
+      string: '{"profiles": [{"station": "KOUN", "valid": "2011-04-14T18:00:00Z",
+        "profile": [{"pres": 1000.0, "hght": 29.0, "tmpc": NaN, "dwpc": NaN, "drct":
+        NaN, "sknt": NaN}, {"pres": 963.0, "hght": 362.0, "tmpc": 27.2, "dwpc": 13.2,
+        "drct": 185.0, "sknt": 13.0}, {"pres": 958.0, "hght": 408.0, "tmpc": 26.0,
+        "dwpc": 12.0, "drct": NaN, "sknt": NaN}, {"pres": 936.1, "hght": 609.0, "tmpc":
+        NaN, "dwpc": NaN, "drct": 195.0, "sknt": 25.0}, {"pres": 936.0, "hght": 610.0,
+        "tmpc": 22.4, "dwpc": 10.4, "drct": NaN, "sknt": NaN}, {"pres": 925.0, "hght":
+        697.0, "tmpc": 21.4, "dwpc": 9.4, "drct": 195.0, "sknt": 24.0}, {"pres": 901.9,
+        "hght": 914.0, "tmpc": NaN, "dwpc": NaN, "drct": 190.0, "sknt": 24.0}, {"pres":
+        870.3, "hght": 1219.0, "tmpc": NaN, "dwpc": NaN, "drct": 190.0, "sknt": 29.0},
+        {"pres": 850.0, "hght": 1421.0, "tmpc": 14.8, "dwpc": 8.8, "drct": 190.0,
+        "sknt": 30.0}, {"pres": 809.6, "hght": 1828.0, "tmpc": NaN, "dwpc": NaN, "drct":
+        205.0, "sknt": 25.0}, {"pres": 806.0, "hght": 1865.0, "tmpc": 10.6, "dwpc":
+        7.5, "drct": NaN, "sknt": NaN}, {"pres": 790.0, "hght": 2031.0, "tmpc": 10.6,
+        "dwpc": -0.3, "drct": NaN, "sknt": NaN}, {"pres": 782.0, "hght": 2116.0, "tmpc":
+        11.8, "dwpc": -10.2, "drct": NaN, "sknt": NaN}, {"pres": 780.4, "hght": 2133.0,
+        "tmpc": NaN, "dwpc": NaN, "drct": 230.0, "sknt": 29.0}, {"pres": 754.0, "hght":
+        2418.0, "tmpc": 10.0, "dwpc": -14.0, "drct": NaN, "sknt": NaN}, {"pres": 752.2,
+        "hght": 2438.0, "tmpc": NaN, "dwpc": NaN, "drct": 225.0, "sknt": 34.0}, {"pres":
+        725.1, "hght": 2743.0, "tmpc": NaN, "dwpc": NaN, "drct": 220.0, "sknt": 36.0},
+        {"pres": 700.0, "hght": 3035.0, "tmpc": 5.0, "dwpc": -17.0, "drct": 225.0,
+        "sknt": 39.0}, {"pres": 647.3, "hght": 3657.0, "tmpc": NaN, "dwpc": NaN, "drct":
+        215.0, "sknt": 42.0}, {"pres": 599.5, "hght": 4267.0, "tmpc": NaN, "dwpc":
+        NaN, "drct": 225.0, "sknt": 46.0}, {"pres": 595.0, "hght": 4327.0, "tmpc":
+        -6.7, "dwpc": -22.7, "drct": NaN, "sknt": NaN}, {"pres": 573.0, "hght": 4620.0,
+        "tmpc": -6.9, "dwpc": -31.9, "drct": NaN, "sknt": NaN}, {"pres": 554.2, "hght":
+        4876.0, "tmpc": NaN, "dwpc": NaN, "drct": 235.0, "sknt": 44.0}, {"pres": 511.9,
+        "hght": 5486.0, "tmpc": NaN, "dwpc": NaN, "drct": 235.0, "sknt": 58.0}, {"pres":
+        509.0, "hght": 5530.0, "tmpc": -13.3, "dwpc": -33.3, "drct": NaN, "sknt":
+        NaN}, {"pres": 500.0, "hght": 5670.0, "tmpc": -14.3, "dwpc": -33.3, "drct":
+        240.0, "sknt": 58.0}, {"pres": 472.3, "hght": 6096.0, "tmpc": NaN, "dwpc":
+        NaN, "drct": 235.0, "sknt": 50.0}, {"pres": 456.0, "hght": 6358.0, "tmpc":
+        -20.5, "dwpc": -33.5, "drct": NaN, "sknt": NaN}, {"pres": 453.4, "hght": 6400.0,
+        "tmpc": NaN, "dwpc": NaN, "drct": 240.0, "sknt": 45.0}, {"pres": 406.0, "hght":
+        7204.0, "tmpc": -26.9, "dwpc": -41.9, "drct": NaN, "sknt": NaN}, {"pres":
+        400.0, "hght": 7320.0, "tmpc": -27.9, "dwpc": -42.9, "drct": 250.0, "sknt":
+        50.0}, {"pres": 383.4, "hght": 7620.0, "tmpc": NaN, "dwpc": NaN, "drct": 250.0,
+        "sknt": 50.0}, {"pres": 357.0, "hght": 8123.0, "tmpc": -35.1, "dwpc": -48.1,
+        "drct": NaN, "sknt": NaN}, {"pres": 321.7, "hght": 8839.0, "tmpc": NaN, "dwpc":
+        NaN, "drct": 255.0, "sknt": 80.0}, {"pres": 317.0, "hght": 8939.0, "tmpc":
+        -41.1, "dwpc": -54.1, "drct": NaN, "sknt": NaN}, {"pres": 307.5, "hght": 9144.0,
+        "tmpc": NaN, "dwpc": NaN, "drct": 250.0, "sknt": 80.0}, {"pres": 300.0, "hght":
+        9310.0, "tmpc": -44.7, "dwpc": -57.7, "drct": 250.0, "sknt": 79.0}, {"pres":
+        256.0, "hght": 10347.0, "tmpc": -53.7, "dwpc": -65.7, "drct": NaN, "sknt":
+        NaN}, {"pres": 250.0, "hght": 10500.0, "tmpc": -54.9, "dwpc": -66.9, "drct":
+        245.0, "sknt": 75.0}, {"pres": 221.0, "hght": 11277.0, "tmpc": NaN, "dwpc":
+        NaN, "drct": 245.0, "sknt": 71.0}, {"pres": 218.0, "hght": 11364.0, "tmpc":
+        -57.5, "dwpc": -69.5, "drct": NaN, "sknt": NaN}, {"pres": 209.0, "hght": 11631.0,
+        "tmpc": -54.9, "dwpc": -66.9, "drct": NaN, "sknt": NaN}, {"pres": 201.0, "hght":
+        11880.0, "tmpc": -54.9, "dwpc": -66.9, "drct": NaN, "sknt": NaN}, {"pres":
+        200.0, "hght": 11920.0, "tmpc": -55.1, "dwpc": -68.1, "drct": 255.0, "sknt":
+        105.0}, {"pres": 191.6, "hght": 12192.0, "tmpc": NaN, "dwpc": NaN, "drct":
+        265.0, "sknt": 109.0}, {"pres": 190.0, "hght": 12248.0, "tmpc": NaN, "dwpc":
+        NaN, "drct": 265.0, "sknt": 109.0}, {"pres": 188.0, "hght": 12313.0, "tmpc":
+        -56.3, "dwpc": -69.3, "drct": NaN, "sknt": NaN}, {"pres": 183.0, "hght": 12484.0,
+        "tmpc": -54.3, "dwpc": -67.3, "drct": NaN, "sknt": NaN}, {"pres": 169.0, "hght":
+        12993.0, "tmpc": -53.9, "dwpc": -67.9, "drct": NaN, "sknt": NaN}, {"pres":
+        166.0, "hght": 13106.0, "tmpc": NaN, "dwpc": NaN, "drct": 270.0, "sknt": 63.0},
+        {"pres": 161.0, "hght": 13302.0, "tmpc": -55.7, "dwpc": -69.7, "drct": NaN,
+        "sknt": NaN}, {"pres": 158.3, "hght": 13411.0, "tmpc": NaN, "dwpc": NaN, "drct":
+        255.0, "sknt": 70.0}, {"pres": 157.0, "hght": 13462.0, "tmpc": -55.7, "dwpc":
+        -69.7, "drct": NaN, "sknt": NaN}, {"pres": 151.0, "hght": 13716.0, "tmpc":
+        NaN, "dwpc": NaN, "drct": 260.0, "sknt": 77.0}, {"pres": 150.0, "hght": 13760.0,
+        "tmpc": -54.3, "dwpc": -68.3, "drct": 265.0, "sknt": 70.0}, {"pres": 148.0,
+        "hght": 13846.0, "tmpc": -53.9, "dwpc": -68.9, "drct": NaN, "sknt": NaN},
+        {"pres": 144.0, "hght": 14021.0, "tmpc": -53.9, "dwpc": -68.9, "drct": NaN,
+        "sknt": NaN}, {"pres": 144.0, "hght": 14020.0, "tmpc": NaN, "dwpc": NaN, "drct":
+        275.0, "sknt": 57.0}, {"pres": 137.3, "hght": 14326.0, "tmpc": NaN, "dwpc":
+        NaN, "drct": 265.0, "sknt": 37.0}, {"pres": 136.0, "hght": 14386.0, "tmpc":
+        -55.3, "dwpc": -70.3, "drct": NaN, "sknt": NaN}, {"pres": 126.0, "hght": 14869.0,
+        "tmpc": -58.3, "dwpc": -72.3, "drct": NaN, "sknt": NaN}, {"pres": 124.7, "hght":
+        14935.0, "tmpc": NaN, "dwpc": NaN, "drct": 260.0, "sknt": 53.0}, {"pres":
+        118.8, "hght": 15240.0, "tmpc": NaN, "dwpc": NaN, "drct": 260.0, "sknt": 42.0},
+        {"pres": 115.0, "hght": 15443.0, "tmpc": -57.9, "dwpc": -72.9, "drct": NaN,
+        "sknt": NaN}, {"pres": 111.0, "hght": 15665.0, "tmpc": -59.5, "dwpc": -73.5,
+        "drct": NaN, "sknt": NaN}, {"pres": 110.0, "hght": 15721.0, "tmpc": -59.7,
+        "dwpc": -73.7, "drct": NaN, "sknt": NaN}, {"pres": 100.0, "hght": 16310.0,
+        "tmpc": -61.7, "dwpc": -75.7, "drct": 250.0, "sknt": 25.0}, {"pres": 88.3,
+        "hght": 17074.0, "tmpc": -64.3, "dwpc": -77.3, "drct": NaN, "sknt": NaN},
+        {"pres": 85.7, "hght": 17257.0, "tmpc": -61.5, "dwpc": -75.5, "drct": NaN,
+        "sknt": NaN}, {"pres": 72.4, "hght": 18288.0, "tmpc": NaN, "dwpc": NaN, "drct":
+        225.0, "sknt": 26.0}, {"pres": 70.0, "hght": 18490.0, "tmpc": -69.9, "dwpc":
+        -81.9, "drct": 230.0, "sknt": 27.0}, {"pres": 69.6, "hght": 18524.0, "tmpc":
+        -70.1, "dwpc": -82.1, "drct": NaN, "sknt": NaN}, {"pres": 68.8, "hght": 18592.0,
+        "tmpc": NaN, "dwpc": NaN, "drct": 235.0, "sknt": 27.0}, {"pres": 67.4, "hght":
+        18715.0, "tmpc": -67.9, "dwpc": -80.9, "drct": NaN, "sknt": NaN}, {"pres":
+        66.4, "hght": 18805.0, "tmpc": -64.5, "dwpc": -78.5, "drct": NaN, "sknt":
+        NaN}, {"pres": 64.3, "hght": 19001.0, "tmpc": -63.7, "dwpc": -77.7, "drct":
+        NaN, "sknt": NaN}, {"pres": 59.2, "hght": 19507.0, "tmpc": NaN, "dwpc": NaN,
+        "drct": 0.0, "sknt": 0.0}, {"pres": 57.6, "hght": 19673.0, "tmpc": -64.5,
+        "dwpc": -78.5, "drct": NaN, "sknt": NaN}, {"pres": 56.3, "hght": 19812.0,
+        "tmpc": NaN, "dwpc": NaN, "drct": 240.0, "sknt": 10.0}, {"pres": 53.6, "hght":
+        20116.0, "tmpc": NaN, "dwpc": NaN, "drct": 180.0, "sknt": 14.0}, {"pres":
+        50.0, "hght": 20550.0, "tmpc": -61.5, "dwpc": -76.5, "drct": 175.0, "sknt":
+        10.0}, {"pres": 44.1, "hght": 21336.0, "tmpc": NaN, "dwpc": NaN, "drct": 165.0,
+        "sknt": 10.0}, {"pres": 43.0, "hght": 21489.0, "tmpc": -58.3, "dwpc": -75.3,
+        "drct": NaN, "sknt": NaN}]}]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - Keep-Alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 08 Oct 2019 15:40:06 GMT
+      Keep-Alive:
+      - timeout=5, max=100
+      Server:
+      - Apache/2.4.6 (Red Hat Enterprise Linux) OpenSSL/1.0.2k-fips mod_fcgid/2.3.9
+        mod_wsgi/4.6.4 Python/3.6
+      Transfer-Encoding:
+      - chunked
+      X-IEM-ServerID:
+      - iemvs107.local
+    status:
+      code: 200
+      message: OK
+version: 1

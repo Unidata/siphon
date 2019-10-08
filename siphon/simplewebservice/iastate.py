@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2018 Siphon Contributors.
+# Copyright (c) 2013-2019 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 """Read upper air data from the IA State archives."""
@@ -25,7 +25,7 @@ class IAStateUpperAir(HTTPEndPoint):
         super(IAStateUpperAir, self).__init__('http://mesonet.agron.iastate.edu/json')
 
     @classmethod
-    def request_data(cls, time, site_id, **kwargs):
+    def request_data(cls, time, site_id, interp_nans=False, **kwargs):
         """Retrieve upper air observations from Iowa State's archive for a single station.
 
         Parameters
@@ -37,6 +37,10 @@ class IAStateUpperAir(HTTPEndPoint):
             The three letter ICAO identifier of the station for which data should be
             downloaded.
 
+        interp_nans : bool
+            Flag to interpolate temperature and dewpoint at significant wind levels,
+            which will otherwise be NaNs. Default is False.
+
         kwargs
             Arbitrary keyword arguments to use to initialize source
 
@@ -47,6 +51,10 @@ class IAStateUpperAir(HTTPEndPoint):
         """
         endpoint = cls()
         df = endpoint._get_data(time, site_id, None, **kwargs)
+        if interp_nans:
+            df['temperature'] = df['temperature'].interpolate()
+            df['dewpoint'] = df['dewpoint'].interpolate()
+
         return df
 
     @classmethod
