@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2017 Siphon Contributors.
+# Copyright (c) 2013-2019 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 """
@@ -11,6 +11,7 @@ from collections import OrderedDict
 from datetime import datetime
 import logging
 import re
+import warnings
 import xml.etree.ElementTree as ET  # noqa:N814
 try:
     from urlparse import urljoin, urlparse
@@ -146,6 +147,9 @@ class DatasetCollection(IndexableMapping):
             All values corresponding to times within the specified range
 
         """
+        if start > end:
+            warnings.warn('The provided start time comes after the end time. No data will '
+                          'be returned.', UserWarning)
         return [item[-1] for item in self._get_datasets_with_times(regex, strptime)
                 if start <= item[0] <= end]
 

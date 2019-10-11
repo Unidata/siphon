@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2015 Siphon Contributors.
+# Copyright (c) 2013-2019 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 """Utility code to support making requests using HTTP."""
@@ -8,6 +8,7 @@ from datetime import datetime, timedelta, tzinfo
 from io import BytesIO
 from itertools import chain
 import posixpath
+import warnings
 try:
     from urllib.parse import urlencode, urljoin  # noqa
 except ImportError:
@@ -317,6 +318,9 @@ class DataQuery(object):
             Returns self for chaining calls
 
         """
+        if start > end:
+            warnings.warn('The provided start time comes after the end time. No data will '
+                          'be returned.', UserWarning)
         self._set_query(self.time_query, time_start=self._format_time(start),
                         time_end=self._format_time(end))
         return self
