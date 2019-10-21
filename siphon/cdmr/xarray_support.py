@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Siphon Contributors.
+# Copyright (c) 2016,2019 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 """Implement an experimental backend for using xarray to talk to TDS over CDMRemote."""
@@ -6,7 +6,10 @@
 from xarray import Variable
 from xarray.backends.common import AbstractDataStore, BackendArray
 from xarray.core import indexing
-from xarray.core.utils import FrozenOrderedDict
+try:
+    from xarray.core.utils import FrozenDict
+except ImportError:
+    from xarray.core.utils import FrozenOrderedDict as FrozenDict
 
 from . import Dataset
 
@@ -56,13 +59,13 @@ class CDMRemoteStore(AbstractDataStore):
 
     def get_variables(self):
         """Get the variables from underlying data set."""
-        return FrozenOrderedDict((k, self.open_store_variable(k, v))
-                                 for k, v in self.ds.variables.items())
+        return FrozenDict((k, self.open_store_variable(k, v))
+                          for k, v in self.ds.variables.items())
 
     def get_attrs(self):
         """Get the global attributes from underlying data set."""
-        return FrozenOrderedDict((a, getattr(self.ds, a)) for a in self.ds.ncattrs())
+        return FrozenDict((a, getattr(self.ds, a)) for a in self.ds.ncattrs())
 
     def get_dimensions(self):
         """Get the dimensions from underlying data set."""
-        return FrozenOrderedDict((k, len(v)) for k, v in self.ds.dimensions.items())
+        return FrozenDict((k, len(v)) for k, v in self.ds.dimensions.items())
