@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Siphon Contributors.
+# Copyright (c) 2017,2019 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 """Test Iowa State upper air dataset access."""
@@ -71,6 +71,14 @@ def test_high_alt_iastate():
     assert(df.units['direction'] == 'degrees')
     assert(df.units['station'] is None)
     assert(df.units['time'] is None)
+
+
+@recorder.use_cassette('iastate_sounding_with_nans')
+def test_interp():
+    """Test the interpolation flag for the IA State retrieval."""
+    df = IAStateUpperAir.request_data(datetime(2011, 4, 14, 18), 'OUN', interp_nans=True)
+    assert not df['temperature'].isnull().any()
+    assert not df['dewpoint'].isnull().any()
 
 
 @recorder.use_cassette('iastate_no_data')
