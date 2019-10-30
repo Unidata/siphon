@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>siphon.catalog &mdash; Siphon 0.7</title>
+  <title>siphon.catalog &mdash; Siphon 0.8</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Siphon 0.7" href="../../index.html"/>
+    <link rel="top" title="Siphon 0.8" href="../../index.html"/>
         <link rel="up" title="Module code" href="../index.html"/> 
 
   
@@ -77,7 +77,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.7</option>
+                      <option value=''>0.8</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -183,7 +183,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for siphon.catalog</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Copyright (c) 2013-2017 Siphon Contributors.</span>
+<span></span><span class="c1"># Copyright (c) 2013-2019 Siphon Contributors.</span>
 <span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -196,7 +196,8 @@
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>  <span class="c1"># noqa:N814</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">urlparse</span> <span class="k">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">urlparse</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
@@ -228,8 +229,9 @@
     <span class="n">default_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?P&lt;year&gt;\d</span><span class="si">{4}</span><span class="s1">)(?P&lt;month&gt;[01]\d)(?P&lt;day&gt;[0123]\d)_&#39;</span>
                                <span class="sa">r</span><span class="s1">&#39;(?P&lt;hour&gt;[012]\d)(?P&lt;minute&gt;[0-5]\d)&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_datasets_with_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regex</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_datasets_with_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="n">strptime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># Set the default regex if we don&#39;t have one</span>
+        <span class="c1"># If strptime is provided, pass the regex group named &#39;strptime&#39; to strptime</span>
         <span class="k">if</span> <span class="n">regex</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">regex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_regex</span>
         <span class="k">else</span><span class="p">:</span>
@@ -244,11 +246,17 @@
             <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
                 <span class="n">found_date</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="n">date_parts</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
-                <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
-                              <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
-                              <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;minute&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
-                              <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
-                              <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;microsecond&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+                <span class="k">if</span> <span class="n">strptime</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">date_str</span> <span class="o">=</span> <span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;strptime&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                    <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date_str</span><span class="p">,</span> <span class="n">strptime</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                                  <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                                  <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                                  <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                                  <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;minute&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                                  <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                                  <span class="nb">int</span><span class="p">(</span><span class="n">date_parts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;microsecond&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
                 <span class="k">yield</span> <span class="n">dt</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">ds</span><span class="p">]</span>
 
         <span class="c1"># If we never found any keys that match, we should let the user know that rather</span>
@@ -256,8 +264,8 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">found_date</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No datasets with times found.&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DatasetCollection.filter_time_nearest"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection.filter_time_nearest">[docs]</a>    <span class="k">def</span> <span class="nf">filter_time_nearest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Filter keys for an item closest to the desired time.</span>
+<div class="viewcode-block" id="DatasetCollection.filter_time_nearest"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection.filter_time_nearest">[docs]</a>    <span class="k">def</span> <span class="nf">filter_time_nearest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">strptime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Filter keys for an item closest to the desired time.</span>
 
 <span class="sd">        Loops over all keys in the collection and uses `regex` to extract and build</span>
 <span class="sd">        `datetime`s. The collection of `datetime`s is compared to `start` and the value that</span>
@@ -271,21 +279,28 @@
 <span class="sd">            The desired time</span>
 <span class="sd">        regex : str, optional</span>
 <span class="sd">            The regular expression to use to extract date/time information from the key. If</span>
-<span class="sd">            given, this should contain named groups: &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;hour&#39;, &#39;minute&#39;,</span>
-<span class="sd">            &#39;second&#39;, and &#39;microsecond&#39;, as appropriate. When a match is found, any of those</span>
-<span class="sd">            groups missing from the pattern will be assigned a value of 0. The default pattern</span>
-<span class="sd">            looks for patterns like: 20171118_2356.</span>
+<span class="sd">            given, this should contain either</span>
+<span class="sd">            1. named groups: &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;hour&#39;, &#39;minute&#39;, &#39;second&#39;,</span>
+<span class="sd">            and &#39;microsecond&#39;, as appropriate. When a match is found, any of those groups</span>
+<span class="sd">            missing from the pattern will be assigned a value of 0. The default pattern looks</span>
+<span class="sd">            for patterns like: 20171118_2356.</span>
+<span class="sd">            or</span>
+<span class="sd">            2. a group named &#39;strptime&#39; (e.g., r&#39;_s(?P&lt;strptime&gt;\d{13})&#39; for GOES-16 data)</span>
+<span class="sd">            to be parsed with strptime.</span>
+<span class="sd">        strptime : str, optional</span>
+<span class="sd">            the format string that corresponds to regex option (2) above. For example, GOES-16</span>
+<span class="sd">            data with a julian date matching the regex above is parsed with &#39;%Y%j%H%M%S&#39;.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The value with a time closest to that desired</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_datasets_with_times</span><span class="p">(</span><span class="n">regex</span><span class="p">),</span>
+        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_datasets_with_times</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">strptime</span><span class="p">),</span>
                    <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="nb">abs</span><span class="p">((</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()))[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="DatasetCollection.filter_time_range"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection.filter_time_range">[docs]</a>    <span class="k">def</span> <span class="nf">filter_time_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Filter keys for all items within the desired time range.</span>
+<div class="viewcode-block" id="DatasetCollection.filter_time_range"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection.filter_time_range">[docs]</a>    <span class="k">def</span> <span class="nf">filter_time_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">strptime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Filter keys for all items within the desired time range.</span>
 
 <span class="sd">        Loops over all keys in the collection and uses `regex` to extract and build</span>
 <span class="sd">        `datetime`s. From the collection of `datetime`s, all values within `start` and `end`</span>
@@ -300,17 +315,27 @@
 <span class="sd">            The end of the desired time range, inclusive</span>
 <span class="sd">        regex : str, optional</span>
 <span class="sd">            The regular expression to use to extract date/time information from the key. If</span>
-<span class="sd">            given, this should contain named groups: &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;hour&#39;, &#39;minute&#39;,</span>
-<span class="sd">            &#39;second&#39;, and &#39;microsecond&#39;, as appropriate. When a match is found, any of those</span>
-<span class="sd">            groups missing from the pattern will be assigned a value of 0. The default pattern</span>
-<span class="sd">            looks for patterns like: 20171118_2356.</span>
+<span class="sd">            given, this should contain either</span>
+<span class="sd">            1. named groups: &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;hour&#39;, &#39;minute&#39;, &#39;second&#39;,</span>
+<span class="sd">            and &#39;microsecond&#39;, as appropriate. When a match is found, any of those groups</span>
+<span class="sd">            missing from the pattern will be assigned a value of 0. The default pattern looks</span>
+<span class="sd">            for patterns like: 20171118_2356.</span>
+<span class="sd">            or</span>
+<span class="sd">            2. a group named &#39;strptime&#39; (e.g., r&#39;_s(?P&lt;strptime&gt;\d{13})&#39; for GOES-16 data)</span>
+<span class="sd">            to be parsed with strptime.</span>
+<span class="sd">        strptime : str, optional</span>
+<span class="sd">            the format string that corresponds to regex option (2) above. For example, GOES-16</span>
+<span class="sd">            data with a julian date matching the regex above is parsed with &#39;%Y%j%H%M%S&#39;.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            All values corresponding to times within the specified range</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_datasets_with_times</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The provided start time comes after the end time. No data will &#39;</span>
+                          <span class="s1">&#39;be returned.&#39;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_datasets_with_times</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">strptime</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">]</span></div>
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -435,10 +460,10 @@
 <span class="sd">            The URL of a THREDDS client catalog</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">session</span> <span class="o">=</span> <span class="n">session_manager</span><span class="o">.</span><span class="n">create_session</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">session_manager</span><span class="o">.</span><span class="n">create_session</span><span class="p">()</span>
 
         <span class="c1"># get catalog.xml file</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span>
         <span class="n">resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 
         <span class="c1"># top level server url</span>
@@ -452,7 +477,7 @@
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;URL </span><span class="si">{}</span><span class="s1"> returned HTML. Changing to: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="p">,</span>
                                                                          <span class="n">new_url</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span> <span class="o">=</span> <span class="n">new_url</span>
-            <span class="n">resp</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="p">)</span>
+            <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="p">)</span>
             <span class="n">resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 
         <span class="c1"># begin parsing the xml doc</span>
@@ -512,6 +537,10 @@
         <span class="sd">&quot;&quot;&quot;Return a string representation of the catalog name.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_name</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;When TDSCatalog is deleted, close any open sessions.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
     <span class="k">def</span> <span class="nf">_process_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">catalog_url</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="k">if</span> <span class="s1">&#39;urlPath&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
@@ -532,17 +561,17 @@
 
     <span class="k">def</span> <span class="nf">_process_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Need to use list (of keys) because we modify the dict while iterating</span>
-        <span class="k">for</span> <span class="n">dsName</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">ds_name</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">):</span>
             <span class="c1"># check to see if dataset needs to have access urls created, if not,</span>
             <span class="c1"># remove the dataset</span>
-            <span class="n">has_url_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">dsName</span><span class="p">]</span><span class="o">.</span><span class="n">url_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="n">has_url_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">ds_name</span><span class="p">]</span><span class="o">.</span><span class="n">url_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
             <span class="n">is_ds_with_access_elements_to_process</span> <span class="o">=</span> \
-                <span class="n">dsName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds_with_access_elements_to_process</span>
+                <span class="n">ds_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds_with_access_elements_to_process</span>
             <span class="k">if</span> <span class="n">has_url_path</span> <span class="ow">or</span> <span class="n">is_ds_with_access_elements_to_process</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">dsName</span><span class="p">]</span><span class="o">.</span><span class="n">make_access_urls</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">ds_name</span><span class="p">]</span><span class="o">.</span><span class="n">make_access_urls</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">base_tds_url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">services</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">dsName</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ds_name</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">latest</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -625,7 +654,8 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">ncssServiceNames</span> <span class="o">=</span> <span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;NetcdfSubset&#39;</span><span class="p">),</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;NetcdfServer&#39;</span><span class="p">))</span>
+    <span class="n">ncss_service_names</span> <span class="o">=</span> <span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;NetcdfSubset&#39;</span><span class="p">),</span>
+                          <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;NetcdfServer&#39;</span><span class="p">))</span>
 
 <div class="viewcode-block" id="Dataset.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_node</span><span class="p">,</span> <span class="n">catalog_url</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize the Dataset object.</span>
@@ -639,10 +669,8 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">element_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s1">&#39;urlPath&#39;</span> <span class="ow">in</span> <span class="n">element_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span> <span class="o">=</span> <span class="n">element_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;urlPath&#39;</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">element_node</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span> <span class="o">=</span> <span class="n">element_node</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;urlPath&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">catalog_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">access_element_info</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_resolved</span> <span class="o">=</span> <span class="kc">False</span>
@@ -824,15 +852,15 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">service</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">serviceName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncssServiceNames</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">serviceName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span><span class="p">:</span>
-                    <span class="n">service</span> <span class="o">=</span> <span class="n">serviceName</span>
+            <span class="k">for</span> <span class="n">service_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncss_service_names</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">service_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span><span class="p">:</span>
+                    <span class="n">service</span> <span class="o">=</span> <span class="n">service_name</span>
                     <span class="k">break</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Subset access is not available for this dataset.&#39;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">service</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncssServiceNames</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not a valid service for subset. Options are: &#39;</span> <span class="o">+</span>
-                             <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ncssServiceNames</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">service</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncss_service_names</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not a valid service for subset. Options are: &#39;</span>
+                             <span class="o">+</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ncss_service_names</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="n">service</span><span class="p">)</span></div>
 
@@ -878,7 +906,7 @@
                     <span class="n">provider</span> <span class="o">=</span> <span class="n">NC4Dataset</span>
                 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;OPENDAP access needs netCDF4-python to be installed.&#39;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">service</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncssServiceNames</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">service</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncss_service_names</span><span class="p">:</span>
             <span class="kn">from</span> <span class="nn">.ncss</span> <span class="k">import</span> <span class="n">NCSS</span>
             <span class="n">provider</span> <span class="o">=</span> <span class="n">NCSS</span>
         <span class="k">elif</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;HTTPServer&#39;</span><span class="p">:</span>
@@ -1023,7 +1051,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Aug 14, 2018 at 18:17:43.
+      Last updated on Oct 30, 2019 at 22:18:55.
 
     </p>
   </div>
@@ -1060,7 +1088,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.7.0+54.g4910d1e',
+            VERSION:'0.8.0+54.g32ed275',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -1071,7 +1099,7 @@
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
 
   
 

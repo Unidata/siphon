@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>IGRA2 Upper Air Data Request &mdash; Siphon 0.7</title>
+  <title>IGRA2 Upper Air Data Request &mdash; Siphon 0.8</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Siphon 0.7" href="../../index.html"/>
+    <link rel="top" title="Siphon 0.8" href="../../index.html"/>
         <link rel="up" title="Siphon Examples" href="../index.html"/>
         <link rel="next" title="Developer’s Guide" href="../../developerguide.html"/>
         <link rel="prev" title="Wyoming Upper Air Data Request" href="Wyoming_Request.html"/> 
@@ -79,7 +79,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.7</option>
+                      <option value=''>0.8</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -202,33 +202,33 @@
            <div itemprop="articleBody">
             
   <div class="sphx-glr-download-link-note admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Click <a class="reference internal" href="#sphx-glr-download-examples-upperair-igra2-request-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-upperair-igra2-request-py"><span class="std std-ref">here</span></a> to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="igra2-upper-air-data-request">
 <span id="sphx-glr-examples-upperair-igra2-request-py"></span><h1>IGRA2 Upper Air Data Request<a class="headerlink" href="#igra2-upper-air-data-request" title="Permalink to this headline">¶</a></h1>
 <p>This example shows how to use siphon’s <em class="xref py py-obj">simplewebswervice</em> support to create a
 query to the Integrated Global Radiosonde Archive version 2.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
 
-<span class="kn">from</span> <span class="nn">siphon.simplewebservice.igra2</span> <span class="kn">import</span> <span class="n">IGRAUpperAir</span>
+<span class="kn">from</span> <span class="nn">siphon.simplewebservice.igra2</span> <span class="k">import</span> <span class="n">IGRAUpperAir</span>
 </pre></div>
 </div>
 <p>Create a datetime object for the sounding and string of the station identifier.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">station</span> <span class="o">=</span> <span class="s1">&#39;USM00070026&#39;</span>
 </pre></div>
 </div>
 <p>Make the request. IGRAUpperAir returns a dataframe containing the sounding data and
 a dataframe with station metadata from the sounding header.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir.request_data" title="View documentation for siphon.simplewebservice.igra2.IGRAUpperAir.request_data"><span class="n">IGRAUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">station</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir.request_data" title="View documentation for siphon.simplewebservice.igra2.IGRAUpperAir.request_data"><span class="n">IGRAUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">station</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Inspect data columns in the dataframe.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 
 <span class="c1"># Inspect metadata from the data headers</span>
-<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -243,8 +243,8 @@ Index([&#39;site_id&#39;, &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;h
 </pre></div>
 </div>
 <p>Pull out a specific column of data.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -253,57 +253,7 @@ Index([&#39;site_id&#39;, &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;h
 2      1003.21
 3      1000.00
 4       983.95
-5       947.43
-6       938.76
-7       932.56
-8       925.00
-9       911.84
-10      905.46
-11      895.82
-12      866.93
-13      856.50
-14      850.00
-15      847.10
-16      831.60
-17      824.15
-18      817.16
-19      812.43
-20      809.70
-21      796.87
-22      758.79
-23      748.42
-24      736.53
-25      729.74
-26      700.00
-27      691.76
-28      676.16
-29      669.49
         ...
-201        NaN
-202        NaN
-203        NaN
-204        NaN
-205        NaN
-206        NaN
-207        NaN
-208        NaN
-209        NaN
-210        NaN
-211        NaN
-212        NaN
-213        NaN
-214        NaN
-215        NaN
-216        NaN
-217        NaN
-218        NaN
-219        NaN
-220        NaN
-221        NaN
-222        NaN
-223        NaN
-224        NaN
-225        NaN
 226        NaN
 227        NaN
 228        NaN
@@ -316,8 +266,8 @@ Name: latitude, dtype: float64
 </div>
 <p>Units are stored in a dictionary with the variable name as the key in the <em class="xref py py-obj">units</em>
 attribute of the dataframe.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -325,7 +275,7 @@ attribute of the dataframe.</p>
 {&#39;release_time&#39;: &#39;second&#39;, &#39;latitude&#39;: &#39;degrees&#39;, &#39;longitude&#39;: &#39;degrees&#39;}
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -333,41 +283,41 @@ attribute of the dataframe.</p>
 </pre></div>
 </div>
 <p>Multiple records can be extracted simultaneously:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">)]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">)]</span>
 <span class="n">station</span> <span class="o">=</span> <span class="s1">&#39;USM00070026&#39;</span>
 <span class="n">df</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir.request_data" title="View documentation for siphon.simplewebservice.igra2.IGRAUpperAir.request_data"><span class="n">IGRAUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">station</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>lvltyp1  lvltyp2  etime    ...     u_wind  v_wind  dewpoint
-0        2        1      0    ...       -6.0    -3.9      -1.0
-1        2        0      5    ...       -6.3    -3.1      -2.5
-2        2        0     32    ...       -7.5    -0.1      -2.8
-3        1        0     38    ...       -7.7    -0.3      -2.9
-4        2        0     69    ...       -9.0    -1.9      -3.1
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>   lvltyp1  lvltyp2  etime  pressure  ...       date  u_wind  v_wind  dewpoint
+0        2        1      0   1020.95  ... 2014-09-10    -6.0    -3.9      -1.0
+1        2        0      5   1018.16  ... 2014-09-10    -6.3    -3.1      -2.5
+2        2        0     32   1003.21  ... 2014-09-10    -7.5    -0.1      -2.8
+3        1        0     38   1000.00  ... 2014-09-10    -7.7    -0.3      -2.9
+4        2        0     69    983.95  ... 2014-09-10    -9.0    -1.9      -3.1
 
 [5 rows x 16 columns]
-       site_id  year         ...          longitude                date
-0  USM00070026  2014         ...          -156.7833 2014-09-10 00:00:00
-1  USM00070026  2014         ...          -156.7833 2014-09-10 12:00:00
-2  USM00070026  2014         ...          -156.7833 2014-09-11 00:00:00
-3  USM00070026  2014         ...          -156.7833 2014-09-11 12:00:00
-4  USM00070026  2014         ...          -156.7833 2014-09-12 00:00:00
+       site_id  year  month  ...  latitude  longitude                date
+0  USM00070026  2014      9  ...   71.2889  -156.7833 2014-09-10 00:00:00
+1  USM00070026  2014      9  ...   71.2889  -156.7833 2014-09-10 12:00:00
+2  USM00070026  2014      9  ...   71.2889  -156.7833 2014-09-11 00:00:00
+3  USM00070026  2014      9  ...   71.2889  -156.7833 2014-09-11 12:00:00
+4  USM00070026  2014      9  ...   71.2889  -156.7833 2014-09-12 00:00:00
 
 [5 rows x 12 columns]
 </pre></div>
 </div>
 <p>IGRA2-Derived data can be accessed using the keyword derived=True.
 This data has much more information in the headers.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir.request_data" title="View documentation for siphon.simplewebservice.igra2.IGRAUpperAir.request_data"><span class="n">IGRAUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">station</span><span class="p">,</span> <span class="n">derived</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir.request_data" title="View documentation for siphon.simplewebservice.igra2.IGRAUpperAir.request_data"><span class="n">IGRAUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">station</span><span class="p">,</span> <span class="n">derived</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Inspect data columns in the dataframe.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -389,14 +339,16 @@ Index([&#39;site_id&#39;, &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;h
       dtype=&#39;object&#39;)
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  55.854 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  50.688 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-upperair-igra2-request-py">
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" href="../../_downloads/IGRA2_Request.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">IGRA2_Request.py</span></code></a></div>
-<div class="sphx-glr-download docutils container">
-<a class="reference download internal" href="../../_downloads/IGRA2_Request.ipynb" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">IGRA2_Request.ipynb</span></code></a></div>
+<p><a class="reference download internal" download="" href="../../_downloads/3cef4db00be51070bdcef70aa499cc89/IGRA2_Request.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">IGRA2_Request.py</span></code></a></p>
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/89540eec19f4fc19c962d5996fe3c896/IGRA2_Request.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">IGRA2_Request.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>
 
 
@@ -422,7 +374,7 @@ Index([&#39;site_id&#39;, &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;h
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Aug 14, 2018 at 18:17:43.
+      Last updated on Oct 30, 2019 at 22:18:55.
 
     </p>
   </div>
@@ -459,7 +411,7 @@ Index([&#39;site_id&#39;, &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;h
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.7.0+54.g4910d1e',
+            VERSION:'0.8.0+54.g32ed275',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -470,7 +422,7 @@ Index([&#39;site_id&#39;, &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;h
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
 
   
 

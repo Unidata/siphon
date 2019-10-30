@@ -1,0 +1,12 @@
+
+:orphan:
+
+.. _sphx_glr_examples_ncss_sg_execution_times:
+
+Computation times
+=================
+**00:04.594** total execution time for **examples_ncss** files:
+
+- **00:02.774**: :ref:`sphx_glr_examples_ncss_NCSS_Cartopy_Example.py` (``NCSS_Cartopy_Example.py``)
+- **00:00.984**: :ref:`sphx_glr_examples_ncss_NCSS_Example.py` (``NCSS_Example.py``)
+- **00:00.836**: :ref:`sphx_glr_examples_ncss_NCSS_Timeseries_Examples.py` (``NCSS_Timeseries_Examples.py``)

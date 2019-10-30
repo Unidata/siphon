@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>siphon.simplewebservice.iastate &mdash; Siphon 0.7</title>
+  <title>siphon.simplewebservice.iastate &mdash; Siphon 0.8</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="Siphon 0.7" href="../../../index.html"/>
+    <link rel="top" title="Siphon 0.8" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -77,7 +77,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.7</option>
+                      <option value=''>0.8</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -183,7 +183,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for siphon.simplewebservice.iastate</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Copyright (c) 2013-2018 Siphon Contributors.</span>
+<span></span><span class="c1"># Copyright (c) 2013-2019 Siphon Contributors.</span>
 <span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
 <span class="sd">&quot;&quot;&quot;Read upper air data from the IA State archives.&quot;&quot;&quot;</span>
@@ -199,7 +199,7 @@
 <span class="kn">from</span> <span class="nn">.._tools</span> <span class="k">import</span> <span class="n">get_wind_components</span>
 <span class="kn">from</span> <span class="nn">..http_util</span> <span class="k">import</span> <span class="n">HTTPEndPoint</span>
 
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s1">&#39;Pandas doesn</span><span class="se">\&#39;</span><span class="s1">t allow columns to be created&#39;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="IAStateUpperAir"><a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.iastate.IAStateUpperAir">[docs]</a><span class="k">class</span> <span class="nc">IAStateUpperAir</span><span class="p">(</span><span class="n">HTTPEndPoint</span><span class="p">):</span>
@@ -210,7 +210,7 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">IAStateUpperAir</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;http://mesonet.agron.iastate.edu/json&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="IAStateUpperAir.request_data"><a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.iastate.IAStateUpperAir.request_data">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">request_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">request_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">interp_nans</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Retrieve upper air observations from Iowa State&#39;s archive for a single station.</span>
 
 <span class="sd">        Parameters</span>
@@ -222,6 +222,10 @@
 <span class="sd">            The three letter ICAO identifier of the station for which data should be</span>
 <span class="sd">            downloaded.</span>
 
+<span class="sd">        interp_nans : bool</span>
+<span class="sd">            Flag to interpolate temperature and dewpoint at significant wind levels,</span>
+<span class="sd">            which will otherwise be NaNs. Default is False.</span>
+
 <span class="sd">        kwargs</span>
 <span class="sd">            Arbitrary keyword arguments to use to initialize source</span>
 
@@ -232,6 +236,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_get_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">interp_nans</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+
         <span class="k">return</span> <span class="n">df</span></div>
 
 <div class="viewcode-block" id="IAStateUpperAir.request_all_data"><a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.iastate.IAStateUpperAir.request_all_data">[docs]</a>    <span class="nd">@classmethod</span>
@@ -376,7 +384,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Aug 14, 2018 at 18:17:43.
+      Last updated on Oct 30, 2019 at 22:18:55.
 
     </p>
   </div>
@@ -413,7 +421,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.7.0+54.g4910d1e',
+            VERSION:'0.8.0+54.g32ed275',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -424,7 +432,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
 
   
 

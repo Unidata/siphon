@@ -1,0 +1,11 @@
+
+:orphan:
+
+.. _sphx_glr_examples_sg_execution_times:
+
+Computation times
+=================
+**00:01.058** total execution time for **examples** files:
+
+- **00:00.635**: :ref:`sphx_glr_examples_Radar_Server_Level_3.py` (``Radar_Server_Level_3.py``)
+- **00:00.423**: :ref:`sphx_glr_examples_Basic_Usage.py` (``Basic_Usage.py``)

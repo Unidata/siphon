@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NDBC Buoy Meteorological Data Request &mdash; Siphon 0.7</title>
+  <title>NDBC Buoy Meteorological Data Request &mdash; Siphon 0.8</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Siphon 0.7" href="../../index.html"/>
+    <link rel="top" title="Siphon 0.8" href="../../index.html"/>
         <link rel="up" title="Siphon Examples" href="../index.html"/>
         <link rel="next" title="NDBC Latest Data Request" href="latest_request.html"/>
         <link rel="prev" title="NDBC Buoy Data Request (of any type)" href="buoy_type_request.html"/> 
@@ -79,7 +79,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.7</option>
+                      <option value=''>0.8</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -203,26 +203,26 @@
            <div itemprop="articleBody">
             
   <div class="sphx-glr-download-link-note admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Click <a class="reference internal" href="#sphx-glr-download-examples-ndbc-buoy-met-request-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-ndbc-buoy-met-request-py"><span class="std std-ref">here</span></a> to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="ndbc-buoy-meteorological-data-request">
 <span id="sphx-glr-examples-ndbc-buoy-met-request-py"></span><h1>NDBC Buoy Meteorological Data Request<a class="headerlink" href="#ndbc-buoy-meteorological-data-request" title="Permalink to this headline">¶</a></h1>
 <p>The NDBC keeps a 45-day recent rolling file for each buoy. This examples shows how to access
 the basic meteorological data from a buoy and make a simple plot.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">siphon.simplewebservice.ndbc</span> <span class="kn">import</span> <span class="n">NDBC</span>
+<span class="kn">from</span> <span class="nn">siphon.simplewebservice.ndbc</span> <span class="k">import</span> <span class="n">NDBC</span>
 </pre></div>
 </div>
 <p>Get a pandas data frame of all of the observations, meteorological data is the default
 observation set to query.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.realtime_observations" title="View documentation for siphon.simplewebservice.ndbc.NDBC.realtime_observations"><span class="n">NDBC</span><span class="o">.</span><span class="n">realtime_observations</span></a><span class="p">(</span><span class="s1">&#39;41002&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.realtime_observations" title="View documentation for siphon.simplewebservice.ndbc.NDBC.realtime_observations"><span class="n">NDBC</span><span class="o">.</span><span class="n">realtime_observations</span></a><span class="p">(</span><span class="s1">&#39;46006&#39;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Let’s make a simple time series plot to checkout what the data look like.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <a href="http://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots" title="View documentation for matplotlib.pyplot.subplots"><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span></a><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots" title="View documentation for matplotlib.pyplot.subplots"><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span></a><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 <span class="n">ax2b</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
 
 <span class="c1"># Pressure</span>
@@ -240,18 +240,29 @@ observation set to query.</p>
 <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;water_temperature&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:brown&#39;</span><span class="p">)</span>
 <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Water Temperature [degC]&#39;</span><span class="p">)</span>
 
-<a href="http://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="View documentation for matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="View documentation for matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_buoy_met_request_001.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_buoy_met_request_001.png" />
-<p><strong>Total running time of the script:</strong> ( 0 minutes  1.617 seconds)</p>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/travis/virtualenv/python3.6.7/lib/python3.6/site-packages/pandas/plotting/_matplotlib/converter.py:103: FutureWarning: Using an implicitly registered datetime converter for a matplotlib plotting method. The converter was registered by pandas on import. Future versions of pandas will require you to explicitly register matplotlib converters.
+
+To register the converters:
+        &gt;&gt;&gt; from pandas.plotting import register_matplotlib_converters
+        &gt;&gt;&gt; register_matplotlib_converters()
+  warnings.warn(msg, FutureWarning)
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.640 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ndbc-buoy-met-request-py">
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" href="../../_downloads/buoy_met_request.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">buoy_met_request.py</span></code></a></div>
-<div class="sphx-glr-download docutils container">
-<a class="reference download internal" href="../../_downloads/buoy_met_request.ipynb" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">buoy_met_request.ipynb</span></code></a></div>
+<p><a class="reference download internal" download="" href="../../_downloads/37e06a582c5c958f5f8fb01f9662a435/buoy_met_request.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">buoy_met_request.py</span></code></a></p>
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/47ec5ebf6bdc816af764488760502333/buoy_met_request.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">buoy_met_request.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>
 
 
@@ -277,7 +288,7 @@ observation set to query.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Aug 14, 2018 at 18:17:43.
+      Last updated on Oct 30, 2019 at 22:18:55.
 
     </p>
   </div>
@@ -314,7 +325,7 @@ observation set to query.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.7.0+54.g4910d1e',
+            VERSION:'0.8.0+54.g32ed275',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -325,7 +336,7 @@ observation set to query.</p>
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
 
   
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NDBC Buoy Data Request (of any type) &mdash; Siphon 0.7</title>
+  <title>NDBC Buoy Data Request (of any type) &mdash; Siphon 0.8</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Siphon 0.7" href="../../index.html"/>
+    <link rel="top" title="Siphon 0.8" href="../../index.html"/>
         <link rel="up" title="Siphon Examples" href="../index.html"/>
         <link rel="next" title="NDBC Buoy Meteorological Data Request" href="buoy_met_request.html"/>
         <link rel="prev" title="NCSS and CartoPy" href="../ncss/NCSS_Cartopy_Example.html"/> 
@@ -79,7 +79,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.7</option>
+                      <option value=''>0.8</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -203,39 +203,41 @@
            <div itemprop="articleBody">
             
   <div class="sphx-glr-download-link-note admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Click <a class="reference internal" href="#sphx-glr-download-examples-ndbc-buoy-type-request-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-ndbc-buoy-type-request-py"><span class="std std-ref">here</span></a> to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="ndbc-buoy-data-request-of-any-type">
 <span id="sphx-glr-examples-ndbc-buoy-type-request-py"></span><h1>NDBC Buoy Data Request (of any type)<a class="headerlink" href="#ndbc-buoy-data-request-of-any-type" title="Permalink to this headline">¶</a></h1>
 <p>The NDBC keeps a 40-day recent rolling file for each buoy. This examples shows how to access
 the other types of data available for a buoy.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">siphon.simplewebservice.ndbc</span> <span class="kn">import</span> <span class="n">NDBC</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">siphon.simplewebservice.ndbc</span> <span class="k">import</span> <span class="n">NDBC</span>
 </pre></div>
 </div>
 <p>Request the types of data available from a given buoy.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_aval</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.buoy_data_types" title="View documentation for siphon.simplewebservice.ndbc.NDBC.buoy_data_types"><span class="n">NDBC</span><span class="o">.</span><span class="n">buoy_data_types</span></a><span class="p">(</span><span class="s1">&#39;41002&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">data_aval</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_aval</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.buoy_data_types" title="View documentation for siphon.simplewebservice.ndbc.NDBC.buoy_data_types"><span class="n">NDBC</span><span class="o">.</span><span class="n">buoy_data_types</span></a><span class="p">(</span><span class="s1">&#39;41002&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_aval</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;txt&#39;: &#39;standard meteorological data&#39;, &#39;spec&#39;: &#39;spectral wave summaries&#39;, &#39;data_spec&#39;: &#39;raw spectral wave data&#39;, &#39;swdir&#39;: &#39;spectral wave data (alpha1)&#39;, &#39;swdir2&#39;: &#39;spectral wave data (alpha2)&#39;, &#39;swr1&#39;: &#39;spectral wave data (r1)&#39;, &#39;swr2&#39;: &#39;spectral wave data (r2)&#39;, &#39;supl&#39;: &#39;supplemental measurements data&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;txt&#39;: &#39;standard meteorological data&#39;, &#39;supl&#39;: &#39;supplemental measurements data&#39;}
 </pre></div>
 </div>
 <p>Get a pandas data frame of all of the observations, meteorological data is the default
 observation set to query.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.realtime_observations" title="View documentation for siphon.simplewebservice.ndbc.NDBC.realtime_observations"><span class="n">NDBC</span><span class="o">.</span><span class="n">realtime_observations</span></a><span class="p">(</span><span class="s1">&#39;41002&#39;</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;supl&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.realtime_observations" title="View documentation for siphon.simplewebservice.ndbc.NDBC.realtime_observations"><span class="n">NDBC</span><span class="o">.</span><span class="n">realtime_observations</span></a><span class="p">(</span><span class="s1">&#39;41002&#39;</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;supl&#39;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  7.931 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.894 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ndbc-buoy-type-request-py">
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" href="../../_downloads/buoy_type_request.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">buoy_type_request.py</span></code></a></div>
-<div class="sphx-glr-download docutils container">
-<a class="reference download internal" href="../../_downloads/buoy_type_request.ipynb" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">buoy_type_request.ipynb</span></code></a></div>
+<p><a class="reference download internal" download="" href="../../_downloads/ac4bdcca50f8a28913d465ae3f45ea26/buoy_type_request.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">buoy_type_request.py</span></code></a></p>
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/baeb25415637899441803ce7ad5a6161/buoy_type_request.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">buoy_type_request.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>
 
 
@@ -261,7 +263,7 @@ observation set to query.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Aug 14, 2018 at 18:17:43.
+      Last updated on Oct 30, 2019 at 22:18:55.
 
     </p>
   </div>
@@ -298,7 +300,7 @@ observation set to query.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.7.0+54.g4910d1e',
+            VERSION:'0.8.0+54.g32ed275',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -309,7 +311,7 @@ observation set to query.</p>
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
 
   
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NDBC Latest Data Request &mdash; Siphon 0.7</title>
+  <title>NDBC Latest Data Request &mdash; Siphon 0.8</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Siphon 0.7" href="../../index.html"/>
+    <link rel="top" title="Siphon 0.8" href="../../index.html"/>
         <link rel="up" title="Siphon Examples" href="../index.html"/>
         <link rel="next" title="Wyoming Upper Air Data Request" href="../upperair/Wyoming_Request.html"/>
         <link rel="prev" title="NDBC Buoy Meteorological Data Request" href="buoy_met_request.html"/> 
@@ -79,7 +79,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.7</option>
+                      <option value=''>0.8</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -203,35 +203,35 @@
            <div itemprop="articleBody">
             
   <div class="sphx-glr-download-link-note admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Click <a class="reference internal" href="#sphx-glr-download-examples-ndbc-latest-request-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-ndbc-latest-request-py"><span class="std std-ref">here</span></a> to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="ndbc-latest-data-request">
 <span id="sphx-glr-examples-ndbc-latest-request-py"></span><h1>NDBC Latest Data Request<a class="headerlink" href="#ndbc-latest-data-request" title="Permalink to this headline">¶</a></h1>
 <p>This example shows how to use siphon’s <em class="xref py py-obj">simplewebswervice</em> support query the most recent
 observations from all of the NDBC buoys at once.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="kn">as</span> <span class="nn">ccrs</span>
-<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="kn">as</span> <span class="nn">cfeature</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">siphon.simplewebservice.ndbc</span> <span class="kn">import</span> <span class="n">NDBC</span>
+<span class="kn">from</span> <span class="nn">siphon.simplewebservice.ndbc</span> <span class="k">import</span> <span class="n">NDBC</span>
 </pre></div>
 </div>
 <p>Get a pandas data frame of all of the observations</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.latest_observations" title="View documentation for siphon.simplewebservice.ndbc.NDBC.latest_observations"><span class="n">NDBC</span><span class="o">.</span><span class="n">latest_observations</span></a><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.latest_observations" title="View documentation for siphon.simplewebservice.ndbc.NDBC.latest_observations"><span class="n">NDBC</span><span class="o">.</span><span class="n">latest_observations</span></a><span class="p">()</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>In this case I’m going to drop buoys that do not have water temperature measurements.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;water_temperature&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;water_temperature&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Let’s make a simple plot of the buoy positions and color by water temperature</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">proj</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">LambertConformal</span><span class="p">(</span><span class="n">central_latitude</span><span class="o">=</span><span class="mf">45.</span><span class="p">,</span> <span class="n">central_longitude</span><span class="o">=-</span><span class="mf">100.</span><span class="p">,</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proj</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">LambertConformal</span><span class="p">(</span><span class="n">central_latitude</span><span class="o">=</span><span class="mf">45.</span><span class="p">,</span> <span class="n">central_longitude</span><span class="o">=-</span><span class="mf">100.</span><span class="p">,</span>
                              <span class="n">standard_parallels</span><span class="o">=</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
 
-<span class="n">fig</span> <span class="o">=</span> <a href="http://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure" title="View documentation for matplotlib.pyplot.figure"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">17.</span><span class="p">,</span> <span class="mf">11.</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <a href="http://matplotlib.org/api/_as_gen/matplotlib.pyplot.axes.html#matplotlib.pyplot.axes" title="View documentation for matplotlib.pyplot.axes"><span class="n">plt</span><span class="o">.</span><span class="n">axes</span></a><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure" title="View documentation for matplotlib.pyplot.figure"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">17.</span><span class="p">,</span> <span class="mf">11.</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.axes.html#matplotlib.pyplot.axes" title="View documentation for matplotlib.pyplot.axes"><span class="n">plt</span><span class="o">.</span><span class="n">axes</span></a><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">OCEAN</span><span class="o">.</span><span class="n">with_scale</span><span class="p">(</span><span class="s1">&#39;50m&#39;</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">LAND</span><span class="o">.</span><span class="n">with_scale</span><span class="p">(</span><span class="s1">&#39;50m&#39;</span><span class="p">))</span>
@@ -240,18 +240,20 @@ observations from all of the NDBC buoys at once.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;water_temperature&#39;</span><span class="p">],</span>
            <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
 
-<a href="http://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="View documentation for matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="View documentation for matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_latest_request_001.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_latest_request_001.png" />
-<p><strong>Total running time of the script:</strong> ( 0 minutes  51.025 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  26.179 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ndbc-latest-request-py">
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" href="../../_downloads/latest_request.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">latest_request.py</span></code></a></div>
-<div class="sphx-glr-download docutils container">
-<a class="reference download internal" href="../../_downloads/latest_request.ipynb" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">latest_request.ipynb</span></code></a></div>
+<p><a class="reference download internal" download="" href="../../_downloads/94ea07e3752cae6a77f64f43a5455c2f/latest_request.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">latest_request.py</span></code></a></p>
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/f4909f7894bc74330ab51c58d9b17d90/latest_request.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">latest_request.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>
 
 
@@ -277,7 +279,7 @@ observations from all of the NDBC buoys at once.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Aug 14, 2018 at 18:17:43.
+      Last updated on Oct 30, 2019 at 22:18:55.
 
     </p>
   </div>
@@ -314,7 +316,7 @@ observations from all of the NDBC buoys at once.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.7.0+54.g4910d1e',
+            VERSION:'0.8.0+54.g32ed275',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -325,7 +327,7 @@ observations from all of the NDBC buoys at once.</p>
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
 
   
 

@@ -67,7 +67,10 @@ We love pull requests from everyone. Fork, then clone the repo:
 
     git clone git@github.com:your-username/siphon.git
 
-Install siphon:
+Navigate into the ``siphon`` folder by executing ``cd siphon``. Create the development conda environment
+with the command ``conda env create`` and activate the environment with ``conda activate devel``. 
+
+Then install the development version of siphon:
 
     pip install .
 
@@ -76,7 +79,8 @@ Install py.test (at least version 2.4) and make sure the tests pass:
     pip install pytest
     py.test
 
-Make your change. Add tests for your change. Make the tests pass:
+Create a new branch within your local repository and make your change(s). 
+Add tests for your change(s). Make the tests pass:
 
     py.test
 
@@ -111,7 +115,7 @@ Some things that will increase the chance that your pull request is accepted:
 Pull requests will automatically have tests run by Travis. This includes
 running both the unit tests as well as the `flake8` code linter.
 
-[pep8]: http://pep8.org
+[pep8]: https://pep8.org
 [commit]: https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 
 ## Other Channels
