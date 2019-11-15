@@ -5,6 +5,7 @@ include versioneer.py
 include siphon/_version.py
 recursive-include examples *
 recursive-include docs *
+recursive-include siphon/tests *
 prune docs/build
 prune docs/examples
 prune docs/api/generated
