@@ -1,0 +1,74 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.8.0+22.g059dd1d.dirty)
+    method: GET
+    uri: https://www.spc.noaa.gov/climo/reports/180615_rpts_filtered_hail.csv
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAwAAAP//lJS7buw2EIZ7PwXLPcAsofulpESuRC9FyiS1Ons6I3DhwnaRTZE8fYaU
+        9hgOgiCn2Ask8p9vZv4Z//r2Au71rxdQH789314/3qH/+OP99ie42/MNnz7f8E14+Pb28n77/SHN
+        8xLSJIHJOKmFgIlZ5kejYZVQFLRu4Ni0tGrhMNju20Na5Gk8v7LFseWfx9tqO57fj5dpAmldorxx
+        gih2FtAzqzzemDQUFS1KOLYZrWvwchJEOPxhXnDSXYllnFlKDlyNKFVh1BBZy/4srEOFGYnvMmmU
+        KUExO6AIGZlUDsMIR1ZhBXlamPXCEid/CP6pmWf/Q3M/XGdFPFwSTaZ+sGIwFpj0Z3lPpsJqtTlF
+        0V/DaIsNIyNuJUoopjl0dtFuRS7QPeQFzZCmbmiSQ9AkUZSczKI5YZ5MbNBGSUYQS2hHBqNOZEYh
+        z7w0mki965LwsWI2NhT5gjf8Kj0iIYxUU4SpIkxOHNI40zPn0RijsfYKDllyWhXI0gaW/fKuiElK
+        P5JZ9n6xmLIbzXpP+RhTjgWh8ZuszH2SnIwlJZmkXjxexIz8iH7B4AH/zpal+eYBN1uph5MUioM1
+        ncDQ2DuvIa+wX8emok0DOwYxpy9l3xEOZvweFet7UwXpR3EVGg2A7WOTFLBeoUhpBsc0wVnI4NBf
+        HV7Kim1oNHPjRSolgLOL5J8MaR0h6v+GwJDMEo+pSH+NjeF3H/7ky1PsRhnmc9GeXITVGORRnE6b
+        XaWCvAmGOzYNbVM4zGwMt7I8AnJ2DaPmRmElZzrmU9CmDgnVNKtgFmgA89WWG1sn/IpWIjOz54np
+        DS/KIVt3/RGjVNtwS76i2bEc3hrNYpQ8jk+aVDRr4GDlGs4XW617o5apkwy3x4KeCiUraRVyqGlS
+        gpgwqHMIwpTRw7/UbXtuFCdu0fqKb7gIFr8L36uXJPvOSOvQXiu0IY+L7oOncA9NcyeU2nHbWJQy
+        4i7ahssprrqsBLyLl7lZtccPGULD0fRfBQqat5sAjs8ukKdNFDDszBmaZDLaGhFX5RavTWjegMXB
+        vO7DuJ47j/TMBvqybO/0WA4cDucCuDecg+NBJIkxE1pm2GrcAagS5mZglgtNKSVsnhXOk8et4GIL
+        T4ohu8aDzuC+xUJvo7ohp0m2FwxzXol04yxwJoew55+WmPUkw6YrY7OqGkznhL2gXFhHUvfj1qHH
+        BZcfGivQBG8E/4f/PxWJ3VZXZ5Yw69KRyViNLzD76cl/e/gbAAD//wMAcS4XvssGAAA=
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/csv
+      Date:
+      - Tue, 23 Jul 2019 14:03:17 GMT
+      Expires:
+      - Tue, 23 Jul 2019 14:08:17 GMT
+      Last-Modified:
+      - Sat, 04 Aug 2018 12:08:39 GMT
+      Server:
+      - Apache/2.4.6 (CentOS) PHP/5.4.16 mod_perl/2.0.10 Perl/v5.16.3
+      Strict-Transport-Security:
+      - max-age=31536000
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 c5.w2.woc (squid), 1.1 5ca4a9702235f89c8172c7a83807a48d.cloudfront.net
+        (CloudFront)
+      X-Amz-Cf-Id:
+      - NaDiE8D0NNBDDlNWJliSGdkClwN5Wh5-SWVP7Fbbt_BNjvCt8w0nHA==
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

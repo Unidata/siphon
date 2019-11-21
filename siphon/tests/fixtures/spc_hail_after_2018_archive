@@ -1,0 +1,110 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - www.spc.noaa.gov
+      User-Agent:
+      - Python-urllib/3.7
+    method: GET
+    uri: https://www.spc.noaa.gov/climo/reports/180615_rpts_filtered_hail.csv
+  response:
+    body:
+      string: 'Time,Size,Location,County,State,Lat,Lon,Comments
+
+        1335,100,MOSINEE,MARATHON,WI,44.78,-89.69,(GRB)
+
+        1431,100,WAUSAU,MARATHON,WI,44.96,-89.63,(GRB)
+
+        1510,175,MOOSE LAKE,CARLTON,MN,46.45,-92.77,TIME ESTIMATED BY RADAR. (DLH)
+
+        1600,100,NICKERSON,PINE,MN,46.41,-92.5,LARGEST HAILSTONES WERE QUARTER SIZED.
+        (DLH)
+
+        1632,100,NICKERSON,PINE,MN,46.41,-92.5,(DLH)
+
+        1724,100,5 N MCGREGOR,AITKIN,MN,46.68,-93.32,LARGEST HAILSTONES WERE QUARTER
+        SIZED. (DLH)
+
+        1942,100,2 SW LELAND,BRUNSWICK,NC,34.21,-78.03,HAIL STONE FOUND AT MAGNOLIA
+        GREENS GOLF PLANTATION IN LELAND AND REPORTED VIA TWITTER. (ILM)
+
+        1946,100,3 SSW SOCASTEE,HORRY,SC,33.64,-79.03,TWITTER REPORTS WITH PICTURES
+        SHOW QUARTER-SIZED HAIL. HAIL WAS REPORTED FOR 5 MINUTES AT THE LOCATION.
+        (ILM)
+
+        2130,100,SPRINGFIELD,ROBERTSON,TN,36.5,-86.88,PICTURE OF QUARTER SIZE HAIL.
+        (OHX)
+
+        2137,100,5 NE CHEYENNE,LARAMIE,WY,41.2,-104.72,(CYS)
+
+        2245,100,NASHVILLE,DAVIDSON,TN,36.17,-86.78,PICTURE OF QUARTER SIZE HAIL NEAR
+        TRINITY AND DICKERSON. (OHX)
+
+        2316,150,MOUNT VERNON,JEFFERSON,IL,38.32,-88.91,(PAH)
+
+        2323,100,DAYTON,SHERIDAN,WY,44.87,-107.26,PEA TO QUARTER SIZED HAIL BETWEEN
+        PARKMAN AND DAYTON. (BYZ)
+
+        2326,175,MIDWEST,NATRONA,WY,43.41,-106.28,(RIW)
+
+        2347,100,COLUMBIA,MAURY,TN,35.62,-87.05,EM PASSED ALONG QUARTER SIZE HAIL
+        ALONG OLD SUNNY SIDE IN COLUMBIA. (OHX)
+
+        0000,100,17 NE RENO JUNCTION,CAMPBELL,WY,43.97,-105.28,(UNR)
+
+        0011,125,7 NNE DOWNTOWN GILLETTE,CAMPBELL,WY,44.39,-105.46,(UNR)
+
+        0318,125,OAKDALE,MONROE,WI,43.97,-90.38,RELAYED VIA WKBT. (ARX)
+
+        0559,100,17 SSE MISSION,TODD,SD,43.09,-100.52,DAMAGED THE GARDEN... APPLES
+        TREES AND FLATTENED SOME PASTURES (UNR)
+
+        1020,100,1 NNW ISHPEMING,MARQUETTE,MI,46.5,-87.67,OBSERVED ONE INCH HAIL JUST
+        TO THE WEST OF THE ISHPEMING ROUND ABOUT THIS MORNING. (MQT)
+
+'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - close
+      Content-Length:
+      - '1739'
+      Content-Type:
+      - text/csv
+      Date:
+      - Wed, 10 Jul 2019 17:00:58 GMT
+      ETag:
+      - '"6cb-5729ae78f1fc0"'
+      Expires:
+      - Wed, 10 Jul 2019 17:05:58 GMT
+      Last-Modified:
+      - Sat, 04 Aug 2018 12:08:39 GMT
+      Server:
+      - Apache/2.4.6 (CentOS) PHP/5.4.16 mod_perl/2.0.10 Perl/v5.16.3
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 c0.w1.woc (squid), 1.1 5e1c6e4ae68d5fdcd68291d459e4483c.cloudfront.net
+        (CloudFront)
+      X-Amz-Cf-Id:
+      - Y1NKLcpCd6vQ4-6CRUOByZonfzjOhZQELe2AwiBAOwP5uBgxB4hZ9g==
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
