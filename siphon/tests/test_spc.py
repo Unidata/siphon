@@ -26,7 +26,38 @@ def subset_records(response):
     # Grab whole lines up to this maximum size
     while index < 4096:
         index = data.find(b'\n', index + 1)
+        if index == -1:
+            index = 4096
     response['body']['string'] = data[:index + 1]
+
+    return response
+
+
+def subset_zipped_records(response):
+    """Filter to subset SPC zipped archive and only save a subset of records."""
+    from io import BytesIO
+    from zipfile import ZipFile
+
+    data = response['body']['string']
+
+    # Unzip and pull out enough bytes to process
+    with ZipFile(BytesIO(data)) as zip_product:
+        target_filename = zip_product.namelist()[0]
+        target_file = zip_product.open(target_filename, 'r')
+        data = target_file.read(4200)
+
+    # Grab whole lines up to this maximum size
+    index = 0
+    while index < 4096:
+        index = data.find(b'\n', index + 1)
+        if index == -1:
+            index = 4096
+
+    # Rezip our truncated file
+    with BytesIO() as modified_bytes:
+        with ZipFile(modified_bytes, 'w') as modified_file:
+            modified_file.writestr(target_filename, data[:index + 1])
+        response['body']['string'] = modified_bytes.getvalue()
 
     return response
 
@@ -35,103 +66,94 @@ def subset_records(response):
 def test_wind_archive():
     """Test that we are properly parsing wind data from the SPC archive."""
     # Testing wind events for random day in may 20th, 2010
-    spc_wind_archive = SPCArchive('wind')
+    storms = SPCArchive.get_wind_database(filename='1955-2017_wind.csv')
 
-    assert(spc_wind_archive.storm_type == 'wind')
-
-    assert(spc_wind_archive.storms['Num'].iloc[0] == 1)
-    assert(spc_wind_archive.storms['Year'].iloc[0] == 1955)
-    assert(spc_wind_archive.storms['Month'].iloc[0] == 2)
-    assert(spc_wind_archive.storms['Day'].iloc[0] == 1)
-    assert(spc_wind_archive.storms['Time'].iloc[0] == '13:45:00')
-    assert(spc_wind_archive.storms['Time Zone'].iloc[0] == 3)
-    assert(spc_wind_archive.storms['State'].iloc[0] == 'AR')
-    assert(spc_wind_archive.storms['Speed (kt)'].iloc[0] == 0)
-    assert(spc_wind_archive.storms['Injuries'].iloc[0] == 0)
-    assert(spc_wind_archive.storms['Fatalities'].iloc[0] == 0)
-    assert(spc_wind_archive.storms['Crop Loss'].iloc[0] == 0)
-    assert(spc_wind_archive.storms['Length (mi)'].iloc[0] == 0)
-    assert(spc_wind_archive.storms['Width (yd)'].iloc[0] == 0)
-    assert(spc_wind_archive.storms['Ns'].iloc[0] == 0)
-    assert(spc_wind_archive.storms['SN'].iloc[0] == 0)
-    assert(spc_wind_archive.storms['SG'].iloc[0] == 0)
-    assert(spc_wind_archive.storms['County Code 1'].iloc[0] == 77)
-    assert(spc_wind_archive.storms['County Code 2'].iloc[0] == 0)
-    assert(spc_wind_archive.storms['County Code 3'].iloc[0] == 0)
-    assert(spc_wind_archive.storms['County Code 4'].iloc[0] == 0)
-    assert_almost_equal(spc_wind_archive.storms['Property Loss'].iloc[0], 0)
-    assert_almost_equal(spc_wind_archive.storms['Start Lat'].iloc[0], 34.78, 3)
-    assert_almost_equal(spc_wind_archive.storms['Start Lon'].iloc[0], -90.78, 3)
-    assert_almost_equal(spc_wind_archive.storms['End Lat'].iloc[0], 0)
-    assert_almost_equal(spc_wind_archive.storms['End Lon'].iloc[0], 0)
+    assert storms['om'].iloc[0] == 1
+    assert storms['Date'].iloc[0] == datetime(1955, 2, 1, 13, 45)
+    assert storms['Time Zone'].iloc[0] == 3
+    assert storms['State'].iloc[0] == 'AR'
+    assert storms['State FIPS'].iloc[0] == 5
+    assert storms['State Number'].iloc[0] == 1
+    assert storms['Speed'].iloc[0] == 0
+    assert storms['Injuries'].iloc[0] == 0
+    assert storms['Fatalities'].iloc[0] == 0
+    assert storms['Crop Loss'].iloc[0] == 0
+    assert storms['Length (mi)'].iloc[0] == 0
+    assert storms['Width (yd)'].iloc[0] == 0
+    assert storms['ns'].iloc[0] == 0
+    assert storms['sn'].iloc[0] == 0
+    assert storms['sg'].iloc[0] == 0
+    assert storms['County FIPS 1'].iloc[0] == 77
+    assert storms['County FIPS 2'].iloc[0] == 0
+    assert storms['County FIPS 3'].iloc[0] == 0
+    assert storms['County FIPS 4'].iloc[0] == 0
+    assert_almost_equal(storms['Property Loss'].iloc[0], 0)
+    assert_almost_equal(storms['Start Lat'].iloc[0], 34.78, 3)
+    assert_almost_equal(storms['Start Lon'].iloc[0], -90.78, 3)
+    assert_almost_equal(storms['End Lat'].iloc[0], 0)
+    assert_almost_equal(storms['End Lon'].iloc[0], 0)
 
 
-@recorder.use_cassette('spc_torn_archive', before_record_response=subset_records)
+@recorder.use_cassette('spc_torn_archive', before_record_response=subset_zipped_records)
 def test_torn_archive():
     """Test that we are properly parsing tornado data from the SPC archive."""
-    spc_torn_archive = SPCArchive('tornado')
+    storms = SPCArchive.get_tornado_database()
 
-    assert(spc_torn_archive.storm_type == 'tornado')
-
-    assert(spc_torn_archive.storms['Num'].iloc[0] == 1)
-    assert(spc_torn_archive.storms['Year'].iloc[0] == 1950)
-    assert(spc_torn_archive.storms['Month'].iloc[0] == 1)
-    assert(spc_torn_archive.storms['Day'].iloc[0] == 3)
-    assert(spc_torn_archive.storms['Time'].iloc[0] == '11:00:00')
-    assert(spc_torn_archive.storms['Time Zone'].iloc[0] == 3)
-    assert(spc_torn_archive.storms['State'].iloc[0] == 'MO')
-    assert(spc_torn_archive.storms['F-Scale'].iloc[0] == 3)
-    assert(spc_torn_archive.storms['Injuries'].iloc[0] == 3)
-    assert(spc_torn_archive.storms['Fatalities'].iloc[0] == 0)
-    assert(spc_torn_archive.storms['Property Loss'].iloc[0] == 6)
-    assert(spc_torn_archive.storms['Crop Loss'].iloc[0] == 0)
-    assert(spc_torn_archive.storms['Length (mi)'].iloc[0] == 9.5)
-    assert(spc_torn_archive.storms['Width (yd)'].iloc[0] == 150)
-    assert(spc_torn_archive.storms['Ns'].iloc[0] == 2)
-    assert(spc_torn_archive.storms['SN'].iloc[0] == 0)
-    assert(spc_torn_archive.storms['SG'].iloc[0] == 1)
-    assert(spc_torn_archive.storms['County Code 1'].iloc[0] == 0)
-    assert(spc_torn_archive.storms['County Code 2'].iloc[0] == 0)
-    assert(spc_torn_archive.storms['County Code 3'].iloc[0] == 0)
-    assert(spc_torn_archive.storms['County Code 4'].iloc[0] == 0)
-    assert_almost_equal(spc_torn_archive.storms['Start Lat'].iloc[0], 38.77, 3)
-    assert_almost_equal(spc_torn_archive.storms['Start Lon'].iloc[0], -90.22, 3)
-    assert_almost_equal(spc_torn_archive.storms['End Lat'].iloc[0], 38.83, 3)
-    assert_almost_equal(spc_torn_archive.storms['End Lon'].iloc[0], -90.03, 3)
+    assert storms['om'].iloc[0] == 1
+    assert storms['Date'].iloc[0] == datetime(1950, 1, 3, 11, 0, 0)
+    assert storms['Time Zone'].iloc[0] == 3
+    assert storms['State'].iloc[0] == 'MO'
+    assert storms['State FIPS'].iloc[0] == 29
+    assert storms['State Number'].iloc[0] == 1
+    assert storms['F-Scale'].iloc[0] == 3
+    assert storms['Injuries'].iloc[0] == 3
+    assert storms['Fatalities'].iloc[0] == 0
+    assert storms['Property Loss'].iloc[0] == 6
+    assert storms['Crop Loss'].iloc[0] == 0
+    assert storms['Length (mi)'].iloc[0] == 9.5
+    assert storms['Width (yd)'].iloc[0] == 150
+    assert storms['ns'].iloc[0] == 2
+    assert storms['sn'].iloc[0] == 0
+    assert storms['sg'].iloc[0] == 1
+    assert storms['County FIPS 1'].iloc[0] == 0
+    assert storms['County FIPS 2'].iloc[0] == 0
+    assert storms['County FIPS 3'].iloc[0] == 0
+    assert storms['County FIPS 4'].iloc[0] == 0
+    assert_almost_equal(storms['Start Lat'].iloc[0], 38.77, 3)
+    assert_almost_equal(storms['Start Lon'].iloc[0], -90.22, 3)
+    assert_almost_equal(storms['End Lat'].iloc[0], 38.83, 3)
+    assert_almost_equal(storms['End Lon'].iloc[0], -90.03, 3)
 
 
 @recorder.use_cassette('spc_hail_archive', before_record_response=subset_records)
 def test_hail_archive():
     """Test that we are properly parsing hail data from the SPC archive."""
-    spc_hail_archive = SPCArchive('hail')
+    storms = SPCArchive.get_hail_database('1955-2017_hail.csv')
 
-    assert(spc_hail_archive.storm_type == 'hail')
-
-    assert(spc_hail_archive.storms['Num'].iloc[0] == 1)
-    assert(spc_hail_archive.storms['Year'].iloc[0] == 1955)
-    assert(spc_hail_archive.storms['Month'].iloc[0] == 1)
-    assert(spc_hail_archive.storms['Day'].iloc[0] == 17)
-    assert(spc_hail_archive.storms['Time'].iloc[0] == '16:39:00')
-    assert(spc_hail_archive.storms['Time Zone'].iloc[0] == 3)
-    assert(spc_hail_archive.storms['State'].iloc[0] == 'TX')
-    assert(spc_hail_archive.storms['Size (hundredth in)'].iloc[0] == 0.75)
-    assert(spc_hail_archive.storms['Injuries'].iloc[0] == 0)
-    assert(spc_hail_archive.storms['Fatalities'].iloc[0] == 0)
-    assert(spc_hail_archive.storms['Property Loss'].iloc[0] == 0)
-    assert(spc_hail_archive.storms['Crop Loss'].iloc[0] == 0)
-    assert(spc_hail_archive.storms['Length (mi)'].iloc[0] == 0)
-    assert(spc_hail_archive.storms['Width (yd)'].iloc[0] == 0)
-    assert(spc_hail_archive.storms['Ns'].iloc[0] == 0)
-    assert(spc_hail_archive.storms['SN'].iloc[0] == 0)
-    assert(spc_hail_archive.storms['SG'].iloc[0] == 0)
-    assert(spc_hail_archive.storms['County Code 1'].iloc[0] == 227)
-    assert(spc_hail_archive.storms['County Code 2'].iloc[0] == 0)
-    assert(spc_hail_archive.storms['County Code 3'].iloc[0] == 0)
-    assert(spc_hail_archive.storms['County Code 4'].iloc[0] == 0)
-    assert_almost_equal(spc_hail_archive.storms['Start Lat'].iloc[0], 32.2, 3)
-    assert_almost_equal(spc_hail_archive.storms['Start Lon'].iloc[0], -101.5, 3)
-    assert_almost_equal(spc_hail_archive.storms['End Lat'].iloc[0], 0.0, 3)
-    assert_almost_equal(spc_hail_archive.storms['End Lon'].iloc[0], 0.0, 3)
+    assert storms['om'].iloc[0] == 1
+    assert storms['Date'].iloc[0] == datetime(1955, 1, 17, 16, 39)
+    assert storms['Time Zone'].iloc[0] == 3
+    assert storms['State'].iloc[0] == 'TX'
+    assert storms['State FIPS'].iloc[0] == 48
+    assert storms['State Number'].iloc[0] == 1
+    assert storms['Size'].iloc[0] == 0.75
+    assert storms['Injuries'].iloc[0] == 0
+    assert storms['Fatalities'].iloc[0] == 0
+    assert storms['Property Loss'].iloc[0] == 0
+    assert storms['Crop Loss'].iloc[0] == 0
+    assert storms['Length (mi)'].iloc[0] == 0
+    assert storms['Width (yd)'].iloc[0] == 0
+    assert storms['ns'].iloc[0] == 0
+    assert storms['sn'].iloc[0] == 0
+    assert storms['sg'].iloc[0] == 0
+    assert storms['County FIPS 1'].iloc[0] == 227
+    assert storms['County FIPS 2'].iloc[0] == 0
+    assert storms['County FIPS 3'].iloc[0] == 0
+    assert storms['County FIPS 4'].iloc[0] == 0
+    assert_almost_equal(storms['Start Lat'].iloc[0], 32.2, 3)
+    assert_almost_equal(storms['Start Lon'].iloc[0], -101.5, 3)
+    assert_almost_equal(storms['End Lat'].iloc[0], 0.0, 3)
+    assert_almost_equal(storms['End Lon'].iloc[0], 0.0, 3)
 
 
 @recorder.use_cassette('spc_wind_after_2011_archive')
@@ -224,9 +246,3 @@ def test_hail_before_1955():
     """Test error retrieval of hail data before 1955."""
     with pytest.raises(ValueError):
         SPC.get_hail_reports(datetime(1949, 5, 20))
-
-
-def test_no_data_spc_archive():
-    """Test error data when passed an invalid storm type."""
-    with pytest.raises(ValueError):
-        SPCArchive('tornado and wind')

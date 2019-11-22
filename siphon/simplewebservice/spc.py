@@ -1,18 +1,16 @@
 # Copyright (c) 2019 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
-"""Reading Storm Prediction Center Data.
+"""Read storm reports from the Storm Prediction Center.
 
-======================================
-This program pulls data from the Storm Prediction
-Center's data from 12/31/2011 in one day increments.
-Weather events that are available are
-hail, wind, and tornados.
+Facilities are here to access the daily sets of storm reports (from 2012 onward) as well
+as the full, assembled SPC tornado, hail, and wind report databases.
 
 """
 
 from datetime import datetime, timedelta
-from io import StringIO
+from io import BytesIO, StringIO
+from zipfile import ZipFile
 
 import pandas as pd
 import requests
@@ -110,7 +108,6 @@ class SPC(HTTPEndPoint):
 
         return reports
 
-
     def _get_data_raw(self, stormtype, date_time):
         """Download the storm report file for a given type and date."""
         if date_time.year < 2012:
@@ -127,10 +124,10 @@ class SPC(HTTPEndPoint):
 
 class SPCArchive(HTTPEndPoint):
     """
-    Pulls data from the SPC archive.
+    Retrieve the Storm Prediction Center storm report databases.
 
-    This class gets data on tornados, hail, and severe wind events.
-    This will return a pandas dataframe for each of these storm events.
+    This class gets the entire report databases for tornadoes, hail, and severe wind events.
+    Data are returned as `pandas.DataFrame` instances.
 
     """
 
@@ -138,139 +135,96 @@ class SPCArchive(HTTPEndPoint):
         """Set up the endpoint."""
         super(SPCArchive, self).__init__('https://www.spc.noaa.gov/wcm/data')
 
-    def _get_data_raw(self):
-
-
-    def storm_type_selection(self):
+    @classmethod
+    def get_tornado_database(cls, filename='1950-2018_torn.csv.zip'):
         """
-        Split http requests based on storm type.
+        Download and parse the SPC tornado database.
+
+        This contains information for all tornadoes from 1950 to (roughly) present. This not
+        a realtime database, so there is usually a lag between when a year ends and when
+        updated data are available. The ``filename`` parameter is to allow pointing to
+        an updated database file on the server.
 
         Parameters
         ----------
-        self:
-            The date_time string attribute will be used for year identification
+        filename : str
+            Filename for the database file on the SPC server, optional.
 
         Returns
         -------
-        (torn/wind/hail)_reports: pandas DataFrame
-            This dataframe has the data about the specific SPC data type for either one day
-            or a 60+ year period based on what year is chosen.
+        `pandas.DataFrame` containing the entire SPC database
 
         """
-        # Place holder string 'mag' will be replaced by event type (tornado, hail or wind)
-        mag = str
-        # Append columns with appropriate names for the archival data.
-        self.columns = ['Num', 'Year', 'Month', 'Day', 'Time', 'Time Zone',
-                        'State', mag, 'Injuries', 'Fatalities', 'Property Loss',
-                        'Crop Loss', 'Start Lat', 'Start Lon', 'End Lat',
-                        'End Lon', 'Length (mi)', 'Width (yd)', 'Ns', 'SN', 'SG',
-                        'County Code 1', 'County Code 2', 'County Code 3',
-                        'County Code 4']
+        return cls()._get_data(filename)
 
-        if self.storm_type == 'tornado':
-            torn_reports = self.tornado_selection()
-            return(torn_reports)
-        elif self.storm_type == 'hail':
-            hail_reports = self.hail_selection()
-            return(hail_reports)
-        elif self.storm_type == 'wind':
-            wind_reports = self.wind_selection()
-            return(wind_reports)
+    @classmethod
+    def get_wind_database(cls, filename='1955-2018_wind.csv.zip'):
+        """
+        Download and parse the SPC wind report database.
+
+        This contains information for all wind reports from 1950 to (roughly) present. This
+        not a realtime database, so there is usually a lag between when a year ends and when
+        updated data are available. The ``filename`` parameter is to allow pointing to
+        an updated database file on the server.
+
+        Parameters
+        ----------
+        filename : str
+            Filename for the database file on the SPC server, optional.
+
+        Returns
+        -------
+        `pandas.DataFrame` containing the entire SPC database
+
+        """
+        return cls()._get_data(filename)
+
+    @classmethod
+    def get_hail_database(cls, filename='1955-2018_hail.csv.zip'):
+        """
+        Download and parse the SPC hail report database.
+
+        This contains information for all hail report from 1955 to (roughly) present. This not
+        a realtime database, so there is usually a lag between when a year ends and when
+        updated data are available. The ``filename`` parameter is to allow pointing to
+        an updated database file on the server.
+
+        Parameters
+        ----------
+        filename : str
+            Filename for the database file on the SPC server, optional.
+
+        Returns
+        -------
+        `pandas.DataFrame` containing the entire SPC database
+
+        """
+        return cls()._get_data(filename)
+
+    def _get_data(self, path):
+        if 'hail' in path:
+            mag_col = 'Size'
+        elif 'wind' in path:
+            mag_col = 'Speed'
         else:
-            raise ValueError('Not a valid event type: enter either tornado, wind or hail.')
+            mag_col = 'F-Scale'
+        db = pd.read_csv(self._get_data_raw(path), index_col=False, parse_dates=[[4, 5]])
+        db = db.drop(columns=['yr', 'mo', 'dy'])
+        db = db.rename(columns={'date_time': 'Date', 'tz': 'Time Zone', 'st': 'State',
+                                'stf': 'State FIPS', 'stn': 'State Number', 'mag': mag_col,
+                                'inj': 'Injuries', 'fat': 'Fatalities',
+                                'loss': 'Property Loss', 'closs': 'Crop Loss',
+                                'slat': 'Start Lat', 'slon': 'Start Lon', 'elat': 'End Lat',
+                                'elon': 'End Lon', 'len': 'Length (mi)', 'wid': 'Width (yd)',
+                                'f1': 'County FIPS 1', 'f2': 'County FIPS 2',
+                                'f3': 'County FIPS 3', 'f4': 'County FIPS 4',
+                                'mt': 'Magnitude Type'})
+        return db
 
-    def tornado_selection(self):
-        """
-        Request tornado data from 1950 until this year.
-
-        Parameters
-        ----------
-        self:
-            Year attributes, endpoints, and column names are all used
-
-        Returns
-        -------
-        torn_reports:
-            Archive of tornado reports from 1950-2017
-
-        """
-        columns = self.columns
-        columns[7] = 'F-Scale'
-        archive_path = 'wcm/data/1950-2017_torn.csv'
-        try:
-            resp = self.get_path(archive_path)
-            resp.raise_for_status()
-            storm_list = StringIO(resp.text)
-            torn_reports = pd.read_csv(storm_list, names=columns,
-                                       header=0, index_col=False,
-                                       usecols=[0, 1, 2, 3, 5, 6, 7, 10, 11, 12, 13,
-                                                14, 15, 16, 17, 18, 19, 20, 21, 22,
-                                                23, 24, 25, 26, 27])
-        except requests.exceptions.HTTPError as http_error:
-            raise ValueError(http_error, 'Tornado archive url not working.')
-
-        return(torn_reports)
-
-    def hail_selection(self):
-        """
-        Request hail data from 1955 until this year.
-
-        Parameters
-        ----------
-        self:
-            Year attributes, endpoints, and column names are all used
-
-        Returns
-        -------
-        hail_reports:
-            Archive of hail reports from 1955-2017
-
-        """
-        columns = self.columns
-        columns[7] = 'Size (hundredth in)'
-        archive_path = 'wcm/data/1955-2017_hail.csv'
-        try:
-            resp = self.get_path(archive_path)
-            resp.raise_for_status()
-            storm_list = StringIO(resp.text)
-            hail_reports = pd.read_csv(storm_list, names=columns,
-                                       header=0, index_col=False,
-                                       usecols=[0, 1, 2, 3, 5, 6, 7, 10, 11, 12, 13,
-                                                14, 15, 16, 17, 18, 19, 20, 21, 22,
-                                                23, 24, 25, 26, 27])
-        except requests.exceptions.HTTPError as http_error:
-            raise ValueError(http_error, 'Hail archive url not working.')
-
-        return(hail_reports)
-
-    def wind_selection(self):
-        """
-        Request wind data from 1955 until this year.
-
-        Parameters
-        ----------
-        self:
-            Year attributes, endpoints, and column names are all used
-
-        Returns
-        -------
-        wind_reports:
-            Archive of wind reports from 1955-2017
-
-        """
-        columns = self.columns
-        columns[7] = 'Speed (kt)'
-        archive_path = 'wcm/data/1955-2017_wind.csv'
-        try:
-            resp = self.get_path(archive_path)
-            resp.raise_for_status()
-            storm_list = StringIO(resp.text)
-            wind_reports = pd.read_csv(storm_list, names=columns,
-                                       header=0, index_col=False,
-                                       usecols=[0, 1, 2, 3, 5, 6, 7, 10, 11, 12, 13,
-                                                14, 15, 16, 17, 18, 19, 20, 21, 22,
-                                                23, 24, 25, 26, 27])
-        except requests.exceptions.HTTPError as http_error:
-            raise ValueError(http_error, 'Wind archive url not working.')
-
-        return(wind_reports)
+    def _get_data_raw(self, path):
+        resp = self.get_path(path)
+        if path.endswith('.zip'):
+            file_info = ZipFile(BytesIO(resp.content)).infolist()[0]
+            return ZipFile(BytesIO(resp.content)).open(file_info)
+        else:
+            return StringIO(resp.text)
