@@ -11,7 +11,7 @@ hail, wind, and tornados.
 
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from io import StringIO
 
 import pandas as pd
@@ -22,170 +22,107 @@ from siphon.http_util import HTTPEndPoint
 
 class SPC(HTTPEndPoint):
     """
-    Pulls data from the SPC.
+    Retrieve storm reports from the Storm Prediction Center.
 
-    This class gets data on tornados, hail, and severe wind events.
-    This will return a pandas dataframe for each of these storm events.
+    This class gets reports on tornadoes, hail, or severe wind events.
+    This will return a `pandas.DataFrame` for each of these storm events.
 
     """
 
-    def __init__(self, stormtype, date_time):
+    def __init__(self):
+        """Set up the endpoint."""
+        super(SPC, self).__init__('https://www.spc.noaa.gov/climo/reports')
+
+    @classmethod
+    def get_wind_reports(cls, date_time):
         """
-        Create class for Storm Prediction Center (SPC) and select date, and storm type.
+        Download severe wind reports for a given date.
 
-        SPC data sifting method is differentiated based on whether the storm is before 2012
-        or not. Storms after 12/31/2011 will be found by using the specific URL for the date
-        selected and finding the csv file on the SPC website.
-
-        """
-        super(SPC, self).__init__('https://www.spc.noaa.gov/')
-
-        today = datetime.today()
-        self.current_year = today.year
-
-        self.storm_type = stormtype
-        self.date_time = date_time
-        self.year_string = self.date_time[0:4]
-        self.month_string = self.date_time[4:6]
-        self.day_string = self.date_time[6:8]
-
-        if int(self.year_string) > 2011:
-            self.storms = self.storm_type_selection()
-            self.day_table = self.storms
-
-        elif int(self.year_string) <= 2011:
-            raise ValueError('The SPC fetching method does not work for dates prior to 2012.')
-
-    def storm_type_selection(self):
-        """
-        Split http requests based on storm type.
-
-        Prior to 2017, the ways in which the SPC storm data is inconsistent. In order
-        to deal with this, the Urls used to find the data for a given day changes
-        based on the year chosen by the user.
+        This only works for dates since the start of 2012.
 
         Parameters
         ----------
-        self:
-            The date_time string attribute will be used for year identification
+        date_time : datetime
+            The date for which to fetch the reports.
 
         Returns
         -------
-        (torn/wind/hail)_reports: pandas DataFrame
-            Dataframe for one days worth of storm data.
+            `pandas.DataFrame` with the available wind reports.
 
         """
-        # Place holder string 'mag' will be replaced by event type (tornado, hail or wind)
-        mag = str
-        # Colums are different for events before and after 12/31/2011.
-        self.columns = ['Time', mag, 'Location', 'County', 'State',
-                        'Lat', 'Lon', 'Comment']
+        return cls()._get_data('wind', date_time)
 
-        if self.storm_type == 'tornado':
-            torn_reports = self.tornado_selection()
-            return(torn_reports)
-        elif self.storm_type == 'hail':
-            hail_reports = self.hail_selection()
-            return(hail_reports)
-        elif self.storm_type == 'wind':
-            wind_reports = self.wind_selection()
-            return(wind_reports)
-        else:
-            raise ValueError('Not a valid event type: enter either tornado, wind or hail.')
-
-    def tornado_selection(self):
+    @classmethod
+    def get_tornado_reports(cls, date_time):
         """
-        Request tornado data from 2011 until this year.
+        Download tornado reports for a given date.
+
+        This only works for dates since the start of 2012.
 
         Parameters
         ----------
-        self:
-            Year attributes, endpoints, and column names are all used
+        date_time : datetime
+            The date for which to fetch the reports.
 
         Returns
         -------
-        torn_reports:
-            One days worth of tornado reports
+            `pandas.DataFrame` with the available tornado reports.
 
         """
-        columns = self.columns
-        columns[1] = 'F-Scale'
-        url = 'climo/reports/{}{}{}_rpts_filtered_torn.csv'
-        path = url.format(self.year_string[2: 4], self.month_string, self.day_string)
+        return cls()._get_data('torn', date_time)
+
+    @classmethod
+    def get_hail_reports(cls, date_time):
+        """
+        Download hail reports for a given date.
+
+        This only works for dates since the start of 2012.
+
+        Parameters
+        ----------
+        date_time : datetime
+            The date for which to fetch the reports.
+
+        Returns
+        -------
+            `pandas.DataFrame` with the available hail reports.
+
+        """
+        return cls()._get_data('hail', date_time)
+
+    def _get_data(self, stormtype, date_time):
+        """Parse the reports for a given type and date."""
+        data = StringIO(self._get_data_raw(stormtype, date_time))
+
+        def parse_report_time(s):
+            hour = int(s[:2])
+            val = datetime(date_time.year, date_time.month, date_time.day, hour, int(s[2:4]))
+            if hour < 12:
+                val += timedelta(days=1)
+            return val
+
+        reports = pd.read_csv(data, header=0, na_values='UNK', parse_dates=[0],
+                              date_parser=parse_report_time)
+
+        # Scale hail sizes to inches
+        if 'Size' in reports:
+            reports['Size'] /= 100
+
+        return reports
+
+
+    def _get_data_raw(self, stormtype, date_time):
+        """Download the storm report file for a given type and date."""
+        if date_time.year < 2012:
+            raise ValueError('This does not work for dates prior to 2012.')
+
+        path = '{:%y%m%d}_rpts_filtered_{}.csv'.format(date_time, stormtype)
         try:
             resp = self.get_path(path)
-            resp.raise_for_status()
-            storm_list = StringIO(resp.text)
-            torn_reports = pd.read_csv(storm_list, names=columns,
-                                       header=0, index_col=False,
-                                       usecols=[0, 1, 2, 3, 4, 5, 6, 7])
-
-        except requests.exceptions.HTTPError as http_error:
-            raise ValueError(http_error, 'The tornado url failed for this date.')
-
-        return(torn_reports)
-
-    def hail_selection(self):
-        """
-        Request hail data from 2012 until this year.
-
-        Parameters
-        ----------
-        self:
-            Year attributes, endpoints, and column names are all used
-
-        Returns
-        -------
-        hail_reports:
-            One days worth of hail reports
-
-        """
-        columns = self.columns
-        columns[1] = 'Size (in)'
-        url = 'climo/reports/{}{}{}_rpts_filtered_hail.csv'
-        path = url.format(self.year_string[2:4], self.month_string, self.day_string)
-        try:
-            resp = self.get_path(path)
-            resp.raise_for_status()
-            storm_list = StringIO(resp.text)
-            hail_reports = pd.read_csv(storm_list, names=columns,
-                                       header=0, index_col=False,
-                                       usecols=[0, 1, 2, 3, 4, 5, 6, 7])
-        except requests.exceptions.HTTPError as http_error:
-            raise ValueError(http_error, 'The hail url failed for this date.')
-
-        return(hail_reports)
-
-    def wind_selection(self):
-        """
-        Request wind data from 2012 until this year.
-
-        Parameters
-        ----------
-        self:
-            Year attributes, endpoints, and column names are all used
-
-        Returns
-        -------
-        wind_reports:
-            One days worth of wind reports
-
-        """
-        columns = self.columns
-        columns[1] = 'Speed (kt)'
-        url = 'climo/reports/{}{}{}_rpts_filtered_wind.csv'
-        path = url.format(self.year_string[2:4], self.month_string, self.day_string)
-        try:
-            resp = self.get_path(path)
-            resp.raise_for_status()
-            storm_list = StringIO(resp.text)
-            wind_reports = pd.read_csv(storm_list, names=columns,
-                                       header=0, index_col=False,
-                                       usecols=[0, 1, 2, 3, 4, 5, 6, 7])
-        except requests.exceptions.HTTPError as http_error:
-            raise ValueError(http_error, 'The wind url failed for this date.')
-
-        return(wind_reports)
+        except requests.exceptions.HTTPError:
+            raise ValueError('Could not fetch reports of type {} for {}'.format(stormtype,
+                                                                                date_time))
+        return resp.text
 
 
 class SPCArchive(HTTPEndPoint):
@@ -197,19 +134,12 @@ class SPCArchive(HTTPEndPoint):
 
     """
 
-    def __init__(self, stormtype):
-        """
-        Create class of Storm Prediction Center Archival Data to select storm type.
+    def __init__(self):
+        """Set up the endpoint."""
+        super(SPCArchive, self).__init__('https://www.spc.noaa.gov/wcm/data')
 
-        Storms are first collected into a large pd dataframe with all SPC events of
-        a selected type from 1955-2017. This archival dataframe is then returned to the user
-        with storms of their choice.
+    def _get_data_raw(self):
 
-        """
-        super(SPCArchive, self).__init__('https://www.spc.noaa.gov/')
-
-        self.storm_type = stormtype
-        self.storms = self.storm_type_selection()
 
     def storm_type_selection(self):
         """

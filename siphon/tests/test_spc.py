@@ -3,6 +3,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Test Storm Prediction Center access."""
 
+from datetime import datetime
+
+import numpy as np
 from numpy.testing import assert_almost_equal
 import pytest
 
@@ -135,93 +138,92 @@ def test_hail_archive():
 def test_wind_after_2011_archive():
     """Test of method of SPC wind data parsing to be used for recent years."""
     # Second set of assertions for parsing done for storm events after 12/31/2017
-    spc_wind_after_2011 = SPC('wind', '20180615')
+    table =  SPC.get_wind_reports(datetime(2018, 6, 15))
 
-    assert(spc_wind_after_2011.day_table['Time'].iloc[0] == 1215)
-    assert(spc_wind_after_2011.day_table['Speed (kt)'].iloc[0] == '78')
-    assert(spc_wind_after_2011.day_table['Location'].iloc[0] == '13 SSE LITTLE MARAIS')
-    assert(spc_wind_after_2011.day_table['County'].iloc[0] == 'LSZ162')
-    assert(spc_wind_after_2011.day_table['State'].iloc[0] == 'MN')
-    assert_almost_equal(spc_wind_after_2011.day_table['Lat'].iloc[0], 47.25, 3)
-    assert_almost_equal(spc_wind_after_2011.day_table['Lon'].iloc[0], -90.96, 3)
-    assert(spc_wind_after_2011.day_table['Comment'].iloc[0][0] == 'R')
+    assert table['Time'][0] == datetime(2018, 6, 15, 12, 15)
+    assert table['Time'][18] == datetime(2018, 6, 16, 0, 28)
+    assert table['Speed'][0] == 78
+    assert np.isnan(table['Speed'][1])
+    assert table['Location'][0] == '13 SSE LITTLE MARAIS'
+    assert table['County'][0] == 'LSZ162'
+    assert table['State'][0] == 'MN'
+    assert_almost_equal(table['Lat'][0], 47.25, 3)
+    assert_almost_equal(table['Lon'][0], -90.96, 3)
+    assert table['Comments'][0] == 'REPORTED BY THE JAMES R. BARKER. (DLH)'
 
 
 @recorder.use_cassette('spc_torn_after_2011_archive')
 def test_torn_after_2011_archive():
     """Test of method of SPC tornado data parsing to be used for recent years."""
-    spc_torn_after_2011 = SPC('tornado', '20180615')
+    table = SPC.get_tornado_reports(datetime(2018, 6, 15))
 
-    assert(spc_torn_after_2011.day_table['Time'].iloc[0] == 2225)
-    assert(spc_torn_after_2011.day_table['F-Scale'].iloc[0] == 'UNK')
-    assert(spc_torn_after_2011.day_table['Location'].iloc[0] == '5 W WYNNE')
-    assert(spc_torn_after_2011.day_table['County'].iloc[0] == 'CROSS')
-    assert(spc_torn_after_2011.day_table['State'].iloc[0] == 'AR')
-    assert_almost_equal(spc_torn_after_2011.day_table['Lat'].iloc[0], 35.23, 3)
-    assert_almost_equal(spc_torn_after_2011.day_table['Lon'].iloc[0], -90.88, 3)
-    assert(spc_torn_after_2011.day_table['Comment'].iloc[0][0] == 'A')
+    assert table['Time'][0] == datetime(2018, 6, 15, 22, 25)
+    assert np.isnan(table['F_Scale'][0])
+    assert table['Location'][0] == '5 W WYNNE'
+    assert table['County'][0] == 'CROSS'
+    assert table['State'][0] == 'AR'
+    assert_almost_equal(table['Lat'].iloc[0], 35.23, 3)
+    assert_almost_equal(table['Lon'].iloc[0], -90.88, 3)
+    assert table['Comments'][0] == ("A WEAK LANDSPOUT TORNADO OCCURRED NEAR THE L'ANGUILLE "
+                                    'RIVER WEST OF WYNNE. NO DAMAGE WAS REPORTED. TIME IS '
+                                    'ESTIMATED. (MEG)')
 
 
 @recorder.use_cassette('spc_hail_after_2011_archive')
 def test_hail_after_2011_archive():
     """Test of method of SPC hail data parsing to be used for recent years."""
-    spc_hail_after_2011 = SPC('hail', '20180615')
+    table = SPC.get_hail_reports(datetime(2018, 6, 15))
 
-    assert(spc_hail_after_2011.day_table['Time'].iloc[0] == 1335)
-    assert(spc_hail_after_2011.day_table['Location'].iloc[0] == 'MOSINEE')
-    assert(spc_hail_after_2011.day_table['County'].iloc[0] == 'MARATHON')
-    assert(spc_hail_after_2011.day_table['State'].iloc[0] == 'WI')
-    assert_almost_equal(spc_hail_after_2011.day_table['Lat'].iloc[0], 44.78, 3)
-    assert_almost_equal(spc_hail_after_2011.day_table['Lon'].iloc[0], -89.69, 3)
-    assert(spc_hail_after_2011.day_table['Comment'].iloc[0] == '(GRB)')
+    assert table['Time'][0] == datetime(2018, 6, 15, 13, 35)
+    assert_almost_equal(table['Size'][0], 1.0, 2)
+    assert table['Location'][0] == 'MOSINEE'
+    assert table['County'][0] == 'MARATHON'
+    assert table['State'][0] == 'WI'
+    assert_almost_equal(table['Lat'][0], 44.78, 3)
+    assert_almost_equal(table['Lon'][0], -89.69, 3)
+    assert table['Comments'].iloc[0] == '(GRB)'
 
 
 @recorder.use_cassette('spc_torn_future')
 def test_torn_future():
     """Test error retrieval of tornado after current date."""
     with pytest.raises(ValueError):
-        SPC('tornado', '20500520')
+        SPC.get_tornado_reports(datetime(2050, 5, 20))
 
 
 @recorder.use_cassette('spc_wind_future')
 def test_wind_future():
     """Test error retrieval of wind after current date."""
     with pytest.raises(ValueError):
-        SPC('wind', '20500520')
+        SPC.get_wind_reports(datetime(2050, 5, 20))
 
 
 @recorder.use_cassette('spc_hail_future')
 def test_hail_future():
     """Test error retrieval of hail after current date."""
     with pytest.raises(ValueError):
-        SPC('hail', '20500520')
+        SPC.get_hail_reports(datetime(2050, 5, 20))
 
 
 @recorder.use_cassette('spc_torn_before_1950')
 def test_torn_before_1950():
     """Test error retrieval of tornado data before 1950."""
     with pytest.raises(ValueError):
-        SPC('tornado', '19490520')
+        SPC.get_tornado_reports(datetime(1949, 5, 20))
 
 
 @recorder.use_cassette('spc_wind_before_1955')
 def test_wind_before_1955():
     """Test error retrieval of wind data before 1955."""
     with pytest.raises(ValueError):
-        SPC('wind', '19490520')
+        SPC.get_wind_reports(datetime(1949, 5, 20))
 
 
 @recorder.use_cassette('spc_hail_before_1955')
 def test_hail_before_1955():
     """Test error retrieval of hail data before 1955."""
     with pytest.raises(ValueError):
-        SPC('hail', '19490520')
-
-
-def test_no_data_spc():
-    """Test error data when passed an invalid storm type."""
-    with pytest.raises(ValueError):
-        SPC('tornado and wind', '19650403')
+        SPC.get_hail_reports(datetime(1949, 5, 20))
 
 
 def test_no_data_spc_archive():
