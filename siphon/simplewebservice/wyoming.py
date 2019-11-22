@@ -69,14 +69,15 @@ class WyomingUpperAir(HTTPEndPoint):
         raw_data = self._get_data_raw(time, site_id)
         soup = BeautifulSoup(raw_data, 'html.parser')
         tabular_data = StringIO(soup.find_all('pre')[0].contents[0])
-        col_names = ['pressure', 'height', 'temperature', 'dewpoint', 'direction', 'speed']
-        df = pd.read_fwf(tabular_data, skiprows=5, usecols=[0, 1, 2, 3, 6, 7], names=col_names)
+        col_names = ['pressure', 'height', 'temperature', 'dewpoint', 'relative_humidity',
+                     'mixing_ratio', 'direction', 'speed', 'theta', 'theta_e', 'theta_v']
+        df = pd.read_fwf(tabular_data, skiprows=5, names=col_names)
         df['u_wind'], df['v_wind'] = get_wind_components(df['speed'],
                                                          np.deg2rad(df['direction']))
 
-        # Drop any rows with all NaN values for T, Td, winds
-        df = df.dropna(subset=('temperature', 'dewpoint', 'direction', 'speed',
-                               'u_wind', 'v_wind'), how='all').reset_index(drop=True)
+        # Drop any rows with all NaN values for T, Td, relative humidity mixing ratio, winds, thetas.
+        df = df.dropna(subset=('temperature', 'dewpoint', 'relative_humidity', 'mixing_ratio', 'direction', 'speed',
+                               'u_wind', 'v_wind', 'theta_e'), how='all').reset_index(drop=True)
 
         # Parse metadata
         meta_data = soup.find_all('pre')[1].contents[0]
@@ -106,10 +107,15 @@ class WyomingUpperAir(HTTPEndPoint):
                     'height': 'meter',
                     'temperature': 'degC',
                     'dewpoint': 'degC',
+                    'relative_humidity': None,
+                    'mixing_ratio': None,
                     'direction': 'degrees',
                     'speed': 'knot',
                     'u_wind': 'knot',
                     'v_wind': 'knot',
+                    'theta': 'kelvin',
+                    'theta_e': 'kelvin',
+                    "theta_v": 'kelvin',
                     'station': None,
                     'station_number': None,
                     'time': None,
