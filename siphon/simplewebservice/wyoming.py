@@ -76,9 +76,11 @@ class WyomingUpperAir(HTTPEndPoint):
         df['u_wind'], df['v_wind'] = get_wind_components(df['speed'],
                                                          np.deg2rad(df['direction']))
 
-        # Drop any rows with all NaN values for T, Td, relative humidity mixing ratio, winds, thetas.
-        df = df.dropna(subset=('temperature', 'dewpoint', 'relative_humidity', 'mixing_ratio', 'direction', 'speed',
-                               'u_wind', 'v_wind', 'equivalent_potential_temperature'), how='all').reset_index(drop=True)
+        # Drop any rows with all NaN values for T, Td, relative humidity,
+        # mixing ratio, winds, thetas.
+        df = df.dropna(subset=('temperature', 'dewpoint', 'relative_humidity', 
+                    'mixing_ratio', 'direction', 'speed','u_wind', 'v_wind', 
+                    'equivalent_potential_temperature'), how='all').reset_index(drop=True)
 
         # Parse metadata
         meta_data = soup.find_all('pre')[1].contents[0]
