@@ -80,6 +80,7 @@ class WyomingUpperAir(HTTPEndPoint):
         # mixing ratio, winds, thetas.
         df = df.dropna(subset=('temperature', 'dewpoint', 'relative_humidity', 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     'mixing_ratio', 'direction', 'speed','u_wind', 'v_wind', 
                     'equivalent_potential_temperature'), how='all').reset_index(drop=True)
 =======
@@ -87,6 +88,11 @@ class WyomingUpperAir(HTTPEndPoint):
                                'equivalent_potential_temperature'), how='all')
                                .reset_index(drop=True)
 >>>>>>> f6a5d94... Improved Code Quality compliance
+=======
+                               'mixing_ratio', 'direction', 'speed','u_wind', 'v_wind', 
+                               'equivalent_potential_temperature'), how='all')
+                               .reset_index(drop=True)
+>>>>>>> f6a5d94ada9ca8e6b94e65bb6bc34ea96a433ae9
 
         # Parse metadata
         meta_data = soup.find_all('pre')[1].contents[0]
