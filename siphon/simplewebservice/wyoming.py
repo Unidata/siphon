@@ -79,8 +79,14 @@ class WyomingUpperAir(HTTPEndPoint):
         # Drop any rows with all NaN values for T, Td, relative humidity,
         # mixing ratio, winds, thetas.
         df = df.dropna(subset=('temperature', 'dewpoint', 'relative_humidity', 
+<<<<<<< HEAD
                     'mixing_ratio', 'direction', 'speed','u_wind', 'v_wind', 
                     'equivalent_potential_temperature'), how='all').reset_index(drop=True)
+=======
+                               'mixing_ratio', 'direction', 'speed','u_wind', 'v_wind', 
+                               'equivalent_potential_temperature'), how='all')
+                               .reset_index(drop=True)
+>>>>>>> f6a5d94... Improved Code Quality compliance
 
         # Parse metadata
         meta_data = soup.find_all('pre')[1].contents[0]
