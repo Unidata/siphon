@@ -93,6 +93,7 @@ class WyomingUpperAir(HTTPEndPoint):
         latitude = float(lines[4].split(':')[1].strip())
         longitude = float(lines[5].split(':')[1].strip())
         elevation = float(lines[6].split(':')[1].strip())
+        pw          = float(lines[20].split(':')[1].strip())
 
         df['station'] = station
         df['station_number'] = station_number
@@ -100,7 +101,7 @@ class WyomingUpperAir(HTTPEndPoint):
         df['latitude'] = latitude
         df['longitude'] = longitude
         df['elevation'] = elevation
-
+        df['pw'] = pw
         # Add unit dictionary
         df.units = {'pressure': 'hPa',
                     'height': 'meter',
@@ -115,7 +116,8 @@ class WyomingUpperAir(HTTPEndPoint):
                     'time': None,
                     'latitude': 'degrees',
                     'longitude': 'degrees',
-                    'elevation': 'meter'}
+                    'elevation': 'meter',
+                    'pw': 'millimeters'}
         return df
 
     def _get_data_raw(self, time, site_id):
