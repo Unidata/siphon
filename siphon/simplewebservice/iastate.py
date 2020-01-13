@@ -181,6 +181,6 @@ class IAStateUpperAir(HTTPEndPoint):
                 message += 'for station {stid}'.format(stid=site_id)
             if pressure is not None:
                 message += 'for pressure {pres}'.format(pres=pressure)
-            message = message[:-1] + '.'
+            message = message + '.'
             raise ValueError(message)
         return json_data

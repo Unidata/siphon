@@ -1,0 +1,137 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.8.0+61.ga4fea13.dirty)
+    method: GET
+    uri: https://www.spc.noaa.gov/wcm/data/1950-2018_torn.csv.zip
+  response:
+    body:
+      string: !!binary |
+        UEsDBBQAAAAAAHaydU/PKQCUOhAAADoQAAASAAAAMTk1MC0yMDE4X3Rvcm4uY3N2b20seXIsbW8s
+        ZHksZGF0ZSx0aW1lLHR6LHN0LHN0ZixzdG4sbWFnLGluaixmYXQsbG9zcyxjbG9zcyxzbGF0LHNs
+        b24sZWxhdCxlbG9uLGxlbix3aWQsbnMsc24sc2csZjEsZjIsZjMsZjQsZmMKMSwxOTUwLDAxLDAz
+        LDE5NTAtMDEtMDMsMTE6MDA6MDAsMyxNTywyOSwxLDMsMywwLDYuMCwwLjAsMzguNzcsLTkwLjIy
+        LDM4LjgzLC05MC4wMyw5LjUsMTUwLDIsMCwxLDAsMCwwLDAsMAoxLDE5NTAsMDEsMDMsMTk1MC0w
+        MS0wMywxMTowMDowMCwzLE1PLDI5LDEsMywzLDAsNi4wLDAuMCwzOC43NywtOTAuMjIsMzguODIs
+        LTkwLjEyLDYuMiwxNTAsMiwxLDIsMTg5LDAsMCwwLDAKMSwxOTUwLDAxLDAzLDE5NTAtMDEtMDMs
+        MTE6MTA6MDAsMyxJTCwxNywxLDMsMCwwLDUuMCwwLjAsMzguODIsLTkwLjEyLDM4LjgzLC05MC4w
+        MywzLjMsMTAwLDIsMSwyLDExOSwwLDAsMCwwCjIsMTk1MCwwMSwwMywxOTUwLTAxLTAzLDExOjU1
+        OjAwLDMsSUwsMTcsMiwzLDMsMCw1LjAsMC4wLDM5LjEsLTg5LjMsMzkuMTIsLTg5LjIzLDMuNiwx
+        MzAsMSwxLDEsMTM1LDAsMCwwLDAKMywxOTUwLDAxLDAzLDE5NTAtMDEtMDMsMTY6MDA6MDAsMyxP
+        SCwzOSwxLDEsMSwwLDQuMCwwLjAsNDAuODgsLTg0LjU4LDAuMCwwLjAsMC4xLDEwLDEsMSwxLDE2
+        MSwwLDAsMCwwCjQsMTk1MCwwMSwxMywxOTUwLTAxLTEzLDA1OjI1OjAwLDMsQVIsNSwxLDMsMSwx
+        LDMuMCwwLjAsMzQuNCwtOTQuMzcsMC4wLDAuMCwwLjYsMTcsMSwxLDEsMTEzLDAsMCwwLDAKNSwx
+        OTUwLDAxLDI1LDE5NTAtMDEtMjUsMTk6MzA6MDAsMyxNTywyOSwyLDIsNSwwLDUuMCwwLjAsMzcu
+        NiwtOTAuNjgsMzcuNjMsLTkwLjY1LDIuMywzMDAsMSwxLDEsOTMsMCwwLDAsMAo2LDE5NTAsMDEs
+        MjUsMTk1MC0wMS0yNSwyMTowMDowMCwzLElMLDE3LDMsMiwwLDAsNS4wLDAuMCw0MS4xNywtODcu
+        MzMsMC4wLDAuMCwwLjEsMTAwLDEsMSwxLDkxLDAsMCwwLDAKNywxOTUwLDAxLDI2LDE5NTAtMDEt
+        MjYsMTg6MDA6MDAsMyxUWCw0OCwxLDIsMiwwLDAuMCwwLjAsMjYuODgsLTk4LjEyLDI2Ljg4LC05
+        OC4wNSw0LjcsMTMzLDEsMSwxLDQ3LDAsMCwwLDAKOCwxOTUwLDAyLDExLDE5NTAtMDItMTEsMTM6
+        MTA6MDAsMyxUWCw0OCwyLDIsMCwwLDQuMCwwLjAsMjkuNDIsLTk1LjI1LDI5LjUyLC05NS4xMyw5
+        LjksNDAwLDEsMSwxLDM5LDAsMCwwLDAKOSwxOTUwLDAyLDExLDE5NTAtMDItMTEsMTM6NTA6MDAs
+        MyxUWCw0OCwzLDMsMTIsMSw0LjAsMC4wLDI5LjY3LC05NS4wNSwyOS44MywtOTUuMCwxMi4wLDEw
+        MDAsMSwxLDEsMjAxLDAsMCwwLDAKMTAsMTk1MCwwMiwxMSwxOTUwLTAyLTExLDIxOjAwOjAwLDMs
+        VFgsNDgsNCwyLDUsMCw1LjAsMC4wLDMyLjM1LC05NS4yLDMyLjQyLC05NS4yLDQuNiwxMDAsMSwx
+        LDEsNDIzLDAsMCwwLDAKMTEsMTk1MCwwMiwxMSwxOTUwLTAyLTExLDIzOjU1OjAwLDMsVFgsNDgs
+        NSwyLDYsMCw1LjAsMC4wLDMyLjk4LC05NC42MywzMy4wLC05NC43LDQuNSw2NywxLDEsMSw2Nywz
+        NDMsMCwwLDAKMTIsMTk1MCwwMiwxMiwxOTUwLTAyLTEyLDAwOjMwOjAwLDMsVFgsNDgsNiwyLDgs
+        MSw0LjAsMC4wLDMzLjMzLC05NC40MiwzMy40NSwtOTQuNDIsOC4wLDgzMywxLDEsMSwzNywwLDAs
+        MCwwCjEzLDE5NTAsMDIsMTIsMTk1MC0wMi0xMiwwMToxNTowMCwzLFRYLDQ4LDcsMSwwLDAsNC4w
+        LDAuMCwzMi4wOCwtOTguMzUsMzIuMSwtOTguMzMsMi4zLDIzMywxLDEsMSwxNDMsMCwwLDAsMAox
+        NCwxOTUwLDAyLDEyLDE5NTAtMDItMTIsMDY6MTA6MDAsMyxUWCw0OCw4LDIsMCwwLDQuMCwwLjAs
+        MzEuNTIsLTk2LjU1LDMxLjU3LC05Ni41NSwzLjQsMTAwLDEsMSwxLDI5MywwLDAsMCwwCjE1LDE5
+        NTAsMDIsMTIsMTk1MC0wMi0xMiwxMTo1NzowMCwzLFRYLDQ4LDksMSwzMiwwLDUuMCwwLjAsMzEu
+        OCwtOTQuMiwzMS44OCwtOTQuMTIsNy43LDEwMCwxLDEsMSw0MTksMCwwLDAsMAoxNiwxOTUwLDAy
+        LDEyLDE5NTAtMDItMTIsMTI6MDA6MDAsMyxNUywyOCwxLDIsMiwzLDQuMCwwLjAsMzQuNiwtODku
+        MTIsMC4wLDAuMCwwLjEsMTAsMSwxLDEsMTQ1LDAsMCwwLDAKMTcsMTk1MCwwMiwxMiwxOTUwLTAy
+        LTEyLDEyOjAwOjAwLDMsTVMsMjgsMiwxLDAsMCwwLjAsMC4wLDM0LjYsLTg5LjEyLDAuMCwwLjAs
+        Mi4wLDEwLDEsMSwxLDE0NSwwLDAsMCwwCjE4LDE5NTAsMDIsMTIsMTk1MC0wMi0xMiwxMjowMDow
+        MCwzLFRYLDQ4LDEwLDMsMTUsMyw1LjAsMC4wLDMxLjgsLTk0LjIsMzEuOCwtOTQuMTgsMS45LDUw
+        LDEsMSwxLDQxOSwwLDAsMCwwCjE5LDE5NTAsMDIsMTIsMTk1MC0wMi0xMiwxMjozMDowMCwzLEFS
+        LDUsMiwyLDAsMCwzLjAsMC4wLDM0LjQ4LC05Mi40LDAuMCwwLjAsMC4xLDEwMCwxLDEsMSw1Myww
+        LDAsMCwwCjIwLDE5NTAsMDIsMTIsMTk1MC0wMi0xMiwxMzowMDowMCwzLExBLDIyLDEsNCw3Nywx
+        OCw1LjAsMC4wLDMxLjk3LC05NC4wLDMzLjAsLTkzLjMsODIuNiwxMDAsMSwxLDEsMzEsMTcsMTUs
+        MTE5LDAKMjEsMTk1MCwwMiwxMiwxOTUwLTAyLTEyLDEzOjIwOjAwLDMsTEEsMjIsMiwyLDEwLDUs
+        NS4wLDAuMCwzMi4yLC05My41OCwzMi45NywtOTMuMTcsNTguNCwxMDAsMSwxLDEsMzEsODEsMTcs
+        MTUsMAoyMiwxOTUwLDAyLDEyLDE5NTAtMDItMTIsMTQ6MDA6MDAsMyxMQSwyMiw0LDMsMjUsNSw1
+        LjAsMC4wLDMxLjYzLC05My42NSwzMi41NSwtOTMuMDMsNzQuNSwxMDAsMSwxLDEsODUsNjksODEs
+        MTMsMAoyMiwxOTUwLDAyLDEyLDE5NTAtMDItMTIsMTQ6MjA6MDAsMyxMQSwyMiwzLDIsMCwwLDAu
+        MCwwLjAsMC4wLDAuMCwwLjAsMC4wLDAuMCwwLDEsMCwtOSwyNywwLDAsMCwwCjIzLDE5NTAsMDIs
+        MTIsMTk1MC0wMi0xMiwxNTowMDowMCwzLEFSLDUsMywyLDAsMCw0LjAsMC4wLDMzLjI3LC05Mi45
+        NSwzMy4zNSwtOTIuOTUsNS43LDEwMCwxLDEsMSwxMzksMCwwLDAsMAoyNCwxOTUwLDAyLDEyLDE5
+        NTAtMDItMTIsMjM6MDA6MDAsMyxMQSwyMiw1LDEsMCwwLDQuMCwwLjAsMzIuNiwtOTEuMzMsMC4w
+        LDAuMCwwLjUsMzMsMSwxLDEsMzUsMCwwLDAsMAoyNSwxOTUwLDAyLDEzLDE5NTAtMDItMTMsMDE6
+        MDA6MDAsMyxUTiw0NywxLDEsOCwwLDMuMCwwLjAsMzUuMzUsLTg5Ljc3LDAuMCwwLjAsMC4yLDEw
+        LDEsMSwxLDE1NywwLDAsMCwwCjI2LDE5NTAsMDIsMTMsMTk1MC0wMi0xMywwMjowMDowMCwzLFRO
+        LDQ3LDIsMiwxLDksNC4wLDAuMCwzNS43NSwtODkuNDgsMC4wLDAuMCwwLjIsMTAsMSwxLDEsOTcs
+        MCwwLDAsMAoyNywxOTUwLDAyLDI3LDE5NTAtMDItMjcsMTA6MjA6MDAsMyxPSyw0MCwxLDIsMCww
+        LDQuMCwwLjAsMzUuNTUsLTk3LjYsMC4wLDAuMCwyLjAsNTAsMSwxLDEsMTA5LDAsMCwwLDAKMjgs
+        MTk1MCwwMywwMSwxOTUwLTAzLTAxLDAyOjMwOjAwLDMsTVMsMjgsMywxLDAsMCwwLjAsMC4wLDMy
+        LjUsLTg4Ljg1LDAuMCwwLjAsMC4xLDEwLDEsMSwxLDc1LDAsMCwwLDAKMjksMTk1MCwwMywxNiwx
+        OTUwLTAzLTE2LDA5OjE1OjAwLDMsRkwsMTIsMSwyLDAsMCwzLjAsMC4wLDI5LjY1LC04MS4yMiww
+        LjAsMC4wLDEuNSwxNTAsMSwxLDEsMTA5LDAsMCwwLDAKMzAsMTk1MCwwMywxOSwxOTUwLTAzLTE5
+        LDA3OjMwOjAwLDMsTEEsMjIsNiwxLDIsMCw0LjAsMC4wLDMwLjQ1LC05My40NSwwLjAsMC4wLDIu
+        MCwzMywxLDEsMSwxOSwwLDAsMCwwCjMxLDE5NTAsMDMsMTksMTk1MC0wMy0xOSwxMzoxNTowMCwz
+        LExBLDIyLDcsMiwwLDAsNC4wLDAuMCwzMC4xLC05MS4wLDAuMCwwLjAsMS4wLDUwLDEsMSwxLDUs
+        MCwwLDAsMAozMiwxOTUwLDAzLDE5LDE5NTAtMDMtMTksMTM6MTU6MDAsMyxMQSwyMiw4LDAsMCww
+        LDQuMCwwLjAsMjkuNywtOTAuMSwyOS42NywtODkuOCwxOC4xLDI3LDEsMSwxLDUxLDc1LDAsMCww
+        CjMzLDE5NTAsMDMsMjYsMTk1MC0wMy0yNiwxOTozMDowMCwzLEFSLDUsNCwyLDMsMCw0LjAsMC4w
+        LDM0LjEyLC05My4wNywzNC4zMiwtOTIuODgsMTcuNCwxNTAsMSwxLDEsMTksNTksMCwwLDAKMzQs
+        MTk1MCwwMywyNiwxOTUwLTAzLTI2LDE5OjMxOjAwLDMsQVIsNSw1LDMsMSwwLDUuMCwwLjAsMzYu
+        MTUsLTkxLjgzLDM2LjIsLTkxLjc1LDUuNywyMDAsMSwxLDEsNjUsMCwwLDAsMAozNSwxOTUwLDAz
+        LDI2LDE5NTAtMDMtMjYsMjA6MzA6MDAsMyxBUiw1LDYsMiw3LDAsNS4wLDAuMCwzNC43LC05Mi4z
+        NSwzNC44LC05Mi4yMiwxMC40LDYwMCwxLDEsMSwxMTksMCwwLDAsMApQSwECFAMUAAAAAAB2snVP
+        zykAlDoQAAA6EAAAEgAAAAAAAAAAAAAAgAEAAAAAMTk1MC0yMDE4X3Rvcm4uY3N2UEsFBgAAAAAB
+        AAEAQAAAAGoQAAAAAA==
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Age:
+      - '213'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1572057'
+      Content-Type:
+      - application/zip
+      Date:
+      - Fri, 22 Nov 2019 05:08:36 GMT
+      ETag:
+      - '"17fcd9-593bb49731700"'
+      Expires:
+      - Fri, 22 Nov 2019 05:13:36 GMT
+      Last-Modified:
+      - Mon, 30 Sep 2019 01:38:04 GMT
+      Server:
+      - Apache/2.4.6 (CentOS) PHP/5.4.16 mod_perl/2.0.10 Perl/v5.16.3
+      Strict-Transport-Security:
+      - max-age=31536000
+      Via:
+      - 1.1 c5.w3.woc (squid), 1.1 94302df9990bc95bcddeb66c4a58718c.cloudfront.net
+        (CloudFront)
+      X-Amz-Cf-Id:
+      - XjMS5Cq6oILBU_ucsm2qZ0Be4D5j6vK7b4fEAROhXRqDr3S-qkIrrg==
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Cache:
+      - Hit from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

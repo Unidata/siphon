@@ -5,6 +5,7 @@
 
 from collections import OrderedDict
 from datetime import datetime, timedelta, tzinfo
+import gzip
 from io import BytesIO
 from itertools import chain
 import posixpath
@@ -88,7 +89,7 @@ class HTTPSessionManager(object):
             setattr(ret, k, v)
         return ret
 
-    def urlopen(self, url, **kwargs):
+    def urlopen(self, url, decompress=False, **kwargs):
         """GET a file-like object for a URL using HTTP.
 
         This is a thin wrapper around :meth:`requests.Session.get` that returns a file-like
@@ -112,7 +113,10 @@ class HTTPSessionManager(object):
         :meth:`requests.Session.get`
 
         """
-        return BytesIO(self.create_session().get(url, **kwargs).content)
+        fobj = BytesIO(self.create_session().get(url, **kwargs).content)
+        if decompress:
+            fobj = gzip.GzipFile(fileobj=fobj)
+        return fobj
 
 
 session_manager = HTTPSessionManager()

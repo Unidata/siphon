@@ -1,0 +1,85 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.8.0+22.g059dd1d.dirty)
+    method: GET
+    uri: https://www.spc.noaa.gov/climo/reports/180615_rpts_filtered_wind.csv
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/csv
+      Date:
+      - Tue, 23 Jul 2019 14:03:16 GMT
+      Expires:
+      - Tue, 23 Jul 2019 14:08:16 GMT
+      Last-Modified:
+      - Sat, 04 Aug 2018 12:08:39 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=31536000
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 c5.w3.woc (squid), 1.1 f6d641e44b5f98899da25792ac166784.cloudfront.net
+        (CloudFront)
+      X-Amz-Cf-Id:
+      - Vza-1xpMUNEUGoGp45mvPA9LU6OwrwFh0NZCTYsaH8i0UoNlDaR6yg==
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,63 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.8.0+22.g059dd1d.dirty)
+    method: GET
+    uri: https://www.spc.noaa.gov/climo/reports/180615_rpts_filtered_torn.csv
+  response:
+    body:
+      string: 'Time,F_Scale,Location,County,State,Lat,Lon,Comments
+
+        2225,UNK,5 W WYNNE,CROSS,AR,35.23,-90.88,A WEAK LANDSPOUT TORNADO OCCURRED
+        NEAR THE L''ANGUILLE RIVER WEST OF WYNNE. NO DAMAGE WAS REPORTED. TIME IS
+        ESTIMATED. (MEG)
+
+'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '217'
+      Content-Type:
+      - text/csv
+      Date:
+      - Tue, 23 Jul 2019 14:03:17 GMT
+      ETag:
+      - '"ac607ca5-d9-5729ae78f1fc0"'
+      Expires:
+      - Tue, 23 Jul 2019 14:08:17 GMT
+      Last-Modified:
+      - Sat, 04 Aug 2018 12:08:39 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=31536000
+      Via:
+      - 1.1 c4.w4.woc (squid), 1.1 84a93a4cc4dda36d37474901b2fb21c9.cloudfront.net
+        (CloudFront)
+      X-Amz-Cf-Id:
+      - FkmEMTdXZL311urQaMdc3wnw4mrzAuDlCltbBfKNh83bMsuEXGNtZA==
+      X-Amz-Cf-Pop:
+      - DEN50-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
