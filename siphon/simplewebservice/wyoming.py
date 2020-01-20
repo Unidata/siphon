@@ -11,8 +11,12 @@ from bs4 import BeautifulSoup
 import numpy as np
 import pandas as pd
 
-from .._tools import get_wind_components
-from ..http_util import HTTPEndPoint
+import sys, os
+sys.path.insert(0, os.path.abspath('..'))
+
+from _tools import get_wind_components
+from http_util import HTTPEndPoint
+
 
 warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created", UserWarning)
 
