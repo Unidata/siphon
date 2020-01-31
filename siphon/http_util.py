@@ -18,7 +18,7 @@ except ImportError:
 
 import requests
 
-# from . import __version__
+from . import __version__
 
 HTTPError = requests.HTTPError
 
@@ -53,7 +53,7 @@ class HTTPSessionManager(object):
 
     def __init__(self):
         """Initialize ``HTTPSessionManager``."""
-        self.user_agent = 'Siphon ({})'.format("1")
+        self.user_agent = 'Siphon ({})'.format(__version__)
         self.options = {}
 
     def set_session_options(self, **kwargs):
