@@ -22,6 +22,7 @@ from . import __version__
 
 HTTPError = requests.HTTPError
 
+
 class BadQueryError(Exception):
     """Exception raised when a query fails."""
 
