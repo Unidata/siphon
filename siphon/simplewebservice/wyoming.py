@@ -11,11 +11,8 @@ from bs4 import BeautifulSoup
 import numpy as np
 import pandas as pd
 
-import sys, os
-sys.path.insert(0, os.path.abspath('..'))
-
-from _tools import get_wind_components
-from http_util import HTTPEndPoint
+from .._tools import get_wind_components
+from ..http_util import HTTPEndPoint
 
 
 warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created", UserWarning)
@@ -97,7 +94,7 @@ class WyomingUpperAir(HTTPEndPoint):
         latitude = float(lines[4].split(':')[1].strip())
         longitude = float(lines[5].split(':')[1].strip())
         elevation = float(lines[6].split(':')[1].strip())
-        pw          = float(lines[-1].split(':')[1].strip())
+        pw = float(lines[-1].split(':')[1].strip())
 
         df['station'] = station
         df['station_number'] = station_number
