@@ -265,7 +265,7 @@ class TDSCatalog(object):
 
     """
 
-    def __init__(self, catalog_url):
+    def __init__(self, catalog_url, **kwargs):
         """
         Initialize the TDSCatalog object.
 
@@ -276,9 +276,10 @@ class TDSCatalog(object):
 
         """
         self.session = session_manager.create_session()
+        session_manager.set_session_options(**kwargs)
 
         # get catalog.xml file
-        resp = self.session.get(catalog_url)
+        resp = self.session.get(catalog_url, **kwargs)
         resp.raise_for_status()
 
         # top level server url
