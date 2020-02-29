@@ -401,7 +401,9 @@ class TDSCatalog(object):
 
     def __repr__(self):
         """Return informative repr for TDSCatalog."""
-        return TDSCatalog.__name__ + ': ' + self.catalog_name
+        return "%s.%s('%s')" % (self.__class__.__module__,
+                                self.__class__.__qualname__,
+                                self.catalog_url)
 
 
 class CatalogRef(object):
