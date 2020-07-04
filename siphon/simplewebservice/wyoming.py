@@ -119,11 +119,7 @@ class WyomingUpperAir(HTTPEndPoint):
                     'latitude': 'degrees',
                     'longitude': 'degrees',
                     'elevation': 'meter',
-<<<<<<< HEAD
                     'pw': 'millimeter'}
-=======
-                    'pw': 'millimeters'}
->>>>>>> 36be68769381d47e6d3003350cc5032c33be39a6
         return df
 
     def _get_data_raw(self, time, site_id):
