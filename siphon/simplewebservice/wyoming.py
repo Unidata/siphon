@@ -14,6 +14,7 @@ import pandas as pd
 from .._tools import get_wind_components
 from ..http_util import HTTPEndPoint
 
+
 warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created", UserWarning)
 
 
@@ -118,7 +119,11 @@ class WyomingUpperAir(HTTPEndPoint):
                     'latitude': 'degrees',
                     'longitude': 'degrees',
                     'elevation': 'meter',
+<<<<<<< HEAD
                     'pw': 'millimeter'}
+=======
+                    'pw': 'millimeters'}
+>>>>>>> 36be68769381d47e6d3003350cc5032c33be39a6
         return df
 
     def _get_data_raw(self, time, site_id):
