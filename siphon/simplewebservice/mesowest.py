@@ -1,6 +1,4 @@
-from datetime import datetime
-from io import StringIO
-import warnings, sys
+import warnings
 
 from bs4 import BeautifulSoup
 import numpy as np
@@ -17,7 +15,7 @@ class MesoWest(HTTPEndPoint):
         super(MesoWest, self).__init__('https://mesowest.utah.edu/cgi-bin/droman/')
 
     @classmethod
-    def request_data(cls, date, site_id, **kwargs):
+    def request_data(cls, date, site_id):
         r"""Retrieve upper air observations from the University of Utah MesoWest archive.
 
         Parameters
@@ -26,7 +24,7 @@ class MesoWest(HTTPEndPoint):
             The date of the desired observation.
 
         site_id : str
-            The four letter MesoWest identifier of the station for which data should be
+            The MesoWest identifier of the station for which data should be
             downloaded.
             https://mesowest.utah.edu/cgi-bin/droman/meso_station.cgi?area=1
 
@@ -51,7 +49,7 @@ class MesoWest(HTTPEndPoint):
             The date of the desired observation.
 
         site_id : str
-            The four letter MesoWest identifier of the station for which data should be
+            The MesoWest identifier of the station for which data should be
             downloaded.
             https://mesowest.utah.edu/cgi-bin/droman/meso_station.cgi?area=1
 
@@ -63,8 +61,11 @@ class MesoWest(HTTPEndPoint):
         raw_data = self._get_data_raw(date, site_id)
         soup = BeautifulSoup(raw_data, 'html.parser')
 
-        names = pd.DataFrame.from_records([[td.find_next(text=True).strip('\n\t\t') for td in tr.find_all('small')] for tr in soup.find_all('th')])[1].dropna(how='any', axis=0).reset_index(drop=True)
-        df = pd.DataFrame.from_records([[td.find_next(text=True).strip("\n\t\t") for td in tr.find_all("td")] for tr in soup.find_all('tr')]).dropna(how='any', axis=0).reset_index(drop=True)
+        names_search = [[td.find_next(text=True).strip('\n\t\t') for td in tr.find_all('small')] for tr in soup.find_all('th')]
+        names = pd.DataFrame.from_records(names_search)[1].dropna(how='any', axis=0).reset_index(drop=True)
+
+        data_search = [[td.find_next(text=True).strip("\n\t\t") for td in tr.find_all("td")] for tr in soup.find_all('tr')]
+        df = pd.DataFrame.from_records(data_search).dropna(how='any', axis=0).reset_index(drop=True)
         df = df.replace(r'^\s*$', np.nan, regex=True).replace('N/A', np.inf)
 
         df[0] = pd.to_datetime(df[0]).apply(lambda x: x.time())
