@@ -297,15 +297,15 @@ class ResponseRegistry(object):
 response_handlers = ResponseRegistry()
 
 
-def squish(l):
+def squish(seq):
     """If list contains only 1 element, return it instead."""
-    return l if len(l) > 1 else l[0]
+    return seq if len(seq) > 1 else seq[0]
 
 
-def combine_dicts(l):
+def combine_dicts(seq):
     """Combine a list of dictionaries into single one."""
     ret = {}
-    for item in l:
+    for item in seq:
         ret.update(item)
     return ret
 
@@ -331,10 +331,10 @@ def parse_xml_point(elem):
     return point, units
 
 
-def combine_xml_points(l, units, handle_units):
+def combine_xml_points(seq, units, handle_units):
     """Combine multiple Point tags into an array."""
     ret = {}
-    for item in l:
+    for item in seq:
         for key, value in item.items():
             ret.setdefault(key, []).append(value)
 

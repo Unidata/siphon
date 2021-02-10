@@ -1,9 +1,8 @@
 # Copyright (c) 2019 Siphon Contributors.
 # Distributed under the terms of the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
-"""Reading National Hurricane Center Data.
+"""Read National Hurricane Center Data.
 
-======================================
 This program is written to pull data from the National Hurricane
 Center and return the data in an easy to use format.
 
@@ -34,7 +33,7 @@ class NHCD(HTTPEndPoint):
 
         This initiation creates a file table based on a url for all storms in the
         NHCD and puts them into a pandas dataframe. This dataframe is then turned
-        into a member atribute '.storm_table'.
+        into a member attribute '.storm_table'.
 
         """
         storm_list_columns = ['Name', 'Basin', 'CycloneNum', 'Year', 'StormType', 'Filename']

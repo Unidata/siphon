@@ -19,7 +19,6 @@ recorder = get_recorder(__file__)
 
 def subset_records(response):
     """Filter to subset SPC archive and only save a subset of records."""
-
     data = response['body']['string']
     index = 0
 
@@ -160,7 +159,7 @@ def test_hail_archive():
 def test_wind_after_2011_archive():
     """Test of method of SPC wind data parsing to be used for recent years."""
     # Second set of assertions for parsing done for storm events after 12/31/2017
-    table =  SPC.get_wind_reports(datetime(2018, 6, 15))
+    table = SPC.get_wind_reports(datetime(2018, 6, 15))
 
     assert table['Time'][0] == datetime(2018, 6, 15, 12, 15)
     assert table['Time'][18] == datetime(2018, 6, 16, 0, 28)

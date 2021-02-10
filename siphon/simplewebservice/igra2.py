@@ -168,10 +168,10 @@ class IGRAUpperAir(HTTPEndPoint):
         selector = np.zeros(len(lines), dtype=bool)
         selector[begin_idx:end_idx + 1] = True
         selector[headers] = False
-        body = ''.join([line for line in itertools.compress(lines, selector)])
+        body = ''.join(itertools.compress(lines, selector))
 
         selector[begin_idx:end_idx + 1] = ~selector[begin_idx:end_idx + 1]
-        header = ''.join([line for line in itertools.compress(lines, selector)])
+        header = ''.join(itertools.compress(lines, selector))
 
         # expand date vector to match length of the body dataframe.
         dates_long = np.repeat(dates, num_lev)
