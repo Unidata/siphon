@@ -1,0 +1,81 @@
+name: Conda Tests
+
+# We don't want pushes (or PRs) to gh-pages to kick anything off
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  #
+  # Run all tests on Conda on both Windows and macOS
+  #
+  CondaTests:
+    name: ${{ matrix.os }} ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+        os: [macOS, Windows]
+
+    steps:
+    # We check out only a limited depth and then pull tags to save time
+    - name: Checkout source
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 100
+
+    - name: Get tags
+      run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+
+    - name: Setup conda caching
+      uses: actions/cache@v2
+      with:
+        path: ~/conda_pkgs_dir
+        key: conda-tests-${{ runner.os }}-${{ matrix.python-version}}-${{ hashFiles('ci/*') }}
+        restore-keys: |
+          conda-tests-${{ runner.os }}-${{ matrix.python-version}}
+          conda-tests-${{ runner.os }}
+          conda-tests-
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        miniconda-version: "latest"
+        python-version: ${{ matrix.python-version }}
+        channel-priority: strict
+        channels: conda-forge
+        show-channel-urls: true
+        # Needed for caching
+        use-only-tar-bz2: true
+
+    - name: Install dependencies
+      run: conda install --quiet --yes --file ci/test_requirements.txt --file ci/extra_requirements.txt --file ci/requirements.txt
+
+    - name: Install
+      # For some reason on Windows 3.7 building the wheel fails to properly include our extra
+      # stuff. Executing the egg_info beforehand for some reason fixes it. No idea why. We're
+      # deep in territory where googling for answers helps not at all.
+      run: |
+        python setup.py egg_info
+        python -m pip install --no-deps .
+
+    - name: Run tests
+      # By running coverage in "parallel" mode and "combining", we can clean up the path names
+      run: |
+        export TEST_DATA_DIR=$GITHUB_WORKSPACE/staticdata
+        python -m coverage run -p -m pytest siphon
+        python -m coverage combine
+        python -m coverage report
+        python -m coverage xml
+
+    - name: Upload coverage
+      if: ${{ always() }}
+      uses: codecov/codecov-action@v1
+      with:
+        name: conda-${{ matrix.python-version }}-${{ runner.os }}
