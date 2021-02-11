@@ -237,7 +237,7 @@ class IGRAUpperAir(HTTPEndPoint):
                           'potential_temperature_gradient', 'virtual_temperature',
                           'virtual_potential_temperature', 'vapor_pressure',
                           'saturation_vapor_pressure', 'reported_relative_humidity',
-                          'calculated_relative_humidity', 'u_wind', 'u_wind_gradient',
+                          'calculated_relative_humidity', 'relative_humidity_gradient', 'u_wind', 'u_wind_gradient',
                           'v_wind', 'v_wind_gradient', 'refractive_index']
 
             colspecs_body = [(0, 7), (8, 15), (16, 23), (24, 31), (32, 39),
@@ -258,6 +258,7 @@ class IGRAUpperAir(HTTPEndPoint):
                          'saturation_vapor_pressure': _cdec(power=3),
                          'reported_relative_humidity': _cdec(),
                          'calculated_relative_humidity': _cdec(),
+                         'relative_humidity_gradient': _cdec(),
                          'u_wind': _cdec(),
                          'u_wind_gradient': _cdec(),
                          'v_wind': _cdec(),
@@ -379,6 +380,7 @@ class IGRAUpperAir(HTTPEndPoint):
                         'saturation_vapor_pressure': 'Pascal',
                         'reported_relative_humidity': 'percent',
                         'calculated_relative_humidity': 'percent',
+                        'relative_humidity_gradient': 'percent / kilometer',
                         'u_wind': 'meter / second',
                         'u_wind_gradient': '(meter / second) / kilometer)',
                         'v_wind': 'meter / second',
