@@ -198,19 +198,19 @@
 <p>This includes forming proper queries as well as parsing the returned catalog.</p>
 <dl class="py class">
 <dt id="siphon.radarserver.RadarQuery">
-<em class="property">class </em><code class="sig-prename descclassname">siphon.radarserver.</code><code class="sig-name descname">RadarQuery</code><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarQuery"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.radarserver.RadarQuery" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></code><code class="sig-name descname"><span class="pre">RadarQuery</span></code><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarQuery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarQuery" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent a query to the THREDDS radar server.</p>
 <p>Expands on the queries supported by <a class="reference internal" href="http_util.html#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataQuery</span></code></a> to add queries
 specific to the radar data query service.</p>
 <dl class="py method">
 <dt id="siphon.radarserver.RadarQuery.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty <code class="xref py py-class docutils literal notranslate"><span class="pre">DataQuery</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarQuery.add_query_parameter">
-<code class="sig-name descname">add_query_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.add_query_parameter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">add_query_parameter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.add_query_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add arbitrary query element (name=value) to the request.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple
 queries can be chained together on one line.</p>
@@ -229,7 +229,7 @@ queries can be chained together on one line.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarQuery.all_times">
-<code class="sig-name descname">all_times</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.all_times" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">all_times</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.all_times" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a request for all times to the query.</p>
 <p>This adds a request for all times (<em class="xref py py-obj">temporal=all</em>). This modifies the query
 in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries can be chained together on
@@ -247,7 +247,7 @@ one line.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarQuery.items">
-<code class="sig-name descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.items" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">items</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.items" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the various name=value pairs that compose the query.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -261,7 +261,7 @@ one line.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarQuery.lonlat_box">
-<code class="sig-name descname">lonlat_box</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">west</span></em>, <em class="sig-param"><span class="n">east</span></em>, <em class="sig-param"><span class="n">south</span></em>, <em class="sig-param"><span class="n">north</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.lonlat_box" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">lonlat_box</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">west</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">east</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">south</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">north</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.lonlat_box" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a latitude/longitude bounding box to the query.</p>
 <p>This adds a request for a spatial bounding box, bounded by (‘north’, ‘south’)
 for latitude and (‘east’, ‘west’) for the longitude. This modifies the query
@@ -288,7 +288,7 @@ on one line.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarQuery.lonlat_point">
-<code class="sig-name descname">lonlat_point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lon</span></em>, <em class="sig-param"><span class="n">lat</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.lonlat_point" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">lonlat_point</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.lonlat_point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a latitude/longitude point to the query.</p>
 <p>This adds a request for a (<em class="xref py py-obj">lon</em>, <em class="xref py py-obj">lat</em>) point. This modifies the query
 in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries can be chained together on
@@ -312,7 +312,7 @@ one line.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarQuery.stations">
-<code class="sig-name descname">stations</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">stns</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarQuery.stations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.radarserver.RadarQuery.stations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">stations</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">stns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarQuery.stations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarQuery.stations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specify one or more stations for the query.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple
 queries can be chained together on one line.</p>
@@ -332,7 +332,7 @@ queries can be chained together on one line.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarQuery.time">
-<code class="sig-name descname">time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">time</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a request for a specific time to the query.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries
 can be chained together on one line.</p>
@@ -352,7 +352,7 @@ can be chained together on one line.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarQuery.time_range">
-<code class="sig-name descname">time_range</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">end</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.time_range" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">time_range</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.time_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a request for a time range to the query.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries
 can be chained together on one line.</p>
@@ -375,7 +375,7 @@ can be chained together on one line.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarQuery.variables">
-<code class="sig-name descname">variables</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">var_names</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.variables" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">variables</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">var_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarQuery.variables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specify one or more variables for the query.</p>
 <p>This function ensures that variable names are not repeated.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple
@@ -397,13 +397,13 @@ queries can be chained together on one line.</p>
 
 <dl class="py class">
 <dt id="siphon.radarserver.RadarServer">
-<em class="property">class </em><code class="sig-prename descclassname">siphon.radarserver.</code><code class="sig-name descname">RadarServer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.radarserver.RadarServer" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></code><code class="sig-name descname"><span class="pre">RadarServer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarServer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrap access to the THREDDS radar query service (radar server).</p>
 <p>Simplifies access via HTTP to the radar server endpoint. Parses the metadata, provides
 query catalog results download and parsing based on the appropriate query.</p>
 <dl class="py attribute">
 <dt id="siphon.radarserver.RadarServer.metadata">
-<code class="sig-name descname">metadata</code><a class="headerlink" href="#siphon.radarserver.RadarServer.metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">metadata</span></code><a class="headerlink" href="#siphon.radarserver.RadarServer.metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Contains the result of parsing the radar server endpoint’s dataset.xml. This has
 information about the time and space coverage, as well as full information
 about all of the variables.</p>
@@ -416,7 +416,7 @@ about all of the variables.</p>
 
 <dl class="py attribute">
 <dt id="siphon.radarserver.RadarServer.variables">
-<code class="sig-name descname">variables</code><a class="headerlink" href="#siphon.radarserver.RadarServer.variables" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">variables</span></code><a class="headerlink" href="#siphon.radarserver.RadarServer.variables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Names of all variables available in this dataset</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -427,7 +427,7 @@ about all of the variables.</p>
 
 <dl class="py attribute">
 <dt id="siphon.radarserver.RadarServer.stations">
-<code class="sig-name descname">stations</code><a class="headerlink" href="#siphon.radarserver.RadarServer.stations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">stations</span></code><a class="headerlink" href="#siphon.radarserver.RadarServer.stations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mapping of station ID to a <a class="reference internal" href="#siphon.radarserver.Station" title="siphon.radarserver.Station"><code class="xref py py-class docutils literal notranslate"><span class="pre">Station</span></code></a>, which is a namedtuple containing the
 station’s id, name, latitude, longitude, and elevation.</p>
 <dl class="field-list simple">
@@ -439,7 +439,7 @@ station’s id, name, latitude, longitude, and elevation.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarServer.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.radarserver.RadarServer.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarServer.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a RadarServer instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -450,7 +450,7 @@ station’s id, name, latitude, longitude, and elevation.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarServer.get">
-<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarServer.get" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarServer.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a GET request, optionally including a parameters, to a path.</p>
 <p>The path of the request is the full URL.</p>
 <dl class="field-list simple">
@@ -478,7 +478,7 @@ station’s id, name, latitude, longitude, and elevation.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarServer.get_catalog">
-<code class="sig-name descname">get_catalog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer.get_catalog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.radarserver.RadarServer.get_catalog" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_catalog</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer.get_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarServer.get_catalog" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch a parsed THREDDS catalog from the radar server.</p>
 <p>Requests a catalog of radar data files data from the radar server given the
 parameters in <a class="reference internal" href="#siphon.radarserver.RadarServer.query" title="siphon.radarserver.RadarServer.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a> and returns a <a class="reference internal" href="catalog.html#siphon.catalog.TDSCatalog" title="siphon.catalog.TDSCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">TDSCatalog</span></code></a> instance.</p>
@@ -504,7 +504,7 @@ parameters in <a class="reference internal" href="#siphon.radarserver.RadarServe
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarServer.get_catalog_raw">
-<code class="sig-name descname">get_catalog_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer.get_catalog_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.radarserver.RadarServer.get_catalog_raw" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_catalog_raw</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer.get_catalog_raw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarServer.get_catalog_raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch THREDDS catalog XML from the radar server.</p>
 <p>Requests a catalog of radar data files data from the radar server given the
 parameters in <a class="reference internal" href="#siphon.radarserver.RadarServer.query" title="siphon.radarserver.RadarServer.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a> and returns the raw XML.</p>
@@ -527,7 +527,7 @@ parameters in <a class="reference internal" href="#siphon.radarserver.RadarServe
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarServer.get_path">
-<code class="sig-name descname">get_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarServer.get_path" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarServer.get_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a GET request, optionally including a query, to a relative path.</p>
 <p>The path of the request includes a path on top of the base URL
 assigned to the endpoint.</p>
@@ -553,7 +553,7 @@ assigned to the endpoint.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarServer.get_query">
-<code class="sig-name descname">get_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarServer.get_query" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_query</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarServer.get_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a GET request, including a query, to the endpoint.</p>
 <p>The path of the request is to the base URL assigned to the endpoint.</p>
 <dl class="field-list simple">
@@ -575,7 +575,7 @@ assigned to the endpoint.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarServer.query">
-<code class="sig-name descname">query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.radarserver.RadarServer.query" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">query</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarServer.query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a new query for the radar server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -589,7 +589,7 @@ assigned to the endpoint.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarServer.url_path">
-<code class="sig-name descname">url_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarServer.url_path" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">url_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.RadarServer.url_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Assemble the full url to a path.</p>
 <p>Given a path relative to the base URL, assemble the full URL.</p>
 <dl class="field-list simple">
@@ -611,7 +611,7 @@ assigned to the endpoint.</p>
 
 <dl class="py method">
 <dt id="siphon.radarserver.RadarServer.validate_query">
-<code class="sig-name descname">validate_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer.validate_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.radarserver.RadarServer.validate_query" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">validate_query</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer.validate_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarServer.validate_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Validate a query.</p>
 <p>Determines whether <a class="reference internal" href="#siphon.radarserver.RadarServer.query" title="siphon.radarserver.RadarServer.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a> is well-formed. This includes checking for all
 required parameters, as well as checking parameters for valid values.</p>
@@ -632,47 +632,47 @@ required parameters, as well as checking parameters for valid values.</p>
 
 <dl class="py class">
 <dt id="siphon.radarserver.Station">
-<em class="property">class </em><code class="sig-prename descclassname">siphon.radarserver.</code><code class="sig-name descname">Station</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span></em>, <em class="sig-param"><span class="n">elevation</span></em>, <em class="sig-param"><span class="n">latitude</span></em>, <em class="sig-param"><span class="n">longitude</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.Station" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></code><code class="sig-name descname"><span class="pre">Station</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elevation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.Station" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
 <dt id="siphon.radarserver.Station.count">
-<code class="sig-name descname">count</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="o">/</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.Station.count" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">count</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.Station.count" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return number of occurrences of value.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="siphon.radarserver.Station.elevation">
-<code class="sig-name descname">elevation</code><a class="headerlink" href="#siphon.radarserver.Station.elevation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">elevation</span></code><a class="headerlink" href="#siphon.radarserver.Station.elevation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 1</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="siphon.radarserver.Station.id">
-<code class="sig-name descname">id</code><a class="headerlink" href="#siphon.radarserver.Station.id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#siphon.radarserver.Station.id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 0</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="siphon.radarserver.Station.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">stop</span><span class="o">=</span><span class="default_value">9223372036854775807</span></em>, <em class="sig-param"><span class="o">/</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.Station.index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">index</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9223372036854775807</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.Station.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return first index of value.</p>
 <p>Raises ValueError if the value is not present.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="siphon.radarserver.Station.latitude">
-<code class="sig-name descname">latitude</code><a class="headerlink" href="#siphon.radarserver.Station.latitude" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">latitude</span></code><a class="headerlink" href="#siphon.radarserver.Station.latitude" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 2</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="siphon.radarserver.Station.longitude">
-<code class="sig-name descname">longitude</code><a class="headerlink" href="#siphon.radarserver.Station.longitude" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">longitude</span></code><a class="headerlink" href="#siphon.radarserver.Station.longitude" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 3</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="siphon.radarserver.Station.name">
-<code class="sig-name descname">name</code><a class="headerlink" href="#siphon.radarserver.Station.name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#siphon.radarserver.Station.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 4</p>
 </dd></dl>
 
@@ -680,7 +680,7 @@ required parameters, as well as checking parameters for valid values.</p>
 
 <dl class="py function">
 <dt id="siphon.radarserver.get_radarserver_datasets">
-<code class="sig-prename descclassname">siphon.radarserver.</code><code class="sig-name descname">get_radarserver_datasets</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">server</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#get_radarserver_datasets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.radarserver.get_radarserver_datasets" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></code><code class="sig-name descname"><span class="pre">get_radarserver_datasets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#get_radarserver_datasets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.get_radarserver_datasets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get datasets from a THREDDS radar server’s top-level catalog.</p>
 <p>This is a helper function to construct the appropriate catalog URL from the
 server URL, fetch the catalog, and return the contained catalog references.</p>
@@ -699,13 +699,13 @@ server URL, fetch the catalog, and return the contained catalog references.</p>
 
 <dl class="py function">
 <dt id="siphon.radarserver.parse_station_table">
-<code class="sig-prename descclassname">siphon.radarserver.</code><code class="sig-name descname">parse_station_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#parse_station_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.radarserver.parse_station_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></code><code class="sig-name descname"><span class="pre">parse_station_table</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#parse_station_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.parse_station_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse station list XML file.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="siphon.radarserver.parse_xml_station">
-<code class="sig-prename descclassname">siphon.radarserver.</code><code class="sig-name descname">parse_xml_station</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">elem</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#parse_xml_station"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.radarserver.parse_xml_station" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></code><code class="sig-name descname"><span class="pre">parse_xml_station</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elem</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#parse_xml_station"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.parse_xml_station" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a <a class="reference internal" href="#siphon.radarserver.Station" title="siphon.radarserver.Station"><code class="xref py py-class docutils literal notranslate"><span class="pre">Station</span></code></a> instance from an XML tag.</p>
 </dd></dl>
 
@@ -727,7 +727,7 @@ server URL, fetch the catalog, and return the contained catalog references.</p>
     <p>
         &#169; Copyright 2018, Siphon Contributors.
       <span class="lastupdated">
-        Last updated on Mar 05, 2021 at 22:47:20.
+        Last updated on Mar 05, 2021 at 22:47:27.
       </span>
 
     </p>

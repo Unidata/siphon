@@ -197,13 +197,13 @@
 <p>Utility code to support making requests using HTTP.</p>
 <dl class="py exception">
 <dt id="siphon.http_util.BadQueryError">
-<em class="property">exception </em><code class="sig-prename descclassname">siphon.http_util.</code><code class="sig-name descname">BadQueryError</code><a class="reference internal" href="../_modules/siphon/http_util.html#BadQueryError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.BadQueryError" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.http_util.</span></code><code class="sig-name descname"><span class="pre">BadQueryError</span></code><a class="reference internal" href="../_modules/siphon/http_util.html#BadQueryError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.BadQueryError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exception raised when a query fails.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt id="siphon.http_util.DataQuery">
-<em class="property">class </em><code class="sig-prename descclassname">siphon.http_util.</code><code class="sig-name descname">DataQuery</code><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.http_util.</span></code><code class="sig-name descname"><span class="pre">DataQuery</span></code><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.DataQuery" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent a query for data from a THREDDS server.</p>
 <p>This object provides a clear API to formulate a query for data, including
 a spatial query, a time query, and possibly some variables or other parameters.
@@ -213,7 +213,7 @@ Instances of this object can also be turned into a string, which will yield a
 properly escaped string for a URL.</p>
 <dl class="py method">
 <dt id="siphon.http_util.DataQuery.add_query_parameter">
-<code class="sig-name descname">add_query_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.add_query_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.add_query_parameter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">add_query_parameter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.add_query_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.DataQuery.add_query_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add arbitrary query element (name=value) to the request.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple
 queries can be chained together on one line.</p>
@@ -232,7 +232,7 @@ queries can be chained together on one line.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.DataQuery.all_times">
-<code class="sig-name descname">all_times</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.all_times"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.all_times" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">all_times</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.all_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.DataQuery.all_times" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a request for all times to the query.</p>
 <p>This adds a request for all times (<em class="xref py py-obj">temporal=all</em>). This modifies the query
 in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries can be chained together on
@@ -250,7 +250,7 @@ one line.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.DataQuery.items">
-<code class="sig-name descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.items" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">items</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.DataQuery.items" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the various name=value pairs that compose the query.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -264,7 +264,7 @@ one line.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.DataQuery.lonlat_box">
-<code class="sig-name descname">lonlat_box</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">west</span></em>, <em class="sig-param"><span class="n">east</span></em>, <em class="sig-param"><span class="n">south</span></em>, <em class="sig-param"><span class="n">north</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.lonlat_box"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.lonlat_box" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">lonlat_box</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">west</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">east</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">south</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">north</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.lonlat_box"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.DataQuery.lonlat_box" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a latitude/longitude bounding box to the query.</p>
 <p>This adds a request for a spatial bounding box, bounded by (‘north’, ‘south’)
 for latitude and (‘east’, ‘west’) for the longitude. This modifies the query
@@ -291,7 +291,7 @@ on one line.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.DataQuery.lonlat_point">
-<code class="sig-name descname">lonlat_point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lon</span></em>, <em class="sig-param"><span class="n">lat</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.lonlat_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.lonlat_point" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">lonlat_point</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.lonlat_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.DataQuery.lonlat_point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a latitude/longitude point to the query.</p>
 <p>This adds a request for a (<em class="xref py py-obj">lon</em>, <em class="xref py py-obj">lat</em>) point. This modifies the query
 in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries can be chained together on
@@ -315,7 +315,7 @@ one line.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.DataQuery.time">
-<code class="sig-name descname">time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">time</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.DataQuery.time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a request for a specific time to the query.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries
 can be chained together on one line.</p>
@@ -335,7 +335,7 @@ can be chained together on one line.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.DataQuery.time_range">
-<code class="sig-name descname">time_range</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">end</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.time_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.time_range" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">time_range</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.time_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.DataQuery.time_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a request for a time range to the query.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries
 can be chained together on one line.</p>
@@ -358,7 +358,7 @@ can be chained together on one line.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.DataQuery.variables">
-<code class="sig-name descname">variables</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">var_names</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.variables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.DataQuery.variables" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">variables</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">var_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#DataQuery.variables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.DataQuery.variables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specify one or more variables for the query.</p>
 <p>This function ensures that variable names are not repeated.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple
@@ -380,13 +380,13 @@ queries can be chained together on one line.</p>
 
 <dl class="py class">
 <dt id="siphon.http_util.HTTPEndPoint">
-<em class="property">class </em><code class="sig-prename descclassname">siphon.http_util.</code><code class="sig-name descname">HTTPEndPoint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.http_util.</span></code><code class="sig-name descname"><span class="pre">HTTPEndPoint</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object representing an endpoint on a server that is accessed using HTTP.</p>
 <p>This provides a simple way to point to a URL, formulate appropriate queries and
 validate them, parse metadata as appropriate, and parse returns from requests.</p>
 <dl class="py method">
 <dt id="siphon.http_util.HTTPEndPoint.get">
-<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.get" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a GET request, optionally including a parameters, to a path.</p>
 <p>The path of the request is the full URL.</p>
 <dl class="field-list simple">
@@ -414,7 +414,7 @@ validate them, parse metadata as appropriate, and parse returns from requests.</
 
 <dl class="py method">
 <dt id="siphon.http_util.HTTPEndPoint.get_path">
-<code class="sig-name descname">get_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.get_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.get_path" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.get_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.get_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a GET request, optionally including a query, to a relative path.</p>
 <p>The path of the request includes a path on top of the base URL
 assigned to the endpoint.</p>
@@ -440,7 +440,7 @@ assigned to the endpoint.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.HTTPEndPoint.get_query">
-<code class="sig-name descname">get_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.get_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.get_query" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_query</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.get_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.get_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a GET request, including a query, to the endpoint.</p>
 <p>The path of the request is to the base URL assigned to the endpoint.</p>
 <dl class="field-list simple">
@@ -462,7 +462,7 @@ assigned to the endpoint.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.HTTPEndPoint.query">
-<code class="sig-name descname">query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.query" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">query</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new query object.</p>
 <p>Returns a new <a class="reference internal" href="#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataQuery</span></code></a> instance appropriate for this endpoint.</p>
 <p>The default implementation returns a <a class="reference internal" href="#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataQuery</span></code></a> instance. Subclasses can
@@ -479,7 +479,7 @@ override to return a subclass specific to this endpoint.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.HTTPEndPoint.url_path">
-<code class="sig-name descname">url_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.url_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.url_path" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">url_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.url_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.url_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Assemble the full url to a path.</p>
 <p>Given a path relative to the base URL, assemble the full URL.</p>
 <dl class="field-list simple">
@@ -501,7 +501,7 @@ override to return a subclass specific to this endpoint.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.HTTPEndPoint.validate_query">
-<code class="sig-name descname">validate_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.validate_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.validate_query" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">validate_query</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPEndPoint.validate_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPEndPoint.validate_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Validate a query.</p>
 <p>Determines whether a query is well-formed. This includes checking for all
 required parameters, as well as checking parameters for valid values.</p>
@@ -524,11 +524,11 @@ implement this to do more detailed checking as appropriate.</p>
 
 <dl class="py class">
 <dt id="siphon.http_util.HTTPSessionManager">
-<em class="property">class </em><code class="sig-prename descclassname">siphon.http_util.</code><code class="sig-name descname">HTTPSessionManager</code><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPSessionManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPSessionManager" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.http_util.</span></code><code class="sig-name descname"><span class="pre">HTTPSessionManager</span></code><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPSessionManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPSessionManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Manage the creation of sessions for HTTP access.</p>
 <dl class="py method">
 <dt id="siphon.http_util.HTTPSessionManager.create_session">
-<code class="sig-name descname">create_session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPSessionManager.create_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPSessionManager.create_session" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">create_session</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPSessionManager.create_session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPSessionManager.create_session" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new HTTP session with our user-agent set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -546,7 +546,7 @@ implement this to do more detailed checking as appropriate.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.HTTPSessionManager.set_session_options">
-<code class="sig-name descname">set_session_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPSessionManager.set_session_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPSessionManager.set_session_options" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_session_options</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPSessionManager.set_session_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPSessionManager.set_session_options" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set options for created session instances.</p>
 <p>Takes keyword arguments and sets them as attributes on the returned
 <a class="reference external" href="https://requests.kennethreitz.org/en/master/api/#requests.Session" title="(in Requests v2.25.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">requests.Session</span></code></a> instance.</p>
@@ -558,7 +558,7 @@ implement this to do more detailed checking as appropriate.</p>
 
 <dl class="py method">
 <dt id="siphon.http_util.HTTPSessionManager.urlopen">
-<code class="sig-name descname">urlopen</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">decompress</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPSessionManager.urlopen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.HTTPSessionManager.urlopen" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">urlopen</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decompress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPSessionManager.urlopen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPSessionManager.urlopen" title="Permalink to this definition">¶</a></dt>
 <dd><p>GET a file-like object for a URL using HTTP.</p>
 <p>This is a thin wrapper around <a class="reference external" href="https://requests.kennethreitz.org/en/master/api/#requests.Session.get" title="(in Requests v2.25.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">requests.Session.get()</span></code></a> that returns a file-like
 object wrapped around the resulting content.</p>
@@ -586,23 +586,23 @@ object wrapped around the resulting content.</p>
 
 <dl class="py class">
 <dt id="siphon.http_util.UTC">
-<em class="property">class </em><code class="sig-prename descclassname">siphon.http_util.</code><code class="sig-name descname">UTC</code><a class="reference internal" href="../_modules/siphon/http_util.html#UTC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.UTC" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.http_util.</span></code><code class="sig-name descname"><span class="pre">UTC</span></code><a class="reference internal" href="../_modules/siphon/http_util.html#UTC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.UTC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent UTC timezone.</p>
 <dl class="py method">
 <dt id="siphon.http_util.UTC.dst">
-<code class="sig-name descname">dst</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#UTC.dst"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.UTC.dst" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">dst</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#UTC.dst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.UTC.dst" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get whether the timezone uses Daylight Savings Time.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="siphon.http_util.UTC.tzname">
-<code class="sig-name descname">tzname</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#UTC.tzname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.UTC.tzname" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">tzname</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#UTC.tzname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.UTC.tzname" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the name of the timezone.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="siphon.http_util.UTC.utcoffset">
-<code class="sig-name descname">utcoffset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dt</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#UTC.utcoffset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.UTC.utcoffset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">utcoffset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#UTC.utcoffset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.UTC.utcoffset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the offset from UTC.</p>
 </dd></dl>
 
@@ -610,7 +610,7 @@ object wrapped around the resulting content.</p>
 
 <dl class="py function">
 <dt id="siphon.http_util.parse_iso_date">
-<code class="sig-prename descclassname">siphon.http_util.</code><code class="sig-name descname">parse_iso_date</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#parse_iso_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.http_util.parse_iso_date" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">siphon.http_util.</span></code><code class="sig-name descname"><span class="pre">parse_iso_date</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#parse_iso_date"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.parse_iso_date" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse a string containing an ISO-8601 formatted date.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -643,7 +643,7 @@ object wrapped around the resulting content.</p>
     <p>
         &#169; Copyright 2018, Siphon Contributors.
       <span class="lastupdated">
-        Last updated on Mar 05, 2021 at 22:47:20.
+        Last updated on Mar 05, 2021 at 22:47:27.
       </span>
 
     </p>
