@@ -59,6 +59,11 @@ Siphon can also be installed through ``conda``:
 .. parsed-literal::
     conda install -c unidata siphon
 
+Additionally, Siphon can be installed with ``conda-forge``:
+
+.. parsed-literal::
+    conda install -c conda-forge siphon
+
 The source code can also be grabbed from `GitHub <https://github.com/Unidata/siphon>`_. From
 the base of the source directory, run:
 
@@ -66,6 +71,7 @@ the base of the source directory, run:
     python setup.py install
 
 This will build and install Siphon into your current Python installation.
+
 
 --------
 Examples
