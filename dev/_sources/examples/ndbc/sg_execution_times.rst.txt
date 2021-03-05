@@ -5,12 +5,12 @@
 
 Computation times
 =================
-**00:07.477** total execution time for **examples_ndbc** files:
+**00:05.179** total execution time for **examples_ndbc** files:
 
 +-------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ndbc_latest_request.py` (``latest_request.py``)       | 00:03.459 | 0.0 MB |
+| :ref:`sphx_glr_examples_ndbc_latest_request.py` (``latest_request.py``)       | 00:03.191 | 0.0 MB |
 +-------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ndbc_buoy_type_request.py` (``buoy_type_request.py``) | 00:02.927 | 0.0 MB |
+| :ref:`sphx_glr_examples_ndbc_buoy_type_request.py` (``buoy_type_request.py``) | 00:01.056 | 0.0 MB |
 +-------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ndbc_buoy_met_request.py` (``buoy_met_request.py``)   | 00:01.091 | 0.0 MB |
+| :ref:`sphx_glr_examples_ndbc_buoy_met_request.py` (``buoy_met_request.py``)   | 00:00.932 | 0.0 MB |
 +-------------------------------------------------------------------------------+-----------+--------+
