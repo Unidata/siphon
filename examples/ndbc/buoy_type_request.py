@@ -13,11 +13,11 @@ from siphon.simplewebservice.ndbc import NDBC
 
 ####################################################
 # Request the types of data available from a given buoy.
-data_aval = NDBC.buoy_data_types('41002')
+data_aval = NDBC.buoy_data_types('42002')
 print(data_aval)
 
 ####################################################
 # Get a pandas data frame of all of the observations, meteorological data is the default
 # observation set to query.
-df = NDBC.realtime_observations('41002', data_type='supl')
+df = NDBC.realtime_observations('42002', data_type='supl')
 df.head()
