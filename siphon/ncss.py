@@ -50,7 +50,7 @@ class NCSS(HTTPEndPoint):
 
     # Need staticmethod to keep this from becoming a bound method, where self
     # is passed implicitly
-    unit_handler = staticmethod(default_unit_handler)
+    unit_handler = staticmethod(lambda *a, **kw: default_unit_handler(*a, **kw))
 
     def _get_metadata(self):
         # Need to use .content here to avoid decode problems
