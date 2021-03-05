@@ -38,7 +38,7 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx_gallery.gen_gallery',
-    'm2r'
+    'myst_parser'
 ]
 
 sphinx_gallery_conf = {
