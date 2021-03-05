@@ -135,12 +135,12 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>27.4</td>
+          <td>27.5</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2021-03-05 21:00:00+00:00</td>
+          <td>2021-03-05 22:00:00+00:00</td>
         </tr>
         <tr>
           <th>2</th>
@@ -265,7 +265,7 @@ Let's make a simple plot of the buoy positions and color by water temperature
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.204 seconds)
+   **Total running time of the script:** ( 0 minutes  2.791 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_latest_request.py:
