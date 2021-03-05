@@ -46,7 +46,7 @@ def read_ncstream_data(fobj):
         # Again endian isn't coded properly
         dt = data_type_to_numpy(data.dataType).newbyteorder('>')
         if data.vdata:
-            return np.array([np.frombuffer(b, dtype=dt) for b in blocks])
+            return np.array([np.frombuffer(b, dtype=dt) for b in blocks], dtype=object)
         else:
             return np.array(blocks, dtype=dt)
     elif data.dataType in _dtype_lookup:
@@ -218,7 +218,7 @@ def process_vlen(data_header, array):
     """
     source = iter(array)
     return np.array([np.fromiter(itertools.islice(source, size), dtype=array.dtype)
-                     for size in data_header.vlens])
+                     for size in data_header.vlens], dtype=object)
 
 
 def datacol_to_array(datacol):
@@ -238,9 +238,9 @@ def datacol_to_array(datacol):
 
     """
     if datacol.dataType == stream.STRING:
-        arr = np.array(datacol.stringdata, dtype=np.object)
+        arr = np.array(datacol.stringdata, dtype=object)
     elif datacol.dataType == stream.OPAQUE:
-        arr = np.array(datacol.opaquedata, dtype=np.object)
+        arr = np.array(datacol.opaquedata, dtype=object)
     elif datacol.dataType == stream.STRUCTURE:
         members = OrderedDict((mem.name, datacol_to_array(mem))
                               for mem in datacol.structdata.memberData)
@@ -266,9 +266,9 @@ def datacol_to_array(datacol):
                         arr.size, datacol.nelems)
         if datacol.isVlen:
             arr = process_vlen(datacol, arr)
-            if arr.dtype == np.object_:
+            try:
                 arr = reshape_array(datacol, arr)
-            else:
+            except ValueError:
                 # In this case, the array collapsed, need different resize that
                 # correctly sizes from elements
                 shape = tuple(r.size for r in datacol.section.range) + (datacol.vlens[0],)

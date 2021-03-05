@@ -60,7 +60,7 @@ time = data.variables['time']
 # Fortunately, the `netCDF4` module has a helper function to convert these numbers into
 # Python `datetime` objects. We can see the first 5 element output by the function look
 # reasonable.
-time_vals = num2date(time[:].squeeze(), time.units)
+time_vals = num2date(time[:].squeeze(), time.units, only_use_cftime_datetimes=False)
 print(time_vals[:5])
 
 ###########################################

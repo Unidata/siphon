@@ -50,7 +50,7 @@ class NCSS(HTTPEndPoint):
 
     # Need staticmethod to keep this from becoming a bound method, where self
     # is passed implicitly
-    unit_handler = staticmethod(default_unit_handler)
+    unit_handler = staticmethod(lambda *a, **kw: default_unit_handler(*a, **kw))
 
     def _get_metadata(self):
         # Need to use .content here to avoid decode problems
@@ -297,15 +297,15 @@ class ResponseRegistry(object):
 response_handlers = ResponseRegistry()
 
 
-def squish(l):
+def squish(seq):
     """If list contains only 1 element, return it instead."""
-    return l if len(l) > 1 else l[0]
+    return seq if len(seq) > 1 else seq[0]
 
 
-def combine_dicts(l):
+def combine_dicts(seq):
     """Combine a list of dictionaries into single one."""
     ret = {}
-    for item in l:
+    for item in seq:
         ret.update(item)
     return ret
 
@@ -331,10 +331,10 @@ def parse_xml_point(elem):
     return point, units
 
 
-def combine_xml_points(l, units, handle_units):
+def combine_xml_points(seq, units, handle_units):
     """Combine multiple Point tags into an array."""
     ret = {}
-    for item in l:
+    for item in seq:
         for key, value in item.items():
             ret.setdefault(key, []).append(value)
 
@@ -429,12 +429,12 @@ def parse_csv_dataset(data, handle_units):
     """Parse CSV data into a netCDF-like dataset."""
     fobj = BytesIO(data)
     names, units = parse_csv_header(fobj.readline().decode('utf-8'))
-    arrs = np.genfromtxt(fobj, dtype=None, names=names, delimiter=',', unpack=True,
+    arrs = np.genfromtxt(fobj, dtype=None, names=names, delimiter=',',
                          converters={'date': lambda s: parse_iso_date(s.decode('utf-8'))})
     d = {}
     for f in arrs.dtype.fields:
         dat = arrs[f]
-        if dat.dtype == np.object:
+        if dat.dtype == object:
             dat = dat.tolist()
         d[f] = handle_units(dat, units.get(f, None))
     return d

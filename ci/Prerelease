@@ -1,0 +1,5 @@
+beautifulsoup4>=0.0.dev0
+numpy>=0.0.dev0
+pandas>=0.0.dev0
+protobuf>=0.0.dev0
+requests>=0.0.dev0

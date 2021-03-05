@@ -199,9 +199,11 @@ class Variable(AttributeContainer):
             dt = self.dtype.newbyteorder(byteorder)
 
             if arr.dtype == 'O':
-                if hasattr(arr[0], 'dtype'):
-                    for subarray in arr:
-                        subarray.dtype = dt
+                if hasattr(arr[0], 'dtype') and arr[0].ndim > 0:
+                    for i, subarray in enumerate(arr):
+                        arr[i] = subarray.astype(dt)
+                else:
+                    arr = arr.astype(dt)
             # Don't reset dtype if we've already decoded to struct
             elif arr.dtype.fields and arr.dtype.fields == dt.fields:
                 pass
