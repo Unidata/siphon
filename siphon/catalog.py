@@ -610,18 +610,36 @@ class Dataset(object):
             with open(filename, 'wb') as outfile:
                 outfile.write(infile.read())
 
-    def remote_open(self):
+    def remote_open(self, mode='b', encoding='ascii', errors='ignore'):
         """Open the remote dataset for random access.
 
         Get a file-like object for reading from the remote dataset, providing random access,
         similar to a local file.
+
+        Parameters
+        ----------
+        mode : 'b' or 't', optional
+            Mode with which to open the remote data; 'b' for binary, 't' for text. Defaults
+            to 'b'.
+
+        encoding : str, optional
+            If ``mode`` is text, the encoding to use to decode the binary data into text.
+            Defaults to 'ascii'.
+
+        errors : str, optional
+            If ``mode`` is text, the error handling behavior to pass to `bytes.decode`.
+            Defaults to 'ignore'.
 
         Returns
         -------
         A random access, file-like object
 
         """
-        return self.access_with_service('HTTPServer')
+        fobj = self.access_with_service('HTTPServer')
+        if mode == 't':
+            from io import StringIO
+            fobj = StringIO(fobj.read().decode(encoding, errors))
+        return fobj
 
     def remote_access(self, service=None, use_xarray=None):
         """Access the remote dataset.
@@ -714,7 +732,7 @@ class Dataset(object):
                     import xarray as xr
                     provider = xr.open_dataset
                 except ImportError:
-                    raise ImportError('xarray to be installed if `use_xarray` is True.')
+                    raise ImportError('xarray needs to be installed if `use_xarray` is True.')
             else:
                 try:
                     from netCDF4 import Dataset as NC4Dataset

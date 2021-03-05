@@ -55,6 +55,15 @@ def test_dataset_remote_open(nids_url):
     assert fobj.read(8) == b'\x01\r\r\n562 '
 
 
+@recorder.use_cassette('fronts_cat_open')
+def test_dataset_remote_open_text():
+    """Test using remote_open to get data as text."""
+    cat = TDSCatalog('https://thredds-test.unidata.ucar.edu/thredds/catalog/noaaport/text'
+                     '/fronts/catalog.xml')
+    fobj = cat.datasets[0].remote_open(mode='t', errors='strict')
+    assert fobj.read(17) == '\x01\r\r\n109 \r\r\nASUS01'
+
+
 @recorder.use_cassette('cat_to_cdmr')
 def test_dataset_remote_access_default(nids_url):
     """Test using the remote_access method to request access using default method."""
