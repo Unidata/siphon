@@ -237,8 +237,9 @@ class IGRAUpperAir(HTTPEndPoint):
                           'potential_temperature_gradient', 'virtual_temperature',
                           'virtual_potential_temperature', 'vapor_pressure',
                           'saturation_vapor_pressure', 'reported_relative_humidity',
-                          'calculated_relative_humidity', 'relative_humidity_gradient', 'u_wind', 'u_wind_gradient',
-                          'v_wind', 'v_wind_gradient', 'refractive_index']
+                          'calculated_relative_humidity', 'relative_humidity_gradient',
+                          'u_wind', 'u_wind_gradient', 'v_wind', 'v_wind_gradient',
+                          'refractive_index']
 
             colspecs_body = [(0, 7), (8, 15), (16, 23), (24, 31), (32, 39),
                              (40, 47), (48, 55), (56, 63), (64, 71), (72, 79),
