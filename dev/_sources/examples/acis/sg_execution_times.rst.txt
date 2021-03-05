@@ -1,0 +1,14 @@
+
+:orphan:
+
+.. _sphx_glr_examples_acis_sg_execution_times:
+
+Computation times
+=================
+**03:16.435** total execution time for **examples_acis** files:
+
++---------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_acis_Mapping_Example.py` (``Mapping_Example.py``) | 03:15.628 | 0.0 MB |
++---------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_acis_Basic_Overview.py` (``Basic_Overview.py``)   | 00:00.807 | 0.0 MB |
++---------------------------------------------------------------------------+-----------+--------+

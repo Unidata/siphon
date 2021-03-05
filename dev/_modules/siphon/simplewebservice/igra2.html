@@ -1,18 +1,27 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>siphon.simplewebservice.igra2 &mdash; Siphon 0.8</title>
   
 
   
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-rendered-html.css" type="text/css" />
+
   
+  
+
   
   
     <link rel="canonical" href="https://unidata.github.io/siphon/latest/_modules/siphon/simplewebservice/igra2.html"/>
@@ -21,43 +30,31 @@
   
 
   
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
-  
-
-  
-  
-    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
-  
-    <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="Siphon 0.8" href="../../../index.html"/>
-        <link rel="up" title="Module code" href="../../index.html"/> 
-
-  
-  <script src="../../../_static/js/modernizr.min.js"></script>
-
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -66,7 +63,7 @@
 
           
             
-            <img src="../../../_static/siphon_150x150.png" class="logo" />
+            <img src="../../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -74,22 +71,7 @@
             
             
               <div class="version">
-                
-                  <div class="version-dropdown">
-                    <select class="version-list" id="version-list">
-                      <option value=''>0.8</option>
-                      
-                        
-                          <option value="../latest">latest</option>
-                        
-                      
-                        
-                          <option value="../dev">dev</option>
-                        
-                      
-                    </select>
-                  </div>
-                
+                0.8
               </div>
             
           
@@ -106,6 +88,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -125,13 +108,14 @@
             
           
         </div>
+        
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">Siphon</a>
@@ -139,10 +123,13 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
+
+
 
 
 
@@ -163,7 +150,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -189,18 +176,18 @@
 <span class="sd">&quot;&quot;&quot;Read upper air data from the Integrated Global Radiosonde Archive version 2.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="k">import</span> <span class="n">BytesIO</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="k">import</span> <span class="n">StringIO</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">zipfile</span> <span class="k">import</span> <span class="n">ZipFile</span>
+<span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">.._tools</span> <span class="k">import</span> <span class="n">get_wind_components</span>
-<span class="kn">from</span> <span class="nn">..http_util</span> <span class="k">import</span> <span class="n">HTTPEndPoint</span><span class="p">,</span> <span class="n">HTTPError</span>
+<span class="kn">from</span> <span class="nn">.._tools</span> <span class="kn">import</span> <span class="n">get_wind_components</span>
+<span class="kn">from</span> <span class="nn">..http_util</span> <span class="kn">import</span> <span class="n">HTTPEndPoint</span><span class="p">,</span> <span class="n">HTTPError</span>
 
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
 
@@ -208,7 +195,7 @@
 <div class="viewcode-block" id="IGRAUpperAir"><a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir">[docs]</a><span class="k">class</span> <span class="nc">IGRAUpperAir</span><span class="p">(</span><span class="n">HTTPEndPoint</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Download and parse data from NCEI&#39;s Integrated Radiosonde Archive version 2.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="IGRAUpperAir.__init__"><a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="IGRAUpperAir.__init__"><a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set http site address and file suffix based on desired dataset.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">suffix</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">begin_date</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -353,10 +340,10 @@
         <span class="n">selector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
         <span class="n">selector</span><span class="p">[</span><span class="n">begin_idx</span><span class="p">:</span><span class="n">end_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">selector</span><span class="p">[</span><span class="n">headers</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">body</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">selector</span><span class="p">)])</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">selector</span><span class="p">))</span>
 
         <span class="n">selector</span><span class="p">[</span><span class="n">begin_idx</span><span class="p">:</span><span class="n">end_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">~</span><span class="n">selector</span><span class="p">[</span><span class="n">begin_idx</span><span class="p">:</span><span class="n">end_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
-        <span class="n">header</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">selector</span><span class="p">)])</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">selector</span><span class="p">))</span>
 
         <span class="c1"># expand date vector to match length of the body dataframe.</span>
         <span class="n">dates_long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">num_lev</span><span class="p">)</span>
@@ -422,8 +409,9 @@
                           <span class="s1">&#39;potential_temperature_gradient&#39;</span><span class="p">,</span> <span class="s1">&#39;virtual_temperature&#39;</span><span class="p">,</span>
                           <span class="s1">&#39;virtual_potential_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;vapor_pressure&#39;</span><span class="p">,</span>
                           <span class="s1">&#39;saturation_vapor_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;reported_relative_humidity&#39;</span><span class="p">,</span>
-                          <span class="s1">&#39;calculated_relative_humidity&#39;</span><span class="p">,</span> <span class="s1">&#39;u_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;u_wind_gradient&#39;</span><span class="p">,</span>
-                          <span class="s1">&#39;v_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind_gradient&#39;</span><span class="p">,</span> <span class="s1">&#39;refractive_index&#39;</span><span class="p">]</span>
+                          <span class="s1">&#39;calculated_relative_humidity&#39;</span><span class="p">,</span> <span class="s1">&#39;relative_humidity_gradient&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;u_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;u_wind_gradient&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind_gradient&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;refractive_index&#39;</span><span class="p">]</span>
 
             <span class="n">colspecs_body</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span> <span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">39</span><span class="p">),</span>
                              <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">47</span><span class="p">),</span> <span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="mi">55</span><span class="p">),</span> <span class="p">(</span><span class="mi">56</span><span class="p">,</span> <span class="mi">63</span><span class="p">),</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">71</span><span class="p">),</span> <span class="p">(</span><span class="mi">72</span><span class="p">,</span> <span class="mi">79</span><span class="p">),</span>
@@ -443,6 +431,7 @@
                          <span class="s1">&#39;saturation_vapor_pressure&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
                          <span class="s1">&#39;reported_relative_humidity&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
                          <span class="s1">&#39;calculated_relative_humidity&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;relative_humidity_gradient&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
                          <span class="s1">&#39;u_wind&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
                          <span class="s1">&#39;u_wind_gradient&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
                          <span class="s1">&#39;v_wind&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
@@ -564,6 +553,7 @@
                         <span class="s1">&#39;saturation_vapor_pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;Pascal&#39;</span><span class="p">,</span>
                         <span class="s1">&#39;reported_relative_humidity&#39;</span><span class="p">:</span> <span class="s1">&#39;percent&#39;</span><span class="p">,</span>
                         <span class="s1">&#39;calculated_relative_humidity&#39;</span><span class="p">:</span> <span class="s1">&#39;percent&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;relative_humidity_gradient&#39;</span><span class="p">:</span> <span class="s1">&#39;percent / kilometer&#39;</span><span class="p">,</span>
                         <span class="s1">&#39;u_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;meter / second&#39;</span><span class="p">,</span>
                         <span class="s1">&#39;u_wind_gradient&#39;</span><span class="p">:</span> <span class="s1">&#39;(meter / second) / kilometer)&#39;</span><span class="p">,</span>
                         <span class="s1">&#39;v_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;meter / second&#39;</span><span class="p">,</span>
@@ -630,23 +620,29 @@
 </pre></div>
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Oct 30, 2019 at 22:18:55.
+        &#169; Copyright 2018, Siphon Contributors.
+      <span class="lastupdated">
+        Last updated on Mar 05, 2021 at 19:12:59.
+      </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -664,7 +660,6 @@
 
 
 </footer>
-
         </div>
       </div>
 
@@ -673,39 +668,15 @@
   </div>
   
 
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'0.8.0+54.g32ed275',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="../../../_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

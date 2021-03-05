@@ -1,18 +1,27 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>siphon.simplewebservice &mdash; Siphon 0.8</title>
   
 
   
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
   
+  
+
   
   
     <link rel="canonical" href="https://unidata.github.io/siphon/latest/api/simplewebservice.html"/>
@@ -21,45 +30,33 @@
   
 
   
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  
-    <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Siphon 0.8" href="../index.html"/>
-        <link rel="up" title="The Siphon API" href="index.html"/>
-        <link rel="next" title="Siphon Examples" href="../examples/index.html"/>
-        <link rel="prev" title="siphon.radarserver" href="radarserver.html"/> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Siphon Examples" href="../examples/index.html" />
+    <link rel="prev" title="siphon.radarserver" href="radarserver.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -68,7 +65,7 @@
 
           
             
-            <img src="../_static/siphon_150x150.png" class="logo" />
+            <img src="../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -76,22 +73,7 @@
             
             
               <div class="version">
-                
-                  <div class="version-dropdown">
-                    <select class="version-list" id="version-list">
-                      <option value=''>0.8</option>
-                      
-                        
-                          <option value="../latest">latest</option>
-                        
-                      
-                        
-                          <option value="../dev">dev</option>
-                        
-                      
-                    </select>
-                  </div>
-                
+                0.8
               </div>
             
           
@@ -108,6 +90,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -141,13 +124,14 @@
             
           
         </div>
+        
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Siphon</a>
@@ -155,10 +139,13 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
+
+
 
 
 
@@ -179,7 +166,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">The Siphon API</a> &raquo;</li>
         
@@ -212,25 +199,25 @@
 <div class="section" id="module-siphon.simplewebservice.wyoming">
 <span id="siphon-simplewebservice-wyoming"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.wyoming" title="siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.wyoming" title="Permalink to this headline">¶</a></h1>
 <p>Read upper air data from the Wyoming archives.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="siphon.simplewebservice.wyoming.WyomingUpperAir">
 <em class="property">class </em><code class="sig-prename descclassname">siphon.simplewebservice.wyoming.</code><code class="sig-name descname">WyomingUpperAir</code><a class="reference internal" href="../_modules/siphon/simplewebservice/wyoming.html#WyomingUpperAir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download and parse data from the University of Wyoming’s upper air archive.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.simplewebservice.wyoming.WyomingUpperAir.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/wyoming.html#WyomingUpperAir.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up endpoint.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.simplewebservice.wyoming.WyomingUpperAir.request_data">
-<em class="property">classmethod </em><code class="sig-name descname">request_data</code><span class="sig-paren">(</span><em class="sig-param">time</em>, <em class="sig-param">site_id</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/wyoming.html#WyomingUpperAir.request_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">request_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span></em>, <em class="sig-param"><span class="n">site_id</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/wyoming.html#WyomingUpperAir.request_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve upper air observations from the Wyoming archive.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>time</strong> (<em>datetime</em>) – The date and time of the desired observation.</p></li>
-<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The three letter ICAO identifier of the station for which data should be
+<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The three letter ICAO identifier of the station for which data should be
 downloaded.</p></li>
 <li><p><strong>kwargs</strong> – Arbitrary keyword arguments to use to initialize source</p></li>
 </ul>
@@ -250,25 +237,25 @@ downloaded.</p></li>
 <div class="section" id="module-siphon.simplewebservice.iastate">
 <span id="siphon-simplewebservice-iastate"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.iastate" title="siphon.simplewebservice.iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.iastate" title="Permalink to this headline">¶</a></h1>
 <p>Read upper air data from the IA State archives.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="siphon.simplewebservice.iastate.IAStateUpperAir">
 <em class="property">class </em><code class="sig-prename descclassname">siphon.simplewebservice.iastate.</code><code class="sig-name descname">IAStateUpperAir</code><a class="reference internal" href="../_modules/siphon/simplewebservice/iastate.html#IAStateUpperAir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.iastate.IAStateUpperAir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download and parse data from the Iowa State’s upper air archive.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.simplewebservice.iastate.IAStateUpperAir.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/iastate.html#IAStateUpperAir.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.iastate.IAStateUpperAir.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up endpoint.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.simplewebservice.iastate.IAStateUpperAir.request_all_data">
-<em class="property">classmethod </em><code class="sig-name descname">request_all_data</code><span class="sig-paren">(</span><em class="sig-param">time</em>, <em class="sig-param">pressure=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/iastate.html#IAStateUpperAir.request_all_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.iastate.IAStateUpperAir.request_all_data" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">request_all_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span></em>, <em class="sig-param"><span class="n">pressure</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/iastate.html#IAStateUpperAir.request_all_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.iastate.IAStateUpperAir.request_all_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve upper air observations from Iowa State’s archive for all stations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>time</strong> (<em>datetime</em>) – The date and time of the desired observation.</p></li>
-<li><p><strong>pressure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>optional</em>) – The mandatory pressure level at which to request data (in hPa). If none is given,
+<li><p><strong>pressure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – The mandatory pressure level at which to request data (in hPa). If none is given,
 all the available data in the profiles is returned.</p></li>
 <li><p><strong>kwargs</strong> – Arbitrary keyword arguments to use to initialize source</p></li>
 </ul>
@@ -282,17 +269,17 @@ all the available data in the profiles is returned.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.simplewebservice.iastate.IAStateUpperAir.request_data">
-<em class="property">classmethod </em><code class="sig-name descname">request_data</code><span class="sig-paren">(</span><em class="sig-param">time</em>, <em class="sig-param">site_id</em>, <em class="sig-param">interp_nans=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/iastate.html#IAStateUpperAir.request_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.iastate.IAStateUpperAir.request_data" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">request_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span></em>, <em class="sig-param"><span class="n">site_id</span></em>, <em class="sig-param"><span class="n">interp_nans</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/iastate.html#IAStateUpperAir.request_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.iastate.IAStateUpperAir.request_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve upper air observations from Iowa State’s archive for a single station.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>time</strong> (<em>datetime</em>) – The date and time of the desired observation.</p></li>
-<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The three letter ICAO identifier of the station for which data should be
+<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The three letter ICAO identifier of the station for which data should be
 downloaded.</p></li>
-<li><p><strong>interp_nans</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Flag to interpolate temperature and dewpoint at significant wind levels,
+<li><p><strong>interp_nans</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Flag to interpolate temperature and dewpoint at significant wind levels,
 which will otherwise be NaNs. Default is False.</p></li>
 <li><p><strong>kwargs</strong> – Arbitrary keyword arguments to use to initialize source</p></li>
 </ul>
@@ -312,24 +299,24 @@ which will otherwise be NaNs. Default is False.</p></li>
 <div class="section" id="module-siphon.simplewebservice.igra2">
 <span id="siphon-simplewebservice-igra2"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.igra2" title="siphon.simplewebservice.igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.igra2" title="Permalink to this headline">¶</a></h1>
 <p>Read upper air data from the Integrated Global Radiosonde Archive version 2.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="siphon.simplewebservice.igra2.IGRAUpperAir">
 <em class="property">class </em><code class="sig-prename descclassname">siphon.simplewebservice.igra2.</code><code class="sig-name descname">IGRAUpperAir</code><a class="reference internal" href="../_modules/siphon/simplewebservice/igra2.html#IGRAUpperAir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.igra2.IGRAUpperAir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download and parse data from NCEI’s Integrated Radiosonde Archive version 2.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.simplewebservice.igra2.IGRAUpperAir.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/igra2.html#IGRAUpperAir.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.igra2.IGRAUpperAir.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set http site address and file suffix based on desired dataset.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.simplewebservice.igra2.IGRAUpperAir.request_data">
-<em class="property">classmethod </em><code class="sig-name descname">request_data</code><span class="sig-paren">(</span><em class="sig-param">time</em>, <em class="sig-param">site_id</em>, <em class="sig-param">derived=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/igra2.html#IGRAUpperAir.request_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.igra2.IGRAUpperAir.request_data" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">request_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span></em>, <em class="sig-param"><span class="n">site_id</span></em>, <em class="sig-param"><span class="n">derived</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/igra2.html#IGRAUpperAir.request_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.igra2.IGRAUpperAir.request_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retreive IGRA version 2 data for one station.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – 11-character IGRA2 station identifier.</p></li>
+<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – 11-character IGRA2 station identifier.</p></li>
 <li><p><strong>time</strong> (<em>datetime</em>) – The date and time of the desired observation. If list of two times is given,
 dataframes for all dates within the two dates will be returned.</p></li>
 </ul>
@@ -349,15 +336,15 @@ dataframes for all dates within the two dates will be returned.</p></li>
 <div class="section" id="module-siphon.simplewebservice.acis">
 <span id="siphon-simplewebservice-acis"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.acis" title="siphon.simplewebservice.acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.acis" title="Permalink to this headline">¶</a></h1>
 <p>Requests data from the ACIS Web Services API.</p>
-<dl class="exception">
+<dl class="py exception">
 <dt id="siphon.simplewebservice.acis.AcisApiException">
 <em class="property">exception </em><code class="sig-prename descclassname">siphon.simplewebservice.acis.</code><code class="sig-name descname">AcisApiException</code><a class="reference internal" href="../_modules/siphon/simplewebservice/acis.html#AcisApiException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.acis.AcisApiException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle exceptions raised by the acis_request function.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.simplewebservice.acis.acis_request">
-<code class="sig-prename descclassname">siphon.simplewebservice.acis.</code><code class="sig-name descname">acis_request</code><span class="sig-paren">(</span><em class="sig-param">method</em>, <em class="sig-param">params</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/acis.html#acis_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.acis.acis_request" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.simplewebservice.acis.</code><code class="sig-name descname">acis_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">method</span></em>, <em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/acis.html#acis_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.acis.acis_request" title="Permalink to this definition">¶</a></dt>
 <dd><p>Request data from the ACIS Web Services API.</p>
 <p>Makes a request from the ACIS Web Services API for data
 based on a given method (StnMeta,StnData,MultiStnData,GridData,General)
@@ -376,8 +363,8 @@ issues.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The Web Services request method (StnMeta, StnData, MultiStnData, GridData, General)</p></li>
-<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – A JSON array of parameters (See Web Services API)</p></li>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The Web Services request method (StnMeta, StnData, MultiStnData, GridData, General)</p></li>
+<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – A JSON array of parameters (See Web Services API)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -397,23 +384,23 @@ issues.</p>
 <div class="section" id="module-siphon.simplewebservice.ndbc">
 <span id="siphon-simplewebservice-ndbc"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.ndbc" title="siphon.simplewebservice.ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.ndbc" title="Permalink to this headline">¶</a></h1>
 <p>Read data from the National Data Buoy Center.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="siphon.simplewebservice.ndbc.NDBC">
 <em class="property">class </em><code class="sig-prename descclassname">siphon.simplewebservice.ndbc.</code><code class="sig-name descname">NDBC</code><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download and parse data from the National Data Buoy Center.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.simplewebservice.ndbc.NDBC.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up endpoint.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.simplewebservice.ndbc.NDBC.buoy_data_types">
-<em class="property">classmethod </em><code class="sig-name descname">buoy_data_types</code><span class="sig-paren">(</span><em class="sig-param">buoy</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.buoy_data_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.buoy_data_types" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">buoy_data_types</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">buoy</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.buoy_data_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.buoy_data_types" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine which types of data are available for a given buoy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Buoy name</p>
+<dd class="field-odd"><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Buoy name</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p></p>
@@ -424,7 +411,7 @@ issues.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.simplewebservice.ndbc.NDBC.latest_observations">
 <em class="property">classmethod </em><code class="sig-name descname">latest_observations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.latest_observations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.latest_observations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve the latest observations for all buoys from NDBC.</p>
@@ -438,15 +425,15 @@ issues.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.simplewebservice.ndbc.NDBC.raw_buoy_data">
-<em class="property">classmethod </em><code class="sig-name descname">raw_buoy_data</code><span class="sig-paren">(</span><em class="sig-param">buoy</em>, <em class="sig-param">data_type='txt'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.raw_buoy_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.raw_buoy_data" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">raw_buoy_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">buoy</span></em>, <em class="sig-param"><span class="n">data_type</span><span class="o">=</span><span class="default_value">'txt'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.raw_buoy_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.raw_buoy_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve the raw buoy data contents from NDBC.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name of buoy</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Type of data requested, must be one of
+<li><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of buoy</p></li>
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Type of data requested, must be one of
 ‘txt’ standard meteorological data
 ‘drift’ meteorological data from drifting buoys and limited moored buoy data
 mainly from international partners
@@ -475,15 +462,15 @@ mainly from international partners
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.simplewebservice.ndbc.NDBC.realtime_observations">
-<em class="property">classmethod </em><code class="sig-name descname">realtime_observations</code><span class="sig-paren">(</span><em class="sig-param">buoy</em>, <em class="sig-param">data_type='txt'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.realtime_observations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.realtime_observations" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">realtime_observations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">buoy</span></em>, <em class="sig-param"><span class="n">data_type</span><span class="o">=</span><span class="default_value">'txt'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.realtime_observations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.realtime_observations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve the realtime buoy data from NDBC.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name of buoy</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Type of data requested, must be one of
+<li><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of buoy</p></li>
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Type of data requested, must be one of
 ‘txt’ standard meteorological data
 ‘drift’ meteorological data from drifting buoys and limited moored buoy data
 mainly from international partners
@@ -511,32 +498,33 @@ mainly from international partners
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Siphon Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="radarserver.html" class="btn btn-neutral" title="siphon.radarserver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Siphon Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="radarserver.html" class="btn btn-neutral float-left" title="siphon.radarserver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Oct 30, 2019 at 22:18:55.
+        &#169; Copyright 2018, Siphon Contributors.
+      <span class="lastupdated">
+        Last updated on Mar 05, 2021 at 19:12:59.
+      </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -554,7 +542,6 @@ mainly from international partners
 
 
 </footer>
-
         </div>
       </div>
 
@@ -563,39 +550,15 @@ mainly from international partners
   </div>
   
 
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'0.8.0+54.g32ed275',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="../_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

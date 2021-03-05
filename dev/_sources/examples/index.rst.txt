@@ -25,9 +25,10 @@ Examples of using Siphon's functionality
 
 .. only:: html
 
-    .. figure:: /examples/images/thumb/sphx_glr_Basic_Usage_thumb.png
+ .. figure:: /examples/images/thumb/sphx_glr_Basic_Usage_thumb.png
+     :alt: THREDDS Catalog
 
-        :ref:`sphx_glr_examples_Basic_Usage.py`
+     :ref:`sphx_glr_examples_Basic_Usage.py`
 
 .. raw:: html
 
@@ -41,13 +42,14 @@ Examples of using Siphon's functionality
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to get NEXRAD Level 3 data from a TDS. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to get NEXRAD Level 3 data from a TDS.">
 
 .. only:: html
 
-    .. figure:: /examples/images/thumb/sphx_glr_Radar_Server_Level_3_thumb.png
+ .. figure:: /examples/images/thumb/sphx_glr_Radar_Server_Level_3_thumb.png
+     :alt: TDS Radar Query Service
 
-        :ref:`sphx_glr_examples_Radar_Server_Level_3.py`
+     :ref:`sphx_glr_examples_Radar_Server_Level_3.py`
 
 .. raw:: html
 
@@ -60,7 +62,86 @@ Examples of using Siphon's functionality
    /examples/Radar_Server_Level_3
 .. raw:: html
 
-    <div style='clear:both'></div>
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_examples_acis:
+
+.. _acis_examples:
+
+ACIS Web Services
+-----------------
+
+Examples of using Siphon's simplewebservice support to access and use data from
+the Applied Climate Information System (ACIS) Web Services API provided by the
+Regional Climate Centers.
+
+The ACIS Web Service API provides daily records for stations from the following
+networks:
+* WBAN
+* COOP
+* FAA
+* WMO
+* ICAO
+* GHCN
+* NWSLI/SHEF
+* ThreadEx
+* CoCoRahs
+* California Multi-station Index
+
+Data is updated hourly and documentation on the API is available at
+http://www.rcc-acis.org/docs_webservices.html
+
+A useful web tool for constructing query parameters is available here:
+http://builder.rcc-acis.org/
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Siphon&#x27;s simplewebservice support also includes the ability to query the Regional Climate Cente...">
+
+.. only:: html
+
+ .. figure:: /examples/acis/images/thumb/sphx_glr_Basic_Overview_thumb.png
+     :alt: Basic ACIS Web Services Usage
+
+     :ref:`sphx_glr_examples_acis_Basic_Overview.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/acis/Basic_Overview
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this example we will be using Siphon&#x27;s simplewebservice support to query ACIS Web Services f...">
+
+.. only:: html
+
+ .. figure:: /examples/acis/images/thumb/sphx_glr_Mapping_Example_thumb.png
+     :alt: Multi Station Calls and Mapping
+
+     :ref:`sphx_glr_examples_acis_Mapping_Example.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/acis/Mapping_Example
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
 
 
 
@@ -78,13 +159,14 @@ subsets of remote datasets in netCDF format.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service for a timeseries. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service for a timeseries.">
 
 .. only:: html
 
-    .. figure:: /examples/ncss/images/thumb/sphx_glr_NCSS_Timeseries_Examples_thumb.png
+ .. figure:: /examples/ncss/images/thumb/sphx_glr_NCSS_Timeseries_Examples_thumb.png
+     :alt: NCSS Time Series
 
-        :ref:`sphx_glr_examples_ncss_NCSS_Timeseries_Examples.py`
+     :ref:`sphx_glr_examples_ncss_NCSS_Timeseries_Examples.py`
 
 .. raw:: html
 
@@ -98,13 +180,14 @@ subsets of remote datasets in netCDF format.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service (NCSS). ">
+    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service (NCSS).">
 
 .. only:: html
 
-    .. figure:: /examples/ncss/images/thumb/sphx_glr_NCSS_Example_thumb.png
+ .. figure:: /examples/ncss/images/thumb/sphx_glr_NCSS_Example_thumb.png
+     :alt: Basic NCSS
 
-        :ref:`sphx_glr_examples_ncss_NCSS_Example.py`
+     :ref:`sphx_glr_examples_ncss_NCSS_Example.py`
 
 .. raw:: html
 
@@ -122,9 +205,10 @@ subsets of remote datasets in netCDF format.
 
 .. only:: html
 
-    .. figure:: /examples/ncss/images/thumb/sphx_glr_NCSS_Cartopy_Example_thumb.png
+ .. figure:: /examples/ncss/images/thumb/sphx_glr_NCSS_Cartopy_Example_thumb.png
+     :alt: NCSS and CartoPy
 
-        :ref:`sphx_glr_examples_ncss_NCSS_Cartopy_Example.py`
+     :ref:`sphx_glr_examples_ncss_NCSS_Cartopy_Example.py`
 
 .. raw:: html
 
@@ -137,7 +221,7 @@ subsets of remote datasets in netCDF format.
    /examples/ncss/NCSS_Cartopy_Example
 .. raw:: html
 
-    <div style='clear:both'></div>
+    <div class="sphx-glr-clear"></div>
 
 
 
@@ -158,9 +242,10 @@ data sources.
 
 .. only:: html
 
-    .. figure:: /examples/ndbc/images/thumb/sphx_glr_buoy_type_request_thumb.png
+ .. figure:: /examples/ndbc/images/thumb/sphx_glr_buoy_type_request_thumb.png
+     :alt: NDBC Buoy Data Request (of any type)
 
-        :ref:`sphx_glr_examples_ndbc_buoy_type_request.py`
+     :ref:`sphx_glr_examples_ndbc_buoy_type_request.py`
 
 .. raw:: html
 
@@ -178,9 +263,10 @@ data sources.
 
 .. only:: html
 
-    .. figure:: /examples/ndbc/images/thumb/sphx_glr_buoy_met_request_thumb.png
+ .. figure:: /examples/ndbc/images/thumb/sphx_glr_buoy_met_request_thumb.png
+     :alt: NDBC Buoy Meteorological Data Request
 
-        :ref:`sphx_glr_examples_ndbc_buoy_met_request.py`
+     :ref:`sphx_glr_examples_ndbc_buoy_met_request.py`
 
 .. raw:: html
 
@@ -198,9 +284,10 @@ data sources.
 
 .. only:: html
 
-    .. figure:: /examples/ndbc/images/thumb/sphx_glr_latest_request_thumb.png
+ .. figure:: /examples/ndbc/images/thumb/sphx_glr_latest_request_thumb.png
+     :alt: NDBC Latest Data Request
 
-        :ref:`sphx_glr_examples_ndbc_latest_request.py`
+     :ref:`sphx_glr_examples_ndbc_latest_request.py`
 
 .. raw:: html
 
@@ -213,7 +300,7 @@ data sources.
    /examples/ndbc/latest_request
 .. raw:: html
 
-    <div style='clear:both'></div>
+    <div class="sphx-glr-clear"></div>
 
 
 
@@ -234,9 +321,10 @@ Examples of requesting upper air (balloon) data from the Wyoming data service an
 
 .. only:: html
 
-    .. figure:: /examples/upperair/images/thumb/sphx_glr_Wyoming_Request_thumb.png
+ .. figure:: /examples/upperair/images/thumb/sphx_glr_Wyoming_Request_thumb.png
+     :alt: Wyoming Upper Air Data Request
 
-        :ref:`sphx_glr_examples_upperair_Wyoming_Request.py`
+     :ref:`sphx_glr_examples_upperair_Wyoming_Request.py`
 
 .. raw:: html
 
@@ -254,9 +342,10 @@ Examples of requesting upper air (balloon) data from the Wyoming data service an
 
 .. only:: html
 
-    .. figure:: /examples/upperair/images/thumb/sphx_glr_IGRA2_Request_thumb.png
+ .. figure:: /examples/upperair/images/thumb/sphx_glr_IGRA2_Request_thumb.png
+     :alt: IGRA2 Upper Air Data Request
 
-        :ref:`sphx_glr_examples_upperair_IGRA2_Request.py`
+     :ref:`sphx_glr_examples_upperair_IGRA2_Request.py`
 
 .. raw:: html
 
@@ -269,7 +358,7 @@ Examples of requesting upper air (balloon) data from the Wyoming data service an
    /examples/upperair/IGRA2_Request
 .. raw:: html
 
-    <div style='clear:both'></div>
+    <div class="sphx-glr-clear"></div>
 
 
 
@@ -279,15 +368,15 @@ Examples of requesting upper air (balloon) data from the Wyoming data service an
     :class: sphx-glr-footer-gallery
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
-    :download:`Download all examples in Python source code: examples_python.zip <//home/travis/build/Unidata/siphon/docs/examples/examples_python.zip>`
+    :download:`Download all examples in Python source code: examples_python.zip </examples/examples_python.zip>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-    :download:`Download all examples in Jupyter notebooks: examples_jupyter.zip <//home/travis/build/Unidata/siphon/docs/examples/examples_jupyter.zip>`
+    :download:`Download all examples in Jupyter notebooks: examples_jupyter.zip </examples/examples_jupyter.zip>`
 
 
 .. only:: html

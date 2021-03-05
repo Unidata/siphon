@@ -1,18 +1,27 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>siphon.ncss &mdash; Siphon 0.8</title>
   
 
   
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
   
+  
+
   
   
     <link rel="canonical" href="https://unidata.github.io/siphon/latest/api/ncss.html"/>
@@ -21,45 +30,33 @@
   
 
   
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  
-    <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Siphon 0.8" href="../index.html"/>
-        <link rel="up" title="The Siphon API" href="index.html"/>
-        <link rel="next" title="siphon.radarserver" href="radarserver.html"/>
-        <link rel="prev" title="siphon.http_util" href="http_util.html"/> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="siphon.radarserver" href="radarserver.html" />
+    <link rel="prev" title="siphon.http_util" href="http_util.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -68,7 +65,7 @@
 
           
             
-            <img src="../_static/siphon_150x150.png" class="logo" />
+            <img src="../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -76,22 +73,7 @@
             
             
               <div class="version">
-                
-                  <div class="version-dropdown">
-                    <select class="version-list" id="version-list">
-                      <option value=''>0.8</option>
-                      
-                        
-                          <option value="../latest">latest</option>
-                        
-                      
-                        
-                          <option value="../dev">dev</option>
-                        
-                      
-                    </select>
-                  </div>
-                
+                0.8
               </div>
             
           
@@ -108,6 +90,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -141,13 +124,14 @@
             
           
         </div>
+        
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Siphon</a>
@@ -155,10 +139,13 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
+
+
 
 
 
@@ -179,7 +166,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">The Siphon API</a> &raquo;</li>
         
@@ -209,13 +196,13 @@
 <span id="siphon-ncss"></span><h1><a class="reference internal" href="#module-siphon.ncss" title="siphon.ncss"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a><a class="headerlink" href="#module-siphon.ncss" title="Permalink to this headline">¶</a></h1>
 <p>Support making data requests to the NetCDF subset service (NCSS) on a TDS.</p>
 <p>This includes forming proper queries as well as parsing the returned data.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="siphon.ncss.NCSS">
-<em class="property">class </em><code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">NCSS</code><span class="sig-paren">(</span><em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSS" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">NCSS</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrap access to the NetCDF Subset Service (NCSS) on a THREDDS server.</p>
 <p>Simplifies access via HTTP to the NCSS endpoint. Parses the metadata, provides
 data download and parsing based on the appropriate query.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="siphon.ncss.NCSS.metadata">
 <code class="sig-name descname">metadata</code><a class="headerlink" href="#siphon.ncss.NCSS.metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Contains the result of parsing the NCSS endpoint’s dataset.xml. This has
@@ -228,24 +215,24 @@ about all of the variables.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="siphon.ncss.NCSS.variables">
 <code class="sig-name descname">variables</code><a class="headerlink" href="#siphon.ncss.NCSS.variables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Names of all variables available in this dataset</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.8)">set</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>)</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)">set</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="siphon.ncss.NCSS.unit_handler">
 <code class="sig-name descname">unit_handler</code><a class="headerlink" href="#siphon.ncss.NCSS.unit_handler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to handle units that come with CSV/XML data. Should be a callable that
-takes a list of string values and unit str (can be <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">None</span></code></a>), and returns the
+takes a list of string values and unit str (can be <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">None</span></code></a>), and returns the
 desired representation of values. Defaults to ignoring units and returning
-<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.array()</span></code></a>.</p>
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="(in NumPy v1.20)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.array()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>callable</p>
@@ -253,26 +240,26 @@ desired representation of values. Defaults to ignoring units and returning
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSS.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">url</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an HTTPEndPoint instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The base URL for the endpoint</p>
+<dd class="field-odd"><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The base URL for the endpoint</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSS.get">
-<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">path</em>, <em class="sig-param">params=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.get" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a GET request, optionally including a parameters, to a path.</p>
 <p>The path of the request is the full URL.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The URL to request</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The URL to request</p></li>
 <li><p><strong>params</strong> (<a class="reference internal" href="http_util.html#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><em>DataQuery</em></a><em>, </em><em>optional</em>) – The query to pass when making the request</p></li>
 </ul>
 </dd>
@@ -280,7 +267,7 @@ desired representation of values. Defaults to ignoring units and returning
 <dd class="field-even"><p><strong>resp</strong> – The server’s response to the request</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://requests.kennethreitz.org/en/master/api/#requests.Response" title="(in Requests v2.22.0)">requests.Response</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://requests.kennethreitz.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)">requests.Response</a></p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>HTTPError</strong> – If the server returns anything other than a 200 (OK) code</p>
@@ -288,13 +275,13 @@ desired representation of values. Defaults to ignoring units and returning
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#siphon.ncss.NCSS.get_query" title="siphon.ncss.NCSS.get_query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_query()</span></code></a>, <a class="reference internal" href="#siphon.ncss.NCSS.get" title="siphon.ncss.NCSS.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a></p>
+<p><a class="reference internal" href="#siphon.ncss.NCSS.get_query" title="siphon.ncss.NCSS.get_query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_query</span></code></a>, <a class="reference internal" href="#siphon.ncss.NCSS.get" title="siphon.ncss.NCSS.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a></p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSS.get_data">
-<code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param">query</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSS.get_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSS.get_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSS.get_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSS.get_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch parsed data from a THREDDS server using NCSS.</p>
 <p>Requests data from the NCSS endpoint given the parameters in <a class="reference internal" href="#siphon.ncss.NCSS.query" title="siphon.ncss.NCSS.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a> and
 handles parsing of the returned content based on the mimetype.</p>
@@ -312,13 +299,13 @@ handles parsing of the returned content based on the mimetype.</p>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#siphon.ncss.NCSS.get_data_raw" title="siphon.ncss.NCSS.get_data_raw"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_data_raw()</span></code></a></p>
+<p><a class="reference internal" href="#siphon.ncss.NCSS.get_data_raw" title="siphon.ncss.NCSS.get_data_raw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_data_raw</span></code></a></p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSS.get_data_raw">
-<code class="sig-name descname">get_data_raw</code><span class="sig-paren">(</span><em class="sig-param">query</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSS.get_data_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSS.get_data_raw" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_data_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSS.get_data_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSS.get_data_raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch raw data from a THREDDS server using NCSS.</p>
 <p>Requests data from the NCSS endpoint given the parameters in <a class="reference internal" href="#siphon.ncss.NCSS.query" title="siphon.ncss.NCSS.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a> and
 returns the raw bytes of the response.</p>
@@ -330,25 +317,25 @@ returns the raw bytes of the response.</p>
 <dd class="field-even"><p><strong>content</strong> – The raw, un-parsed, data returned by the server</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.9)">bytes</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#siphon.ncss.NCSS.get_data" title="siphon.ncss.NCSS.get_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_data()</span></code></a></p>
+<p><a class="reference internal" href="#siphon.ncss.NCSS.get_data" title="siphon.ncss.NCSS.get_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_data</span></code></a></p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSS.get_path">
-<code class="sig-name descname">get_path</code><span class="sig-paren">(</span><em class="sig-param">path</em>, <em class="sig-param">query=None</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.get_path" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.get_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a GET request, optionally including a query, to a relative path.</p>
 <p>The path of the request includes a path on top of the base URL
 assigned to the endpoint.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The path to request, relative to the endpoint</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The path to request, relative to the endpoint</p></li>
 <li><p><strong>query</strong> (<a class="reference internal" href="http_util.html#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><em>DataQuery</em></a><em>, </em><em>optional</em>) – The query to pass when making the request</p></li>
 </ul>
 </dd>
@@ -356,18 +343,18 @@ assigned to the endpoint.</p>
 <dd class="field-even"><p><strong>resp</strong> – The server’s response to the request</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://requests.kennethreitz.org/en/master/api/#requests.Response" title="(in Requests v2.22.0)">requests.Response</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://requests.kennethreitz.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)">requests.Response</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#siphon.ncss.NCSS.get_query" title="siphon.ncss.NCSS.get_query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_query()</span></code></a>, <a class="reference internal" href="#siphon.ncss.NCSS.get" title="siphon.ncss.NCSS.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a>, <a class="reference internal" href="#siphon.ncss.NCSS.url_path" title="siphon.ncss.NCSS.url_path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">url_path()</span></code></a></p>
+<p><a class="reference internal" href="#siphon.ncss.NCSS.get_query" title="siphon.ncss.NCSS.get_query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_query</span></code></a>, <a class="reference internal" href="#siphon.ncss.NCSS.get" title="siphon.ncss.NCSS.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a>, <a class="reference internal" href="#siphon.ncss.NCSS.url_path" title="siphon.ncss.NCSS.url_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">url_path</span></code></a></p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSS.get_query">
-<code class="sig-name descname">get_query</code><span class="sig-paren">(</span><em class="sig-param">query</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.get_query" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.get_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a GET request, including a query, to the endpoint.</p>
 <p>The path of the request is to the base URL assigned to the endpoint.</p>
 <dl class="field-list simple">
@@ -378,16 +365,16 @@ assigned to the endpoint.</p>
 <dd class="field-even"><p><strong>resp</strong> – The server’s response to the request</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://requests.kennethreitz.org/en/master/api/#requests.Response" title="(in Requests v2.22.0)">requests.Response</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://requests.kennethreitz.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)">requests.Response</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#siphon.ncss.NCSS.get_path" title="siphon.ncss.NCSS.get_path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path()</span></code></a>, <a class="reference internal" href="#siphon.ncss.NCSS.get" title="siphon.ncss.NCSS.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a></p>
+<p><a class="reference internal" href="#siphon.ncss.NCSS.get_path" title="siphon.ncss.NCSS.get_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path</span></code></a>, <a class="reference internal" href="#siphon.ncss.NCSS.get" title="siphon.ncss.NCSS.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a></p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSS.query">
 <code class="sig-name descname">query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSS.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSS.query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a new query for NCSS.</p>
@@ -401,38 +388,31 @@ assigned to the endpoint.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt>
-<em class="property">static </em><code class="sig-name descname">unit_handler</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">units=None</em><span class="sig-paren">)</span></dt>
-<dd><p>Handle units in the default manner.</p>
-<p>Ignores units and just returns <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.array()</span></code></a>.</p>
-</dd></dl>
-
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSS.url_path">
-<code class="sig-name descname">url_path</code><span class="sig-paren">(</span><em class="sig-param">path</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.url_path" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">url_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSS.url_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Assemble the full url to a path.</p>
 <p>Given a path relative to the base URL, assemble the full URL.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The path, relative to the endpoint</p>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The path, relative to the endpoint</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>url</strong> – The full URL to <em class="xref py py-obj">path</em></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#siphon.ncss.NCSS.get_path" title="siphon.ncss.NCSS.get_path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path()</span></code></a></p>
+<p><a class="reference internal" href="#siphon.ncss.NCSS.get_path" title="siphon.ncss.NCSS.get_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path</span></code></a></p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSS.validate_query">
-<code class="sig-name descname">validate_query</code><span class="sig-paren">(</span><em class="sig-param">query</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSS.validate_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSS.validate_query" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">validate_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSS.validate_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSS.validate_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Validate a query.</p>
 <p>Determines whether <a class="reference internal" href="#siphon.ncss.NCSS.query" title="siphon.ncss.NCSS.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a> is well-formed. This includes checking for all
 required parameters, as well as checking parameters for valid values.</p>
@@ -444,34 +424,34 @@ required parameters, as well as checking parameters for valid values.</p>
 <dd class="field-even"><p><strong>valid</strong> – Whether <a class="reference internal" href="#siphon.ncss.NCSS.query" title="siphon.ncss.NCSS.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a> is valid.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="siphon.ncss.NCSSQuery">
 <em class="property">class </em><code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">NCSSQuery</code><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent a query to the NetCDF Subset Service (NCSS).</p>
 <p>Expands on the queries supported by <a class="reference internal" href="http_util.html#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataQuery</span></code></a> to add queries
 specific to NCSS.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty <code class="xref py py-class docutils literal notranslate"><span class="pre">DataQuery</span></code>.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.accept">
-<code class="sig-name descname">accept</code><span class="sig-paren">(</span><em class="sig-param">fmt</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery.accept"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery.accept" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">accept</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fmt</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery.accept"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery.accept" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set format for data returned from NCSS.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries
 can be chained together on one line.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>fmt</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The format to send to the server.</p>
+<dd class="field-odd"><p><strong>fmt</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The format to send to the server.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>self</strong> – Returns self for chaining calls</p>
@@ -482,16 +462,16 @@ can be chained together on one line.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.add_lonlat">
-<code class="sig-name descname">add_lonlat</code><span class="sig-paren">(</span><em class="sig-param">value=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery.add_lonlat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery.add_lonlat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_lonlat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery.add_lonlat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery.add_lonlat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set whether NCSS should add latitude/longitude to returned data.</p>
 <p>This is only used on grid requests. Used to make returned data CF-compliant.
 This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries
 can be chained together on one line.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to add latitude/longitude information. Defaults to True.</p>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to add latitude/longitude information. Defaults to True.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>self</strong> – Returns self for chaining calls</p>
@@ -502,9 +482,9 @@ can be chained together on one line.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.add_query_parameter">
-<code class="sig-name descname">add_query_parameter</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.add_query_parameter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_query_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.add_query_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add arbitrary query element (name=value) to the request.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple
 queries can be chained together on one line.</p>
@@ -521,7 +501,7 @@ queries can be chained together on one line.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.all_times">
 <code class="sig-name descname">all_times</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.all_times" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a request for all times to the query.</p>
@@ -539,7 +519,7 @@ one line.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.items">
 <code class="sig-name descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.items" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the various name=value pairs that compose the query.</p>
@@ -553,9 +533,9 @@ one line.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.lonlat_box">
-<code class="sig-name descname">lonlat_box</code><span class="sig-paren">(</span><em class="sig-param">west</em>, <em class="sig-param">east</em>, <em class="sig-param">south</em>, <em class="sig-param">north</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.lonlat_box" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">lonlat_box</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">west</span></em>, <em class="sig-param"><span class="n">east</span></em>, <em class="sig-param"><span class="n">south</span></em>, <em class="sig-param"><span class="n">north</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.lonlat_box" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a latitude/longitude bounding box to the query.</p>
 <p>This adds a request for a spatial bounding box, bounded by (‘north’, ‘south’)
 for latitude and (‘east’, ‘west’) for the longitude. This modifies the query
@@ -565,10 +545,10 @@ on one line.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>west</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The bounding longitude to the west, in degrees east of the prime meridian</p></li>
-<li><p><strong>east</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The bounding longitude to the east, in degrees east of the prime meridian</p></li>
-<li><p><strong>south</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The bounding latitude to the south, in degrees north of the equator</p></li>
-<li><p><strong>north</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The bounding latitude to the north, in degrees north of the equator</p></li>
+<li><p><strong>west</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The bounding longitude to the west, in degrees east of the prime meridian</p></li>
+<li><p><strong>east</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The bounding longitude to the east, in degrees east of the prime meridian</p></li>
+<li><p><strong>south</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The bounding latitude to the south, in degrees north of the equator</p></li>
+<li><p><strong>north</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The bounding latitude to the north, in degrees north of the equator</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -580,9 +560,9 @@ on one line.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.lonlat_point">
-<code class="sig-name descname">lonlat_point</code><span class="sig-paren">(</span><em class="sig-param">lon</em>, <em class="sig-param">lat</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.lonlat_point" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">lonlat_point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lon</span></em>, <em class="sig-param"><span class="n">lat</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.lonlat_point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a latitude/longitude point to the query.</p>
 <p>This adds a request for a (<em class="xref py py-obj">lon</em>, <em class="xref py py-obj">lat</em>) point. This modifies the query
 in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries can be chained together on
@@ -591,8 +571,8 @@ one line.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>lon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The longitude to request</p></li>
-<li><p><strong>lat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The latitude to request</p></li>
+<li><p><strong>lon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The longitude to request</p></li>
+<li><p><strong>lat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The latitude to request</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -604,9 +584,9 @@ one line.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.projection_box">
-<code class="sig-name descname">projection_box</code><span class="sig-paren">(</span><em class="sig-param">min_x</em>, <em class="sig-param">min_y</em>, <em class="sig-param">max_x</em>, <em class="sig-param">max_y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery.projection_box"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery.projection_box" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">projection_box</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_x</span></em>, <em class="sig-param"><span class="n">min_y</span></em>, <em class="sig-param"><span class="n">max_x</span></em>, <em class="sig-param"><span class="n">max_y</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery.projection_box"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery.projection_box" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a bounding box in projected (native) coordinates to the query.</p>
 <p>This adds a request for a spatial bounding box, bounded by (<em class="xref py py-obj">min_x</em>, <em class="xref py py-obj">max_x</em>) for
 x direction and (<em class="xref py py-obj">min_y</em>, <em class="xref py py-obj">max_y</em>) for the y direction. This modifies the query
@@ -616,10 +596,10 @@ on one line.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>min_x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The left edge of the bounding box</p></li>
-<li><p><strong>min_y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The bottom edge of the bounding box</p></li>
-<li><p><strong>max_x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The right edge of the bounding box</p></li>
-<li><p><strong>max_y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The top edge of the bounding box</p></li>
+<li><p><strong>min_x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The left edge of the bounding box</p></li>
+<li><p><strong>min_y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The bottom edge of the bounding box</p></li>
+<li><p><strong>max_x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The right edge of the bounding box</p></li>
+<li><p><strong>max_y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The top edge of the bounding box</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -631,9 +611,9 @@ on one line.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.strides">
-<code class="sig-name descname">strides</code><span class="sig-paren">(</span><em class="sig-param">time=None</em>, <em class="sig-param">spatial=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery.strides"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery.strides" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">strides</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">spatial</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery.strides"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery.strides" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set time and/or spatial (horizontal) strides.</p>
 <p>This is only used on grid requests. Used to skip points in the returned data.
 This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries
@@ -641,8 +621,8 @@ can be chained together on one line.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – Stride for times returned. Defaults to None, which is equivalent to 1.</p></li>
-<li><p><strong>spatial</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – Stride for horizontal grid. Defaults to None, which is equivalent to 1.</p></li>
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Stride for times returned. Defaults to None, which is equivalent to 1.</p></li>
+<li><p><strong>spatial</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Stride for horizontal grid. Defaults to None, which is equivalent to 1.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -654,16 +634,16 @@ can be chained together on one line.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.time">
-<code class="sig-name descname">time</code><span class="sig-paren">(</span><em class="sig-param">time</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a request for a specific time to the query.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries
 can be chained together on one line.</p>
 <p>This replaces any existing temporal queries that have been set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.8)"><em>datetime.datetime</em></a>) – The time to request</p>
+<dd class="field-odd"><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.9)"><em>datetime.datetime</em></a>) – The time to request</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>self</strong> – Returns self for chaining calls</p>
@@ -674,9 +654,9 @@ can be chained together on one line.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.time_range">
-<code class="sig-name descname">time_range</code><span class="sig-paren">(</span><em class="sig-param">start</em>, <em class="sig-param">end</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.time_range" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">time_range</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">end</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.time_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a request for a time range to the query.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple queries
 can be chained together on one line.</p>
@@ -684,8 +664,8 @@ can be chained together on one line.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.8)"><em>datetime.datetime</em></a>) – The start of the requested time range</p></li>
-<li><p><strong>end</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.8)"><em>datetime.datetime</em></a>) – The end of the requested time range</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.9)"><em>datetime.datetime</em></a>) – The start of the requested time range</p></li>
+<li><p><strong>end</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.9)"><em>datetime.datetime</em></a>) – The end of the requested time range</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -697,9 +677,9 @@ can be chained together on one line.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.variables">
-<code class="sig-name descname">variables</code><span class="sig-paren">(</span><em class="sig-param">*var_names</em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.variables" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">variables</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">var_names</span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.ncss.NCSSQuery.variables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specify one or more variables for the query.</p>
 <p>This function ensures that variable names are not repeated.</p>
 <p>This modifies the query in-place, but returns <em class="xref py py-obj">self</em> so that multiple
@@ -717,9 +697,9 @@ queries can be chained together on one line.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.NCSSQuery.vertical_level">
-<code class="sig-name descname">vertical_level</code><span class="sig-paren">(</span><em class="sig-param">level</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery.vertical_level"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery.vertical_level" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">vertical_level</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery.vertical_level"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery.vertical_level" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set vertical level for which data should be retrieved.</p>
 <p>The value depends on the coordinate values for the vertical dimension of the
 requested variable.</p>
@@ -727,7 +707,7 @@ requested variable.</p>
 can be chained together on one line.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The value of the desired level</p>
+<dd class="field-odd"><p><strong>level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The value of the desired level</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>self</strong> – Returns self for chaining calls</p>
@@ -740,101 +720,101 @@ can be chained together on one line.</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="siphon.ncss.ResponseRegistry">
 <em class="property">class </em><code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">ResponseRegistry</code><a class="reference internal" href="../_modules/siphon/ncss.html#ResponseRegistry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.ResponseRegistry" title="Permalink to this definition">¶</a></dt>
 <dd><p>Register functions to be called based on the mimetype in the response headers.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.ResponseRegistry.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#ResponseRegistry.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.ResponseRegistry.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the registry.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.ResponseRegistry.default">
-<em class="property">static </em><code class="sig-name descname">default</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">units</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#ResponseRegistry.default"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.ResponseRegistry.default" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">default</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">units</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#ResponseRegistry.default"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.ResponseRegistry.default" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle a mimetype when no function is registered.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="siphon.ncss.ResponseRegistry.register">
-<code class="sig-name descname">register</code><span class="sig-paren">(</span><em class="sig-param">mimetype</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#ResponseRegistry.register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.ResponseRegistry.register" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">register</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mimetype</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#ResponseRegistry.register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.ResponseRegistry.register" title="Permalink to this definition">¶</a></dt>
 <dd><p>Register a function to handle a particular mimetype.</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.ncss.combine_dicts">
-<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">combine_dicts</code><span class="sig-paren">(</span><em class="sig-param">l</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#combine_dicts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.combine_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">combine_dicts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seq</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#combine_dicts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.combine_dicts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Combine a list of dictionaries into single one.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.ncss.combine_xml_points">
-<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">combine_xml_points</code><span class="sig-paren">(</span><em class="sig-param">l</em>, <em class="sig-param">units</em>, <em class="sig-param">handle_units</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#combine_xml_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.combine_xml_points" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">combine_xml_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seq</span></em>, <em class="sig-param"><span class="n">units</span></em>, <em class="sig-param"><span class="n">handle_units</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#combine_xml_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.combine_xml_points" title="Permalink to this definition">¶</a></dt>
 <dd><p>Combine multiple Point tags into an array.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.ncss.default_unit_handler">
-<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">default_unit_handler</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">units=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#default_unit_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.default_unit_handler" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">default_unit_handler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#default_unit_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.default_unit_handler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle units in the default manner.</p>
-<p>Ignores units and just returns <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.array()</span></code></a>.</p>
+<p>Ignores units and just returns <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="(in NumPy v1.20)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.array()</span></code></a>.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.ncss.deletetempfile">
-<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">deletetempfile</code><span class="sig-paren">(</span><em class="sig-param">fname</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#deletetempfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.deletetempfile" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">deletetempfile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fname</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#deletetempfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.deletetempfile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete a temporary file.</p>
 <p>Warn on any exceptions.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.ncss.parse_csv_dataset">
-<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">parse_csv_dataset</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">handle_units</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#parse_csv_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.parse_csv_dataset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">parse_csv_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">handle_units</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#parse_csv_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.parse_csv_dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse CSV data into a netCDF-like dataset.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.ncss.parse_csv_header">
-<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">parse_csv_header</code><span class="sig-paren">(</span><em class="sig-param">line</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#parse_csv_header"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.parse_csv_header" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">parse_csv_header</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#parse_csv_header"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.parse_csv_header" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse the CSV header returned by TDS.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.ncss.parse_csv_response">
-<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">parse_csv_response</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">unit_handler</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#parse_csv_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.parse_csv_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">parse_csv_response</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">unit_handler</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#parse_csv_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.parse_csv_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle CSV-formatted HTTP responses.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.ncss.parse_xml">
-<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">parse_xml</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">handle_units</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#parse_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.parse_xml" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">parse_xml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">handle_units</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#parse_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.parse_xml" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse XML data returned by NCSS.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.ncss.parse_xml_dataset">
-<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">parse_xml_dataset</code><span class="sig-paren">(</span><em class="sig-param">elem</em>, <em class="sig-param">handle_units</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#parse_xml_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.parse_xml_dataset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">parse_xml_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">elem</span></em>, <em class="sig-param"><span class="n">handle_units</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#parse_xml_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.parse_xml_dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a netCDF-like dataset from XML data.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.ncss.parse_xml_point">
-<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">parse_xml_point</code><span class="sig-paren">(</span><em class="sig-param">elem</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#parse_xml_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.parse_xml_point" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">parse_xml_point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">elem</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#parse_xml_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.parse_xml_point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse an XML point tag.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.ncss.read_netcdf">
-<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">read_netcdf</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">handle_units</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#read_netcdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.read_netcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">read_netcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">handle_units</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#read_netcdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.read_netcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle HTTP responses in netCDF format.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="siphon.ncss.squish">
-<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">squish</code><span class="sig-paren">(</span><em class="sig-param">l</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#squish"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.squish" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">siphon.ncss.</code><code class="sig-name descname">squish</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seq</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#squish"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#siphon.ncss.squish" title="Permalink to this definition">¶</a></dt>
 <dd><p>If list contains only 1 element, return it instead.</p>
 </dd></dl>
 
@@ -842,32 +822,33 @@ can be chained together on one line.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="radarserver.html" class="btn btn-neutral float-right" title="siphon.radarserver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="http_util.html" class="btn btn-neutral" title="siphon.http_util" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="radarserver.html" class="btn btn-neutral float-right" title="siphon.radarserver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="http_util.html" class="btn btn-neutral float-left" title="siphon.http_util" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Siphon Contributors.
-      Last updated on Oct 30, 2019 at 22:18:55.
+        &#169; Copyright 2018, Siphon Contributors.
+      <span class="lastupdated">
+        Last updated on Mar 05, 2021 at 19:12:59.
+      </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -885,7 +866,6 @@ can be chained together on one line.</p>
 
 
 </footer>
-
         </div>
       </div>
 
@@ -894,39 +874,15 @@ can be chained together on one line.</p>
   </div>
   
 
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'0.8.0+54.g32ed275',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="../_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

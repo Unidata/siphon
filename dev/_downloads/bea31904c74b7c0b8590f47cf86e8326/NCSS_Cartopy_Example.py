@@ -82,7 +82,7 @@ lat_vals = lat_var[:].squeeze()
 lon_vals = lon_var[:].squeeze()
 
 # Convert the number of hours since the reference time to an actual date
-time_val = num2date(time_var[:].squeeze(), time_var.units)
+time_val = num2date(time_var[:].squeeze(), time_var.units, only_use_cftime_datetimes=False)
 
 # Convert temps to Fahrenheit from Kelvin
 temp_vals = temp_vals * 1.8 - 459.67
