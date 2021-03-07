@@ -782,18 +782,36 @@
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
                 <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="Dataset.remote_open"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.remote_open">[docs]</a>    <span class="k">def</span> <span class="nf">remote_open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.remote_open"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.remote_open">[docs]</a>    <span class="k">def</span> <span class="nf">remote_open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Open the remote dataset for random access.</span>
 
 <span class="sd">        Get a file-like object for reading from the remote dataset, providing random access,</span>
 <span class="sd">        similar to a local file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mode : &#39;b&#39; or &#39;t&#39;, optional</span>
+<span class="sd">            Mode with which to open the remote data; &#39;b&#39; for binary, &#39;t&#39; for text. Defaults</span>
+<span class="sd">            to &#39;b&#39;.</span>
+
+<span class="sd">        encoding : str, optional</span>
+<span class="sd">            If ``mode`` is text, the encoding to use to decode the binary data into text.</span>
+<span class="sd">            Defaults to &#39;ascii&#39;.</span>
+
+<span class="sd">        errors : str, optional</span>
+<span class="sd">            If ``mode`` is text, the error handling behavior to pass to `bytes.decode`.</span>
+<span class="sd">            Defaults to &#39;ignore&#39;.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        A random access, file-like object</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="s1">&#39;HTTPServer&#39;</span><span class="p">)</span></div>
+        <span class="n">fobj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="s1">&#39;HTTPServer&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+            <span class="n">fobj</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">fobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="p">,</span> <span class="n">errors</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">fobj</span></div>
 
 <div class="viewcode-block" id="Dataset.remote_access"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.remote_access">[docs]</a>    <span class="k">def</span> <span class="nf">remote_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_xarray</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Access the remote dataset.</span>
@@ -886,7 +904,7 @@
                     <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
                     <span class="n">provider</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span>
                 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;xarray to be installed if `use_xarray` is True.&#39;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;xarray needs to be installed if `use_xarray` is True.&#39;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">NC4Dataset</span>
@@ -1036,7 +1054,7 @@
     <p>
         &#169; Copyright 2018, Siphon Contributors.
       <span class="lastupdated">
-        Last updated on Mar 05, 2021 at 22:50:29.
+        Last updated on Mar 07, 2021 at 20:42:59.
       </span>
 
     </p>
