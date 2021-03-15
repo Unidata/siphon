@@ -234,7 +234,7 @@ Let's make a simple time series plot to checkout what the data look like.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.172 seconds)
+   **Total running time of the script:** ( 0 minutes  0.975 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_met_request.py:
