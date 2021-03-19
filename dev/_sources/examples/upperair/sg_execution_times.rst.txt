@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**00:35.550** total execution time for **examples_upperair** files:
+**00:53.955** total execution time for **examples_upperair** files:
 
 +-------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_upperair_IGRA2_Request.py` (``IGRA2_Request.py``)     | 00:34.450 | 0.0 MB |
+| :ref:`sphx_glr_examples_upperair_IGRA2_Request.py` (``IGRA2_Request.py``)     | 00:52.835 | 0.0 MB |
 +-------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_upperair_Wyoming_Request.py` (``Wyoming_Request.py``) | 00:01.100 | 0.0 MB |
+| :ref:`sphx_glr_examples_upperair_Wyoming_Request.py` (``Wyoming_Request.py``) | 00:01.120 | 0.0 MB |
 +-------------------------------------------------------------------------------+-----------+--------+
