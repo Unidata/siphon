@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Developer’s Guide &mdash; Siphon 0</title>
@@ -187,9 +188,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="developer-s-guide">
+  <section id="developer-s-guide">
 <h1>Developer’s Guide<a class="headerlink" href="#developer-s-guide" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="requirements">
+<section id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>pytest</p></li>
@@ -199,7 +200,7 @@
 <li><p>IPython &gt;= 3.1</p></li>
 <li><p>pandoc (not a python package)</p></li>
 </ul>
-<div class="section" id="conda">
+<section id="conda">
 <h3>Conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h3>
 <p>Settings up a development environment in Siphon is as easy as (from the
 base of the repository):</p>
@@ -210,9 +211,9 @@ base of the repository):</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> contains all of the configuration needed to easily
 set up the environment, called <code class="docutils literal notranslate"><span class="pre">devel</span></code>. The second line sets up conda to
 run directly out of the git repository.</p>
-</div>
-</div>
-<div class="section" id="making-changes">
+</section>
+</section>
+<section id="making-changes">
 <h2>Making Changes<a class="headerlink" href="#making-changes" title="Permalink to this headline">¶</a></h2>
 <p>The changes to the Siphon source (and documentation) should be made via GitHub pull requests
 against <code class="docutils literal notranslate"><span class="pre">master</span></code>, even for those with administration rights. While it’s tempting to make
@@ -225,8 +226,8 @@ and squash together smaller commits. It’s not necessary to flatten the entire 
 can be nice to eliminate small fixes and get the merge down to logically arranged commit. This
 can also be used to hide sins from history–this is the only chance, since once it hits
 <code class="docutils literal notranslate"><span class="pre">master</span></code>, it’s there forever!</p>
-</div>
-<div class="section" id="versioning">
+</section>
+<section id="versioning">
 <h2>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">¶</a></h2>
 <p>To manage identifying the version of the code, Siphon relies upon <a class="reference external" href="https://github.com/warner/python-versioneer">versioneer</a>. <code class="docutils literal notranslate"><span class="pre">versioneer</span></code> takes the current version of
 the source from git tags and any additional commits. For development, the version will have a
@@ -246,8 +247,8 @@ using <code class="docutils literal notranslate"><span class="pre">pip</span> <s
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">versioneer</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="testing">
+</section>
+<section id="testing">
 <h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
 <p>Unit tests are the lifeblood of the project, as it ensures that we can continue to add and
 change the code and stay confident that things have not broken. Running the tests requires
@@ -266,8 +267,8 @@ to only run the tests in the <code class="docutils literal notranslate"><span cl
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span> <span class="n">siphon</span><span class="o">/</span><span class="n">cdmr</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="code-style">
+</section>
+<section id="code-style">
 <h2>Code Style<a class="headerlink" href="#code-style" title="Permalink to this headline">¶</a></h2>
 <p>Siphon uses the Python code style outlined in <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8</a>. For better or worse, this is what the majority
 of the Python world uses. The one deviation is that line length limit is 95 characters. 80 is a
@@ -281,8 +282,8 @@ of the source directory is as easy as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flake8</span> <span class="n">siphon</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="documentation">
+</section>
+<section id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
 <p>Siphon’s documentation is built using sphinx &gt;= 1.4. API documentation is automatically
 generated from docstrings, written using the
@@ -293,16 +294,16 @@ built automatically from <code class="docutils literal notranslate"><span class=
 have the built docs upload to GitHub Pages. As part of the build, the documentation is also
 checked with <code class="docutils literal notranslate"><span class="pre">doc8</span></code>. To see what the docs will look like, you also need to install the
 <code class="docutils literal notranslate"><span class="pre">sphinx-rtd-theme</span></code> package.</p>
-</div>
-<div class="section" id="other-tools">
+</section>
+<section id="other-tools">
 <h2>Other Tools<a class="headerlink" href="#other-tools" title="Permalink to this headline">¶</a></h2>
 <p>Continuous integration is performed by <a class="reference external" href="https://www.travis-ci.org/Unidata/siphon">Travis CI</a>.
 This service runs the unit tests on all support versions, as well as runs against the minimum
 package versions. <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is also run against the code to check formatting. Travis is also
 used to build the documentation and to run the examples to ensure they stay working.</p>
 <p>Test coverage is monitored by <a class="reference external" href="https://codecov.io/github/Unidata/siphon">Codecov.io</a>.</p>
-</div>
-<div class="section" id="releasing">
+</section>
+<section id="releasing">
 <h2>Releasing<a class="headerlink" href="#releasing" title="Permalink to this headline">¶</a></h2>
 <p>To create a new release:</p>
 <ol class="arabic simple">
@@ -319,8 +320,8 @@ the proper version.</p></li>
 only files for this release. This upload process will include any changes to the <code class="docutils literal notranslate"><span class="pre">README</span></code>
 as well as any updated flags from <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.</p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -338,7 +339,7 @@ as well as any updated flags from <code class="docutils literal notranslate"><sp
     <p>
         &#169; Copyright 2018, Siphon Contributors.
       <span class="lastupdated">
-        Last updated on Apr 02, 2021 at 22:46:54.
+        Last updated on Apr 05, 2021 at 16:55:03.
       </span>
 
     </p>
