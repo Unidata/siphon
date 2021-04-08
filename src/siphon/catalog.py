@@ -35,7 +35,19 @@ class IndexableMapping(OrderedDict):
 
 
 class DatasetCollection(IndexableMapping):
-    """Extend ``IndexableMapping`` to allow datetime-based filter queries."""
+    r"""Extend ``IndexableMapping`` to allow datetime-based filter queries.
+
+    Indexing works like a dictionary. The dataset name ('my_data.nc', a string) is the key,
+    and the value returned is an instance of ``Dataset``. Positional indexing
+    (e.g., [0]) is another valid method of indexing.
+
+    ``DatasetCollection`` is commonly encountered as the ``datasets`` attribute of a
+    ``TDSCatalog``. If a ``regex`` in ``filter_time_nearest`` or ```filter_time_range` does not
+    provide sufficient flexibility, or the ``TDSCatalog`` does not provide accurate times,
+    iterating over ``datasets`` can be useful as part implementing a custom filter. For
+    example, in ``for ds in catalog.datasets: print(ds)``, ``ds`` will be the dataset name, and
+    ``ds`` can be used to implement further filtering logic.
+    """
 
     default_regex = re.compile(r'(?P<year>\d{4})(?P<month>[01]\d)(?P<day>[0123]\d)_'
                                r'(?P<hour>[012]\d)(?P<minute>[0-5]\d)')
