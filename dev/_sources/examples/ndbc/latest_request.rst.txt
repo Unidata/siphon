@@ -105,21 +105,21 @@ Get a pandas data frame of all of the observations
           <td>14041</td>
           <td>-8.00</td>
           <td>55.00</td>
-          <td>267.0</td>
-          <td>3.4</td>
+          <td>167.0</td>
+          <td>2.1</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1012.4</td>
+          <td>1012.1</td>
           <td>NaN</td>
-          <td>27.6</td>
-          <td>29.9</td>
+          <td>28.0</td>
+          <td>29.8</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2021-04-21 16:00:00+00:00</td>
+          <td>2021-04-21 17:00:00+00:00</td>
         </tr>
         <tr>
           <th>1</th>
@@ -135,12 +135,12 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>29.9</td>
+          <td>30.2</td>
           <td>30.3</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2021-04-21 16:00:00+00:00</td>
+          <td>2021-04-21 17:00:00+00:00</td>
         </tr>
         <tr>
           <th>2</th>
@@ -265,7 +265,7 @@ Let's make a simple plot of the buoy positions and color by water temperature
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.811 seconds)
+   **Total running time of the script:** ( 0 minutes  3.344 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_latest_request.py:
