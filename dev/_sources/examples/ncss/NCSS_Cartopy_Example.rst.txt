@@ -144,7 +144,7 @@ query string.
  .. code-block:: none
 
 
-    var=Temperature_surface&time=2021-04-23T19%3A32%3A13.115072&west=-111&east=-100&south=35&north=43&accept=netcdf4
+    var=Temperature_surface&time=2021-04-23T19%3A32%3A45.324811&west=-111&east=-100&south=35&north=43&accept=netcdf4
 
 
 
@@ -280,14 +280,14 @@ Now we can plot these up using matplotlib and cartopy.
  .. code-block:: none
 
 
-    [<matplotlib.lines.Line2D object at 0x7f71469a51c0>]
+    [<matplotlib.lines.Line2D object at 0x7fda7a6c5a90>]
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.047 seconds)
+   **Total running time of the script:** ( 0 minutes  3.397 seconds)
 
 
 .. _sphx_glr_download_examples_ncss_NCSS_Cartopy_Example.py:
