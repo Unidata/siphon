@@ -147,8 +147,8 @@ Get a pandas data frame of all of the observations
           <td>22101</td>
           <td>37.24</td>
           <td>126.02</td>
-          <td>150.0</td>
-          <td>3.0</td>
+          <td>160.0</td>
+          <td>2.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -156,20 +156,20 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>10.3</td>
+          <td>10.2</td>
           <td>9.4</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2021-04-26 15:00:00+00:00</td>
+          <td>2021-04-26 16:00:00+00:00</td>
         </tr>
         <tr>
           <th>3</th>
           <td>22102</td>
           <td>34.79</td>
           <td>125.78</td>
-          <td>170.0</td>
-          <td>4.0</td>
+          <td>160.0</td>
+          <td>1.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -177,12 +177,12 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>11.9</td>
-          <td>11.2</td>
+          <td>12.3</td>
+          <td>12.7</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2021-04-26 15:00:00+00:00</td>
+          <td>2021-04-26 16:00:00+00:00</td>
         </tr>
         <tr>
           <th>4</th>
@@ -198,12 +198,12 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>15.6</td>
+          <td>15.4</td>
           <td>16.9</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2021-04-26 15:00:00+00:00</td>
+          <td>2021-04-26 16:00:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -265,7 +265,7 @@ Let's make a simple plot of the buoy positions and color by water temperature
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.013 seconds)
+   **Total running time of the script:** ( 0 minutes  3.452 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_latest_request.py:
