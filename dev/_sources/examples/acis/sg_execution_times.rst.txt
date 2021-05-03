@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**01:55.254** total execution time for **examples_acis** files:
+**00:23.522** total execution time for **examples_acis** files:
 
 +---------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_acis_Mapping_Example.py` (``Mapping_Example.py``) | 01:54.505 | 0.0 MB |
+| :ref:`sphx_glr_examples_acis_Mapping_Example.py` (``Mapping_Example.py``) | 00:22.555 | 0.0 MB |
 +---------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_acis_Basic_Overview.py` (``Basic_Overview.py``)   | 00:00.749 | 0.0 MB |
+| :ref:`sphx_glr_examples_acis_Basic_Overview.py` (``Basic_Overview.py``)   | 00:00.967 | 0.0 MB |
 +---------------------------------------------------------------------------+-----------+--------+
