@@ -1,0 +1,108 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.8.0+46.gc0def67.dirty)
+    method: GET
+    uri: https://www.ncei.noaa.gov/thredds/catalog/avhrr-patmos-x-cloudprops-files/catalog.xml
+  response:
+    body:
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<catalog xmlns=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\"
+        xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.0.1\">\r\n  <service
+        name=\"fileServices\" serviceType=\"Compound\" base=\"\">\r\n    <service
+        name=\"dapService\" serviceType=\"OPENDAP\" base=\"/thredds/dodsC/\" />\r\n
+        \   <service name=\"HTTPServer\" serviceType=\"HTTPServer\" base=\"/thredds/fileServer/\"
+        />\r\n    <service name=\"wcsService\" serviceType=\"WCS\" base=\"/thredds/wcs/\"
+        />\r\n    <service name=\"wms\" serviceType=\"WMS\" base=\"/thredds/wms/\"
+        />\r\n    <service name=\"ncss\" serviceType=\"NetcdfSubset\" base=\"/thredds/ncss/\"
+        />\r\n    <service name=\"ncml\" serviceType=\"NCML\" base=\"/thredds/ncml/\"
+        />\r\n    <service name=\"uddc\" serviceType=\"UDDC\" base=\"/thredds/uddc/\"
+        />\r\n    <service name=\"iso\" serviceType=\"ISO\" base=\"/thredds/iso/\"
+        />\r\n  </service>\r\n  <dataset name=\"PATMOS-X Cloud Properties: File access\"
+        ID=\"avhrr-patmos-x-cloudprops\">\r\n    <metadata inherited=\"true\">\r\n
+        \     <serviceName>fileServices</serviceName>\r\n    </metadata>\r\n    <catalogRef
+        xlink:href=\"1979/catalog.xml\" xlink:title=\"1979\" ID=\"avhrr-patmos-x-cloudprops/1979\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"1980/catalog.xml\" xlink:title=\"1980\"
+        ID=\"avhrr-patmos-x-cloudprops/1980\" name=\"\" />\r\n    <catalogRef xlink:href=\"1981/catalog.xml\"
+        xlink:title=\"1981\" ID=\"avhrr-patmos-x-cloudprops/1981\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"1982/catalog.xml\" xlink:title=\"1982\" ID=\"avhrr-patmos-x-cloudprops/1982\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"1983/catalog.xml\" xlink:title=\"1983\"
+        ID=\"avhrr-patmos-x-cloudprops/1983\" name=\"\" />\r\n    <catalogRef xlink:href=\"1984/catalog.xml\"
+        xlink:title=\"1984\" ID=\"avhrr-patmos-x-cloudprops/1984\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"1985/catalog.xml\" xlink:title=\"1985\" ID=\"avhrr-patmos-x-cloudprops/1985\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"1986/catalog.xml\" xlink:title=\"1986\"
+        ID=\"avhrr-patmos-x-cloudprops/1986\" name=\"\" />\r\n    <catalogRef xlink:href=\"1987/catalog.xml\"
+        xlink:title=\"1987\" ID=\"avhrr-patmos-x-cloudprops/1987\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"1988/catalog.xml\" xlink:title=\"1988\" ID=\"avhrr-patmos-x-cloudprops/1988\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"1989/catalog.xml\" xlink:title=\"1989\"
+        ID=\"avhrr-patmos-x-cloudprops/1989\" name=\"\" />\r\n    <catalogRef xlink:href=\"1990/catalog.xml\"
+        xlink:title=\"1990\" ID=\"avhrr-patmos-x-cloudprops/1990\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"1991/catalog.xml\" xlink:title=\"1991\" ID=\"avhrr-patmos-x-cloudprops/1991\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"1992/catalog.xml\" xlink:title=\"1992\"
+        ID=\"avhrr-patmos-x-cloudprops/1992\" name=\"\" />\r\n    <catalogRef xlink:href=\"1993/catalog.xml\"
+        xlink:title=\"1993\" ID=\"avhrr-patmos-x-cloudprops/1993\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"1994/catalog.xml\" xlink:title=\"1994\" ID=\"avhrr-patmos-x-cloudprops/1994\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"1995/catalog.xml\" xlink:title=\"1995\"
+        ID=\"avhrr-patmos-x-cloudprops/1995\" name=\"\" />\r\n    <catalogRef xlink:href=\"1996/catalog.xml\"
+        xlink:title=\"1996\" ID=\"avhrr-patmos-x-cloudprops/1996\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"1997/catalog.xml\" xlink:title=\"1997\" ID=\"avhrr-patmos-x-cloudprops/1997\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"1998/catalog.xml\" xlink:title=\"1998\"
+        ID=\"avhrr-patmos-x-cloudprops/1998\" name=\"\" />\r\n    <catalogRef xlink:href=\"1999/catalog.xml\"
+        xlink:title=\"1999\" ID=\"avhrr-patmos-x-cloudprops/1999\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"2000/catalog.xml\" xlink:title=\"2000\" ID=\"avhrr-patmos-x-cloudprops/2000\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"2001/catalog.xml\" xlink:title=\"2001\"
+        ID=\"avhrr-patmos-x-cloudprops/2001\" name=\"\" />\r\n    <catalogRef xlink:href=\"2002/catalog.xml\"
+        xlink:title=\"2002\" ID=\"avhrr-patmos-x-cloudprops/2002\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"2003/catalog.xml\" xlink:title=\"2003\" ID=\"avhrr-patmos-x-cloudprops/2003\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"2004/catalog.xml\" xlink:title=\"2004\"
+        ID=\"avhrr-patmos-x-cloudprops/2004\" name=\"\" />\r\n    <catalogRef xlink:href=\"2005/catalog.xml\"
+        xlink:title=\"2005\" ID=\"avhrr-patmos-x-cloudprops/2005\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"2006/catalog.xml\" xlink:title=\"2006\" ID=\"avhrr-patmos-x-cloudprops/2006\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"2007/catalog.xml\" xlink:title=\"2007\"
+        ID=\"avhrr-patmos-x-cloudprops/2007\" name=\"\" />\r\n    <catalogRef xlink:href=\"2008/catalog.xml\"
+        xlink:title=\"2008\" ID=\"avhrr-patmos-x-cloudprops/2008\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"2009/catalog.xml\" xlink:title=\"2009\" ID=\"avhrr-patmos-x-cloudprops/2009\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"2010/catalog.xml\" xlink:title=\"2010\"
+        ID=\"avhrr-patmos-x-cloudprops/2010\" name=\"\" />\r\n    <catalogRef xlink:href=\"2011/catalog.xml\"
+        xlink:title=\"2011\" ID=\"avhrr-patmos-x-cloudprops/2011\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"2012/catalog.xml\" xlink:title=\"2012\" ID=\"avhrr-patmos-x-cloudprops/2012\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"2013/catalog.xml\" xlink:title=\"2013\"
+        ID=\"avhrr-patmos-x-cloudprops/2013\" name=\"\" />\r\n    <catalogRef xlink:href=\"2014/catalog.xml\"
+        xlink:title=\"2014\" ID=\"avhrr-patmos-x-cloudprops/2014\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"2015/catalog.xml\" xlink:title=\"2015\" ID=\"avhrr-patmos-x-cloudprops/2015\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"2016/catalog.xml\" xlink:title=\"2016\"
+        ID=\"avhrr-patmos-x-cloudprops/2016\" name=\"\" />\r\n    <catalogRef xlink:href=\"2017/catalog.xml\"
+        xlink:title=\"2017\" ID=\"avhrr-patmos-x-cloudprops/2017\" name=\"\" />\r\n
+        \   <catalogRef xlink:href=\"2018/catalog.xml\" xlink:title=\"2018\" ID=\"avhrr-patmos-x-cloudprops/2018\"
+        name=\"\" />\r\n    <catalogRef xlink:href=\"2019/catalog.xml\" xlink:title=\"2019\"
+        ID=\"avhrr-patmos-x-cloudprops/2019\" name=\"\" />\r\n  </dataset>\r\n</catalog>\r\n"
+    headers:
+      Access-Control-Allow-Headers:
+      - X-Requested-With, Content-Type
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - close
+      Content-Language:
+      - en-US
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Date:
+      - Tue, 01 Oct 2019 20:23:57 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=31536000
+      Transfer-Encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+version: 1
