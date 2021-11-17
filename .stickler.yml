@@ -3,4 +3,4 @@ linters:
         ignore: 'F405'
         max-line-length: 95
 files:
-    ignore: ['siphon/cdmr/ncStream_pb2.py', 'siphon/cdmr/cdmrfeature_pb2.py', 'siphon/_version.py']
+    ignore: ['src/siphon/cdmr/ncStream_pb2.py', 'src/siphon/cdmr/cdmrfeature_pb2.py', 'src/siphon/_version.py']

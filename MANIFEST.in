@@ -2,10 +2,10 @@ include README.rst
 include LICENSE
 include CONTRIBUTING.md
 include versioneer.py
-include siphon/_version.py
+include src/siphon/_version.py
 recursive-include examples *
 recursive-include docs *
-recursive-include siphon/tests *
+recursive-include src/siphon/tests *
 prune docs/build
 prune docs/examples
 prune docs/api/generated

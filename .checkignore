@@ -3,11 +3,11 @@
 #
 
 # Ignore versioneer stuff
-siphon/_version.py
+src/siphon/_version.py
 versioneer.py
 
 # Ignore generated protobuf files
-siphon/cdmr/*_pb2.py
+src/siphon/cdmr/*_pb2.py
 
 # Don't scan sphinx config
 docs/source/conf.py

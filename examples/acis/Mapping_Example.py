@@ -98,8 +98,8 @@ for stn in my_data['data']:
     # Skip threaded stations! They have no lat/lons
     if stn['meta']['sids'][-1].endswith('9'):
         continue
-    # Skip stations with missing data
-    if stn['smry'][0] == 'M' or stn['smry'][1] == 'M':
+    # Skip stations with missing or trace data
+    if stn['smry'][0] in ['M', 'T'] or stn['smry'][1] in ['M', 'T']:
         continue
 
     lat.append(stn['meta']['ll'][1])
