@@ -22,7 +22,7 @@ class IAStateUpperAir(HTTPEndPoint):
 
     def __init__(self):
         """Set up endpoint."""
-        super(IAStateUpperAir, self).__init__('http://mesonet.agron.iastate.edu/json')
+        super().__init__('http://mesonet.agron.iastate.edu/json')
 
     @classmethod
     def request_data(cls, time, site_id, interp_nans=False, **kwargs):
@@ -176,11 +176,11 @@ class IAStateUpperAir(HTTPEndPoint):
         if not (json_data['profiles'] and json_data['profiles'][0]['profile']):
             message = 'No data available '
             if time is not None:
-                message += 'for {time:%Y-%m-%d %HZ} '.format(time=time)
+                message += f'for {time:%Y-%m-%d %HZ} '
             if site_id is not None:
-                message += 'for station {stid}'.format(stid=site_id)
+                message += f'for station {site_id}'
             if pressure is not None:
-                message += 'for pressure {pres}'.format(pres=pressure)
+                message += f'for pressure {pressure}'
             message = message + '.'
             raise ValueError(message)
         return json_data

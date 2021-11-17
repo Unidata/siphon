@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Support reading and parsing the dataset.xml documents from the netCDF Subset Service."""
 
-from __future__ import print_function
 
 import logging
 import re
@@ -21,7 +20,7 @@ def _without_namespace(tagname):
     return tagname
 
 
-class _Types(object):
+class _Types:
     @staticmethod
     def handle_typed_values(val, type_name, value_type):
         """Translate typed values into the appropriate python object.
@@ -201,11 +200,11 @@ class _Types(object):
         if handler_name in dir(self):
             return getattr(self, handler_name)
         else:
-            msg = 'cannot find handler for element {}'.format(handler_name)
+            msg = f'cannot find handler for element {handler_name}'
             log.warning(msg)
 
 
-class NCSSDataset(object):
+class NCSSDataset:
     """Hold information contained in the dataset.xml NCSS document.
 
     In general, if a dataset.xml NCSS document is missing the information

@@ -13,8 +13,6 @@ contained within.
 """
 
 # This is currently a placeholder for a better example
-from __future__ import print_function
-
 from siphon.catalog import TDSCatalog
 from siphon.http_util import session_manager
 

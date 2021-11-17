@@ -27,7 +27,7 @@ class CoverageDataset(AttributeContainer):
 
     def __init__(self, url):
         """Initialize CoverageDataset from a url pointing to CDMRemoteFeature endpoint."""
-        super(CoverageDataset, self).__init__()
+        super().__init__()
         warnings.warn('CoverageDataset is in early development, unsupported, and API may '
                       'change at any time.')
         self.cdmrf = CDMRemoteFeature(url)
@@ -74,9 +74,9 @@ class CoverageDataset(AttributeContainer):
         if self.name:
             print_groups.append(self.name + ' (' + str(self.type) + ')')
 
-        print_groups.append('Lon/Lat Domain: {0}'.format(self.lon_lat_domain))
-        print_groups.append('Projected Domain: {0}'.format(self.proj_domain))
-        print_groups.append('Date Range: {0}'.format(self.date_range))
+        print_groups.append(f'Lon/Lat Domain: {self.lon_lat_domain}')
+        print_groups.append(f'Projected Domain: {self.proj_domain}')
+        print_groups.append(f'Date Range: {self.date_range}')
 
         indent = ' ' * 4
         if self.axes:
@@ -102,5 +102,5 @@ class CoverageDataset(AttributeContainer):
         if self.ncattrs():
             print_groups.append('Attributes:')
             for att in self.ncattrs():
-                print_groups.append('{0}{1}: {2}'.format(indent, att, getattr(self, att)))
+                print_groups.append(f'{indent}{att}: {getattr(self, att)}')
         return '\n'.join(print_groups)

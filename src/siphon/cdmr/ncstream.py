@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Handle binary stream returns in NCStream format."""
 
-from __future__ import print_function
-
 from collections import OrderedDict
 import itertools
 import logging
@@ -62,8 +60,7 @@ def read_ncstream_data(fobj):
             bin_data = zlib.decompress(bin_data)
             assert len(bin_data) == data.uncompressedSize
         elif data.compress != stream.NONE:
-            raise NotImplementedError('Compression type {0} not implemented!'.format(
-                data.compress))
+            raise NotImplementedError(f'Compression type {data.compress} not implemented!')
 
         # Turn bytes into an array
         return reshape_array(data, np.frombuffer(bin_data, dtype=dt))
@@ -87,8 +84,7 @@ def read_ncstream_data(fobj):
             magic = read_magic(fobj)
         return data, blocks
     else:
-        raise NotImplementedError("Don't know how to handle data type: {0}".format(
-            data.dataType))
+        raise NotImplementedError(f"Don't know how to handle data type: {data.dataType}")
 
 
 def read_ncstream_data2(fobj):
@@ -144,7 +140,7 @@ def read_messages(fobj, magic_table):
         if func is not None:
             messages.append(func(fobj))
         else:
-            log.error('Unknown magic: ' + str(' '.join('{0:02x}'.format(b)
+            log.error('Unknown magic: ' + str(' '.join(f'{b:02x}'
                                                        for b in bytearray(magic))))
 
     return messages

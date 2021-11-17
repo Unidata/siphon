@@ -38,7 +38,7 @@ def test_radar_query_chain():
     assert 'time=2015-06-15T12' in query
 
 
-class TestRadarServerLevel3(object):
+class TestRadarServerLevel3:
     """Test radar server functionality for requesting level 3 data."""
 
     @recorder.use_cassette('thredds_radarserver_level3_metadata')
@@ -60,7 +60,7 @@ class TestRadarServerLevel3(object):
         assert not self.client.validate_query(q)
 
 
-class TestRadarServer(object):
+class TestRadarServer:
     """Test radar server functionality for accessing data."""
 
     @recorder.use_cassette('thredds_radarserver_metadata')
@@ -131,7 +131,7 @@ class TestRadarServer(object):
         assert len(cat.datasets) == 1
 
 
-class TestRadarServerDatasets(object):
+class TestRadarServerDatasets:
     """Tests for listing datasets from the radar server."""
 
     @recorder.use_cassette('thredds_radarserver_toplevel')

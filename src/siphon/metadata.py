@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Helps support reading and parsing metadata elements from a TDS client catalog."""
 
-from __future__ import print_function
-
 import logging
 
 logging.basicConfig(level=logging.ERROR)
@@ -14,7 +12,7 @@ xlink_href_attr = '{http://www.w3.org/1999/xlink}href'
 xlink_title_attr = '{http://www.w3.org/1999/xlink}title'
 
 
-class _SimpleTypes(object):
+class _SimpleTypes:
     def __init__(self):
         self._valid = {'dataFormat': self._load_valid_data_format_types(),
                        'upOrDown': self._load_valid_up_or_down(),
@@ -165,7 +163,7 @@ class _SimpleTypes(object):
         return {type_name: val}
 
 
-class _ComplexTypes(object):
+class _ComplexTypes:
     @staticmethod
     def _get_tag_name(element):
         if '}' in element.tag:
@@ -441,7 +439,7 @@ class _ComplexTypes(object):
         return data_size
 
 
-class TDSCatalogMetadata(object):
+class TDSCatalogMetadata:
     """Hold information contained in the catalog Metadata tag.
 
     Attributes
@@ -513,7 +511,7 @@ class TDSCatalogMetadata(object):
         elif handler_name in self._sts:
             return getattr(self._st, handler_name)
         else:
-            msg = 'cannot find handler for element {}'.format(handler_name)
+            msg = f'cannot find handler for element {handler_name}'
             log.warning(msg)
 
     def _parse_element(self, element):

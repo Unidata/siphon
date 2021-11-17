@@ -20,7 +20,7 @@ class NDBC(HTTPEndPoint):
 
     def __init__(self):
         """Set up endpoint."""
-        super(NDBC, self).__init__('https://www.ndbc.noaa.gov/')
+        super().__init__('https://www.ndbc.noaa.gov/')
 
     @classmethod
     def realtime_observations(cls, buoy, data_type='txt'):
@@ -552,5 +552,5 @@ class NDBC(HTTPEndPoint):
 
         """
         endpoint = cls()
-        resp = endpoint.get_path('data/realtime2/{}.{}'.format(buoy, data_type))
+        resp = endpoint.get_path(f'data/realtime2/{buoy}.{data_type}')
         return resp.text

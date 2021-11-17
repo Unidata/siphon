@@ -39,7 +39,7 @@ recorder = get_recorder(__file__)
 #  AcceptList
 
 
-class TestSimpleTypes(object):
+class TestSimpleTypes:
     """Test parsing simple types from NCSS dataset.xml."""
 
     @classmethod

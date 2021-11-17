@@ -69,7 +69,7 @@ def tuple_unit_handler(data, units=None):
     return np.array(data).tolist(), units
 
 
-class TestNCSS(object):
+class TestNCSS:
     """Test NCSS queries and response parsing."""
 
     server = 'http://thredds.ucar.edu/thredds/ncss/'

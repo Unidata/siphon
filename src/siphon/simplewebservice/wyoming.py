@@ -23,7 +23,7 @@ class WyomingUpperAir(HTTPEndPoint):
 
     def __init__(self):
         """Set up endpoint."""
-        super(WyomingUpperAir, self).__init__('http://weather.uwyo.edu/cgi-bin/sounding')
+        super().__init__('http://weather.uwyo.edu/cgi-bin/sounding')
 
     @classmethod
     def request_data(cls, time, site_id, **kwargs):

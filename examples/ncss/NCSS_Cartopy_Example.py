@@ -111,7 +111,7 @@ cf = ax.contourf(lon_2d, lat_2d, temp_vals, 200, transform=ccrs.PlateCarree(), z
 plt.colorbar(cf, ax=ax, fraction=0.032)
 
 # Make a title with the time value
-ax.set_title(u'Temperature forecast (\u00b0F) for {0:%d %B %Y %H:%MZ}'.format(time_val),
+ax.set_title(f'Temperature forecast (\u00b0F) for {time_val:%d %B %Y %H:%MZ}',
              fontsize=20)
 
 # Plot markers for each lat/long to show grid points for 0.25 deg GFS

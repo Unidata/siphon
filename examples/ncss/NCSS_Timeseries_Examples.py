@@ -68,6 +68,6 @@ print(time_vals[:5])
 # objects.
 fig, ax = plt.subplots(1, 1, figsize=(9, 8))
 ax.plot(time_vals, temp[:].squeeze(), 'r', linewidth=2)
-ax.set_ylabel('{} ({})'.format(temp.standard_name, temp.units))
+ax.set_ylabel(f'{temp.standard_name} ({temp.units})')
 ax.set_xlabel('Forecast Time (UTC)')
 ax.grid(True)

@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Provide a netCDF4-like interface on top of CDMRemote and NCStream."""
 
-from __future__ import print_function
-
 from collections import OrderedDict
 import enum
 import logging
@@ -16,7 +14,7 @@ logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger(__name__)
 
 
-class AttributeContainer(object):
+class AttributeContainer:
     """Unpack and provide access to attributes."""
 
     def __init__(self):
@@ -39,7 +37,7 @@ class Group(AttributeContainer):
 
     def __init__(self, parent=None):
         """Initialize a Group."""
-        super(Group, self).__init__()
+        super().__init__()
         self.groups = OrderedDict()
         self.variables = OrderedDict()
         self.dimensions = OrderedDict()
@@ -98,7 +96,7 @@ class Group(AttributeContainer):
             print_groups.append('Groups:')
             for group in self.groups.values():
                 print_groups.append(str(group))
-                print_groups.append(str('---end group---'))
+                print_groups.append('---end group---')
 
         if self.dimensions:
             print_groups.append('Dimensions:')
@@ -118,7 +116,7 @@ class Group(AttributeContainer):
         if self.ncattrs():
             print_groups.append('Attributes:')
             for att in self.ncattrs():
-                print_groups.append('\t{}: {}'.format(att, getattr(self, att)))
+                print_groups.append(f'\t{att}: {getattr(self, att)}')
         return '\n'.join(print_groups)
 
     __repr__ = __str__
@@ -129,7 +127,7 @@ class Dataset(Group):
 
     def __init__(self, url):
         """Initialize the dataset."""
-        super(Dataset, self).__init__()
+        super().__init__()
         self.cdmr = CDMRemote(url)
         self.url = url
         self._read_header()
@@ -143,7 +141,7 @@ class Dataset(Group):
 
     def __str__(self):
         """Return a string representation of the Dataset and all contained members."""
-        return self.url + '\n' + super(Dataset, self).__str__()
+        return self.url + '\n' + super().__str__()
 
     __repr__ = __str__
 
@@ -153,7 +151,7 @@ class Variable(AttributeContainer):
 
     def __init__(self, group, name):
         """Initialize the Variable."""
-        super(Variable, self).__init__()
+        super().__init__()
         self._group = group
         self.name = name
         self.dimensions = ()
@@ -317,7 +315,7 @@ class Variable(AttributeContainer):
         groups.append('{} {}({})'.format(self.datatype, self.name,
                                          ', '.join(self.dimensions)))
         for att in self.ncattrs():
-            groups.append('\t{}: {}'.format(att, getattr(self, att)))
+            groups.append(f'\t{att}: {getattr(self, att)}')
         if self.ndim:
             if self.ndim > 1:
                 shape_str = '(' + ', '.join(str(s) for s in self.shape) + ')'
@@ -327,7 +325,7 @@ class Variable(AttributeContainer):
         return '\n'.join(groups)
 
 
-class Dimension(object):
+class Dimension:
     """Hold information about dimensions shared between variables."""
 
     def __init__(self, group, name, size=None):
@@ -362,7 +360,7 @@ class Dimension(object):
 
     def __str__(self):
         """Return a string representation of the Dimension information."""
-        grps = ['{} '.format(type(self))]
+        grps = [f'{type(self)} ']
         if self.unlimited:
             grps.append('(unlimited): ')
 
@@ -374,7 +372,7 @@ class Dimension(object):
         if self.vlen:
             grps.append(', (vlen)')
         else:
-            grps.append(', size = {0}'.format(self.size))
+            grps.append(f', size = {self.size}')
 
         return ''.join(grps)
 
