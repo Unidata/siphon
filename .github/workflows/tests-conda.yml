@@ -69,7 +69,7 @@ jobs:
       # By running coverage in "parallel" mode and "combining", we can clean up the path names
       run: |
         export TEST_DATA_DIR=$GITHUB_WORKSPACE/staticdata
-        python -m coverage run -p -m pytest siphon
+        python -m coverage run -p -m pytest src/siphon
         python -m coverage combine
         python -m coverage report
         python -m coverage xml
