@@ -13,8 +13,6 @@ from setuptools import find_packages, setup
 # Need to conditionally add enum support for older Python
 dependencies = ['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2', 'beautifulsoup4>=4.6',
                 'pandas']
-if sys.version_info < (3, 4):
-    dependencies.append('enum34')
 
 setup(
     name='siphon',
@@ -28,8 +26,6 @@ setup(
                  'Unidata technology stack.'),
     keywords='meteorology weather',
     classifiers=['Development Status :: 3 - Alpha',
-                 'Programming Language :: Python :: 2',
-                 'Programming Language :: Python :: 2.7',
                  'Programming Language :: Python :: 3',
                  'Programming Language :: Python :: 3.6',
                  'Programming Language :: Python :: 3.7',
@@ -38,7 +34,7 @@ setup(
                  'Operating System :: OS Independent',
                  'License :: OSI Approved :: BSD License'],
 
-    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*',
+    python_requires='>=3.6',
     install_requires=dependencies,
     extras_require={
         'netcdf': 'netCDF4>=1.1.0',
