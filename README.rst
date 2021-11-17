@@ -57,7 +57,7 @@ still evolving (we won't break things just for fun, but many things are still ch
 work through design issues). Also, for a version `0.x.y`, we change `x` when we
 release new features, and `y` when we make a release with only bug fixes.
 
-We support Python >= 3.6.
+We support Python >= 3.7.
 
 Important Links
 ---------------

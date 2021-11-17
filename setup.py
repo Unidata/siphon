@@ -27,14 +27,15 @@ setup(
     keywords='meteorology weather',
     classifiers=['Development Status :: 3 - Alpha',
                  'Programming Language :: Python :: 3',
-                 'Programming Language :: Python :: 3.6',
                  'Programming Language :: Python :: 3.7',
+                 'Programming Language :: Python :: 3.8',
+                 'Programming Language :: Python :: 3.9',
                  'Topic :: Scientific/Engineering',
                  'Intended Audience :: Science/Research',
                  'Operating System :: OS Independent',
                  'License :: OSI Approved :: BSD License'],
 
-    python_requires='>=3.6',
+    python_requires='>=3.7',
     install_requires=dependencies,
     extras_require={
         'netcdf': 'netCDF4>=1.1.0',
