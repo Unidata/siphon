@@ -10,6 +10,19 @@ import sys
 from setuptools import find_packages, setup
 
 
+if sys.version_info[0] < 3:
+    error = """
+    Siphon greater than 0.9 requires Python 3.7 or above.
+    If you're using Python 2.7, please install Siphon v0.9.0,
+    which is the last release that supports Python 2.7,
+    though it is no longer maintained.
+
+    Python {py} detected.
+    """.format(py='.'.join([str(v) for v in sys.version_info[:3]]))
+
+    print(error)  # noqa: T001
+    sys.exit(1)
+
 # Need to conditionally add enum support for older Python
 dependencies = ['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2', 'beautifulsoup4>=4.6',
                 'pandas']
