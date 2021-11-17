@@ -77,7 +77,7 @@ jobs:
 
     - name: Run tests
       run: |
-        python -m coverage run -p -m pytest src/siphon
+        python -m coverage run -p -m pytest tests
         python -m coverage combine
         python -m coverage report
         python -m coverage xml

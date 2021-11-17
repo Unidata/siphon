@@ -10,7 +10,7 @@ plugins:
     enabled: true
     config:
       test_patterns:
-        - "siphon/**/tests/*.py"
+        - "tests/*.py"
     checks:
       python:S3776:
         enabled: false

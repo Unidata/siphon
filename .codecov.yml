@@ -23,8 +23,8 @@ coverage:
       tests:
         target: 100%
         paths:
-          - "siphon/.*/tests/.*"
-          - "siphon/tests/.*"
+          - "src/siphon/testing.py"
+          - "tests/.*"
 
   notify:
     gitter:
