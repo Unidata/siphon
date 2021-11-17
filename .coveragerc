@@ -1,2 +1,9 @@
+[paths]
+source =
+    src/
+    /*/site-packages
+
 [run]
+source = tests
+source_pkgs = siphon
 omit = src/siphon/_version.py,src/siphon/cdmr/*_pb2.py
