@@ -8,10 +8,7 @@ from __future__ import print_function
 import sys
 
 from setuptools import find_packages, setup
-import versioneer
 
-
-ver = versioneer.get_version()
 
 # Need to conditionally add enum support for older Python
 dependencies = ['numpy>=1.8', 'protobuf>=3.0.0a3', 'requests>=1.2', 'beautifulsoup4>=4.6',
@@ -21,7 +18,7 @@ if sys.version_info < (3, 4):
 
 setup(
     name='siphon',
-    version=ver,
+    use_scm_version={'version_scheme': 'post-release', 'local_scheme': 'dirty-tag'},
     packages=find_packages(),
     author='Unidata Development Team',
     author_email='support-python@unidata.ucar.edu',
@@ -58,7 +55,5 @@ setup(
         # that will pull in GDAL.
         'examples': ['matplotlib>=1.3', 'cartopy>=0.13.1', 'scipy', 'metpy']
     },
-
-    download_url='https://github.com/Unidata/siphon/archive/v{}.tar.gz'.format(ver),
-    cmdclass=versioneer.get_cmdclass(),
+    # download_url='https://github.com/Unidata/siphon/archive/v{}.tar.gz'.format(ver),
 )

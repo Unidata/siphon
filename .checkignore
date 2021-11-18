@@ -2,10 +2,6 @@
 # Configures file ignores for Quantified Code
 #
 
-# Ignore versioneer stuff
-src/siphon/_version.py
-versioneer.py
-
 # Ignore generated protobuf files
 src/siphon/cdmr/*_pb2.py
 
