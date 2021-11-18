@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Developer’s Guide &mdash; Siphon 0</title>
+  <title>Developer’s Guide &mdash; Siphon 0.9</title>
   
 
   
@@ -73,7 +73,7 @@
             
             
               <div class="version">
-                0
+                0.9
               </div>
             
           
@@ -228,24 +228,15 @@ can also be used to hide sins from history–this is the only chance, since once
 </div>
 <div class="section" id="versioning">
 <h2>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">¶</a></h2>
-<p>To manage identifying the version of the code, Siphon relies upon <a class="reference external" href="https://github.com/warner/python-versioneer">versioneer</a>. <code class="docutils literal notranslate"><span class="pre">versioneer</span></code> takes the current version of
+<p>To manage identifying the version of the code, Siphon relies upon <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code>.
+It takes the current version of
 the source from git tags and any additional commits. For development, the version will have a
 string like <code class="docutils literal notranslate"><span class="pre">0.1.1+76.g136e37b.dirty</span></code>, which comes from <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">describe</span></code>. This version means
 that the current code is 76 commits past the 0.1.1 tag, on git hash <code class="docutils literal notranslate"><span class="pre">136e37b</span></code>, with local
 changes on top (indicated by <code class="docutils literal notranslate"><span class="pre">dirty</span></code>). For a release, or non-git repo source dir, the version
 will just come from the most recent tag (i.e. <code class="docutils literal notranslate"><span class="pre">v0.1.1</span></code>).</p>
 <p>To make a new version, simply add a new tag with a name like <code class="docutils literal notranslate"><span class="pre">vMajor.Minor.Bugfix</span></code> and push
-to GitHub. Github will add a new release with a source archive.zip file. Running</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">sdist</span>
-</pre></div>
-</div>
-<p>will build a new source distribution with the appropriately generated version file as well.
-This will also create a new stable set of documentation.</p>
-<p><code class="docutils literal notranslate"><span class="pre">versioneer</span></code> is installed in the base of the repository. To update, install the latest copy
-using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">versioneer</span></code>. Then recreate the <code class="docutils literal notranslate"><span class="pre">_version.py</span></code> file using:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">versioneer</span>
-</pre></div>
-</div>
+to GitHub. Github will add a new release with a source archive.zip file.</p>
 </div>
 <div class="section" id="testing">
 <h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
@@ -309,8 +300,8 @@ used to build the documentation and to run the examples to ensure they stay work
 <li><p>Go to the GitHub page and make a new release. The tag should be a sensible version number,
 like v1.0.0. Add a name (can just be the version) and add some notes on what the big
 changes are.</p></li>
-<li><p>Do a pull locally to grab the new tag. This will ensure that <code class="docutils literal notranslate"><span class="pre">versioneer</span></code> will give you
-the proper version.</p></li>
+<li><p>Do a pull locally to grab the new tag. This will ensure that <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code> will give
+you the proper version.</p></li>
 <li><p>(optional) Perform a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clean</span> <span class="pre">-f</span> <span class="pre">-x</span> <span class="pre">-d</span></code> from the root of the repository. This will
 <strong>delete</strong> everything not tracked by git, but will also ensure clean source distribution.
 <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code> is set to include/exclude mostly correctly, but could miss some things.</p></li>
@@ -338,7 +329,7 @@ as well as any updated flags from <code class="docutils literal notranslate"><sp
     <p>
         &#169; Copyright 2018, Siphon Contributors.
       <span class="lastupdated">
-        Last updated on Nov 17, 2021 at 22:04:41.
+        Last updated on Nov 18, 2021 at 04:05:03.
       </span>
 
     </p>
