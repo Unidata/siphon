@@ -1,7 +1,6 @@
 ignore-paths:
   - doc
   - build
-  - versioneer.py
   - src/siphon/_version.py
   - src/siphon/cdmr/ncStream_pb2.py
   - src/siphon/cdmr/cdmrfeature_pb2.py

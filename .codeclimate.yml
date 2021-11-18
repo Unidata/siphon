@@ -26,6 +26,4 @@ plugins:
         enabled: false
 
 exclude_patterns:
-- "versioneer.py"
-- "siphon/_version.py"
 - "docs/**/*"

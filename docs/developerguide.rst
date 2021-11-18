@@ -49,8 +49,8 @@ can also be used to hide sins from history--this is the only chance, since once 
 Versioning
 ----------
 
-To manage identifying the version of the code, Siphon relies upon `versioneer
-<https://github.com/warner/python-versioneer>`_. ``versioneer`` takes the current version of
+To manage identifying the version of the code, Siphon relies upon ``setuptools_scm``.
+It takes the current version of
 the source from git tags and any additional commits. For development, the version will have a
 string like ``0.1.1+76.g136e37b.dirty``, which comes from ``git describe``. This version means
 that the current code is 76 commits past the 0.1.1 tag, on git hash ``136e37b``, with local
@@ -58,19 +58,7 @@ changes on top (indicated by ``dirty``). For a release, or non-git repo source d
 will just come from the most recent tag (i.e. ``v0.1.1``).
 
 To make a new version, simply add a new tag with a name like ``vMajor.Minor.Bugfix`` and push
-to GitHub. Github will add a new release with a source archive.zip file. Running
-
-.. parsed-literal::
-    python setup.py sdist
-
-will build a new source distribution with the appropriately generated version file as well.
-This will also create a new stable set of documentation.
-
-``versioneer`` is installed in the base of the repository. To update, install the latest copy
-using ``pip install versioneer``. Then recreate the ``_version.py`` file using:
-
-.. parsed-literal::
-    python setup.py versioneer
+to GitHub. Github will add a new release with a source archive.zip file.
 
 -------
 Testing
@@ -150,8 +138,8 @@ To create a new release:
 1. Go to the GitHub page and make a new release. The tag should be a sensible version number,
    like v1.0.0. Add a name (can just be the version) and add some notes on what the big
    changes are.
-2. Do a pull locally to grab the new tag. This will ensure that ``versioneer`` will give you
-   the proper version.
+2. Do a pull locally to grab the new tag. This will ensure that ``setuptools_scm`` will give
+   you the proper version.
 3. (optional) Perform a ``git clean -f -x -d`` from the root of the repository. This will
    **delete** everything not tracked by git, but will also ensure clean source distribution.
    ``MANIFEST.in`` is set to include/exclude mostly correctly, but could miss some things.
