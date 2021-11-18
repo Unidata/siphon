@@ -99,6 +99,24 @@ observation set to query.
         <tr>
           <th>0</th>
           <td>310.0</td>
+          <td>15.0</td>
+          <td>20.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>1007.1</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>5.1</td>
+          <td>NaN</td>
+          <td>2021-11-18 05:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>310.0</td>
           <td>16.0</td>
           <td>21.0</td>
           <td>4.1</td>
@@ -115,7 +133,7 @@ observation set to query.
           <td>2021-11-18 04:50:00+00:00</td>
         </tr>
         <tr>
-          <th>1</th>
+          <th>2</th>
           <td>310.0</td>
           <td>16.0</td>
           <td>21.0</td>
@@ -133,7 +151,7 @@ observation set to query.
           <td>2021-11-18 04:40:00+00:00</td>
         </tr>
         <tr>
-          <th>2</th>
+          <th>3</th>
           <td>310.0</td>
           <td>17.0</td>
           <td>22.0</td>
@@ -151,7 +169,7 @@ observation set to query.
           <td>2021-11-18 04:30:00+00:00</td>
         </tr>
         <tr>
-          <th>3</th>
+          <th>4</th>
           <td>310.0</td>
           <td>16.0</td>
           <td>22.0</td>
@@ -167,24 +185,6 @@ observation set to query.
           <td>NaN</td>
           <td>NaN</td>
           <td>2021-11-18 04:20:00+00:00</td>
-        </tr>
-        <tr>
-          <th>4</th>
-          <td>300.0</td>
-          <td>16.0</td>
-          <td>21.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>1005.4</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2021-11-18 04:10:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -234,7 +234,7 @@ Let's make a simple time series plot to checkout what the data look like.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.739 seconds)
+   **Total running time of the script:** ( 0 minutes  1.203 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_met_request.py:
