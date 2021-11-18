@@ -116,20 +116,11 @@ observation set to query.
           <td>NaT</td>
           <td>11</td>
           <td>NaN</td>
-          <td>2021-11-18 22:35:00+00:00</td>
-          <td>2021-11-18 22:40:00+00:00</td>
-        </tr>
-        <tr>
-          <th>1</th>
-          <td>NaN</td>
-          <td>NaT</td>
-          <td>11</td>
-          <td>NaN</td>
           <td>2021-11-18 22:21:00+00:00</td>
           <td>2021-11-18 22:30:00+00:00</td>
         </tr>
         <tr>
-          <th>2</th>
+          <th>1</th>
           <td>NaN</td>
           <td>NaT</td>
           <td>11</td>
@@ -138,7 +129,7 @@ observation set to query.
           <td>2021-11-18 22:20:00+00:00</td>
         </tr>
         <tr>
-          <th>3</th>
+          <th>2</th>
           <td>NaN</td>
           <td>NaT</td>
           <td>11</td>
@@ -147,13 +138,22 @@ observation set to query.
           <td>2021-11-18 22:10:00+00:00</td>
         </tr>
         <tr>
-          <th>4</th>
+          <th>3</th>
           <td>NaN</td>
           <td>NaT</td>
           <td>11</td>
           <td>NaN</td>
           <td>2021-11-18 21:54:00+00:00</td>
           <td>2021-11-18 22:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>NaN</td>
+          <td>NaT</td>
+          <td>11</td>
+          <td>NaN</td>
+          <td>2021-11-18 21:43:00+00:00</td>
+          <td>2021-11-18 21:50:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -165,7 +165,7 @@ observation set to query.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.706 seconds)
+   **Total running time of the script:** ( 0 minutes  2.309 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_type_request.py:
