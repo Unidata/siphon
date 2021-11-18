@@ -511,8 +511,7 @@ class TDSCatalogMetadata:
         elif handler_name in self._sts:
             return getattr(self._st, handler_name)
         else:
-            msg = f'cannot find handler for element {handler_name}'
-            log.warning(msg)
+            log.warning('cannot find handler for element %s', handler_name)
 
     def _parse_element(self, element):
 

@@ -200,8 +200,7 @@ class _Types:
         if handler_name in dir(self):
             return getattr(self, handler_name)
         else:
-            msg = f'cannot find handler for element {handler_name}'
-            log.warning(msg)
+            log.warning('cannot find handler for element %s', handler_name)
 
 
 class NCSSDataset:
