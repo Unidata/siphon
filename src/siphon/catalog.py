@@ -33,7 +33,7 @@ class IndexableMapping(OrderedDict):
         """Return an item either by index or name."""
         try:
             item + ''  # Raises if item not a string
-            return super(IndexableMapping, self).__getitem__(item)
+            return super().__getitem__(item)
         except TypeError:
             return list(self.values())[item]
 
@@ -209,42 +209,42 @@ class CaseInsensitiveDict(dict):
 
     def __init__(self, *args, **kwargs):
         """Create a dict with a set of lowercase keys."""
-        super(CaseInsensitiveDict, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self._keys_to_lower()
 
     def __eq__(self, other):
         """Return true if other is case-insensitive equal to self."""
-        return super(CaseInsensitiveDict, self).__eq__(CaseInsensitiveDict(other))
+        return super().__eq__(CaseInsensitiveDict(other))
 
     def __getitem__(self, key):
         """Return value from case-insensitive lookup of ``key``."""
-        return super(CaseInsensitiveDict, self).__getitem__(CaseInsensitiveStr(key))
+        return super().__getitem__(CaseInsensitiveStr(key))
 
     def __setitem__(self, key, value):
         """Set value with lowercase ``key``."""
-        super(CaseInsensitiveDict, self).__setitem__(CaseInsensitiveStr(key), value)
+        super().__setitem__(CaseInsensitiveStr(key), value)
 
     def __delitem__(self, key):
         """Delete value associated with case-insensitive lookup of ``key``."""
-        return super(CaseInsensitiveDict, self).__delitem__(CaseInsensitiveStr(key))
+        return super().__delitem__(CaseInsensitiveStr(key))
 
     def __contains__(self, key):
         """Return true if key set includes case-insensitive ``key``."""
-        return super(CaseInsensitiveDict, self).__contains__(CaseInsensitiveStr(key))
+        return super().__contains__(CaseInsensitiveStr(key))
 
     def pop(self, key, *args, **kwargs):
         """Remove and return the value associated with case-insensitive ``key``."""
-        return super(CaseInsensitiveDict, self).pop(CaseInsensitiveStr(key))
+        return super().pop(CaseInsensitiveStr(key))
 
     def _keys_to_lower(self):
         """Convert key set to lowercase."""
         for k in list(self.keys()):
-            val = super(CaseInsensitiveDict, self).__getitem__(k)
-            super(CaseInsensitiveDict, self).__delitem__(k)
+            val = super().__getitem__(k)
+            super().__delitem__(k)
             self.__setitem__(CaseInsensitiveStr(k), val)
 
 
-class TDSCatalog(object):
+class TDSCatalog:
     """
     Parse information from a THREDDS Client Catalog.
 
@@ -330,8 +330,8 @@ class TDSCatalog(object):
             elif (tag_type == 'metadata') or (tag_type == ''):
                 self._process_metadata(child, tag_type)
             elif tag_type == 'service':
-                if CaseInsensitiveStr(child.attrib['serviceType'])\
-                        != CaseInsensitiveStr('Compound'):
+                if (CaseInsensitiveStr(child.attrib['serviceType'])
+                        != CaseInsensitiveStr('Compound')):
                     # we do not want to process single services if they
                     # are already contained within a compound service, so
                     # we need to skip over those cases.
@@ -380,8 +380,9 @@ class TDSCatalog(object):
             # check to see if dataset needs to have access urls created, if not,
             # remove the dataset
             has_url_path = self.datasets[ds_name].url_path is not None
-            is_ds_with_access_elements_to_process = \
+            is_ds_with_access_elements_to_process = (
                 ds_name in self.ds_with_access_elements_to_process
+            )
             if has_url_path or is_ds_with_access_elements_to_process:
                 self.datasets[ds_name].make_access_urls(
                     self.base_tds_url, self.services, metadata=self.metadata)
@@ -400,7 +401,7 @@ class TDSCatalog(object):
     __repr__ = __str__
 
 
-class CatalogRef(object):
+class CatalogRef:
     """
     An object for holding catalog references obtained from a THREDDS Client Catalog.
 
@@ -452,7 +453,7 @@ class CatalogRef(object):
     __repr__ = __str__
 
 
-class Dataset(object):
+class Dataset:
     """
     An object for holding Datasets obtained from a THREDDS Client Catalog.
 
@@ -755,7 +756,7 @@ class Dataset(object):
     __repr__ = __str__
 
 
-class SimpleService(object):
+class SimpleService:
     """Hold information about an access service enabled on a dataset.
 
     Attributes
@@ -790,7 +791,7 @@ class SimpleService(object):
         return self.service_type == 'Resolver'
 
 
-class CompoundService(object):
+class CompoundService:
     """Hold information about compound services.
 
     Attributes

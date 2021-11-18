@@ -269,7 +269,7 @@ class NCSSQuery(DataQuery):
 # Use at your own risk!
 #
 
-class ResponseRegistry(object):
+class ResponseRegistry:
     """Register functions to be called based on the mimetype in the response headers."""
 
     def __init__(self):

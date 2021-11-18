@@ -72,12 +72,12 @@ relh_filtered = relh[..., relh_ind]
 # Now we can plot these up using matplotlib.
 fig, ax = plt.subplots(1, 1, figsize=(9, 8))
 ax.plot(temp_filtered[:].squeeze(), press_vals, 'r', linewidth=2)
-ax.set_xlabel('{} ({})'.format(temp.standard_name, temp.units))
-ax.set_ylabel('{} ({})'.format(press.standard_name, press.units))
+ax.set_xlabel(f'{temp.standard_name} ({temp.units})')
+ax.set_ylabel(f'{press.standard_name} ({press.units})')
 
 # Create second plot with shared y-axis
 ax2 = plt.twiny(ax)
 ax2.plot(relh_filtered[:].squeeze(), press_vals, 'g', linewidth=2)
-ax2.set_xlabel('{} ({})'.format(relh.standard_name, relh.units))
+ax2.set_xlabel(f'{relh.standard_name} ({relh.units})')
 ax.set_ylim(press_vals.max(), press_vals.min())
 ax.grid(True)

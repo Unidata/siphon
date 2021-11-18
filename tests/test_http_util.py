@@ -169,7 +169,7 @@ def test_http_error_no_header():
         endpoint.get_query(query)
 
 
-class TestEndPoint(object):
+class TestEndPoint:
     """Test the HTTPEndPoint."""
 
     def setup(self):

@@ -75,7 +75,7 @@ class RadarServer(HTTPEndPoint):
         xmlfile = '/dataset.xml'
         if url.endswith(xmlfile):
             url = url[:-len(xmlfile)]
-        super(RadarServer, self).__init__(url)
+        super().__init__(url)
 
     def _get_metadata(self):
         ds_cat = TDSCatalog(self.url_path('dataset.xml'))

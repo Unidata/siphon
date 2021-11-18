@@ -30,7 +30,7 @@ class IGRAUpperAir(HTTPEndPoint):
         self.end_date = ''
         self.site_id = ''
         self.folder = ''
-        super(IGRAUpperAir, self).__init__('https://www1.ncdc.noaa.gov/pub/data/igra/')
+        super().__init__('https://www1.ncdc.noaa.gov/pub/data/igra/')
 
     @classmethod
     def request_data(cls, time, site_id, derived=False):

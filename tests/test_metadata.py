@@ -57,7 +57,7 @@ log.setLevel(logging.WARNING)
 # element_name="timeCoverage"
 
 
-class TestSimpleTypes(object):
+class TestSimpleTypes:
     """Test parsing of simple types from metadata."""
 
     @classmethod
@@ -96,7 +96,7 @@ class TestSimpleTypes(object):
         assert expected == val
 
 
-class TestComplexTypes(object):
+class TestComplexTypes:
     """Test parsing of complex types from metadata."""
 
     @classmethod
@@ -276,7 +276,7 @@ class TestComplexTypes(object):
         assert actual['size'] == 123
 
 
-class TestProperty(object):
+class TestProperty:
     """Test parsing of property tags."""
 
     @classmethod
@@ -318,7 +318,7 @@ class TestContributor:
             assert entry
 
 
-class TestGeospatialCoverage(object):
+class TestGeospatialCoverage:
     """Test parsing GeospatialCoverage tags."""
 
     @classmethod
@@ -374,7 +374,7 @@ class TestGeospatialCoverage(object):
                 assert entry['zpositive']['zpositive'] in {'up', 'down'}
 
 
-class TestMetadata(object):
+class TestMetadata:
     """Test parsing other metadata tags."""
 
     @staticmethod

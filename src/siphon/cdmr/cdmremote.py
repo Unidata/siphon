@@ -14,7 +14,7 @@ class CDMRemote(HTTPEndPoint):
 
     def __init__(self, url):
         """Initialize access to a particular url."""
-        super(CDMRemote, self).__init__(url)
+        super().__init__(url)
         self.deflate = 0
 
     def _fetch(self, query):
@@ -54,7 +54,7 @@ class CDMRemote(HTTPEndPoint):
             The created query.
 
         """
-        q = super(CDMRemote, self).query()
+        q = super().query()
 
         # Turn on compression if it's been set on the object
         if self.deflate:

@@ -49,12 +49,12 @@ class UTC(tzinfo):
 utc = UTC()
 
 
-class HTTPSessionManager(object):
+class HTTPSessionManager:
     """Manage the creation of sessions for HTTP access."""
 
     def __init__(self):
         """Initialize ``HTTPSessionManager``."""
-        self.user_agent = 'Siphon ({})'.format(__version__)
+        self.user_agent = f'Siphon ({__version__})'
         self.options = {}
 
     def set_session_options(self, **kwargs):
@@ -139,7 +139,7 @@ def parse_iso_date(s):
     return datetime.strptime(s, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=utc)
 
 
-class DataQuery(object):
+class DataQuery:
     """Represent a query for data from a THREDDS server.
 
     This object provides a clear API to formulate a query for data, including
@@ -366,7 +366,7 @@ class DataQuery(object):
         return str(self)
 
 
-class HTTPEndPoint(object):
+class HTTPEndPoint:
     """An object representing an endpoint on a server that is accessed using HTTP.
 
     This provides a simple way to point to a URL, formulate appropriate queries and
@@ -489,10 +489,8 @@ class HTTPEndPoint(object):
                 text = resp.reason
             else:
                 text = resp.text
-            raise requests.HTTPError('Error accessing {0}\n'
-                                     'Server Error ({1:d}: {2})'.format(resp.request.url,
-                                                                        resp.status_code,
-                                                                        text))
+            raise requests.HTTPError(f'Error accessing {resp.request.url}\n'
+                                     f'Server Error ({resp.status_code:d}: {text})')
         return resp
 
     def _get_metadata(self):
