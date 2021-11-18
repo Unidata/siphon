@@ -247,7 +247,7 @@ query string.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_surface&amp;time=2021-11-18T05%3A23%3A57.332276&amp;west=-111&amp;east=-100&amp;south=35&amp;north=43&amp;accept=netcdf4
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_surface&amp;time=2021-11-18T20%3A25%3A41.870783&amp;west=-111&amp;east=-100&amp;south=35&amp;north=43&amp;accept=netcdf4
 </pre></div>
 </div>
 <p>We now request data from the server using this query. The <em class="xref py py-obj">NCSS</em> class handles parsing
@@ -309,7 +309,7 @@ the data).</p>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.colorbar.html#matplotlib.pyplot.colorbar" title="matplotlib.pyplot.colorbar" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span></a><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.032</span><span class="p">)</span>
 
 <span class="c1"># Make a title with the time value</span>
-<a href="https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.set_title.html#matplotlib.axes.Axes.set_title" title="matplotlib.axes.Axes.set_title" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span></a><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;Temperature forecast (</span><span class="se">\u00b0</span><span class="s1">F) for {0:</span><span class="si">%d</span><span class="s1"> %B %Y %H:%MZ}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_val</span><span class="p">),</span>
+<a href="https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.set_title.html#matplotlib.axes.Axes.set_title" title="matplotlib.axes.Axes.set_title" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span></a><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Temperature forecast (</span><span class="se">\u00b0</span><span class="s1">F) for </span><span class="si">{</span><span class="n">time_val</span><span class="si">:</span><span class="s1">%d %B %Y %H:%MZ</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
              <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
 <span class="c1"># Plot markers for each lat/long to show grid points for 0.25 deg GFS</span>
@@ -317,12 +317,12 @@ the data).</p>
         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="Temperature forecast (°F) for 18 November 2021 06:00Z" class="sphx-glr-single-img" src="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" />
+<img alt="Temperature forecast (°F) for 18 November 2021 21:00Z" class="sphx-glr-single-img" src="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D object at 0x7f6311d85700&gt;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D object at 0x7f998426b430&gt;]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.312 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.678 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ncss-ncss-cartopy-example-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/bea31904c74b7c0b8590f47cf86e8326/NCSS_Cartopy_Example.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">NCSS_Cartopy_Example.py</span></code></a></p>
@@ -350,7 +350,7 @@ the data).</p>
     <p>
         &#169; Copyright 2018, Siphon Contributors.
       <span class="lastupdated">
-        Last updated on Nov 18, 2021 at 05:24:55.
+        Last updated on Nov 18, 2021 at 20:26:32.
       </span>
 
     </p>

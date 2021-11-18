@@ -175,7 +175,6 @@
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
 <span class="sd">&quot;&quot;&quot;Support reading and parsing the dataset.xml documents from the netCDF Subset Service.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -193,7 +192,7 @@
     <span class="k">return</span> <span class="n">tagname</span>
 
 
-<span class="k">class</span> <span class="nc">_Types</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">_Types</span><span class="p">:</span>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">handle_typed_values</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">value_type</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Translate typed values into the appropriate python object.</span>
@@ -373,11 +372,10 @@
         <span class="k">if</span> <span class="n">handler_name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;cannot find handler for element </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">handler_name</span><span class="p">)</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;cannot find handler for element </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="NCSSDataset"><a class="viewcode-back" href="../../api/ncssdataset.html#siphon.ncss_dataset.NCSSDataset">[docs]</a><span class="k">class</span> <span class="nc">NCSSDataset</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="NCSSDataset"><a class="viewcode-back" href="../../api/ncssdataset.html#siphon.ncss_dataset.NCSSDataset">[docs]</a><span class="k">class</span> <span class="nc">NCSSDataset</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Hold information contained in the dataset.xml NCSS document.</span>
 
 <span class="sd">    In general, if a dataset.xml NCSS document is missing the information</span>
@@ -609,7 +607,7 @@
     <p>
         &#169; Copyright 2018, Siphon Contributors.
       <span class="lastupdated">
-        Last updated on Nov 18, 2021 at 05:24:55.
+        Last updated on Nov 18, 2021 at 20:26:32.
       </span>
 
     </p>

@@ -194,7 +194,7 @@
 
 <div class="viewcode-block" id="IAStateUpperAir.__init__"><a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.iastate.IAStateUpperAir.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set up endpoint.&quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">IAStateUpperAir</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;http://mesonet.agron.iastate.edu/json&#39;</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;http://mesonet.agron.iastate.edu/json&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="IAStateUpperAir.request_data"><a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.iastate.IAStateUpperAir.request_data">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">request_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">interp_nans</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -348,11 +348,11 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">json_data</span><span class="p">[</span><span class="s1">&#39;profiles&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">json_data</span><span class="p">[</span><span class="s1">&#39;profiles&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;profile&#39;</span><span class="p">]):</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;No data available &#39;</span>
             <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">message</span> <span class="o">+=</span> <span class="s1">&#39;for {time:%Y-%m-</span><span class="si">%d</span><span class="s1"> %HZ} &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+                <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;for </span><span class="si">{</span><span class="n">time</span><span class="si">:</span><span class="s1">%Y-%m-%d %HZ</span><span class="si">}</span><span class="s1"> &#39;</span>
             <span class="k">if</span> <span class="n">site_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">message</span> <span class="o">+=</span> <span class="s1">&#39;for station </span><span class="si">{stid}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">stid</span><span class="o">=</span><span class="n">site_id</span><span class="p">)</span>
+                <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;for station </span><span class="si">{</span><span class="n">site_id</span><span class="si">}</span><span class="s1">&#39;</span>
             <span class="k">if</span> <span class="n">pressure</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">message</span> <span class="o">+=</span> <span class="s1">&#39;for pressure </span><span class="si">{pres}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pres</span><span class="o">=</span><span class="n">pressure</span><span class="p">)</span>
+                <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;for pressure </span><span class="si">{</span><span class="n">pressure</span><span class="si">}</span><span class="s1">&#39;</span>
             <span class="n">message</span> <span class="o">=</span> <span class="n">message</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">json_data</span></div>
@@ -369,7 +369,7 @@
     <p>
         &#169; Copyright 2018, Siphon Contributors.
       <span class="lastupdated">
-        Last updated on Nov 18, 2021 at 05:24:55.
+        Last updated on Nov 18, 2021 at 20:26:32.
       </span>
 
     </p>

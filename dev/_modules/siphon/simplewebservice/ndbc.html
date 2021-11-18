@@ -192,7 +192,7 @@
 
 <div class="viewcode-block" id="NDBC.__init__"><a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set up endpoint.&quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">NDBC</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;https://www.ndbc.noaa.gov/&#39;</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;https://www.ndbc.noaa.gov/&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NDBC.realtime_observations"><a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.realtime_observations">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">realtime_observations</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">buoy</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;txt&#39;</span><span class="p">):</span>
@@ -724,7 +724,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;data/realtime2/</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">buoy</span><span class="p">,</span> <span class="n">data_type</span><span class="p">))</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/realtime2/</span><span class="si">{</span><span class="n">buoy</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">data_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span></div></div>
 </pre></div>
 
@@ -739,7 +739,7 @@
     <p>
         &#169; Copyright 2018, Siphon Contributors.
       <span class="lastupdated">
-        Last updated on Nov 18, 2021 at 05:24:55.
+        Last updated on Nov 18, 2021 at 20:26:32.
       </span>
 
     </p>

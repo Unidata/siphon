@@ -134,7 +134,7 @@ representation of the query is a properly encoded query string.
  .. code-block:: none
 
 
-    var=Temperature_isobaric&time_start=2021-11-18T05%3A23%3A53.100350&time_end=2021-11-25T05%3A23%3A53.100350&longitude=-105&latitude=40&vertCoord=100000&accept=netcdf
+    var=Temperature_isobaric&time_start=2021-11-18T20%3A25%3A37.577434&time_end=2021-11-25T20%3A25%3A37.577434&longitude=-105&latitude=40&vertCoord=100000&accept=netcdf
 
 
 
@@ -208,9 +208,9 @@ reasonable.
 
  .. code-block:: none
 
-    [real_datetime(2021, 11, 18, 6, 0) real_datetime(2021, 11, 18, 9, 0)
-     real_datetime(2021, 11, 18, 12, 0) real_datetime(2021, 11, 18, 15, 0)
-     real_datetime(2021, 11, 18, 18, 0)]
+    [real_datetime(2021, 11, 18, 21, 0) real_datetime(2021, 11, 19, 0, 0)
+     real_datetime(2021, 11, 19, 3, 0) real_datetime(2021, 11, 19, 6, 0)
+     real_datetime(2021, 11, 19, 9, 0)]
 
 
 
@@ -226,7 +226,7 @@ objects.
 
     fig, ax = plt.subplots(1, 1, figsize=(9, 8))
     ax.plot(time_vals, temp[:].squeeze(), 'r', linewidth=2)
-    ax.set_ylabel('{} ({})'.format(temp.standard_name, temp.units))
+    ax.set_ylabel(f'{temp.standard_name} ({temp.units})')
     ax.set_xlabel('Forecast Time (UTC)')
     ax.grid(True)
 
@@ -243,7 +243,7 @@ objects.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.911 seconds)
+   **Total running time of the script:** ( 0 minutes  2.172 seconds)
 
 
 .. _sphx_glr_download_examples_ncss_NCSS_Timeseries_Examples.py:

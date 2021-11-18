@@ -27,14 +27,12 @@ Read a catalog from THREDDS Data Server.
 This example grabs a remote catalog and prints out the catalog references
 contained within.
 
-.. GENERATED FROM PYTHON SOURCE LINES 14-21
+.. GENERATED FROM PYTHON SOURCE LINES 14-19
 
 .. code-block:: default
 
 
     # This is currently a placeholder for a better example
-    from __future__ import print_function
-
     from siphon.catalog import TDSCatalog
     from siphon.http_util import session_manager
 
@@ -45,7 +43,7 @@ contained within.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 22-25
+.. GENERATED FROM PYTHON SOURCE LINES 20-23
 
 .. code-block:: default
 
@@ -67,12 +65,12 @@ contained within.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 26-28
+.. GENERATED FROM PYTHON SOURCE LINES 24-26
 
 Basic HTTP authentication can also be used by using the HTTP session manager
 and setting some default options for HTTP sessions
 
-.. GENERATED FROM PYTHON SOURCE LINES 28-30
+.. GENERATED FROM PYTHON SOURCE LINES 26-28
 
 .. code-block:: default
 
@@ -88,7 +86,7 @@ and setting some default options for HTTP sessions
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.827 seconds)
+   **Total running time of the script:** ( 0 minutes  1.383 seconds)
 
 
 .. _sphx_glr_download_examples_Basic_Usage.py:

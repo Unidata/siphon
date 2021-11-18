@@ -205,7 +205,7 @@
         <span class="sd">&quot;&quot;&quot;Return an item either by index or name.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">item</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># Raises if item not a string</span>
-            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">IndexableMapping</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="n">item</span><span class="p">]</span></div>
 
@@ -381,42 +381,42 @@
 
 <div class="viewcode-block" id="CaseInsensitiveDict.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveDict.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a dict with a set of lowercase keys.&quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_keys_to_lower</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive equal to self.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return value from case-insensitive lookup of ``key``.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set value with lowercase ``key``.&quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">value</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Delete value associated with case-insensitive lookup of ``key``.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__delitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__delitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return true if key set includes case-insensitive ``key``.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
 
 <div class="viewcode-block" id="CaseInsensitiveDict.pop"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveDict.pop">[docs]</a>    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Remove and return the value associated with case-insensitive ``key``.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span></div>
 
     <span class="k">def</span> <span class="nf">_keys_to_lower</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert key set to lowercase.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
-            <span class="n">val</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-            <span class="nb">super</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__delitem__</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__delitem__</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">val</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TDSCatalog"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.TDSCatalog">[docs]</a><span class="k">class</span> <span class="nc">TDSCatalog</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="TDSCatalog"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.TDSCatalog">[docs]</a><span class="k">class</span> <span class="nc">TDSCatalog</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parse information from a THREDDS Client Catalog.</span>
 
@@ -502,8 +502,8 @@
             <span class="k">elif</span> <span class="p">(</span><span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;metadata&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_process_metadata</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">tag_type</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;service&#39;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">])</span>\
-                        <span class="o">!=</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;Compound&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">])</span>
+                        <span class="o">!=</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;Compound&#39;</span><span class="p">)):</span>
                     <span class="c1"># we do not want to process single services if they</span>
                     <span class="c1"># are already contained within a compound service, so</span>
                     <span class="c1"># we need to skip over those cases.</span>
@@ -552,8 +552,9 @@
             <span class="c1"># check to see if dataset needs to have access urls created, if not,</span>
             <span class="c1"># remove the dataset</span>
             <span class="n">has_url_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">ds_name</span><span class="p">]</span><span class="o">.</span><span class="n">url_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="n">is_ds_with_access_elements_to_process</span> <span class="o">=</span> \
+            <span class="n">is_ds_with_access_elements_to_process</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">ds_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ds_with_access_elements_to_process</span>
+            <span class="p">)</span>
             <span class="k">if</span> <span class="n">has_url_path</span> <span class="ow">or</span> <span class="n">is_ds_with_access_elements_to_process</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">ds_name</span><span class="p">]</span><span class="o">.</span><span class="n">make_access_urls</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">base_tds_url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">services</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
@@ -572,7 +573,7 @@
     <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span></div>
 
 
-<div class="viewcode-block" id="CatalogRef"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CatalogRef">[docs]</a><span class="k">class</span> <span class="nc">CatalogRef</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="CatalogRef"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CatalogRef">[docs]</a><span class="k">class</span> <span class="nc">CatalogRef</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An object for holding catalog references obtained from a THREDDS Client Catalog.</span>
 
@@ -624,7 +625,7 @@
     <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span></div>
 
 
-<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An object for holding Datasets obtained from a THREDDS Client Catalog.</span>
 
@@ -927,7 +928,7 @@
     <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span></div>
 
 
-<div class="viewcode-block" id="SimpleService"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.SimpleService">[docs]</a><span class="k">class</span> <span class="nc">SimpleService</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleService"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.SimpleService">[docs]</a><span class="k">class</span> <span class="nc">SimpleService</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Hold information about an access service enabled on a dataset.</span>
 
 <span class="sd">    Attributes</span>
@@ -962,7 +963,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_type</span> <span class="o">==</span> <span class="s1">&#39;Resolver&#39;</span></div></div>
 
 
-<div class="viewcode-block" id="CompoundService"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CompoundService">[docs]</a><span class="k">class</span> <span class="nc">CompoundService</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="CompoundService"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CompoundService">[docs]</a><span class="k">class</span> <span class="nc">CompoundService</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Hold information about compound services.</span>
 
 <span class="sd">    Attributes</span>
@@ -1054,7 +1055,7 @@
     <p>
         &#169; Copyright 2018, Siphon Contributors.
       <span class="lastupdated">
-        Last updated on Nov 18, 2021 at 05:24:55.
+        Last updated on Nov 18, 2021 at 20:26:32.
       </span>
 
     </p>
