@@ -4,6 +4,6 @@ metpy==1.0.1
 scipy==1.7.2
 sphinx==3.5.4
 sphinx_rtd_theme==0.5.2
-sphinx-gallery==0.9.0
+sphinx-gallery==0.10.1
 myst-parser==0.15.2
 netCDF4==1.5.8
