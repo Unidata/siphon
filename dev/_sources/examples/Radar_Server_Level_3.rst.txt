@@ -109,7 +109,7 @@ Look at the variables available in this dataset
 
  .. code-block:: none
 
-    {'HHC', 'N0U', 'N2Q', 'DVL', 'N3X', 'NAX', 'DSD', 'N0S', 'N3K', 'NBM', 'DSP', 'OHA', 'DHR', 'N2K', 'N0H', 'NBC', 'DU3', 'NVL', 'NAH', 'NTP', 'NBU', 'N0V', 'N3S', 'NAK', 'EET', 'N1C', 'N0Z', 'NAC', 'PTA', 'N3M', 'N1H', 'N0R', 'NCR', 'N2S', 'NAQ', 'N0Q', 'N0M', 'N1K', 'N1Q', 'N1S', 'N1U', 'N1P', 'DU6', 'N1X', 'N2M', 'DAA', 'DTA', 'N2U', 'NAM', 'DPA', 'N3C', 'NBK', 'N2X', 'NVW', 'N1M', 'DOD', 'N2H', 'N3H', 'NST', 'NBH', 'NAU', 'N0K', 'DPR', 'N3U', 'N3Q', 'NMD', 'NBQ', 'N0X', 'N2C', 'NBX', 'N0C', 'NET'}
+    {'N0H', 'N1P', 'NVW', 'N3S', 'N3C', 'N1M', 'N1K', 'N1Q', 'DSD', 'EET', 'N1S', 'N0Z', 'NAX', 'N0Q', 'N0K', 'N3U', 'N3Q', 'DU6', 'NMD', 'N2H', 'DHR', 'DAA', 'N0X', 'DPR', 'NAM', 'DVL', 'NCR', 'NAK', 'N0M', 'N2C', 'NAC', 'NET', 'PTA', 'NBH', 'NBM', 'DTA', 'N2K', 'N2M', 'NBK', 'NTP', 'N1U', 'N2Q', 'N3X', 'N1H', 'DOD', 'HHC', 'N0R', 'DSP', 'N2U', 'NAH', 'NAQ', 'NAU', 'NBU', 'NST', 'OHA', 'N0V', 'N0C', 'NBC', 'N1C', 'N3M', 'NBX', 'DPA', 'N2S', 'N0U', 'NBQ', 'N3K', 'NVL', 'N3H', 'N0S', 'N1X', 'N2X', 'DU3'}
 
 
 
@@ -139,7 +139,7 @@ is represented as a string, it shows the encoded URL.
  .. code-block:: none
 
 
-    var=N0Q&time=2021-11-19T02%3A14%3A33.113773&stn=FTG
+    var=N0Q&time=2021-11-19T02%3A41%3A16.404256&stn=FTG
 
 
 
@@ -209,7 +209,7 @@ find one NIDS file in the return.
 
  .. code-block:: none
 
-    ['Level3_FTG_N0Q_20211119_0209.nids']
+    ['Level3_FTG_N0Q_20211119_0237.nids']
 
 
 
@@ -236,7 +236,7 @@ We see URLs for OPeNDAP, CDMRemote, and HTTPServer (direct download).
 
  .. code-block:: none
 
-    {'OPENDAP': 'https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0Q/FTG/20211119/Level3_FTG_N0Q_20211119_0209.nids', 'HTTPServer': 'https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0Q/FTG/20211119/Level3_FTG_N0Q_20211119_0209.nids', 'CdmRemote': 'https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0Q/FTG/20211119/Level3_FTG_N0Q_20211119_0209.nids'}
+    {'OPENDAP': 'https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0Q/FTG/20211119/Level3_FTG_N0Q_20211119_0237.nids', 'HTTPServer': 'https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0Q/FTG/20211119/Level3_FTG_N0Q_20211119_0237.nids', 'CdmRemote': 'https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0Q/FTG/20211119/Level3_FTG_N0Q_20211119_0237.nids'}
 
 
 
@@ -326,7 +326,7 @@ Finally, we plot them up using matplotlib.
 
  .. code-block:: none
 
-    /home/runner/work/siphon/siphon/examples/Radar_Server_Level_3.py:86: MatplotlibDeprecationWarning: shading='flat' when X and Y have the same dimensions as C is deprecated since 3.3.  Either specify the corners of the quadrilaterals with X and Y, or pass shading='auto', 'nearest' or 'gouraud', or set rcParams['pcolor.shading'].  This will become an error two minor releases later.
+    /home/runner/work/siphon/siphon/examples/Radar_Server_Level_3.py:86: UserWarning: The input coordinates to pcolormesh are interpreted as cell centers, but are not monotonically increasing or decreasing. This may lead to incorrectly calculated cell edges, in which case, please supply explicit cell edges to pcolormesh.
       ax.pcolormesh(x, y, ref)
 
     (-460.0, 460.0)
@@ -336,7 +336,7 @@ Finally, we plot them up using matplotlib.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.907 seconds)
+   **Total running time of the script:** ( 0 minutes  4.695 seconds)
 
 
 .. _sphx_glr_download_examples_Radar_Server_Level_3.py:
