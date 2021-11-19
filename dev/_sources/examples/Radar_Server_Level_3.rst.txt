@@ -109,7 +109,7 @@ Look at the variables available in this dataset
 
  .. code-block:: none
 
-    {'NBH', 'N1K', 'PTA', 'EET', 'N0R', 'N1M', 'N1X', 'N2H', 'N3K', 'NAX', 'NET', 'DTA', 'DSP', 'N0V', 'N2M', 'N3M', 'N1P', 'N0C', 'N3S', 'N3X', 'NBK', 'DAA', 'NTP', 'N0Z', 'N3C', 'N2C', 'NAU', 'N2U', 'NBX', 'N0K', 'N0H', 'N3U', 'N0X', 'N1Q', 'NMD', 'DOD', 'DU6', 'N0S', 'N1C', 'DVL', 'N2S', 'N2K', 'N1H', 'N1U', 'NAM', 'NBU', 'DHR', 'DU3', 'N0M', 'N2Q', 'N1S', 'NAK', 'NAC', 'N3H', 'DSD', 'HHC', 'NBQ', 'N2X', 'NBC', 'NAQ', 'NVW', 'NVL', 'DPR', 'NCR', 'N0U', 'NBM', 'OHA', 'N3Q', 'NAH', 'N0Q', 'NST', 'DPA'}
+    {'HHC', 'N0U', 'N2Q', 'DVL', 'N3X', 'NAX', 'DSD', 'N0S', 'N3K', 'NBM', 'DSP', 'OHA', 'DHR', 'N2K', 'N0H', 'NBC', 'DU3', 'NVL', 'NAH', 'NTP', 'NBU', 'N0V', 'N3S', 'NAK', 'EET', 'N1C', 'N0Z', 'NAC', 'PTA', 'N3M', 'N1H', 'N0R', 'NCR', 'N2S', 'NAQ', 'N0Q', 'N0M', 'N1K', 'N1Q', 'N1S', 'N1U', 'N1P', 'DU6', 'N1X', 'N2M', 'DAA', 'DTA', 'N2U', 'NAM', 'DPA', 'N3C', 'NBK', 'N2X', 'NVW', 'N1M', 'DOD', 'N2H', 'N3H', 'NST', 'NBH', 'NAU', 'N0K', 'DPR', 'N3U', 'N3Q', 'NMD', 'NBQ', 'N0X', 'N2C', 'NBX', 'N0C', 'NET'}
 
 
 
@@ -139,7 +139,7 @@ is represented as a string, it shows the encoded URL.
  .. code-block:: none
 
 
-    var=N0Q&time=2021-11-19T02%3A14%3A39.441444&stn=FTG
+    var=N0Q&time=2021-11-19T02%3A14%3A33.113773&stn=FTG
 
 
 
@@ -326,7 +326,7 @@ Finally, we plot them up using matplotlib.
 
  .. code-block:: none
 
-    /home/runner/work/siphon/siphon/examples/Radar_Server_Level_3.py:86: UserWarning: The input coordinates to pcolormesh are interpreted as cell centers, but are not monotonically increasing or decreasing. This may lead to incorrectly calculated cell edges, in which case, please supply explicit cell edges to pcolormesh.
+    /home/runner/work/siphon/siphon/examples/Radar_Server_Level_3.py:86: MatplotlibDeprecationWarning: shading='flat' when X and Y have the same dimensions as C is deprecated since 3.3.  Either specify the corners of the quadrilaterals with X and Y, or pass shading='auto', 'nearest' or 'gouraud', or set rcParams['pcolor.shading'].  This will become an error two minor releases later.
       ax.pcolormesh(x, y, ref)
 
     (-460.0, 460.0)
@@ -336,7 +336,7 @@ Finally, we plot them up using matplotlib.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.665 seconds)
+   **Total running time of the script:** ( 0 minutes  2.907 seconds)
 
 
 .. _sphx_glr_download_examples_Radar_Server_Level_3.py:
