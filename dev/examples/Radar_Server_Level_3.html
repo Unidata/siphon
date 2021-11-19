@@ -1,84 +1,40 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>TDS Radar Query Service &mdash; Siphon 0.9</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
-
-  
-  
-
-  
-  
+  <title>TDS Radar Query Service &mdash; Siphon 0.9</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="canonical" href="https://unidata.github.io/siphon/latest/examples/Radar_Server_Level_3.html"/>
-  
-
-  
-
-  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Basic ACIS Web Services Usage" href="acis/Basic_Overview.html" />
     <link rel="prev" title="THREDDS Catalog" href="Basic_Usage.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../index.html" class="icon icon-home"> Siphon
-          
-
-          
-            
-            <img src="../_static/siphon_150x150.png" class="logo" alt="Logo"/>
-          
+            <a href="../index.html" class="icon icon-home"> Siphon<img src="../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           </a>
-
-          
-            
-            
               <div class="version">
                 0.9
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -86,18 +42,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/index.html">The Siphon API</a></li>
@@ -118,58 +63,23 @@
 <li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing Siphon</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Siphon</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+<div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="index.html">Siphon Examples</a> &raquo;</li>
-        
       <li>TDS Radar Query Service</li>
-    
-    
     <li class="source-link">
         
             
@@ -182,13 +92,11 @@
     </li>
 
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-radar-server-level-3-py"><span class="std std-ref">here</span></a>
@@ -227,7 +135,7 @@ radar server access URL. This is pulled from the catalog reference url.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;N3C&#39;, &#39;DU6&#39;, &#39;EET&#39;, &#39;N3S&#39;, &#39;NAC&#39;, &#39;PTA&#39;, &#39;NST&#39;, &#39;NAQ&#39;, &#39;N0V&#39;, &#39;N2K&#39;, &#39;N3X&#39;, &#39;N0X&#39;, &#39;N1Q&#39;, &#39;OHA&#39;, &#39;N1H&#39;, &#39;N1S&#39;, &#39;NVW&#39;, &#39;N0U&#39;, &#39;N3M&#39;, &#39;DHR&#39;, &#39;DPR&#39;, &#39;N1X&#39;, &#39;NBH&#39;, &#39;N1C&#39;, &#39;N2X&#39;, &#39;N2C&#39;, &#39;N3H&#39;, &#39;DPA&#39;, &#39;DSP&#39;, &#39;N0Q&#39;, &#39;N0R&#39;, &#39;DOD&#39;, &#39;DVL&#39;, &#39;N2Q&#39;, &#39;N0K&#39;, &#39;NBU&#39;, &#39;NAU&#39;, &#39;N0Z&#39;, &#39;N3K&#39;, &#39;NTP&#39;, &#39;NBX&#39;, &#39;HHC&#39;, &#39;N3Q&#39;, &#39;NET&#39;, &#39;N1U&#39;, &#39;N0C&#39;, &#39;N2U&#39;, &#39;DTA&#39;, &#39;NAK&#39;, &#39;N0S&#39;, &#39;NVL&#39;, &#39;NBQ&#39;, &#39;DAA&#39;, &#39;N0M&#39;, &#39;N2S&#39;, &#39;DSD&#39;, &#39;N1P&#39;, &#39;N3U&#39;, &#39;NBK&#39;, &#39;NMD&#39;, &#39;NBM&#39;, &#39;NCR&#39;, &#39;N1K&#39;, &#39;N2H&#39;, &#39;N2M&#39;, &#39;NBC&#39;, &#39;N0H&#39;, &#39;N1M&#39;, &#39;DU3&#39;, &#39;NAH&#39;, &#39;NAM&#39;, &#39;NAX&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;N0X&#39;, &#39;NAX&#39;, &#39;N0S&#39;, &#39;DOD&#39;, &#39;N2H&#39;, &#39;DU6&#39;, &#39;NVL&#39;, &#39;NST&#39;, &#39;DHR&#39;, &#39;N2K&#39;, &#39;DTA&#39;, &#39;N3H&#39;, &#39;N3Q&#39;, &#39;DAA&#39;, &#39;NBC&#39;, &#39;N1M&#39;, &#39;N1X&#39;, &#39;N0C&#39;, &#39;N2X&#39;, &#39;NBQ&#39;, &#39;DU3&#39;, &#39;N0R&#39;, &#39;N1C&#39;, &#39;PTA&#39;, &#39;N0Z&#39;, &#39;DSP&#39;, &#39;DPR&#39;, &#39;OHA&#39;, &#39;N2C&#39;, &#39;N0V&#39;, &#39;EET&#39;, &#39;N3U&#39;, &#39;N2U&#39;, &#39;NCR&#39;, &#39;NBH&#39;, &#39;NBX&#39;, &#39;N2M&#39;, &#39;NTP&#39;, &#39;NVW&#39;, &#39;N3M&#39;, &#39;N1Q&#39;, &#39;N3C&#39;, &#39;NAC&#39;, &#39;N2S&#39;, &#39;N1U&#39;, &#39;DSD&#39;, &#39;N1S&#39;, &#39;N3K&#39;, &#39;N0U&#39;, &#39;NAH&#39;, &#39;N2Q&#39;, &#39;NAU&#39;, &#39;NBK&#39;, &#39;N0H&#39;, &#39;NBU&#39;, &#39;N3X&#39;, &#39;DPA&#39;, &#39;DVL&#39;, &#39;N0M&#39;, &#39;N1H&#39;, &#39;NAK&#39;, &#39;HHC&#39;, &#39;NET&#39;, &#39;N1K&#39;, &#39;NAQ&#39;, &#39;NBM&#39;, &#39;NAM&#39;, &#39;NMD&#39;, &#39;N0Q&#39;, &#39;N0K&#39;, &#39;N3S&#39;, &#39;N1P&#39;}
 </pre></div>
 </div>
 <p>Create a new query object to help request the data. Using the chaining
@@ -239,7 +147,7 @@ is represented as a string, it shows the encoded URL.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=N0Q&amp;time=2021-11-19T02%3A41%3A12.395278&amp;stn=FTG
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=N0Q&amp;time=2021-11-19T06%3A24%3A01.982122&amp;stn=FTG
 </pre></div>
 </div>
 <p>We can use the RadarServer instance to check our query, to make
@@ -263,7 +171,7 @@ find one NIDS file in the return.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;Level3_FTG_N0Q_20211119_0237.nids&#39;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;Level3_FTG_N0Q_20211119_0622.nids&#39;]
 </pre></div>
 </div>
 <p>We can pull that dataset out of the dictionary and look at the available access URLs.
@@ -273,7 +181,7 @@ We see URLs for OPeNDAP, CDMRemote, and HTTPServer (direct download).</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;OPENDAP&#39;: &#39;https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0Q/FTG/20211119/Level3_FTG_N0Q_20211119_0237.nids&#39;, &#39;HTTPServer&#39;: &#39;https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0Q/FTG/20211119/Level3_FTG_N0Q_20211119_0237.nids&#39;, &#39;CdmRemote&#39;: &#39;https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0Q/FTG/20211119/Level3_FTG_N0Q_20211119_0237.nids&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;OPENDAP&#39;: &#39;https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0Q/FTG/20211119/Level3_FTG_N0Q_20211119_0622.nids&#39;, &#39;HTTPServer&#39;: &#39;https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0Q/FTG/20211119/Level3_FTG_N0Q_20211119_0622.nids&#39;, &#39;CdmRemote&#39;: &#39;https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0Q/FTG/20211119/Level3_FTG_N0Q_20211119_0622.nids&#39;}
 </pre></div>
 </div>
 <p>We’ll use the CDMRemote reader in Siphon and pass it the appropriate access URL.</p>
@@ -309,7 +217,7 @@ the data itself.</p>
 (-460.0, 460.0)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.482 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.574 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-radar-server-level-3-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/25562a94000614f3ccf6cc96912b0ab1/Radar_Server_Level_3.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Radar_Server_Level_3.py</span></code></a></p>
@@ -323,33 +231,24 @@ the data itself.</p>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="acis/Basic_Overview.html" class="btn btn-neutral float-right" title="Basic ACIS Web Services Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="Basic_Usage.html" class="btn btn-neutral float-left" title="THREDDS Catalog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="acis/Basic_Overview.html" class="btn btn-neutral float-right" title="Basic ACIS Web Services Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">
-        Last updated on Nov 19, 2021 at 02:42:46.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2018, Siphon Contributors.
+      <span class="lastupdated">Last updated on Nov 19, 2021 at 06:25:20.
+      </span></p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
     provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -366,22 +265,13 @@ the data itself.</p>
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
