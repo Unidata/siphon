@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>siphon.catalog &mdash; Siphon 0.9</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>siphon.catalog &mdash; Siphon 0.9</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
@@ -14,7 +16,8 @@
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -30,7 +33,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> Siphon<img src="../_static/siphon_150x150.png" class="logo" alt="Logo"/>
+            <a href="../index.html" class="icon icon-home"> Siphon
+            <img src="../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.9
@@ -100,47 +104,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-siphon.catalog">
+  <section id="module-siphon.catalog">
 <span id="siphon-catalog"></span><h1><a class="reference internal" href="#module-siphon.catalog" title="siphon.catalog"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a><a class="headerlink" href="#module-siphon.catalog" title="Permalink to this headline">¶</a></h1>
 <p>Code to support reading and parsing catalog files from a THREDDS Data Server (TDS).</p>
 <p>They help identifying the latest dataset and finding proper URLs to access the data.</p>
 <dl class="py class">
-<dt id="siphon.catalog.CaseInsensitiveDict">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></code><code class="sig-name descname"><span class="pre">CaseInsensitiveDict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveDict" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CaseInsensitiveDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></span><span class="sig-name descname"><span class="pre">CaseInsensitiveDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveDict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extend <code class="docutils literal notranslate"><span class="pre">dict</span></code> to use a case-insensitive key set.</p>
 <dl class="py method">
-<dt id="siphon.catalog.CaseInsensitiveDict.__init__">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveDict.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveDict.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CaseInsensitiveDict.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveDict.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveDict.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a dict with a set of lowercase keys.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.CaseInsensitiveDict.pop">
-<code class="sig-name descname"><span class="pre">pop</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveDict.pop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveDict.pop" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CaseInsensitiveDict.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveDict.pop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveDict.pop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove and return the value associated with case-insensitive <code class="docutils literal notranslate"><span class="pre">key</span></code>.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="siphon.catalog.CaseInsensitiveStr">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></code><code class="sig-name descname"><span class="pre">CaseInsensitiveStr</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveStr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveStr" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CaseInsensitiveStr">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></span><span class="sig-name descname"><span class="pre">CaseInsensitiveStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveStr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveStr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extend <code class="docutils literal notranslate"><span class="pre">str</span></code> to use case-insensitive comparison and lookup.</p>
 <dl class="py method">
-<dt id="siphon.catalog.CaseInsensitiveStr.__init__">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveStr.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveStr.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CaseInsensitiveStr.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveStr.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveStr.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create str with a _lowered property.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="siphon.catalog.CatalogRef">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></code><code class="sig-name descname"><span class="pre">CatalogRef</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CatalogRef"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CatalogRef" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CatalogRef">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></span><span class="sig-name descname"><span class="pre">CatalogRef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CatalogRef"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CatalogRef" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object for holding catalog references obtained from a THREDDS Client Catalog.</p>
 <dl class="py attribute">
-<dt id="siphon.catalog.CatalogRef.name">
-<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#siphon.catalog.CatalogRef.name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CatalogRef.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#siphon.catalog.CatalogRef.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>The name of the <a class="reference internal" href="#siphon.catalog.CatalogRef" title="siphon.catalog.CatalogRef"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogRef</span></code></a> element</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -150,8 +154,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="siphon.catalog.CatalogRef.href">
-<code class="sig-name descname"><span class="pre">href</span></code><a class="headerlink" href="#siphon.catalog.CatalogRef.href" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CatalogRef.href">
+<span class="sig-name descname"><span class="pre">href</span></span><a class="headerlink" href="#siphon.catalog.CatalogRef.href" title="Permalink to this definition">¶</a></dt>
 <dd><p>url to the <a class="reference internal" href="#siphon.catalog.CatalogRef" title="siphon.catalog.CatalogRef"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogRef</span></code></a>’s THREDDS Client Catalog</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -161,8 +165,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="siphon.catalog.CatalogRef.title">
-<code class="sig-name descname"><span class="pre">title</span></code><a class="headerlink" href="#siphon.catalog.CatalogRef.title" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CatalogRef.title">
+<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#siphon.catalog.CatalogRef.title" title="Permalink to this definition">¶</a></dt>
 <dd><p>Title of the <a class="reference internal" href="#siphon.catalog.CatalogRef" title="siphon.catalog.CatalogRef"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogRef</span></code></a> element</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -172,8 +176,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.CatalogRef.__init__">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CatalogRef.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CatalogRef.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CatalogRef.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CatalogRef.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CatalogRef.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the catalogRef object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -186,8 +190,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.CatalogRef.follow">
-<code class="sig-name descname"><span class="pre">follow</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CatalogRef.follow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CatalogRef.follow" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CatalogRef.follow">
+<span class="sig-name descname"><span class="pre">follow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CatalogRef.follow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CatalogRef.follow" title="Permalink to this definition">¶</a></dt>
 <dd><p>Follow the catalog reference and return a new <a class="reference internal" href="#siphon.catalog.TDSCatalog" title="siphon.catalog.TDSCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">TDSCatalog</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -202,12 +206,12 @@
 </dd></dl>
 
 <dl class="py class">
-<dt id="siphon.catalog.CompoundService">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></code><code class="sig-name descname"><span class="pre">CompoundService</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CompoundService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CompoundService" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CompoundService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></span><span class="sig-name descname"><span class="pre">CompoundService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CompoundService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CompoundService" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hold information about compound services.</p>
 <dl class="py attribute">
-<dt id="siphon.catalog.CompoundService.name">
-<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#siphon.catalog.CompoundService.name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CompoundService.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#siphon.catalog.CompoundService.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>The name of the compound service</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -217,8 +221,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="siphon.catalog.CompoundService.service_type">
-<code class="sig-name descname"><span class="pre">service_type</span></code><a class="headerlink" href="#siphon.catalog.CompoundService.service_type" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CompoundService.service_type">
+<span class="sig-name descname"><span class="pre">service_type</span></span><a class="headerlink" href="#siphon.catalog.CompoundService.service_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>The service type (for this object, service type will always be
 “COMPOUND”)</p>
 <dl class="field-list simple">
@@ -229,8 +233,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="siphon.catalog.CompoundService.services">
-<code class="sig-name descname"><span class="pre">services</span></code><a class="headerlink" href="#siphon.catalog.CompoundService.services" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CompoundService.services">
+<span class="sig-name descname"><span class="pre">services</span></span><a class="headerlink" href="#siphon.catalog.CompoundService.services" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of <a class="reference internal" href="#siphon.catalog.SimpleService" title="siphon.catalog.SimpleService"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleService</span></code></a> objects</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -240,8 +244,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.CompoundService.__init__">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CompoundService.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CompoundService.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CompoundService.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CompoundService.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CompoundService.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize a <a class="reference internal" href="#siphon.catalog.CompoundService" title="siphon.catalog.CompoundService"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompoundService</span></code></a> object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -251,8 +255,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.CompoundService.is_resolver">
-<code class="sig-name descname"><span class="pre">is_resolver</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CompoundService.is_resolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CompoundService.is_resolver" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.CompoundService.is_resolver">
+<span class="sig-name descname"><span class="pre">is_resolver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CompoundService.is_resolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CompoundService.is_resolver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return whether the service is a resolver service.</p>
 <p>For a compound service, this is always False because it will never be
 a resolver.</p>
@@ -261,12 +265,12 @@ a resolver.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="siphon.catalog.Dataset">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></code><code class="sig-name descname"><span class="pre">Dataset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></span><span class="sig-name descname"><span class="pre">Dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>An object for holding Datasets obtained from a THREDDS Client Catalog.</p>
 <dl class="py attribute">
-<dt id="siphon.catalog.Dataset.name">
-<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#siphon.catalog.Dataset.name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#siphon.catalog.Dataset.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>The name of the <a class="reference internal" href="#siphon.catalog.Dataset" title="siphon.catalog.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> element</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -276,8 +280,8 @@ a resolver.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="siphon.catalog.Dataset.url_path">
-<code class="sig-name descname"><span class="pre">url_path</span></code><a class="headerlink" href="#siphon.catalog.Dataset.url_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset.url_path">
+<span class="sig-name descname"><span class="pre">url_path</span></span><a class="headerlink" href="#siphon.catalog.Dataset.url_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>url to the accessible dataset</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -287,8 +291,8 @@ a resolver.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="siphon.catalog.Dataset.access_urls">
-<code class="sig-name descname"><span class="pre">access_urls</span></code><a class="headerlink" href="#siphon.catalog.Dataset.access_urls" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset.access_urls">
+<span class="sig-name descname"><span class="pre">access_urls</span></span><a class="headerlink" href="#siphon.catalog.Dataset.access_urls" title="Permalink to this definition">¶</a></dt>
 <dd><p>A dictionary of access urls whose keywords are the access service
 types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 “WMS”, etc.</p>
@@ -300,8 +304,8 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.Dataset.__init__">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the Dataset object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -314,8 +318,8 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.Dataset.access_with_service">
-<code class="sig-name descname"><span class="pre">access_with_service</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_xarray</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.access_with_service"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.access_with_service" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset.access_with_service">
+<span class="sig-name descname"><span class="pre">access_with_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_xarray</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.access_with_service"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.access_with_service" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access the dataset using a particular service.</p>
 <p>Return an Python object capable of communicating with the server using the particular
 service. For instance, for ‘HTTPServer’ this is a file-like object capable of
@@ -334,14 +338,14 @@ HTTP communication; for OPENDAP this is a netCDF4 dataset.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.Dataset.add_access_element_info">
-<code class="sig-name descname"><span class="pre">add_access_element_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">access_element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.add_access_element_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.add_access_element_info" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset.add_access_element_info">
+<span class="sig-name descname"><span class="pre">add_access_element_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">access_element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.add_access_element_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.add_access_element_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an access method from a catalog element.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.Dataset.download">
-<code class="sig-name descname"><span class="pre">download</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.download"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.download" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset.download">
+<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.download"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.download" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download the dataset to a local file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -351,8 +355,8 @@ HTTP communication; for OPENDAP this is a netCDF4 dataset.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.Dataset.make_access_urls">
-<code class="sig-name descname"><span class="pre">make_access_urls</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_services</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.make_access_urls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.make_access_urls" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset.make_access_urls">
+<span class="sig-name descname"><span class="pre">make_access_urls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_services</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.make_access_urls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.make_access_urls" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make fully qualified urls for the access methods enabled on the dataset.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -366,8 +370,8 @@ HTTP communication; for OPENDAP this is a netCDF4 dataset.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.Dataset.remote_access">
-<code class="sig-name descname"><span class="pre">remote_access</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_xarray</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.remote_access"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.remote_access" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset.remote_access">
+<span class="sig-name descname"><span class="pre">remote_access</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_xarray</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.remote_access"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.remote_access" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access the remote dataset.</p>
 <p>Open the remote dataset and get a netCDF4-compatible <a class="reference internal" href="#siphon.catalog.Dataset" title="siphon.catalog.Dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset</span></code></a> object providing
 index-based subsetting capabilities.</p>
@@ -386,8 +390,8 @@ index-based subsetting capabilities.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.Dataset.remote_open">
-<code class="sig-name descname"><span class="pre">remote_open</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ascii'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ignore'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.remote_open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.remote_open" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset.remote_open">
+<span class="sig-name descname"><span class="pre">remote_open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ascii'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ignore'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.remote_open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.remote_open" title="Permalink to this definition">¶</a></dt>
 <dd><p>Open the remote dataset for random access.</p>
 <p>Get a file-like object for reading from the remote dataset, providing random access,
 similar to a local file.</p>
@@ -412,8 +416,8 @@ Defaults to ‘ignore’.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.Dataset.resolve_url">
-<code class="sig-name descname"><span class="pre">resolve_url</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.resolve_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.resolve_url" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset.resolve_url">
+<span class="sig-name descname"><span class="pre">resolve_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.resolve_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.resolve_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resolve the url of the dataset when reading latest.xml.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -423,8 +427,8 @@ Defaults to ‘ignore’.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.Dataset.subset">
-<code class="sig-name descname"><span class="pre">subset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.subset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.subset" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.Dataset.subset">
+<span class="sig-name descname"><span class="pre">subset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#Dataset.subset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.Dataset.subset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Subset the dataset.</p>
 <p>Open the remote dataset and get a client for talking to <code class="docutils literal notranslate"><span class="pre">service</span></code>.</p>
 <dl class="field-list simple">
@@ -445,12 +449,12 @@ catalog.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="siphon.catalog.DatasetCollection">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></code><code class="sig-name descname"><span class="pre">DatasetCollection</span></code><a class="reference internal" href="../_modules/siphon/catalog.html#DatasetCollection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.DatasetCollection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.DatasetCollection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></span><span class="sig-name descname"><span class="pre">DatasetCollection</span></span><a class="reference internal" href="../_modules/siphon/catalog.html#DatasetCollection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.DatasetCollection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extend <code class="docutils literal notranslate"><span class="pre">IndexableMapping</span></code> to allow datetime-based filter queries.</p>
 <dl class="py method">
-<dt id="siphon.catalog.DatasetCollection.filter_time_nearest">
-<code class="sig-name descname"><span class="pre">filter_time_nearest</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strptime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#DatasetCollection.filter_time_nearest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.DatasetCollection.filter_time_nearest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.DatasetCollection.filter_time_nearest">
+<span class="sig-name descname"><span class="pre">filter_time_nearest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strptime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#DatasetCollection.filter_time_nearest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.DatasetCollection.filter_time_nearest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filter keys for an item closest to the desired time.</p>
 <p>Loops over all keys in the collection and uses <em class="xref py py-obj">regex</em> to extract and build
 <em class="xref py py-obj">datetime`s. The collection of `datetime`s is compared to `start</em> and the value that
@@ -484,8 +488,8 @@ data with a julian date matching the regex above is parsed with ‘%Y%j%H%M%S’
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.DatasetCollection.filter_time_range">
-<code class="sig-name descname"><span class="pre">filter_time_range</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strptime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#DatasetCollection.filter_time_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.DatasetCollection.filter_time_range" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.DatasetCollection.filter_time_range">
+<span class="sig-name descname"><span class="pre">filter_time_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strptime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#DatasetCollection.filter_time_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.DatasetCollection.filter_time_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filter keys for all items within the desired time range.</p>
 <p>Loops over all keys in the collection and uses <em class="xref py py-obj">regex</em> to extract and build
 <em class="xref py py-obj">datetime`s. From the collection of `datetime`s, all values within `start</em> and <em class="xref py py-obj">end</em>
@@ -521,18 +525,18 @@ data with a julian date matching the regex above is parsed with ‘%Y%j%H%M%S’
 </dd></dl>
 
 <dl class="py class">
-<dt id="siphon.catalog.IndexableMapping">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></code><code class="sig-name descname"><span class="pre">IndexableMapping</span></code><a class="reference internal" href="../_modules/siphon/catalog.html#IndexableMapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.IndexableMapping" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.IndexableMapping">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></span><span class="sig-name descname"><span class="pre">IndexableMapping</span></span><a class="reference internal" href="../_modules/siphon/catalog.html#IndexableMapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.IndexableMapping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extend <code class="docutils literal notranslate"><span class="pre">OrderedDict</span></code> to allow index-based access to values.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="siphon.catalog.SimpleService">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></code><code class="sig-name descname"><span class="pre">SimpleService</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#SimpleService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.SimpleService" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.SimpleService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></span><span class="sig-name descname"><span class="pre">SimpleService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#SimpleService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.SimpleService" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hold information about an access service enabled on a dataset.</p>
 <dl class="py attribute">
-<dt id="siphon.catalog.SimpleService.name">
-<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#siphon.catalog.SimpleService.name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.SimpleService.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#siphon.catalog.SimpleService.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>The name of the service</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -542,8 +546,8 @@ data with a julian date matching the regex above is parsed with ‘%Y%j%H%M%S’
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="siphon.catalog.SimpleService.service_type">
-<code class="sig-name descname"><span class="pre">service_type</span></code><a class="headerlink" href="#siphon.catalog.SimpleService.service_type" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.SimpleService.service_type">
+<span class="sig-name descname"><span class="pre">service_type</span></span><a class="headerlink" href="#siphon.catalog.SimpleService.service_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>The service type (i.e. “OPENDAP”, “NetcdfSubset”, “WMS”, etc.)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -553,8 +557,8 @@ data with a julian date matching the regex above is parsed with ‘%Y%j%H%M%S’
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="siphon.catalog.SimpleService.access_urls">
-<code class="sig-name descname"><span class="pre">access_urls</span></code><a class="headerlink" href="#siphon.catalog.SimpleService.access_urls" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.SimpleService.access_urls">
+<span class="sig-name descname"><span class="pre">access_urls</span></span><a class="headerlink" href="#siphon.catalog.SimpleService.access_urls" title="Permalink to this definition">¶</a></dt>
 <dd><p>A dictionary of access urls whose keywords are the access service
 types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 “WMS”, etc.)</p>
@@ -566,8 +570,8 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.SimpleService.__init__">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#SimpleService.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.SimpleService.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.SimpleService.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#SimpleService.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.SimpleService.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the Dataset object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -577,20 +581,20 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.SimpleService.is_resolver">
-<code class="sig-name descname"><span class="pre">is_resolver</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#SimpleService.is_resolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.SimpleService.is_resolver" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.SimpleService.is_resolver">
+<span class="sig-name descname"><span class="pre">is_resolver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#SimpleService.is_resolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.SimpleService.is_resolver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return whether the service is a resolver service.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="siphon.catalog.TDSCatalog">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></code><code class="sig-name descname"><span class="pre">TDSCatalog</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#TDSCatalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.TDSCatalog" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.TDSCatalog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></span><span class="sig-name descname"><span class="pre">TDSCatalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#TDSCatalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.TDSCatalog" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse information from a THREDDS Client Catalog.</p>
 <dl class="py attribute">
-<dt id="siphon.catalog.TDSCatalog.catalog_url">
-<code class="sig-name descname"><span class="pre">catalog_url</span></code><a class="headerlink" href="#siphon.catalog.TDSCatalog.catalog_url" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.TDSCatalog.catalog_url">
+<span class="sig-name descname"><span class="pre">catalog_url</span></span><a class="headerlink" href="#siphon.catalog.TDSCatalog.catalog_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>The url path of the catalog to parse.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -600,8 +604,8 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="siphon.catalog.TDSCatalog.base_tds_url">
-<code class="sig-name descname"><span class="pre">base_tds_url</span></code><a class="headerlink" href="#siphon.catalog.TDSCatalog.base_tds_url" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.TDSCatalog.base_tds_url">
+<span class="sig-name descname"><span class="pre">base_tds_url</span></span><a class="headerlink" href="#siphon.catalog.TDSCatalog.base_tds_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>The top level server address</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -611,8 +615,8 @@ types defined in the catalog (for example, “OPENDAP”, “NetcdfSubset”,
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="siphon.catalog.TDSCatalog.datasets">
-<code class="sig-name descname"><span class="pre">datasets</span></code><a class="headerlink" href="#siphon.catalog.TDSCatalog.datasets" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.TDSCatalog.datasets">
+<span class="sig-name descname"><span class="pre">datasets</span></span><a class="headerlink" href="#siphon.catalog.TDSCatalog.datasets" title="Permalink to this definition">¶</a></dt>
 <dd><p>A dictionary of <a class="reference internal" href="#siphon.catalog.Dataset" title="siphon.catalog.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> objects, whose keys are the name of the
 dataset’s name</p>
 <dl class="field-list simple">
@@ -623,8 +627,8 @@ dataset’s name</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="siphon.catalog.TDSCatalog.services">
-<code class="sig-name descname"><span class="pre">services</span></code><a class="headerlink" href="#siphon.catalog.TDSCatalog.services" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.TDSCatalog.services">
+<span class="sig-name descname"><span class="pre">services</span></span><a class="headerlink" href="#siphon.catalog.TDSCatalog.services" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of <a class="reference internal" href="#siphon.catalog.SimpleService" title="siphon.catalog.SimpleService"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleService</span></code></a> listed in the catalog</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -634,8 +638,8 @@ dataset’s name</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="siphon.catalog.TDSCatalog.catalog_refs">
-<code class="sig-name descname"><span class="pre">catalog_refs</span></code><a class="headerlink" href="#siphon.catalog.TDSCatalog.catalog_refs" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.TDSCatalog.catalog_refs">
+<span class="sig-name descname"><span class="pre">catalog_refs</span></span><a class="headerlink" href="#siphon.catalog.TDSCatalog.catalog_refs" title="Permalink to this definition">¶</a></dt>
 <dd><p>A dictionary of <a class="reference internal" href="#siphon.catalog.CatalogRef" title="siphon.catalog.CatalogRef"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogRef</span></code></a> objects whose keys are the name of the
 catalog ref title.</p>
 <dl class="field-list simple">
@@ -646,8 +650,8 @@ catalog ref title.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="siphon.catalog.TDSCatalog.__init__">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#TDSCatalog.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.TDSCatalog.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.TDSCatalog.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#TDSCatalog.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.TDSCatalog.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the TDSCatalog object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -656,17 +660,17 @@ catalog ref title.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="siphon.catalog.TDSCatalog.latest">
-<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">latest</span></code><a class="headerlink" href="#siphon.catalog.TDSCatalog.latest" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="siphon.catalog.TDSCatalog.latest">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">latest</span></span><a class="headerlink" href="#siphon.catalog.TDSCatalog.latest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the latest dataset, if available.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
-<dt id="siphon.catalog.get_latest_access_url">
-<code class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></code><code class="sig-name descname"><span class="pre">get_latest_access_url</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_method</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#get_latest_access_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.get_latest_access_url" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="siphon.catalog.get_latest_access_url">
+<span class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></span><span class="sig-name descname"><span class="pre">get_latest_access_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_method</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#get_latest_access_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.get_latest_access_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the data access url to the latest data using a specified access method.</p>
 <p>These are available for a data available from a top level dataset catalog (url).
 Currently only supports the existence of one “latest” dataset.</p>
@@ -688,7 +692,7 @@ but not always.</p>
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
@@ -702,7 +706,7 @@ but not always.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Nov 19, 2021 at 06:55:35.
+      <span class="lastupdated">Last updated on Nov 19, 2021 at 07:30:14.
       </span></p>
   </div>
 

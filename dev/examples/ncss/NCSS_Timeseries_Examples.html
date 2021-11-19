@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NCSS Time Series &mdash; Siphon 0.9</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>NCSS Time Series &mdash; Siphon 0.9</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
@@ -14,7 +16,8 @@
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -30,7 +33,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> Siphon<img src="../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> Siphon
+            <img src="../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.9
@@ -103,7 +107,7 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-ncss-ncss-timeseries-examples-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="ncss-time-series">
+<section class="sphx-glr-example-title" id="ncss-time-series">
 <span id="sphx-glr-examples-ncss-ncss-timeseries-examples-py"></span><h1>NCSS Time Series<a class="headerlink" href="#ncss-time-series" title="Permalink to this headline">¶</a></h1>
 <p>Use Siphon to query the NetCDF Subset Service for a timeseries.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <a href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="datetime.timedelta" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class"><span class="n">timedelta</span></a>
@@ -147,7 +151,7 @@ representation of the query is a properly encoded query string.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_isobaric&amp;time_start=2021-11-19T06%3A54%3A43.841161&amp;time_end=2021-11-26T06%3A54%3A43.841161&amp;longitude=-105&amp;latitude=40&amp;vertCoord=100000&amp;accept=netcdf
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_isobaric&amp;time_start=2021-11-19T07%3A29%3A25.145881&amp;time_end=2021-11-26T07%3A29%3A25.145881&amp;longitude=-105&amp;latitude=40&amp;vertCoord=100000&amp;accept=netcdf
 </pre></div>
 </div>
 <p>We now request data from the server using this query. The <em class="xref py py-obj">NCSS</em> class handles parsing
@@ -189,7 +193,7 @@ objects.</p>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.grid.html#matplotlib.axes.Axes.grid" title="matplotlib.axes.Axes.grid" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">grid</span></a><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_NCSS_Timeseries_Examples_001.png" srcset="../../_images/sphx_glr_NCSS_Timeseries_Examples_001.png" alt="NCSS Timeseries Examples" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.427 seconds)</p>
+<img src="../../_images/sphx_glr_NCSS_Timeseries_Examples_001.png" srcset="../../_images/sphx_glr_NCSS_Timeseries_Examples_001.png" alt="NCSS Timeseries Examples" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.768 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ncss-ncss-timeseries-examples-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8f5edefebc6ed829fe27e2814e899a66/NCSS_Timeseries_Examples.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">NCSS_Timeseries_Examples.py</span></code></a></p>
@@ -199,7 +203,7 @@ objects.</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
+</section>
 
 
            </div>
@@ -213,7 +217,7 @@ objects.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Nov 19, 2021 at 06:55:35.
+      <span class="lastupdated">Last updated on Nov 19, 2021 at 07:30:14.
       </span></p>
   </div>
 

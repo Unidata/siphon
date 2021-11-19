@@ -79,6 +79,15 @@ observation set to query.
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/ndbc.py:413: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+      df.units = col_units
+
 
 .. raw:: html
 
@@ -116,44 +125,44 @@ observation set to query.
           <td>NaT</td>
           <td>12</td>
           <td>NaN</td>
+          <td>2021-11-19 06:54:00+00:00</td>
+          <td>2021-11-19 07:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>NaN</td>
+          <td>NaT</td>
+          <td>12</td>
+          <td>NaN</td>
+          <td>2021-11-19 06:48:00+00:00</td>
+          <td>2021-11-19 06:50:00+00:00</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>NaN</td>
+          <td>NaT</td>
+          <td>12</td>
+          <td>NaN</td>
+          <td>2021-11-19 06:31:00+00:00</td>
+          <td>2021-11-19 06:40:00+00:00</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>NaN</td>
+          <td>NaT</td>
+          <td>12</td>
+          <td>NaN</td>
           <td>2021-11-19 06:28:00+00:00</td>
           <td>2021-11-19 06:30:00+00:00</td>
         </tr>
         <tr>
-          <th>1</th>
+          <th>4</th>
           <td>NaN</td>
           <td>NaT</td>
           <td>11</td>
           <td>NaN</td>
           <td>2021-11-19 06:13:00+00:00</td>
           <td>2021-11-19 06:20:00+00:00</td>
-        </tr>
-        <tr>
-          <th>2</th>
-          <td>NaN</td>
-          <td>NaT</td>
-          <td>11</td>
-          <td>NaN</td>
-          <td>2021-11-19 06:01:00+00:00</td>
-          <td>2021-11-19 06:10:00+00:00</td>
-        </tr>
-        <tr>
-          <th>3</th>
-          <td>NaN</td>
-          <td>NaT</td>
-          <td>10</td>
-          <td>NaN</td>
-          <td>2021-11-19 05:58:00+00:00</td>
-          <td>2021-11-19 06:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>4</th>
-          <td>NaN</td>
-          <td>NaT</td>
-          <td>10</td>
-          <td>NaN</td>
-          <td>2021-11-19 05:49:00+00:00</td>
-          <td>2021-11-19 05:50:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -165,7 +174,7 @@ observation set to query.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.261 seconds)
+   **Total running time of the script:** ( 0 minutes  2.963 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_type_request.py:

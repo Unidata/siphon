@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wyoming Upper Air Data Request &mdash; Siphon 0.9</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>Wyoming Upper Air Data Request &mdash; Siphon 0.9</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
@@ -14,7 +16,8 @@
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -30,7 +33,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> Siphon<img src="../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
+            <a href="../../index.html" class="icon icon-home"> Siphon
+            <img src="../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.9
@@ -102,7 +106,7 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-upperair-wyoming-request-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="wyoming-upper-air-data-request">
+<section class="sphx-glr-example-title" id="wyoming-upper-air-data-request">
 <span id="sphx-glr-examples-upperair-wyoming-request-py"></span><h1>Wyoming Upper Air Data Request<a class="headerlink" href="#wyoming-upper-air-data-request" title="Permalink to this headline">¶</a></h1>
 <p>This example shows how to use siphon’s <em class="xref py py-obj">simplewebswervice</em> support to create a query to
 the Wyoming upper air archive.</p>
@@ -120,6 +124,11 @@ the Wyoming upper air archive.</p>
 </div>
 <p>Make the request (a pandas dataframe is returned).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data" title="siphon.simplewebservice.wyoming.WyomingUpperAir.request_data" class="sphx-glr-backref-module-siphon-simplewebservice-wyoming sphx-glr-backref-type-py-method"><span class="n">WyomingUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">date</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">station</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/wyoming.py:108: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+  df.units = {&#39;pressure&#39;: &#39;hPa&#39;,
 </pre></div>
 </div>
 <p>Inspect data columns in the dataframe.</p>
@@ -225,7 +234,7 @@ of the dataframe.</p>
 <span class="n">v_wind</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;v_wind&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span><span class="o">.</span><span class="n">units</span></a><span class="p">[</span><span class="s1">&#39;v_wind&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.219 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.072 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-upperair-wyoming-request-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/860c72606379f4b735f1b1c6523248d1/Wyoming_Request.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Wyoming_Request.py</span></code></a></p>
@@ -235,7 +244,7 @@ of the dataframe.</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
+</section>
 
 
            </div>
@@ -249,7 +258,7 @@ of the dataframe.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Nov 19, 2021 at 06:55:35.
+      <span class="lastupdated">Last updated on Nov 19, 2021 at 07:30:14.
       </span></p>
   </div>
 
