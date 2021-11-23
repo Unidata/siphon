@@ -85,7 +85,7 @@ observation set to query.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/ndbc.py:413: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.9.8/x64/lib/python3.9/site-packages/siphon/simplewebservice/ndbc.py:413: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = col_units
 
 
@@ -125,11 +125,20 @@ observation set to query.
           <td>NaT</td>
           <td>6</td>
           <td>NaN</td>
+          <td>2021-11-23 21:59:00+00:00</td>
+          <td>2021-11-23 22:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>NaN</td>
+          <td>NaT</td>
+          <td>6</td>
+          <td>NaN</td>
           <td>2021-11-23 21:41:00+00:00</td>
           <td>2021-11-23 21:50:00+00:00</td>
         </tr>
         <tr>
-          <th>1</th>
+          <th>2</th>
           <td>NaN</td>
           <td>NaT</td>
           <td>6</td>
@@ -138,7 +147,7 @@ observation set to query.
           <td>2021-11-23 21:40:00+00:00</td>
         </tr>
         <tr>
-          <th>2</th>
+          <th>3</th>
           <td>NaN</td>
           <td>NaT</td>
           <td>6</td>
@@ -147,22 +156,13 @@ observation set to query.
           <td>2021-11-23 21:30:00+00:00</td>
         </tr>
         <tr>
-          <th>3</th>
+          <th>4</th>
           <td>NaN</td>
           <td>NaT</td>
           <td>6</td>
           <td>NaN</td>
           <td>2021-11-23 21:18:00+00:00</td>
           <td>2021-11-23 21:20:00+00:00</td>
-        </tr>
-        <tr>
-          <th>4</th>
-          <td>NaN</td>
-          <td>NaT</td>
-          <td>6</td>
-          <td>NaN</td>
-          <td>2021-11-23 21:01:00+00:00</td>
-          <td>2021-11-23 21:10:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -174,7 +174,7 @@ observation set to query.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.871 seconds)
+   **Total running time of the script:** ( 0 minutes  6.380 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_type_request.py:
