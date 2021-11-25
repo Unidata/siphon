@@ -134,7 +134,7 @@ representation of the query is a properly encoded query string.
  .. code-block:: none
 
 
-    var=Temperature_isobaric&time_start=2021-11-23T22%3A22%3A03.936298&time_end=2021-11-30T22%3A22%3A03.936298&longitude=-105&latitude=40&vertCoord=100000&accept=netcdf
+    var=Temperature_isobaric&time_start=2021-11-25T18%3A13%3A33.842457&time_end=2021-12-02T18%3A13%3A33.842457&longitude=-105&latitude=40&vertCoord=100000&accept=netcdf
 
 
 
@@ -208,9 +208,9 @@ reasonable.
 
  .. code-block:: none
 
-    [real_datetime(2021, 11, 24, 0, 0) real_datetime(2021, 11, 24, 3, 0)
-     real_datetime(2021, 11, 24, 6, 0) real_datetime(2021, 11, 24, 9, 0)
-     real_datetime(2021, 11, 24, 12, 0)]
+    [real_datetime(2021, 11, 25, 21, 0) real_datetime(2021, 11, 26, 0, 0)
+     real_datetime(2021, 11, 26, 3, 0) real_datetime(2021, 11, 26, 6, 0)
+     real_datetime(2021, 11, 26, 9, 0)]
 
 
 
@@ -244,7 +244,7 @@ objects.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.965 seconds)
+   **Total running time of the script:** ( 0 minutes  4.146 seconds)
 
 
 .. _sphx_glr_download_examples_ncss_NCSS_Timeseries_Examples.py:
