@@ -5,12 +5,12 @@
 
 Computation times
 =================
-**00:06.464** total execution time for **examples_ncss** files:
+**00:08.309** total execution time for **examples_ncss** files:
 
 +---------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ncss_NCSS_Example.py` (``NCSS_Example.py``)                         | 00:02.276 | 0.0 MB |
+| :ref:`sphx_glr_examples_ncss_NCSS_Cartopy_Example.py` (``NCSS_Cartopy_Example.py``)         | 00:02.969 | 0.0 MB |
 +---------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ncss_NCSS_Cartopy_Example.py` (``NCSS_Cartopy_Example.py``)         | 00:02.186 | 0.0 MB |
+| :ref:`sphx_glr_examples_ncss_NCSS_Timeseries_Examples.py` (``NCSS_Timeseries_Examples.py``) | 00:02.789 | 0.0 MB |
 +---------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ncss_NCSS_Timeseries_Examples.py` (``NCSS_Timeseries_Examples.py``) | 00:02.003 | 0.0 MB |
+| :ref:`sphx_glr_examples_ncss_NCSS_Example.py` (``NCSS_Example.py``)                         | 00:02.551 | 0.0 MB |
 +---------------------------------------------------------------------------------------------+-----------+--------+
