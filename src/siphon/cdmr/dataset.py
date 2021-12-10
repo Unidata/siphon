@@ -10,8 +10,8 @@ import logging
 from .cdmremote import CDMRemote
 from .ncstream import unpack_attribute, unpack_variable
 
-logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger(__name__)
+log.setLevel(logging.WARNING)
 
 
 class AttributeContainer:

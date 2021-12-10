@@ -5,8 +5,8 @@
 
 import logging
 
-logging.basicConfig(level=logging.ERROR)
 log = logging.getLogger(__name__)
+log.setLevel(logging.ERROR)
 
 xlink_href_attr = '{http://www.w3.org/1999/xlink}href'
 xlink_title_attr = '{http://www.w3.org/1999/xlink}title'

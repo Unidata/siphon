@@ -9,8 +9,8 @@ import re
 
 import numpy as np
 
-logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger(__name__)
+log.setLevel(logging.WARNING)
 
 
 def _without_namespace(tagname):
