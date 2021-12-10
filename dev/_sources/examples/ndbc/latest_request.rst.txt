@@ -111,32 +111,95 @@ Get a pandas data frame of all of the observations
       <tbody>
         <tr>
           <th>0</th>
-          <td>15002</td>
-          <td>0.00</td>
-          <td>-10.00</td>
-          <td>135.0</td>
-          <td>7.1</td>
+          <td>13001</td>
+          <td>12.00</td>
+          <td>-23.00</td>
+          <td>43.0</td>
+          <td>8.4</td>
+          <td>9.8</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
+          <td>1009.4</td>
+          <td>NaN</td>
+          <td>26.3</td>
+          <td>27.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>26.8</td>
-          <td>26.9</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2021-12-10 16:00:00+00:00</td>
+          <td>2021-12-10 19:00:00+00:00</td>
         </tr>
         <tr>
           <th>1</th>
+          <td>13002</td>
+          <td>21.00</td>
+          <td>-23.00</td>
+          <td>58.0</td>
+          <td>9.1</td>
+          <td>11.7</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>21.6</td>
+          <td>22.4</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2021-12-10 19:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>13008</td>
+          <td>15.00</td>
+          <td>-38.00</td>
+          <td>349.0</td>
+          <td>10.0</td>
+          <td>11.9</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>1012.5</td>
+          <td>NaN</td>
+          <td>25.7</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2021-12-10 19:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>15006</td>
+          <td>-6.00</td>
+          <td>-10.00</td>
+          <td>143.0</td>
+          <td>8.0</td>
+          <td>10.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>25.6</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2021-12-10 19:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>4</th>
           <td>22101</td>
           <td>37.24</td>
           <td>126.02</td>
-          <td>350.0</td>
-          <td>3.0</td>
+          <td>360.0</td>
+          <td>2.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -144,75 +207,12 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>8.7</td>
+          <td>8.4</td>
           <td>11.4</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2021-12-10 18:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>2</th>
-          <td>22102</td>
-          <td>34.79</td>
-          <td>125.78</td>
-          <td>30.0</td>
-          <td>6.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>11.3</td>
-          <td>12.4</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2021-12-10 18:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>3</th>
-          <td>22103</td>
-          <td>34.00</td>
-          <td>127.50</td>
-          <td>330.0</td>
-          <td>6.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>11.8</td>
-          <td>16.2</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2021-12-10 18:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>4</th>
-          <td>22104</td>
-          <td>34.77</td>
-          <td>128.90</td>
-          <td>350.0</td>
-          <td>6.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>13.2</td>
-          <td>16.6</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2021-12-10 18:00:00+00:00</td>
+          <td>2021-12-10 19:00:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -275,7 +275,7 @@ Let's make a simple plot of the buoy positions and color by water temperature
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.688 seconds)
+   **Total running time of the script:** ( 0 minutes  3.705 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_latest_request.py:
