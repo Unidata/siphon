@@ -85,7 +85,7 @@ observation set to query.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/site-packages/siphon/simplewebservice/ndbc.py:413: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/ndbc.py:413: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = col_units
 
 
@@ -123,46 +123,46 @@ observation set to query.
           <th>0</th>
           <td>NaN</td>
           <td>NaT</td>
-          <td>10</td>
+          <td>4</td>
           <td>NaN</td>
-          <td>2021-12-10 19:17:00+00:00</td>
-          <td>2021-12-10 19:20:00+00:00</td>
+          <td>2021-12-13 22:18:00+00:00</td>
+          <td>2021-12-13 22:20:00+00:00</td>
         </tr>
         <tr>
           <th>1</th>
           <td>NaN</td>
           <td>NaT</td>
-          <td>9</td>
+          <td>4</td>
           <td>NaN</td>
-          <td>2021-12-10 19:05:00+00:00</td>
-          <td>2021-12-10 19:10:00+00:00</td>
+          <td>2021-12-13 22:02:00+00:00</td>
+          <td>2021-12-13 22:10:00+00:00</td>
         </tr>
         <tr>
           <th>2</th>
           <td>NaN</td>
           <td>NaT</td>
-          <td>9</td>
+          <td>4</td>
           <td>NaN</td>
-          <td>2021-12-10 18:59:00+00:00</td>
-          <td>2021-12-10 19:00:00+00:00</td>
+          <td>2021-12-13 21:51:00+00:00</td>
+          <td>2021-12-13 22:00:00+00:00</td>
         </tr>
         <tr>
           <th>3</th>
           <td>NaN</td>
           <td>NaT</td>
-          <td>9</td>
+          <td>5</td>
           <td>NaN</td>
-          <td>2021-12-10 18:46:00+00:00</td>
-          <td>2021-12-10 18:50:00+00:00</td>
+          <td>2021-12-13 21:42:00+00:00</td>
+          <td>2021-12-13 21:50:00+00:00</td>
         </tr>
         <tr>
           <th>4</th>
           <td>NaN</td>
           <td>NaT</td>
-          <td>9</td>
+          <td>4</td>
           <td>NaN</td>
-          <td>2021-12-10 18:38:00+00:00</td>
-          <td>2021-12-10 18:40:00+00:00</td>
+          <td>2021-12-13 21:34:00+00:00</td>
+          <td>2021-12-13 21:40:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -174,7 +174,7 @@ observation set to query.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.512 seconds)
+   **Total running time of the script:** ( 0 minutes  2.517 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_type_request.py:

@@ -62,7 +62,7 @@ observation set to query.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.9.9/x64/lib/python3.9/site-packages/siphon/simplewebservice/ndbc.py:110: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/ndbc.py:110: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = col_units
 
 
@@ -107,93 +107,93 @@ observation set to query.
       <tbody>
         <tr>
           <th>0</th>
-          <td>210.0</td>
-          <td>13.0</td>
-          <td>16.0</td>
+          <td>320.0</td>
+          <td>15.0</td>
+          <td>20.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1022.3</td>
+          <td>1008.8</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2021-12-10 19:20:00+00:00</td>
+          <td>2021-12-13 22:10:00+00:00</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>220.0</td>
-          <td>12.0</td>
-          <td>16.0</td>
+          <td>310.0</td>
+          <td>14.0</td>
+          <td>20.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1022.6</td>
+          <td>1008.8</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2021-12-10 19:10:00+00:00</td>
+          <td>2021-12-13 22:00:00+00:00</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>220.0</td>
-          <td>13.0</td>
-          <td>16.0</td>
+          <td>310.0</td>
+          <td>15.0</td>
+          <td>20.0</td>
+          <td>7.0</td>
+          <td>14.0</td>
+          <td>9.7</td>
+          <td>300.0</td>
+          <td>1008.7</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1022.6</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2021-12-10 19:00:00+00:00</td>
+          <td>2021-12-13 21:50:00+00:00</td>
         </tr>
         <tr>
           <th>3</th>
-          <td>220.0</td>
-          <td>12.0</td>
-          <td>16.0</td>
-          <td>3.2</td>
-          <td>12.0</td>
-          <td>6.8</td>
           <td>310.0</td>
-          <td>1022.5</td>
+          <td>13.0</td>
+          <td>18.0</td>
+          <td>7.0</td>
+          <td>NaN</td>
+          <td>9.7</td>
+          <td>300.0</td>
+          <td>1008.5</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2021-12-10 18:50:00+00:00</td>
+          <td>2021-12-13 21:40:00+00:00</td>
         </tr>
         <tr>
           <th>4</th>
-          <td>220.0</td>
-          <td>12.0</td>
-          <td>15.0</td>
+          <td>310.0</td>
+          <td>14.0</td>
+          <td>19.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1022.5</td>
+          <td>1008.5</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2021-12-10 18:40:00+00:00</td>
+          <td>2021-12-13 21:30:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -244,7 +244,7 @@ Let's make a simple time series plot to checkout what the data look like.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.006 seconds)
+   **Total running time of the script:** ( 0 minutes  1.892 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_met_request.py:
