@@ -1,4 +1,4 @@
-cartopy==0.18.0
+cartopy==0.20.1
 matplotlib==3.5.1
 metpy==1.1.0
 scipy==1.7.3
