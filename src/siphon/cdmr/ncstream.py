@@ -23,8 +23,8 @@ MAGIC_ERR = b'\xab\xad\xba\xda'
 MAGIC_HEADERCOV = b'\xad\xed\xde\xda'
 MAGIC_DATACOV = b'\xab\xed\xde\xba'
 
-logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger(__name__)
+log.setLevel(logging.WARNING)
 
 
 #

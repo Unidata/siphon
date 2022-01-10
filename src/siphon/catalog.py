@@ -22,8 +22,8 @@ except ImportError:
 from .http_util import session_manager
 from .metadata import TDSCatalogMetadata
 
-logging.basicConfig(level=logging.ERROR)
 log = logging.getLogger(__name__)
+log.setLevel(logging.ERROR)
 
 
 class IndexableMapping(OrderedDict):
