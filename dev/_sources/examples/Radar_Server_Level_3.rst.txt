@@ -109,7 +109,7 @@ Look at the variables available in this dataset
 
  .. code-block:: none
 
-    {'DOD', 'N2C', 'PTA', 'N2Q', 'N2X', 'NBC', 'N3M', 'NBK', 'DPR', 'OHA', 'N2K', 'N3S', 'NBM', 'N3Q', 'N1H', 'N1S', 'NET', 'HHC', 'EET', 'N2U', 'DU3', 'N1X', 'DAA', 'NAM', 'NAK', 'NAX', 'NAC', 'N1K', 'N1U', 'NVL', 'N2M', 'N3K', 'DHR', 'N0U', 'N0V', 'NMD', 'N0Q', 'N0Z', 'N1P', 'N0R', 'N0X', 'N1Q', 'NBX', 'N3X', 'NCR', 'N0K', 'N1C', 'DVL', 'N2H', 'DSD', 'N1M', 'N0S', 'DPA', 'N0M', 'N3U', 'N3H', 'DTA', 'NBU', 'NAQ', 'NAH', 'N2S', 'NST', 'DSP', 'NTP', 'NBQ', 'NAU', 'N3C', 'N0H', 'NBH', 'DU6', 'NVW', 'N0C'}
+    {'DVL', 'DPR', 'DOD', 'HHC', 'N2Q', 'NAU', 'NBX', 'N0C', 'N2K', 'N3Q', 'N3U', 'N3S', 'N1Q', 'NTP', 'N0K', 'N3X', 'N1S', 'NET', 'DPA', 'N0Z', 'NVW', 'NBM', 'N1U', 'PTA', 'DHR', 'EET', 'N2C', 'DU3', 'N1X', 'NBH', 'NCR', 'N1H', 'N1M', 'N2M', 'N0R', 'N2U', 'N3H', 'NAQ', 'OHA', 'N2X', 'NBQ', 'N1C', 'NAC', 'N2S', 'N2H', 'NAM', 'N0V', 'DSD', 'DSP', 'N1P', 'NBU', 'N0M', 'N0S', 'N3C', 'NMD', 'NVL', 'DTA', 'N3K', 'N0U', 'N0H', 'DU6', 'NAK', 'N3M', 'NAX', 'NAH', 'NST', 'N0Q', 'NBC', 'DAA', 'NBK', 'N0X', 'N1K'}
 
 
 
@@ -139,7 +139,7 @@ is represented as a string, it shows the encoded URL.
  .. code-block:: none
 
 
-    var=N0Q&time=2022-01-11T18%3A20%3A34.850301&stn=FTG
+    var=N0Q&time=2022-01-11T18%3A20%3A39.362063&stn=FTG
 
 
 
@@ -336,7 +336,7 @@ Finally, we plot them up using matplotlib.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.695 seconds)
+   **Total running time of the script:** ( 0 minutes  3.577 seconds)
 
 
 .. _sphx_glr_download_examples_Radar_Server_Level_3.py:
