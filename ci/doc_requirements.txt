@@ -2,7 +2,7 @@ cartopy==0.18.0
 matplotlib==3.5.1
 metpy==1.1.0
 scipy==1.7.3
-sphinx==4.3.2
+sphinx==4.4.0
 sphinx_rtd_theme==1.0.0
 sphinx-gallery==0.10.1
 myst-parser==0.16.1
