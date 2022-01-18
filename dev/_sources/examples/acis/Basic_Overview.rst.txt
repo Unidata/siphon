@@ -204,7 +204,7 @@ a string, so you should convert those back into numbers before use.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.845 seconds)
+   **Total running time of the script:** ( 0 minutes  1.036 seconds)
 
 
 .. _sphx_glr_download_examples_acis_Basic_Overview.py:
