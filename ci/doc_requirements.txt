@@ -1,6 +1,6 @@
 cartopy==0.18.0
 matplotlib==3.5.1
-metpy==1.1.0
+metpy==1.2.0
 scipy==1.7.3
 sphinx==4.4.0
 sphinx_rtd_theme==1.0.0
