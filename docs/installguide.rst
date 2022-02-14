@@ -16,7 +16,7 @@ Siphon currently supports the following versions of required dependencies:
   - pandas
 
 Installation Instructions for NumPy can be found at:
-  https://www.scipy.org/scipylib/download.html
+  https://numpy.org/install/
 
 ------------
 Installation
