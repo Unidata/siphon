@@ -109,7 +109,7 @@ Look at the variables available in this dataset
 
  .. code-block:: none
 
-    {'DSD', 'N1H', 'N3M', 'N2U', 'N2Q', 'N2K', 'NBU', 'NTP', 'N0Q', 'DAA', 'EET', 'N0K', 'N1U', 'N0C', 'NBX', 'DU6', 'NAM', 'NCR', 'N0M', 'N0U', 'NBC', 'NAQ', 'NAU', 'NST', 'DPR', 'N0Z', 'N1C', 'N1K', 'NVL', 'N3C', 'HHC', 'N3H', 'N2H', 'N3S', 'NMD', 'DPA', 'N3X', 'NAH', 'N2S', 'N3U', 'DOD', 'N0S', 'N1Q', 'N0V', 'N3K', 'NAC', 'N0X', 'NAK', 'NBK', 'NBM', 'N2X', 'DSP', 'DTA', 'NBH', 'DU3', 'N1S', 'N1P', 'N2M', 'N3Q', 'OHA', 'N1M', 'NBQ', 'N1X', 'N2C', 'DHR', 'NVW', 'PTA', 'DVL', 'N0H', 'N0R', 'NET', 'NAX'}
+    {'DSP', 'N0Q', 'N3S', 'NBQ', 'N3X', 'NAM', 'N1Q', 'N0M', 'N0Z', 'N3M', 'NBH', 'OHA', 'N0H', 'N2C', 'N3H', 'N1H', 'NBX', 'NMD', 'N3U', 'N1U', 'NVW', 'N3C', 'N1X', 'N1S', 'DTA', 'DU3', 'N0S', 'N2Q', 'DPA', 'DSD', 'HHC', 'N3Q', 'DVL', 'DPR', 'N0C', 'N2U', 'NBM', 'NTP', 'DHR', 'N1P', 'N2X', 'N1K', 'NAQ', 'N2S', 'N2K', 'N0R', 'NBK', 'NET', 'NAC', 'N1M', 'NAU', 'NVL', 'NAH', 'N2M', 'N2H', 'N0K', 'EET', 'DAA', 'NAX', 'N0U', 'DU6', 'DOD', 'N0V', 'N1C', 'NAK', 'NBC', 'NCR', 'NBU', 'NST', 'PTA', 'N3K', 'N0X'}
 
 
 
@@ -139,7 +139,7 @@ is represented as a string, it shows the encoded URL.
  .. code-block:: none
 
 
-    var=N0Q&time=2022-02-15T00%3A13%3A19.234260&stn=FTG
+    var=N0Q&time=2022-02-15T20%3A32%3A41.656237&stn=FTG
 
 
 
@@ -209,7 +209,7 @@ find one NIDS file in the return.
 
  .. code-block:: none
 
-    ['Level3_FTG_N0Q_20220215_0011.nids']
+    ['Level3_FTG_N0Q_20220215_2029.nids']
 
 
 
@@ -236,7 +236,7 @@ We see URLs for OPeNDAP, CDMRemote, and HTTPServer (direct download).
 
  .. code-block:: none
 
-    {'OPENDAP': 'https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0Q/FTG/20220215/Level3_FTG_N0Q_20220215_0011.nids', 'HTTPServer': 'https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0Q/FTG/20220215/Level3_FTG_N0Q_20220215_0011.nids', 'CdmRemote': 'https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0Q/FTG/20220215/Level3_FTG_N0Q_20220215_0011.nids'}
+    {'OPENDAP': 'https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0Q/FTG/20220215/Level3_FTG_N0Q_20220215_2029.nids', 'HTTPServer': 'https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0Q/FTG/20220215/Level3_FTG_N0Q_20220215_2029.nids', 'CdmRemote': 'https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0Q/FTG/20220215/Level3_FTG_N0Q_20220215_2029.nids'}
 
 
 
@@ -336,7 +336,7 @@ Finally, we plot them up using matplotlib.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.084 seconds)
+   **Total running time of the script:** ( 0 minutes  2.999 seconds)
 
 
 .. _sphx_glr_download_examples_Radar_Server_Level_3.py:
