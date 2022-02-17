@@ -111,32 +111,11 @@ Get a pandas data frame of all of the observations
       <tbody>
         <tr>
           <th>0</th>
-          <td>15002</td>
-          <td>0.00</td>
-          <td>-10.00</td>
-          <td>133.0</td>
-          <td>5.6</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>27.6</td>
-          <td>27.6</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2022-02-15 22:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>1</th>
           <td>22101</td>
           <td>37.24</td>
           <td>126.02</td>
-          <td>330.0</td>
-          <td>10.0</td>
+          <td>60.0</td>
+          <td>4.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -144,61 +123,19 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>-5.1</td>
-          <td>3.3</td>
+          <td>-2.3</td>
+          <td>2.8</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-02-15 23:00:00+00:00</td>
+          <td>2022-02-17 16:00:00+00:00</td>
         </tr>
         <tr>
-          <th>2</th>
+          <th>1</th>
           <td>22102</td>
           <td>34.79</td>
           <td>125.78</td>
-          <td>0.0</td>
-          <td>11.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>-0.7</td>
-          <td>4.8</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2022-02-15 23:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>3</th>
-          <td>22103</td>
-          <td>34.00</td>
-          <td>127.50</td>
-          <td>330.0</td>
-          <td>11.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>1.6</td>
-          <td>13.5</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2022-02-15 23:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>4</th>
-          <td>22104</td>
-          <td>34.77</td>
-          <td>128.90</td>
-          <td>320.0</td>
+          <td>70.0</td>
           <td>6.0</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -207,12 +144,75 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>0.1</td>
+          <td>-1.0</td>
+          <td>4.6</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2022-02-17 16:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>22103</td>
+          <td>34.00</td>
+          <td>127.50</td>
+          <td>60.0</td>
+          <td>6.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>3.3</td>
+          <td>13.5</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2022-02-17 16:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>22104</td>
+          <td>34.77</td>
+          <td>128.90</td>
+          <td>30.0</td>
+          <td>6.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2.8</td>
           <td>12.2</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-02-15 23:00:00+00:00</td>
+          <td>2022-02-17 16:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>22105</td>
+          <td>37.54</td>
+          <td>130.00</td>
+          <td>340.0</td>
+          <td>5.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2.7</td>
+          <td>9.7</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2022-02-17 16:00:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -275,7 +275,7 @@ Let's make a simple plot of the buoy positions and color by water temperature
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.627 seconds)
+   **Total running time of the script:** ( 0 minutes  4.989 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_latest_request.py:
