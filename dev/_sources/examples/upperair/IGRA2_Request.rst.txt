@@ -79,9 +79,9 @@ a dataframe with station metadata from the sounding header.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:405: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:405: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'etime': 'second',
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:443: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:443: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'release_time': 'second',
 
 
@@ -235,9 +235,9 @@ Multiple records can be extracted simultaneously:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:405: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:405: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'etime': 'second',
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:443: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:443: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'release_time': 'second',
        lvltyp1  lvltyp2  etime  pressure  ...       date  u_wind  v_wind  dewpoint
     0        2        1      0   1020.95  ... 2014-09-10    -6.0    -3.9      -1.0
@@ -280,9 +280,9 @@ This data has much more information in the headers.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:371: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:371: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'pressure': 'hPa',
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:420: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:420: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'release_time': 'second',
 
 
@@ -332,7 +332,7 @@ Inspect data columns in the dataframe.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  41.523 seconds)
+   **Total running time of the script:** ( 0 minutes  32.803 seconds)
 
 
 .. _sphx_glr_download_examples_upperair_IGRA2_Request.py:
