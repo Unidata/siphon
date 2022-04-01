@@ -123,46 +123,46 @@ observation set to query.
           <th>0</th>
           <td>NaN</td>
           <td>NaT</td>
-          <td>3</td>
+          <td>11</td>
           <td>NaN</td>
-          <td>2022-03-31 15:04:00+00:00</td>
-          <td>2022-03-31 15:10:00+00:00</td>
+          <td>2022-04-01 15:42:00+00:00</td>
+          <td>2022-04-01 15:50:00+00:00</td>
         </tr>
         <tr>
           <th>1</th>
           <td>NaN</td>
           <td>NaT</td>
-          <td>4</td>
+          <td>11</td>
           <td>NaN</td>
-          <td>2022-03-31 14:52:00+00:00</td>
-          <td>2022-03-31 15:00:00+00:00</td>
+          <td>2022-04-01 15:34:00+00:00</td>
+          <td>2022-04-01 15:40:00+00:00</td>
         </tr>
         <tr>
           <th>2</th>
           <td>NaN</td>
           <td>NaT</td>
-          <td>4</td>
+          <td>11</td>
           <td>NaN</td>
-          <td>2022-03-31 14:49:00+00:00</td>
-          <td>2022-03-31 14:50:00+00:00</td>
+          <td>2022-04-01 15:21:00+00:00</td>
+          <td>2022-04-01 15:30:00+00:00</td>
         </tr>
         <tr>
           <th>3</th>
           <td>NaN</td>
           <td>NaT</td>
-          <td>4</td>
+          <td>11</td>
           <td>NaN</td>
-          <td>2022-03-31 14:36:00+00:00</td>
-          <td>2022-03-31 14:40:00+00:00</td>
+          <td>2022-04-01 15:16:00+00:00</td>
+          <td>2022-04-01 15:20:00+00:00</td>
         </tr>
         <tr>
           <th>4</th>
           <td>NaN</td>
           <td>NaT</td>
-          <td>4</td>
+          <td>10</td>
           <td>NaN</td>
-          <td>2022-03-31 14:23:00+00:00</td>
-          <td>2022-03-31 14:30:00+00:00</td>
+          <td>2022-04-01 15:01:00+00:00</td>
+          <td>2022-04-01 15:10:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -174,7 +174,7 @@ observation set to query.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.382 seconds)
+   **Total running time of the script:** ( 0 minutes  1.519 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_type_request.py:
