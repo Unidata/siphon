@@ -114,8 +114,8 @@ Get a pandas data frame of all of the observations
           <td>22101</td>
           <td>37.24</td>
           <td>126.02</td>
-          <td>220.0</td>
-          <td>0.0</td>
+          <td>170.0</td>
+          <td>5.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -123,20 +123,20 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
+          <td>10.4</td>
           <td>7.3</td>
-          <td>6.5</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-04-07 15:00:00+00:00</td>
+          <td>2022-04-11 17:00:00+00:00</td>
         </tr>
         <tr>
           <th>1</th>
           <td>22102</td>
           <td>34.79</td>
           <td>125.78</td>
-          <td>80.0</td>
-          <td>1.0</td>
+          <td>170.0</td>
+          <td>4.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -144,40 +144,19 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>8.9</td>
-          <td>9.1</td>
+          <td>13.3</td>
+          <td>10.9</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-04-07 15:00:00+00:00</td>
+          <td>2022-04-11 17:00:00+00:00</td>
         </tr>
         <tr>
           <th>2</th>
           <td>22103</td>
           <td>34.00</td>
           <td>127.50</td>
-          <td>300.0</td>
-          <td>6.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>12.9</td>
-          <td>13.4</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2022-04-07 15:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>3</th>
-          <td>22104</td>
-          <td>34.77</td>
-          <td>128.90</td>
-          <td>300.0</td>
+          <td>90.0</td>
           <td>3.0</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -186,19 +165,40 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>16.4</td>
-          <td>16.0</td>
+          <td>15.3</td>
+          <td>14.6</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-04-07 15:00:00+00:00</td>
+          <td>2022-04-11 17:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>22104</td>
+          <td>34.77</td>
+          <td>128.90</td>
+          <td>200.0</td>
+          <td>3.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>15.1</td>
+          <td>15.2</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2022-04-11 17:00:00+00:00</td>
         </tr>
         <tr>
           <th>4</th>
           <td>22106</td>
           <td>36.35</td>
           <td>129.78</td>
-          <td>350.0</td>
+          <td>200.0</td>
           <td>7.0</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -207,12 +207,12 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>16.6</td>
-          <td>13.0</td>
+          <td>17.5</td>
+          <td>12.6</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-04-07 15:00:00+00:00</td>
+          <td>2022-04-11 17:00:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -275,7 +275,7 @@ Let's make a simple plot of the buoy positions and color by water temperature
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.071 seconds)
+   **Total running time of the script:** ( 0 minutes  4.701 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_latest_request.py:
