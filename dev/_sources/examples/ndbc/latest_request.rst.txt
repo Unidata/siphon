@@ -63,7 +63,7 @@ Get a pandas data frame of all of the observations
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/siphon/simplewebservice/ndbc.py:458: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/ndbc.py:458: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = col_units
 
 
@@ -111,11 +111,11 @@ Get a pandas data frame of all of the observations
       <tbody>
         <tr>
           <th>0</th>
-          <td>22101</td>
-          <td>37.24</td>
-          <td>126.02</td>
-          <td>170.0</td>
-          <td>5.0</td>
+          <td>15002</td>
+          <td>0.00</td>
+          <td>-10.00</td>
+          <td>129.0</td>
+          <td>3.5</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -123,19 +123,82 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>10.4</td>
-          <td>7.3</td>
+          <td>28.1</td>
+          <td>28.2</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-04-11 17:00:00+00:00</td>
+          <td>2022-04-18 22:00:00+00:00</td>
         </tr>
         <tr>
           <th>1</th>
+          <td>22101</td>
+          <td>37.24</td>
+          <td>126.02</td>
+          <td>150.0</td>
+          <td>3.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>9.0</td>
+          <td>8.2</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2022-04-19 00:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>2</th>
           <td>22102</td>
           <td>34.79</td>
           <td>125.78</td>
-          <td>170.0</td>
+          <td>350.0</td>
+          <td>3.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>11.0</td>
+          <td>10.3</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2022-04-19 00:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>22103</td>
+          <td>34.00</td>
+          <td>127.50</td>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>13.8</td>
+          <td>13.5</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2022-04-19 00:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>22104</td>
+          <td>34.77</td>
+          <td>128.90</td>
+          <td>30.0</td>
           <td>4.0</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -144,75 +207,12 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>13.3</td>
-          <td>10.9</td>
+          <td>15.6</td>
+          <td>15.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-04-11 17:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>2</th>
-          <td>22103</td>
-          <td>34.00</td>
-          <td>127.50</td>
-          <td>90.0</td>
-          <td>3.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>15.3</td>
-          <td>14.6</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2022-04-11 17:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>3</th>
-          <td>22104</td>
-          <td>34.77</td>
-          <td>128.90</td>
-          <td>200.0</td>
-          <td>3.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>15.1</td>
-          <td>15.2</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2022-04-11 17:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>4</th>
-          <td>22106</td>
-          <td>36.35</td>
-          <td>129.78</td>
-          <td>200.0</td>
-          <td>7.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>17.5</td>
-          <td>12.6</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2022-04-11 17:00:00+00:00</td>
+          <td>2022-04-19 00:00:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -275,7 +275,7 @@ Let's make a simple plot of the buoy positions and color by water temperature
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.382 seconds)
+   **Total running time of the script:** ( 0 minutes  3.176 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_latest_request.py:
