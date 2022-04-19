@@ -62,7 +62,7 @@ observation set to query.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/siphon/simplewebservice/ndbc.py:110: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/siphon/simplewebservice/ndbc.py:110: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = col_units
 
 
@@ -109,6 +109,24 @@ observation set to query.
           <th>0</th>
           <td>270.0</td>
           <td>10.0</td>
+          <td>13.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>1007.7</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2022-04-19 00:20:00+00:00</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>270.0</td>
+          <td>10.0</td>
           <td>12.0</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -124,7 +142,7 @@ observation set to query.
           <td>2022-04-19 00:10:00+00:00</td>
         </tr>
         <tr>
-          <th>1</th>
+          <th>2</th>
           <td>280.0</td>
           <td>10.0</td>
           <td>13.0</td>
@@ -142,7 +160,7 @@ observation set to query.
           <td>2022-04-19 00:00:00+00:00</td>
         </tr>
         <tr>
-          <th>2</th>
+          <th>3</th>
           <td>280.0</td>
           <td>12.0</td>
           <td>17.0</td>
@@ -160,7 +178,7 @@ observation set to query.
           <td>2022-04-18 23:50:00+00:00</td>
         </tr>
         <tr>
-          <th>3</th>
+          <th>4</th>
           <td>270.0</td>
           <td>10.0</td>
           <td>13.0</td>
@@ -176,24 +194,6 @@ observation set to query.
           <td>NaN</td>
           <td>NaN</td>
           <td>2022-04-18 23:40:00+00:00</td>
-        </tr>
-        <tr>
-          <th>4</th>
-          <td>270.0</td>
-          <td>11.0</td>
-          <td>13.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>1007.7</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2022-04-18 23:30:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -244,7 +244,7 @@ Let's make a simple time series plot to checkout what the data look like.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.871 seconds)
+   **Total running time of the script:** ( 0 minutes  1.992 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_met_request.py:
