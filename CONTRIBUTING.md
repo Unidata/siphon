@@ -17,8 +17,7 @@ any point you can create an [issue on GitHub](https://github.com/Unidata/Siphon/
 or contact us at one of the other channels mentioned below.
 
 For more information on contributing to open source projects,
-[GitHub's own guide](https://guides.github.com/activities/contributing-to-open-source/)
-is a great starting point.
+[this guide](https://opensource.guide/how-to-contribute/) is a great starting point.
 
 ## Getting Started
 
