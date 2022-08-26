@@ -70,8 +70,8 @@ temp_var = data.variables['Temperature_surface']
 # coordinates attribute on temperature
 time_name = temp_var.coordinates.split()[1]
 time_var = data.variables[time_name]
-lat_var = data.variables['lat']
-lon_var = data.variables['lon']
+lat_var = data.variables['latitude']
+lon_var = data.variables['longitude']
 
 ###########################################
 # Now we make our data suitable for plotting.
