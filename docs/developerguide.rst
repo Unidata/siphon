@@ -109,7 +109,7 @@ Documentation
 
 Siphon's documentation is built using sphinx >= 1.4. API documentation is automatically
 generated from docstrings, written using the
-`NumPy docstring standard <https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt>`_.
+`NumPy docstring standard <https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard>`_.
 There are also examples in the ``examples/`` directory.
 
 The documentation is hosted on `GitHub Pages <https://unidata.github.io/siphon>`_. The docs are
