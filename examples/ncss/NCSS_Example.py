@@ -11,7 +11,6 @@ Use Siphon to query the NetCDF Subset Service (NCSS).
 from datetime import datetime
 
 import matplotlib.pyplot as plt
-import numpy as np
 
 from siphon.catalog import TDSCatalog
 
@@ -57,27 +56,24 @@ list(data.variables)
 # listed in `coordinates` is the pressure dimension.
 temp = data.variables['Temperature_isobaric']
 relh = data.variables['Relative_humidity_isobaric']
-press_name = relh.coordinates.split()[-1]
-press = data.variables[press_name]
-press_vals = press[:].squeeze()
+vert_name = relh.coordinates.split()[-1]
+vert = data.variables[vert_name]
+press_vals = vert[:].squeeze()
 
 # Due to a different number of vertical levels find where they are common
-lev_temp = data[next(name for name in temp.coordinates.split() if name.startswith('isobaric'))]
-lev_relh = data[next(name for name in relh.coordinates.split() if name.startswith('isobaric'))]
-_, relh_ind, temp_ind = np.intersect1d(lev_relh, lev_temp, return_indices=True)
-temp_filtered = temp[..., temp_ind]
-relh_filtered = relh[..., relh_ind]
 
 ###########################################
 # Now we can plot these up using matplotlib.
 fig, ax = plt.subplots(1, 1, figsize=(9, 8))
-ax.plot(temp_filtered[:].squeeze(), press_vals, 'r', linewidth=2)
-ax.set_xlabel(f'{temp.standard_name} ({temp.units})')
-ax.set_ylabel(f'{press.standard_name} ({press.units})')
+ax.plot(temp[:].squeeze(), press_vals, 'r', linewidth=2)
+ax.set_xlabel(f'Temperature ({temp.units})')
+ax.set_ylabel(f'{vert_name} ({vert.units})')
 
 # Create second plot with shared y-axis
 ax2 = plt.twiny(ax)
-ax2.plot(relh_filtered[:].squeeze(), press_vals, 'g', linewidth=2)
-ax2.set_xlabel(f'{relh.standard_name} ({relh.units})')
+ax2.plot(relh[:].squeeze(), press_vals, 'g', linewidth=2)
+ax2.set_xlabel(f'Relative Humidity ({relh.units})')
 ax.set_ylim(press_vals.max(), press_vals.min())
 ax.grid(True)
+
+plt.show()
