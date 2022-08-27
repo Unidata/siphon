@@ -109,7 +109,7 @@ Look at the variables available in this dataset
 
  .. code-block:: none
 
-    {'N1P', 'N2X', 'N2H', 'DTA', 'NBM', 'N3H', 'NAH', 'NCR', 'DU3', 'NBH', 'N2U', 'NAQ', 'N0C', 'DU6', 'N3C', 'NAK', 'NBC', 'NBX', 'NVL', 'N0K', 'DSD', 'NBK', 'NAX', 'DPR', 'N1C', 'N0V', 'N0Q', 'N1X', 'N2C', 'NBU', 'N0S', 'N1K', 'N3M', 'N2Q', 'N3U', 'OHA', 'NMD', 'N0U', 'N1H', 'N0Z', 'PTA', 'N2S', 'DHR', 'N3S', 'DVL', 'N1U', 'N2K', 'N0H', 'DAA', 'DPA', 'DOD', 'N3Q', 'NAC', 'NAM', 'NBQ', 'NET', 'N0X', 'N3K', 'N0M', 'N1M', 'NTP', 'EET', 'N2M', 'NST', 'DSP', 'NAU', 'HHC', 'N3X', 'NVW', 'N1Q', 'N1S', 'N0R'}
+    {'N0S', 'NBX', 'N1X', 'N2C', 'NCR', 'N0R', 'NVW', 'DOD', 'DTA', 'HHC', 'N2Q', 'NAU', 'N0M', 'NAQ', 'NAX', 'N2H', 'NVL', 'N0H', 'N0K', 'NBQ', 'N0U', 'N1M', 'N1U', 'NBM', 'DAA', 'N2K', 'DVL', 'N1P', 'N0Z', 'NMD', 'N0Q', 'N0V', 'NAM', 'N1Q', 'DSP', 'DHR', 'N3H', 'NAH', 'NBC', 'NBH', 'NAK', 'NET', 'NST', 'EET', 'N3M', 'DPR', 'N3K', 'N2M', 'N0C', 'NAC', 'DU6', 'N0X', 'N3S', 'N3C', 'N1C', 'N3X', 'NBU', 'N1S', 'NTP', 'N3Q', 'DU3', 'N1H', 'N2U', 'OHA', 'DPA', 'PTA', 'N1K', 'N2X', 'N3U', 'DSD', 'NBK', 'N2S'}
 
 
 
@@ -117,8 +117,8 @@ Look at the variables available in this dataset
 .. GENERATED FROM PYTHON SOURCE LINES 36-40
 
 Create a new query object to help request the data. Using the chaining
-methods, ask for data from radar FTG (Denver) for now for the product
-N0Q, which is reflectivity data for the lowest tilt. We see that when the query
+methods, ask for data from radar CYS (Cheyenne) for now for the product
+N0B, which is reflectivity data for the lowest tilt. We see that when the query
 is represented as a string, it shows the encoded URL.
 
 .. GENERATED FROM PYTHON SOURCE LINES 40-43
@@ -126,7 +126,7 @@ is represented as a string, it shows the encoded URL.
 .. code-block:: default
 
     query = rs.query()
-    query.stations('FTG').time(datetime.utcnow()).variables('N0Q')
+    query.stations('CYS').time(datetime.utcnow()).variables('N0B')
 
 
 
@@ -139,7 +139,7 @@ is represented as a string, it shows the encoded URL.
  .. code-block:: none
 
 
-    var=N0Q&time=2022-05-10T17%3A29%3A34.908412&stn=FTG
+    var=N0B&time=2022-08-27T01%3A25%3A21.347889&stn=CYS
 
 
 
@@ -166,7 +166,7 @@ station(s) and variable(s)
  .. code-block:: none
 
 
-    True
+    False
 
 
 
@@ -209,7 +209,7 @@ find one NIDS file in the return.
 
  .. code-block:: none
 
-    ['Level3_FTG_N0Q_20220510_1727.nids']
+    ['Level3_CYS_N0B_20220827_0123.nids']
 
 
 
@@ -236,7 +236,7 @@ We see URLs for OPeNDAP, CDMRemote, and HTTPServer (direct download).
 
  .. code-block:: none
 
-    {'OPENDAP': 'https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0Q/FTG/20220510/Level3_FTG_N0Q_20220510_1727.nids', 'HTTPServer': 'https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0Q/FTG/20220510/Level3_FTG_N0Q_20220510_1727.nids', 'CdmRemote': 'https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0Q/FTG/20220510/Level3_FTG_N0Q_20220510_1727.nids'}
+    {'OPENDAP': 'https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0B/CYS/20220827/Level3_CYS_N0B_20220827_0123.nids', 'HTTPServer': 'https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0B/CYS/20220827/Level3_CYS_N0B_20220827_0123.nids', 'CdmRemote': 'https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0B/CYS/20220827/Level3_CYS_N0B_20220827_0123.nids'}
 
 
 
@@ -279,11 +279,34 @@ the data itself.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 78-79
+.. GENERATED FROM PYTHON SOURCE LINES 78-80
+
+Need to adjust range and azimuth so that they bound the range gates rather than having
+a single point at the start of the gate.
+
+.. GENERATED FROM PYTHON SOURCE LINES 80-87
+
+.. code-block:: default
+
+    rng = np.append(rng, rng[-1] - rng[-2])
+    diff = np.diff(az)
+    diff[diff > 180] -= 360.
+    diff[diff < -180] += 360.
+    avg_spacing = diff.mean()
+    az = np.append(az, az[-1] + avg_spacing)
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 88-89
 
 Then convert the polar coordinates to Cartesian
 
-.. GENERATED FROM PYTHON SOURCE LINES 79-83
+.. GENERATED FROM PYTHON SOURCE LINES 89-93
 
 .. code-block:: default
 
@@ -298,11 +321,11 @@ Then convert the polar coordinates to Cartesian
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-85
+.. GENERATED FROM PYTHON SOURCE LINES 94-95
 
 Finally, we plot them up using matplotlib.
 
-.. GENERATED FROM PYTHON SOURCE LINES 85-90
+.. GENERATED FROM PYTHON SOURCE LINES 95-101
 
 .. code-block:: default
 
@@ -311,6 +334,7 @@ Finally, we plot them up using matplotlib.
     ax.set_aspect('equal', 'datalim')
     ax.set_xlim(-460, 460)
     ax.set_ylim(-460, 460)
+    plt.show()
 
 
 
@@ -320,23 +344,13 @@ Finally, we plot them up using matplotlib.
    :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /home/runner/work/siphon/siphon/examples/Radar_Server_Level_3.py:86: UserWarning: The input coordinates to pcolormesh are interpreted as cell centers, but are not monotonically increasing or decreasing. This may lead to incorrectly calculated cell edges, in which case, please supply explicit cell edges to pcolormesh.
-      ax.pcolormesh(x, y, ref)
-
-    (-460.0, 460.0)
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.382 seconds)
+   **Total running time of the script:** ( 0 minutes  2.853 seconds)
 
 
 .. _sphx_glr_download_examples_Radar_Server_Level_3.py:

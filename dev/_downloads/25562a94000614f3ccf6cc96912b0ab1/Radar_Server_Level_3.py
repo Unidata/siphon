@@ -34,11 +34,11 @@ print(rs.variables)
 
 ###########################################
 # Create a new query object to help request the data. Using the chaining
-# methods, ask for data from radar FTG (Denver) for now for the product
-# N0Q, which is reflectivity data for the lowest tilt. We see that when the query
+# methods, ask for data from radar CYS (Cheyenne) for now for the product
+# N0B, which is reflectivity data for the lowest tilt. We see that when the query
 # is represented as a string, it shows the encoded URL.
 query = rs.query()
-query.stations('FTG').time(datetime.utcnow()).variables('N0Q')
+query.stations('CYS').time(datetime.utcnow()).variables('N0B')
 
 ###########################################
 # We can use the RadarServer instance to check our query, to make
@@ -75,6 +75,16 @@ az = data.variables['azimuth'][:]
 ref = data.variables['BaseReflectivityDR'][:]
 
 ###########################################
+# Need to adjust range and azimuth so that they bound the range gates rather than having
+# a single point at the start of the gate.
+rng = np.append(rng, rng[-1] - rng[-2])
+diff = np.diff(az)
+diff[diff > 180] -= 360.
+diff[diff < -180] += 360.
+avg_spacing = diff.mean()
+az = np.append(az, az[-1] + avg_spacing)
+
+###########################################
 # Then convert the polar coordinates to Cartesian
 x = rng * np.sin(np.deg2rad(az))[:, None]
 y = rng * np.cos(np.deg2rad(az))[:, None]
@@ -87,3 +97,4 @@ ax.pcolormesh(x, y, ref)
 ax.set_aspect('equal', 'datalim')
 ax.set_xlim(-460, 460)
 ax.set_ylim(-460, 460)
+plt.show()

@@ -86,6 +86,44 @@ We pull out this dataset and get the NCSS access point
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Cannot convert "[361]" to int. Keeping type as str.
+    Cannot convert "[720]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[4]" to int. Keeping type as str.
+    Cannot convert "[41]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[611]" to int. Keeping type as str.
+    Cannot convert "[611]" to int. Keeping type as str.
+    Cannot convert "[3]" to int. Keeping type as str.
+    Cannot convert "[2]" to int. Keeping type as str.
+    Cannot convert "[7]" to int. Keeping type as str.
+    Cannot convert "[3]" to int. Keeping type as str.
+    Cannot convert "[22]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[2]" to int. Keeping type as str.
+    Cannot convert "[3]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[367]" to int. Keeping type as str.
+    Cannot convert "[367]" to int. Keeping type as str.
+    Cannot convert "[366]" to int. Keeping type as str.
+    Cannot convert "[366]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[4]" to int. Keeping type as str.
+    Cannot convert "[366]" to int. Keeping type as str.
+    Cannot convert "[366]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[2]" to int. Keeping type as str.
+    Cannot convert "[2]" to int. Keeping type as str.
+
 
 
 
@@ -134,7 +172,7 @@ representation of the query is a properly encoded query string.
  .. code-block:: none
 
 
-    var=Temperature_isobaric&time_start=2022-05-10T17%3A30%3A06.015010&time_end=2022-05-17T17%3A30%3A06.015010&longitude=-105&latitude=40&vertCoord=100000&accept=netcdf
+    var=Temperature_isobaric&time_start=2022-08-27T01%3A25%3A46.992805&time_end=2022-09-03T01%3A25%3A46.992805&longitude=-105&latitude=40&vertCoord=100000&accept=netcdf
 
 
 
@@ -162,7 +200,7 @@ see our requested variables, as well as a few others (more metadata information)
  .. code-block:: none
 
 
-    ['isobaric1', 'Temperature_isobaric', 'station_name', 'station_description', 'latitude', 'longitude', 'time']
+    ['latitude', 'longitude', 'stationAltitude', 'station_id', 'station_description', 'time', 'stationIndex', 'Temperature_isobaric']
 
 
 
@@ -208,9 +246,9 @@ reasonable.
 
  .. code-block:: none
 
-    [real_datetime(2022, 5, 10, 18, 0) real_datetime(2022, 5, 10, 21, 0)
-     real_datetime(2022, 5, 11, 0, 0) real_datetime(2022, 5, 11, 3, 0)
-     real_datetime(2022, 5, 11, 6, 0)]
+    [real_datetime(2022, 8, 27, 0, 0) real_datetime(2022, 8, 27, 3, 0)
+     real_datetime(2022, 8, 27, 6, 0) real_datetime(2022, 8, 27, 9, 0)
+     real_datetime(2022, 8, 27, 12, 0)]
 
 
 
@@ -226,7 +264,7 @@ objects.
 
     fig, ax = plt.subplots(1, 1, figsize=(9, 8))
     ax.plot(time_vals, temp[:].squeeze(), 'r', linewidth=2)
-    ax.set_ylabel(f'{temp.standard_name} ({temp.units})')
+    ax.set_ylabel(f'Temperature ({temp.units})')
     ax.set_xlabel('Forecast Time (UTC)')
     ax.grid(True)
 
@@ -244,7 +282,7 @@ objects.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.006 seconds)
+   **Total running time of the script:** ( 0 minutes  1.611 seconds)
 
 
 .. _sphx_glr_download_examples_ncss_NCSS_Timeseries_Examples.py:

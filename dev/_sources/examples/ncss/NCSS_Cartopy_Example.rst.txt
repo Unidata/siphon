@@ -93,6 +93,44 @@ We pull out this dataset and get the NCSS access point
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Cannot convert "[721]" to int. Keeping type as str.
+    Cannot convert "[1440]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[4]" to int. Keeping type as str.
+    Cannot convert "[41]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[3]" to int. Keeping type as str.
+    Cannot convert "[2]" to int. Keeping type as str.
+    Cannot convert "[7]" to int. Keeping type as str.
+    Cannot convert "[3]" to int. Keeping type as str.
+    Cannot convert "[22]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[2]" to int. Keeping type as str.
+    Cannot convert "[3]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[4]" to int. Keeping type as str.
+    Cannot convert "[114]" to int. Keeping type as str.
+    Cannot convert "[114]" to int. Keeping type as str.
+    Cannot convert "[215]" to int. Keeping type as str.
+    Cannot convert "[215]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[2]" to int. Keeping type as str.
+    Cannot convert "[115]" to int. Keeping type as str.
+    Cannot convert "[115]" to int. Keeping type as str.
+    Cannot convert "[114]" to int. Keeping type as str.
+    Cannot convert "[114]" to int. Keeping type as str.
+    Cannot convert "[2]" to int. Keeping type as str.
+
 
 
 
@@ -144,7 +182,7 @@ query string.
  .. code-block:: none
 
 
-    var=Temperature_surface&time=2022-05-10T17%3A30%3A10.121877&west=-111&east=-100&south=35&north=43&accept=netcdf4
+    var=Temperature_surface&time=2022-08-27T01%3A25%3A50.981453&west=-111&east=-100&south=35&north=43&accept=netcdf4
 
 
 
@@ -172,7 +210,7 @@ the data).
 
  .. code-block:: none
 
-    ['Temperature_surface', 'reftime', 'time', 'lat', 'lon', 'LatLon_Projection']
+    ['reftime', 'latitude', 'time', 'longitude', 'Temperature_surface', 'LatLon_721X1440-0p13S-180p00E-2']
 
 
 
@@ -192,8 +230,8 @@ We'll pull out the useful variables for temperature, latitude, and longitude, an
     # coordinates attribute on temperature
     time_name = temp_var.coordinates.split()[1]
     time_var = data.variables[time_name]
-    lat_var = data.variables['lat']
-    lon_var = data.variables['lon']
+    lat_var = data.variables['latitude']
+    lon_var = data.variables['longitude']
 
 
 
@@ -269,7 +307,7 @@ Now we can plot these up using matplotlib and cartopy.
 
 
 .. image-sg:: /examples/ncss/images/sphx_glr_NCSS_Cartopy_Example_001.png
-   :alt: Temperature forecast (°F) for 10 May 2022 18:00Z
+   :alt: Temperature forecast (°F) for 27 August 2022 00:00Z
    :srcset: /examples/ncss/images/sphx_glr_NCSS_Cartopy_Example_001.png
    :class: sphx-glr-single-img
 
@@ -281,14 +319,14 @@ Now we can plot these up using matplotlib and cartopy.
  .. code-block:: none
 
 
-    [<matplotlib.lines.Line2D object at 0x7fdfe7a4ffd0>]
+    [<matplotlib.lines.Line2D object at 0x7f6d74fc2d90>]
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.519 seconds)
+   **Total running time of the script:** ( 0 minutes  1.854 seconds)
 
 
 .. _sphx_glr_download_examples_ncss_NCSS_Cartopy_Example.py:

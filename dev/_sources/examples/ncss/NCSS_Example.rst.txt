@@ -24,14 +24,13 @@ Basic NCSS
 
 Use Siphon to query the NetCDF Subset Service (NCSS).
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-18
+.. GENERATED FROM PYTHON SOURCE LINES 11-17
 
 .. code-block:: default
 
     from datetime import datetime
 
     import matplotlib.pyplot as plt
-    import numpy as np
 
     from siphon.catalog import TDSCatalog
 
@@ -42,13 +41,13 @@ Use Siphon to query the NetCDF Subset Service (NCSS).
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-22
+.. GENERATED FROM PYTHON SOURCE LINES 18-21
 
 First we construct a TDSCatalog instance pointing to our dataset of interest, in
 this case TDS' "Best" virtual dataset for the GFS global 0.5 degree collection of
 GRIB files. We see this catalog contains a single dataset.
 
-.. GENERATED FROM PYTHON SOURCE LINES 22-26
+.. GENERATED FROM PYTHON SOURCE LINES 21-25
 
 .. code-block:: default
 
@@ -71,11 +70,11 @@ GRIB files. We see this catalog contains a single dataset.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 27-28
+.. GENERATED FROM PYTHON SOURCE LINES 26-27
 
 We pull out this dataset and get the NCSS access point
 
-.. GENERATED FROM PYTHON SOURCE LINES 28-31
+.. GENERATED FROM PYTHON SOURCE LINES 27-30
 
 .. code-block:: default
 
@@ -86,15 +85,53 @@ We pull out this dataset and get the NCSS access point
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Cannot convert "[361]" to int. Keeping type as str.
+    Cannot convert "[720]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[4]" to int. Keeping type as str.
+    Cannot convert "[41]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[611]" to int. Keeping type as str.
+    Cannot convert "[611]" to int. Keeping type as str.
+    Cannot convert "[3]" to int. Keeping type as str.
+    Cannot convert "[2]" to int. Keeping type as str.
+    Cannot convert "[7]" to int. Keeping type as str.
+    Cannot convert "[3]" to int. Keeping type as str.
+    Cannot convert "[22]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[2]" to int. Keeping type as str.
+    Cannot convert "[3]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[367]" to int. Keeping type as str.
+    Cannot convert "[367]" to int. Keeping type as str.
+    Cannot convert "[366]" to int. Keeping type as str.
+    Cannot convert "[366]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[4]" to int. Keeping type as str.
+    Cannot convert "[366]" to int. Keeping type as str.
+    Cannot convert "[366]" to int. Keeping type as str.
+    Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[2]" to int. Keeping type as str.
+    Cannot convert "[2]" to int. Keeping type as str.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 32-34
+
+.. GENERATED FROM PYTHON SOURCE LINES 31-33
 
 We can then use the `ncss` object to create a new query object, which
 facilitates asking for data from the server.
 
-.. GENERATED FROM PYTHON SOURCE LINES 34-36
+.. GENERATED FROM PYTHON SOURCE LINES 33-35
 
 .. code-block:: default
 
@@ -107,7 +144,7 @@ facilitates asking for data from the server.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 37-42
+.. GENERATED FROM PYTHON SOURCE LINES 36-41
 
 We construct a query asking for data corresponding to latitude 40N and longitude 105W,
 for the current time. We also ask for NetCDF version 4 data, for the variables
@@ -115,7 +152,7 @@ for the current time. We also ask for NetCDF version 4 data, for the variables
 vertical levels for a single point and single time. Note the string representation of
 the query is a properly encoded query string.
 
-.. GENERATED FROM PYTHON SOURCE LINES 42-46
+.. GENERATED FROM PYTHON SOURCE LINES 41-45
 
 .. code-block:: default
 
@@ -134,17 +171,17 @@ the query is a properly encoded query string.
  .. code-block:: none
 
 
-    var=Temperature_isobaric&var=Relative_humidity_isobaric&time=2022-05-10T17%3A30%3A07.836078&longitude=-105&latitude=40&accept=netcdf4
+    var=Temperature_isobaric&var=Relative_humidity_isobaric&time=2022-08-27T01%3A25%3A48.992784&longitude=-105&latitude=40&accept=netcdf4
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 47-50
+.. GENERATED FROM PYTHON SOURCE LINES 46-49
 
 We now request data from the server using this query. The `NCSS` class handles parsing
 this NetCDF data (using the `netCDF4` module). If we print out the variable names,
 we see our requested variables, as well as a few others (more metadata information)
 
-.. GENERATED FROM PYTHON SOURCE LINES 50-53
+.. GENERATED FROM PYTHON SOURCE LINES 49-52
 
 .. code-block:: default
 
@@ -162,33 +199,28 @@ we see our requested variables, as well as a few others (more metadata informati
  .. code-block:: none
 
 
-    ['isobaric1', 'Temperature_isobaric', 'Relative_humidity_isobaric', 'station_name', 'station_description', 'latitude', 'longitude', 'time']
+    ['latitude', 'longitude', 'stationAltitude', 'station_id', 'station_description', 'profileId', 'nobs', 'profileTime', 'stationIndex', 'altitude', 'Temperature_isobaric', 'Relative_humidity_isobaric']
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 54-58
+.. GENERATED FROM PYTHON SOURCE LINES 53-57
 
 We'll pull out the variables we want to use, as well as the pressure values. To get the
 name of the correct variable for pressure (which matches the levels for temperature and
 relative humidity, we look at the `coordinates` attribute. The last of the variables
 listed in `coordinates` is the pressure dimension.
 
-.. GENERATED FROM PYTHON SOURCE LINES 58-71
+.. GENERATED FROM PYTHON SOURCE LINES 57-65
 
 .. code-block:: default
 
     temp = data.variables['Temperature_isobaric']
     relh = data.variables['Relative_humidity_isobaric']
-    press_name = relh.coordinates.split()[-1]
-    press = data.variables[press_name]
-    press_vals = press[:].squeeze()
+    vert_name = relh.coordinates.split()[-1]
+    vert = data.variables[vert_name]
+    press_vals = vert[:].squeeze()
 
     # Due to a different number of vertical levels find where they are common
-    lev_temp = data[next(name for name in temp.coordinates.split() if name.startswith('isobaric'))]
-    lev_relh = data[next(name for name in relh.coordinates.split() if name.startswith('isobaric'))]
-    _, relh_ind, temp_ind = np.intersect1d(lev_relh, lev_temp, return_indices=True)
-    temp_filtered = temp[..., temp_ind]
-    relh_filtered = relh[..., relh_ind]
 
 
 
@@ -197,25 +229,27 @@ listed in `coordinates` is the pressure dimension.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 72-73
+.. GENERATED FROM PYTHON SOURCE LINES 66-67
 
 Now we can plot these up using matplotlib.
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-84
+.. GENERATED FROM PYTHON SOURCE LINES 67-80
 
 .. code-block:: default
 
     fig, ax = plt.subplots(1, 1, figsize=(9, 8))
-    ax.plot(temp_filtered[:].squeeze(), press_vals, 'r', linewidth=2)
-    ax.set_xlabel(f'{temp.standard_name} ({temp.units})')
-    ax.set_ylabel(f'{press.standard_name} ({press.units})')
+    ax.plot(temp[:].squeeze(), press_vals, 'r', linewidth=2)
+    ax.set_xlabel(f'Temperature ({temp.units})')
+    ax.set_ylabel(f'{vert_name} ({vert.units})')
 
     # Create second plot with shared y-axis
     ax2 = plt.twiny(ax)
-    ax2.plot(relh_filtered[:].squeeze(), press_vals, 'g', linewidth=2)
-    ax2.set_xlabel(f'{relh.standard_name} ({relh.units})')
+    ax2.plot(relh[:].squeeze(), press_vals, 'g', linewidth=2)
+    ax2.set_xlabel(f'Relative Humidity ({relh.units})')
     ax.set_ylim(press_vals.max(), press_vals.min())
     ax.grid(True)
+
+    plt.show()
 
 
 
@@ -231,7 +265,7 @@ Now we can plot these up using matplotlib.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.879 seconds)
+   **Total running time of the script:** ( 0 minutes  2.043 seconds)
 
 
 .. _sphx_glr_download_examples_ncss_NCSS_Example.py:
