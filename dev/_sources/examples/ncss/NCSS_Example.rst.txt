@@ -97,30 +97,30 @@ We pull out this dataset and get the NCSS access point
     Cannot convert "[4]" to int. Keeping type as str.
     Cannot convert "[41]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
-    Cannot convert "[611]" to int. Keeping type as str.
-    Cannot convert "[611]" to int. Keeping type as str.
     Cannot convert "[3]" to int. Keeping type as str.
     Cannot convert "[2]" to int. Keeping type as str.
     Cannot convert "[7]" to int. Keeping type as str.
+    Cannot convert "[373]" to int. Keeping type as str.
+    Cannot convert "[373]" to int. Keeping type as str.
+    Cannot convert "[372]" to int. Keeping type as str.
+    Cannot convert "[372]" to int. Keeping type as str.
     Cannot convert "[3]" to int. Keeping type as str.
     Cannot convert "[22]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
+    Cannot convert "[372]" to int. Keeping type as str.
+    Cannot convert "[372]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
     Cannot convert "[2]" to int. Keeping type as str.
     Cannot convert "[3]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
-    Cannot convert "[367]" to int. Keeping type as str.
-    Cannot convert "[367]" to int. Keeping type as str.
-    Cannot convert "[366]" to int. Keeping type as str.
-    Cannot convert "[366]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
     Cannot convert "[4]" to int. Keeping type as str.
-    Cannot convert "[366]" to int. Keeping type as str.
-    Cannot convert "[366]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
     Cannot convert "[2]" to int. Keeping type as str.
+    Cannot convert "[620]" to int. Keeping type as str.
+    Cannot convert "[620]" to int. Keeping type as str.
     Cannot convert "[2]" to int. Keeping type as str.
 
 
@@ -171,7 +171,7 @@ the query is a properly encoded query string.
  .. code-block:: none
 
 
-    var=Relative_humidity_isobaric&var=Temperature_isobaric&time=2022-08-27T01%3A28%3A54.968393&longitude=-105&latitude=40&accept=netcdf4
+    var=Temperature_isobaric&var=Relative_humidity_isobaric&time=2022-08-29T20%3A00%3A46.822748&longitude=-105&latitude=40&accept=netcdf4
 
 
 
@@ -265,7 +265,7 @@ Now we can plot these up using matplotlib.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.050 seconds)
+   **Total running time of the script:** ( 0 minutes  1.193 seconds)
 
 
 .. _sphx_glr_download_examples_ncss_NCSS_Example.py:

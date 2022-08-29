@@ -114,30 +114,30 @@ Get a pandas data frame of all of the observations
           <td>13001</td>
           <td>12.0</td>
           <td>-23.0</td>
-          <td>246.0</td>
-          <td>7.8</td>
-          <td>9.4</td>
+          <td>37.0</td>
+          <td>3.0</td>
+          <td>4.4</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1012.9</td>
+          <td>1008.0</td>
           <td>NaN</td>
-          <td>26.9</td>
-          <td>NaN</td>
-          <td>NaN</td>
+          <td>27.1</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-08-27 01:00:00+00:00</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2022-08-29 19:00:00+00:00</td>
         </tr>
         <tr>
           <th>1</th>
           <td>13002</td>
           <td>21.0</td>
           <td>-23.0</td>
-          <td>53.0</td>
-          <td>7.2</td>
-          <td>9.1</td>
+          <td>40.0</td>
+          <td>8.2</td>
+          <td>10.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -145,40 +145,40 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>25.2</td>
-          <td>25.9</td>
+          <td>25.8</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-08-27 01:00:00+00:00</td>
+          <td>2022-08-29 19:00:00+00:00</td>
         </tr>
         <tr>
           <th>2</th>
           <td>13008</td>
           <td>15.0</td>
           <td>-38.0</td>
-          <td>48.0</td>
-          <td>7.4</td>
-          <td>9.3</td>
+          <td>73.0</td>
+          <td>6.5</td>
+          <td>7.6</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1012.3</td>
+          <td>1012.0</td>
           <td>NaN</td>
           <td>27.4</td>
-          <td>27.8</td>
+          <td>28.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-08-27 01:00:00+00:00</td>
+          <td>2022-08-29 19:00:00+00:00</td>
         </tr>
         <tr>
           <th>3</th>
           <td>13009</td>
           <td>8.0</td>
           <td>-38.0</td>
-          <td>284.0</td>
-          <td>2.7</td>
+          <td>156.0</td>
+          <td>4.1</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -186,33 +186,33 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>24.9</td>
+          <td>28.1</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-08-27 00:00:00+00:00</td>
+          <td>2022-08-29 18:00:00+00:00</td>
         </tr>
         <tr>
           <th>4</th>
           <td>14040</td>
           <td>-8.0</td>
           <td>67.0</td>
-          <td>111.0</td>
-          <td>7.5</td>
-          <td>8.7</td>
+          <td>161.0</td>
+          <td>5.7</td>
+          <td>7.1</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1011.8</td>
+          <td>1013.7</td>
           <td>NaN</td>
-          <td>25.9</td>
-          <td>26.4</td>
+          <td>25.4</td>
+          <td>26.5</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-08-27 01:00:00+00:00</td>
+          <td>2022-08-29 19:00:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -275,7 +275,7 @@ Let's make a simple plot of the buoy positions and color by water temperature
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.667 seconds)
+   **Total running time of the script:** ( 0 minutes  3.438 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_latest_request.py:
