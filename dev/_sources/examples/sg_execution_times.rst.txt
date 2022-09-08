@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**00:02.506** total execution time for **examples** files:
+**00:03.367** total execution time for **examples** files:
 
 +--------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_Radar_Server_Level_3.py` (``Radar_Server_Level_3.py``) | 00:01.983 | 0.0 MB |
+| :ref:`sphx_glr_examples_Radar_Server_Level_3.py` (``Radar_Server_Level_3.py``) | 00:02.458 | 0.0 MB |
 +--------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_Basic_Usage.py` (``Basic_Usage.py``)                   | 00:00.523 | 0.0 MB |
+| :ref:`sphx_glr_examples_Basic_Usage.py` (``Basic_Usage.py``)                   | 00:00.909 | 0.0 MB |
 +--------------------------------------------------------------------------------+-----------+--------+
