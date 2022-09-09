@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="NDBC Buoy Meteorological Data Request" href="buoy_met_request.html" />
-    <link rel="prev" title="NCSS and CartoPy" href="../ncss/NCSS_Cartopy_Example.html" /> 
+    <link rel="prev" title="National Data Buoy Center (NDBC)" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,13 +54,19 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#general-examples">General Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#acis-web-services">ACIS Web Services</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#ncss">NCSS</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html#national-data-buoy-center-ndbc">National Data Buoy Center (NDBC)</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">NDBC Buoy Data Request (of any type)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="buoy_met_request.html">NDBC Buoy Meteorological Data Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="latest_request.html">NDBC Latest Data Request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#national-data-buoy-center-ndbc">National Data Buoy Center (NDBC)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#upper-air">Upper Air</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../acis/index.html">ACIS Web Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ncss/index.html">NCSS</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">National Data Buoy Center (NDBC)</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">NDBC Buoy Data Request (of any type)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="buoy_met_request.html">NDBC Buoy Meteorological Data Request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="latest_request.html">NDBC Latest Data Request</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#upper-air">Upper Air</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upperair/index.html">Upper Air</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
@@ -84,6 +90,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Siphon Examples</a> &raquo;</li>
+          <li><a href="index.html">National Data Buoy Center (NDBC)</a> &raquo;</li>
       <li>NDBC Buoy Data Request (of any type)</li>
     <li class="source-link">
         
@@ -119,7 +126,6 @@ the other types of data available for a buoy.</p>
 <span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data_aval</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;txt&#39;: &#39;standard meteorological data&#39;, &#39;spec&#39;: &#39;spectral wave summaries&#39;, &#39;data_spec&#39;: &#39;raw spectral wave data&#39;, &#39;swdir&#39;: &#39;spectral wave data (alpha1)&#39;, &#39;swdir2&#39;: &#39;spectral wave data (alpha2)&#39;, &#39;swr1&#39;: &#39;spectral wave data (r1)&#39;, &#39;swr2&#39;: &#39;spectral wave data (r2)&#39;, &#39;supl&#39;: &#39;supplemental measurements data&#39;}
 </pre></div>
 </div>
@@ -129,8 +135,7 @@ observation set to query.</p>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/ndbc.py:413: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/ndbc.py:413: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
   df.units = col_units
 </pre></div>
 </div>
@@ -166,54 +171,54 @@ observation set to query.</p>
       <th>0</th>
       <td>NaN</td>
       <td>NaT</td>
-      <td>6</td>
+      <td>1</td>
       <td>NaN</td>
-      <td>2022-09-08 20:15:00+00:00</td>
-      <td>2022-09-08 20:20:00+00:00</td>
+      <td>2022-09-09 19:39:00+00:00</td>
+      <td>2022-09-09 19:40:00+00:00</td>
     </tr>
     <tr>
       <th>1</th>
       <td>NaN</td>
       <td>NaT</td>
-      <td>6</td>
+      <td>1</td>
       <td>NaN</td>
-      <td>2022-09-08 20:03:00+00:00</td>
-      <td>2022-09-08 20:10:00+00:00</td>
+      <td>2022-09-09 19:23:00+00:00</td>
+      <td>2022-09-09 19:30:00+00:00</td>
     </tr>
     <tr>
       <th>2</th>
       <td>NaN</td>
       <td>NaT</td>
-      <td>6</td>
+      <td>1</td>
       <td>NaN</td>
-      <td>2022-09-08 19:54:00+00:00</td>
-      <td>2022-09-08 20:00:00+00:00</td>
+      <td>2022-09-09 19:12:00+00:00</td>
+      <td>2022-09-09 19:20:00+00:00</td>
     </tr>
     <tr>
       <th>3</th>
       <td>NaN</td>
       <td>NaT</td>
-      <td>6</td>
+      <td>2</td>
       <td>NaN</td>
-      <td>2022-09-08 19:49:00+00:00</td>
-      <td>2022-09-08 19:50:00+00:00</td>
+      <td>2022-09-09 19:04:00+00:00</td>
+      <td>2022-09-09 19:10:00+00:00</td>
     </tr>
     <tr>
       <th>4</th>
       <td>NaN</td>
       <td>NaT</td>
-      <td>5</td>
+      <td>1</td>
       <td>NaN</td>
-      <td>2022-09-08 19:36:00+00:00</td>
-      <td>2022-09-08 19:40:00+00:00</td>
+      <td>2022-09-09 18:57:00+00:00</td>
+      <td>2022-09-09 19:00:00+00:00</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.393 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ndbc-buoy-type-request-py">
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.580 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ndbc-buoy-type-request-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/ac4bdcca50f8a28913d465ae3f45ea26/buoy_type_request.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">buoy_type_request.py</span></code></a></p>
 </div>
@@ -228,7 +233,7 @@ observation set to query.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../ncss/NCSS_Cartopy_Example.html" class="btn btn-neutral float-left" title="NCSS and CartoPy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="National Data Buoy Center (NDBC)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="buoy_met_request.html" class="btn btn-neutral float-right" title="NDBC Buoy Meteorological Data Request" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -236,7 +241,7 @@ observation set to query.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 08, 2022 at 20:39:19.
+      <span class="lastupdated">Last updated on Sep 09, 2022 at 19:52:47.
       </span></p>
   </div>
 

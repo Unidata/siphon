@@ -61,8 +61,6 @@ available.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     ['NEXRAD Level II Radar for Case Study CCS039', 'NEXRAD Level II Radar from IDD', 'NEXRAD Level III Radar for Case Study CCS039', 'NEXRAD Level III Radar from IDD', 'TDWR Level III Radar from IDD']
@@ -105,11 +103,9 @@ Look at the variables available in this dataset
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    {'N2X', 'N0R', 'N3X', 'N2Q', 'N0H', 'NAX', 'N2U', 'NBU', 'NST', 'N1X', 'NBX', 'DPA', 'NAC', 'HHC', 'DHR', 'NAK', 'DSD', 'DU3', 'N1M', 'N3U', 'NBH', 'DU6', 'N1K', 'DPR', 'N2C', 'DSP', 'N3Q', 'DOD', 'EET', 'N0X', 'NET', 'NVL', 'N3S', 'N0U', 'NTP', 'N1P', 'N0M', 'N1C', 'DVL', 'N0Q', 'N2H', 'N2K', 'N1Q', 'N2M', 'N2S', 'N3H', 'N0Z', 'N3M', 'OHA', 'PTA', 'N0K', 'N3C', 'N0S', 'NAM', 'NAH', 'NCR', 'NBM', 'N1H', 'N0V', 'N3K', 'DTA', 'NAQ', 'NAU', 'NBC', 'NVW', 'NBQ', 'NMD', 'NBK', 'N1S', 'N0C', 'DAA', 'N1U'}
+    {'N1Q', 'NBK', 'N2X', 'NBH', 'NBX', 'N1U', 'DU6', 'N2C', 'N2M', 'NBC', 'N1C', 'N0S', 'N1H', 'DVL', 'NAK', 'NAM', 'N0C', 'DU3', 'N0V', 'DSP', 'NAX', 'N0Q', 'NAH', 'NVL', 'DOD', 'EET', 'NAU', 'N3C', 'NMD', 'N3S', 'DPA', 'NVW', 'N3X', 'N1P', 'N3U', 'PTA', 'N3Q', 'NCR', 'NBQ', 'N3K', 'DPR', 'N0K', 'N0X', 'NAC', 'N0M', 'DTA', 'HHC', 'N0H', 'N0Z', 'N1X', 'DSD', 'N2U', 'N2S', 'DHR', 'N2K', 'NET', 'NST', 'N1S', 'N3H', 'NAQ', 'DAA', 'N0U', 'NBM', 'NBU', 'N0R', 'N2H', 'N3M', 'NTP', 'N2Q', 'N1M', 'OHA', 'N1K'}
 
 
 
@@ -134,12 +130,10 @@ is represented as a string, it shows the encoded URL.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
-    var=N0B&time=2022-09-08T20%3A37%3A58.426965&stn=CYS
+    var=N0B&time=2022-09-09T19%3A51%3A38.239896&stn=CYS
 
 
 
@@ -160,8 +154,6 @@ station(s) and variable(s)
 
 
 .. rst-class:: sphx-glr-script-out
-
- Out:
 
  .. code-block:: none
 
@@ -205,11 +197,9 @@ find one NIDS file in the return.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    ['Level3_CYS_N0B_20220908_2034.nids']
+    ['Level3_CYS_N0B_20220909_1948.nids']
 
 
 
@@ -232,11 +222,9 @@ We see URLs for OPeNDAP, CDMRemote, and HTTPServer (direct download).
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    {'OPENDAP': 'https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0B/CYS/20220908/Level3_CYS_N0B_20220908_2034.nids', 'HTTPServer': 'https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0B/CYS/20220908/Level3_CYS_N0B_20220908_2034.nids', 'CdmRemote': 'https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0B/CYS/20220908/Level3_CYS_N0B_20220908_2034.nids'}
+    {'OPENDAP': 'https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0B/CYS/20220909/Level3_CYS_N0B_20220909_1948.nids', 'HTTPServer': 'https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0B/CYS/20220909/Level3_CYS_N0B_20220909_1948.nids', 'CdmRemote': 'https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0B/CYS/20220909/Level3_CYS_N0B_20220909_1948.nids'}
 
 
 
@@ -350,28 +338,23 @@ Finally, we plot them up using matplotlib.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.458 seconds)
+   **Total running time of the script:** ( 0 minutes  2.340 seconds)
 
 
 .. _sphx_glr_download_examples_Radar_Server_Level_3.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: Radar_Server_Level_3.py <Radar_Server_Level_3.py>`
 
-     :download:`Download Python source code: Radar_Server_Level_3.py <Radar_Server_Level_3.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: Radar_Server_Level_3.ipynb <Radar_Server_Level_3.ipynb>`
+      :download:`Download Jupyter notebook: Radar_Server_Level_3.ipynb <Radar_Server_Level_3.ipynb>`
 
 
 .. only:: html

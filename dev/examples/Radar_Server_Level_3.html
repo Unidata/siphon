@@ -24,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Basic ACIS Web Services Usage" href="acis/Basic_Overview.html" />
+    <link rel="next" title="ACIS Web Services" href="acis/index.html" />
     <link rel="prev" title="THREDDS Catalog" href="Basic_Usage.html" /> 
 </head>
 
@@ -124,7 +124,6 @@ available.</p>
 <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><a href="../api/catalog.html#siphon.catalog.Dataset" title="siphon.catalog.Dataset" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ds</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;NEXRAD Level II Radar for Case Study CCS039&#39;, &#39;NEXRAD Level II Radar from IDD&#39;, &#39;NEXRAD Level III Radar for Case Study CCS039&#39;, &#39;NEXRAD Level III Radar from IDD&#39;, &#39;TDWR Level III Radar from IDD&#39;]
 </pre></div>
 </div>
@@ -138,8 +137,7 @@ radar server access URL. This is pulled from the catalog reference url.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#set" title="builtins.set" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rs</span><span class="o">.</span><span class="n">variables</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;N2X&#39;, &#39;N0R&#39;, &#39;N3X&#39;, &#39;N2Q&#39;, &#39;N0H&#39;, &#39;NAX&#39;, &#39;N2U&#39;, &#39;NBU&#39;, &#39;NST&#39;, &#39;N1X&#39;, &#39;NBX&#39;, &#39;DPA&#39;, &#39;NAC&#39;, &#39;HHC&#39;, &#39;DHR&#39;, &#39;NAK&#39;, &#39;DSD&#39;, &#39;DU3&#39;, &#39;N1M&#39;, &#39;N3U&#39;, &#39;NBH&#39;, &#39;DU6&#39;, &#39;N1K&#39;, &#39;DPR&#39;, &#39;N2C&#39;, &#39;DSP&#39;, &#39;N3Q&#39;, &#39;DOD&#39;, &#39;EET&#39;, &#39;N0X&#39;, &#39;NET&#39;, &#39;NVL&#39;, &#39;N3S&#39;, &#39;N0U&#39;, &#39;NTP&#39;, &#39;N1P&#39;, &#39;N0M&#39;, &#39;N1C&#39;, &#39;DVL&#39;, &#39;N0Q&#39;, &#39;N2H&#39;, &#39;N2K&#39;, &#39;N1Q&#39;, &#39;N2M&#39;, &#39;N2S&#39;, &#39;N3H&#39;, &#39;N0Z&#39;, &#39;N3M&#39;, &#39;OHA&#39;, &#39;PTA&#39;, &#39;N0K&#39;, &#39;N3C&#39;, &#39;N0S&#39;, &#39;NAM&#39;, &#39;NAH&#39;, &#39;NCR&#39;, &#39;NBM&#39;, &#39;N1H&#39;, &#39;N0V&#39;, &#39;N3K&#39;, &#39;DTA&#39;, &#39;NAQ&#39;, &#39;NAU&#39;, &#39;NBC&#39;, &#39;NVW&#39;, &#39;NBQ&#39;, &#39;NMD&#39;, &#39;NBK&#39;, &#39;N1S&#39;, &#39;N0C&#39;, &#39;DAA&#39;, &#39;N1U&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;N1Q&#39;, &#39;NBK&#39;, &#39;N2X&#39;, &#39;NBH&#39;, &#39;NBX&#39;, &#39;N1U&#39;, &#39;DU6&#39;, &#39;N2C&#39;, &#39;N2M&#39;, &#39;NBC&#39;, &#39;N1C&#39;, &#39;N0S&#39;, &#39;N1H&#39;, &#39;DVL&#39;, &#39;NAK&#39;, &#39;NAM&#39;, &#39;N0C&#39;, &#39;DU3&#39;, &#39;N0V&#39;, &#39;DSP&#39;, &#39;NAX&#39;, &#39;N0Q&#39;, &#39;NAH&#39;, &#39;NVL&#39;, &#39;DOD&#39;, &#39;EET&#39;, &#39;NAU&#39;, &#39;N3C&#39;, &#39;NMD&#39;, &#39;N3S&#39;, &#39;DPA&#39;, &#39;NVW&#39;, &#39;N3X&#39;, &#39;N1P&#39;, &#39;N3U&#39;, &#39;PTA&#39;, &#39;N3Q&#39;, &#39;NCR&#39;, &#39;NBQ&#39;, &#39;N3K&#39;, &#39;DPR&#39;, &#39;N0K&#39;, &#39;N0X&#39;, &#39;NAC&#39;, &#39;N0M&#39;, &#39;DTA&#39;, &#39;HHC&#39;, &#39;N0H&#39;, &#39;N0Z&#39;, &#39;N1X&#39;, &#39;DSD&#39;, &#39;N2U&#39;, &#39;N2S&#39;, &#39;DHR&#39;, &#39;N2K&#39;, &#39;NET&#39;, &#39;NST&#39;, &#39;N1S&#39;, &#39;N3H&#39;, &#39;NAQ&#39;, &#39;DAA&#39;, &#39;N0U&#39;, &#39;NBM&#39;, &#39;NBU&#39;, &#39;N0R&#39;, &#39;N2H&#39;, &#39;N3M&#39;, &#39;NTP&#39;, &#39;N2Q&#39;, &#39;N1M&#39;, &#39;OHA&#39;, &#39;N1K&#39;}
 </pre></div>
 </div>
 <p>Create a new query object to help request the data. Using the chaining
@@ -150,8 +148,7 @@ is represented as a string, it shows the encoded URL.</p>
 <a href="../api/radarserver.html#siphon.radarserver.RadarQuery.stations" title="siphon.radarserver.RadarQuery.stations" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">stations</span></a><span class="p">(</span><span class="s1">&#39;CYS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">())</span><span class="o">.</span><span class="n">variables</span><span class="p">(</span><span class="s1">&#39;N0B&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=N0B&amp;time=2022-09-08T20%3A37%3A58.426965&amp;stn=CYS
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=N0B&amp;time=2022-09-09T19%3A51%3A38.239896&amp;stn=CYS
 </pre></div>
 </div>
 <p>We can use the RadarServer instance to check our query, to make
@@ -160,7 +157,6 @@ station(s) and variable(s)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="../api/radarserver.html#siphon.radarserver.RadarServer.validate_query" title="siphon.radarserver.RadarServer.validate_query" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-method"><span class="n">rs</span><span class="o">.</span><span class="n">validate_query</span></a><span class="p">(</span><a href="../api/radarserver.html#siphon.radarserver.RadarQuery" title="siphon.radarserver.RadarQuery" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">query</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>False
 </pre></div>
 </div>
@@ -174,8 +170,7 @@ find one NIDS file in the return.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="../api/catalog.html#siphon.catalog.DatasetCollection" title="siphon.catalog.DatasetCollection" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catalog</span><span class="o">.</span><span class="n">datasets</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;Level3_CYS_N0B_20220908_2034.nids&#39;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;Level3_CYS_N0B_20220909_1948.nids&#39;]
 </pre></div>
 </div>
 <p>We can pull that dataset out of the dictionary and look at the available access URLs.
@@ -184,8 +179,7 @@ We see URLs for OPeNDAP, CDMRemote, and HTTPServer (direct download).</p>
 <span class="nb">print</span><span class="p">(</span><a href="../api/catalog.html#siphon.catalog.CaseInsensitiveDict" title="siphon.catalog.CaseInsensitiveDict" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ds</span><span class="o">.</span><span class="n">access_urls</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;OPENDAP&#39;: &#39;https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0B/CYS/20220908/Level3_CYS_N0B_20220908_2034.nids&#39;, &#39;HTTPServer&#39;: &#39;https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0B/CYS/20220908/Level3_CYS_N0B_20220908_2034.nids&#39;, &#39;CdmRemote&#39;: &#39;https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0B/CYS/20220908/Level3_CYS_N0B_20220908_2034.nids&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;OPENDAP&#39;: &#39;https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0B/CYS/20220909/Level3_CYS_N0B_20220909_1948.nids&#39;, &#39;HTTPServer&#39;: &#39;https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0B/CYS/20220909/Level3_CYS_N0B_20220909_1948.nids&#39;, &#39;CdmRemote&#39;: &#39;https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0B/CYS/20220909/Level3_CYS_N0B_20220909_1948.nids&#39;}
 </pre></div>
 </div>
 <p>We’ll use the CDMRemote reader in Siphon and pass it the appropriate access URL.</p>
@@ -225,8 +219,8 @@ a single point at the start of the gate.</p>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_Radar_Server_Level_3_001.png" srcset="../_images/sphx_glr_Radar_Server_Level_3_001.png" alt="Radar Server Level 3" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.458 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-radar-server-level-3-py">
+<img src="../_images/sphx_glr_Radar_Server_Level_3_001.png" srcset="../_images/sphx_glr_Radar_Server_Level_3_001.png" alt="Radar Server Level 3" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.340 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-radar-server-level-3-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/25562a94000614f3ccf6cc96912b0ab1/Radar_Server_Level_3.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Radar_Server_Level_3.py</span></code></a></p>
 </div>
@@ -242,14 +236,14 @@ a single point at the start of the gate.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="Basic_Usage.html" class="btn btn-neutral float-left" title="THREDDS Catalog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="acis/Basic_Overview.html" class="btn btn-neutral float-right" title="Basic ACIS Web Services Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="acis/index.html" class="btn btn-neutral float-right" title="ACIS Web Services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 08, 2022 at 20:39:19.
+      <span class="lastupdated">Last updated on Sep 09, 2022 at 19:52:47.
       </span></p>
   </div>
 

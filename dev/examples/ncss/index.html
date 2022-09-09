@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Computation times &mdash; Siphon 0.9</title>
+  <title>NCSS &mdash; Siphon 0.9</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
-    <link rel="canonical" href="https://unidata.github.io/siphon/latest/examples/upperair/sg_execution_times.html"/>
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/examples/ncss/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -23,7 +23,9 @@
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="NCSS Time Series" href="NCSS_Timeseries_Examples.html" />
+    <link rel="prev" title="Multi Station Calls and Mapping" href="../acis/Mapping_Example.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,10 +47,28 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The Siphon API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Siphon Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Siphon Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#general-examples">General Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acis-web-services">ACIS Web Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ncss">NCSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#national-data-buoy-center-ndbc">National Data Buoy Center (NDBC)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#upper-air">Upper Air</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../acis/index.html">ACIS Web Services</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">NCSS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="NCSS_Timeseries_Examples.html">NCSS Time Series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NCSS_Example.html">Basic NCSS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NCSS_Cartopy_Example.html">NCSS and CartoPy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ndbc/index.html">National Data Buoy Center (NDBC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upperair/index.html">Upper Air</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Siphon</a></li>
@@ -69,13 +89,14 @@
 <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Computation times</li>
+          <li><a href="../index.html">Siphon Examples</a> &raquo;</li>
+      <li>NCSS</li>
     <li class="source-link">
         
             
                 
                 
-                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20examples/upperair/sg_execution_times&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20examples/ncss/index&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
                    class="fa fa-github"> Improve this page</a>
             
         
@@ -87,32 +108,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="computation-times">
-<span id="sphx-glr-examples-upperair-sg-execution-times"></span><h1>Computation times<a class="headerlink" href="#computation-times" title="Permalink to this headline">¶</a></h1>
-<p><strong>00:33.780</strong> total execution time for <strong>examples_upperair</strong> files:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 81%" />
-<col style="width: 11%" />
-<col style="width: 8%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="IGRA2_Request.html#sphx-glr-examples-upperair-igra2-request-py"><span class="std std-ref">IGRA2 Upper Air Data Request</span></a> (<code class="docutils literal notranslate"><span class="pre">IGRA2_Request.py</span></code>)</p></td>
-<td><p>00:32.282</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="Wyoming_Request.html#sphx-glr-examples-upperair-wyoming-request-py"><span class="std std-ref">Wyoming Upper Air Data Request</span></a> (<code class="docutils literal notranslate"><span class="pre">Wyoming_Request.py</span></code>)</p></td>
-<td><p>00:01.498</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-</tbody>
-</table>
+  <section id="ncss">
+<span id="ncss-examples"></span><span id="sphx-glr-examples-ncss"></span><h1>NCSS<a class="headerlink" href="#ncss" title="Permalink to this headline">¶</a></h1>
+<p>Examples of using the netCDF Subset Service (NCSS) to download
+subsets of remote datasets in netCDF format.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service for a timeseries."><img alt="NCSS Time Series" src="../../_images/sphx_glr_NCSS_Timeseries_Examples_thumb.png" />
+<p><a class="reference internal" href="NCSS_Timeseries_Examples.html#sphx-glr-examples-ncss-ncss-timeseries-examples-py"><span class="std std-ref">NCSS Time Series</span></a></p>
+  <div class="sphx-glr-thumbnail-title">NCSS Time Series</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service (NCSS)."><img alt="Basic NCSS" src="../../_images/sphx_glr_NCSS_Example_thumb.png" />
+<p><a class="reference internal" href="NCSS_Example.html#sphx-glr-examples-ncss-ncss-example-py"><span class="std std-ref">Basic NCSS</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Basic NCSS</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service (NCSS) and plot on a map."><img alt="NCSS and CartoPy" src="../../_images/sphx_glr_NCSS_Cartopy_Example_thumb.png" />
+<p><a class="reference internal" href="NCSS_Cartopy_Example.html#sphx-glr-examples-ncss-ncss-cartopy-example-py"><span class="std std-ref">NCSS and CartoPy</span></a></p>
+  <div class="sphx-glr-thumbnail-title">NCSS and CartoPy</div>
+</div></div><div class="toctree-wrapper compound">
+</div>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../acis/Mapping_Example.html" class="btn btn-neutral float-left" title="Multi Station Calls and Mapping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="NCSS_Timeseries_Examples.html" class="btn btn-neutral float-right" title="NCSS Time Series" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

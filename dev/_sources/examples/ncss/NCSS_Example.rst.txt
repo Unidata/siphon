@@ -61,8 +61,6 @@ GRIB files. We see this catalog contains a single dataset.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     ['Best GFS Half Degree Forecast Time Series']
@@ -86,8 +84,6 @@ We pull out this dataset and get the NCSS access point
 
 
 .. rst-class:: sphx-glr-script-out
-
- Out:
 
  .. code-block:: none
 
@@ -166,12 +162,10 @@ the query is a properly encoded query string.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
-    var=Relative_humidity_isobaric&var=Temperature_isobaric&time=2022-09-08T20%3A38%3A23.380315&longitude=-105&latitude=40&accept=netcdf4
+    var=Relative_humidity_isobaric&var=Temperature_isobaric&time=2022-09-09T19%3A52%3A00.759743&longitude=-105&latitude=40&accept=netcdf4
 
 
 
@@ -193,8 +187,6 @@ we see our requested variables, as well as a few others (more metadata informati
 
 
 .. rst-class:: sphx-glr-script-out
-
- Out:
 
  .. code-block:: none
 
@@ -265,28 +257,23 @@ Now we can plot these up using matplotlib.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.970 seconds)
+   **Total running time of the script:** ( 0 minutes  1.736 seconds)
 
 
 .. _sphx_glr_download_examples_ncss_NCSS_Example.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: NCSS_Example.py <NCSS_Example.py>`
 
-     :download:`Download Python source code: NCSS_Example.py <NCSS_Example.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: NCSS_Example.ipynb <NCSS_Example.ipynb>`
+      :download:`Download Jupyter notebook: NCSS_Example.ipynb <NCSS_Example.ipynb>`
 
 
 .. only:: html

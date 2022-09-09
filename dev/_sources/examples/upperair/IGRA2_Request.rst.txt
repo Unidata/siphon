@@ -75,13 +75,11 @@ a dataframe with station metadata from the sounding header.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:405: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:405: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'etime': 'second',
-    /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:443: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:443: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'release_time': 'second',
 
 
@@ -105,8 +103,6 @@ Inspect data columns in the dataframe.
 
 
 .. rst-class:: sphx-glr-script-out
-
- Out:
 
  .. code-block:: none
 
@@ -138,8 +134,6 @@ Pull out a specific column of data.
 
 
 .. rst-class:: sphx-glr-script-out
-
- Out:
 
  .. code-block:: none
 
@@ -179,8 +173,6 @@ attribute of the dataframe.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     {'etime': 'second', 'pressure': 'hPa', 'height': 'meter', 'temperature': 'degC', 'dewpoint': 'degC', 'direction': 'degrees', 'speed': 'meter / second', 'u_wind': 'meter / second', 'v_wind': 'meter / second'}
@@ -200,8 +192,6 @@ attribute of the dataframe.
 
 
 .. rst-class:: sphx-glr-script-out
-
- Out:
 
  .. code-block:: none
 
@@ -231,13 +221,11 @@ Multiple records can be extracted simultaneously:
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:405: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:405: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'etime': 'second',
-    /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:443: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:443: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'release_time': 'second',
        lvltyp1  lvltyp2  etime  pressure  ...       date  u_wind  v_wind  dewpoint
     0        2        1      0   1020.95  ... 2014-09-10    -6.0    -3.9      -1.0
@@ -276,13 +264,11 @@ This data has much more information in the headers.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:371: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:371: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'pressure': 'hPa',
-    /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:420: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:420: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'release_time': 'second',
 
 
@@ -303,8 +289,6 @@ Inspect data columns in the dataframe.
 
 
 .. rst-class:: sphx-glr-script-out
-
- Out:
 
  .. code-block:: none
 
@@ -332,28 +316,23 @@ Inspect data columns in the dataframe.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  38.808 seconds)
+   **Total running time of the script:** ( 0 minutes  32.282 seconds)
 
 
 .. _sphx_glr_download_examples_upperair_IGRA2_Request.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: IGRA2_Request.py <IGRA2_Request.py>`
 
-     :download:`Download Python source code: IGRA2_Request.py <IGRA2_Request.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: IGRA2_Request.ipynb <IGRA2_Request.ipynb>`
+      :download:`Download Jupyter notebook: IGRA2_Request.ipynb <IGRA2_Request.ipynb>`
 
 
 .. only:: html

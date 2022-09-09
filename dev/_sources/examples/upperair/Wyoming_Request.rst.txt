@@ -76,11 +76,9 @@ Make the request (a pandas dataframe is returned).
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/wyoming.py:108: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/wyoming.py:108: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = {'pressure': 'hPa',
 
 
@@ -101,8 +99,6 @@ Inspect data columns in the dataframe.
 
 
 .. rst-class:: sphx-glr-script-out
-
- Out:
 
  .. code-block:: none
 
@@ -129,8 +125,6 @@ Pull out a specific column of data.
 
 
 .. rst-class:: sphx-glr-script-out
-
- Out:
 
  .. code-block:: none
 
@@ -216,8 +210,6 @@ of the dataframe.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     {'pressure': 'hPa', 'height': 'meter', 'temperature': 'degC', 'dewpoint': 'degC', 'direction': 'degrees', 'speed': 'knot', 'u_wind': 'knot', 'v_wind': 'knot', 'station': None, 'station_number': None, 'time': None, 'latitude': 'degrees', 'longitude': 'degrees', 'elevation': 'meter', 'pw': 'millimeter'}
@@ -236,8 +228,6 @@ of the dataframe.
 
 
 .. rst-class:: sphx-glr-script-out
-
- Out:
 
  .. code-block:: none
 
@@ -269,28 +259,23 @@ Units can then be attached to the values from the dataframe.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.782 seconds)
+   **Total running time of the script:** ( 0 minutes  1.498 seconds)
 
 
 .. _sphx_glr_download_examples_upperair_Wyoming_Request.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: Wyoming_Request.py <Wyoming_Request.py>`
 
-     :download:`Download Python source code: Wyoming_Request.py <Wyoming_Request.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: Wyoming_Request.ipynb <Wyoming_Request.ipynb>`
+      :download:`Download Jupyter notebook: Wyoming_Request.ipynb <Wyoming_Request.ipynb>`
 
 
 .. only:: html

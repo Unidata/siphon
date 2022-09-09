@@ -24,7 +24,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="NDBC Buoy Data Request (of any type)" href="../ndbc/buoy_type_request.html" />
+    <link rel="next" title="National Data Buoy Center (NDBC)" href="../ndbc/index.html" />
     <link rel="prev" title="Basic NCSS" href="NCSS_Example.html" /> 
 </head>
 
@@ -53,14 +53,20 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Siphon Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#general-examples">General Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#acis-web-services">ACIS Web Services</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html#ncss">NCSS</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="NCSS_Timeseries_Examples.html">NCSS Time Series</a></li>
-<li class="toctree-l3"><a class="reference internal" href="NCSS_Example.html">Basic NCSS</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">NCSS and CartoPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ncss">NCSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#national-data-buoy-center-ndbc">National Data Buoy Center (NDBC)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#upper-air">Upper Air</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../acis/index.html">ACIS Web Services</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">NCSS</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="NCSS_Timeseries_Examples.html">NCSS Time Series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NCSS_Example.html">Basic NCSS</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">NCSS and CartoPy</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#national-data-buoy-center-ndbc">National Data Buoy Center (NDBC)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#upper-air">Upper Air</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ndbc/index.html">National Data Buoy Center (NDBC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upperair/index.html">Upper Air</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
@@ -84,6 +90,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Siphon Examples</a> &raquo;</li>
+          <li><a href="index.html">NCSS</a> &raquo;</li>
       <li>NCSS and CartoPy</li>
     <li class="source-link">
         
@@ -132,7 +139,6 @@ single dataset.</p>
 <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><a href="../../api/catalog.html#siphon.catalog.DatasetCollection" title="siphon.catalog.DatasetCollection" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">best_gfs</span><span class="o">.</span><span class="n">datasets</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;Best GFS Quarter Degree Forecast Time Series&#39;]
 </pre></div>
 </div>
@@ -141,7 +147,6 @@ single dataset.</p>
 <a href="../../api/ncss.html#siphon.ncss.NCSS" title="siphon.ncss.NCSS" class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ncss</span></a> <span class="o">=</span> <a href="../../api/catalog.html#siphon.catalog.Dataset.subset" title="siphon.catalog.Dataset.subset" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-method"><span class="n">best_ds</span><span class="o">.</span><span class="n">subset</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Cannot convert &quot;[721]&quot; to int. Keeping type as str.
 Cannot convert &quot;[1440]&quot; to int. Keeping type as str.
 Cannot convert &quot;[1]&quot; to int. Keeping type as str.
@@ -192,8 +197,7 @@ query string.</p>
 <a href="../../api/ncss.html#siphon.ncss.NCSSQuery.variables" title="siphon.ncss.NCSSQuery.variables" class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">variables</span></a><span class="p">(</span><span class="s1">&#39;Temperature_surface&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_surface&amp;time=2022-09-08T20%3A38%3A24.520680&amp;west=-111&amp;east=-100&amp;south=35&amp;north=43&amp;accept=netcdf4
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_surface&amp;time=2022-09-09T19%3A52%3A02.623635&amp;west=-111&amp;east=-100&amp;south=35&amp;north=43&amp;accept=netcdf4
 </pre></div>
 </div>
 <p>We now request data from the server using this query. The <em class="xref py py-obj">NCSS</em> class handles parsing
@@ -204,7 +208,6 @@ the data).</p>
 <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span><span class="o">.</span><span class="n">variables</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;reftime&#39;, &#39;latitude&#39;, &#39;time&#39;, &#39;longitude&#39;, &#39;Temperature_surface&#39;, &#39;LatLon_721X1440-0p13S-180p00E-2&#39;]
 </pre></div>
 </div>
@@ -263,12 +266,11 @@ the data).</p>
         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" srcset="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" alt="Temperature forecast (°F) for 08 September 2022 21:00Z" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D object at 0x7f0503d11640&gt;]
+<img src="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" srcset="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" alt="Temperature forecast (°F) for 09 September 2022 21:00Z" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D object at 0x7f61ac9bd100&gt;]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.463 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ncss-ncss-cartopy-example-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.119 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ncss-ncss-cartopy-example-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/bea31904c74b7c0b8590f47cf86e8326/NCSS_Cartopy_Example.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">NCSS_Cartopy_Example.py</span></code></a></p>
 </div>
@@ -284,14 +286,14 @@ the data).</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="NCSS_Example.html" class="btn btn-neutral float-left" title="Basic NCSS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../ndbc/buoy_type_request.html" class="btn btn-neutral float-right" title="NDBC Buoy Data Request (of any type)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../ndbc/index.html" class="btn btn-neutral float-right" title="National Data Buoy Center (NDBC)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 08, 2022 at 20:39:19.
+      <span class="lastupdated">Last updated on Sep 09, 2022 at 19:52:47.
       </span></p>
   </div>
 

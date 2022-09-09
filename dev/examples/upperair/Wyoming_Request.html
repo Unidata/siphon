@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="IGRA2 Upper Air Data Request" href="IGRA2_Request.html" />
-    <link rel="prev" title="NDBC Latest Data Request" href="../ndbc/latest_request.html" /> 
+    <link rel="prev" title="Upper Air" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,8 +56,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#ncss">NCSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#national-data-buoy-center-ndbc">National Data Buoy Center (NDBC)</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#upper-air">Upper Air</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Wyoming Upper Air Data Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="IGRA2_Request.html">IGRA2 Upper Air Data Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../acis/index.html">ACIS Web Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ncss/index.html">NCSS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ndbc/index.html">National Data Buoy Center (NDBC)</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Upper Air</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Wyoming Upper Air Data Request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="IGRA2_Request.html">IGRA2 Upper Air Data Request</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -83,6 +89,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Siphon Examples</a> &raquo;</li>
+          <li><a href="index.html">Upper Air</a> &raquo;</li>
       <li>Wyoming Upper Air Data Request</li>
     <li class="source-link">
         
@@ -126,8 +133,7 @@ the Wyoming upper air archive.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data" title="siphon.simplewebservice.wyoming.WyomingUpperAir.request_data" class="sphx-glr-backref-module-siphon-simplewebservice-wyoming sphx-glr-backref-type-py-method"><span class="n">WyomingUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">date</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">station</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/wyoming.py:108: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/wyoming.py:108: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
   df.units = {&#39;pressure&#39;: &#39;hPa&#39;,
 </pre></div>
 </div>
@@ -135,7 +141,6 @@ the Wyoming upper air archive.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Index([&#39;pressure&#39;, &#39;height&#39;, &#39;temperature&#39;, &#39;dewpoint&#39;, &#39;direction&#39;, &#39;speed&#39;,
        &#39;u_wind&#39;, &#39;v_wind&#39;, &#39;station&#39;, &#39;station_number&#39;, &#39;time&#39;, &#39;latitude&#39;,
        &#39;longitude&#39;, &#39;elevation&#39;, &#39;pw&#39;],
@@ -146,7 +151,6 @@ the Wyoming upper air archive.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>0     1002.0
 1     1000.0
 2      994.0
@@ -215,14 +219,12 @@ of the dataframe.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span><span class="o">.</span><span class="n">units</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;pressure&#39;: &#39;hPa&#39;, &#39;height&#39;: &#39;meter&#39;, &#39;temperature&#39;: &#39;degC&#39;, &#39;dewpoint&#39;: &#39;degC&#39;, &#39;direction&#39;: &#39;degrees&#39;, &#39;speed&#39;: &#39;knot&#39;, &#39;u_wind&#39;: &#39;knot&#39;, &#39;v_wind&#39;: &#39;knot&#39;, &#39;station&#39;: None, &#39;station_number&#39;: None, &#39;time&#39;: None, &#39;latitude&#39;: &#39;degrees&#39;, &#39;longitude&#39;: &#39;degrees&#39;, &#39;elevation&#39;: &#39;meter&#39;, &#39;pw&#39;: &#39;millimeter&#39;}
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span><span class="o">.</span><span class="n">units</span></a><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>hPa
 </pre></div>
 </div>
@@ -234,8 +236,8 @@ of the dataframe.</p>
 <span class="n">v_wind</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;v_wind&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span><span class="o">.</span><span class="n">units</span></a><span class="p">[</span><span class="s1">&#39;v_wind&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.782 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-upperair-wyoming-request-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.498 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-upperair-wyoming-request-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/860c72606379f4b735f1b1c6523248d1/Wyoming_Request.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Wyoming_Request.py</span></code></a></p>
 </div>
@@ -250,7 +252,7 @@ of the dataframe.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../ndbc/latest_request.html" class="btn btn-neutral float-left" title="NDBC Latest Data Request" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Upper Air" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="IGRA2_Request.html" class="btn btn-neutral float-right" title="IGRA2 Upper Air Data Request" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -258,7 +260,7 @@ of the dataframe.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 08, 2022 at 20:39:19.
+      <span class="lastupdated">Last updated on Sep 09, 2022 at 19:52:47.
       </span></p>
   </div>
 

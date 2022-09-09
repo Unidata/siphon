@@ -58,11 +58,9 @@ observation set to query.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/ndbc.py:110: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/ndbc.py:110: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = col_units
 
 
@@ -107,93 +105,93 @@ observation set to query.
       <tbody>
         <tr>
           <th>0</th>
-          <td>60.0</td>
-          <td>10.0</td>
-          <td>13.0</td>
+          <td>40.0</td>
+          <td>9.0</td>
+          <td>11.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1030.2</td>
+          <td>1021.1</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-09-08 20:10:00+00:00</td>
+          <td>2022-09-09 19:30:00+00:00</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>60.0</td>
-          <td>10.0</td>
-          <td>13.0</td>
+          <td>30.0</td>
+          <td>8.0</td>
+          <td>11.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1030.3</td>
+          <td>1021.1</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-09-08 20:00:00+00:00</td>
+          <td>2022-09-09 19:20:00+00:00</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>70.0</td>
-          <td>9.0</td>
-          <td>12.0</td>
-          <td>2.6</td>
-          <td>9.0</td>
-          <td>6.1</td>
-          <td>38.0</td>
-          <td>1030.3</td>
+          <td>30.0</td>
+          <td>8.0</td>
+          <td>10.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>1021.2</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-09-08 19:50:00+00:00</td>
+          <td>2022-09-09 19:10:00+00:00</td>
         </tr>
         <tr>
           <th>3</th>
-          <td>80.0</td>
-          <td>10.0</td>
-          <td>12.0</td>
-          <td>2.6</td>
-          <td>NaN</td>
-          <td>6.1</td>
-          <td>38.0</td>
-          <td>1030.4</td>
+          <td>30.0</td>
+          <td>9.0</td>
+          <td>11.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
+          <td>1021.3</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-09-08 19:40:00+00:00</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2022-09-09 19:00:00+00:00</td>
         </tr>
         <tr>
           <th>4</th>
-          <td>70.0</td>
+          <td>30.0</td>
           <td>9.0</td>
-          <td>12.0</td>
+          <td>11.0</td>
+          <td>2.6</td>
+          <td>9.0</td>
+          <td>6.3</td>
+          <td>55.0</td>
+          <td>1021.3</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1030.4</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2022-09-08 19:30:00+00:00</td>
+          <td>2022-09-09 18:50:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -244,28 +242,23 @@ Let's make a simple time series plot to checkout what the data look like.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.083 seconds)
+   **Total running time of the script:** ( 0 minutes  0.924 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_met_request.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: buoy_met_request.py <buoy_met_request.py>`
 
-     :download:`Download Python source code: buoy_met_request.py <buoy_met_request.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: buoy_met_request.ipynb <buoy_met_request.ipynb>`
+      :download:`Download Jupyter notebook: buoy_met_request.ipynb <buoy_met_request.ipynb>`
 
 
 .. only:: html
