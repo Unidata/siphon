@@ -20,6 +20,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -114,7 +115,7 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="igra2-upper-air-data-request">
-<span id="sphx-glr-examples-upperair-igra2-request-py"></span><h1>IGRA2 Upper Air Data Request<a class="headerlink" href="#igra2-upper-air-data-request" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-examples-upperair-igra2-request-py"></span><h1>IGRA2 Upper Air Data Request<a class="headerlink" href="#igra2-upper-air-data-request" title="Permalink to this heading">¶</a></h1>
 <p>This example shows how to use siphon’s <em class="xref py py-obj">simplewebswervice</em> support to create a
 query to the Integrated Global Radiosonde Archive version 2.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class"><span class="n">datetime</span></a>
@@ -132,9 +133,9 @@ a dataframe with station metadata from the sounding header.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir.request_data" title="siphon.simplewebservice.igra2.IGRAUpperAir.request_data" class="sphx-glr-backref-module-siphon-simplewebservice-igra2 sphx-glr-backref-type-py-method"><span class="n">IGRAUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">date</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">station</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:405: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:405: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
   df.units = {&#39;etime&#39;: &#39;second&#39;,
-/opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:443: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:443: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
   df.units = {&#39;release_time&#39;: &#39;second&#39;,
 </pre></div>
 </div>
@@ -201,9 +202,9 @@ attribute of the dataframe.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:405: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:405: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
   df.units = {&#39;etime&#39;: &#39;second&#39;,
-/opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:443: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:443: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
   df.units = {&#39;release_time&#39;: &#39;second&#39;,
    lvltyp1  lvltyp2  etime  pressure  ...       date  u_wind  v_wind  dewpoint
 0        2        1      0   1020.95  ... 2014-09-10    -6.0    -3.9      -1.0
@@ -228,9 +229,9 @@ This data has much more information in the headers.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir.request_data" title="siphon.simplewebservice.igra2.IGRAUpperAir.request_data" class="sphx-glr-backref-module-siphon-simplewebservice-igra2 sphx-glr-backref-type-py-method"><span class="n">IGRAUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">date</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">station</span></a><span class="p">,</span> <span class="n">derived</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:371: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:371: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
   df.units = {&#39;pressure&#39;: &#39;hPa&#39;,
-/opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/igra2.py:420: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/siphon/simplewebservice/igra2.py:420: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
   df.units = {&#39;release_time&#39;: &#39;second&#39;,
 </pre></div>
 </div>
@@ -258,7 +259,7 @@ Index([&#39;site_id&#39;, &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;h
       dtype=&#39;object&#39;)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  38.371 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  28.092 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-upperair-igra2-request-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/3cef4db00be51070bdcef70aa499cc89/IGRA2_Request.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">IGRA2_Request.py</span></code></a></p>
@@ -282,7 +283,7 @@ Index([&#39;site_id&#39;, &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;h
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 09, 2022 at 21:36:46.
+      <span class="lastupdated">Last updated on Sep 09, 2022 at 22:13:40.
       </span></p>
   </div>
 
