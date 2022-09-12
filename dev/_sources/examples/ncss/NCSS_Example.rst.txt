@@ -165,7 +165,7 @@ the query is a properly encoded query string.
  .. code-block:: none
 
 
-    var=Temperature_isobaric&var=Relative_humidity_isobaric&time=2022-09-12T20%3A28%3A10.076319&longitude=-105&latitude=40&accept=netcdf4
+    var=Relative_humidity_isobaric&var=Temperature_isobaric&time=2022-09-12T20%3A30%3A33.130762&longitude=-105&latitude=40&accept=netcdf4
 
 
 
@@ -257,7 +257,7 @@ Now we can plot these up using matplotlib.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.976 seconds)
+   **Total running time of the script:** ( 0 minutes  1.013 seconds)
 
 
 .. _sphx_glr_download_examples_ncss_NCSS_Example.py:
