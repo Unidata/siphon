@@ -158,38 +158,38 @@ Get a pandas data frame of all of the observations
           <td>11.0</td>
           <td>NaN</td>
           <td>0.5</td>
-          <td>4.0</td>
+          <td>3.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>24.1</td>
-          <td>22.6</td>
+          <td>24.0</td>
+          <td>22.3</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-09-14 22:00:00+00:00</td>
+          <td>2022-09-14 23:00:00+00:00</td>
         </tr>
         <tr>
           <th>3</th>
           <td>22102</td>
           <td>34.79</td>
           <td>125.78</td>
-          <td>110.0</td>
+          <td>210.0</td>
           <td>4.0</td>
           <td>NaN</td>
           <td>1.0</td>
-          <td>6.0</td>
+          <td>11.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>21.9</td>
-          <td>19.7</td>
+          <td>19.6</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-09-14 22:00:00+00:00</td>
+          <td>2022-09-14 23:00:00+00:00</td>
         </tr>
         <tr>
           <th>4</th>
@@ -200,17 +200,17 @@ Get a pandas data frame of all of the observations
           <td>13.0</td>
           <td>NaN</td>
           <td>2.0</td>
-          <td>6.0</td>
+          <td>7.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>24.0</td>
+          <td>23.9</td>
           <td>23.8</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-09-14 22:00:00+00:00</td>
+          <td>2022-09-14 23:00:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -273,7 +273,7 @@ Let's make a simple plot of the buoy positions and color by water temperature
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.751 seconds)
+   **Total running time of the script:** ( 0 minutes  3.036 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_latest_request.py:
