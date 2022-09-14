@@ -140,8 +140,8 @@ class TestSimpleTypes:
         expected = {'missing_value': [float('NaN')]}
         actual = self.types.handle_attribute(element)
         assert expected.keys() == actual.keys()
-        assert(math.isnan(actual['missing_value'][0]))
-        assert(math.isnan(expected['missing_value'][0]))
+        assert math.isnan(actual['missing_value'][0])
+        assert math.isnan(expected['missing_value'][0])
 
     def test_attribute_double(self):
         """Test parsing a double attribute."""
@@ -168,8 +168,8 @@ class TestSimpleTypes:
         expected = {'missing_value': [float('NaN')]}
         actual = self.types.handle_attribute(element)
         assert expected.keys() == actual.keys()
-        assert(math.isnan(actual['missing_value'][0]))
-        assert(math.isnan(expected['missing_value'][0]))
+        assert math.isnan(actual['missing_value'][0])
+        assert math.isnan(expected['missing_value'][0])
 
     def test_attribute_string_implicit(self):
         """Test parsing a string attribute."""
