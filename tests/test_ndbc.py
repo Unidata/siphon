@@ -38,21 +38,21 @@ def test_ndbc_realtime_txt():
     assert_equal(df['water_level_above_mean'][3], np.nan)
     assert df['time'][3] == datetime(2018, 8, 1, 14, 40, tzinfo=utc)
 
-    assert(df.units['wind_direction'] == 'degrees')
-    assert(df.units['wind_speed'] == 'meters/second')
-    assert(df.units['wind_gust'] == 'meters/second')
-    assert(df.units['wave_height'] == 'meters')
-    assert(df.units['dominant_wave_period'] == 'seconds')
-    assert(df.units['average_wave_period'] == 'seconds')
-    assert(df.units['dominant_wave_direction'] == 'degrees')
-    assert(df.units['pressure'] == 'hPa')
-    assert(df.units['air_temperature'] == 'degC')
-    assert(df.units['water_temperature'] == 'degC')
-    assert(df.units['dewpoint'] == 'degC')
-    assert(df.units['visibility'] == 'nautical_mile')
-    assert(df.units['3hr_pressure_tendency'] == 'hPa')
-    assert(df.units['water_level_above_mean'] == 'feet')
-    assert(df.units['time'] is None)
+    assert df.units['wind_direction'] == 'degrees'
+    assert df.units['wind_speed'] == 'meters/second'
+    assert df.units['wind_gust'] == 'meters/second'
+    assert df.units['wave_height'] == 'meters'
+    assert df.units['dominant_wave_period'] == 'seconds'
+    assert df.units['average_wave_period'] == 'seconds'
+    assert df.units['dominant_wave_direction'] == 'degrees'
+    assert df.units['pressure'] == 'hPa'
+    assert df.units['air_temperature'] == 'degC'
+    assert df.units['water_temperature'] == 'degC'
+    assert df.units['dewpoint'] == 'degC'
+    assert df.units['visibility'] == 'nautical_mile'
+    assert df.units['3hr_pressure_tendency'] == 'hPa'
+    assert df.units['water_level_above_mean'] == 'feet'
+    assert df.units['time'] is None
 
 
 @recorder.use_cassette('ndbc_realtime_drift')
@@ -71,16 +71,16 @@ def test_ndbc_realtime_drift():
     assert_almost_equal(df['water_temperature'][3], 22.8, 1)
     assert df['time'][3] == datetime(2018, 8, 1, 8, 0, tzinfo=utc)
 
-    assert(df.units['latitude'] == 'degrees')
-    assert(df.units['longitude'] == 'degrees')
-    assert(df.units['wind_direction'] == 'degrees')
-    assert(df.units['wind_speed'] == 'meters/second')
-    assert(df.units['wind_gust'] == 'meters/second')
-    assert(df.units['pressure'] == 'hPa')
-    assert(df.units['air_temperature'] == 'degC')
-    assert(df.units['water_temperature'] == 'degC')
-    assert(df.units['3hr_pressure_tendency'] == 'hPa')
-    assert(df.units['time'] is None)
+    assert df.units['latitude'] == 'degrees'
+    assert df.units['longitude'] == 'degrees'
+    assert df.units['wind_direction'] == 'degrees'
+    assert df.units['wind_speed'] == 'meters/second'
+    assert df.units['wind_gust'] == 'meters/second'
+    assert df.units['pressure'] == 'hPa'
+    assert df.units['air_temperature'] == 'degC'
+    assert df.units['water_temperature'] == 'degC'
+    assert df.units['3hr_pressure_tendency'] == 'hPa'
+    assert df.units['time'] is None
 
 
 @recorder.use_cassette('ndbc_realtime_cwind')
@@ -95,12 +95,12 @@ def test_ndbc_realtime_cwind():
     assert df['gust_time'][0] == datetime(2018, 8, 1, 14, 49, 0, tzinfo=utc)
     assert df['time'][0] == datetime(2018, 8, 1, 14, 50, 0, tzinfo=utc)
 
-    assert(df.units['wind_direction'] == 'degrees')
-    assert(df.units['wind_speed'] == 'meters/second')
-    assert(df.units['gust_direction'] == 'degrees')
-    assert(df.units['wind_gust'] == 'meters/second')
-    assert(df.units['gust_time'] is None)
-    assert(df.units['time'] is None)
+    assert df.units['wind_direction'] == 'degrees'
+    assert df.units['wind_speed'] == 'meters/second'
+    assert df.units['gust_direction'] == 'degrees'
+    assert df.units['wind_gust'] == 'meters/second'
+    assert df.units['gust_time'] is None
+    assert df.units['time'] is None
 
 
 @recorder.use_cassette('ndbc_realtime_spec')
@@ -113,24 +113,24 @@ def test_ndbc_realtime_spec():
     assert_almost_equal(df['swell_period'][3], 6.7, 1)
     assert_almost_equal(df['wind_wave_height'][3], 1.0, 1)
     assert_almost_equal(df['wind_wave_period'][3], 3.7, 1)
-    assert(df['swell_direction'][3] == 'SSE')
-    assert(df['wind_wave_direction'][3] == 'SSE')
-    assert(df['steepness'][3] == 'STEEP')
+    assert df['swell_direction'][3] == 'SSE'
+    assert df['wind_wave_direction'][3] == 'SSE'
+    assert df['steepness'][3] == 'STEEP'
     assert_almost_equal(df['average_wave_period'][3], 4.5, 1)
     assert_almost_equal(df['dominant_wave_direction'][3], 150, 1)
     assert df['time'][3] == datetime(2018, 8, 1, 11, 40, 0, tzinfo=utc)
 
-    assert(df.units['significant_wave_height'] == 'meters')
-    assert(df.units['swell_height'] == 'meters')
-    assert(df.units['swell_period'] == 'seconds')
-    assert(df.units['wind_wave_height'] == 'meters')
-    assert(df.units['wind_wave_period'] == 'seconds')
-    assert(df.units['swell_direction'] is None)
-    assert(df.units['wind_wave_direction'] is None)
-    assert(df.units['steepness'] is None)
-    assert(df.units['average_wave_period'] == 'seconds')
-    assert(df.units['dominant_wave_direction'] == 'degrees')
-    assert(df.units['time'] is None)
+    assert df.units['significant_wave_height'] == 'meters'
+    assert df.units['swell_height'] == 'meters'
+    assert df.units['swell_period'] == 'seconds'
+    assert df.units['wind_wave_height'] == 'meters'
+    assert df.units['wind_wave_period'] == 'seconds'
+    assert df.units['swell_direction'] is None
+    assert df.units['wind_wave_direction'] is None
+    assert df.units['steepness'] is None
+    assert df.units['average_wave_period'] == 'seconds'
+    assert df.units['dominant_wave_direction'] == 'degrees'
+    assert df.units['time'] is None
 
 
 @recorder.use_cassette('ndbc_realtime_ocean')
@@ -232,7 +232,7 @@ def test_ndbc_latest():
     """Test that we are properly parsing latest NDBC observations."""
     df = NDBC.latest_observations()
 
-    assert(df['station'][10] == '41004')
+    assert df['station'][10] == '41004'
     assert_almost_equal(df['latitude'][10], 32.501, 3)
     assert_almost_equal(df['longitude'][10], -79.0989, 3)
 
@@ -252,24 +252,24 @@ def test_ndbc_latest():
     assert_equal(df['water_level_above_mean'][10], np.nan)
     assert df['time'][10] == datetime(2018, 7, 30, 21, 10, tzinfo=utc)
 
-    assert(df.units['station'] is None)
-    assert(df.units['latitude'] == 'degrees')
-    assert(df.units['longitude'] == 'degrees')
-    assert(df.units['wind_direction'] == 'degrees')
-    assert(df.units['wind_speed'] == 'meters/second')
-    assert(df.units['wind_gust'] == 'meters/second')
-    assert(df.units['wave_height'] == 'meters')
-    assert(df.units['dominant_wave_period'] == 'seconds')
-    assert(df.units['average_wave_period'] == 'seconds')
-    assert(df.units['dominant_wave_direction'] == 'degrees')
-    assert(df.units['pressure'] == 'hPa')
-    assert(df.units['air_temperature'] == 'degC')
-    assert(df.units['water_temperature'] == 'degC')
-    assert(df.units['dewpoint'] == 'degC')
-    assert(df.units['visibility'] == 'nautical_mile')
-    assert(df.units['3hr_pressure_tendency'] == 'hPa')
-    assert(df.units['water_level_above_mean'] == 'feet')
-    assert(df.units['time'] is None)
+    assert df.units['station'] is None
+    assert df.units['latitude'] == 'degrees'
+    assert df.units['longitude'] == 'degrees'
+    assert df.units['wind_direction'] == 'degrees'
+    assert df.units['wind_speed'] == 'meters/second'
+    assert df.units['wind_gust'] == 'meters/second'
+    assert df.units['wave_height'] == 'meters'
+    assert df.units['dominant_wave_period'] == 'seconds'
+    assert df.units['average_wave_period'] == 'seconds'
+    assert df.units['dominant_wave_direction'] == 'degrees'
+    assert df.units['pressure'] == 'hPa'
+    assert df.units['air_temperature'] == 'degC'
+    assert df.units['water_temperature'] == 'degC'
+    assert df.units['dewpoint'] == 'degC'
+    assert df.units['visibility'] == 'nautical_mile'
+    assert df.units['3hr_pressure_tendency'] == 'hPa'
+    assert df.units['water_level_above_mean'] == 'feet'
+    assert df.units['time'] is None
 
 
 @recorder.use_cassette('ndbc_buoy_data_types')
@@ -284,7 +284,7 @@ def test_ndbc_buoy_data_types():
              'swr1': 'spectral wave data (r1)',
              'swr2': 'spectral wave data (r2)',
              'supl': 'supplemental measurements data'}
-    assert(resp == truth)
+    assert resp == truth
 
 
 def test_ndbc_realtime_keyerror():
