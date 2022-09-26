@@ -22,6 +22,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -56,13 +57,56 @@
 <li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.radarserver.RadarQuery"><code class="docutils literal notranslate"><span class="pre">RadarQuery</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarQuery.__init__"><code class="docutils literal notranslate"><span class="pre">RadarQuery.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarQuery.add_query_parameter"><code class="docutils literal notranslate"><span class="pre">RadarQuery.add_query_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarQuery.all_times"><code class="docutils literal notranslate"><span class="pre">RadarQuery.all_times()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarQuery.items"><code class="docutils literal notranslate"><span class="pre">RadarQuery.items()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarQuery.lonlat_box"><code class="docutils literal notranslate"><span class="pre">RadarQuery.lonlat_box()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarQuery.lonlat_point"><code class="docutils literal notranslate"><span class="pre">RadarQuery.lonlat_point()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarQuery.stations"><code class="docutils literal notranslate"><span class="pre">RadarQuery.stations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarQuery.time"><code class="docutils literal notranslate"><span class="pre">RadarQuery.time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarQuery.time_range"><code class="docutils literal notranslate"><span class="pre">RadarQuery.time_range()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarQuery.variables"><code class="docutils literal notranslate"><span class="pre">RadarQuery.variables()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.radarserver.RadarServer"><code class="docutils literal notranslate"><span class="pre">RadarServer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarServer.metadata"><code class="docutils literal notranslate"><span class="pre">RadarServer.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarServer.variables"><code class="docutils literal notranslate"><span class="pre">RadarServer.variables</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarServer.stations"><code class="docutils literal notranslate"><span class="pre">RadarServer.stations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarServer.__init__"><code class="docutils literal notranslate"><span class="pre">RadarServer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarServer.get"><code class="docutils literal notranslate"><span class="pre">RadarServer.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarServer.get_catalog"><code class="docutils literal notranslate"><span class="pre">RadarServer.get_catalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarServer.get_catalog_raw"><code class="docutils literal notranslate"><span class="pre">RadarServer.get_catalog_raw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarServer.get_path"><code class="docutils literal notranslate"><span class="pre">RadarServer.get_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarServer.get_query"><code class="docutils literal notranslate"><span class="pre">RadarServer.get_query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarServer.query"><code class="docutils literal notranslate"><span class="pre">RadarServer.query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarServer.url_path"><code class="docutils literal notranslate"><span class="pre">RadarServer.url_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.RadarServer.validate_query"><code class="docutils literal notranslate"><span class="pre">RadarServer.validate_query()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.radarserver.Station"><code class="docutils literal notranslate"><span class="pre">Station</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.Station.count"><code class="docutils literal notranslate"><span class="pre">Station.count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.Station.elevation"><code class="docutils literal notranslate"><span class="pre">Station.elevation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.Station.id"><code class="docutils literal notranslate"><span class="pre">Station.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.Station.index"><code class="docutils literal notranslate"><span class="pre">Station.index()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.Station.latitude"><code class="docutils literal notranslate"><span class="pre">Station.latitude</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.Station.longitude"><code class="docutils literal notranslate"><span class="pre">Station.longitude</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.radarserver.Station.name"><code class="docutils literal notranslate"><span class="pre">Station.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.radarserver.get_radarserver_datasets"><code class="docutils literal notranslate"><span class="pre">get_radarserver_datasets()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.radarserver.parse_station_table"><code class="docutils literal notranslate"><span class="pre">parse_station_table()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.radarserver.parse_xml_station"><code class="docutils literal notranslate"><span class="pre">parse_xml_station()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -105,11 +149,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-siphon.radarserver">
-<span id="siphon-radarserver"></span><h1><a class="reference internal" href="#module-siphon.radarserver" title="siphon.radarserver"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a><a class="headerlink" href="#module-siphon.radarserver" title="Permalink to this heading">¶</a></h1>
+  <section id="siphon-radarserver">
+<h1><a class="reference internal" href="#module-siphon.radarserver" title="siphon.radarserver"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a><a class="headerlink" href="#siphon-radarserver" title="Permalink to this heading">¶</a></h1>
 <p>Support making data requests to the radar data query service (radar server) on a TDS.</p>
 <p>This includes forming proper queries as well as parsing the returned catalog.</p>
-<dl class="py class">
+<span class="target" id="module-siphon.radarserver"></span><dl class="py class">
 <dt class="sig sig-object py" id="siphon.radarserver.RadarQuery">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></span><span class="sig-name descname"><span class="pre">RadarQuery</span></span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarQuery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarQuery" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent a query to the THREDDS radar server.</p>
@@ -636,7 +680,7 @@ server URL, fetch the catalog, and return the contained catalog references.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 26, 2022 at 23:13:33.
+      <span class="lastupdated">Last updated on Sep 26, 2022 at 23:15:28.
       </span></p>
   </div>
 

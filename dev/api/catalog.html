@@ -22,6 +22,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,18 +52,85 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">The Siphon API</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.catalog.CaseInsensitiveDict"><code class="docutils literal notranslate"><span class="pre">CaseInsensitiveDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CaseInsensitiveDict.__init__"><code class="docutils literal notranslate"><span class="pre">CaseInsensitiveDict.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CaseInsensitiveDict.pop"><code class="docutils literal notranslate"><span class="pre">CaseInsensitiveDict.pop()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.catalog.CaseInsensitiveStr"><code class="docutils literal notranslate"><span class="pre">CaseInsensitiveStr</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CaseInsensitiveStr.__init__"><code class="docutils literal notranslate"><span class="pre">CaseInsensitiveStr.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.catalog.CatalogRef"><code class="docutils literal notranslate"><span class="pre">CatalogRef</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CatalogRef.name"><code class="docutils literal notranslate"><span class="pre">CatalogRef.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CatalogRef.href"><code class="docutils literal notranslate"><span class="pre">CatalogRef.href</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CatalogRef.title"><code class="docutils literal notranslate"><span class="pre">CatalogRef.title</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CatalogRef.__init__"><code class="docutils literal notranslate"><span class="pre">CatalogRef.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CatalogRef.follow"><code class="docutils literal notranslate"><span class="pre">CatalogRef.follow()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.catalog.CompoundService"><code class="docutils literal notranslate"><span class="pre">CompoundService</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CompoundService.name"><code class="docutils literal notranslate"><span class="pre">CompoundService.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CompoundService.service_type"><code class="docutils literal notranslate"><span class="pre">CompoundService.service_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CompoundService.services"><code class="docutils literal notranslate"><span class="pre">CompoundService.services</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CompoundService.__init__"><code class="docutils literal notranslate"><span class="pre">CompoundService.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.CompoundService.is_resolver"><code class="docutils literal notranslate"><span class="pre">CompoundService.is_resolver()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.catalog.Dataset"><code class="docutils literal notranslate"><span class="pre">Dataset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.Dataset.name"><code class="docutils literal notranslate"><span class="pre">Dataset.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.Dataset.url_path"><code class="docutils literal notranslate"><span class="pre">Dataset.url_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.Dataset.access_urls"><code class="docutils literal notranslate"><span class="pre">Dataset.access_urls</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.Dataset.__init__"><code class="docutils literal notranslate"><span class="pre">Dataset.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.Dataset.access_with_service"><code class="docutils literal notranslate"><span class="pre">Dataset.access_with_service()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.Dataset.add_access_element_info"><code class="docutils literal notranslate"><span class="pre">Dataset.add_access_element_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.Dataset.download"><code class="docutils literal notranslate"><span class="pre">Dataset.download()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.Dataset.make_access_urls"><code class="docutils literal notranslate"><span class="pre">Dataset.make_access_urls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.Dataset.remote_access"><code class="docutils literal notranslate"><span class="pre">Dataset.remote_access()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.Dataset.remote_open"><code class="docutils literal notranslate"><span class="pre">Dataset.remote_open()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.Dataset.resolve_url"><code class="docutils literal notranslate"><span class="pre">Dataset.resolve_url()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.Dataset.subset"><code class="docutils literal notranslate"><span class="pre">Dataset.subset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.catalog.DatasetCollection"><code class="docutils literal notranslate"><span class="pre">DatasetCollection</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.DatasetCollection.filter_time_nearest"><code class="docutils literal notranslate"><span class="pre">DatasetCollection.filter_time_nearest()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.DatasetCollection.filter_time_range"><code class="docutils literal notranslate"><span class="pre">DatasetCollection.filter_time_range()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.catalog.IndexableMapping"><code class="docutils literal notranslate"><span class="pre">IndexableMapping</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.catalog.SimpleService"><code class="docutils literal notranslate"><span class="pre">SimpleService</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.SimpleService.name"><code class="docutils literal notranslate"><span class="pre">SimpleService.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.SimpleService.service_type"><code class="docutils literal notranslate"><span class="pre">SimpleService.service_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.SimpleService.access_urls"><code class="docutils literal notranslate"><span class="pre">SimpleService.access_urls</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.SimpleService.__init__"><code class="docutils literal notranslate"><span class="pre">SimpleService.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.SimpleService.is_resolver"><code class="docutils literal notranslate"><span class="pre">SimpleService.is_resolver()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.catalog.TDSCatalog"><code class="docutils literal notranslate"><span class="pre">TDSCatalog</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.TDSCatalog.catalog_url"><code class="docutils literal notranslate"><span class="pre">TDSCatalog.catalog_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.TDSCatalog.base_tds_url"><code class="docutils literal notranslate"><span class="pre">TDSCatalog.base_tds_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.TDSCatalog.datasets"><code class="docutils literal notranslate"><span class="pre">TDSCatalog.datasets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.TDSCatalog.services"><code class="docutils literal notranslate"><span class="pre">TDSCatalog.services</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.TDSCatalog.catalog_refs"><code class="docutils literal notranslate"><span class="pre">TDSCatalog.catalog_refs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.TDSCatalog.__init__"><code class="docutils literal notranslate"><span class="pre">TDSCatalog.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.catalog.TDSCatalog.latest"><code class="docutils literal notranslate"><span class="pre">TDSCatalog.latest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.catalog.get_latest_access_url"><code class="docutils literal notranslate"><span class="pre">get_latest_access_url()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -105,11 +173,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-siphon.catalog">
-<span id="siphon-catalog"></span><h1><a class="reference internal" href="#module-siphon.catalog" title="siphon.catalog"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a><a class="headerlink" href="#module-siphon.catalog" title="Permalink to this heading">¶</a></h1>
+  <section id="siphon-catalog">
+<h1><a class="reference internal" href="#module-siphon.catalog" title="siphon.catalog"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a><a class="headerlink" href="#siphon-catalog" title="Permalink to this heading">¶</a></h1>
 <p>Code to support reading and parsing catalog files from a THREDDS Data Server (TDS).</p>
 <p>They help identifying the latest dataset and finding proper URLs to access the data.</p>
-<dl class="py class">
+<span class="target" id="module-siphon.catalog"></span><dl class="py class">
 <dt class="sig sig-object py" id="siphon.catalog.CaseInsensitiveDict">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.catalog.</span></span><span class="sig-name descname"><span class="pre">CaseInsensitiveDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/catalog.html#CaseInsensitiveDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.catalog.CaseInsensitiveDict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extend <code class="docutils literal notranslate"><span class="pre">dict</span></code> to use a case-insensitive key set.</p>
@@ -692,7 +760,7 @@ but not always.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 26, 2022 at 23:13:33.
+      <span class="lastupdated">Last updated on Sep 26, 2022 at 23:15:28.
       </span></p>
   </div>
 

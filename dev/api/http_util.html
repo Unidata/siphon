@@ -22,6 +22,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -54,15 +55,51 @@
 <li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.http_util.BadQueryError"><code class="docutils literal notranslate"><span class="pre">BadQueryError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.http_util.DataQuery"><code class="docutils literal notranslate"><span class="pre">DataQuery</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.DataQuery.add_query_parameter"><code class="docutils literal notranslate"><span class="pre">DataQuery.add_query_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.DataQuery.all_times"><code class="docutils literal notranslate"><span class="pre">DataQuery.all_times()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.DataQuery.items"><code class="docutils literal notranslate"><span class="pre">DataQuery.items()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.DataQuery.lonlat_box"><code class="docutils literal notranslate"><span class="pre">DataQuery.lonlat_box()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.DataQuery.lonlat_point"><code class="docutils literal notranslate"><span class="pre">DataQuery.lonlat_point()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.DataQuery.time"><code class="docutils literal notranslate"><span class="pre">DataQuery.time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.DataQuery.time_range"><code class="docutils literal notranslate"><span class="pre">DataQuery.time_range()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.DataQuery.variables"><code class="docutils literal notranslate"><span class="pre">DataQuery.variables()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint"><code class="docutils literal notranslate"><span class="pre">HTTPEndPoint</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get"><code class="docutils literal notranslate"><span class="pre">HTTPEndPoint.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get_path"><code class="docutils literal notranslate"><span class="pre">HTTPEndPoint.get_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.get_query"><code class="docutils literal notranslate"><span class="pre">HTTPEndPoint.get_query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.query"><code class="docutils literal notranslate"><span class="pre">HTTPEndPoint.query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.url_path"><code class="docutils literal notranslate"><span class="pre">HTTPEndPoint.url_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.HTTPEndPoint.validate_query"><code class="docutils literal notranslate"><span class="pre">HTTPEndPoint.validate_query()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.http_util.HTTPSessionManager"><code class="docutils literal notranslate"><span class="pre">HTTPSessionManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.HTTPSessionManager.create_session"><code class="docutils literal notranslate"><span class="pre">HTTPSessionManager.create_session()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.HTTPSessionManager.set_session_options"><code class="docutils literal notranslate"><span class="pre">HTTPSessionManager.set_session_options()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.HTTPSessionManager.urlopen"><code class="docutils literal notranslate"><span class="pre">HTTPSessionManager.urlopen()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.http_util.UTC"><code class="docutils literal notranslate"><span class="pre">UTC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.UTC.dst"><code class="docutils literal notranslate"><span class="pre">UTC.dst()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.UTC.tzname"><code class="docutils literal notranslate"><span class="pre">UTC.tzname()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.http_util.UTC.utcoffset"><code class="docutils literal notranslate"><span class="pre">UTC.utcoffset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.http_util.parse_iso_date"><code class="docutils literal notranslate"><span class="pre">parse_iso_date()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -105,10 +142,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-siphon.http_util">
-<span id="siphon-http-util"></span><h1><a class="reference internal" href="#module-siphon.http_util" title="siphon.http_util"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a><a class="headerlink" href="#module-siphon.http_util" title="Permalink to this heading">¶</a></h1>
+  <section id="siphon-http-util">
+<h1><a class="reference internal" href="#module-siphon.http_util" title="siphon.http_util"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a><a class="headerlink" href="#siphon-http-util" title="Permalink to this heading">¶</a></h1>
 <p>Utility code to support making requests using HTTP.</p>
-<dl class="py exception">
+<span class="target" id="module-siphon.http_util"></span><dl class="py exception">
 <dt class="sig sig-object py" id="siphon.http_util.BadQueryError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.http_util.</span></span><span class="sig-name descname"><span class="pre">BadQueryError</span></span><a class="reference internal" href="../_modules/siphon/http_util.html#BadQueryError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.BadQueryError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exception raised when a query fails.</p>
@@ -552,7 +589,7 @@ object wrapped around the resulting content.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 26, 2022 at 23:13:33.
+      <span class="lastupdated">Last updated on Sep 26, 2022 at 23:15:28.
       </span></p>
   </div>
 
