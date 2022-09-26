@@ -152,11 +152,13 @@ single dataset.</p>
 Cannot convert &quot;[1440]&quot; to int. Keeping type as str.
 Cannot convert &quot;[1]&quot; to int. Keeping type as str.
 Cannot convert &quot;[4]&quot; to int. Keeping type as str.
-Cannot convert &quot;[121]&quot; to int. Keeping type as str.
-Cannot convert &quot;[121]&quot; to int. Keeping type as str.
+Cannot convert &quot;[112]&quot; to int. Keeping type as str.
+Cannot convert &quot;[112]&quot; to int. Keeping type as str.
 Cannot convert &quot;[41]&quot; to int. Keeping type as str.
 Cannot convert &quot;[1]&quot; to int. Keeping type as str.
 Cannot convert &quot;[3]&quot; to int. Keeping type as str.
+Cannot convert &quot;[112]&quot; to int. Keeping type as str.
+Cannot convert &quot;[112]&quot; to int. Keeping type as str.
 Cannot convert &quot;[2]&quot; to int. Keeping type as str.
 Cannot convert &quot;[7]&quot; to int. Keeping type as str.
 Cannot convert &quot;[3]&quot; to int. Keeping type as str.
@@ -167,17 +169,15 @@ Cannot convert &quot;[1]&quot; to int. Keeping type as str.
 Cannot convert &quot;[2]&quot; to int. Keeping type as str.
 Cannot convert &quot;[3]&quot; to int. Keeping type as str.
 Cannot convert &quot;[1]&quot; to int. Keeping type as str.
-Cannot convert &quot;[120]&quot; to int. Keeping type as str.
-Cannot convert &quot;[120]&quot; to int. Keeping type as str.
 Cannot convert &quot;[1]&quot; to int. Keeping type as str.
-Cannot convert &quot;[120]&quot; to int. Keeping type as str.
-Cannot convert &quot;[120]&quot; to int. Keeping type as str.
 Cannot convert &quot;[1]&quot; to int. Keeping type as str.
 Cannot convert &quot;[4]&quot; to int. Keeping type as str.
 Cannot convert &quot;[1]&quot; to int. Keeping type as str.
 Cannot convert &quot;[2]&quot; to int. Keeping type as str.
-Cannot convert &quot;[224]&quot; to int. Keeping type as str.
-Cannot convert &quot;[224]&quot; to int. Keeping type as str.
+Cannot convert &quot;[212]&quot; to int. Keeping type as str.
+Cannot convert &quot;[212]&quot; to int. Keeping type as str.
+Cannot convert &quot;[113]&quot; to int. Keeping type as str.
+Cannot convert &quot;[113]&quot; to int. Keeping type as str.
 Cannot convert &quot;[2]&quot; to int. Keeping type as str.
 </pre></div>
 </div>
@@ -198,7 +198,7 @@ query string.</p>
 <a href="../../api/ncss.html#siphon.ncss.NCSSQuery.variables" title="siphon.ncss.NCSSQuery.variables" class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">variables</span></a><span class="p">(</span><span class="s1">&#39;Temperature_surface&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_surface&amp;time=2022-09-15T18%3A01%3A23.389976&amp;west=-111&amp;east=-100&amp;south=35&amp;north=43&amp;accept=netcdf4
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_surface&amp;time=2022-09-26T23%3A12%3A48.010678&amp;west=-111&amp;east=-100&amp;south=35&amp;north=43&amp;accept=netcdf4
 </pre></div>
 </div>
 <p>We now request data from the server using this query. The <em class="xref py py-obj">NCSS</em> class handles parsing
@@ -209,7 +209,7 @@ the data).</p>
 <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span><span class="o">.</span><span class="n">variables</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;reftime&#39;, &#39;latitude&#39;, &#39;time&#39;, &#39;longitude&#39;, &#39;Temperature_surface&#39;, &#39;LatLon_721X1440-0p13S-180p00E-2&#39;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;time1&#39;, &#39;latitude&#39;, &#39;reftime1&#39;, &#39;longitude&#39;, &#39;Temperature_surface&#39;, &#39;LatLon_721X1440-0p13S-180p00E-2&#39;]
 </pre></div>
 </div>
 <p>We’ll pull out the useful variables for temperature, latitude, and longitude, and time
@@ -267,10 +267,10 @@ the data).</p>
         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" srcset="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" alt="Temperature forecast (°F) for 15 September 2022 18:00Z" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D object at 0x7f71e8c04fd0&gt;]
+<img src="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" srcset="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" alt="Temperature forecast (°F) for 27 September 2022 00:00Z" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D object at 0x7f3d5c155e80&gt;]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.868 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.435 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ncss-ncss-cartopy-example-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/bea31904c74b7c0b8590f47cf86e8326/NCSS_Cartopy_Example.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">NCSS_Cartopy_Example.py</span></code></a></p>
@@ -294,7 +294,7 @@ the data).</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 15, 2022 at 18:02:20.
+      <span class="lastupdated">Last updated on Sep 26, 2022 at 23:13:33.
       </span></p>
   </div>
 

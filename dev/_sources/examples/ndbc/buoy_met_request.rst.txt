@@ -60,7 +60,7 @@ observation set to query.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages/siphon/simplewebservice/ndbc.py:110: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/siphon/simplewebservice/ndbc.py:110: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = col_units
 
 
@@ -105,93 +105,93 @@ observation set to query.
       <tbody>
         <tr>
           <th>0</th>
-          <td>50.0</td>
+          <td>160.0</td>
+          <td>12.0</td>
+          <td>14.0</td>
+          <td>2.3</td>
           <td>7.0</td>
-          <td>9.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>1021.6</td>
+          <td>5.6</td>
+          <td>192.0</td>
+          <td>1009.2</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-09-15 17:40:00+00:00</td>
+          <td>2022-09-26 22:50:00+00:00</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>50.0</td>
-          <td>7.0</td>
-          <td>9.0</td>
+          <td>160.0</td>
+          <td>12.0</td>
+          <td>15.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1021.5</td>
+          <td>1009.2</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-09-15 17:30:00+00:00</td>
+          <td>2022-09-26 22:40:00+00:00</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>40.0</td>
-          <td>7.0</td>
-          <td>9.0</td>
+          <td>160.0</td>
+          <td>12.0</td>
+          <td>15.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1021.5</td>
+          <td>1009.5</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-09-15 17:20:00+00:00</td>
+          <td>2022-09-26 22:30:00+00:00</td>
         </tr>
         <tr>
           <th>3</th>
-          <td>50.0</td>
-          <td>7.0</td>
-          <td>8.0</td>
+          <td>160.0</td>
+          <td>12.0</td>
+          <td>16.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1021.4</td>
+          <td>1009.6</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2022-09-15 17:10:00+00:00</td>
+          <td>2022-09-26 22:20:00+00:00</td>
         </tr>
         <tr>
           <th>4</th>
-          <td>50.0</td>
-          <td>7.0</td>
-          <td>8.0</td>
+          <td>160.0</td>
+          <td>12.0</td>
+          <td>15.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1021.4</td>
+          <td>1010.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1.4</td>
           <td>NaN</td>
-          <td>2022-09-15 17:00:00+00:00</td>
+          <td>NaN</td>
+          <td>2022-09-26 22:10:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -242,7 +242,7 @@ Let's make a simple time series plot to checkout what the data look like.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.246 seconds)
+   **Total running time of the script:** ( 0 minutes  0.938 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_met_request.py:
