@@ -22,6 +22,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -58,11 +59,47 @@
 <li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-siphon.simplewebservice.iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-siphon.simplewebservice.igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-siphon.simplewebservice.acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-siphon.simplewebservice.ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#siphon-simplewebservice-wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.simplewebservice.wyoming.WyomingUpperAir"><code class="docutils literal notranslate"><span class="pre">WyomingUpperAir</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.__init__"><code class="docutils literal notranslate"><span class="pre">WyomingUpperAir.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data"><code class="docutils literal notranslate"><span class="pre">WyomingUpperAir.request_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#siphon-simplewebservice-iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.simplewebservice.iastate.IAStateUpperAir"><code class="docutils literal notranslate"><span class="pre">IAStateUpperAir</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.iastate.IAStateUpperAir.__init__"><code class="docutils literal notranslate"><span class="pre">IAStateUpperAir.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.iastate.IAStateUpperAir.request_all_data"><code class="docutils literal notranslate"><span class="pre">IAStateUpperAir.request_all_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.iastate.IAStateUpperAir.request_data"><code class="docutils literal notranslate"><span class="pre">IAStateUpperAir.request_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#siphon-simplewebservice-igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.simplewebservice.igra2.IGRAUpperAir"><code class="docutils literal notranslate"><span class="pre">IGRAUpperAir</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.igra2.IGRAUpperAir.__init__"><code class="docutils literal notranslate"><span class="pre">IGRAUpperAir.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.igra2.IGRAUpperAir.request_data"><code class="docutils literal notranslate"><span class="pre">IGRAUpperAir.request_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#siphon-simplewebservice-acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.simplewebservice.acis.AcisApiException"><code class="docutils literal notranslate"><span class="pre">AcisApiException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.simplewebservice.acis.acis_request"><code class="docutils literal notranslate"><span class="pre">acis_request()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#siphon-simplewebservice-ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.simplewebservice.ndbc.NDBC"><code class="docutils literal notranslate"><span class="pre">NDBC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.ndbc.NDBC.__init__"><code class="docutils literal notranslate"><span class="pre">NDBC.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.ndbc.NDBC.buoy_data_types"><code class="docutils literal notranslate"><span class="pre">NDBC.buoy_data_types()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.ndbc.NDBC.latest_observations"><code class="docutils literal notranslate"><span class="pre">NDBC.latest_observations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.ndbc.NDBC.raw_buoy_data"><code class="docutils literal notranslate"><span class="pre">NDBC.raw_buoy_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.ndbc.NDBC.realtime_observations"><code class="docutils literal notranslate"><span class="pre">NDBC.realtime_observations()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -105,14 +142,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-siphon.simplewebservice">
-<span id="siphon-simplewebservice"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice" title="siphon.simplewebservice"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice" title="Permalink to this heading">¶</a></h1>
+  <section id="siphon-simplewebservice">
+<h1><a class="reference internal" href="#module-siphon.simplewebservice" title="siphon.simplewebservice"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a><a class="headerlink" href="#siphon-simplewebservice" title="Permalink to this heading">¶</a></h1>
 <p>Contains functionality for retrieving simple web service data.</p>
-</section>
-<section id="module-siphon.simplewebservice.wyoming">
-<span id="siphon-simplewebservice-wyoming"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.wyoming" title="siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.wyoming" title="Permalink to this heading">¶</a></h1>
+<span class="target" id="module-siphon.simplewebservice"></span></section>
+<section id="siphon-simplewebservice-wyoming">
+<h1><a class="reference internal" href="#module-siphon.simplewebservice.wyoming" title="siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a><a class="headerlink" href="#siphon-simplewebservice-wyoming" title="Permalink to this heading">¶</a></h1>
 <p>Read upper air data from the Wyoming archives.</p>
-<dl class="py class">
+<span class="target" id="module-siphon.simplewebservice.wyoming"></span><dl class="py class">
 <dt class="sig sig-object py" id="siphon.simplewebservice.wyoming.WyomingUpperAir">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.simplewebservice.wyoming.</span></span><span class="sig-name descname"><span class="pre">WyomingUpperAir</span></span><a class="reference internal" href="../_modules/siphon/simplewebservice/wyoming.html#WyomingUpperAir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download and parse data from the University of Wyoming’s upper air archive.</p>
@@ -144,10 +181,10 @@ downloaded.</p></li>
 </dd></dl>
 
 </section>
-<section id="module-siphon.simplewebservice.iastate">
-<span id="siphon-simplewebservice-iastate"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.iastate" title="siphon.simplewebservice.iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.iastate" title="Permalink to this heading">¶</a></h1>
+<section id="siphon-simplewebservice-iastate">
+<h1><a class="reference internal" href="#module-siphon.simplewebservice.iastate" title="siphon.simplewebservice.iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a><a class="headerlink" href="#siphon-simplewebservice-iastate" title="Permalink to this heading">¶</a></h1>
 <p>Read upper air data from the IA State archives.</p>
-<dl class="py class">
+<span class="target" id="module-siphon.simplewebservice.iastate"></span><dl class="py class">
 <dt class="sig sig-object py" id="siphon.simplewebservice.iastate.IAStateUpperAir">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.simplewebservice.iastate.</span></span><span class="sig-name descname"><span class="pre">IAStateUpperAir</span></span><a class="reference internal" href="../_modules/siphon/simplewebservice/iastate.html#IAStateUpperAir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.iastate.IAStateUpperAir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download and parse data from the Iowa State’s upper air archive.</p>
@@ -200,10 +237,10 @@ which will otherwise be NaNs. Default is False.</p></li>
 </dd></dl>
 
 </section>
-<section id="module-siphon.simplewebservice.igra2">
-<span id="siphon-simplewebservice-igra2"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.igra2" title="siphon.simplewebservice.igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.igra2" title="Permalink to this heading">¶</a></h1>
+<section id="siphon-simplewebservice-igra2">
+<h1><a class="reference internal" href="#module-siphon.simplewebservice.igra2" title="siphon.simplewebservice.igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a><a class="headerlink" href="#siphon-simplewebservice-igra2" title="Permalink to this heading">¶</a></h1>
 <p>Read upper air data from the Integrated Global Radiosonde Archive version 2.</p>
-<dl class="py class">
+<span class="target" id="module-siphon.simplewebservice.igra2"></span><dl class="py class">
 <dt class="sig sig-object py" id="siphon.simplewebservice.igra2.IGRAUpperAir">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.simplewebservice.igra2.</span></span><span class="sig-name descname"><span class="pre">IGRAUpperAir</span></span><a class="reference internal" href="../_modules/siphon/simplewebservice/igra2.html#IGRAUpperAir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.igra2.IGRAUpperAir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download and parse data from NCEI’s Integrated Radiosonde Archive version 2.</p>
@@ -234,10 +271,10 @@ dataframes for all dates within the two dates will be returned.</p></li>
 </dd></dl>
 
 </section>
-<section id="module-siphon.simplewebservice.acis">
-<span id="siphon-simplewebservice-acis"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.acis" title="siphon.simplewebservice.acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.acis" title="Permalink to this heading">¶</a></h1>
+<section id="siphon-simplewebservice-acis">
+<h1><a class="reference internal" href="#module-siphon.simplewebservice.acis" title="siphon.simplewebservice.acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a><a class="headerlink" href="#siphon-simplewebservice-acis" title="Permalink to this heading">¶</a></h1>
 <p>Requests data from the ACIS Web Services API.</p>
-<dl class="py exception">
+<span class="target" id="module-siphon.simplewebservice.acis"></span><dl class="py exception">
 <dt class="sig sig-object py" id="siphon.simplewebservice.acis.AcisApiException">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.simplewebservice.acis.</span></span><span class="sig-name descname"><span class="pre">AcisApiException</span></span><a class="reference internal" href="../_modules/siphon/simplewebservice/acis.html#AcisApiException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.acis.AcisApiException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle exceptions raised by the acis_request function.</p>
@@ -279,10 +316,10 @@ issues.</p>
 </dd></dl>
 
 </section>
-<section id="module-siphon.simplewebservice.ndbc">
-<span id="siphon-simplewebservice-ndbc"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.ndbc" title="siphon.simplewebservice.ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.ndbc" title="Permalink to this heading">¶</a></h1>
+<section id="siphon-simplewebservice-ndbc">
+<h1><a class="reference internal" href="#module-siphon.simplewebservice.ndbc" title="siphon.simplewebservice.ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a><a class="headerlink" href="#siphon-simplewebservice-ndbc" title="Permalink to this heading">¶</a></h1>
 <p>Read data from the National Data Buoy Center.</p>
-<dl class="py class">
+<span class="target" id="module-siphon.simplewebservice.ndbc"></span><dl class="py class">
 <dt class="sig sig-object py" id="siphon.simplewebservice.ndbc.NDBC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.simplewebservice.ndbc.</span></span><span class="sig-name descname"><span class="pre">NDBC</span></span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download and parse data from the National Data Buoy Center.</p>
@@ -301,7 +338,7 @@ issues.</p>
 <dd class="field-odd"><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Buoy name</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>dict of valid file extensions and their descriptions</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a> of valid file extensions and their descriptions</p>
 </dd>
 </dl>
 </dd></dl>
@@ -394,7 +431,7 @@ mainly from international partners
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 26, 2022 at 23:15:36.
+      <span class="lastupdated">Last updated on Sep 27, 2022 at 19:06:55.
       </span></p>
   </div>
 

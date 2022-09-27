@@ -22,6 +22,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -55,14 +56,66 @@
 <li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.NCSS"><code class="docutils literal notranslate"><span class="pre">NCSS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSS.metadata"><code class="docutils literal notranslate"><span class="pre">NCSS.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSS.variables"><code class="docutils literal notranslate"><span class="pre">NCSS.variables</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSS.unit_handler"><code class="docutils literal notranslate"><span class="pre">NCSS.unit_handler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSS.__init__"><code class="docutils literal notranslate"><span class="pre">NCSS.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSS.get"><code class="docutils literal notranslate"><span class="pre">NCSS.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSS.get_data"><code class="docutils literal notranslate"><span class="pre">NCSS.get_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSS.get_data_raw"><code class="docutils literal notranslate"><span class="pre">NCSS.get_data_raw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSS.get_path"><code class="docutils literal notranslate"><span class="pre">NCSS.get_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSS.get_query"><code class="docutils literal notranslate"><span class="pre">NCSS.get_query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSS.query"><code class="docutils literal notranslate"><span class="pre">NCSS.query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSS.url_path"><code class="docutils literal notranslate"><span class="pre">NCSS.url_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSS.validate_query"><code class="docutils literal notranslate"><span class="pre">NCSS.validate_query()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.NCSSQuery"><code class="docutils literal notranslate"><span class="pre">NCSSQuery</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.__init__"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.accept"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.accept()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.add_lonlat"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.add_lonlat()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.add_query_parameter"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.add_query_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.all_times"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.all_times()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.items"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.items()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.lonlat_box"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.lonlat_box()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.lonlat_point"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.lonlat_point()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.projection_box"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.projection_box()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.strides"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.strides()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.time"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.time_range"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.time_range()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.variables"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.variables()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.NCSSQuery.vertical_level"><code class="docutils literal notranslate"><span class="pre">NCSSQuery.vertical_level()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.ResponseRegistry"><code class="docutils literal notranslate"><span class="pre">ResponseRegistry</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.ResponseRegistry.__init__"><code class="docutils literal notranslate"><span class="pre">ResponseRegistry.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.ResponseRegistry.default"><code class="docutils literal notranslate"><span class="pre">ResponseRegistry.default()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss.ResponseRegistry.register"><code class="docutils literal notranslate"><span class="pre">ResponseRegistry.register()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.combine_dicts"><code class="docutils literal notranslate"><span class="pre">combine_dicts()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.combine_xml_points"><code class="docutils literal notranslate"><span class="pre">combine_xml_points()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.default_unit_handler"><code class="docutils literal notranslate"><span class="pre">default_unit_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.deletetempfile"><code class="docutils literal notranslate"><span class="pre">deletetempfile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.parse_csv_dataset"><code class="docutils literal notranslate"><span class="pre">parse_csv_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.parse_csv_header"><code class="docutils literal notranslate"><span class="pre">parse_csv_header()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.parse_csv_response"><code class="docutils literal notranslate"><span class="pre">parse_csv_response()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.parse_xml"><code class="docutils literal notranslate"><span class="pre">parse_xml()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.parse_xml_dataset"><code class="docutils literal notranslate"><span class="pre">parse_xml_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.parse_xml_point"><code class="docutils literal notranslate"><span class="pre">parse_xml_point()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.read_netcdf"><code class="docutils literal notranslate"><span class="pre">read_netcdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss.squish"><code class="docutils literal notranslate"><span class="pre">squish()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -105,11 +158,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-siphon.ncss">
-<span id="siphon-ncss"></span><h1><a class="reference internal" href="#module-siphon.ncss" title="siphon.ncss"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a><a class="headerlink" href="#module-siphon.ncss" title="Permalink to this heading">¶</a></h1>
+  <section id="siphon-ncss">
+<h1><a class="reference internal" href="#module-siphon.ncss" title="siphon.ncss"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a><a class="headerlink" href="#siphon-ncss" title="Permalink to this heading">¶</a></h1>
 <p>Support making data requests to the NetCDF subset service (NCSS) on a TDS.</p>
 <p>This includes forming proper queries as well as parsing the returned data.</p>
-<dl class="py class">
+<span class="target" id="module-siphon.ncss"></span><dl class="py class">
 <dt class="sig sig-object py" id="siphon.ncss.NCSS">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.ncss.</span></span><span class="sig-name descname"><span class="pre">NCSS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.ncss.NCSS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrap access to the NetCDF Subset Service (NCSS) on a THREDDS server.</p>
@@ -745,7 +798,7 @@ can be chained together on one line.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 26, 2022 at 23:15:36.
+      <span class="lastupdated">Last updated on Sep 27, 2022 at 19:06:55.
       </span></p>
   </div>
 

@@ -22,6 +22,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -138,7 +139,7 @@ radar server access URL. This is pulled from the catalog reference url.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#set" title="builtins.set" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rs</span><span class="o">.</span><span class="n">variables</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;DPA&#39;, &#39;NAK&#39;, &#39;N3K&#39;, &#39;DU6&#39;, &#39;N0U&#39;, &#39;N1Q&#39;, &#39;NET&#39;, &#39;NBX&#39;, &#39;DHR&#39;, &#39;DTA&#39;, &#39;N1K&#39;, &#39;NTP&#39;, &#39;NVL&#39;, &#39;N3M&#39;, &#39;N3X&#39;, &#39;N1M&#39;, &#39;NBQ&#39;, &#39;N3Q&#39;, &#39;NAX&#39;, &#39;N2C&#39;, &#39;NBH&#39;, &#39;N1U&#39;, &#39;N3C&#39;, &#39;HHC&#39;, &#39;DSD&#39;, &#39;NBK&#39;, &#39;DU3&#39;, &#39;N0K&#39;, &#39;NBC&#39;, &#39;N2X&#39;, &#39;NBM&#39;, &#39;DSP&#39;, &#39;N2S&#39;, &#39;N0Z&#39;, &#39;N3S&#39;, &#39;NAH&#39;, &#39;OHA&#39;, &#39;N0H&#39;, &#39;DAA&#39;, &#39;N1P&#39;, &#39;N1S&#39;, &#39;N0Q&#39;, &#39;N1H&#39;, &#39;N2H&#39;, &#39;N0S&#39;, &#39;N2M&#39;, &#39;N3U&#39;, &#39;NBU&#39;, &#39;N1X&#39;, &#39;DOD&#39;, &#39;N2K&#39;, &#39;N1C&#39;, &#39;N0C&#39;, &#39;DPR&#39;, &#39;NAC&#39;, &#39;NMD&#39;, &#39;N0V&#39;, &#39;N0R&#39;, &#39;NVW&#39;, &#39;NCR&#39;, &#39;NAM&#39;, &#39;DVL&#39;, &#39;N2Q&#39;, &#39;NAQ&#39;, &#39;NAU&#39;, &#39;N0M&#39;, &#39;N0X&#39;, &#39;N3H&#39;, &#39;N2U&#39;, &#39;NST&#39;, &#39;PTA&#39;, &#39;EET&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;N0R&#39;, &#39;DU3&#39;, &#39;N2K&#39;, &#39;N0K&#39;, &#39;NAH&#39;, &#39;N3S&#39;, &#39;NAK&#39;, &#39;OHA&#39;, &#39;N0U&#39;, &#39;EET&#39;, &#39;NBQ&#39;, &#39;NTP&#39;, &#39;N2Q&#39;, &#39;N3X&#39;, &#39;NBM&#39;, &#39;N3K&#39;, &#39;N1H&#39;, &#39;N1X&#39;, &#39;N2X&#39;, &#39;NAM&#39;, &#39;N0M&#39;, &#39;DU6&#39;, &#39;DHR&#39;, &#39;DAA&#39;, &#39;N1P&#39;, &#39;NET&#39;, &#39;N1Q&#39;, &#39;NBU&#39;, &#39;NCR&#39;, &#39;DVL&#39;, &#39;N2H&#39;, &#39;DPR&#39;, &#39;DSD&#39;, &#39;N1C&#39;, &#39;N1M&#39;, &#39;HHC&#39;, &#39;N1U&#39;, &#39;N0V&#39;, &#39;N1S&#39;, &#39;NST&#39;, &#39;N2U&#39;, &#39;NMD&#39;, &#39;NVW&#39;, &#39;PTA&#39;, &#39;N3Q&#39;, &#39;N3U&#39;, &#39;DOD&#39;, &#39;N3M&#39;, &#39;N0C&#39;, &#39;N3H&#39;, &#39;NAC&#39;, &#39;N2S&#39;, &#39;N0S&#39;, &#39;NAQ&#39;, &#39;N0Q&#39;, &#39;NAU&#39;, &#39;N1K&#39;, &#39;NBC&#39;, &#39;NVL&#39;, &#39;N0H&#39;, &#39;DTA&#39;, &#39;N0Z&#39;, &#39;N2C&#39;, &#39;DPA&#39;, &#39;NBK&#39;, &#39;NBX&#39;, &#39;NBH&#39;, &#39;DSP&#39;, &#39;N2M&#39;, &#39;N0X&#39;, &#39;N3C&#39;, &#39;NAX&#39;}
 </pre></div>
 </div>
 <p>Create a new query object to help request the data. Using the chaining
@@ -149,7 +150,7 @@ is represented as a string, it shows the encoded URL.</p>
 <a href="../api/radarserver.html#siphon.radarserver.RadarQuery.stations" title="siphon.radarserver.RadarQuery.stations" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">stations</span></a><span class="p">(</span><span class="s1">&#39;CYS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">())</span><span class="o">.</span><span class="n">variables</span><span class="p">(</span><span class="s1">&#39;N0B&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=N0B&amp;time=2022-09-26T23%3A14%3A08.682252&amp;stn=CYS
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=N0B&amp;time=2022-09-27T19%3A05%3A35.816891&amp;stn=CYS
 </pre></div>
 </div>
 <p>We can use the RadarServer instance to check our query, to make
@@ -171,7 +172,7 @@ find one NIDS file in the return.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="../api/catalog.html#siphon.catalog.DatasetCollection" title="siphon.catalog.DatasetCollection" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catalog</span><span class="o">.</span><span class="n">datasets</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;Level3_CYS_N0B_20220926_2310.nids&#39;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;Level3_CYS_N0B_20220927_1901.nids&#39;]
 </pre></div>
 </div>
 <p>We can pull that dataset out of the dictionary and look at the available access URLs.
@@ -180,7 +181,7 @@ We see URLs for OPeNDAP, CDMRemote, and HTTPServer (direct download).</p>
 <span class="nb">print</span><span class="p">(</span><a href="../api/catalog.html#siphon.catalog.CaseInsensitiveDict" title="siphon.catalog.CaseInsensitiveDict" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ds</span><span class="o">.</span><span class="n">access_urls</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;OPENDAP&#39;: &#39;https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0B/CYS/20220926/Level3_CYS_N0B_20220926_2310.nids&#39;, &#39;HTTPServer&#39;: &#39;https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0B/CYS/20220926/Level3_CYS_N0B_20220926_2310.nids&#39;, &#39;CdmRemote&#39;: &#39;https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0B/CYS/20220926/Level3_CYS_N0B_20220926_2310.nids&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;OPENDAP&#39;: &#39;https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0B/CYS/20220927/Level3_CYS_N0B_20220927_1901.nids&#39;, &#39;HTTPServer&#39;: &#39;https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0B/CYS/20220927/Level3_CYS_N0B_20220927_1901.nids&#39;, &#39;CdmRemote&#39;: &#39;https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0B/CYS/20220927/Level3_CYS_N0B_20220927_1901.nids&#39;}
 </pre></div>
 </div>
 <p>We’ll use the CDMRemote reader in Siphon and pass it the appropriate access URL.</p>
@@ -220,7 +221,7 @@ a single point at the start of the gate.</p>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_Radar_Server_Level_3_001.png" srcset="../_images/sphx_glr_Radar_Server_Level_3_001.png" alt="Radar Server Level 3" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.695 seconds)</p>
+<img src="../_images/sphx_glr_Radar_Server_Level_3_001.png" srcset="../_images/sphx_glr_Radar_Server_Level_3_001.png" alt="Radar Server Level 3" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.387 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-radar-server-level-3-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/25562a94000614f3ccf6cc96912b0ab1/Radar_Server_Level_3.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Radar_Server_Level_3.py</span></code></a></p>
@@ -244,7 +245,7 @@ a single point at the start of the gate.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 26, 2022 at 23:15:36.
+      <span class="lastupdated">Last updated on Sep 27, 2022 at 19:06:55.
       </span></p>
   </div>
 

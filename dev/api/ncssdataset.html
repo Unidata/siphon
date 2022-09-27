@@ -22,6 +22,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -53,16 +54,29 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">The Siphon API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.ncss_dataset.NCSSDataset"><code class="docutils literal notranslate"><span class="pre">NCSSDataset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss_dataset.NCSSDataset.variables"><code class="docutils literal notranslate"><span class="pre">NCSSDataset.variables</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss_dataset.NCSSDataset.time_span"><code class="docutils literal notranslate"><span class="pre">NCSSDataset.time_span</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss_dataset.NCSSDataset.accept_list"><code class="docutils literal notranslate"><span class="pre">NCSSDataset.accept_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss_dataset.NCSSDataset.gridsets"><code class="docutils literal notranslate"><span class="pre">NCSSDataset.gridsets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss_dataset.NCSSDataset.axes"><code class="docutils literal notranslate"><span class="pre">NCSSDataset.axes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss_dataset.NCSSDataset.coordinate_transforms"><code class="docutils literal notranslate"><span class="pre">NCSSDataset.coordinate_transforms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss_dataset.NCSSDataset.lat_lon_box"><code class="docutils literal notranslate"><span class="pre">NCSSDataset.lat_lon_box</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.ncss_dataset.NCSSDataset.__init__"><code class="docutils literal notranslate"><span class="pre">NCSSDataset.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="simplewebservice.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#module-siphon.simplewebservice.ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplewebservice.html#siphon-simplewebservice-ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
@@ -105,10 +119,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-siphon.ncss_dataset">
-<span id="siphon-ncss-dataset"></span><h1><a class="reference internal" href="#module-siphon.ncss_dataset" title="siphon.ncss_dataset"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a><a class="headerlink" href="#module-siphon.ncss_dataset" title="Permalink to this heading">¶</a></h1>
+  <section id="siphon-ncss-dataset">
+<h1><a class="reference internal" href="#module-siphon.ncss_dataset" title="siphon.ncss_dataset"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a><a class="headerlink" href="#siphon-ncss-dataset" title="Permalink to this heading">¶</a></h1>
 <p>Support reading and parsing the dataset.xml documents from the netCDF Subset Service.</p>
-<dl class="py class">
+<span class="target" id="module-siphon.ncss_dataset"></span><dl class="py class">
 <dt class="sig sig-object py" id="siphon.ncss_dataset.NCSSDataset">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.ncss_dataset.</span></span><span class="sig-name descname"><span class="pre">NCSSDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss_dataset.html#NCSSDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.ncss_dataset.NCSSDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hold information contained in the dataset.xml NCSS document.</p>
@@ -232,7 +246,7 @@ node of an NCSS dataset.xml doc</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Sep 26, 2022 at 23:15:36.
+      <span class="lastupdated">Last updated on Sep 27, 2022 at 19:06:55.
       </span></p>
   </div>
 
