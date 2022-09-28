@@ -99,8 +99,6 @@ We pull out this dataset and get the NCSS access point
     Cannot convert "[1440]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
     Cannot convert "[4]" to int. Keeping type as str.
-    Cannot convert "[121]" to int. Keeping type as str.
-    Cannot convert "[121]" to int. Keeping type as str.
     Cannot convert "[41]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
     Cannot convert "[3]" to int. Keeping type as str.
@@ -114,17 +112,19 @@ We pull out this dataset and get the NCSS access point
     Cannot convert "[2]" to int. Keeping type as str.
     Cannot convert "[3]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
-    Cannot convert "[120]" to int. Keeping type as str.
-    Cannot convert "[120]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
-    Cannot convert "[120]" to int. Keeping type as str.
-    Cannot convert "[120]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
     Cannot convert "[4]" to int. Keeping type as str.
+    Cannot convert "[215]" to int. Keeping type as str.
+    Cannot convert "[215]" to int. Keeping type as str.
+    Cannot convert "[114]" to int. Keeping type as str.
+    Cannot convert "[114]" to int. Keeping type as str.
     Cannot convert "[1]" to int. Keeping type as str.
     Cannot convert "[2]" to int. Keeping type as str.
-    Cannot convert "[224]" to int. Keeping type as str.
-    Cannot convert "[224]" to int. Keeping type as str.
+    Cannot convert "[115]" to int. Keeping type as str.
+    Cannot convert "[115]" to int. Keeping type as str.
+    Cannot convert "[114]" to int. Keeping type as str.
+    Cannot convert "[114]" to int. Keeping type as str.
     Cannot convert "[2]" to int. Keeping type as str.
 
 
@@ -176,7 +176,7 @@ query string.
  .. code-block:: none
 
 
-    var=Temperature_surface&time=2022-09-27T19%3A09%3A26.882702&west=-111&east=-100&south=35&north=43&accept=netcdf4
+    var=Temperature_surface&time=2022-09-28T23%3A48%3A29.740076&west=-111&east=-100&south=35&north=43&accept=netcdf4
 
 
 
@@ -299,7 +299,7 @@ Now we can plot these up using matplotlib and cartopy.
 
 
 .. image-sg:: /examples/ncss/images/sphx_glr_NCSS_Cartopy_Example_001.png
-   :alt: Temperature forecast (°F) for 27 September 2022 18:00Z
+   :alt: Temperature forecast (°F) for 29 September 2022 00:00Z
    :srcset: /examples/ncss/images/sphx_glr_NCSS_Cartopy_Example_001.png
    :class: sphx-glr-single-img
 
@@ -309,14 +309,14 @@ Now we can plot these up using matplotlib and cartopy.
  .. code-block:: none
 
 
-    [<matplotlib.lines.Line2D object at 0x7fc629750130>]
+    [<matplotlib.lines.Line2D object at 0x7f508f7e9310>]
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.378 seconds)
+   **Total running time of the script:** ( 0 minutes  1.405 seconds)
 
 
 .. _sphx_glr_download_examples_ncss_NCSS_Cartopy_Example.py:
