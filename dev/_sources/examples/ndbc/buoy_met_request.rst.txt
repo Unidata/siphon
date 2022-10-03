@@ -60,7 +60,7 @@ observation set to query.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/siphon/simplewebservice/ndbc.py:110: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+    /opt/hostedtoolcache/Python/3.9.14/x64/lib/python3.9/site-packages/siphon/simplewebservice/ndbc.py:110: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
       df.units = col_units
 
 
@@ -242,7 +242,7 @@ Let's make a simple time series plot to checkout what the data look like.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.938 seconds)
+   **Total running time of the script:** ( 0 minutes  0.768 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_met_request.py:
