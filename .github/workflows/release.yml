@@ -30,6 +30,30 @@ jobs:
     - name: Build packages
       run: python setup.py sdist bdist_wheel
 
+    - name: Save built packages as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: packages-${{ runner.os }}-${{ steps.setup.outputs.python-version }}
+        path: dist/
+        if-no-files-found: error
+        retention-days: 5
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    environment:
+      name: PyPI
+      url: https://pypi.org/project/MetPy/
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download packages
+      uses: actions/download-artifact@v3
+
+    - name: Consolidate packages for upload
+      run: |
+        mkdir dist
+        cp packages-*/* dist/
+
     - name: Publish Package
       uses: pypa/gh-action-pypi-publish@v1.8.5
       with:
