@@ -29,6 +29,7 @@ def test_wyoming():
 
     assert_almost_equal(df['pressure'][5], 867.9, 2)
     assert_almost_equal(df['height'][5], 1219., 2)
+    assert_almost_equal(df['height'][30], 10505., 2)
     assert_almost_equal(df['temperature'][5], 17.4, 2)
     assert_almost_equal(df['dewpoint'][5], 14.3, 2)
     assert_almost_equal(df['u_wind'][5], 6.60, 2)
@@ -131,3 +132,12 @@ def test_no_data_wyoming():
     """Test Wyoming data when no data are available."""
     with pytest.raises(ValueError):
         WyomingUpperAir.request_data(datetime(2010, 12, 9, 1), 'BOI')
+
+
+@recorder.use_cassette('wyoming_sounding_heights')
+def test_wyoming_heights():
+    """Test that we are properly parsing height data from the Wyoming archive."""
+    df = WyomingUpperAir.request_data(datetime(2023, 5, 22, 12), 'OUN')
+
+    assert_almost_equal(df['height'][140], 10336.0, 2)
+    assert_almost_equal(df['direction'][1], 145.0, 1)
