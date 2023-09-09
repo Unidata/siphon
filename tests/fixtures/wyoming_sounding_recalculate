@@ -1,0 +1,105 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.9.post414+gc286cbba.d20241105)
+    method: GET
+    uri: http://weather.uwyo.edu/cgi-bin/sounding/?region=naconf&TYPE=TEXT%3ALIST&YEAR=1999&MONTH=05&FROM=0400&TO=0400&STNM=OUN&REPLOT=1
+  response:
+    body:
+      string: "<HTML>\n<TITLE>University of Wyoming - Radiosonde Data</TITLE>\n<BODY
+        BGCOLOR=\"white\">\n<H2>72357 OUN Norman Observations at 00Z 04 May 1999</H2>\n<PRE>\n-----------------------------------------------------------------------------\n
+        \  PRES   HGHT   TEMP   DWPT   RELH   MIXR   DRCT   SKNT   THTA   THTE   THTV\n
+        \   hPa     m      C      C      %    g/kg    deg   knot     K      K      K
+        \n-----------------------------------------------------------------------------\n
+        1000.0     -7                                                               \n
+        \ 959.0    345   22.2   19.0     82  14.64    160     18  298.9  341.8  301.5\n
+        \ 931.3    610   20.2   17.5     84  13.66    165     40  299.4  339.5  301.9\n
+        \ 925.0    671   19.8   17.1     84  13.44    165     38  299.6  339.0  302.0\n
+        \ 899.3    914   18.4   16.9     91  13.63    175     39  300.5  340.7  303.0\n
+        \ 892.0    984   18.0   16.8     93  13.68    178     39  300.8  341.2  303.3\n
+        \ 867.9   1219   17.4   14.3     82  11.99    190     38  302.6  338.3  304.8\n
+        \ 850.0   1397   17.0   12.5     75  10.82    195     38  303.9  336.5  305.9\n
+        \ 814.0   1766   15.4    5.4     51   6.95    204     37  306.0  327.4  307.3\n
+        \ 807.9   1829   15.4    1.2     38   5.19    205     37  306.7  323.0  307.7\n
+        \ 790.0   2019   15.6  -11.4     14   2.03    211     40  308.9  315.6  309.2\n
+        \ 779.2   2134   14.6  -11.2     16   2.09    215     42  309.0  315.9  309.4\n
+        \ 751.3   2438   12.0  -10.8     19   2.24    215     42  309.5  316.9  309.9\n
+        \ 724.3   2743    9.4  -10.4     24   2.40    220     40  309.9  317.8  310.3\n
+        \ 700.0   3028    7.0  -10.0     29   2.57    220     37  310.2  318.6  310.7\n
+        \ 655.0   3568    2.2  -16.8     23   1.58    220     37  310.7  316.1  311.0\n
+        \ 647.5   3658    1.4  -16.7     25   1.61    220     37  310.8  316.3  311.1\n
+        \ 599.4   4267   -4.2  -15.8     40   1.87    225     39  311.4  317.6  311.7\n
+        \ 554.7   4877   -9.7  -15.0     65   2.16    220     38  311.8  319.0  312.2\n
+        \ 550.0   4943  -10.3  -14.9     69   2.20    220     38  311.8  319.1  312.2\n
+        \ 500.0   5670  -14.9  -18.9     72   1.73    225     36  314.8  320.7  315.1\n
+        \ 472.5   6096  -17.6  -21.0     75   1.52    235     43  316.6  321.8  316.9\n
+        \ 449.0   6480  -20.1  -22.9     78   1.36    235     42  318.1  322.9  318.4\n
+        \ 400.0   7330  -26.7  -30.1     73   0.79    235     40  320.2  323.1  320.4\n
+        \ 383.7   7620  -29.1  -32.6     72   0.65    235     40  320.8  323.2  321.0\n
+        \ 336.4   8534  -36.8  -40.6     68   0.33    235     47  322.6  323.9  322.7\n
+        \ 321.9   8839  -39.4  -43.3     66   0.26    240     36  323.2  324.2  323.2\n
+        \ 308.1   9144  -41.9  -46.0     65   0.20    240     37  323.7  324.5  323.7\n
+        \ 300.0   9330  -43.5  -47.6     64   0.17    245     38  323.9  324.6  324.0\n
+        \ 269.0  10049  -49.0  -53.2     62   0.10    245     73  326.2  326.6  326.2\n
+        \ 268.6  10058  -49.1  -53.2     62   0.10    250     70  326.2  326.6  326.2\n
+        \ 251.0  10505  -52.5  -56.7     60   0.07                327.5  327.8  327.5\n</PRE><H3>Station
+        information and sounding indices</H3><PRE>\n                         Station
+        identifier: OUN\n                             Station number: 72357\n                           Observation
+        time: 990504/0000\n                           Station latitude: 35.18\n                          Station
+        longitude: -97.44\n                          Station elevation: 345.0\n                            Showalter
+        index: -6.51\n                               Lifted index: -8.04\n    LIFT
+        computed using virtual temperature: -8.51\n                                SWEAT
+        index: 555.49\n                                    K index: 27.40\n                         Cross
+        totals index: 27.40\n                      Vertical totals index: 31.90\n
+        \                       Totals totals index: 59.30\n      Convective Available
+        Potential Energy: 2252.27\n             CAPE using virtual temperature: 2381.91\n
+        \                     Convective Inhibition: -120.55\n             CINS using
+        virtual temperature: -64.57\n                   Level of Free Convection:
+        712.90\n             LFCT using virtual temperature: 745.24\n                     Bulk
+        Richardson Number: 24.15\n          Bulk Richardson Number using CAPV: 25.54\n
+        \ Temp [K] of the Lifted Condensation Level: 290.20\nPres [hPa] of the Lifted
+        Condensation Level: 895.98\n   Equivalent potential temp [K] of the LCL: 340.04\n
+        \    Mean mixed layer potential temperature: 299.46\n              Mean mixed
+        layer mixing ratio: 13.85\n              1000 hPa to 500 hPa thickness: 5677.00\nPrecipitable
+        water [mm] for entire sounding: 26.86\n</PRE>\n<P>Description of the \n<A
+        HREF=\"/upperair/columns.html\">data columns</A>\nor <A HREF=\"/upperair/indices.html\">sounding
+        indices</A>.\n\n<P>\n<FORM>\n<INPUT CLASS=\"button\" TYPE=\"button\" VALUE=\"
+        Close this window \" \n onClick=\"window.close();\">\n<INPUT CLASS=\"button\"
+        TYPE=\"button\" VALUE=\" Select another map \" \n onClick=\"window.blur();\">\n</FORM>\n<HR
+        SIZE=\"1\">\n<I>Interested in graduate studies in atmospheric science?\nCheck
+        out our program at the\n<a href=\"http://www.uwyo.edu/atsc/howtoapply/\"\ntarget=_top>University
+        of Wyoming\n</a></I>\n<HR SIZE=\"1\"><FONT SIZE=\"-1\">\nQuestions about the
+        weather data provided by this site can be\naddressed to <A HREF=\"mailto:ldoolman@uwyo.edu\">\nLarry
+        Oolman (ldoolman@uwyo.edu)</A></FONT>\n<HR SIZE=\"1\">\n<SCRIPT TYPE=\"text/javascript\">\n<!--\nwindow.focus();\n//
+        -->\n</SCRIPT>\n</BODY>\n</HTML>\n"
+    headers:
+      Accept-Ranges:
+      - bytes
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '5338'
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Thu, 12 Dec 2024 20:44:03 GMT
+      ETag:
+      - W/"14da-62918c67d52c4"
+      Keep-Alive:
+      - timeout=5, max=100
+      Last-Modified:
+      - Thu, 12 Dec 2024 20:44:06 GMT
+      Server:
+      - Apache
+    status:
+      code: 200
+      message: OK
+version: 1
