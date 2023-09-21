@@ -13,6 +13,7 @@ import logging
 import re
 import warnings
 import xml.etree.ElementTree as ET  # noqa:N814
+
 try:
     from urlparse import urljoin, urlparse
 except ImportError:
@@ -32,7 +33,7 @@ class IndexableMapping(OrderedDict):
     def __getitem__(self, item):
         """Return an item either by index or name."""
         try:
-            item + ''  # Raises if item not a string
+            item + ""  # Raises if item not a string
             return super().__getitem__(item)
         except TypeError:
             return list(self.values())[item]
@@ -41,8 +42,10 @@ class IndexableMapping(OrderedDict):
 class DatasetCollection(IndexableMapping):
     """Extend ``IndexableMapping`` to allow datetime-based filter queries."""
 
-    default_regex = re.compile(r'(?P<year>\d{4})(?P<month>[01]\d)(?P<day>[0123]\d)_'
-                               r'(?P<hour>[012]\d)(?P<minute>[0-5]\d)')
+    default_regex = re.compile(
+        r"(?P<year>\d{4})(?P<month>[01]\d)(?P<day>[0123]\d)_"
+        r"(?P<hour>[012]\d)(?P<minute>[0-5]\d)"
+    )
 
     def _get_datasets_with_times(self, regex, strptime=None):
         # Set the default regex if we don't have one
@@ -62,22 +65,24 @@ class DatasetCollection(IndexableMapping):
                 found_date = True
                 date_parts = match.groupdict()
                 if strptime is not None:
-                    date_str = date_parts.get('strptime', 0)
+                    date_str = date_parts.get("strptime", 0)
                     dt = datetime.strptime(date_str, strptime)
                 else:
-                    dt = datetime(int(date_parts.get('year', 0)),
-                                  int(date_parts.get('month', 0)),
-                                  int(date_parts.get('day', 0)),
-                                  int(date_parts.get('hour', 0)),
-                                  int(date_parts.get('minute', 0)),
-                                  int(date_parts.get('second', 0)),
-                                  int(date_parts.get('microsecond', 0)))
+                    dt = datetime(
+                        int(date_parts.get("year", 0)),
+                        int(date_parts.get("month", 0)),
+                        int(date_parts.get("day", 0)),
+                        int(date_parts.get("hour", 0)),
+                        int(date_parts.get("minute", 0)),
+                        int(date_parts.get("second", 0)),
+                        int(date_parts.get("microsecond", 0)),
+                    )
                 yield dt, self[ds]
 
         # If we never found any keys that match, we should let the user know that rather
         # than have it be the same as if nothing matched filters
         if not found_date:
-            raise ValueError('No datasets with times found.')
+            raise ValueError("No datasets with times found.")
 
     def filter_time_nearest(self, time, regex=None, strptime=None):
         r"""Filter keys for an item closest to the desired time.
@@ -111,8 +116,10 @@ class DatasetCollection(IndexableMapping):
             The value with a time closest to that desired
 
         """
-        return min(self._get_datasets_with_times(regex, strptime),
-                   key=lambda i: abs((i[0] - time).total_seconds()))[-1]
+        return min(
+            self._get_datasets_with_times(regex, strptime),
+            key=lambda i: abs((i[0] - time).total_seconds()),
+        )[-1]
 
     def filter_time_range(self, start, end, regex=None, strptime=None):
         r"""Filter keys for all items within the desired time range.
@@ -148,10 +155,16 @@ class DatasetCollection(IndexableMapping):
 
         """
         if start > end:
-            warnings.warn('The provided start time comes after the end time. No data will '
-                          'be returned.', UserWarning)
-        return [item[-1] for item in self._get_datasets_with_times(regex, strptime)
-                if start <= item[0] <= end]
+            warnings.warn(
+                "The provided start time comes after the end time. No data will "
+                "be returned.",
+                UserWarning,
+            )
+        return [
+            item[-1]
+            for item in self._get_datasets_with_times(regex, strptime)
+            if start <= item[0] <= end
+        ]
 
     def __str__(self):
         """Return a string representation of the collection."""
@@ -164,7 +177,7 @@ def _try_lower(arg):
     try:
         arg = arg.lower()
     except (TypeError, AttributeError, ValueError):
-        log.warning('Could not convert %s to lowercase.', arg)
+        log.warning("Could not convert %s to lowercase.", arg)
     return arg
 
 
@@ -286,18 +299,22 @@ class TDSCatalog:
         self.base_tds_url = _find_base_tds_url(self.catalog_url)
 
         # If we were given an HTML link, warn about it and try to fix to xml
-        if 'html' in resp.headers['content-type']:
+        if "html" in resp.headers["content-type"]:
             import warnings
-            new_url = self.catalog_url.replace('html', 'xml')
-            warnings.warn('URL {} returned HTML. Changing to: {}'.format(self.catalog_url,
-                                                                         new_url))
+
+            new_url = self.catalog_url.replace("html", "xml")
+            warnings.warn(
+                "URL {} returned HTML. Changing to: {}".format(
+                    self.catalog_url, new_url
+                )
+            )
             self.catalog_url = new_url
             resp = self.session.get(self.catalog_url)
             resp.raise_for_status()
 
         # begin parsing the xml doc
         root = ET.fromstring(resp.content)
-        self.catalog_name = root.attrib.get('name', 'No name found')
+        self.catalog_name = root.attrib.get("name", "No name found")
 
         self.datasets = DatasetCollection()
         self.services = []
@@ -309,9 +326,9 @@ class TDSCatalog:
         current_dataset = None
         previous_dataset = None
         for child in root.iter():
-            tag_type = child.tag.split('}')[-1]
-            if tag_type == 'dataset':
-                current_dataset = child.attrib['name']
+            tag_type = child.tag.split("}")[-1]
+            if tag_type == "dataset":
+                current_dataset = child.attrib["name"]
                 self._process_dataset(child)
 
                 if previous_dataset:
@@ -323,15 +340,16 @@ class TDSCatalog:
 
                 previous_dataset = current_dataset
 
-            elif tag_type == 'access':
+            elif tag_type == "access":
                 self.datasets[current_dataset].add_access_element_info(child)
-            elif tag_type == 'catalogRef':
+            elif tag_type == "catalogRef":
                 self._process_catalog_ref(child)
-            elif (tag_type == 'metadata') or (tag_type == ''):
+            elif (tag_type == "metadata") or (tag_type == ""):
                 self._process_metadata(child, tag_type)
-            elif tag_type == 'service':
-                if (CaseInsensitiveStr(child.attrib['serviceType'])
-                        != CaseInsensitiveStr('Compound')):
+            elif tag_type == "service":
+                if CaseInsensitiveStr(
+                    child.attrib["serviceType"]
+                ) != CaseInsensitiveStr("Compound"):
                     # we do not want to process single services if they
                     # are already contained within a compound service, so
                     # we need to skip over those cases.
@@ -357,9 +375,9 @@ class TDSCatalog:
         self.session.close()
 
     def _process_dataset(self, element):
-        catalog_url = ''
-        if 'urlPath' in element.attrib:
-            if element.attrib['urlPath'] == 'latest.xml':
+        catalog_url = ""
+        if "urlPath" in element.attrib:
+            if element.attrib["urlPath"] == "latest.xml":
                 catalog_url = self.catalog_url
 
         ds = Dataset(element, catalog_url=catalog_url)
@@ -370,8 +388,8 @@ class TDSCatalog:
         self.catalog_refs[catalog_ref.title] = catalog_ref
 
     def _process_metadata(self, element, tag_type):
-        if tag_type == '':
-            log.warning('Trying empty tag type as metadata')
+        if tag_type == "":
+            log.warning("Trying empty tag type as metadata")
         self.metadata = TDSCatalogMetadata(element, self.metadata).metadata
 
     def _process_datasets(self):
@@ -385,7 +403,8 @@ class TDSCatalog:
             )
             if has_url_path or is_ds_with_access_elements_to_process:
                 self.datasets[ds_name].make_access_urls(
-                    self.base_tds_url, self.services, metadata=self.metadata)
+                    self.base_tds_url, self.services, metadata=self.metadata
+                )
             else:
                 self.datasets.pop(ds_name)
 
@@ -394,7 +413,7 @@ class TDSCatalog:
         """Get the latest dataset, if available."""
         for service in self.services:
             if service.is_resolver():
-                latest_cat = self.catalog_url.replace('catalog.xml', 'latest.xml')
+                latest_cat = self.catalog_url.replace("catalog.xml", "latest.xml")
                 return TDSCatalog(latest_cat).datasets[0]
         raise AttributeError('"latest" not available for this catalog')
 
@@ -428,11 +447,11 @@ class CatalogRef:
             An :class:`~xml.etree.ElementTree.Element` representing a catalogRef node
 
         """
-        self.title = element_node.attrib['{http://www.w3.org/1999/xlink}title']
-        self.name = element_node.attrib.get('name', self.title)
+        self.title = element_node.attrib["{http://www.w3.org/1999/xlink}title"]
+        self.name = element_node.attrib.get("name", self.title)
 
         # Resolve relative URLs
-        href = element_node.attrib['{http://www.w3.org/1999/xlink}href']
+        href = element_node.attrib["{http://www.w3.org/1999/xlink}href"]
         self.href = urljoin(base_url, href)
 
     def __str__(self):
@@ -470,10 +489,12 @@ class Dataset:
 
     """
 
-    ncss_service_names = (CaseInsensitiveStr('NetcdfSubset'),
-                          CaseInsensitiveStr('NetcdfServer'))
+    ncss_service_names = (
+        CaseInsensitiveStr("NetcdfSubset"),
+        CaseInsensitiveStr("NetcdfServer"),
+    )
 
-    def __init__(self, element_node, catalog_url=''):
+    def __init__(self, element_node, catalog_url=""):
         """Initialize the Dataset object.
 
         Parameters
@@ -484,22 +505,24 @@ class Dataset:
             The top level server url
 
         """
-        self.name = element_node.attrib['name']
-        self.id = element_node.attrib.get('ID', None)
-        self.url_path = element_node.attrib.get('urlPath', None)
-        self.catalog_name = ''
+        self.name = element_node.attrib["name"]
+        self.id = element_node.attrib.get("ID", None)
+        self.url_path = element_node.attrib.get("urlPath", None)
+        self.catalog_name = ""
         self.access_element_info = {}
         self._resolved = False
         self._resolverUrl = None
         # if latest.xml, resolve the latest url
-        if self.url_path == 'latest.xml':
-            if catalog_url != '':
+        if self.url_path == "latest.xml":
+            if catalog_url != "":
                 self._resolved = True
                 self._resolverUrl = self.url_path
                 self.url_path = self.resolve_url(catalog_url)
             else:
-                log.warning('Must pass along the catalog URL to resolve '
-                            'the latest.xml dataset!')
+                log.warning(
+                    "Must pass along the catalog URL to resolve "
+                    "the latest.xml dataset!"
+                )
 
     def __str__(self):
         """Return a string representation of the dataset."""
@@ -514,30 +537,30 @@ class Dataset:
             The catalog url to be resolved
 
         """
-        if catalog_url != '':
-            resolver_base = catalog_url.split('catalog.xml')[0]
+        if catalog_url != "":
+            resolver_base = catalog_url.split("catalog.xml")[0]
             resolver_url = resolver_base + self.url_path
             resolver_xml = session_manager.urlopen(resolver_url)
             tree = ET.parse(resolver_xml)
             root = tree.getroot()
-            if 'name' in root.attrib:
-                self.catalog_name = root.attrib['name']
+            if "name" in root.attrib:
+                self.catalog_name = root.attrib["name"]
             else:
-                self.catalog_name = 'No name found'
-            resolved_url = ''
+                self.catalog_name = "No name found"
+            resolved_url = ""
             found = False
             for child in root.iter():
                 if not found:
-                    tag_type = child.tag.split('}')[-1]
-                    if tag_type == 'dataset':
-                        if 'urlPath' in child.attrib:
+                    tag_type = child.tag.split("}")[-1]
+                    if tag_type == "dataset":
+                        if "urlPath" in child.attrib:
                             ds = Dataset(child)
                             resolved_url = ds.url_path
                             found = True
             if found:
                 return resolved_url
             else:
-                log.warning('no dataset url path found in latest.xml!')
+                log.warning("no dataset url path found in latest.xml!")
 
     def make_access_urls(self, catalog_url, all_services, metadata=None):
         """Make fully qualified urls for the access methods enabled on the dataset.
@@ -559,27 +582,28 @@ class Dataset:
                 for subservice in service.services:
                     all_service_dict[subservice.name] = subservice
 
-        service_name = metadata.get('serviceName', None)
-
         access_urls = CaseInsensitiveDict({})
         server_url = _find_base_tds_url(catalog_url)
 
         # process access urls for datasets that reference top
         # level catalog services (individual or compound service
         # types).
-        if service_name in all_service_dict:
+        for service_name in all_service_dict:
             service = all_service_dict[service_name]
-            if service.service_type != 'Resolver':
+            if service.service_type != "Resolver":
                 # if service is a CompoundService, create access url
                 # for each SimpleService
                 if isinstance(service, CompoundService):
                     for subservice in service.services:
                         server_base = urljoin(server_url, subservice.base)
-                        access_urls[subservice.service_type] = urljoin(server_base,
-                                                                       self.url_path)
+                        access_urls[subservice.service_type] = urljoin(
+                            server_base, self.url_path
+                        )
                 else:
                     server_base = urljoin(server_url, service.base)
-                    access_urls[service.service_type] = urljoin(server_base, self.url_path)
+                    access_urls[service.service_type] = urljoin(
+                        server_base, self.url_path
+                    )
 
         # process access children of dataset elements
         for service_type in self.access_element_info:
@@ -592,8 +616,8 @@ class Dataset:
 
     def add_access_element_info(self, access_element):
         """Create an access method from a catalog element."""
-        service_name = access_element.attrib['serviceName']
-        url_path = access_element.attrib['urlPath']
+        service_name = access_element.attrib["serviceName"]
+        url_path = access_element.attrib["urlPath"]
         self.access_element_info[service_name] = url_path
 
     def download(self, filename=None):
@@ -608,10 +632,10 @@ class Dataset:
         if filename is None:
             filename = self.name
         with self.remote_open() as infile:
-            with open(filename, 'wb') as outfile:
+            with open(filename, "wb") as outfile:
                 outfile.write(infile.read())
 
-    def remote_open(self, mode='b', encoding='ascii', errors='ignore'):
+    def remote_open(self, mode="b", encoding="ascii", errors="ignore"):
         """Open the remote dataset for random access.
 
         Get a file-like object for reading from the remote dataset, providing random access,
@@ -636,9 +660,10 @@ class Dataset:
         A random access, file-like object
 
         """
-        fobj = self.access_with_service('HTTPServer')
-        if mode == 't':
+        fobj = self.access_with_service("HTTPServer")
+        if mode == "t":
             from io import StringIO
+
             fobj = StringIO(fobj.read().decode(encoding, errors))
         return fobj
 
@@ -661,10 +686,13 @@ class Dataset:
 
         """
         if service is None:
-            service = 'CdmRemote' if 'CdmRemote' in self.access_urls else 'OPENDAP'
+            service = "CdmRemote" if "CdmRemote" in self.access_urls else "OPENDAP"
 
-        if service not in (CaseInsensitiveStr('CdmRemote'), CaseInsensitiveStr('OPENDAP')):
-            raise ValueError(service + ' is not a valid service for remote_access')
+        if service not in (
+            CaseInsensitiveStr("CdmRemote"),
+            CaseInsensitiveStr("OPENDAP"),
+        ):
+            raise ValueError(service + " is not a valid service for remote_access")
 
         return self.access_with_service(service, use_xarray)
 
@@ -691,10 +719,13 @@ class Dataset:
                     service = service_name
                     break
             else:
-                raise RuntimeError('Subset access is not available for this dataset.')
+                raise RuntimeError("Subset access is not available for this dataset.")
         elif service not in self.ncss_service_names:
-            raise ValueError(service + ' is not a valid service for subset. Options are: '
-                             + ', '.join(self.ncss_service_names))
+            raise ValueError(
+                service
+                + " is not a valid service for subset. Options are: "
+                + ", ".join(self.ncss_service_names)
+            )
 
         return self.access_with_service(service)
 
@@ -716,42 +747,54 @@ class Dataset:
 
         """
         service = CaseInsensitiveStr(service)
-        if service == 'CdmRemote':
+        if service == "CdmRemote":
             if use_xarray:
                 from .cdmr.xarray_support import CDMRemoteStore
+
                 try:
                     import xarray as xr
-                    provider = lambda url: xr.open_dataset(CDMRemoteStore(url))  # noqa: E731
+
+                    provider = lambda url: xr.open_dataset(
+                        CDMRemoteStore(url)
+                    )  # noqa: E731
                 except ImportError:
-                    raise ImportError('CdmRemote access needs xarray to be installed.')
+                    raise ImportError("CdmRemote access needs xarray to be installed.")
             else:
                 from .cdmr import Dataset as CDMRDataset
+
                 provider = CDMRDataset
-        elif service == 'OPENDAP':
+        elif service == "OPENDAP":
             if use_xarray:
                 try:
                     import xarray as xr
+
                     provider = xr.open_dataset
                 except ImportError:
-                    raise ImportError('xarray needs to be installed if `use_xarray` is True.')
+                    raise ImportError(
+                        "xarray needs to be installed if `use_xarray` is True."
+                    )
             else:
                 try:
                     from netCDF4 import Dataset as NC4Dataset
+
                     provider = NC4Dataset
                 except ImportError:
-                    raise ImportError('OPENDAP access needs netCDF4-python to be installed.')
+                    raise ImportError(
+                        "OPENDAP access needs netCDF4-python to be installed."
+                    )
         elif service in self.ncss_service_names:
             from .ncss import NCSS
+
             provider = NCSS
-        elif service == 'HTTPServer':
+        elif service == "HTTPServer":
             provider = session_manager.urlopen
         else:
-            raise ValueError(service + ' is not an access method supported by Siphon')
+            raise ValueError(service + " is not an access method supported by Siphon")
 
         try:
             return provider(self.access_urls[service])
         except KeyError:
-            raise ValueError(service + ' is not available for this dataset')
+            raise ValueError(service + " is not available for this dataset")
 
     __repr__ = __str__
 
@@ -781,14 +824,14 @@ class SimpleService:
             An :class:`~xml.etree.ElementTree.Element` representing a service node
 
         """
-        self.name = service_node.attrib['name']
-        self.service_type = CaseInsensitiveStr(service_node.attrib['serviceType'])
-        self.base = service_node.attrib['base']
+        self.name = service_node.attrib["name"]
+        self.service_type = CaseInsensitiveStr(service_node.attrib["serviceType"])
+        self.base = service_node.attrib["base"]
         self.access_urls = {}
 
     def is_resolver(self):
         """Return whether the service is a resolver service."""
-        return self.service_type == 'Resolver'
+        return self.service_type == "Resolver"
 
 
 class CompoundService:
@@ -815,9 +858,9 @@ class CompoundService:
             An :class:`~xml.etree.ElementTree.Element` representing a compound service node
 
         """
-        self.name = service_node.attrib['name']
-        self.service_type = CaseInsensitiveStr(service_node.attrib['serviceType'])
-        self.base = service_node.attrib['base']
+        self.name = service_node.attrib["name"]
+        self.service_type = CaseInsensitiveStr(service_node.attrib["serviceType"])
+        self.base = service_node.attrib["base"]
         services = []
         subservices = 0
         for child in list(service_node):
