@@ -331,10 +331,30 @@ def test_simple_service_within_compound():
            'tropical/atlantic/hdob/catalog.xml')
     cat = TDSCatalog(url)
     assert (cat.datasets[0].access_urls
-            == {'HTTPServer': 'http://thredds-test.unidata.ucar.edu/thredds/'
-                              'fileServer/noaaport/text/tropical/atlantic/hdob/'
-                              'High_density_obs_20170824.txt'})
-
+            == {'CdmRemote': 'http://thredds-test.unidata.ucar.edu/thredds/'
+                             'cdmremote/noaaport/text/tropical/atlantic/'
+                             'hdob/High_density_obs_20170824.txt',
+                'CdmrFeature': 'http://thredds-test.unidata.ucar.edu/thredds/'
+                               'cdmrfeature/grid/noaaport/text/tropical/atlantic/'
+                               'hdob/High_density_obs_20170824.txt',
+                'HTTPServer': 'http://thredds-test.unidata.ucar.edu/thredds/'
+                              'fileServer/noaaport/text/tropical/atlantic/'
+                              'hdob/High_density_obs_20170824.txt',
+                'ISO': 'http://thredds-test.unidata.ucar.edu/thredds/iso/noaaport/'
+                       'text/tropical/atlantic/hdob/High_density_obs_20170824.txt',
+                'NCML': 'http://thredds-test.unidata.ucar.edu/thredds/ncml/noaaport/'
+                        'text/tropical/atlantic/hdob/High_density_obs_20170824.txt',
+                'NetcdfSubset': 'http://thredds-test.unidata.ucar.edu/thredds/ncss/'
+                                'noaaport/text/tropical/atlantic/hdob/'
+                                'High_density_obs_20170824.txt',
+                'OPENDAP': 'http://thredds-test.unidata.ucar.edu/thredds/dodsC/noaaport/'
+                           'text/tropical/atlantic/hdob/High_density_obs_20170824.txt',
+                'UDDC': 'http://thredds-test.unidata.ucar.edu/thredds/uddc/noaaport/'
+                        'text/tropical/atlantic/hdob/High_density_obs_20170824.txt',
+                'WCS': 'http://thredds-test.unidata.ucar.edu/thredds/wcs/noaaport/text/'
+                       'tropical/atlantic/hdob/High_density_obs_20170824.txt',
+                'WMS': 'http://thredds-test.unidata.ucar.edu/thredds/wms/noaaport/text/'
+                       'tropical/atlantic/hdob/High_density_obs_20170824.txt'}
 
 @recorder.use_cassette('rsmas_ramadda')
 def test_ramadda_catalog():
