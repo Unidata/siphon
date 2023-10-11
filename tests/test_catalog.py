@@ -354,7 +354,8 @@ def test_simple_service_within_compound():
                 'WCS': 'http://thredds-test.unidata.ucar.edu/thredds/wcs/noaaport/text/'
                        'tropical/atlantic/hdob/High_density_obs_20170824.txt',
                 'WMS': 'http://thredds-test.unidata.ucar.edu/thredds/wms/noaaport/text/'
-                       'tropical/atlantic/hdob/High_density_obs_20170824.txt'}
+                       'tropical/atlantic/hdob/High_density_obs_20170824.txt'})
+
 
 @recorder.use_cassette('rsmas_ramadda')
 def test_ramadda_catalog():
