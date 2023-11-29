@@ -89,13 +89,25 @@ class WyomingUpperAir(HTTPEndPoint):
         # record showing this for parsing to proceed.
         if 'Station number' in lines[1]:
             lines.insert(1, 'Station identifier: ')
+            
+        
+        #Check if station is missing latitude, longitude, and elevation data, if so assign None.
+        if (lines[4].split(':')[1].strip() == '******'):
+            latitude = None
+            longitude = None
+            elevation = None
+        else:
+            latitude = float(lines[4].split(':')[1].strip())
+            longitude = float(lines[5].split(':')[1].strip())
+            elevation = float(lines[6].split(':')[1].strip())    
+        
 
         station = lines[1].split(':')[1].strip()
         station_number = int(lines[2].split(':')[1].strip())
         sounding_time = datetime.strptime(lines[3].split(':')[1].strip(), '%y%m%d/%H%M')
-        latitude = float(lines[4].split(':')[1].strip())
-        longitude = float(lines[5].split(':')[1].strip())
-        elevation = float(lines[6].split(':')[1].strip())
+        #latitude = float(lines[4].split(':')[1].strip())
+        #longitude = float(lines[5].split(':')[1].strip())
+        #elevation = float(lines[6].split(':')[1].strip())
         pw = float(lines[-1].split(':')[1].strip())
 
         df['station'] = station
