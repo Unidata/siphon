@@ -401,6 +401,11 @@ class TDSCatalog:
         depth : int
           Maximum recursive depth. Setting 0 will return only datasets within the top-level catalog. If None,
           depth is set to 1000.
+
+        Yields
+        ------
+        Dataset
+            Siphon catalog dataset.
         """
         yield from self.datasets.values()
         if depth is None:
