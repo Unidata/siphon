@@ -140,6 +140,23 @@ def test_catalog_follow():
     cat = TDSCatalog(url).catalog_refs[ref_name].follow()
     assert cat
 
+@recorder.use_cassette('walk_cat_depth3')
+def test_catalog_walk3():
+    """Test catalog walk."""
+    url = 'http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/Global_0p25deg_ana/catalog.xml'
+    walkdepth = (3,32)
+    datasets = [d for d in TDSCatalog(url).walk(depth=walkdepth[0])]
+    assert len(datasets) == walkdepth[1]
+    assert all(['OPENDAP' in list(d.access_urls.keys()) for d in datasets])
+
+@recorder.use_cassette('walk_cat_depth0')
+def test_catalog_walk0():
+    """Test catalog walk."""
+    url = 'http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/Global_0p25deg_ana/catalog.xml'
+    walkdepth = (0,2)
+    datasets = [d for d in TDSCatalog(url).walk(depth=walkdepth[0])]
+    assert len(datasets) == walkdepth[1]
+    assert all(['OPENDAP' in list(d.access_urls.keys()) for d in datasets])
 
 @recorder.use_cassette('top_level_20km_rap_catalog')
 def test_datasets_order():
