@@ -147,7 +147,7 @@ def test_catalog_walk3():
     url = \
         'http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/Global_0p25deg_ana/catalog.xml'
     walkdepth = (3, 32)
-    datasets = [d for d in TDSCatalog(url).walk(depth=walkdepth[0])]
+    datasets = list(TDSCatalog(url).walk(depth=walkdepth[0]))
     assert len(datasets) == walkdepth[1]
     assert all(['OPENDAP' in list(d.access_urls.keys()) for d in datasets])
 
@@ -158,7 +158,7 @@ def test_catalog_walk0():
     url = \
         'http://thredds.ucar.edu/thredds/catalog/grib/NCEP/GFS/Global_0p25deg_ana/catalog.xml'
     walkdepth = (0, 2)
-    datasets = [d for d in TDSCatalog(url).walk(depth=walkdepth[0])]
+    datasets = list(TDSCatalog(url).walk(depth=walkdepth[0]))
     assert len(datasets) == walkdepth[1]
     assert all(['OPENDAP' in list(d.access_urls.keys()) for d in datasets])
 
