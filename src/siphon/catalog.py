@@ -399,7 +399,8 @@ class TDSCatalog:
         cat : TDSCatalog
           THREDDS catalog.
         depth : int
-          Maximum recursive depth. Setting 0 will return only datasets within the top-level catalog.
+          Maximum recursive depth.
+          Setting 0 will return only datasets within the top-level catalog.
           If None, depth is set to 1000.
 
         Yields
