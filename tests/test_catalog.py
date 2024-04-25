@@ -397,3 +397,14 @@ def test_latest_resolver_fail():
 
     assert latest == ''
     assert '"latest" not available for this catalog' in str(excinfo.value)
+
+
+@recorder.use_cassette('nasa_hyrax_dataset')
+def test_nasa_hyrax_dataset():
+    """Test that catalogs from NASA's Hyrax server are properly parsed."""
+    cat = TDSCatalog('https://opendap.larc.nasa.gov/opendap/DSCOVR/EPIC/L1B/'
+                     '2024/04/catalog.xml')
+
+    # Checks #gh-759
+    assert len(cat.datasets) == 161
+    assert 'epic_1b_20240413222222_03.h5' in cat.datasets

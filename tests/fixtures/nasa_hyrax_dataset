@@ -1,0 +1,1023 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.9.post343+gacede3d2.d20240425)
+    method: GET
+    uri: https://opendap.larc.nasa.gov/opendap/DSCOVR/EPIC/L1B/2024/04/catalog.xml
+  response:
+    body:
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n    <thredds:catalog xmlns:thredds=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\"\n
+        \                xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n                 xmlns:bes=\"http://xml.opendap.org/ns/bes/1.0#\">\n
+        \  <thredds:service name=\"dap\" serviceType=\"OPeNDAP\" base=\"/opendap/hyrax\"/>\n
+        \  <thredds:service name=\"file\" serviceType=\"HTTPServer\" base=\"/opendap/hyrax\"/>\n
+        \ <thredds:service name=\"WCS-coads\" serviceType=\"WCS\" base=\"/opendap/wcs\"/>\n\n
+        \       <thredds:dataset name=\"/DSCOVR/EPIC/L1B/2024/04\" ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/\">\n
+        \           <thredds:dataset name=\"epic_1b_20240401005515_03.h5\"\n                       ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401005515_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">340531844</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-02T12:43:04Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401005515_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401005515_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240401024318_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401024318_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">340284362</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-02T12:42:35Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401024318_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401024318_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240401043120_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401043120_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">340206122</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-02T12:44:09Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401043120_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401043120_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240401061923_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401061923_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">339952139</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-02T12:43:14Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401061923_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401061923_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240401080725_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401080725_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">339743260</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-02T12:42:34Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401080725_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401080725_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240401095528_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401095528_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">339572568</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-02T12:42:36Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401095528_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401095528_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240401114330_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401114330_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">339400496</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-02T12:43:09Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401114330_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401114330_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240401133133_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401133133_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">305854418</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:07:43Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401133133_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240401133133_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402003634_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402003634_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">338598244</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:18:55Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402003634_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402003634_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402022436_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402022436_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">305071091</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:19:31Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402022436_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402022436_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402041239_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402041239_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">338310926</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:19:09Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402041239_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402041239_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402060041_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402060041_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">338173570</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:19:15Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402060041_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402060041_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402074843_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402074843_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">337889565</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:18:57Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402074843_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402074843_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402093645_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402093645_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">337678243</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:19:17Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402093645_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402093645_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402112448_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402112448_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">337513576</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:18:55Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402112448_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402112448_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402131250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402131250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">337486553</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:19:15Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402131250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402131250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402150052_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402150052_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">337487127</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:19:02Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402150052_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402150052_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402164854_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402164854_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">304024368</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:19:01Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402164854_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402164854_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402183656_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402183656_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">337163954</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:19:05Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402183656_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402183656_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402202459_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402202459_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">337011592</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:19:09Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402202459_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402202459_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240402221301_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402221301_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">336955482</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T05:18:53Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402221301_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240402221301_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403001752_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403001752_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">336857592</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:28:25Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403001752_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403001752_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403020554_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403020554_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">336693356</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:28:35Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403020554_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403020554_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403035356_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403035356_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">336533817</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:28:20Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403035356_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403035356_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403054158_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403054158_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">336308561</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:36:28Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403054158_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403054158_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403073001_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403073001_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">336130640</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:27:10Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403073001_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403073001_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403091803_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403091803_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">335885220</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:29:18Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403091803_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403091803_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403110605_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403110605_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">335832004</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:29:21Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403110605_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403110605_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403125407_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403125407_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">335828331</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:28:58Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403125407_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403125407_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403144210_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403144210_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">335728048</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:29:16Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403144210_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403144210_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403163012_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403163012_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">335522224</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:29:06Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403163012_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403163012_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403181814_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403181814_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">335404006</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:27:07Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403181814_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403181814_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403200616_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403200616_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">335220276</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:29:14Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403200616_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403200616_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240403215418_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403215418_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">335189101</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T15:27:13Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403215418_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240403215418_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404000830_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404000830_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">335162684</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:43:22Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404000830_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404000830_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404015632_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404015632_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">335041685</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:42:53Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404015632_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404015632_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404034434_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404034434_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">334858224</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:43:41Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404034434_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404034434_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404053236_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404053236_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">334748590</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:42:41Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404053236_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404053236_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404072039_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404072039_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">334554499</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:43:23Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404072039_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404072039_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404090841_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404090841_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">334355285</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:42:41Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404090841_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404090841_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404105643_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404105643_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">334163690</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:43:13Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404105643_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404105643_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404124446_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404124446_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">334065286</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:43:26Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404124446_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404124446_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404143248_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404143248_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">334041031</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:42:46Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404143248_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404143248_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404162050_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404162050_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">333886783</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:42:52Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404162050_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404162050_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404180852_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404180852_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">333800093</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:42:42Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404180852_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404180852_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404195655_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404195655_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">333645248</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:42:59Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404195655_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404195655_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240404214459_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404214459_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">333615564</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-10T11:42:46Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404214459_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240404214459_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405002712_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405002712_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">38026616</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2024-04-08T16:08:17Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405002712_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405002712_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405021514_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405021514_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">333365082</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T15:13:45Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405021514_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405021514_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405040316_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405040316_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">333247186</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T15:13:53Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405040316_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405040316_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405055119_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405055119_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">333156490</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T15:13:58Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405055119_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405055119_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405073921_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405073921_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">332954093</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T15:13:39Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405073921_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405073921_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405092723_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405092723_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">332773511</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T15:13:38Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405092723_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405092723_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405111526_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405111526_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">332627451</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T15:14:15Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405111526_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405111526_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405130328_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405130328_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">332529341</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T15:13:58Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405130328_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405130328_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405145130_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405145130_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">332529512</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T15:14:11Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405145130_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405145130_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405163932_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405163932_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">332381579</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T15:14:49Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405163932_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405163932_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405182735_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405182735_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">332179287</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T15:13:27Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405182735_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405182735_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405201537_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405201537_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">332166496</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T15:14:07Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405201537_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405201537_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240405220339_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405220339_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">332146055</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T15:13:29Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405220339_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240405220339_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406004554_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406004554_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">332149706</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:00:34Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406004554_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406004554_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406023357_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406023357_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">331988988</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T16:57:29Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406023357_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406023357_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406042159_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406042159_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">331888459</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T16:58:05Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406042159_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406042159_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406061001_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406061001_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">331750865</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T16:59:38Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406061001_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406061001_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406075803_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406075803_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">331549118</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T16:58:56Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406075803_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406075803_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406094605_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406094605_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">331339606</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:01:13Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406094605_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406094605_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406113407_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406113407_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">331268423</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:00:08Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406113407_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406113407_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406132210_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406132210_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">331267676</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T16:57:36Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406132210_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406132210_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406151012_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406151012_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">331149011</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T16:57:30Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406151012_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406151012_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406165814_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406165814_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">331022311</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T16:59:19Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406165814_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406165814_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406184617_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406184617_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">330936189</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T16:57:09Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406184617_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406184617_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406203419_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406203419_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">330871114</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T16:58:19Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406203419_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406203419_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240406222221_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406222221_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">330900669</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T16:59:00Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406222221_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240406222221_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407010436_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407010436_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">330809405</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:25:15Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407010436_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407010436_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407025239_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407025239_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">330635337</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:22:28Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407025239_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407025239_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407044041_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407044041_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">330582912</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:24:41Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407044041_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407044041_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407062843_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407062843_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">330494833</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:24:34Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407062843_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407062843_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407081645_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407081645_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">330275919</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:26:33Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407081645_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407081645_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407100448_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407100448_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">330102423</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:24:57Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407100448_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407100448_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407115250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407115250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">330103312</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:24:22Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407115250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407115250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407134053_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407134053_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">330078123</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:24:23Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407134053_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407134053_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407152855_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407152855_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329956921</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:24:27Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407152855_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407152855_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407171658_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407171658_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329930898</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:24:36Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407171658_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407171658_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407190434_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407190434_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">297477620</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:24:33Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407190434_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407190434_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407205303_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407205303_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329732885</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:24:31Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407205303_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407205303_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240407224105_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407224105_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329711569</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-08T17:24:29Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407224105_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240407224105_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240408160250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408160250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">296703424</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T09:04:30Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408160250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408160250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240408163250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408163250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329078044</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T09:03:46Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408163250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408163250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240408170250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408170250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329244349</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T09:02:27Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408170250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408170250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240408173250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408173250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329198412</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T09:04:07Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408173250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408173250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240408180250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408180250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329037104</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T09:02:48Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408180250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408180250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240408183250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408183250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329022311</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T09:04:19Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408183250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408183250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240408190250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408190250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329075995</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T09:02:47Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408190250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408190250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240408193250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408193250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328981657</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T09:02:58Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408193250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408193250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240408200250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408200250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328889200</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T09:03:13Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408200250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408200250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240408203250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408203250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328835550</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-09T09:05:53Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408203250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240408203250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409003634_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409003634_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328612336</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:19:17Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409003634_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409003634_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409022410_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409022410_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">296294643</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:20:13Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409022410_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409022410_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409041239_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409041239_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328359297</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:20:35Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409041239_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409041239_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409060041_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409060041_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328272845</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:20:04Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409060041_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409060041_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409074843_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409074843_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328107050</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:19:41Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409074843_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409074843_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409093645_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409093645_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327909320</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:19:27Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409093645_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409093645_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409112447_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409112447_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327856360</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:19:38Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409112447_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409112447_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409131250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409131250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327813046</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:19:54Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409131250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409131250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409150052_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409150052_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327770786</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:19:59Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409150052_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409150052_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409164854_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409164854_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327654734</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:19:45Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409164854_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409164854_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409183657_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409183657_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327520519</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:19:24Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409183657_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409183657_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409202459_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409202459_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327308864</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:19:51Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409202459_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409202459_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240409221304_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409221304_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327323177</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-11T22:19:40Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409221304_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240409221304_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410001751_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410001751_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327390560</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:11:54Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410001751_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410001751_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410020554_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410020554_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327428634</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:12:33Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410020554_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410020554_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410035356_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410035356_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327476194</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:13:10Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410035356_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410035356_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410054159_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410054159_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327522922</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:11:47Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410054159_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410054159_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410073001_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410073001_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327631747</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:11:51Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410073001_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410073001_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410091805_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410091805_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327500618</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:12:14Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410091805_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410091805_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410110606_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410110606_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327566571</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:12:12Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410110606_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410110606_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410125408_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410125408_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327670917</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:12:06Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410125408_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410125408_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410144211_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410144211_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327837974</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:14:06Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410144211_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410144211_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410163013_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410163013_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327847006</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:11:48Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410163013_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410163013_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410181816_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410181816_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327850524</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:12:28Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410181816_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410181816_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410200618_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410200618_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327826356</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:11:53Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410200618_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410200618_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240410215420_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410215420_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327912848</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-12T22:11:53Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410215420_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240410215420_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411000831_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411000831_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328094815</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:39:45Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411000831_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411000831_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411015633_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411015633_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327968861</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:39:33Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411015633_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411015633_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411034435_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411034435_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327920842</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:39:15Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411034435_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411034435_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411053238_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411053238_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328052843</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:38:34Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411053238_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411053238_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411072041_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411072041_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327969779</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:39:07Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411072041_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411072041_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411090842_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411090842_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327844474</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:39:33Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411090842_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411090842_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411105645_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411105645_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327900723</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:39:41Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411105645_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411105645_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411124448_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411124448_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">327997850</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:38:40Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411124448_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411124448_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411143250_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411143250_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328092643</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:39:27Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411143250_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411143250_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411162052_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411162052_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328071884</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:39:17Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411162052_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411162052_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411180854_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411180854_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328058305</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:39:10Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411180854_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411180854_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411195657_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411195657_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328127886</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:38:40Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411195657_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411195657_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240411214459_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411214459_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328193171</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:39:38Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411214459_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240411214459_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412002712_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412002712_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">296131332</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:49:36Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412002712_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412002712_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412021515_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412021515_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328366157</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:45:52Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412021515_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412021515_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412040317_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412040317_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328416408</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:47:15Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412040317_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412040317_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412055120_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412055120_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328387936</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:47:15Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412055120_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412055120_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412073922_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412073922_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328384375</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:49:29Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412073922_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412073922_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412092724_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412092724_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328338828</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:40:45Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412092724_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412092724_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412111527_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412111527_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">295840420</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:48:12Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412111527_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412111527_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412130329_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412130329_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328360084</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:41:09Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412130329_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412130329_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412145132_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412145132_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328395052</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:49:09Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412145132_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412145132_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412163934_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412163934_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328407757</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:48:09Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412163934_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412163934_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412182736_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412182736_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328515986</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:49:25Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412182736_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412182736_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412201538_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412201538_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328641064</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:49:13Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412201538_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412201538_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240412220341_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412220341_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328766008</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T11:47:12Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412220341_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240412220341_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413004554_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413004554_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328858548</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T02:03:29Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413004554_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413004554_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413023356_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413023356_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328713734</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T02:03:08Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413023356_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413023356_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413042159_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413042159_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328794285</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T02:03:07Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413042159_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413042159_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413061001_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413061001_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328745429</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-17T02:03:22Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413061001_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413061001_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413075803_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413075803_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328791335</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-18T12:02:22Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413075803_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413075803_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413094606_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413094606_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328659030</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-18T12:02:59Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413094606_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413094606_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413113408_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413113408_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328711813</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-18T12:01:41Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413113408_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413113408_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413132210_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413132210_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328777529</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-18T12:03:36Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413132210_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413132210_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413151013_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413151013_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">328868809</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-18T12:03:15Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413151013_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413151013_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413165815_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413165815_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">199045749</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-18T12:01:55Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413165815_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413165815_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413184617_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413184617_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329059353</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-18T12:02:24Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413184617_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413184617_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413203419_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413203419_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329031545</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-18T12:02:18Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413203419_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413203419_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"epic_1b_20240413222222_03.h5\"\n
+        \                      ID=\"/opendap/hyrax/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413222222_03.h5\">\n
+        \        <thredds:dataSize units=\"bytes\">329247454</thredds:dataSize>\n
+        \        <thredds:date type=\"modified\">2024-04-18T12:03:35Z</thredds:date>\n
+        \        <thredds:access serviceName=\"dap\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413222222_03.h5\"/>\n
+        \        <thredds:access serviceName=\"file\"\n                         urlPath=\"/DSCOVR/EPIC/L1B/2024/04/epic_1b_20240413222222_03.h5\"/>\n
+        \ \n      </thredds:dataset>\n        </thredds:dataset>\n    </thredds:catalog>\n"
+    headers:
+      Connection:
+      - Keep-Alive
+      Content-Description:
+      - thredds_catalog
+      Content-Type:
+      - text/xml
+      Date:
+      - Thu, 25 Apr 2024 16:14:12 GMT
+      Keep-Alive:
+      - timeout=5, max=100
+      Last-Modified:
+      - Thu, 25 Apr 2024 16:14:13 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=31536000
+      Transfer-Encoding:
+      - chunked
+      X-DAP:
+      - '3.2'
+      X-FRAME-OPTIONS:
+      - DENY
+      XDODS-Server:
+      - dods/3.2
+      XOPeNDAP-Server:
+      - asciival/, bes/, csv_handler/, dapreader_module/, dmrpp_module/, fileout_covjson/,
+        fileout_gdal/, fileout_json/, fileout_netcdf/, fits_handler/, freeform_handler/,
+        functions/, gateway_module/, gdal_handler/, hdf4_handler/, hdf5_handler/,
+        libdap/, ncml_moddule/, netcdf_handler/, ngap_module/, usage/, w10n_handler/,
+        www-interface/, xml_data_handler/
+    status:
+      code: 200
+      message: OK
+version: 1
