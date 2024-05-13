@@ -314,12 +314,11 @@ class TDSCatalog:
                 current_dataset = child.attrib['name']
                 self._process_dataset(child)
 
-                if previous_dataset:
-                    # see if the previously processed dataset has access elements as children
-                    # if so, these datasets need to be processed specially when making
-                    # access_urls
-                    if self.datasets[previous_dataset].access_element_info:
-                        self.ds_with_access_elements_to_process.append(previous_dataset)
+                # see if the previously processed dataset has access elements as children
+                # if so, these datasets need to be processed specially when making
+                # access_urls
+                if previous_dataset and self.datasets[previous_dataset].access_element_info:
+                    self.ds_with_access_elements_to_process.append(previous_dataset)
 
                 previous_dataset = current_dataset
 
@@ -345,6 +344,11 @@ class TDSCatalog:
                     self.services.append(CompoundService(child))
                     service_skip = self.services[-1].number_of_subservices
                     service_skip_count = 0
+
+        # Needed if the last dataset had such info, since it's only processed looking backwards
+        # when a new dataset is encountered.
+        if previous_dataset and self.datasets[previous_dataset].access_element_info:
+            self.ds_with_access_elements_to_process.append(previous_dataset)
 
         self._process_datasets()
 
