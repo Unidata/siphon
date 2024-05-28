@@ -141,3 +141,15 @@ def test_wyoming_heights():
 
     assert_almost_equal(df['height'][140], 10336.0, 2)
     assert_almost_equal(df['direction'][1], 145.0, 1)
+    
+@recorder.use_cassette('wyoming_missing_station_information')
+def test_no_data_wyoming():
+    """Test Wyoming data station information missing latitude, longitude, and elevation."""
+    df = WyomingUpperAir.request_data(datetime(2012, 1, 1, 0), '82244')
+    
+    assert df['time'][0] == datetime(2012, 1, 1, 0)
+    assert df['station_number'][0] == 82244
+    assert df['latitude'][0] == None
+    assert df['longitude'][0] == None
+    assert df['elevation'][0] == None
+    assert df['pw'][0] == 52.28
