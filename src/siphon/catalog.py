@@ -11,6 +11,7 @@ from collections import OrderedDict
 from datetime import datetime
 import logging
 import re
+import requests
 import warnings
 import xml.etree.ElementTree as ET  # noqa:N814
 try:
@@ -392,6 +393,37 @@ class TDSCatalog:
                     self.base_tds_url, self.services, metadata=self.metadata)
             else:
                 self.datasets.pop(ds_name)
+
+    def walk(self, depth=1):
+
+        """Return a generator walking a THREDDS data catalog for datasets.
+
+        Parameters
+        ----------
+        cat : TDSCatalog
+          THREDDS catalog.
+        depth : int
+          Maximum recursive depth.
+          Setting 0 will return only datasets within the top-level catalog.
+          If None, depth is set to 1000.
+
+        Yields
+        ------
+        Dataset
+            Siphon catalog dataset.
+        """
+        yield from self.datasets.values()
+        if depth is None:
+            depth = 1000
+
+        if depth > 0:
+            for ref in self.catalog_refs.values():
+                try:
+                    child = ref.follow()
+                    yield from child.walk(depth=depth - 1)
+
+                except requests.HTTPError as exc:
+                    log.exception(exc)
 
     @property
     def latest(self):
