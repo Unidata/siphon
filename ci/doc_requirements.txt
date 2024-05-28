@@ -1,5 +1,5 @@
 cartopy==0.18.0
-matplotlib==3.5.3
+matplotlib==3.8.1
 metpy==1.2.0
 scipy==1.7.3
 sphinx==5.2.3
