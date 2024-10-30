@@ -140,7 +140,7 @@ def read_messages(fobj, magic_table):
         if func is not None:
             messages.append(func(fobj))
         else:
-            log.error('Unknown magic: ' + str(' '.join(f'{b:02x}'
+            log.error('Unknown magic: ' + str(' '.join(f'{b: 02x}'
                                                        for b in bytearray(magic))))
 
     return messages

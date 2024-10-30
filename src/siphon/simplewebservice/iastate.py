@@ -176,7 +176,7 @@ class IAStateUpperAir(HTTPEndPoint):
         if not (json_data['profiles'] and json_data['profiles'][0]['profile']):
             message = 'No data available '
             if time is not None:
-                message += f'for {time:%Y-%m-%d %HZ} '
+                message += f'for {time: %Y-%m-%d %HZ} '
             if site_id is not None:
                 message += f'for station {site_id}'
             if pressure is not None:
