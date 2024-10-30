@@ -4,10 +4,11 @@
 
   installguide
   api/index
-  examples/index
   developerguide
   CONTRIBUTING
   citing
+
+..  examples/index
 
 ======
 Siphon
