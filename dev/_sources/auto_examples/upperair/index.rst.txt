@@ -1,0 +1,63 @@
+
+
+.. _sphx_glr_auto_examples_upperair:
+
+.. _upperair_examples:
+
+Upper Air
+---------
+
+Examples of requesting upper air (balloon) data from the Wyoming data service and from the Integrated Global Radiosonde Archive.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s simplewebswervice support to create a query to the Wyomi...">
+
+.. only:: html
+
+  .. image:: /auto_examples/upperair/images/thumb/sphx_glr_Wyoming_Request_thumb.png
+    :alt: Wyoming Upper Air Data Request
+
+  :ref:`sphx_glr_auto_examples_upperair_Wyoming_Request.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Wyoming Upper Air Data Request</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s simplewebswervice support to create a query to the Integ...">
+
+.. only:: html
+
+  .. image:: /auto_examples/upperair/images/thumb/sphx_glr_IGRA2_Request_thumb.png
+    :alt: IGRA2 Upper Air Data Request
+
+  :ref:`sphx_glr_auto_examples_upperair_IGRA2_Request.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">IGRA2 Upper Air Data Request</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/upperair/Wyoming_Request
+   /auto_examples/upperair/IGRA2_Request
+

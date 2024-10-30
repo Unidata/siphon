@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>siphon.simplewebservice &mdash; Siphon 0.9</title>
+  <title>siphon.simplewebservice &mdash; Siphon 0.0</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
@@ -26,7 +26,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Siphon Examples" href="../examples/index.html" />
+    <link rel="next" title="Developer’s Guide" href="../developerguide.html" />
     <link rel="prev" title="siphon.radarserver" href="radarserver.html" /> 
 </head>
 
@@ -39,7 +39,7 @@
             <img src="../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9
+                0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -102,7 +102,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developerguide.html">Developer’s Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing Siphon</a></li>
@@ -167,7 +166,7 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>time</strong> (<em>datetime</em>) – The date and time of the desired observation.</p></li>
-<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The three letter ICAO identifier of the station for which data should be
+<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The three letter ICAO identifier of the station for which data should be
 downloaded.</p></li>
 <li><p><strong>kwargs</strong> – Arbitrary keyword arguments to use to initialize source</p></li>
 </ul>
@@ -202,7 +201,7 @@ downloaded.</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>time</strong> (<em>datetime</em>) – The date and time of the desired observation.</p></li>
-<li><p><strong>pressure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>optional</em>) – The mandatory pressure level at which to request data (in hPa). If none is given,
+<li><p><strong>pressure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>optional</em>) – The mandatory pressure level at which to request data (in hPa). If none is given,
 all the available data in the profiles is returned.</p></li>
 <li><p><strong>kwargs</strong> – Arbitrary keyword arguments to use to initialize source</p></li>
 </ul>
@@ -221,9 +220,9 @@ all the available data in the profiles is returned.</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>time</strong> (<em>datetime</em>) – The date and time of the desired observation.</p></li>
-<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The three letter ICAO identifier of the station for which data should be
+<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The three letter ICAO identifier of the station for which data should be
 downloaded.</p></li>
-<li><p><strong>interp_nans</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Flag to interpolate temperature and dewpoint at significant wind levels,
+<li><p><strong>interp_nans</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Flag to interpolate temperature and dewpoint at significant wind levels,
 which will otherwise be NaNs. Default is False.</p></li>
 <li><p><strong>kwargs</strong> – Arbitrary keyword arguments to use to initialize source</p></li>
 </ul>
@@ -257,7 +256,7 @@ which will otherwise be NaNs. Default is False.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – 11-character IGRA2 station identifier.</p></li>
+<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – 11-character IGRA2 station identifier.</p></li>
 <li><p><strong>time</strong> (<em>datetime</em>) – The date and time of the desired observation. If list of two times is given,
 dataframes for all dates within the two dates will be returned.</p></li>
 </ul>
@@ -301,8 +300,8 @@ issues.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The Web Services request method (StnMeta, StnData, MultiStnData, GridData, General)</p></li>
-<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – A JSON array of parameters (See Web Services API)</p></li>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The Web Services request method (StnMeta, StnData, MultiStnData, GridData, General)</p></li>
+<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – A JSON array of parameters (See Web Services API)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -335,10 +334,10 @@ issues.</p>
 <dd><p>Determine which types of data are available for a given buoy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Buoy name</p>
+<dd class="field-odd"><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Buoy name</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a> of valid file extensions and their descriptions</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a> of valid file extensions and their descriptions</p>
 </dd>
 </dl>
 </dd></dl>
@@ -361,8 +360,8 @@ issues.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Name of buoy</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Type of data requested, must be one of
+<li><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of buoy</p></li>
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Type of data requested, must be one of
 ‘txt’ standard meteorological data
 ‘drift’ meteorological data from drifting buoys and limited moored buoy data
 mainly from international partners
@@ -395,8 +394,8 @@ mainly from international partners
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Name of buoy</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Type of data requested, must be one of
+<li><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of buoy</p></li>
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Type of data requested, must be one of
 ‘txt’ standard meteorological data
 ‘drift’ meteorological data from drifting buoys and limited moored buoy data
 mainly from international partners
@@ -424,14 +423,14 @@ mainly from international partners
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="radarserver.html" class="btn btn-neutral float-left" title="siphon.radarserver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Siphon Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../developerguide.html" class="btn btn-neutral float-right" title="Developer’s Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Oct 24, 2022 at 18:14:05.
+      <span class="lastupdated">Last updated on Oct 30, 2024 at 23:09:48.
       </span></p>
   </div>
 

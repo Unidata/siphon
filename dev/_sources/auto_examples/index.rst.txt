@@ -1,0 +1,356 @@
+:orphan:
+
+.. _examples-index:
+
+Siphon Examples
+===============
+
+
+.. _general-examples:
+
+General Examples
+----------------
+
+Examples of using Siphon's functionality
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Read a catalog from THREDDS Data Server.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_Basic_Usage_thumb.png
+    :alt: THREDDS Catalog
+
+  :ref:`sphx_glr_auto_examples_Basic_Usage.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">THREDDS Catalog</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to get NEXRAD Level 3 data from a TDS.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_Radar_Server_Level_3_thumb.png
+    :alt: TDS Radar Query Service
+
+  :ref:`sphx_glr_auto_examples_Radar_Server_Level_3.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">TDS Radar Query Service</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/Basic_Usage
+   /auto_examples/Radar_Server_Level_3
+
+
+ACIS Web Services
+-----------------
+
+Examples of using Siphon's simplewebservice support to access and use data from
+the Applied Climate Information System (ACIS) Web Services API provided by the
+Regional Climate Centers.
+
+The ACIS Web Service API provides daily records for stations from the following
+networks:
+* WBAN
+* COOP
+* FAA
+* WMO
+* ICAO
+* GHCN
+* NWSLI/SHEF
+* ThreadEx
+* CoCoRahs
+* California Multi-station Index
+
+Data is updated hourly and documentation on the API is available at
+http://www.rcc-acis.org/docs_webservices.html
+
+A useful web tool for constructing query parameters is available here:
+http://builder.rcc-acis.org/
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Siphon&#x27;s simplewebservice support also includes the ability to query the Regional Climate Cente...">
+
+.. only:: html
+
+  .. image:: /auto_examples/acis/images/thumb/sphx_glr_Basic_Overview_thumb.png
+    :alt: Basic ACIS Web Services Usage
+
+  :ref:`sphx_glr_auto_examples_acis_Basic_Overview.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Basic ACIS Web Services Usage</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this example we will be using Siphon&#x27;s simplewebservice support to query ACIS Web Services f...">
+
+.. only:: html
+
+  .. image:: /auto_examples/acis/images/thumb/sphx_glr_Mapping_Example_thumb.png
+    :alt: Multi Station Calls and Mapping
+
+  :ref:`sphx_glr_auto_examples_acis_Mapping_Example.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Multi Station Calls and Mapping</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+NCSS
+----
+
+Examples of using the netCDF Subset Service (NCSS) to download
+subsets of remote datasets in netCDF format.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service for a timeseries.">
+
+.. only:: html
+
+  .. image:: /auto_examples/ncss/images/thumb/sphx_glr_NCSS_Timeseries_Examples_thumb.png
+    :alt: NCSS Time Series
+
+  :ref:`sphx_glr_auto_examples_ncss_NCSS_Timeseries_Examples.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">NCSS Time Series</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service (NCSS).">
+
+.. only:: html
+
+  .. image:: /auto_examples/ncss/images/thumb/sphx_glr_NCSS_Example_thumb.png
+    :alt: Basic NCSS
+
+  :ref:`sphx_glr_auto_examples_ncss_NCSS_Example.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Basic NCSS</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Use Siphon to query the NetCDF Subset Service (NCSS) and plot on a map.">
+
+.. only:: html
+
+  .. image:: /auto_examples/ncss/images/thumb/sphx_glr_NCSS_Cartopy_Example_thumb.png
+    :alt: NCSS and CartoPy
+
+  :ref:`sphx_glr_auto_examples_ncss_NCSS_Cartopy_Example.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">NCSS and CartoPy</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+National Data Buoy Center (NDBC)
+--------------------------------
+
+Examples of requesting data from the National Data Buoy Center latest and realtime
+data sources.
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The NDBC keeps a 40-day recent rolling file for each buoy. This examples shows how to access th...">
+
+.. only:: html
+
+  .. image:: /auto_examples/ndbc/images/thumb/sphx_glr_buoy_type_request_thumb.png
+    :alt: NDBC Buoy Data Request (of any type)
+
+  :ref:`sphx_glr_auto_examples_ndbc_buoy_type_request.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">NDBC Buoy Data Request (of any type)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The NDBC keeps a 45-day recent rolling file for each buoy. This examples shows how to access th...">
+
+.. only:: html
+
+  .. image:: /auto_examples/ndbc/images/thumb/sphx_glr_buoy_met_request_thumb.png
+    :alt: NDBC Buoy Meteorological Data Request
+
+  :ref:`sphx_glr_auto_examples_ndbc_buoy_met_request.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">NDBC Buoy Meteorological Data Request</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s simplewebswervice support query the most recent observat...">
+
+.. only:: html
+
+  .. image:: /auto_examples/ndbc/images/thumb/sphx_glr_latest_request_thumb.png
+    :alt: NDBC Latest Data Request
+
+  :ref:`sphx_glr_auto_examples_ndbc_latest_request.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">NDBC Latest Data Request</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+Upper Air
+---------
+
+Examples of requesting upper air (balloon) data from the Wyoming data service and from the Integrated Global Radiosonde Archive.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s simplewebswervice support to create a query to the Wyomi...">
+
+.. only:: html
+
+  .. image:: /auto_examples/upperair/images/thumb/sphx_glr_Wyoming_Request_thumb.png
+    :alt: Wyoming Upper Air Data Request
+
+  :ref:`sphx_glr_auto_examples_upperair_Wyoming_Request.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Wyoming Upper Air Data Request</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s simplewebswervice support to create a query to the Integ...">
+
+.. only:: html
+
+  .. image:: /auto_examples/upperair/images/thumb/sphx_glr_IGRA2_Request_thumb.png
+    :alt: IGRA2 Upper Air Data Request
+
+  :ref:`sphx_glr_auto_examples_upperair_IGRA2_Request.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">IGRA2 Upper Air Data Request</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+   :includehidden:
+
+   /auto_examples/acis/index.rst
+   /auto_examples/ncss/index.rst
+   /auto_examples/ndbc/index.rst
+   /auto_examples/upperair/index.rst
+
+
+.. only:: html
+
+  .. container:: sphx-glr-footer sphx-glr-footer-gallery
+
+    .. container:: sphx-glr-download sphx-glr-download-python
+
+      :download:`Download all examples in Python source code: auto_examples_python.zip </auto_examples/auto_examples_python.zip>`
+
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip </auto_examples/auto_examples_jupyter.zip>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

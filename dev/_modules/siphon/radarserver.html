@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>siphon.radarserver &mdash; Siphon 0.9</title>
+  <title>siphon.radarserver &mdash; Siphon 0.0</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
@@ -36,7 +36,7 @@
             <img src="../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9
+                0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -49,7 +49,6 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The Siphon API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Siphon Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Siphon</a></li>
@@ -99,14 +98,14 @@
 
 
 <div class="viewcode-block" id="RadarQuery"><a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarQuery">[docs]</a><span class="k">class</span> <span class="nc">RadarQuery</span><span class="p">(</span><span class="n">DataQuery</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represent a query to the THREDDS radar server.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represent a query to the THREDDS radar server.</span>
 
 <span class="sd">    Expands on the queries supported by :class:`~siphon.http_util.DataQuery` to add queries</span>
 <span class="sd">    specific to the radar data query service.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="RadarQuery.stations"><a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarQuery.stations">[docs]</a>    <span class="k">def</span> <span class="nf">stations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">stns</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Specify one or more stations for the query.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Specify one or more stations for the query.</span>
 
 <span class="sd">        This modifies the query in-place, but returns `self` so that multiple</span>
 <span class="sd">        queries can be chained together on one line.</span>
@@ -129,7 +128,7 @@
 
 
 <div class="viewcode-block" id="RadarServer"><a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarServer">[docs]</a><span class="k">class</span> <span class="nc">RadarServer</span><span class="p">(</span><span class="n">HTTPEndPoint</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Wrap access to the THREDDS radar query service (radar server).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrap access to the THREDDS radar query service (radar server).</span>
 
 <span class="sd">    Simplifies access via HTTP to the radar server endpoint. Parses the metadata, provides</span>
 <span class="sd">    query catalog results download and parsing based on the appropriate query.</span>
@@ -149,7 +148,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="RadarServer.__init__"><a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarServer.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Create a RadarServer instance.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a RadarServer instance.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -173,7 +172,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">stations</span> <span class="o">=</span> <span class="n">parse_station_table</span><span class="p">(</span><span class="n">ET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
 
 <div class="viewcode-block" id="RadarServer.query"><a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarServer.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return a new query for the radar server.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a new query for the radar server.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -184,7 +183,7 @@
         <span class="k">return</span> <span class="n">RadarQuery</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="RadarServer.validate_query"><a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarServer.validate_query">[docs]</a>    <span class="k">def</span> <span class="nf">validate_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate a query.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate a query.</span>
 
 <span class="sd">        Determines whether `query` is well-formed. This includes checking for all</span>
 <span class="sd">        required parameters, as well as checking parameters for valid values.</span>
@@ -212,7 +211,7 @@
         <span class="k">return</span> <span class="n">valid</span></div>
 
 <div class="viewcode-block" id="RadarServer.get_catalog"><a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarServer.get_catalog">[docs]</a>    <span class="k">def</span> <span class="nf">get_catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fetch a parsed THREDDS catalog from the radar server.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch a parsed THREDDS catalog from the radar server.</span>
 
 <span class="sd">        Requests a catalog of radar data files data from the radar server given the</span>
 <span class="sd">        parameters in `query` and returns a :class:`~siphon.catalog.TDSCatalog` instance.</span>
@@ -246,7 +245,7 @@
             <span class="k">raise</span> <span class="n">BadQueryError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_catalog_raw</span><span class="p">(</span><span class="n">query</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="RadarServer.get_catalog_raw"><a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarServer.get_catalog_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_catalog_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fetch THREDDS catalog XML from the radar server.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch THREDDS catalog XML from the radar server.</span>
 
 <span class="sd">        Requests a catalog of radar data files data from the radar server given the</span>
 <span class="sd">        parameters in `query` and returns the raw XML.</span>
@@ -270,7 +269,7 @@
 
 
 <div class="viewcode-block" id="get_radarserver_datasets"><a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.get_radarserver_datasets">[docs]</a><span class="k">def</span> <span class="nf">get_radarserver_datasets</span><span class="p">(</span><span class="n">server</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get datasets from a THREDDS radar server&#39;s top-level catalog.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get datasets from a THREDDS radar server&#39;s top-level catalog.</span>
 
 <span class="sd">    This is a helper function to construct the appropriate catalog URL from the</span>
 <span class="sd">    server URL, fetch the catalog, and return the contained catalog references.</span>
@@ -300,13 +299,13 @@
 
 
 <div class="viewcode-block" id="parse_station_table"><a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.parse_station_table">[docs]</a><span class="k">def</span> <span class="nf">parse_station_table</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Parse station list XML file.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse station list XML file.&quot;&quot;&quot;</span>
     <span class="n">stations</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_xml_station</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;station&#39;</span><span class="p">)]</span>
     <span class="k">return</span> <span class="p">{</span><span class="n">st</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">st</span> <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">stations</span><span class="p">}</span></div>
 
 
 <div class="viewcode-block" id="parse_xml_station"><a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.parse_xml_station">[docs]</a><span class="k">def</span> <span class="nf">parse_xml_station</span><span class="p">(</span><span class="n">elem</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create a :class:`Station` instance from an XML tag.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a :class:`Station` instance from an XML tag.&quot;&quot;&quot;</span>
     <span class="n">stid</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
     <span class="n">lat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;latitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
@@ -323,7 +322,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Oct 24, 2022 at 18:14:05.
+      <span class="lastupdated">Last updated on Oct 30, 2024 at 23:09:48.
       </span></p>
   </div>
 

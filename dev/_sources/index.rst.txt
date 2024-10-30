@@ -4,10 +4,11 @@
 
   installguide
   api/index
-  examples/index
   developerguide
   CONTRIBUTING
   citing
+
+..  examples/index
 
 ======
 Siphon
@@ -18,7 +19,7 @@ data services. Much of Siphon's current functionality focuses on access to
 data hosted on a `THREDDS Data Server`__. It also provides clients to a variety
 of simple web services.
 
-__ https://www.unidata.ucar.edu/software/thredds/current/tds/
+__ https://www.unidata.ucar.edu/software/tds/
 
 Siphon follows `semantic versioning <https://semver.org>`_ in its version number. With our
 current 0.x version, that implies that Siphon's APIs (application programming interfaces) are

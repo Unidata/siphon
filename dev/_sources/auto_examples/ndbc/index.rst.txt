@@ -1,0 +1,81 @@
+
+
+.. _sphx_glr_auto_examples_ndbc:
+
+.. _ndbc_examples:
+
+National Data Buoy Center (NDBC)
+--------------------------------
+
+Examples of requesting data from the National Data Buoy Center latest and realtime
+data sources.
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The NDBC keeps a 40-day recent rolling file for each buoy. This examples shows how to access th...">
+
+.. only:: html
+
+  .. image:: /auto_examples/ndbc/images/thumb/sphx_glr_buoy_type_request_thumb.png
+    :alt: NDBC Buoy Data Request (of any type)
+
+  :ref:`sphx_glr_auto_examples_ndbc_buoy_type_request.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">NDBC Buoy Data Request (of any type)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The NDBC keeps a 45-day recent rolling file for each buoy. This examples shows how to access th...">
+
+.. only:: html
+
+  .. image:: /auto_examples/ndbc/images/thumb/sphx_glr_buoy_met_request_thumb.png
+    :alt: NDBC Buoy Meteorological Data Request
+
+  :ref:`sphx_glr_auto_examples_ndbc_buoy_met_request.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">NDBC Buoy Meteorological Data Request</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use siphon&#x27;s simplewebswervice support query the most recent observat...">
+
+.. only:: html
+
+  .. image:: /auto_examples/ndbc/images/thumb/sphx_glr_latest_request_thumb.png
+    :alt: NDBC Latest Data Request
+
+  :ref:`sphx_glr_auto_examples_ndbc_latest_request.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">NDBC Latest Data Request</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/ndbc/buoy_type_request
+   /auto_examples/ndbc/buoy_met_request
+   /auto_examples/ndbc/latest_request
+

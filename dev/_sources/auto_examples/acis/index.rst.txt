@@ -1,0 +1,84 @@
+
+
+.. _sphx_glr_auto_examples_acis:
+
+.. _acis_examples:
+
+ACIS Web Services
+-----------------
+
+Examples of using Siphon's simplewebservice support to access and use data from
+the Applied Climate Information System (ACIS) Web Services API provided by the
+Regional Climate Centers.
+
+The ACIS Web Service API provides daily records for stations from the following
+networks:
+* WBAN
+* COOP
+* FAA
+* WMO
+* ICAO
+* GHCN
+* NWSLI/SHEF
+* ThreadEx
+* CoCoRahs
+* California Multi-station Index
+
+Data is updated hourly and documentation on the API is available at
+http://www.rcc-acis.org/docs_webservices.html
+
+A useful web tool for constructing query parameters is available here:
+http://builder.rcc-acis.org/
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Siphon&#x27;s simplewebservice support also includes the ability to query the Regional Climate Cente...">
+
+.. only:: html
+
+  .. image:: /auto_examples/acis/images/thumb/sphx_glr_Basic_Overview_thumb.png
+    :alt: Basic ACIS Web Services Usage
+
+  :ref:`sphx_glr_auto_examples_acis_Basic_Overview.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Basic ACIS Web Services Usage</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this example we will be using Siphon&#x27;s simplewebservice support to query ACIS Web Services f...">
+
+.. only:: html
+
+  .. image:: /auto_examples/acis/images/thumb/sphx_glr_Mapping_Example_thumb.png
+    :alt: Multi Station Calls and Mapping
+
+  :ref:`sphx_glr_auto_examples_acis_Mapping_Example.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Multi Station Calls and Mapping</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/acis/Basic_Overview
+   /auto_examples/acis/Mapping_Example
+

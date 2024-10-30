@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>siphon.ncss_dataset &mdash; Siphon 0.9</title>
+  <title>siphon.ncss_dataset &mdash; Siphon 0.0</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
@@ -36,7 +36,7 @@
             <img src="../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.9
+                0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -49,7 +49,6 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The Siphon API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Siphon Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Siphon</a></li>
@@ -99,7 +98,7 @@
 
 
 <span class="k">def</span> <span class="nf">_without_namespace</span><span class="p">(</span><span class="n">tagname</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Remove the xml namespace from a tag name.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove the xml namespace from a tag name.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="s1">&#39;}&#39;</span> <span class="ow">in</span> <span class="n">tagname</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">tagname</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">tagname</span>
@@ -108,7 +107,7 @@
 <span class="k">class</span> <span class="nc">_Types</span><span class="p">:</span>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">handle_typed_values</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">value_type</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Translate typed values into the appropriate python object.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Translate typed values into the appropriate python object.</span>
 
 <span class="sd">        Takes an element name, value, and type and returns a list</span>
 <span class="sd">        with the string value(s) properly converted to a python type.</span>
@@ -289,7 +288,7 @@
 
 
 <div class="viewcode-block" id="NCSSDataset"><a class="viewcode-back" href="../../api/ncssdataset.html#siphon.ncss_dataset.NCSSDataset">[docs]</a><span class="k">class</span> <span class="nc">NCSSDataset</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Hold information contained in the dataset.xml NCSS document.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Hold information contained in the dataset.xml NCSS document.</span>
 
 <span class="sd">    In general, if a dataset.xml NCSS document is missing the information</span>
 <span class="sd">    needed to construct an attribute, that attribute will not show up as</span>
@@ -331,7 +330,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="NCSSDataset.__init__"><a class="viewcode-back" href="../../api/ncssdataset.html#siphon.ncss_dataset.NCSSDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize a NCSSDataset object.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a NCSSDataset object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -517,7 +516,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Oct 24, 2022 at 18:14:05.
+      <span class="lastupdated">Last updated on Oct 30, 2024 at 23:09:48.
       </span></p>
   </div>
 
