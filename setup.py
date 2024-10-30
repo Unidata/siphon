@@ -20,4 +20,4 @@ if sys.version_info[0] < 3:
     print(error)  # noqa: T201
     sys.exit(1)
 
-setup(use_scm_version={'version_scheme': 'post-release'})
+setup()
