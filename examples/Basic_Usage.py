@@ -24,4 +24,4 @@ print(list(cat.catalog_refs))
 # Basic HTTP authentication can also be used by using the HTTP session manager
 # and setting some default options for HTTP sessions
 session_manager.set_session_options(auth=('username', 'password'))
-cat = TDSCatalog('https://rda.ucar.edu/thredds/catalog.xml')
+cat = TDSCatalog('https://thredds.rda.ucar.edu/thredds/catalog/catalog.xml')
