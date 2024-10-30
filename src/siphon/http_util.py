@@ -490,7 +490,7 @@ class HTTPEndPoint:
             else:
                 text = resp.text
             raise requests.HTTPError(f'Error accessing {resp.request.url}\n'
-                                     f'Server Error ({resp.status_code:d}: {text})')
+                                     f'Server Error ({resp.status_code: d}: {text})')
         return resp
 
     def _get_metadata(self):

@@ -41,18 +41,18 @@ extensions = [
     'myst_parser'
 ]
 
-sphinx_gallery_conf = {
-    'doc_module': ('siphon',),
-    'reference_url': {
-        'siphon': None,
-        },
-    'examples_dirs': [os.path.join('..', 'examples')],
-    'gallery_dirs': ['examples'],
-    'filename_pattern': '\.py',
-    'backreferences_dir': 'api/generated',
-    'default_thumb_file': os.path.join('_static', 'siphon_150x150_white_bg.png'),
-    'abort_on_example_error': True
-}
+# sphinx_gallery_conf = {
+#     'doc_module': ('siphon',),
+#     'reference_url': {
+#         'siphon': None,
+#         },
+#     'examples_dirs': [os.path.join('..', 'examples')],
+#     'gallery_dirs': ['examples'],
+#     'filename_pattern': '\.py',
+#     'backreferences_dir': 'api/generated',
+#     'default_thumb_file': os.path.join('_static', 'siphon_150x150_white_bg.png'),
+#     'abort_on_example_error': True
+# }
 
 # Set up mapping for other projects' docs
 intersphinx_mapping = {
