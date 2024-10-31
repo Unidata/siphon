@@ -1,5 +1,64 @@
-requires = ["setuptools>=42", "wheel", "setuptools_scm[toml]>=3.4"]
+[build-system]
+requires = ["setuptools>=61", "wheel", "setuptools_scm[toml]>=3.4"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "siphon"
+description = "A collection of Python utilities for interacting with the Unidata technology stack."
+readme = "README.rst"
+dynamic = ["version"]
+maintainers = [{name = "Siphon Developers", email = "support-python@unidata.ucar.edu"}]
+license = {text = "BSD-3-Clause"}
+keywords = ["meteorology", "weather"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: BSD License"
+]
+requires-python = ">=3.10"
+dependencies = [
+    "beautifulsoup4>=4.6",
+    "numpy>=1.16",
+    "pandas>=0.25.0",
+    "protobuf>=3.7.0",
+    "requests>=2.21.0"
+]
+
+[project.optional-dependencies]
+doc = [
+    "sphinx>=3.0",
+    "sphinx-gallery>=0.4",
+    "myst-parser",
+    "sphinx-rtd-theme"
+]
+examples = [
+    "matplotlib>=1.3",
+    "cartopy>=0.13.1",
+    "scipy"
+]
+test = [
+    "pytest>=5.0",
+    "netCDF4>=1.1.0",
+    "vcrpy~=1.5,!=1.7.0,!=1.7.1,!=1.7.2,!=1.7.3",
+    "xarray>=0.10.2"
+]
+extras = [
+    "xarray>=0.10.2"
+]
+
+[project.urls]
+"homepage" = "https://github.com/Unidata/siphon"
+"Documentation" = "https://unidata.github.io/siphon/"
+"Release Notes" = "https://github.com/Unidata/siphon/releases"
+"Bug Tracker" = "https://github.com/Unidata/siphon/issues"
+"Source Code" = "https://github.com/Unidata/siphon"
 
 [tool.setuptools_scm]
 version_scheme = "post-release"
