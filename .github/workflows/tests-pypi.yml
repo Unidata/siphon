@@ -3,84 +3,102 @@ name: PyPI Tests
 # We don't want pushes (or PRs) to gh-pages to kick anything off
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - '[0-9]+.[0-9]+.x'
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - '[0-9]+.[0-9]+.x'
+
+concurrency:
+  group: ${{ github.workflow}}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 jobs:
   #
-  # Run all tests on Linux using standard PyPI packages, including min and pre-releases
+  # Run all tests on Linux using standard PyPI packages, including minimum requirements
   #
   PyPITests:
     name: ${{ matrix.python-version }} ${{ matrix.dep-versions }} ${{ matrix.no-extras }}
-    runs-on: ubuntu-20.04
-    continue-on-error: ${{ matrix.dep-versions == 'Prerelease' }}
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.7, 3.8, 3.9]
-        dep-versions: [requirements.txt]
+        python-version: ['3.10', 3.11, 3.12]
+        dep-versions: [Latest]
         no-extras: ['']
         include:
-          - python-version: 3.7
+          - python-version: '3.10'
+            dep-versions: Minimum
+          - python-version: '3.10'
             dep-versions: Minimum
             no-extras: 'No Extras'
-          - python-version: 3.9
-            dep-versions: requirements.txt
+          - python-version: 3.12
+            dep-versions: Latest
             no-extras: 'No Extras'
 
     steps:
-    # We check out only a limited depth and then pull tags to save time
     - name: Checkout source
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
-        fetch-depth: 100
+        fetch-depth: 150
+        fetch-tags: true
 
-    - name: Get tags
-      run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
-
-    # This uses pip to find the right cache dir and then sets up caching for it
-    - name: Get pip cache dir
-      id: pip-cache
-      run: echo "::set-output name=dir::$(pip cache dir)"
-
-    - name: Setup caching
-      uses: actions/cache@v3
-      with:
-        path: ${{ steps.pip-cache.outputs.dir }}
-        key: pip-tests-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('ci/*') }}
-        restore-keys: |
-          pip-tests-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('ci/*') }}
-          pip-tests-${{ runner.os }}-${{ matrix.python-version }}-
-          pip-tests-${{ runner.os }}-
-          pip-tests-
-
-    - name: Add extras to requirements
-      if: ${{ matrix.no-extras != 'No Extras' }}
-      run: cat ci/extra_requirements.txt >> ci/test_requirements.txt
-
-    - name: Install dependencies
+    - name: Generate minimum dependencies
+      if: ${{ matrix.dep-versions == 'Minimum' }}
       run: |
-        python -m pip install --upgrade pip setuptools
-        python -m pip install -r ci/test_requirements.txt -c ci/${{ matrix.dep-versions }}
+        pip install tomli
+        python << EOF
+        import tomli as tomllib
+        from pathlib import Path
 
-    - name: Install
-      run: python -m pip install -c ci/${{ matrix.dep-versions }} .
+        # Read our pyproject.toml
+        config = tomllib.load(open('pyproject.toml', 'rb'))['project']
+        opt_deps = config['optional-dependencies']
+
+        # Generate a Minimum dependency file
+        for src, fname in [(config['dependencies'], 'requirements.txt'),
+                           (opt_deps['test'], 'test_requirements.txt'), (opt_deps['extras'], 'extra_requirements.txt')]:
+          with (Path('ci') / fname).open('wt') as out:
+            for dep in src:
+              dep = dep.split(';')[0]
+              if 'siphon' not in dep:
+                out.write(dep.replace('>=', '==') + '\n')
+        EOF
+
+    - name: Install from PyPI
+      uses: Unidata/MetPy/.github/actions/install-pypi@main
+      with:
+        need-extras: ${{ matrix.no-extras != 'No Extras' }}
+        type: 'test'
+        python-version: ${{ matrix.python-version }}
+        need-cartopy: 'false'
 
     - name: Run tests
-      run: |
-        python -m coverage run -p -m pytest tests
-        python -m coverage combine
-        python -m coverage report
-        python -m coverage xml
-
-    - name: Upload coverage
-      if: ${{ always() }}
-      uses: codecov/codecov-action@v3
+      uses: Unidata/MetPy/.github/actions/run-tests@main
       with:
-        name: pypi-${{ matrix.python-version }}-${{ matrix.dep-versions }}-${{ matrix.no-extras }}-${{ runner.os }}
+        run-doctests: 'false'
+        key: pypi-${{ matrix.python-version }}-${{ matrix.dep-versions }}-${{ matrix.no-extras }}-${{ runner.os }}
+        pytest-args: ''
+
+  codecov:
+    needs: PyPITests
+    name: CodeCov Upload
+    runs-on: ubuntu-latest
+    environment:
+      name: CodeCov
+    timeout-minutes: 2
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Download coverage artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          name: ${{ github.workflow }}
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
