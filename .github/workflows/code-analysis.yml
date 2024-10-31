@@ -1,13 +1,26 @@
 name: "Code Analysis"
 
+concurrency:
+  group: ${{ github.workflow}}-${{ github.head_ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [master, ]
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [master]
+    paths:
+      - '**.py'
+      - '.github/codeql/**'
+      - '.github/workflows/code-analysis.yml'
+
   schedule:
     - cron: '0 8 * * 6'
+
+permissions:
+  contents: read
+  security-events: write
 
 jobs:
   CodeQL:
@@ -17,23 +30,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
-      # Override language selection by uncommenting this and choosing your languages
-      # with:
-      #   languages: go, javascript, csharp, python, cpp, java
-
-    # ℹ️ Command-line programs to run using the OS shell.
-    # 📚 https://git.io/JvXDl
-
-    # ✏️ If the Autobuild fails above, remove it and uncomment the following three lines
-    #    and modify them (or add more) to build your code if your project
-    #    uses a compiled language
-
-    #- run: |
-    #   make bootstrap
-    #   make release
+      with:
+        config-file: ./.github/codeql/codeql-config.yml
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
