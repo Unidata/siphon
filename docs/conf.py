@@ -71,9 +71,6 @@ source_suffix = '.rst'
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'
 
-# The master toctree document.
-master_doc = 'index'
-
 # General information about the project.
 project = 'Siphon'
 copyright = '2018, Siphon Contributors'
@@ -154,7 +151,7 @@ if 'sphinx_rtd_theme' in vars() and sphinx_rtd_theme.__version__ == '0.2.5b1.pos
 html_context = {
     'doc_path': 'docs',
     'github_repo': 'Unidata/siphon',
-    'github_version': 'master',  # Make changes to the master branch
+    'github_version': 'main',  # Make changes to the main branch
 }
 
 # Add any paths that contain custom themes here, relative to this directory.

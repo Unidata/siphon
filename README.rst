@@ -22,16 +22,8 @@ Siphon
     :target: https://anaconda.org/conda-forge/siphon
     :alt: Conda Package
 
-.. |Travis| image:: https://travis-ci.org/Unidata/siphon.svg?branch=master
-    :target: https://travis-ci.org/Unidata/siphon
-    :alt: Travis Build Status
-
-.. |AppVeyor| image:: https://ci.appveyor.com/api/projects/status/stxqunhdyqu75u3r/branch/master?svg=true
-    :target: https://ci.appveyor.com/project/Unidata/siphon/branch/master
-    :alt: AppVeyor Build Status
-
-.. |CodeCov| image:: https://codecov.io/github/Unidata/siphon/coverage.svg?branch=master
-    :target: https://codecov.io/github/Unidata/siphon?branch=master
+.. |CodeCov| image:: https://codecov.io/github/Unidata/siphon/coverage.svg?branch=main
+    :target: https://codecov.io/github/Unidata/siphon?branch=main
     :alt: Code Coverage Status
 
 .. |Codacy| image:: https://api.codacy.com/project/badge/grade/ebacd20b84ab4673bd6cd34f65c48af6
@@ -49,7 +41,7 @@ Siphon
 Siphon is a collection of Python utilities for downloading data from Unidata
 data technologies. See our `support page`__ for ways to get help with Siphon.
 
-__ https://github.com/Unidata/siphon/blob/master/SUPPORT.md
+__ https://github.com/Unidata/siphon/blob/main/SUPPORT.md
 
 Siphon follows `semantic versioning <https://semver.org>`_ in its version number. With our
 current 0.x version, that implies that Siphon's APIs (application programming interfaces) are

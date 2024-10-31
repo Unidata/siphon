@@ -92,11 +92,11 @@ Push to your fork and [submit a pull request][pr].
 For the Pull Request to be accepted, you need to agree to the
 Unidata Contributor License Agreement (CLA). This will be handled automatically
 upon submission of a Pull Request.
-See [here](https://github.com/Unidata/siphon/blob/master/CLA.md) for more
+See [here](https://github.com/Unidata/siphon/blob/main/CLA.md) for more
 explanation and rationale behind Unidata's CLA.
 
 As part of the Pull Request, be sure to add yourself to the
-[list of contributors](https://github.com/Unidata/Siphon/blob/master/AUTHORS.txt).
+[list of contributors](https://github.com/Unidata/Siphon/blob/main/AUTHORS.txt).
 We want to make sure we acknowledge the hard work you've generously contributed
 here.
 
