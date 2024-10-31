@@ -26,7 +26,7 @@ class WyomingUpperAir(HTTPEndPoint):
         super().__init__('http://weather.uwyo.edu/cgi-bin/sounding')
 
     @classmethod
-    def request_data(cls, time, site_id, **kwargs):
+    def request_data(cls, time, site_id, recalc=False, **kwargs):
         r"""Retrieve upper air observations from the Wyoming archive.
 
         Parameters
@@ -38,6 +38,9 @@ class WyomingUpperAir(HTTPEndPoint):
             The three letter ICAO identifier of the station for which data should be
             downloaded.
 
+        recalc : bool
+            Returns recalculated data if True. Defaults to False.
+
         kwargs
             Arbitrary keyword arguments to use to initialize source
 
@@ -47,10 +50,10 @@ class WyomingUpperAir(HTTPEndPoint):
 
         """
         endpoint = cls()
-        df = endpoint._get_data(time, site_id)
+        df = endpoint._get_data(time, site_id, recalc=recalc)
         return df
 
-    def _get_data(self, time, site_id):
+    def _get_data(self, time, site_id, recalc=False):
         r"""Download and parse upper air observations from an online archive.
 
         Parameters
@@ -62,12 +65,15 @@ class WyomingUpperAir(HTTPEndPoint):
             The three letter ICAO identifier of the station for which data should be
             downloaded.
 
+        recalc : bool
+            Returns recalculated data if True. Defaults to False.
+
         Returns
         -------
             :class:`pandas.DataFrame` containing the data
 
         """
-        raw_data = self._get_data_raw(time, site_id)
+        raw_data = self._get_data_raw(time, site_id, recalc=recalc)
         soup = BeautifulSoup(raw_data, 'html.parser')
         tabular_data = StringIO(soup.find_all('pre')[0].contents[0])
         col_names = ['pressure', 'height', 'temperature', 'dewpoint', 'direction', 'speed']
@@ -124,7 +130,7 @@ class WyomingUpperAir(HTTPEndPoint):
                     'pw': 'millimeter'}
         return df
 
-    def _get_data_raw(self, time, site_id):
+    def _get_data_raw(self, time, site_id, recalc=False):
         """Download data from the University of Wyoming's upper air archive.
 
         Parameters
@@ -133,6 +139,8 @@ class WyomingUpperAir(HTTPEndPoint):
             Date and time for which data should be downloaded
         site_id : str
             Site id for which data should be downloaded
+        recalc : bool
+            Returns recalculated data if True. Defaults to False.
 
         Returns
         -------
@@ -142,7 +150,8 @@ class WyomingUpperAir(HTTPEndPoint):
         path = ('?region=naconf&TYPE=TEXT%3ALIST'
                 '&YEAR={time:%Y}&MONTH={time:%m}&FROM={time:%d%H}&TO={time:%d%H}'
                 '&STNM={stid}').format(time=time, stid=site_id)
-
+        if recalc:
+            path += '&REPLOT=1'
         resp = self.get_path(path)
         # See if the return is valid, but has no data
         if resp.text.find("Can't") != -1:
