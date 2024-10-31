@@ -3,9 +3,17 @@ name: Conda Tests
 # We don't want pushes (or PRs) to gh-pages to kick anything off
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - '[0-9]+.[0-9]+.x'
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - '[0-9]+.[0-9]+.x'
+
+concurrency:
+  group: ${{ github.workflow}}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 jobs:
   #
@@ -20,62 +28,49 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.7, 3.8, 3.9]
+        python-version: ['3.10', 3.12]
         os: [macOS, Windows]
+        include:
+          - python-version: 3.11
+            os: Windows
 
     steps:
-    # We check out only a limited depth and then pull tags to save time
     - name: Checkout source
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
-        fetch-depth: 100
+        fetch-depth: 150
+        fetch-tags: true
 
-    - name: Get tags
-      run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-
-    - name: Setup conda caching
-      uses: actions/cache@v3
+    - name: Install from Conda
+      uses: Unidata/MetPy/.github/actions/install-conda@main
       with:
-        path: ~/conda_pkgs_dir
-        key: conda-tests-${{ runner.os }}-${{ matrix.python-version}}-${{ hashFiles('ci/*') }}
-        restore-keys: |
-          conda-tests-${{ runner.os }}-${{ matrix.python-version}}
-          conda-tests-${{ runner.os }}
-          conda-tests-
-
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: conda-incubator/setup-miniconda@v2
-      with:
-        miniconda-version: "latest"
+        type: 'test'
         python-version: ${{ matrix.python-version }}
-        channel-priority: strict
-        channels: conda-forge
-        show-channel-urls: true
-        # Needed for caching
-        use-only-tar-bz2: true
-
-    - name: Install dependencies
-      run: conda install --quiet --yes --file ci/test_requirements.txt --file ci/extra_requirements.txt --file ci/requirements.txt
-
-    - name: Install
-      # For some reason on Windows 3.7 building the wheel fails to properly include our extra
-      # stuff. Executing the egg_info beforehand for some reason fixes it. No idea why. We're
-      # deep in territory where googling for answers helps not at all.
-      run: |
-        python setup.py egg_info
-        python -m pip install --no-deps .
 
     - name: Run tests
-      # By running coverage in "parallel" mode and "combining", we can clean up the path names
-      run: |
-        export TEST_DATA_DIR=$GITHUB_WORKSPACE/staticdata
-        python -m coverage run -p -m pytest tests
-        python -m coverage combine
-        python -m coverage report
-        python -m coverage xml
-
-    - name: Upload coverage
-      if: ${{ always() }}
-      uses: codecov/codecov-action@v3
+      uses: Unidata/MetPy/.github/actions/run-tests@main
       with:
-        name: conda-${{ matrix.python-version }}-${{ runner.os }}
+        run-doctests: 'false'
+        key: conda-${{ matrix.python-version }}-${{ runner.os }}
+        pytest-args: ''
+
+  codecov:
+    name: CodeCov Upload
+    needs: CondaTests
+    runs-on: ubuntu-latest
+    environment:
+      name: CodeCov
+    timeout-minutes: 2
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Download coverage artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          name: ${{ github.workflow }}
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
