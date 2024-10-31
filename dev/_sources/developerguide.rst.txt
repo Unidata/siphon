@@ -33,17 +33,16 @@ Making Changes
 --------------
 
 The changes to the Siphon source (and documentation) should be made via GitHub pull requests
-against ``master``, even for those with administration rights. While it's tempting to make
-changes directly to ``master`` and push them up, it is better to make a pull request so that
+against ``main``, even for those with administration rights. While it's tempting to make
+changes directly to ``main`` and push them up, it is better to make a pull request so that
 others can give feedback. If nothing else, this gives a chance for the automated tests to run
-on the PR. This can eliminate "brown paper bag" moments with buggy commits on the master
-branch.
+on the PR. This can eliminate "brown paper bag" moments with buggy commits on the main branch.
 
 During the Pull Request process, before the final merge, it's a good idea to rebase the branch
 and squash together smaller commits. It's not necessary to flatten the entire branch, but it
 can be nice to eliminate small fixes and get the merge down to logically arranged commit. This
 can also be used to hide sins from history--this is the only chance, since once it hits
-``master``, it's there forever!
+``main``, it's there forever!
 
 ----------
 Versioning
@@ -113,7 +112,7 @@ generated from docstrings, written using the
 There are also examples in the ``examples/`` directory.
 
 The documentation is hosted on `GitHub Pages <https://unidata.github.io/siphon>`_. The docs are
-built automatically from ``master`` with every build on Travis-CI; every merged PR will
+built automatically from ``main`` with every build on Travis-CI; every merged PR will
 have the built docs upload to GitHub Pages. As part of the build, the documentation is also
 checked with ``doc8``. To see what the docs will look like, you also need to install the
 ``sphinx-rtd-theme`` package.
