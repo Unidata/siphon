@@ -3,4 +3,3 @@ numpy==1.26.0
 pandas==2.1.2
 protobuf==4.24.3
 requests==2.28.1
-importlib_metadata==6.0
