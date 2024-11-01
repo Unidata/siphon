@@ -41,7 +41,7 @@ jobs:
       with:
         type: 'doc'
         python-version: ${{ matrix.python-version }}
-        need-cartopy: false
+        need-cartopy: true
 
     - name: Build docs
       uses: Unidata/MetPy/.github/actions/build-docs@main
