@@ -174,12 +174,12 @@ def test_case_insensitive_access(caplog):
     cat = TDSCatalog(url)
     access_name = list(cat.datasets[0].access_urls.keys())[0]
     assert access_name == 'HTTPSERVER'  # test __eq__
-    assert not access_name != 'HTTPSERVER'  # test __eq__
+    assert access_name == 'HTTPSERVER'  # test __eq__
     assert access_name > 'a'  # test __gt__
     assert access_name >= 'a'  # test __ge__
     assert access_name < 'Z'  # test __lt__
     assert access_name <= 'Z'  # test __le__
-    assert not access_name == 1  # test fail on _try_lower
+    assert access_name != 1  # test fail on _try_lower
     assert 'Could not convert 1 to lowercase.' in caplog.text
 
 

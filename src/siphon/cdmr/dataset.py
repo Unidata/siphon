@@ -223,10 +223,9 @@ class Variable(AttributeContainer):
         except TypeError:
             ind = [ind]
 
-        # Make sure we don't have too many things to index
-        if len(ind) > self.ndim:
-            # But allow a full slice on a scalar variable
-            if not (self.ndim == 0 and len(ind) == 1 and ind[0] == slice(None)):
+        # Make sure we don't have too many things to index, but allow a full slice on
+        # a scalar variable
+        if len(ind) > self.ndim and (self.ndim != 0 or len(ind) != 1 or ind[0] != slice(None)):
                 raise IndexError('Too many dimensions to index.')
 
         # Expand to a slice/ellipsis for every dimension
@@ -260,15 +259,9 @@ class Variable(AttributeContainer):
 
                 # Adjust start and stop to handle negative indexing
                 # and partial support for slicing beyond end.
-                if i.start is None:
-                    start = 0
-                else:
-                    start = self._adjust_index(dim, i.start)
+                start = 0 if i.start is None else self._adjust_index(dim, i.start)
 
-                if i.stop is None:
-                    stop = self.shape[dim]
-                else:
-                    stop = self._adjust_index(dim, i.stop)
+                stop = self.shape[dim] if i.stop is None else self._adjust_index(dim, i.stop)
 
                 # Need to create new slice for adjusted values
                 ind[dim] = slice(start, stop, i.step)

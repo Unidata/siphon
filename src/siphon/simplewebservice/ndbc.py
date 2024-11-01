@@ -12,7 +12,7 @@ import requests
 
 from ..http_util import HTTPEndPoint
 
-warnings.filterwarnings('ignore', "Pandas doesn\'t allow columns to be created", UserWarning)
+warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created", UserWarning)
 
 
 class NDBC(HTTPEndPoint):
@@ -472,11 +472,8 @@ class NDBC(HTTPEndPoint):
             bool if url is valid
 
         """
-        r = requests.head(url)
-        if r.status_code == 200:
-            return True
-        else:
-            return False
+        r = requests.head(url, timeout=300)
+        return r.status_code == 200
 
     @classmethod
     def buoy_data_types(cls, buoy):

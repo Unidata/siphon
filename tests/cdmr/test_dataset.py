@@ -19,7 +19,7 @@ def get_fixed_url():
             'grib/NCEP/RAP/CONUS_13km/RR_CONUS_13km_20150518_1200.grib2/GC')
 
 
-class TestDataset(object):
+class TestDataset:
     """Test basic Dataset functionality."""
 
     @classmethod
@@ -387,7 +387,7 @@ def test_var_print():
     assert s == truth
 
 
-class TestIndexing(object):
+class TestIndexing:
     """Test indexing on a variable makes the correct request."""
 
     @classmethod
@@ -445,7 +445,7 @@ class TestIndexing(object):
     def test_slice_to_end(self):
         """Test slicing to the end of a dimension."""
         subset = self.var[0, 0, :3, :]
-        assert subset.shape, (3 == self.var.shape[-1])
+        assert subset.shape, (self.var.shape[-1] == 3)
 
     @recorder.use_cassette('rap_ncstream_slice_beyond_end')
     def test_slices_long(self):

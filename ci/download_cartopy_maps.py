@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (c) 2021 MetPy Developers.
+# Copyright (c) 2021 Siphon Contributors.
 """Explicitly download needed Cartopy maps."""
 from cartopy.io import config, Downloader
 

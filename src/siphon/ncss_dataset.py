@@ -91,7 +91,7 @@ class _Types:
                 for potential_bool in val:
                     if potential_bool not in ['true', 'false']:
                         raise ValueError
-                val = [True if item == 'true' else False for item in val]
+                val = [item == 'true' for item in val]
             except ValueError:
                 msg = 'Cannot convert values %s to boolean.'
                 msg += ' Keeping type as str.'
@@ -201,6 +201,7 @@ class _Types:
             return getattr(self, handler_name)
         else:
             log.warning('cannot find handler for element %s', handler_name)
+        return None
 
 
 class NCSSDataset:
@@ -281,9 +282,8 @@ class NCSSDataset:
 
         things_to_del = []
         for thing in self.__dict__:
-            if not (thing.startswith('_') or thing.startswith('__')):
-                if not getattr(self, thing):
-                    things_to_del.append(thing)
+            if not (thing.startswith(('_', '__'))) and not getattr(self, thing):
+                things_to_del.append(thing)
 
         for thing in things_to_del:
             delattr(self, thing)

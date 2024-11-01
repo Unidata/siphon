@@ -7,8 +7,8 @@ from datetime import datetime, timedelta
 
 import pytest
 
-from siphon.http_util import (DataQuery, HTTPEndPoint, HTTPError,
-                              parse_iso_date, session_manager, utc)
+from siphon.http_util import (DataQuery, HTTPEndPoint, HTTPError, parse_iso_date,
+                              session_manager, utc)
 import siphon.testing
 
 recorder = siphon.testing.get_recorder(__file__)

@@ -347,7 +347,7 @@ def combine_xml_points(seq, units, handle_units):
 
 def parse_xml_dataset(elem, handle_units):
     """Create a netCDF-like dataset from XML data."""
-    points, units = zip(*[parse_xml_point(p) for p in elem.findall('point')])
+    points, units = zip(*[parse_xml_point(p) for p in elem.findall('point')], strict=False)
     # Group points by the contents of each point
     datasets = {}
     for p in points:
@@ -359,8 +359,9 @@ def parse_xml_dataset(elem, handle_units):
 
 # Handling of netCDF 3/4 from NCSS
 try:
-    from netCDF4 import Dataset
     from tempfile import NamedTemporaryFile
+
+    from netCDF4 import Dataset
 
     @response_handlers.register('application/x-netcdf')
     @response_handlers.register('application/x-netcdf4')
@@ -381,7 +382,7 @@ try:
 except ImportError:
     import warnings
     warnings.warn('netCDF4 module not installed. '
-                  'Will be unable to handle NetCDF returns from NCSS.')
+                  'Will be unable to handle NetCDF returns from NCSS.', stacklevel=2)
 
 
 def deletetempfile(fname):
@@ -395,7 +396,7 @@ def deletetempfile(fname):
         import warnings
         warnings.warn('temporary netcdf dataset file not deleted. '
                       'to delete temporary dataset file in the future '
-                      'be sure to use dataset.close() when finished.')
+                      'be sure to use dataset.close() when finished.', stacklevel=2)
 
 
 # Parsing of CSV data returned from NCSS

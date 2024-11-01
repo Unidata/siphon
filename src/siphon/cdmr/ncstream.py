@@ -10,8 +10,7 @@ import zlib
 
 import numpy as np
 
-from . import cdmrfeature_pb2 as cdmrf
-from . import ncStream_pb2 as stream  # noqa
+from . import cdmrfeature_pb2 as cdmrf, ncStream_pb2 as stream
 
 MAGIC_HEADER = b'\xad\xec\xce\xda'
 MAGIC_DATA = b'\xab\xec\xce\xba'
@@ -58,7 +57,9 @@ def read_ncstream_data(fobj):
         # Handle decompressing the bytes
         if data.compress == stream.DEFLATE:
             bin_data = zlib.decompress(bin_data)
-            assert len(bin_data) == data.uncompressedSize
+            if len(bin_data) != data.uncompressedSize:
+                log.error('Uncompressed size mismatch %d vs. %d', len(bin_data),
+                          data.uncompressedSize)
         elif data.compress != stream.NONE:
             raise NotImplementedError(f'Compression type {data.compress} not implemented!')
 
@@ -140,8 +141,7 @@ def read_messages(fobj, magic_table):
         if func is not None:
             messages.append(func(fobj))
         else:
-            log.error('Unknown magic: ' + str(' '.join(f'{b: 02x}'
-                                                       for b in bytearray(magic))))
+            log.error('Unknown magic: %s', ' '.join(f'{b: 02x}' for b in bytearray(magic)))
 
     return messages
 

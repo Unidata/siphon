@@ -4,8 +4,7 @@
 """Read upper air data from the Integrated Global Radiosonde Archive version 2."""
 
 import datetime
-from io import BytesIO
-from io import StringIO
+from io import BytesIO, StringIO
 import itertools
 import sys
 import warnings
@@ -60,7 +59,7 @@ class IGRAUpperAir(HTTPEndPoint):
             igra2.folder = 'data/data-por/'
             igra2.suffix = igra2.suffix + '-data.txt'
 
-        if type(time) == datetime.datetime:
+        if isinstance(time, datetime.datetime):
             igra2.begin_date = time
             igra2.end_date = time
         else:
@@ -109,19 +108,16 @@ class IGRAUpperAir(HTTPEndPoint):
         # Get the data and handle if there is none matching what was requested
         try:
             resp = self.get_path(path)
-        except HTTPError:
-            raise ValueError('No data available for {time:%Y-%m-%d %HZ} '
-                             'for station {stid}.'.format(time=self.begin_date,
-                                                          stid=self.site_id))
+        except HTTPError as e:
+            raise ValueError(f'No data available for {self.begin_date:%Y-%m-%d %HZ} '
+                             f'for station {self.site_id}.') from e
 
         file_info = ZipFile(BytesIO(resp.content)).infolist()[0]
-        f = ZipFile(BytesIO(resp.content)).open(file_info)
-
-        lines = [line.decode('utf-8') for line in f.readlines()]
-
-        body, header, dates_long, dates = self._select_date_range(lines)
-
-        return body, header, dates_long, dates
+        with ZipFile(BytesIO(resp.content)) as zf:
+            f = zf.open(file_info)
+            lines = [line.decode('utf-8') for line in f.readlines()]
+            body, header, dates_long, dates = self._select_date_range(lines)
+            return body, header, dates_long, dates
 
     def _select_date_range(self, lines):
         """Identify lines containing headers within the range begin_date to end_date.
@@ -206,9 +202,7 @@ class IGRAUpperAir(HTTPEndPoint):
             def _ctime_strformat(val):
                 time = val.strip().zfill(5)
 
-                if int(time) < 0:
-                    return np.nan
-                elif int(time) == 9999:
+                if int(time) < 0 or int(time) == 9999:
                     return np.nan
                 else:
                     if strformat == 'MMMSS':

@@ -11,7 +11,6 @@ import pytest
 from siphon.simplewebservice.wyoming import WyomingUpperAir
 from siphon.testing import get_recorder
 
-
 recorder = get_recorder(__file__)
 
 

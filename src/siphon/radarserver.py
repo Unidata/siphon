@@ -157,8 +157,8 @@ class RadarServer(HTTPEndPoint):
             url = self._base[:-1] if self._base[-1] == '/' else self._base
             url += '?' + str(query)
             return TDSCatalog(url)
-        except ET.ParseError:
-            raise BadQueryError(self.get_catalog_raw(query))
+        except ET.ParseError as e:
+            raise BadQueryError(self.get_catalog_raw(query)) from e
 
     def get_catalog_raw(self, query):
         """Fetch THREDDS catalog XML from the radar server.

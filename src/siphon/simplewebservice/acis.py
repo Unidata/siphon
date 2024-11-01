@@ -54,16 +54,15 @@ def acis_request(method, params):
         response = session_manager.create_session().post(base_url + method, json=params,
                                                          timeout=timeout)
         return response.json()
-    except requests.exceptions.Timeout:
-        raise AcisApiException('Connection Timeout')
-    except requests.exceptions.TooManyRedirects:
-        raise AcisApiException('Bad URL. Check your ACIS connection method string.')
-    except ValueError:
+    except requests.exceptions.Timeout as e:
+        raise AcisApiException('Connection Timeout') from e
+    except requests.exceptions.TooManyRedirects as e:
+        raise AcisApiException('Bad URL. Check your ACIS connection method string.') from e
+    except ValueError as e:
         raise AcisApiException('No data returned! The ACIS parameter dictionary'
-                               'may be incorrectly formatted')
+                               'may be incorrectly formatted') from e
 
 
-class AcisApiException(Exception):
+class AcisApiException(Exception):  # noqa: N818
     """Handle exceptions raised by the acis_request function."""
 
-    pass
