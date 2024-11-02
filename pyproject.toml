@@ -36,12 +36,14 @@ doc = [
     "sphinx>=3.0",
     "sphinx-gallery>=0.4",
     "myst-parser",
-    "sphinx-rtd-theme"
+    "sphinx-rtd-theme",
+    "siphon[examples]"
 ]
 examples = [
-    "matplotlib>=1.3",
-    "cartopy>=0.13.1",
-    "scipy"
+    "matplotlib>=3.5",
+    "cartopy>=0.21",
+    "netCDF4",
+    "metpy",
 ]
 test = [
     "pytest>=7.0",
