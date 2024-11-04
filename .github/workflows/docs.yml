@@ -10,128 +10,82 @@ on:
       - v[0-9]+.[0-9]+.[0-9]+
   pull_request:
 
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow}}-${{ github.head_ref }}
+  cancel-in-progress: true
+
 jobs:
   #
-  # Build our docs on Linux against multiple Pythons, including pre-releases
+  # Build our docs on Linux against multiple Pythons
   #
   Docs:
-    name: ${{ matrix.python-version }} ${{ matrix.dep-versions }}
-    runs-on: ubuntu-20.04
-    continue-on-error: ${{ matrix.experimental }}
-    env:
-      DOC_VERSION: dev
+    name: "Linux ${{ matrix.python-version }}"
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
+        python-version: ['3.10', 3.11]
+        check-links: [false]
         include:
-          - python-version: 3.8
-            check-links: false
-            dep-versions: requirements.txt
-            experimental: false
-          - python-version: 3.9
+          - python-version: 3.12
             check-links: true
-            dep-versions: requirements.txt
-            experimental: false
-          - python-version: 3.9
-            check-links: false
-            dep-versions: Prerelease
-            experimental: true
+    outputs:
+      doc-version: ${{ steps.build-docs.outputs.doc-version }}
 
     steps:
-    # We check out only a limited depth and then pull tags to save time
     - name: Checkout source
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
-        fetch-depth: 100
+        fetch-depth: 150
 
     - name: Get tags
       run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+    - name: Install using PyPI
+      uses: Unidata/MetPy/.github/actions/install-pypi@main
       with:
+        type: 'doc'
         python-version: ${{ matrix.python-version }}
-
-    # This uses pip to find the right cache dir and then sets up caching for it
-    - name: Get pip cache dir
-      id: pip-cache
-      run: echo "::set-output name=dir::$(pip cache dir)"
-
-    - name: Setup pip cache
-      uses: actions/cache@v3
-      with:
-        path: ${{ steps.pip-cache.outputs.dir }}
-        key: pip-docs-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('ci/*') }}
-        restore-keys: |
-          pip-docs-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('ci/*') }}
-          pip-docs-${{ runner.os }}-${{ matrix.python-version }}-
-          pip-docs-${{ runner.os }}-
-          pip-docs-
-
-    # This installs the stuff needed to build and install Shapely and CartoPy from source.
-    # Need to install numpy first to make CartoPy happy.
-    - name: Install dependencies (PyPI)
-      if: ${{ runner.os == 'Linux' }}
-      run: |
-        sudo apt-get install libgeos-dev libproj-dev proj-bin
-        python -m pip install --upgrade pip setuptools
-        python -m pip install -c ci/${{ matrix.dep-versions }} numpy
-        python -m pip install -r ci/doc_requirements.txt -r ci/extra_requirements.txt -c ci/${{ matrix.dep-versions }}
-
-    # This imports CartoPy to find its map data cache directory
-    - name: Get CartoPy maps dir
-      id: cartopy-cache
-      run: echo "::set-output name=dir::$(python -c 'import cartopy;print(cartopy.config["data_dir"])')"
-
-    - name: Setup mapdata caching
-      uses: actions/cache@v3
-      env:
-        # Increase to reset cache of map data
-        CACHE_NUMBER: 0
-      with:
-        path: ${{ steps.cartopy-cache.outputs.dir }}
-        key: docs-cartopy-${{ env.CACHE_NUMBER }}
-        restore-keys: docs-cartopy-
-
-    - name: Install self
-      run: python -m pip install -c ci/${{ matrix.dep-versions }} .
+        need-extras: true
+        need-cartopy: true
 
     - name: Build docs
-      run: |
-        pushd docs
-        make html O=-W
-        popd
-
-    - name: Enable linkchecker for PRs
-      # Doing the linkchecker separately so that we avoid problems with vendored LICENSE
-      # files in the build directory
-      if: ${{ github.event_name == 'pull_request' && matrix.check-links == true }}
-      run: |
-        pushd docs
-        find build/html/_static -name LICENSE.md -delete
-        make linkcheck
-        popd
-
-    - name: Upload docs as artifact
-      if: ${{ github.event_name == 'pull_request' }}
-      uses: actions/upload-artifact@v3
+      id: build-docs
+      uses: Unidata/MetPy/.github/actions/build-docs@main
       with:
-        name: ${{ matrix.python-version }}-${{ matrix.dep-versions }}-docs
-        path: |
-          docs/build/html
-          !docs/_static/*.pdf
+        run-linkchecker: ${{ github.event_name == 'pull_request' && matrix.check-links == true }}
+        key: ${{ runner.os }}-${{ matrix.python-version }}
+        make-targets: ''
+
+  Deploy:
+    if: ${{ github.event_name != 'pull_request' }}
+    needs: Docs
+    environment:
+      name: github-pages
+    runs-on: ubuntu-latest
+    env:
+      DOC_VERSION: dev
+
+    steps:
+    - name: Download doc build
+      uses: actions/download-artifact@v4
+      with:
+        name: Linux-3.11-docs
+        path: ./docs/build/html
 
     # This overrides the version "dev" with the proper version if we're building off a
     # branch that's not main (which is confined to n.nn.x above) or on a tag.
     - name: Set doc version
       if: ${{ github.event_name != 'push' || !contains(github.ref, 'main') }}
-      run: echo "DOC_VERSION=v$(python -c 'import siphon; print(siphon.__version__.rsplit(".", maxsplit=2)[0])')" >> $GITHUB_ENV
+      run: echo "DOC_VERSION=v${{ needs.Docs.outputs.doc-version }}" >> $GITHUB_ENV
 
     - name: Upload to GitHub Pages
-      if: ${{ github.event_name != 'pull_request' && matrix.experimental == false }}
-      uses: peaceiris/actions-gh-pages@v3.9.3
+      uses: peaceiris/actions-gh-pages@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        deploy_key: ${{ secrets.GHPAGES_DEPLOY_KEY }}
         publish_dir: ./docs/build/html
         exclude_assets: '.buildinfo,_static/jquery-*.js,_static/underscore-*.js'
         destination_dir: ./${{ env.DOC_VERSION }}
