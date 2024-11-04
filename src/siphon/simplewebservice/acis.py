@@ -21,7 +21,7 @@ def acis_request(method, params):
 
     ACIS Web Services is a distributed system! A call to the main URL can be
     delivered to any climate center running a public instance of the service.
-    This makes the calls efficient, but also occasionaly results in failed
+    This makes the calls efficient, but also occasionally results in failed
     calls when a server you are directed to is having problems. Generally,
     reconnecting after waiting a few seconds will resolve a problem. If problems
     are persistent, contact ACIS developers at the High Plains Regional Climate

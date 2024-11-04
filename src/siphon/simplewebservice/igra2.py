@@ -33,7 +33,7 @@ class IGRAUpperAir(HTTPEndPoint):
 
     @classmethod
     def request_data(cls, time, site_id, derived=False):
-        """Retreive IGRA version 2 data for one station.
+        """Retrieve IGRA version 2 data for one station.
 
         Parameters
         ----------

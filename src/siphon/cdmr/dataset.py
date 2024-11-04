@@ -336,7 +336,7 @@ class Dimension:
         return self._group
 
     def isunlimited(self):
-        """Return whether the dimesion is unlimited."""
+        """Return whether the dimension is unlimited."""
         return self.unlimited
 
     def load_from_stream(self, dim):

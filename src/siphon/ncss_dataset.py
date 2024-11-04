@@ -52,7 +52,7 @@ class _Types:
         applying int, float to the values will work in most cases (i.e.
         the TDS encodes them as string values properly).
 
-        Examle XML element:
+        Example XML element:
 
         <attribute name="scale_factor" type="double" value="0.0010000000474974513"/>
 
