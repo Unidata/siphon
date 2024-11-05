@@ -173,8 +173,8 @@ def test_case_insensitive_access(caplog):
            'tropical/atlantic/hdob/catalog.xml')
     cat = TDSCatalog(url)
     access_name = list(cat.datasets[0].access_urls.keys())[0]
-    assert access_name == 'HTTPSERVER'  # test __eq__
-    assert not access_name != 'HTTPSERVER'  # test __eq__
+    assert access_name == 'OPENDAP'  # test __eq__
+    assert not access_name != 'OPENDAP'  # test __eq__
     assert access_name > 'a'  # test __gt__
     assert access_name >= 'a'  # test __ge__
     assert access_name < 'Z'  # test __lt__
@@ -194,7 +194,33 @@ def test_manage_access_types_case_insensitive(caplog):
     test_string = 'test'
     http_url = ('http://thredds-test.unidata.ucar.edu/thredds/fileServer/noaaport/'
                 'text/tropical/atlantic/hdob/High_density_obs_20170824.txt')
-    assert ds.access_urls == {'HTTPSERVER': http_url}  # test __eq__
+    test_access_urls = {
+        'CdmRemote': ('http://thredds-test.unidata.ucar.edu/thredds/'
+                      'cdmremote/noaaport/text/tropical/atlantic/'
+                      'hdob/High_density_obs_20170824.txt'),
+        'CdmrFeature': ('http://thredds-test.unidata.ucar.edu/thredds/'
+                        'cdmrfeature/grid/noaaport/text/tropical/atlantic/'
+                        'hdob/High_density_obs_20170824.txt'),
+        'HTTPServer': ('http://thredds-test.unidata.ucar.edu/thredds/'
+                       'fileServer/noaaport/text/tropical/atlantic/'
+                       'hdob/High_density_obs_20170824.txt'),
+        'ISO': ('http://thredds-test.unidata.ucar.edu/thredds/iso/noaaport/'
+                'text/tropical/atlantic/hdob/High_density_obs_20170824.txt'),
+        'NCML': ('http://thredds-test.unidata.ucar.edu/thredds/ncml/noaaport/'
+                 'text/tropical/atlantic/hdob/High_density_obs_20170824.txt'),
+        'NetcdfSubset': ('http://thredds-test.unidata.ucar.edu/thredds/ncss/'
+                         'noaaport/text/tropical/atlantic/hdob/'
+                         'High_density_obs_20170824.txt'),
+        'OPENDAP': ('http://thredds-test.unidata.ucar.edu/thredds/dodsC/noaaport/'
+                    'text/tropical/atlantic/hdob/High_density_obs_20170824.txt'),
+        'UDDC': ('http://thredds-test.unidata.ucar.edu/thredds/uddc/noaaport/'
+                 'text/tropical/atlantic/hdob/High_density_obs_20170824.txt'),
+        'WCS': ('http://thredds-test.unidata.ucar.edu/thredds/wcs/noaaport/text/'
+                'tropical/atlantic/hdob/High_density_obs_20170824.txt'),
+        'WMS': ('http://thredds-test.unidata.ucar.edu/thredds/wms/noaaport/text/'
+                'tropical/atlantic/hdob/High_density_obs_20170824.txt')
+    }
+    assert ds.access_urls == test_access_urls  # test __eq__
     assert ds.access_urls[wrong_case_key] == http_url  # test __getitem___
     assert wrong_case_key in ds.access_urls  # test __contains__
     ds.access_urls[wrong_case_key] = test_string

@@ -563,15 +563,13 @@ class Dataset:
                 for subservice in service.services:
                     all_service_dict[subservice.name] = subservice
 
-        service_name = metadata.get('serviceName', None)
-
         access_urls = CaseInsensitiveDict({})
         server_url = _find_base_tds_url(catalog_url)
 
         # process access urls for datasets that reference top
         # level catalog services (individual or compound service
         # types).
-        if service_name in all_service_dict:
+        for service_name in all_service_dict:
             service = all_service_dict[service_name]
             if service.service_type != 'Resolver':
                 # if service is a CompoundService, create access url
