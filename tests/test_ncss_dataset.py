@@ -119,7 +119,7 @@ class TestSimpleTypes:
         """Test parsing a float value attribute."""
         xml = '<attribute name="missing_value" type="float" value="-999.0"/>'
         element = ET.fromstring(xml)
-        expected = {'missing_value': [float(-999.0)]}
+        expected = {'missing_value': [-999.0]}
         actual = self.types.handle_attribute(element)
         assert expected == actual
 
@@ -210,7 +210,7 @@ class TestSimpleTypes:
         element = ET.fromstring(xml)
         expected = {'missing_value': ['a']}
         actual = self.types.handle_attribute(element)
-        assert "Cannot convert values [\'a\'] to boolean. Keeping type as str." in caplog.text
+        assert "Cannot convert values ['a'] to boolean. Keeping type as str." in caplog.text
         assert expected == actual
 
     def test_value_1(self):

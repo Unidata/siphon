@@ -66,22 +66,17 @@ Testing
 Unit tests are the lifeblood of the project, as it ensures that we can continue to add and
 change the code and stay confident that things have not broken. Running the tests requires
 ``pytest``, which is easily available through ``conda`` or ``pip``. Running the tests can be
-done via either:
+done by:
 
 .. parsed-literal::
-    python setup.py test
+    pytest tests
 
-or
-
-.. parsed-literal::
-    py.test
-
-Using ``py.test`` also gives you the option of passing a path to the directory with tests to
+This gives you the option of passing a path to the directory with tests to
 run, which can speed running only the tests of interest when doing development. For instance,
 to only run the tests in the ``siphon/cdmr`` directory, use:
 
 .. parsed-literal::
-    py.test siphon/cdmr
+    pytest siphon/cdmr
 
 ----------
 Code Style
@@ -142,7 +137,7 @@ To create a new release:
 3. (optional) Perform a ``git clean -f -x -d`` from the root of the repository. This will
    **delete** everything not tracked by git, but will also ensure clean source distribution.
    ``MANIFEST.in`` is set to include/exclude mostly correctly, but could miss some things.
-4. Run ``python setup.py sdist bdist_wheel`` (this requires ``wheel`` is installed).
+4. Run ``python -m build`` (this requires that ``build`` is installed).
 5. Upload using ``twine``: ``twine upload dist/*``, assuming the ``dist/`` directory contains
    only files for this release. This upload process will include any changes to the ``README``
-   as well as any updated flags from ``setup.py``.
+   as well as any updated flags from ``pyproject.toml``.

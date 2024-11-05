@@ -29,7 +29,7 @@ class CoverageDataset(AttributeContainer):
         """Initialize CoverageDataset from a url pointing to CDMRemoteFeature endpoint."""
         super().__init__()
         warnings.warn('CoverageDataset is in early development, unsupported, and API may '
-                      'change at any time.')
+                      'change at any time.', stacklevel=2)
         self.cdmrf = CDMRemoteFeature(url)
         self.name = 'Unnamed'
         self.lon_lat_domain = None

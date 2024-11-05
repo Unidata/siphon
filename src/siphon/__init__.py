@@ -5,5 +5,6 @@
 
 # Version import needs to come first so everyone else can pull on import
 from ._version import get_version
+
 __version__ = get_version()
 del get_version

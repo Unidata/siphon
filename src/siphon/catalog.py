@@ -11,13 +11,9 @@ from collections import OrderedDict
 from datetime import datetime
 import logging
 import re
+from urllib.parse import urljoin, urlparse
 import warnings
 import xml.etree.ElementTree as ET  # noqa:N814
-try:
-    from urlparse import urljoin, urlparse
-except ImportError:
-    # Python 3
-    from urllib.parse import urljoin, urlparse
 
 from .http_util import session_manager
 from .metadata import TDSCatalogMetadata
@@ -47,10 +43,7 @@ class DatasetCollection(IndexableMapping):
     def _get_datasets_with_times(self, regex, strptime=None):
         # Set the default regex if we don't have one
         # If strptime is provided, pass the regex group named 'strptime' to strptime
-        if regex is None:
-            regex = self.default_regex
-        else:
-            regex = re.compile(regex)
+        regex = self.default_regex if regex is None else re.compile(regex)
 
         # Loop over the collection looking for keys that match our regex
         found_date = False
@@ -149,7 +142,7 @@ class DatasetCollection(IndexableMapping):
         """
         if start > end:
             warnings.warn('The provided start time comes after the end time. No data will '
-                          'be returned.', UserWarning)
+                          'be returned.', UserWarning, stacklevel=2)
         return [item[-1] for item in self._get_datasets_with_times(regex, strptime)
                 if start <= item[0] <= end]
 
@@ -289,8 +282,8 @@ class TDSCatalog:
         if 'html' in resp.headers['content-type']:
             import warnings
             new_url = self.catalog_url.replace('html', 'xml')
-            warnings.warn('URL {} returned HTML. Changing to: {}'.format(self.catalog_url,
-                                                                         new_url))
+            warnings.warn(f'URL {self.catalog_url} returned HTML. Changing to: {new_url}',
+                          stacklevel=2)
             self.catalog_url = new_url
             resp = self.session.get(self.catalog_url)
             resp.raise_for_status()
@@ -362,9 +355,8 @@ class TDSCatalog:
 
     def _process_dataset(self, element):
         catalog_url = ''
-        if 'urlPath' in element.attrib:
-            if element.attrib['urlPath'] == 'latest.xml':
-                catalog_url = self.catalog_url
+        if 'urlPath' in element.attrib and element.attrib['urlPath'] == 'latest.xml':
+            catalog_url = self.catalog_url
 
         ds = Dataset(element, catalog_url=catalog_url)
         self.datasets[ds.name] = ds
@@ -524,24 +516,21 @@ class Dataset:
             resolver_xml = session_manager.urlopen(resolver_url)
             tree = ET.parse(resolver_xml)
             root = tree.getroot()
-            if 'name' in root.attrib:
-                self.catalog_name = root.attrib['name']
-            else:
-                self.catalog_name = 'No name found'
+            self.catalog_name = root.attrib.get('name', 'No name found')
             resolved_url = ''
             found = False
             for child in root.iter():
                 if not found:
                     tag_type = child.tag.split('}')[-1]
-                    if tag_type == 'dataset':
-                        if 'urlPath' in child.attrib:
-                            ds = Dataset(child)
-                            resolved_url = ds.url_path
-                            found = True
+                    if tag_type == 'dataset' and 'urlPath' in child.attrib:
+                        ds = Dataset(child)
+                        resolved_url = ds.url_path
+                        found = True
             if found:
                 return resolved_url
             else:
                 log.warning('no dataset url path found in latest.xml!')
+        return None
 
     def make_access_urls(self, catalog_url, all_services, metadata=None):
         """Make fully qualified urls for the access methods enabled on the dataset.
@@ -611,9 +600,8 @@ class Dataset:
         """
         if filename is None:
             filename = self.name
-        with self.remote_open() as infile:
-            with open(filename, 'wb') as outfile:
-                outfile.write(infile.read())
+        with self.remote_open() as infile, open(filename, 'wb') as outfile:
+            outfile.write(infile.read())
 
     def remote_open(self, mode='b', encoding='ascii', errors='ignore'):
         """Open the remote dataset for random access.
@@ -727,7 +715,8 @@ class Dataset:
                     import xarray as xr
                     provider = lambda url: xr.open_dataset(CDMRemoteStore(url))  # noqa: E731
                 except ImportError:
-                    raise ImportError('CdmRemote access needs xarray to be installed.')
+                    raise ImportError('CdmRemote access needs xarray'
+                                      'to be installed.') from None
             else:
                 from .cdmr import Dataset as CDMRDataset
                 provider = CDMRDataset
@@ -737,13 +726,15 @@ class Dataset:
                     import xarray as xr
                     provider = xr.open_dataset
                 except ImportError:
-                    raise ImportError('xarray needs to be installed if `use_xarray` is True.')
+                    raise ImportError('xarray needs to be installed if '
+                                      '`use_xarray` is True.') from None
             else:
                 try:
                     from netCDF4 import Dataset as NC4Dataset
                     provider = NC4Dataset
                 except ImportError:
-                    raise ImportError('OPENDAP access needs netCDF4-python to be installed.')
+                    raise ImportError('OPENDAP access needs netCDF4-python'
+                                      'to be installed.') from None
         elif service in self.ncss_service_names:
             from .ncss import NCSS
             provider = NCSS
@@ -755,7 +746,7 @@ class Dataset:
         try:
             return provider(self.access_urls[service])
         except KeyError:
-            raise ValueError(service + ' is not available for this dataset')
+            raise ValueError(service + ' is not available for this dataset') from None
 
     __repr__ = __str__
 

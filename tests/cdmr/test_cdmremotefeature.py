@@ -11,7 +11,7 @@ from siphon.testing import get_recorder
 recorder = get_recorder(__file__)
 
 
-class TestCDMRemoteFeature(object):
+class TestCDMRemoteFeature:
     """Test the CDMRemoteFeature HTTP interface."""
 
     @recorder.use_cassette('cdmrf_header')

@@ -166,10 +166,7 @@ class _SimpleTypes:
 class _ComplexTypes:
     @staticmethod
     def _get_tag_name(element):
-        if '}' in element.tag:
-            element_name = element.tag.split('}')[-1]
-        else:
-            element_name = element.tag
+        element_name = element.tag.split('}')[-1] if '}' in element.tag else element.tag
         return element_name
 
     @staticmethod
@@ -468,10 +465,7 @@ class TDSCatalogMetadata:
         inherited = False
         if 'inherited' in element.attrib:
             inherited = element.attrib['inherited']
-            if inherited == 'true':
-                inherited = True
-            else:
-                inherited = False
+            inherited = inherited == 'true'
 
         if metadata_in and (inherited or self._is_external_metadata_doc(element)):
             # only inherit metadata passed in if the new metadata
@@ -491,10 +485,7 @@ class TDSCatalogMetadata:
 
     @staticmethod
     def _get_tag_name(element):
-        if '}' in element.tag:
-            element_name = element.tag.split('}')[-1]
-        else:
-            element_name = element.tag
+        element_name = element.tag.split('}')[-1] if '}' in element.tag else element.tag
         return element_name
 
     @staticmethod
@@ -512,6 +503,7 @@ class TDSCatalogMetadata:
             return getattr(self._st, handler_name)
         else:
             log.warning('cannot find handler for element %s', handler_name)
+        return None
 
     def _parse_element(self, element):
 
@@ -572,10 +564,7 @@ class TDSCatalogMetadata:
         md = self.metadata
         md.setdefault('documentation', {})
         if known or plain_doc:
-            if known:
-                doc_type = element.attrib['type']
-            else:
-                doc_type = 'generic'
+            doc_type = element.attrib['type'] if known else 'generic'
             md['documentation'].setdefault(doc_type, []).append(element.text)
         elif xlink_href_attr in element.attrib:
             title = element.attrib[xlink_title_attr]

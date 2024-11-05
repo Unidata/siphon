@@ -13,7 +13,6 @@ from siphon.http_util import utc
 from siphon.simplewebservice.ndbc import NDBC
 from siphon.testing import get_recorder
 
-
 recorder = get_recorder(__file__)
 
 

@@ -8,8 +8,7 @@ from datetime import datetime
 import pytest
 from requests import HTTPError
 
-from siphon.radarserver import (BadQueryError, get_radarserver_datasets, RadarQuery,
-                                RadarServer)
+from siphon.radarserver import BadQueryError, get_radarserver_datasets, RadarQuery, RadarServer
 import siphon.testing
 
 recorder = siphon.testing.get_recorder(__file__)

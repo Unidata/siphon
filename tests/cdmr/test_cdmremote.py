@@ -9,7 +9,7 @@ from siphon.testing import get_recorder
 recorder = get_recorder(__file__)
 
 
-class TestCDMRmote(object):
+class TestCDMRmote:
     """Test the CDMRemote HTTP interface."""
 
     def setup(self):

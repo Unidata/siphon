@@ -11,7 +11,6 @@ import pytest
 from siphon.simplewebservice.iastate import IAStateUpperAir
 from siphon.testing import get_recorder
 
-
 recorder = get_recorder(__file__)
 
 

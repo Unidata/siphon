@@ -14,7 +14,6 @@ import pandas as pd
 from .._tools import get_wind_components
 from ..http_util import HTTPEndPoint
 
-
 warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created", UserWarning)
 
 
@@ -140,14 +139,14 @@ class WyomingUpperAir(HTTPEndPoint):
 
         """
         path = ('?region=naconf&TYPE=TEXT%3ALIST'
-                '&YEAR={time:%Y}&MONTH={time:%m}&FROM={time:%d%H}&TO={time:%d%H}'
-                '&STNM={stid}').format(time=time, stid=site_id)
+                f'&YEAR={time:%Y}&MONTH={time:%m}&FROM={time:%d%H}&TO={time:%d%H}'
+                f'&STNM={site_id}')
 
         resp = self.get_path(path)
         # See if the return is valid, but has no data
         if resp.text.find("Can't") != -1:
             raise ValueError(
-                'No data available for {time:%Y-%m-%d %HZ} '
-                'for station {stid}.'.format(time=time, stid=site_id))
+                f'No data available for {time:%Y-%m-%d %HZ} '
+                f'for station {site_id}.')
 
         return resp.text

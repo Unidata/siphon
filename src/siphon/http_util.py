@@ -9,12 +9,8 @@ import gzip
 from io import BytesIO
 from itertools import chain
 import posixpath
+from urllib.parse import urlencode, urljoin  # noqa: F401
 import warnings
-try:
-    from urllib.parse import urlencode, urljoin  # noqa
-except ImportError:
-    from urllib import urlencode
-    from urlparse import urljoin  # noqa
 
 import requests
 
@@ -324,7 +320,7 @@ class DataQuery:
         """
         if start > end:
             warnings.warn('The provided start time comes after the end time. No data will '
-                          'be returned.', UserWarning)
+                          'be returned.', UserWarning, stacklevel=2)
         self._set_query(self.time_query, time_start=self._format_time(start),
                         time_end=self._format_time(end))
         return self

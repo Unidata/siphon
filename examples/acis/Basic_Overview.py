@@ -57,7 +57,7 @@ method = 'StnData'
 
 ###########################################
 # Now that we have our request information ready, we can call the acis_request
-# function and recieve our data!
+# function and receive our data!
 
 my_data = acis_request(method, parameters)
 

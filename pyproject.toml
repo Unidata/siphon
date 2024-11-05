@@ -62,5 +62,71 @@ extras = [
 "Bug Tracker" = "https://github.com/Unidata/siphon/issues"
 "Source Code" = "https://github.com/Unidata/siphon"
 
+[tool.codespell]
+skip = "*.ipynb,*.pdf,.git,./docs/build,./docs/examples,./tests/fixtures,./tests/cdmr/fixtures,AUTHORS.txt"
+exclude-file = ".codespellexclude"
+ignore-words = ".codespellignore"
+
+[tool.doc8]
+ignore-path = ["docs/build", "docs/api/generated", "docs/_templates", "docs/examples"]
+file-encoding = "utf8"
+max-line-length = 95
+
+[tool.isort]
+line_length = 95
+known_first_party = ["siphon"]
+force_single_line = false
+reverse_relative = true
+use_parentheses = true
+force_sort_within_sections = true
+order_by_type = false
+sort_relative_in_force_sorted_sections = true
+combine_as_imports = true
+combine_star = true
+
+[tool.pytest.ini_options]
+norecursedirs = "build docs .idea"
+doctest_optionflags = "NORMALIZE_WHITESPACE"
+
+[tool.ruff]
+line-length = 95
+exclude = ["docs", "build", "src/siphon/cdmr/*_pb2.py"]
+preview = true
+
+[tool.ruff.lint]
+select = ["A", "B", "C", "CPY001", "D", "E", "E226", "F", "G", "I", "N", "NPY", "PIE", "Q", "R", "S", "SIM", "T", "U", "W"]
+# NPY201 ignores the use of 'trapz' false alarm
+ignore = ["F405", "I001", "NPY201", "RET504", "RET505", "RET506", "RET507", "RUF100", "S314"]
+explicit-preview-rules = true
+
+[tool.ruff.lint.per-file-ignores]
+"ci/filter_links.py" = ["E731", "T201", "S603", "S607"]
+"examples/*.py" = ["D", "T201", "B018"]
+"tests/*/*.py" = ["S101"]
+"tests/test_*.py" = ["S101"]
+
+[tool.ruff.lint.flake8-copyright]
+# Needed to avoid need for spaces after a comma
+notice-rgx = "(?i)Copyright\\s+(\\(C\\)\\s+)?\\d{4}([-,]\\d{4})*"
+author = "Siphon Contributors"
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+multiline-quotes = "double"
+
+[tool.ruff.lint.isort]
+known-first-party = ["siphon"]
+force-single-line = false
+relative-imports-order = "closest-to-furthest"
+force-sort-within-sections = true
+order-by-type = false
+combine-as-imports = true
+
+[tool.ruff.lint.mccabe]
+max-complexity = 61
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
 [tool.setuptools_scm]
 version_scheme = "post-release"
