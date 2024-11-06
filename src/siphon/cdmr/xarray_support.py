@@ -6,11 +6,7 @@
 from xarray import Variable
 from xarray.backends.common import AbstractDataStore, BackendArray
 from xarray.core import indexing
-
-try:
-    from xarray.core.utils import FrozenDict
-except ImportError:
-    from xarray.core.utils import FrozenOrderedDict as FrozenDict
+from xarray.core.utils import FrozenDict
 
 from . import Dataset
 
@@ -33,15 +29,11 @@ class CDMArrayWrapper(BackendArray):
 
     def __getitem__(self, item):
         """Wrap getitem around the data."""
-        item, np_inds = indexing.decompose_indexer(item, self.shape,
-                                                   indexing.IndexingSupport.BASIC)
         with self.datastore:
-            array = self.get_array()[item.tuple]
-
-        if len(np_inds.tuple) > 0:
-            array = indexing.NumpyIndexingAdapter(array)[np_inds]
-
-        return array
+            arr = self.get_array()
+            return indexing.explicit_indexing_adapter(item, self.shape,
+                                                      indexing.IndexingSupport.BASIC,
+                                                      arr.__getitem__)
 
 
 class CDMRemoteStore(AbstractDataStore):
