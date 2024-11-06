@@ -526,8 +526,8 @@ class HTTPEndPoint:
 
         Returns
         -------
-        valid : bool
-            Whether `query` is valid.
+        q : DataQuery
+            A new query object
 
         """
         return DataQuery()
