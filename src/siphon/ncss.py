@@ -426,12 +426,20 @@ def parse_csv_header(line):
     return names, units
 
 
+# Only needed until we support only numpy >= 2.0.
+def _decode_if_needed(s):
+    try:
+        return s.decode('utf-8')
+    except AttributeError:
+        return s
+
+
 def parse_csv_dataset(data, handle_units):
     """Parse CSV data into a netCDF-like dataset."""
     fobj = BytesIO(data)
     names, units = parse_csv_header(fobj.readline().decode('utf-8'))
     arrs = np.genfromtxt(fobj, dtype=None, names=names, delimiter=',',
-                         converters={'date': lambda s: parse_iso_date(s.decode('utf-8'))})
+                         converters={'date': lambda s: parse_iso_date(_decode_if_needed(s))})
     d = {}
     for f in arrs.dtype.fields:
         dat = arrs[f]

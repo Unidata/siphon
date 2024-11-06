@@ -1,4 +1,4 @@
-cartopy==0.22
+cartopy==0.24
 matplotlib==3.9.2
 metpy==1.6.3
 sphinx==5.2.3
