@@ -37,120 +37,124 @@ def test_radar_query_chain():
     assert 'time=2015-06-15T12' in query
 
 
-class TestRadarServerLevel3:
-    """Test radar server functionality for requesting level 3 data."""
-
-    @recorder.use_cassette('thredds_radarserver_level3_metadata')
-    def setup(self):
-        """Set up server and client for level 3 tests."""
-        self.server = 'http://thredds.ucar.edu/thredds/radarServer/'
-        self.client = RadarServer(self.server + 'nexrad/level3/IDD')
-
-    def test_valid_variables(self):
-        """Test that validating a query respects correct variables."""
-        q = self.client.query()
-        q.variables('N0Q', 'N0C')
-        assert self.client.validate_query(q)
-
-    def test_invalid_variables(self):
-        """Test that validating a query catches incorrect variables."""
-        q = self.client.query()
-        q.variables('FOO', 'BAR')
-        assert not self.client.validate_query(q)
+@pytest.fixture
+@recorder.use_cassette('thredds_radarserver_level3_metadata')
+def l3client():
+    """Set up server and client for level 3 tests."""
+    return RadarServer('http://thredds.ucar.edu/thredds/radarServer/nexrad/level3/IDD')
 
 
-class TestRadarServer:
-    """Test radar server functionality for accessing data."""
-
-    @recorder.use_cassette('thredds_radarserver_metadata')
-    def setup(self):
-        """Set up server and client for tests."""
-        self.server = 'http://thredds.ucar.edu/thredds/radarServer/'
-        self.client = RadarServer(self.server + 'nexrad/level2/IDD')
-
-    def test_stations(self):
-        """Test parsing of the station information from the server."""
-        assert 'KFTG' in self.client.stations
-
-    def test_float_attrs(self):
-        """Test parsing of values from the station information on the server."""
-        stn = self.client.stations['KFTG']
-        assert stn.elevation == 1675.0
-        assert stn.latitude == 39.78
-        assert stn.longitude == -104.53
-
-    def test_metadata(self):
-        """Test parsing of variable information from server."""
-        assert 'Reflectivity' in self.client.variables
-
-    def test_valid_stations(self):
-        """Test validating a query with valid stations."""
-        q = self.client.query()
-        q.stations('KFTG', 'KTLX')
-        assert self.client.validate_query(q), 'Bad validation check'
-
-    def test_invalid_stations(self):
-        """Test validating a query with invalid stations."""
-        q = self.client.query()
-        q.stations('KFOO', 'KTLX')
-        assert not self.client.validate_query(q), 'Bad validation check'
-
-    @recorder.use_cassette('thredds_radarserver_level2_single')
-    def test_raw_catalog(self):
-        """Test getting raw catalog bytes."""
-        dt = datetime(2015, 6, 15, 12, 0, 0)
-        q = self.client.query().stations('KFTG').time(dt)
-        cat = self.client.get_catalog_raw(q).strip()
-        assert cat[-10:] == b'</catalog>'
-
-    @recorder.use_cassette('thredds_radarserver_level2_single')
-    def test_good_query(self):
-        """Test making a good request."""
-        dt = datetime(2015, 6, 15, 12, 0, 0)
-        q = self.client.query().stations('KFTG').time(dt)
-        cat = self.client.get_catalog(q)
-        assert len(cat.datasets) == 1
-
-    @recorder.use_cassette('thredds_radarserver_level3_bad')
-    def test_bad_query_raises(self):
-        """Test that a bad query raises an error."""
-        dt = datetime(2015, 6, 15, 12, 0, 0)
-        client = RadarServer(self.server + '/nexrad/level3/IDD')
-        q = client.query().stations('FTG').time(dt)
-        with pytest.raises(BadQueryError):
-            client.get_catalog(q)
-
-    @recorder.use_cassette('thredds_radarserver_level3_good')
-    def test_good_level3_query(self):
-        """Test that a valid level 3 query succeeds."""
-        dt = datetime(2015, 6, 15, 12, 0, 0)
-        client = RadarServer(self.server + '/nexrad/level3/IDD/')
-        q = client.query().stations('FTG').time(dt).variables('N0Q')
-        cat = client.get_catalog(q)
-        assert len(cat.datasets) == 1
+def test_l3_valid_variables(l3client):
+    """Test that validating a query respects correct variables."""
+    q = l3client.query()
+    q.variables('N0Q', 'N0C')
+    assert l3client.validate_query(q)
 
 
-class TestRadarServerDatasets:
-    """Tests for listing datasets from the radar server."""
+def test_l3_invalid_variables(l3client):
+    """Test that validating a query catches incorrect variables."""
+    q = l3client.query()
+    q.variables('FOO', 'BAR')
+    assert not l3client.validate_query(q)
 
-    @recorder.use_cassette('thredds_radarserver_toplevel')
-    def test_no_trailing(self):
-        """Test that passing a url without a trailing slash works."""
-        ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds')
-        assert len(ds) == 5
 
-    @recorder.use_cassette('thredds_radarserver_toplevel')
-    def test_trailing(self):
-        """Test that passing a url with a trailing slash works."""
-        ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
-        assert len(ds) == 5
+@pytest.fixture
+@recorder.use_cassette('thredds_radarserver_metadata')
+def l2client():
+    """Set up server and client for tests."""
+    return RadarServer('http://thredds.ucar.edu/thredds/radarServer/nexrad/level2/IDD')
 
-    @recorder.use_cassette('thredds_radarserver_level3_catalog')
-    def test_catalog_access(self):
-        """Test that getting datasets returns a proper catalog."""
-        ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
-        url = ds['NEXRAD Level III Radar from IDD'].follow().catalog_url
-        assert RadarServer(url)
+
+def test_stations(l2client):
+    """Test parsing of the station information from the server."""
+    assert 'KFTG' in l2client.stations
+
+
+def test_float_attrs(l2client):
+    """Test parsing of values from the station information on the server."""
+    stn = l2client.stations['KFTG']
+    assert stn.elevation == 1675.0
+    assert stn.latitude == 39.78
+    assert stn.longitude == -104.53
+
+
+def test_metadata(l2client):
+    """Test parsing of variable information from server."""
+    assert 'Reflectivity' in l2client.variables
+
+
+def test_valid_stations(l2client):
+    """Test validating a query with valid stations."""
+    q = l2client.query()
+    q.stations('KFTG', 'KTLX')
+    assert l2client.validate_query(q), 'Bad validation check'
+
+
+def test_invalid_stations(l2client):
+    """Test validating a query with invalid stations."""
+    q = l2client.query()
+    q.stations('KFOO', 'KTLX')
+    assert not l2client.validate_query(q), 'Bad validation check'
+
+
+def test_raw_catalog(l2client):
+    """Test getting raw catalog bytes."""
+    dt = datetime(2015, 6, 15, 12, 0, 0)
+    with recorder.use_cassette('thredds_radarserver_level2_single'):
+        q = l2client.query().stations('KFTG').time(dt)
+        cat = l2client.get_catalog_raw(q).strip()
+    assert cat[-10:] == b'</catalog>'
+
+
+def test_good_query(l2client):
+    """Test making a good request."""
+    dt = datetime(2015, 6, 15, 12, 0, 0)
+    with recorder.use_cassette('thredds_radarserver_level2_single'):
+        q = l2client.query().stations('KFTG').time(dt)
+        cat = l2client.get_catalog(q)
+    assert len(cat.datasets) == 1
+
+
+@recorder.use_cassette('thredds_radarserver_level3_bad')
+def test_bad_query_raises():
+    """Test that a bad query raises an error."""
+    dt = datetime(2015, 6, 15, 12, 0, 0)
+    client = RadarServer('http://thredds.ucar.edu/thredds/radarServer//nexrad/level3/IDD')
+    q = client.query().stations('FTG').time(dt)
+    with pytest.raises(BadQueryError):
+        client.get_catalog(q)
+
+
+@recorder.use_cassette('thredds_radarserver_level3_good')
+def test_good_level3_query():
+    """Test that a valid level 3 query succeeds."""
+    dt = datetime(2015, 6, 15, 12, 0, 0)
+    client = RadarServer('http://thredds.ucar.edu/thredds/radarServer//nexrad/level3/IDD/')
+    q = client.query().stations('FTG').time(dt).variables('N0Q')
+    cat = client.get_catalog(q)
+    assert len(cat.datasets) == 1
+
+
+@recorder.use_cassette('thredds_radarserver_toplevel')
+def test_datasets_no_trailing():
+    """Test that passing a url without a trailing slash works."""
+    ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds')
+    assert len(ds) == 5
+
+
+@recorder.use_cassette('thredds_radarserver_toplevel')
+def test_datasets_trailing():
+    """Test that passing a url with a trailing slash works."""
+    ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
+    assert len(ds) == 5
+
+
+@recorder.use_cassette('thredds_radarserver_level3_catalog')
+def test_datasets_catalog_access():
+    """Test that getting datasets returns a proper catalog."""
+    ds = get_radarserver_datasets('http://thredds.ucar.edu/thredds/')
+    url = ds['NEXRAD Level III Radar from IDD'].follow().catalog_url
+    assert RadarServer(url)
 
 
 @recorder.use_cassette('radarserver_toplevel_denied')
