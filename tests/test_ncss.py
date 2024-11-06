@@ -7,6 +7,7 @@ from contextlib import contextmanager
 from datetime import datetime
 
 import numpy as np
+import pytest
 
 from siphon.ncss import NCSS, NCSSQuery, ResponseRegistry
 import siphon.testing
@@ -69,135 +70,150 @@ def tuple_unit_handler(data, units=None):
     return np.array(data).tolist(), units
 
 
-class TestNCSS:
-    """Test NCSS queries and response parsing."""
+@pytest.fixture
+@recorder.use_cassette('ncss_test_metadata')
+def ncss():
+    """Set up tests with default NCSS client."""
+    return NCSS('http://thredds.ucar.edu/thredds/ncss/'
+                'grib/NCEP/GFS/Global_0p5deg/GFS_Global_0p5deg_20150612_1200.grib2')
 
-    server = 'http://thredds.ucar.edu/thredds/ncss/'
-    url_path = 'grib/NCEP/GFS/Global_0p5deg/GFS_Global_0p5deg_20150612_1200.grib2'
 
-    @recorder.use_cassette('ncss_test_metadata')
-    def setup(self):
-        """Set up for tests with a default valid query."""
-        dt = datetime(2015, 6, 12, 15, 0, 0)
-        self.ncss = NCSS(self.server + self.url_path)
-        self.nq = self.ncss.query().lonlat_point(-105, 40).time(dt)
-        self.nq.variables('Temperature_isobaric', 'Relative_humidity_isobaric')
+@pytest.fixture
+def ncss_query(ncss):
+    """Set up for tests with a default valid query."""
+    dt = datetime(2015, 6, 12, 15, 0, 0)
+    q = ncss.query().lonlat_point(-105, 40).time(dt)
+    q.variables('Temperature_isobaric', 'Relative_humidity_isobaric')
+    return q
 
-    def test_good_query(self):
-        """Test that a good query is properly validated."""
-        assert self.ncss.validate_query(self.nq)
 
-    def test_bad_query(self):
-        """Test that a query with an unknown variable is invalid."""
-        self.nq.variables('foo')
-        assert not self.ncss.validate_query(self.nq)
+def test_good_query(ncss, ncss_query):
+    """Test that a good query is properly validated."""
+    assert ncss.validate_query(ncss_query)
 
-    def test_empty_query(self):
-        """Test that an empty query is invalid."""
-        query = self.ncss.query()
-        res = self.ncss.validate_query(query)
-        assert not res
-        assert not isinstance(res, set)
 
-    def test_bad_query_no_vars(self):
-        """Test that a query without variables is invalid."""
-        self.nq.var.clear()
-        assert not self.ncss.validate_query(self.nq)
+def test_bad_query(ncss, ncss_query):
+    """Test that a query with an unknown variable is invalid."""
+    ncss_query.variables('foo')
+    assert not ncss.validate_query(ncss_query)
 
-    @recorder.use_cassette('ncss_gfs_xml_point')
-    def test_xml_point(self):
-        """Test parsing XML point returns."""
-        self.nq.accept('xml')
-        xml_data = self.ncss.get_data(self.nq)
 
-        assert 'Temperature_isobaric' in xml_data
-        assert 'Relative_humidity_isobaric' in xml_data
-        assert xml_data['lat'][0] == 40
-        assert xml_data['lon'][0] == -105
+def test_empty_query(ncss):
+    """Test that an empty query is invalid."""
+    query = ncss.query()
+    res = ncss.validate_query(query)
+    assert not res
+    assert not isinstance(res, set)
 
-    @recorder.use_cassette('ncss_gfs_csv_point')
-    def test_csv_point(self):
-        """Test parsing CSV point returns."""
-        self.nq.accept('csv')
-        csv_data = self.ncss.get_data(self.nq)
 
-        assert 'Temperature_isobaric' in csv_data
-        assert 'Relative_humidity_isobaric' in csv_data
-        assert csv_data['lat'][0] == 40
-        assert csv_data['lon'][0] == -105
+def test_bad_query_no_vars(ncss, ncss_query):
+    """Test that a query without variables is invalid."""
+    ncss_query.var.clear()
+    assert not ncss.validate_query(ncss_query)
 
-    @recorder.use_cassette('ncss_gfs_csv_point')
-    def test_unit_handler_csv(self):
-        """Test unit-handling from CSV returns."""
-        self.nq.accept('csv')
-        self.ncss.unit_handler = tuple_unit_handler
-        csv_data = self.ncss.get_data(self.nq)
 
-        temp = csv_data['Temperature_isobaric']
-        assert len(temp) == 2
-        assert temp[1] == 'K'
+@recorder.use_cassette('ncss_gfs_xml_point')
+def test_xml_point(ncss, ncss_query):
+    """Test parsing XML point returns."""
+    ncss_query.accept('xml')
+    xml_data = ncss.get_data(ncss_query)
 
-        relh = csv_data['Relative_humidity_isobaric']
-        assert len(relh) == 2
-        assert relh[1] == '%'
+    assert 'Temperature_isobaric' in xml_data
+    assert 'Relative_humidity_isobaric' in xml_data
+    assert xml_data['lat'][0] == 40
+    assert xml_data['lon'][0] == -105
 
-    @recorder.use_cassette('ncss_gfs_xml_point')
-    def test_unit_handler_xml(self):
-        """Test unit-handling from XML returns."""
-        self.nq.accept('xml')
-        self.ncss.unit_handler = tuple_unit_handler
-        xml_data = self.ncss.get_data(self.nq)
 
-        temp = xml_data['Temperature_isobaric']
-        assert len(temp) == 2
-        assert temp[1] == 'K'
+@recorder.use_cassette('ncss_gfs_csv_point')
+def test_csv_point(ncss, ncss_query):
+    """Test parsing CSV point returns."""
+    ncss_query.accept('csv')
+    csv_data = ncss.get_data(ncss_query)
 
-        relh = xml_data['Relative_humidity_isobaric']
-        assert len(relh) == 2
-        assert relh[1] == '%'
+    assert 'Temperature_isobaric' in csv_data
+    assert 'Relative_humidity_isobaric' in csv_data
+    assert csv_data['lat'][0] == 40
+    assert csv_data['lon'][0] == -105
 
-    @recorder.use_cassette('ncss_gfs_netcdf_point')
-    def test_netcdf_point(self):
-        """Test handling of netCDF point returns."""
-        self.nq.accept('netcdf')
-        nc = self.ncss.get_data(self.nq)
 
-        assert 'Temperature_isobaric' in nc.variables
-        assert 'Relative_humidity_isobaric' in nc.variables
-        assert nc.variables['latitude'][0] == 40
-        assert nc.variables['longitude'][0] == -105
+@recorder.use_cassette('ncss_gfs_csv_point')
+def test_unit_handler_csv(ncss, ncss_query):
+    """Test unit-handling from CSV returns."""
+    ncss_query.accept('csv')
+    ncss.unit_handler = tuple_unit_handler
+    csv_data = ncss.get_data(ncss_query)
 
-    @recorder.use_cassette('ncss_gfs_netcdf4_point')
-    def test_netcdf4_point(self):
-        """Test handling of netCDF4 point returns."""
-        self.nq.accept('netcdf4')
-        nc = self.ncss.get_data(self.nq)
+    temp = csv_data['Temperature_isobaric']
+    assert len(temp) == 2
+    assert temp[1] == 'K'
 
-        assert 'Temperature_isobaric' in nc.variables
-        assert 'Relative_humidity_isobaric' in nc.variables
-        assert nc.variables['latitude'][0] == 40
-        assert nc.variables['longitude'][0] == -105
+    relh = csv_data['Relative_humidity_isobaric']
+    assert len(relh) == 2
+    assert relh[1] == '%'
 
-    @recorder.use_cassette('ncss_gfs_vertical_level')
-    def test_vertical_level(self):
-        """Test data return from a single vertical level is correct."""
-        self.nq.accept('csv').vertical_level(50000)
-        csv_data = self.ncss.get_data(self.nq)
 
-        np.testing.assert_almost_equal(csv_data['Temperature_isobaric'], np.array([263.40]), 2)
+@recorder.use_cassette('ncss_gfs_xml_point')
+def test_unit_handler_xml(ncss, ncss_query):
+    """Test unit-handling from XML returns."""
+    ncss_query.accept('xml')
+    ncss.unit_handler = tuple_unit_handler
+    xml_data = ncss.get_data(ncss_query)
 
-    @recorder.use_cassette('ncss_gfs_csv_point')
-    def test_raw_csv(self):
-        """Test CSV point return from a GFS request."""
-        self.nq.accept('csv')
-        csv_data = self.ncss.get_data_raw(self.nq)
+    temp = xml_data['Temperature_isobaric']
+    assert len(temp) == 2
+    assert temp[1] == 'K'
 
+    relh = xml_data['Relative_humidity_isobaric']
+    assert len(relh) == 2
+    assert relh[1] == '%'
+
+
+@recorder.use_cassette('ncss_gfs_netcdf_point')
+def test_netcdf_point(ncss, ncss_query):
+    """Test handling of netCDF point returns."""
+    ncss_query.accept('netcdf')
+    nc = ncss.get_data(ncss_query)
+
+    assert 'Temperature_isobaric' in nc.variables
+    assert 'Relative_humidity_isobaric' in nc.variables
+    assert nc.variables['latitude'][0] == 40
+    assert nc.variables['longitude'][0] == -105
+
+
+@recorder.use_cassette('ncss_gfs_netcdf4_point')
+def test_netcdf4_point(ncss, ncss_query):
+    """Test handling of netCDF4 point returns."""
+    ncss_query.accept('netcdf4')
+    nc = ncss.get_data(ncss_query)
+
+    assert 'Temperature_isobaric' in nc.variables
+    assert 'Relative_humidity_isobaric' in nc.variables
+    assert nc.variables['latitude'][0] == 40
+    assert nc.variables['longitude'][0] == -105
+
+
+@recorder.use_cassette('ncss_gfs_vertical_level')
+def test_vertical_level(ncss, ncss_query):
+    """Test data return from a single vertical level is correct."""
+    ncss_query.accept('csv').vertical_level(50000)
+    csv_data = ncss.get_data(ncss_query)
+
+    np.testing.assert_almost_equal(csv_data['Temperature_isobaric'], np.array([263.40]), 2)
+
+
+@recorder.use_cassette('ncss_gfs_csv_point')
+def test_raw_csv(ncss, ncss_query):
+    """Test CSV point return from a GFS request."""
+    ncss_query.accept('csv')
+    csv_data = ncss.get_data_raw(ncss_query)
+
+    assert csv_data.startswith(b'date,lat')
+
+
+@recorder.use_cassette('ncss_gfs_csv_point')
+def test_unknown_mime(ncss, ncss_query):
+    """Test handling of unknown mimetypes."""
+    ncss_query.accept('csv')
+    with response_context():
+        csv_data = ncss.get_data(ncss_query)
         assert csv_data.startswith(b'date,lat')
-
-    @recorder.use_cassette('ncss_gfs_csv_point')
-    def test_unknown_mime(self):
-        """Test handling of unknown mimetypes."""
-        self.nq.accept('csv')
-        with response_context():
-            csv_data = self.ncss.get_data(self.nq)
-            assert csv_data.startswith(b'date,lat')
