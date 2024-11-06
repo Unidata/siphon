@@ -1,4 +1,4 @@
-beautifulsoup4==4.9.1
+beautifulsoup4==4.12.3
 numpy==1.26.0
 pandas==2.2.3
 protobuf==5.28.2
