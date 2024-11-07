@@ -2,30 +2,58 @@ interactions:
 - request:
     body: null
     headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [Siphon (0.2.0+47.g2059476.dirty)]
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.2.0+47.g2059476.dirty)
     method: GET
     uri: http://thredds.ucar.edu/thredds/radarServer/catalog.xml
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA6yUUU+DMBSF3038Dzd9l27yoCzDxYBGEmMiYPS1g25rLIW0Bca/t0C3uKcN4xvp
-        Pef0uycpy9W+4NBQqVgpfDR3ZgioyMqcia2PPtLnm3u0eri+WmZEE15uwciF8tFO62qBcdu2Ti1Y
-        boZOnRHp0LzGghRUVSSjCuudpHmucCSaYAzAzXDHELPYcya+T8Ja1ynlFs89z8PDFEEf56P0JX4K
-        wwRikhMJCZWGGZ2AO3fIgAIslRmyjFqj7A0HvR2lXWUm7zWVXUAqsmac6Q7BmihzfIT+5cQI8Bje
-        r6qotuEjTWjOxruNwBYV0w0MCyxM2sZHgu5NHua0ofwWB0Eycz1swxzTBrJqzTQ3wW9PX/FjCK+9
-        HKLIrr0pJQTGAYmu8w7GlENDkyx4Em4UhtNZZVmAMZ7BO6qmELmTC/xLg/9YoTutwgs7nF6iprJg
-        gvDLqNLwMz7LdEZkn83hlv5Xgi2c+f4BAAD//wMA97cZWH8EAAA=
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxjYXRhbG9nIHhtbG5zPSJo
+        dHRwOi8vd3d3LnVuaWRhdGEudWNhci5lZHUvbmFtZXNwYWNlcy90aHJlZGRzL0ludkNhdGFsb2cv
+        djEuMCIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG5hbWU9IlRI
+        UkVERFMgUmFkYXIgU2VydmVyIiB2ZXJzaW9uPSIxLjAuNyI+DQogIDxzZXJ2aWNlIG5hbWU9InJh
+        ZGFyU2VydmVyIiBzZXJ2aWNlVHlwZT0iUXVlcnlDYXBhYmlsaXR5IiBiYXNlPSIvdGhyZWRkcy9y
+        YWRhclNlcnZlci8iIC8+DQogIDxkYXRhc2V0IG5hbWU9IlJhZGFyIERhdGEiPg0KICAgIDxjYXRh
+        bG9nUmVmIHhsaW5rOmhyZWY9Im5leHJhZC9sZXZlbDIvQ0NTMDM5L2RhdGFzZXQueG1sIiB4bGlu
+        azp0aXRsZT0iTkVYUkFEIExldmVsIElJIFJhZGFyIGZvciBDYXNlIFN0dWR5IENDUzAzOSIgbmFt
+        ZT0iTkVYUkFEIExldmVsIElJIFJhZGFyIGZvciBDYXNlIFN0dWR5IENDUzAzOSIgLz4NCiAgICA8
+        Y2F0YWxvZ1JlZiB4bGluazpocmVmPSJuZXhyYWQvbGV2ZWwyL0lERC9kYXRhc2V0LnhtbCIgeGxp
+        bms6dGl0bGU9Ik5FWFJBRCBMZXZlbCBJSSBSYWRhciBmcm9tIElERCIgbmFtZT0iTkVYUkFEIExl
+        dmVsIElJIFJhZGFyIGZyb20gSUREIiAvPg0KICAgIDxjYXRhbG9nUmVmIHhsaW5rOmhyZWY9Im5l
+        eHJhZC9sZXZlbDMvQ0NTMDM5L2RhdGFzZXQueG1sIiB4bGluazp0aXRsZT0iTkVYUkFEIExldmVs
+        IElJSSBSYWRhciBmb3IgQ2FzZSBTdHVkeSBDQ1MwMzkiIG5hbWU9Ik5FWFJBRCBMZXZlbCBJSUkg
+        UmFkYXIgZm9yIENhc2UgU3R1ZHkgQ0NTMDM5IiAvPg0KICAgIDxjYXRhbG9nUmVmIHhsaW5rOmhy
+        ZWY9Im5leHJhZC9sZXZlbDMvSUREL2RhdGFzZXQueG1sIiB4bGluazp0aXRsZT0iTkVYUkFEIExl
+        dmVsIElJSSBSYWRhciBmcm9tIElERCIgbmFtZT0iTkVYUkFEIExldmVsIElJSSBSYWRhciBmcm9t
+        IElERCIgLz4NCiAgICA8Y2F0YWxvZ1JlZiB4bGluazpocmVmPSJ0ZXJtaW5hbC9sZXZlbDMvSURE
+        L2RhdGFzZXQueG1sIiB4bGluazp0aXRsZT0iVERXUiBMZXZlbCBJSUkgUmFkYXIgZnJvbSBJREQi
+        IG5hbWU9IlREV1IgTGV2ZWwgSUlJIFJhZGFyIGZyb20gSUREIiAvPg0KICA8L2RhdGFzZXQ+DQo8
+        L2NhdGFsb2c+DQo=
     headers:
-      Access-Control-Allow-Origin: ['*']
-      Connection: [Keep-Alive]
-      Content-Encoding: [gzip]
-      Content-Type: [application/xml]
-      Date: ['Tue, 16 Jun 2015 17:38:01 GMT']
-      Keep-Alive: ['timeout=5, max=100']
-      Server: [Apache]
-      Vary: [Accept-Encoding]
-    status: {code: 200, message: OK}
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - Keep-Alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/xml
+      Date:
+      - Tue, 16 Jun 2015 17:38:01 GMT
+      Keep-Alive:
+      - timeout=5, max=100
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+    status:
+      code: 200
+      message: OK
 version: 1

@@ -2,31 +2,56 @@ interactions:
 - request:
     body: null
     headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [Siphon (0.2.0+46.gf833b51.dirty)]
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.2.0+46.gf833b51.dirty)
     method: GET
     uri: http://thredds.ucar.edu/thredds/metadata/grib/NCEP/GFS/Global_0p5deg/TwoD/
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA7WTX0/CMBTFv8oVXxljoJBAbYLBhDeJ7sXHriussWtne4lOwne3rPxLMFETeVjW
-        3Xv62+l2LimwVJQUguWUoEQl6KRivBCQmpIzjIedbmeQQAQP1hoLVlTGIomDlDist7erKJolsF4Y
-        jdGClVLVo5QVpmTtiZVMtR3TLnLCysWYG2Xs6L2QKMYZ469La1Y6j0L5+rZ3Ox0Oxg3IyU8x6vWq
-        j/EGZr2L0JNBoPcvQ79p6PeP05e/8DPl0ef88FqP+0evG5j/jnYk7JCnVk9O3PytCaybNowgCDaT
-        jmalOCvPno6lg6UooiQOuQISh2BmJq99SBM6S9M5PCPDlYObbtfH0ksSSjxpa+CulbRAG1ew3K93
-        ixYllUdQrCtB4ozu9++jXO36pXCOLYOErLyJ7bVv5sJxKyuURu8FqR8SK95WwiE4oRGyGtDXuJLb
-        p3fmwNUaGUfJmVI1SM2NtYJj58D+wXfR/3Ya/Zn7fn/4KnEzwV+pbTLmyAMAAA==
+        PGh0bWw+PGhlYWQ+PHRpdGxlPkFwYWNoZSBUb21jYXQvNy4wLjYxIC0gRXJyb3IgcmVwb3J0PC90
+        aXRsZT48c3R5bGU+PCEtLUgxIHtmb250LWZhbWlseTpUYWhvbWEsQXJpYWwsc2Fucy1zZXJpZjtj
+        b2xvcjp3aGl0ZTtiYWNrZ3JvdW5kLWNvbG9yOiM1MjVENzY7Zm9udC1zaXplOjIycHg7fSBIMiB7
+        Zm9udC1mYW1pbHk6VGFob21hLEFyaWFsLHNhbnMtc2VyaWY7Y29sb3I6d2hpdGU7YmFja2dyb3Vu
+        ZC1jb2xvcjojNTI1RDc2O2ZvbnQtc2l6ZToxNnB4O30gSDMge2ZvbnQtZmFtaWx5OlRhaG9tYSxB
+        cmlhbCxzYW5zLXNlcmlmO2NvbG9yOndoaXRlO2JhY2tncm91bmQtY29sb3I6IzUyNUQ3Njtmb250
+        LXNpemU6MTRweDt9IEJPRFkge2ZvbnQtZmFtaWx5OlRhaG9tYSxBcmlhbCxzYW5zLXNlcmlmO2Nv
+        bG9yOmJsYWNrO2JhY2tncm91bmQtY29sb3I6d2hpdGU7fSBCIHtmb250LWZhbWlseTpUYWhvbWEs
+        QXJpYWwsc2Fucy1zZXJpZjtjb2xvcjp3aGl0ZTtiYWNrZ3JvdW5kLWNvbG9yOiM1MjVENzY7fSBQ
+        IHtmb250LWZhbWlseTpUYWhvbWEsQXJpYWwsc2Fucy1zZXJpZjtiYWNrZ3JvdW5kOndoaXRlO2Nv
+        bG9yOmJsYWNrO2ZvbnQtc2l6ZToxMnB4O31BIHtjb2xvciA6IGJsYWNrO31BLm5hbWUge2NvbG9y
+        IDogYmxhY2s7fUhSIHtjb2xvciA6ICM1MjVENzY7fS0tPjwvc3R5bGU+IDwvaGVhZD48Ym9keT48
+        aDE+SFRUUCBTdGF0dXMgNDAwIC0gPC9oMT48SFIgc2l6ZT0iMSIgbm9zaGFkZT0ibm9zaGFkZSI+
+        PHA+PGI+dHlwZTwvYj4gU3RhdHVzIHJlcG9ydDwvcD48cD48Yj5tZXNzYWdlPC9iPiA8dT48L3U+
+        PC9wPjxwPjxiPmRlc2NyaXB0aW9uPC9iPiA8dT5UaGUgcmVxdWVzdCBzZW50IGJ5IHRoZSBjbGll
+        bnQgd2FzIHN5bnRhY3RpY2FsbHkgaW5jb3JyZWN0LjwvdT48L3A+PEhSIHNpemU9IjEiIG5vc2hh
+        ZGU9Im5vc2hhZGUiPjxoMz5BcGFjaGUgVG9tY2F0LzcuMC42MTwvaDM+PC9ib2R5PjwvaHRtbD4=
     headers:
-      Access-Control-Allow-Origin: ['*']
-      Connection: [close]
-      Content-Encoding: [gzip]
-      Content-Language: [en]
-      Content-Length: ['388']
-      Content-Type: [text/html;charset=utf-8]
-      Date: ['Mon, 15 Jun 2015 19:29:41 GMT']
-      Server: [Apache]
-      Vary: [Accept-Encoding]
-    status: {code: 400, message: Bad Request}
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - close
+      Content-Encoding:
+      - gzip
+      Content-Language:
+      - en
+      Content-Length:
+      - '388'
+      Content-Type:
+      - text/html;charset=utf-8
+      Date:
+      - Mon, 15 Jun 2015 19:29:41 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+    status:
+      code: 400
+      message: Bad Request
 version: 1

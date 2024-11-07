@@ -1,3 +1,7 @@
 src/siphon/_version.py export-subst
 
 *.ipynb	diff=jupyternotebook
+
+# Mark the vcrpy cassettes as generated
+tests/fixtures/* linguist-generated=true
+tests/cdmr/fixtures/* linguist-generated=true

@@ -2,38 +2,73 @@ interactions:
 - request:
     body: null
     headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [Siphon (0.4.1+19.g2bea7f3.dirty)]
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.4.1+19.g2bea7f3.dirty)
     method: GET
     uri: http://thredds.ucar.edu/thredds/catalog/nexrad/level3/NMD/FTG/20170719/catalog.xml?dataset=NWS/NEXRAD3/NMD/FTG/20170719/Level3_FTG_NMD_20170719_2337.nids
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA5xVW2/aMBR+n7T/YHnPxKRZx0AhHSJlQ2opKqBNe0EmdsFaEkeOw2W/fse5AaFU
-        1d6Sc77znfuxe7ePQrTlKhUy7mPbamPE40AyEa/7eDEftb7iO+/jBzegmoZyjQAep3280TrpEbLb
-        7awsFgyUVhZQZXGWkZhGPE1owFOiN4ozlpJxvB0WBGSb+8hpevtQxH/OyHaOJdWa2N1ul+RajAxd
-        Hz/wLQ+d5Wj+fTl59Jc3bbvT7tjd5Y3jdCyIIMVnWVg2hqgRclOutiLgJYuiTNAQo1I6PyQgHMoo
-        kVnMMFrRFP4LywvbOGDSuDmzfZreT/zBtDKtEzbQIcGIvM71Yz6fzkDCVYPvVNGgfBEhL1TXeQMW
-        KR5JzZspsui5lDdYa4vrpHEQNUs2GT4+XFAZ3HWWjLGgwbLw/eEFi8FdZxGpbJCMZ08XHICqKVxS
-        wos/M6op1++fqrEP6f6ckcn9r+eB7xDAEcCTCkvewZGpcEr1BkrJ9zCCJMxN/oeqqopJYyb+cgTb
-        p2EfVwfNQWt/ubXaLqm0J2iOdF6uCFb7RXCGPcPeandadnd+4/Q+Oz3H/p2b1mZaRHwoYeDoupKZ
-        hmiqdMPa6fTa4LdQ1UiWKaphI71bFIk4gwiBv5KVPsgrTtyIa2pyQCLecCU0Z32sVcbxSRRFUyfQ
-        Rq/Y6rrRuawG0kxvJHAcPLhNxZEqL5ZLjrpjzKAwg+VBs8eDh6KWueAMMpIqotorhqLlFLBSeATK
-        IIt4rPOEUX7OejChL2+fT/NHPkFOFG5AYaSFDs2+FFCU61D+mUDVjsty4bPouRLrjYbpGCnOwwOi
-        WypCugo5RH2KPpIk2SoUKZS+FoHQbAzayoCuspCqQx/74xH2FsPBM1lMxv5gPnDz039qE0jgDrRZ
-        gLeThlcngqj6OM2SRCr9rYk4S5I0A3RJNTLlzpdrbl4uUj5d8P0PAAD//wMA2aScMu4GAAA=
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxjYXRhbG9nIHhtbG5zPSJo
+        dHRwOi8vd3d3LnVuaWRhdGEudWNhci5lZHUvbmFtZXNwYWNlcy90aHJlZGRzL0ludkNhdGFsb2cv
+        djEuMCIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG5hbWU9Ikxl
+        dmVsM19GVEdfTk1EXzIwMTcwNzE5XzIzMzcubmlkcyIgdmVyc2lvbj0iMS4wLjEiPg0KICA8c2Vy
+        dmljZSBuYW1lPSJyYWRpYWwiIHNlcnZpY2VUeXBlPSJDb21wb3VuZCIgYmFzZT0iIj4NCiAgICA8
+        c2VydmljZSBuYW1lPSJuY2RvZHMiIHNlcnZpY2VUeXBlPSJPUEVOREFQIiBiYXNlPSIvdGhyZWRk
+        cy9kb2RzQy8iIC8+DQogICAgPHNlcnZpY2UgbmFtZT0iSFRUUFNlcnZlciIgc2VydmljZVR5cGU9
+        IkhUVFBTZXJ2ZXIiIGJhc2U9Ii90aHJlZGRzL2ZpbGVTZXJ2ZXIvIiAvPg0KICAgIDxzZXJ2aWNl
+        IG5hbWU9ImNkbXJlbW90ZSIgc2VydmljZVR5cGU9IkNkbVJlbW90ZSIgYmFzZT0iL3RocmVkZHMv
+        Y2RtcmVtb3RlLyIgLz4NCiAgICA8c2VydmljZSBuYW1lPSJuY21sIiBzZXJ2aWNlVHlwZT0iTkNN
+        TCIgYmFzZT0iL3RocmVkZHMvbmNtbC8iIC8+DQogICAgPHNlcnZpY2UgbmFtZT0idWRkYyIgc2Vy
+        dmljZVR5cGU9IlVEREMiIGJhc2U9Ii90aHJlZGRzL3VkZGMvIiAvPg0KICAgIDxzZXJ2aWNlIG5h
+        bWU9ImlzbyIgc2VydmljZVR5cGU9IklTTyIgYmFzZT0iL3RocmVkZHMvaXNvLyIgLz4NCiAgPC9z
+        ZXJ2aWNlPg0KICA8ZGF0YXNldCBuYW1lPSJMZXZlbDNfRlRHX05NRF8yMDE3MDcxOV8yMzM3Lm5p
+        ZHMiIElEPSJOV1MvTkVYUkFEMy9OTUQvRlRHLzIwMTcwNzE5L0xldmVsM19GVEdfTk1EXzIwMTcw
+        NzE5XzIzMzcubmlkcyIgdXJsUGF0aD0ibmV4cmFkL2xldmVsMy9OTUQvRlRHLzIwMTcwNzE5L0xl
+        dmVsM19GVEdfTk1EXzIwMTcwNzE5XzIzMzcubmlkcyI+DQogICAgPGRhdGFTaXplIHVuaXRzPSJi
+        eXRlcyI+MTY1LjA8L2RhdGFTaXplPg0KICAgIDxkYXRlIHR5cGU9Im1vZGlmaWVkIj4yMDE3LTA3
+        LTE5VDIzOjQzOjMxWjwvZGF0ZT4NCiAgICA8dGltZUNvdmVyYWdlPg0KICAgICAgPHN0YXJ0PjIw
+        MTctMDctMTlUMjM6Mzc6MDA8L3N0YXJ0Pg0KICAgICAgPGR1cmF0aW9uPjUgbWludXRlczwvZHVy
+        YXRpb24+DQogICAgPC90aW1lQ292ZXJhZ2U+DQogICAgPG1ldGFkYXRhIGluaGVyaXRlZD0idHJ1
+        ZSI+DQogICAgICA8c2VydmljZU5hbWU+cmFkaWFsPC9zZXJ2aWNlTmFtZT4NCiAgICAgIDxhdXRo
+        b3JpdHk+ZWR1LnVjYXIudW5pZGF0YTwvYXV0aG9yaXR5Pg0KICAgICAgPGRhdGFUeXBlPlJBRElB
+        TDwvZGF0YVR5cGU+DQogICAgICA8ZGF0YUZvcm1hdD5ORVhSQUQtMzwvZGF0YUZvcm1hdD4NCiAg
+        ICAgIDxkb2N1bWVudGF0aW9uIHhsaW5rOmhyZWY9Imh0dHA6Ly93d3cudW5pZGF0YS51Y2FyLmVk
+        dS9kYXRhLyNyYWRhciIgeGxpbms6dGl0bGU9IlVuaWRhdGEgcmFkYXIgZGF0YSBwYWdlIiAvPg0K
+        ICAgICAgPGRvY3VtZW50YXRpb24gdHlwZT0icmlnaHRzIj5GcmVlbHkgYXZhaWxhYmxlPC9kb2N1
+        bWVudGF0aW9uPg0KICAgICAgPHB1Ymxpc2hlcj4NCiAgICAgICAgPG5hbWUgdm9jYWJ1bGFyeT0i
+        RElGIj5VQ0FSL1VOSURBVEE8L25hbWU+DQogICAgICAgIDxjb250YWN0IHVybD0iaHR0cDovL3d3
+        dy51bmlkYXRhLnVjYXIuZWR1LyIgZW1haWw9InN1cHBvcnRAdW5pZGF0YS51Y2FyLmVkdSIgLz4N
+        CiAgICAgIDwvcHVibGlzaGVyPg0KICAgIDwvbWV0YWRhdGE+DQogIDwvZGF0YXNldD4NCjwvY2F0
+        YWxvZz4NCg==
     headers:
-      Access-Control-Allow-Origin: ['*']
-      Connection: [Keep-Alive]
-      Content-Encoding: [gzip]
-      Content-Language: [en]
-      Content-Type: [application/xml;charset=UTF-8]
-      Date: ['Wed, 19 Jul 2017 23:52:40 GMT']
-      Keep-Alive: ['timeout=5, max=100']
-      Server: [Apache]
-      Vary: [Accept-Encoding]
-      X-Frame-Options: [SAMEORIGIN]
-    status: {code: 200, message: '200'}
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - Keep-Alive
+      Content-Encoding:
+      - gzip
+      Content-Language:
+      - en
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Date:
+      - Wed, 19 Jul 2017 23:52:40 GMT
+      Keep-Alive:
+      - timeout=5, max=100
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: '200'
 version: 1
