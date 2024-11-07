@@ -122,15 +122,11 @@ proj = ccrs.LambertConformal(central_longitude=-105, central_latitude=0,
 fig = plt.figure(figsize=(20, 10))
 ax = fig.add_subplot(1, 1, 1, projection=proj)
 
-state_boundaries = feat.NaturalEarthFeature(category='cultural',
-                                            name='admin_1_states_provinces_lines',
-                                            scale='110m', facecolor='none')
-
 ax.add_feature(feat.LAND, zorder=-1)
 ax.add_feature(feat.OCEAN, zorder=-1)
 ax.add_feature(feat.LAKES, zorder=-1)
 ax.coastlines(resolution='110m', zorder=2, color='black')
-ax.add_feature(state_boundaries, edgecolor='black')
+ax.add_feature(feat.STATES, edgecolor='black')
 ax.add_feature(feat.BORDERS, linewidth=2, edgecolor='black')
 
 # Set plot bounds
