@@ -2,37 +2,76 @@ interactions:
 - request:
     body: null
     headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [Siphon (None)]
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (None)
     method: GET
     uri: http://thredds.ucar.edu/thredds/radarServer/nexrad/level2/IDD/dataset.xml
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA7SWy27bMBBF9wX6DwQX3UWM80AelRWkloMaCILUTpuim4CRxhIRiRRISo779R3q
-        4ciB4GaRbAx6Znzv0XhIyr94zjNSgTZCyTEdefuUgIxULGQypj/vrvZO6UXw+ZMfccszlRAsl2ZM
-        U2uLc8ZWq5VXShFj0isjrj2ISyZ5DqbgERhmUw1xbNhMVpNGgFW1Ry1z/pwJ+bQltjr0lE7Y6Ozs
-        jNVZSpzcmM55zDUJUYRu4XonFPEI8Q3oSkTQlmtXvsAQaEra1N26wEz4Y0LJIze43OD1qhklrBF0
-        D2XAtoI309/zy5BcQwUZmc1Iw7PUKiezMKT4MaYSnlGJZa7mgNXhUme33KZDudrlBfwGbYIeiM/6
-        ibbWMbnHCJBldnnts02gV3CldM5t0BAfNDVtrK3KwXIXJUKmoIWFeEytLqFjckIqKnOQllvsNLF1
-        60yZ51yvaTDcjPvFfO/0NNw0xSMLFCBYpNfkmORClhaMh0B97RfLBBSOjRU8myj8DU9gk8OsVNqm
-        RpU27UVd+yzXNjjY9/axY/V6Oy3+QnDUZN1yK4mja00QQ6IBzEPt4LMm2HNmg9Y+cGNXYF771Qh7
-        o8PjXUAnbwJyDkM8A85+WcRqJYdYdnZmJ8dTPuT+yslnO/4334ochv5NkHFQaDA4Bfg8+KWXi0vd
-        TMboiMR8bXBgusiL6aCwX3Et+GMGhlQq4o9lhuOKW352RfsGXVW7tSdKa8hqg4mC5VJEArFoT+Kh
-        KZxezu++k8VkNr2ZTMmXxH4liwIiq3nGpjIREnAzyaTJNHvCLfEUcE0c0xiZpTu5ENB058wwUyiW
-        S9CIgV29TfEc+ggcSN4OMYdlhtqiEnb9ESzfdqN8jH273BbfEP3ZjdQYlPm9iG36jkyhKooMNOn0
-        SWvQcuXsP6PzCzIVvW+bOqQX6WEYn202YHfVsO6uaS5V1t6q7pWCte8UuP4HAAD//wMAoU/IcIcI
-        AAA=
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxjYXRhbG9nIHhtbG5zPSJo
+        dHRwOi8vd3d3LnVuaWRhdGEudWNhci5lZHUvbmFtZXNwYWNlcy90aHJlZGRzL0ludkNhdGFsb2cv
+        djEuMCIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG5hbWU9IlJh
+        ZGFyIERhdGEiIHZlcnNpb249IjEuMC43Ij4NCiAgPHNlcnZpY2UgbmFtZT0icmFkYXJTZXJ2ZXIi
+        IHNlcnZpY2VUeXBlPSJEUUMiIGJhc2U9Ii90aHJlZGRzL3JhZGFyU2VydmVyLyIgLz4NCiAgPGRh
+        dGFzZXQgbmFtZT0iTkVYUkFEIExldmVsIElJIFJhZGFyIGZyb20gSUREIiBJRD0ibmV4cmFkL2xl
+        dmVsMi9JREQiIHVybFBhdGg9Im5leHJhZC9sZXZlbDIvSUREIj4NCiAgICA8c2VydmljZU5hbWU+
+        cmFkYXJTZXJ2ZXI8L3NlcnZpY2VOYW1lPg0KICAgIDxkYXRhVHlwZT5SQURJQUw8L2RhdGFUeXBl
+        Pg0KICAgIDxkYXRhRm9ybWF0Pk5FWFJBRDI8L2RhdGFGb3JtYXQ+DQogICAgPG1ldGFkYXRhIGlu
+        aGVyaXRlZD0idHJ1ZSI+DQogICAgICA8ZG9jdW1lbnRhdGlvbiB0eXBlPSJzdW1tYXJ5Ij5ORVhS
+        QUQgTGV2ZWwgSUkgUmFkYXIgV1NSLTg4RCBmcm9tIElERC4gU2VudCBldmVyeSA1IG1pbnV0ZXMu
+        PC9kb2N1bWVudGF0aW9uPg0KICAgICAgPGdlb3NwYXRpYWxDb3ZlcmFnZT4NCiAgICAgICAgPG5v
+        cnRoc291dGg+DQogICAgICAgICAgPHN0YXJ0PjIwLjA8L3N0YXJ0Pg0KICAgICAgICAgIDxzaXpl
+        PjQwLjA8L3NpemU+DQogICAgICAgICAgPHVuaXRzPmRlZ3JlZXNfbm9ydGg8L3VuaXRzPg0KICAg
+        ICAgICA8L25vcnRoc291dGg+DQogICAgICAgIDxlYXN0d2VzdD4NCiAgICAgICAgICA8c3RhcnQ+
+        LTEzNS4wPC9zdGFydD4NCiAgICAgICAgICA8c2l6ZT43MC4wPC9zaXplPg0KICAgICAgICAgIDx1
+        bml0cz5kZWdyZWVzX2Vhc3Q8L3VuaXRzPg0KICAgICAgICA8L2Vhc3R3ZXN0Pg0KICAgICAgICA8
+        dXBkb3duPg0KICAgICAgICAgIDxzdGFydD4wLjA8L3N0YXJ0Pg0KICAgICAgICAgIDxzaXplPjAu
+        MDwvc2l6ZT4NCiAgICAgICAgICA8dW5pdHM+a208L3VuaXRzPg0KICAgICAgICA8L3VwZG93bj4N
+        CiAgICAgIDwvZ2Vvc3BhdGlhbENvdmVyYWdlPg0KICAgICAgPHRpbWVDb3ZlcmFnZT4NCiAgICAg
+        ICAgPGVuZD5wcmVzZW50PC9lbmQ+DQogICAgICAgIDxkdXJhdGlvbj4xNCBkYXlzPC9kdXJhdGlv
+        bj4NCiAgICAgIDwvdGltZUNvdmVyYWdlPg0KICAgICAgPHZhcmlhYmxlcyB2b2NhYnVsYXJ5PSJE
+        SUYiPg0KICAgICAgICA8dmFyaWFibGUgbmFtZT0iQ29ycmVsYXRpb25Db2VmZmljaWVudCIgdm9j
+        YWJ1bGFyeV9uYW1lPSJFQVJUSCBTQ0lFTkNFICZndDsgU3BlY3RyYWwvRW5naW5lZXJpbmcgJmd0
+        OyBSYWRhciAmZ3Q7IiB1bml0cz0iZGltZW5zaW9ubGVzcyIgLz4NCiAgICAgICAgPHZhcmlhYmxl
+        IG5hbWU9IkRpZmZlcmVudGlhbFBoYXNlIiB2b2NhYnVsYXJ5X25hbWU9IkVBUlRIIFNDSUVOQ0Ug
+        Jmd0OyBTcGVjdHJhbC9FbmdpbmVlcmluZyAmZ3Q7IFJhZGFyICZndDsiIHVuaXRzPSJkZWciIC8+
+        DQogICAgICAgIDx2YXJpYWJsZSBuYW1lPSJEaWZmZXJlbnRpYWxSZWZsZWN0aXZpdHkiIHZvY2Fi
+        dWxhcnlfbmFtZT0iRUFSVEggU0NJRU5DRSAmZ3Q7IFNwZWN0cmFsL0VuZ2luZWVyaW5nICZndDsg
+        UmFkYXIgJmd0OyIgdW5pdHM9ImRCIiAvPg0KICAgICAgICA8dmFyaWFibGUgbmFtZT0iUmVmbGVj
+        dGl2aXR5IiB2b2NhYnVsYXJ5X25hbWU9IkVBUlRIIFNDSUVOQ0UgJmd0OyBTcGVjdHJhbC9Fbmdp
+        bmVlcmluZyAmZ3Q7IFJhZGFyICZndDsgUmFkYXIgUmVmbGVjdGl2aXR5IiB1bml0cz0iZEJaIiAv
+        Pg0KICAgICAgICA8dmFyaWFibGUgbmFtZT0iU3BlY3RydW1XaWR0aCIgdm9jYWJ1bGFyeV9uYW1l
+        PSJFQVJUSCBTQ0lFTkNFICZndDsgU3BlY3RyYWwvRW5naW5lZXJpbmcgJmd0OyBSYWRhciAmZ3Q7
+        IERvcHBsZXIgU3BlY3RydW0gV2lkdGgiIHVuaXRzPSJtL3MiIC8+DQogICAgICAgIDx2YXJpYWJs
+        ZSBuYW1lPSJWZWxvY2l0eSIgdm9jYWJ1bGFyeV9uYW1lPSJFQVJUSCBTQ0lFTkNFICZndDsgU3Bl
+        Y3RyYWwvRW5naW5lZXJpbmcgJmd0OyBSYWRhciAmZ3Q7IERvcHBsZXIgVmVsb2NpdHkiIHVuaXRz
+        PSJtL3MiIC8+DQogICAgICA8L3ZhcmlhYmxlcz4NCiAgICA8L21ldGFkYXRhPg0KICA8L2RhdGFz
+        ZXQ+DQo8L2NhdGFsb2c+DQo=
     headers:
-      access-control-allow-origin: ['*']
-      connection: [Keep-Alive]
-      content-encoding: [gzip]
-      content-type: [application/xml]
-      date: ['Wed, 17 Jun 2015 19:42:20 GMT']
-      keep-alive: ['timeout=5, max=100']
-      server: [Apache]
-      vary: [Accept-Encoding]
-    status: {code: 200, message: OK}
+      access-control-allow-origin:
+      - '*'
+      connection:
+      - Keep-Alive
+      content-encoding:
+      - gzip
+      content-type:
+      - application/xml
+      date:
+      - Wed, 17 Jun 2015 19:42:20 GMT
+      keep-alive:
+      - timeout=5, max=100
+      server:
+      - Apache
+      vary:
+      - Accept-Encoding
+    status:
+      code: 200
+      message: OK
 version: 1
