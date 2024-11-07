@@ -169,45 +169,49 @@ def test_http_error_no_header():
         endpoint.get_query(query)
 
 
-class TestEndPoint:
-    """Test the HTTPEndPoint."""
+@pytest.fixture
+def endpoint():
+    """Set up tests to point to a common server, api, and end point."""
+    return HTTPEndPoint('http://thredds.ucar.edu/'
+                        'thredds/metadata/grib/NCEP/GFS/Global_0p5deg/TwoD')
 
-    def setup(self):
-        """Set up tests to point to a common server, api, and end point."""
-        self.server = 'http://thredds.ucar.edu/'
-        self.api = 'thredds/metadata/grib/NCEP/GFS/Global_0p5deg/TwoD'
-        self.endpoint = HTTPEndPoint(self.server + self.api)
 
-    def test_basic(self):
-        """Test creating a basic query and validating it."""
-        q = self.endpoint.query()
-        q.all_times()
-        assert self.endpoint.validate_query(q), 'Invalid query.'
+def test_basic(endpoint):
+    """Test creating a basic query and validating it."""
+    q = endpoint.query()
+    q.all_times()
+    assert endpoint.validate_query(q)
 
-    @recorder.use_cassette('gfs-metadata-map')
-    def test_trailing_slash(self):
-        """Test setting up and end point with a url with a trailing slash."""
-        endpoint = HTTPEndPoint(self.server + self.api + '/')
-        q = endpoint.query()
-        q.add_query_parameter(metadata='variableMap')
-        resp = endpoint.get_query(q)
-        assert resp.content
 
-    @recorder.use_cassette('gfs-metadata-map')
-    def test_query(self):
-        """Test getting a query."""
-        q = self.endpoint.query()
-        q.add_query_parameter(metadata='variableMap')
-        resp = self.endpoint.get_query(q)
-        assert resp.content
+@recorder.use_cassette('gfs-metadata-map')
+def test_trailing_slash():
+    """Test setting up and end point with a url with a trailing slash."""
+    endpoint = HTTPEndPoint('http://thredds.ucar.edu/' +
+                            'thredds/metadata/grib/NCEP/GFS/Global_0p5deg/TwoD' + '/')
+    q = endpoint.query()
+    q.add_query_parameter(metadata='variableMap')
+    resp = endpoint.get_query(q)
+    assert resp.content
 
-    @recorder.use_cassette('gfs-metadata-map-bad')
-    def test_get_error(self):
-        """Test that getting a bad path raises an error."""
-        with pytest.raises(HTTPError):
-            self.endpoint.get_path('')
 
-    def test_url_path(self):
-        """Test forming a url path from the end point."""
-        path = self.endpoint.url_path('foobar.html')
-        assert path == self.server + self.api + '/foobar.html'
+@recorder.use_cassette('gfs-metadata-map')
+def test_query(endpoint):
+    """Test getting a query."""
+    q = endpoint.query()
+    q.add_query_parameter(metadata='variableMap')
+    resp = endpoint.get_query(q)
+    assert resp.content
+
+
+@recorder.use_cassette('gfs-metadata-map-bad')
+def test_get_error(endpoint):
+    """Test that getting a bad path raises an error."""
+    with pytest.raises(HTTPError):
+        endpoint.get_path('')
+
+
+def test_url_path(endpoint):
+    """Test forming a url path from the end point."""
+    path = endpoint.url_path('foobar.html')
+    assert path == ('http://thredds.ucar.edu/thredds/metadata/grib/NCEP/GFS/Global_0p5deg/TwoD'
+                    '/foobar.html')
