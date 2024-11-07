@@ -137,23 +137,12 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#html_theme = 'default'
-try:
-    import sphinx_rtd_theme
-    html_theme = 'sphinx_rtd_theme'
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-except ImportError:
-    pass
-
-def setup(app):
-        app.add_css_file('theme_override.css')
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {'canonical_url': 'https://unidata.github.io/siphon/latest/'}
-if 'sphinx_rtd_theme' in vars() and sphinx_rtd_theme.__version__ == '0.2.5b1.post1':
-    html_theme_options['versions'] = {'latest': '../latest', 'dev': '../dev'}
 
 # Extra variables that will be available to the templates. Used to create the
 # links to the Github repository sources and issues
@@ -186,6 +175,7 @@ html_logo = os.path.join('_static', 'siphon_150x150.png')
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_css_files = ['theme_override.css']
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
