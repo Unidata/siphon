@@ -304,3 +304,10 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+# Dictionary of URL redirects allowed
+linkcheck_allowed_redirects = {
+    r'https://doi.org/.*': r'https://.*',
+    r'https://gitter.im/Unidata/siphon': r'https://app.gitter.im/.*siphon.*',
+    r'https://codecov.io/github/Unidata/siphon': r'https://app.codecov.io/github/Unidata/siphon',
+}

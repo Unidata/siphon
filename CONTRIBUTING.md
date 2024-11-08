@@ -83,7 +83,7 @@ Add tests for your change(s). Make the tests pass:
 
     py.test
 
-Commit the changes you made. Chris Beams has written a [guide](https://chris.beams.io/posts/git-commit/) on how to write good commit messages.
+Commit the changes you made. Chris Beams has written a [guide](https://cbea.ms/git-commit/) on how to write good commit messages.
 
 Push to your fork and [submit a pull request][pr].
 
