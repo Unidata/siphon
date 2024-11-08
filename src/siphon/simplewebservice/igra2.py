@@ -40,7 +40,7 @@ class IGRAUpperAir(HTTPEndPoint):
         site_id : str
             11-character IGRA2 station identifier.
 
-        time : datetime
+        time : datetime.datetime
            The date and time of the desired observation. If list of two times is given,
            dataframes for all dates within the two dates will be returned.
 
