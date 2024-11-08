@@ -52,7 +52,7 @@ test = [
     "siphon[extras]"
 ]
 extras = [
-    "xarray>=2022.3.0"
+    "xarray>=2022.6.0"
 ]
 
 [project.urls]
