@@ -14,8 +14,6 @@ import pandas as pd
 from .._tools import get_wind_components
 from ..http_util import HTTPEndPoint
 
-warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created", UserWarning)
-
 
 class IAStateUpperAir(HTTPEndPoint):
     """Download and parse data from the Iowa State's upper air archive."""
@@ -134,16 +132,20 @@ class IAStateUpperAir(HTTPEndPoint):
                                'u_wind', 'v_wind'), how='all').reset_index(drop=True)
 
         # Add unit dictionary
-        df.units = {'pressure': 'hPa',
-                    'height': 'meter',
-                    'temperature': 'degC',
-                    'dewpoint': 'degC',
-                    'direction': 'degrees',
-                    'speed': 'knot',
-                    'u_wind': 'knot',
-                    'v_wind': 'knot',
-                    'station': None,
-                    'time': None}
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = {'pressure': 'hPa',
+                        'height': 'meter',
+                        'temperature': 'degC',
+                        'dewpoint': 'degC',
+                        'direction': 'degrees',
+                        'speed': 'knot',
+                        'u_wind': 'knot',
+                        'v_wind': 'knot',
+                        'station': None,
+                        'time': None}
+
         return df
 
     def _get_data_raw(self, time, site_id, pressure=None):
