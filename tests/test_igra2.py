@@ -140,6 +140,6 @@ def test_igra2_drvd():
 def test_igra2_nonexistent():
     """Test behavior when requesting non-existent data."""
     with pytest.raises(ValueError) as err:
-        IGRAUpperAir.request_data(datetime.utcnow(), 'NOSUCHSTATION')
+        IGRAUpperAir.request_data(datetime.now(), 'NOSUCHSTATION')
 
     assert 'No data' in str(err.value)
