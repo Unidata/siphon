@@ -5,7 +5,7 @@ Siphon
 
 |Docs| |PyPI| |Conda|
 
-|Travis| |AppVeyor| |CodeCov|
+|CodeCov|
 
 |Codacy|
 
