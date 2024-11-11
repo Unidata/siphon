@@ -49,7 +49,7 @@ class NCSS(HTTPEndPoint):
     """
 
     # Need staticmethod to keep this from becoming a bound method, where self
-    # is passed implicitly
+    # is passed implicitly. Needed to avoid warning about duplicated docstring.
     unit_handler = staticmethod(lambda *a, **kw: default_unit_handler(*a, **kw))
 
     def _get_metadata(self):
