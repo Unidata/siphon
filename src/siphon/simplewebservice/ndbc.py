@@ -43,7 +43,8 @@ class NDBC(HTTPEndPoint):
 
         Returns
         -------
-            Raw data string
+        `pandas.DataFrame`
+            Parsed data
 
         """
         endpoint = cls()
@@ -524,6 +525,7 @@ class NDBC(HTTPEndPoint):
 
         Returns
         -------
+        dict[str, str]
             dict of valid file extensions and their descriptions
 
         """
@@ -583,7 +585,8 @@ class NDBC(HTTPEndPoint):
 
         Returns
         -------
-        Raw data string
+        str
+            Raw data string
 
         """
         endpoint = cls()

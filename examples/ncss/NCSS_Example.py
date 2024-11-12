@@ -44,7 +44,7 @@ query.variables('Temperature_isobaric', 'Relative_humidity_isobaric')
 
 ###########################################
 # We now request data from the server using this query. The `NCSS` class handles parsing
-# this NetCDF data (using the `netCDF4` module). If we print out the variable names,
+# this NetCDF data (using the ``netCDF4`` module). If we print out the variable names,
 # we see our requested variables, as well as a few others (more metadata information)
 data = ncss.get_data(query)
 list(data.variables)

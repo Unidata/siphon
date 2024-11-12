@@ -28,7 +28,7 @@ class IAStateUpperAir(HTTPEndPoint):
 
         Parameters
         ----------
-        time : datetime
+        time : datetime.datetime
             The date and time of the desired observation.
 
         site_id : str
@@ -61,7 +61,7 @@ class IAStateUpperAir(HTTPEndPoint):
 
         Parameters
         ----------
-        time : datetime
+        time : datetime.datetime
             The date and time of the desired observation.
 
         pressure : float, optional
@@ -85,7 +85,7 @@ class IAStateUpperAir(HTTPEndPoint):
 
         Parameters
         ----------
-        time : datetime
+        time : datetime.datetime
             Date and time for which data should be downloaded
         site_id : str
             Site id for which data should be downloaded
@@ -153,7 +153,7 @@ class IAStateUpperAir(HTTPEndPoint):
 
         Parameters
         ----------
-        time : datetime
+        time : datetime.datetime
             Date and time for which data should be downloaded
         site_id : str
             Site id for which data should be downloaded

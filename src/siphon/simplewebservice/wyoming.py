@@ -28,7 +28,7 @@ class WyomingUpperAir(HTTPEndPoint):
 
         Parameters
         ----------
-        time : datetime
+        time : datetime.datetime
             The date and time of the desired observation.
 
         site_id : str
@@ -40,7 +40,8 @@ class WyomingUpperAir(HTTPEndPoint):
 
         Returns
         -------
-            :class:`pandas.DataFrame` containing the data
+        `pandas.DataFrame`
+            Parsed data
 
         """
         endpoint = cls()
@@ -52,7 +53,7 @@ class WyomingUpperAir(HTTPEndPoint):
 
         Parameters
         ----------
-        time : datetime
+        time : datetime.datetime
             The date and time of the desired observation.
 
         site_id : str
@@ -61,7 +62,7 @@ class WyomingUpperAir(HTTPEndPoint):
 
         Returns
         -------
-            :class:`pandas.DataFrame` containing the data
+        `pandas.DataFrame`
 
         """
         raw_data = self._get_data_raw(time, site_id)
@@ -130,14 +131,15 @@ class WyomingUpperAir(HTTPEndPoint):
 
         Parameters
         ----------
-        time : datetime
+        time : datetime.datetime
             Date and time for which data should be downloaded
         site_id : str
             Site id for which data should be downloaded
 
         Returns
         -------
-        text of the server response
+        str
+            text of the server response
 
         """
         path = ('?region=naconf&TYPE=TEXT%3ALIST'

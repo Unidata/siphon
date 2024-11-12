@@ -58,7 +58,14 @@ intersphinx_mapping = {
                        'numpy': ('https://numpy.org/doc/stable/', None),
                        'matplotlib': ('https://matplotlib.org/stable/', None),
                        'requests': ('https://requests.kennethreitz.org/en/latest/', None),
+                       'pandas': ('https://pandas.pydata.org/docs/', None),
                        }
+
+nitpicky = True
+nitpick_ignore = [
+    ('py:class', 'optional'), ('py:class', 'file-like object'), ('py:class', 'iterator')
+]
+nitpick_ignore_regex = [('py:class', r'.*[cC]allable'),]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

@@ -45,7 +45,7 @@ query.variables('Temperature_isobaric').accept('netcdf')
 
 ###########################################
 # We now request data from the server using this query. The `NCSS` class handles parsing
-# this NetCDF data (using the `netCDF4` module). If we print out the variable names, we
+# this NetCDF data (using the ``netCDF4`` module). If we print out the variable names, we
 # see our requested variables, as well as a few others (more metadata information)
 data = ncss.get_data(query)
 list(data.variables)
@@ -57,7 +57,7 @@ time = data.variables['time']
 
 ###########################################
 # The time values are in hours relative to the start of the entire model collection.
-# Fortunately, the `netCDF4` module has a helper function to convert these numbers into
+# Fortunately, the ``netCDF4`` module has a helper function to convert these numbers into
 # Python `datetime` objects. We can see the first 5 element output by the function look
 # reasonable.
 time_vals = num2date(time[:].squeeze(), time.units, only_use_cftime_datetimes=False)
