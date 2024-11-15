@@ -8,7 +8,7 @@ TDS Radar Query Service
 
 Use Siphon to get NEXRAD Level 3 data from a TDS.
 """
-from datetime import datetime
+from datetime import datetime, timezone
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -38,7 +38,7 @@ print(rs.variables)
 # N0B, which is reflectivity data for the lowest tilt. We see that when the query
 # is represented as a string, it shows the encoded URL.
 query = rs.query()
-query.stations('CYS').time(datetime.utcnow()).variables('N0B')
+query.stations('CYS').time(datetime.now(timezone.utc)).variables('N0B')
 
 ###########################################
 # We can use the RadarServer instance to check our query, to make

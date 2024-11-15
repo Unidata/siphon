@@ -101,6 +101,7 @@ class DatasetCollection(IndexableMapping):
 
         Returns
         -------
+        Dataset
             The value with a time closest to that desired
 
         """
@@ -137,6 +138,7 @@ class DatasetCollection(IndexableMapping):
 
         Returns
         -------
+        List[Dataset]
             All values corresponding to times within the specified range
 
         """
@@ -611,7 +613,7 @@ class Dataset:
 
         Parameters
         ----------
-        mode : 'b' or 't', optional
+        mode : `'b'` or `'t'`, optional
             Mode with which to open the remote data; 'b' for binary, 't' for text. Defaults
             to 'b'.
 
@@ -625,7 +627,8 @@ class Dataset:
 
         Returns
         -------
-        A random access, file-like object
+        fobj : file-like object
+            A random access, file-like object for reading data
 
         """
         fobj = self.access_with_service('HTTPServer')

@@ -71,7 +71,7 @@ def test_data_query_repeated_vars():
 
 def test_data_query_time_reset():
     """Test query with multiple time-type query fields."""
-    dr = DataQuery().all_times().time(datetime.utcnow())
+    dr = DataQuery().all_times().time(datetime.now())
     query = str(dr)
     assert query.startswith('time='), 'Bad string: ' + query
     assert query.count('=') == 1
@@ -79,7 +79,7 @@ def test_data_query_time_reset():
 
 def test_data_query_time_reset2():
     """Test that time queries replace each other."""
-    dr = DataQuery().time(datetime.utcnow()).all_times()
+    dr = DataQuery().time(datetime.now()).all_times()
     assert str(dr) == 'temporal=all'
 
 
@@ -132,7 +132,7 @@ def test_data_query_spatial_reset2():
 
 def test_data_query_iter():
     """Test converting a query to a dictionary."""
-    dt = datetime.utcnow()
+    dt = datetime.now()
     dr = DataQuery().time(dt).lonlat_point(-1, -2)
     d = dict(dr)
 
@@ -143,7 +143,7 @@ def test_data_query_iter():
 
 def test_data_query_items():
     """Test the items method of query."""
-    dt = datetime.utcnow()
+    dt = datetime.now()
     dr = DataQuery().time(dt).lonlat_point(-1, -2)
     items = list(dr.items())
 

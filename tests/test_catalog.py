@@ -70,10 +70,7 @@ def test_virtual_access():
            'CONUS_20km/noaaport/catalog.xml')
     cat = TDSCatalog(url)
     # find the 2D time coordinate "full collection" dataset
-    for dataset in list(cat.datasets.values()):
-        if 'Full Collection' in dataset.name:
-            ds = dataset
-            break
+    ds = cat.datasets['Full Collection (Reference / Forecast Time) Dataset']
     assert 'OPENDAP' in ds.access_urls
     # TwoD is a virtual dataset, so HTTPServer
     # should not be listed here
@@ -128,8 +125,8 @@ def test_html_link(recwarn):
     """Test that we fall-back when given an HTML catalog page."""
     url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
            'grib/NCEP/RAP/CONUS_13km/catalog.html')
-    TDSCatalog(url)
-    assert 'Changing' in str(recwarn.pop(UserWarning).message)
+    with pytest.warns(UserWarning, match='Changing'):
+        TDSCatalog(url)
 
 
 @recorder.use_cassette('follow_cat')

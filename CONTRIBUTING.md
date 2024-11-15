@@ -83,7 +83,7 @@ Add tests for your change(s). Make the tests pass:
 
     py.test
 
-Commit the changes you made. Chris Beams has written a [guide](https://chris.beams.io/posts/git-commit/) on how to write good commit messages.
+Commit the changes you made. Chris Beams has written a [guide](https://cbea.ms/git-commit/) on how to write good commit messages.
 
 Push to your fork and [submit a pull request][pr].
 
@@ -111,8 +111,8 @@ Some things that will increase the chance that your pull request is accepted:
 * Follow [PEP8][pep8] for style. (The `flake8` utility can help with this.)
 * Write a [good commit message][commit].
 
-Pull requests will automatically have tests run by Travis. This includes
-running both the unit tests as well as the `flake8` code linter.
+Pull requests will automatically have tests run by GitHub Actions. This includes
+running both the unit tests as well as the `flake8` and `ruff` code linters.
 
 [pep8]: https://pep8.org
 [commit]: https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html

@@ -52,3 +52,4 @@ nosetests.xml
 
 # Translations
 *.mo
+docs/sg_execution_times.rst

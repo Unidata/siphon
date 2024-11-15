@@ -96,7 +96,7 @@ class HTTPSessionManager:
         url : str
             The URL to request
 
-        kwargs : arbitrary keyword arguments
+        kwargs
             Additional keyword arguments to pass to :meth:`requests.Session.get`.
 
         Returns
@@ -140,14 +140,14 @@ class DataQuery:
 
     This object provides a clear API to formulate a query for data, including
     a spatial query, a time query, and possibly some variables or other parameters.
-    These objects provide a dictionary-like interface, (:meth:`items` and :meth:`__iter__`)
+    These objects provide a dictionary-like interface, (``items`` and ``__iter__``)
     sufficient to be passed to functions expecting a dictionary representing a URL query.
     Instances of this object can also be turned into a string, which will yield a
     properly escaped string for a URL.
     """
 
     def __init__(self):
-        """Construct an empty :class:`DataQuery`."""
+        """Construct an empty class representing a query for data."""
         self.var = set()
         self.time_query = OrderedDict()
         self.spatial_query = OrderedDict()
@@ -163,7 +163,7 @@ class DataQuery:
 
         Parameters
         ----------
-        var_names : one or more strings
+        var_names : str
             One or more names of variables to request. Use 'all' to request all.
 
         Returns
@@ -183,7 +183,7 @@ class DataQuery:
 
         Parameters
         ----------
-        kwargs : one or more strings passed as keyword arguments
+        kwargs
             Names and values of parameters to add to the query
 
         Returns
@@ -471,7 +471,7 @@ class HTTPEndPoint:
 
         Raises
         ------
-        HTTPError
+        `~requests.HTTPError`
             If the server returns anything other than a 200 (OK) code
 
         See Also
@@ -506,7 +506,7 @@ class HTTPEndPoint:
 
         Parameters
         ----------
-        query : DataQuery (or subclass)
+        query : DataQuery
 
         Returns
         -------

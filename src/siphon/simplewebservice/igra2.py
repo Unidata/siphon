@@ -16,8 +16,6 @@ import pandas as pd
 from .._tools import get_wind_components
 from ..http_util import HTTPEndPoint, HTTPError
 
-warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created", UserWarning)
-
 
 class IGRAUpperAir(HTTPEndPoint):
     """Download and parse data from NCEI's Integrated Radiosonde Archive version 2."""
@@ -40,7 +38,7 @@ class IGRAUpperAir(HTTPEndPoint):
         site_id : str
             11-character IGRA2 station identifier.
 
-        time : datetime
+        time : datetime.datetime
            The date and time of the desired observation. If list of two times is given,
            dataframes for all dates within the two dates will be returned.
 
@@ -362,25 +360,25 @@ class IGRAUpperAir(HTTPEndPoint):
             df = df.dropna(subset=('temperature', 'reported_relative_humidity',
                            'u_wind', 'v_wind'), how='all').reset_index(drop=True)
 
-            df.units = {'pressure': 'hPa',
-                        'reported_height': 'meter',
-                        'calculated_height': 'meter',
-                        'temperature': 'Kelvin',
-                        'temperature_gradient': 'Kelvin / kilometer',
-                        'potential_temperature': 'Kelvin',
-                        'potential_temperature_gradient': 'Kelvin / kilometer',
-                        'virtual_temperature': 'Kelvin',
-                        'virtual_potential_temperature': 'Kelvin',
-                        'vapor_pressure': 'Pascal',
-                        'saturation_vapor_pressure': 'Pascal',
-                        'reported_relative_humidity': 'percent',
-                        'calculated_relative_humidity': 'percent',
-                        'relative_humidity_gradient': 'percent / kilometer',
-                        'u_wind': 'meter / second',
-                        'u_wind_gradient': '(meter / second) / kilometer)',
-                        'v_wind': 'meter / second',
-                        'v_wind_gradient': '(meter / second) / kilometer)',
-                        'refractive_index': 'unitless'}
+            units = {'pressure': 'hPa',
+                     'reported_height': 'meter',
+                     'calculated_height': 'meter',
+                     'temperature': 'Kelvin',
+                     'temperature_gradient': 'Kelvin / kilometer',
+                     'potential_temperature': 'Kelvin',
+                     'potential_temperature_gradient': 'Kelvin / kilometer',
+                     'virtual_temperature': 'Kelvin',
+                     'virtual_potential_temperature': 'Kelvin',
+                     'vapor_pressure': 'Pascal',
+                     'saturation_vapor_pressure': 'Pascal',
+                     'reported_relative_humidity': 'percent',
+                     'calculated_relative_humidity': 'percent',
+                     'relative_humidity_gradient': 'percent / kilometer',
+                     'u_wind': 'meter / second',
+                     'u_wind_gradient': '(meter / second) / kilometer)',
+                     'v_wind': 'meter / second',
+                     'v_wind_gradient': '(meter / second) / kilometer)',
+                     'refractive_index': 'unitless'}
 
         else:
             df['u_wind'], df['v_wind'] = get_wind_components(df['speed'],
@@ -396,46 +394,56 @@ class IGRAUpperAir(HTTPEndPoint):
 
             df.drop('dewpoint_depression', axis=1, inplace=True)
 
-            df.units = {'etime': 'second',
-                        'pressure': 'hPa',
-                        'height': 'meter',
-                        'temperature': 'degC',
-                        'dewpoint': 'degC',
-                        'direction': 'degrees',
-                        'speed': 'meter / second',
-                        'u_wind': 'meter / second',
-                        'v_wind': 'meter / second'}
+            units = {'etime': 'second',
+                     'pressure': 'hPa',
+                     'height': 'meter',
+                     'temperature': 'degC',
+                     'dewpoint': 'degC',
+                     'direction': 'degrees',
+                     'speed': 'meter / second',
+                     'u_wind': 'meter / second',
+                     'v_wind': 'meter / second'}
+
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = units
 
         return df
 
     def _clean_header_df(self, df):
         """Format the header dataframe and add units."""
         if self.suffix == '-drvd.txt':
-            df.units = {'release_time': 'second',
-                        'precipitable_water': 'millimeter',
-                        'inv_pressure': 'hPa',
-                        'inv_height': 'meter',
-                        'inv_strength': 'Kelvin',
-                        'mixed_layer_pressure': 'hPa',
-                        'mixed_layer_height': 'meter',
-                        'freezing_point_pressure': 'hPa',
-                        'freezing_point_height': 'meter',
-                        'lcl_pressure': 'hPa',
-                        'lcl_height': 'meter',
-                        'lfc_pressure': 'hPa',
-                        'lfc_height': 'meter',
-                        'lnb_pressure': 'hPa',
-                        'lnb_height': 'meter',
-                        'lifted_index': 'degC',
-                        'showalter_index': 'degC',
-                        'k_index': 'degC',
-                        'total_totals_index': 'degC',
-                        'cape': 'Joule / kilogram',
-                        'convective_inhibition': 'Joule / kilogram'}
+            units = {'release_time': 'second',
+                     'precipitable_water': 'millimeter',
+                     'inv_pressure': 'hPa',
+                     'inv_height': 'meter',
+                     'inv_strength': 'Kelvin',
+                     'mixed_layer_pressure': 'hPa',
+                     'mixed_layer_height': 'meter',
+                     'freezing_point_pressure': 'hPa',
+                     'freezing_point_height': 'meter',
+                     'lcl_pressure': 'hPa',
+                     'lcl_height': 'meter',
+                     'lfc_pressure': 'hPa',
+                     'lfc_height': 'meter',
+                     'lnb_pressure': 'hPa',
+                     'lnb_height': 'meter',
+                     'lifted_index': 'degC',
+                     'showalter_index': 'degC',
+                     'k_index': 'degC',
+                     'total_totals_index': 'degC',
+                     'cape': 'Joule / kilogram',
+                     'convective_inhibition': 'Joule / kilogram'}
 
         else:
-            df.units = {'release_time': 'second',
+            units = {'release_time': 'second',
                         'latitude': 'degrees',
                         'longitude': 'degrees'}
+
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = units
 
         return df

@@ -83,7 +83,7 @@ Code Style
 ----------
 
 Siphon uses the Python code style outlined in `PEP8
-<https://www.python.org/dev/peps/pep-0008/>`_. For better or worse, this is what the majority
+<https://peps.python.org/pep-0008/>`_. For better or worse, this is what the majority
 of the Python world uses. The one deviation is that line length limit is 95 characters. 80 is a
 good target, but some times longer lines are needed.
 
@@ -107,7 +107,7 @@ generated from docstrings, written using the
 There are also examples in the ``examples/`` directory.
 
 The documentation is hosted on `GitHub Pages <https://unidata.github.io/siphon>`_. The docs are
-built automatically from ``main`` with every build on Travis-CI; every merged PR will
+built automatically from ``main`` with every build on GitHub Actions; every merged PR will
 have the built docs upload to GitHub Pages. As part of the build, the documentation is also
 checked with ``doc8``. To see what the docs will look like, you also need to install the
 ``sphinx-rtd-theme`` package.
@@ -116,12 +116,19 @@ checked with ``doc8``. To see what the docs will look like, you also need to ins
 Other Tools
 -----------
 
-Continuous integration is performed by `Travis CI <https://www.travis-ci.org/Unidata/siphon>`_.
-This service runs the unit tests on all support versions, as well as runs against the minimum
-package versions. ``flake8`` is also run against the code to check formatting. Travis is also
-used to build the documentation and to run the examples to ensure they stay working.
+Continuous integration is performed by
+`GitHub Actions <https://github.com/Unidata/siphon/actions>`_.
+This integration runs the unit tests on Linux for all supported versions of Python, as well
+as runs against the minimum package versions, using PyPI packages. This also runs against
+a (non-exhaustive) matrix of python versions on macOS and Windows. In addition to these tests,
+GitHub actions also builds the documentation and runs the examples across multiple platforms
+and Python versions, as well as checks for any broken web links. ``flake8`` (along with a
+variety of plugins found in ``ci/linting.txt``) and ``ruff`` are also run against the code to
+check formatting using another job on GitHub Actions. As part of this linting job, the docs
+are also checked using the ``doc8`` tool, and spelling is checked using ``codespell``.
+Configurations for these are in a variety of files in ``.github/workflows``.
 
-Test coverage is monitored by `Codecov.io <https://codecov.io/github/Unidata/siphon>`_.
+Test coverage is monitored by `codecov.io <https://codecov.io/github/Unidata/siphon>`_.
 
 ---------
 Releasing

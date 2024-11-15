@@ -12,8 +12,6 @@ import requests
 
 from ..http_util import HTTPEndPoint
 
-warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created", UserWarning)
-
 
 class NDBC(HTTPEndPoint):
     """Download and parse data from the National Data Buoy Center."""
@@ -45,7 +43,8 @@ class NDBC(HTTPEndPoint):
 
         Returns
         -------
-            Raw data string
+        `pandas.DataFrame`
+            Parsed data
 
         """
         endpoint = cls()
@@ -107,7 +106,11 @@ class NDBC(HTTPEndPoint):
                          names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
-        df.units = col_units
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = col_units
+
         return df
 
     @staticmethod
@@ -147,7 +150,11 @@ class NDBC(HTTPEndPoint):
         df['minute'] = df['hour_minute'] - df['hour'] * 100
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour_minute', 'hour', 'minute'])
-        df.units = col_units
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = col_units
+
         return df
 
     @staticmethod
@@ -188,7 +195,11 @@ class NDBC(HTTPEndPoint):
                                          utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute',
                               'hours', 'minutes'])
-        df.units = col_units
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = col_units
+
         return df
 
     @staticmethod
@@ -227,7 +238,11 @@ class NDBC(HTTPEndPoint):
                          names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
-        df.units = col_units
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = col_units
+
         return df
 
     @staticmethod
@@ -266,7 +281,11 @@ class NDBC(HTTPEndPoint):
                          names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
-        df.units = col_units
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = col_units
+
         return df
 
     @staticmethod
@@ -296,7 +315,11 @@ class NDBC(HTTPEndPoint):
                          names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
-        df.units = col_units
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = col_units
+
         return df
 
     @staticmethod
@@ -334,7 +357,11 @@ class NDBC(HTTPEndPoint):
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour',
                                         'minute', 'second']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute', 'second'])
-        df.units = col_units
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = col_units
+
         return df
 
     @staticmethod
@@ -362,7 +389,11 @@ class NDBC(HTTPEndPoint):
 
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
-        df.units = col_units
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = col_units
+
         return df
 
     @staticmethod
@@ -410,7 +441,11 @@ class NDBC(HTTPEndPoint):
         df['hourly_high_wind_time'] = pd.to_datetime(df[['year', 'month', 'day',
                                                          'hours', 'minutes']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute', 'hours', 'minutes'])
-        df.units = col_units
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = col_units
+
         return df
 
     @classmethod
@@ -455,7 +490,11 @@ class NDBC(HTTPEndPoint):
                          names=col_names, sep=r'\s+')
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute'])
-        df.units = col_units
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = col_units
+
         return df
 
     @staticmethod
@@ -486,6 +525,7 @@ class NDBC(HTTPEndPoint):
 
         Returns
         -------
+        dict[str, str]
             dict of valid file extensions and their descriptions
 
         """
@@ -545,7 +585,8 @@ class NDBC(HTTPEndPoint):
 
         Returns
         -------
-        Raw data string
+        str
+            Raw data string
 
         """
         endpoint = cls()

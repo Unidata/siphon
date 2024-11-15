@@ -58,7 +58,14 @@ intersphinx_mapping = {
                        'numpy': ('https://numpy.org/doc/stable/', None),
                        'matplotlib': ('https://matplotlib.org/stable/', None),
                        'requests': ('https://requests.kennethreitz.org/en/latest/', None),
+                       'pandas': ('https://pandas.pydata.org/docs/', None),
                        }
+
+nitpicky = True
+nitpick_ignore = [
+    ('py:class', 'optional'), ('py:class', 'file-like object'), ('py:class', 'iterator')
+]
+nitpick_ignore_regex = [('py:class', r'.*[cC]allable'),]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -304,3 +311,10 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+# Dictionary of URL redirects allowed
+linkcheck_allowed_redirects = {
+    r'https://doi.org/.*': r'https://.*',
+    r'https://gitter.im/Unidata/siphon': r'https://app.gitter.im/.*siphon.*',
+    r'https://codecov.io/github/Unidata/siphon': r'https://app.codecov.io/github/Unidata/siphon',
+}

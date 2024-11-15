@@ -30,7 +30,7 @@ class RadarQuery(DataQuery):
 
         Parameters
         ----------
-        stns : one or more strings
+        stns : str
             One or more names of variables to request
 
         Returns
@@ -192,7 +192,7 @@ def get_radarserver_datasets(server):
 
     Parameters
     ----------
-    server : string
+    server : str
         The base URL to the THREDDS server
 
     Returns

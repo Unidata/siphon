@@ -37,11 +37,12 @@ def acis_request(method, params):
 
     Returns
     -------
-    A dictionary of data based on the JSON parameters
+    dict[str, Any]
+        A dictionary of data based on the JSON parameters
 
     Raises
     ------
-    :class: `ACIS_API_Exception`
+    `AcisApiException`
         When the API is unable to establish a connection or returns
         unparsable data.
 

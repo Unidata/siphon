@@ -8,7 +8,7 @@ NCSS Time Series
 
 Use Siphon to query the NetCDF Subset Service for a timeseries.
 """
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import matplotlib.pyplot as plt
 from netCDF4 import num2date
@@ -39,13 +39,13 @@ query = ncss.query()
 # 'Temperature_isobaric', at the vertical level of 100000 Pa (approximately surface).
 # This request will return all times in the range for a single point. Note the string
 # representation of the query is a properly encoded query string.
-now = datetime.utcnow()
+now = datetime.now(timezone.utc)
 query.lonlat_point(-105, 40).vertical_level(100000).time_range(now, now + timedelta(days=7))
 query.variables('Temperature_isobaric').accept('netcdf')
 
 ###########################################
 # We now request data from the server using this query. The `NCSS` class handles parsing
-# this NetCDF data (using the `netCDF4` module). If we print out the variable names, we
+# this NetCDF data (using the ``netCDF4`` module). If we print out the variable names, we
 # see our requested variables, as well as a few others (more metadata information)
 data = ncss.get_data(query)
 list(data.variables)
@@ -57,7 +57,7 @@ time = data.variables['time']
 
 ###########################################
 # The time values are in hours relative to the start of the entire model collection.
-# Fortunately, the `netCDF4` module has a helper function to convert these numbers into
+# Fortunately, the ``netCDF4`` module has a helper function to convert these numbers into
 # Python `datetime` objects. We can see the first 5 element output by the function look
 # reasonable.
 time_vals = num2date(time[:].squeeze(), time.units, only_use_cftime_datetimes=False)

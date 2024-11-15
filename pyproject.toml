@@ -52,7 +52,7 @@ test = [
     "siphon[extras]"
 ]
 extras = [
-    "xarray>=2022.3.0"
+    "xarray>=2022.6.0"
 ]
 
 [project.urls]
@@ -87,6 +87,11 @@ combine_star = true
 [tool.pytest.ini_options]
 norecursedirs = "build docs .idea"
 doctest_optionflags = "NORMALIZE_WHITESPACE"
+xfail_strict = true
+filterwarnings = [
+    "error",
+    "ignore:numpy.ndarray size changed:RuntimeWarning",
+]
 
 [tool.ruff]
 line-length = 95

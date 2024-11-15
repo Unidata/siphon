@@ -14,8 +14,6 @@ import pandas as pd
 from .._tools import get_wind_components
 from ..http_util import HTTPEndPoint
 
-warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created", UserWarning)
-
 
 class WyomingUpperAir(HTTPEndPoint):
     """Download and parse data from the University of Wyoming's upper air archive."""
@@ -30,7 +28,7 @@ class WyomingUpperAir(HTTPEndPoint):
 
         Parameters
         ----------
-        time : datetime
+        time : datetime.datetime
             The date and time of the desired observation.
 
         site_id : str
@@ -42,7 +40,8 @@ class WyomingUpperAir(HTTPEndPoint):
 
         Returns
         -------
-            :class:`pandas.DataFrame` containing the data
+        `pandas.DataFrame`
+            Parsed data
 
         """
         endpoint = cls()
@@ -54,7 +53,7 @@ class WyomingUpperAir(HTTPEndPoint):
 
         Parameters
         ----------
-        time : datetime
+        time : datetime.datetime
             The date and time of the desired observation.
 
         site_id : str
@@ -63,7 +62,7 @@ class WyomingUpperAir(HTTPEndPoint):
 
         Returns
         -------
-            :class:`pandas.DataFrame` containing the data
+        `pandas.DataFrame`
 
         """
         raw_data = self._get_data_raw(time, site_id)
@@ -106,21 +105,25 @@ class WyomingUpperAir(HTTPEndPoint):
         df['pw'] = pw
 
         # Add unit dictionary
-        df.units = {'pressure': 'hPa',
-                    'height': 'meter',
-                    'temperature': 'degC',
-                    'dewpoint': 'degC',
-                    'direction': 'degrees',
-                    'speed': 'knot',
-                    'u_wind': 'knot',
-                    'v_wind': 'knot',
-                    'station': None,
-                    'station_number': None,
-                    'time': None,
-                    'latitude': 'degrees',
-                    'longitude': 'degrees',
-                    'elevation': 'meter',
-                    'pw': 'millimeter'}
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', "Pandas doesn't allow columns to be created",
+                                    UserWarning)
+            df.units = {'pressure': 'hPa',
+                        'height': 'meter',
+                        'temperature': 'degC',
+                        'dewpoint': 'degC',
+                        'direction': 'degrees',
+                        'speed': 'knot',
+                        'u_wind': 'knot',
+                        'v_wind': 'knot',
+                        'station': None,
+                        'station_number': None,
+                        'time': None,
+                        'latitude': 'degrees',
+                        'longitude': 'degrees',
+                        'elevation': 'meter',
+                        'pw': 'millimeter'}
+
         return df
 
     def _get_data_raw(self, time, site_id):
@@ -128,14 +131,15 @@ class WyomingUpperAir(HTTPEndPoint):
 
         Parameters
         ----------
-        time : datetime
+        time : datetime.datetime
             Date and time for which data should be downloaded
         site_id : str
             Site id for which data should be downloaded
 
         Returns
         -------
-        text of the server response
+        str
+            text of the server response
 
         """
         path = ('?region=naconf&TYPE=TEXT%3ALIST'

@@ -8,7 +8,7 @@ Basic NCSS
 
 Use Siphon to query the NetCDF Subset Service (NCSS).
 """
-from datetime import datetime
+from datetime import datetime, timezone
 
 import matplotlib.pyplot as plt
 
@@ -38,13 +38,13 @@ query = ncss.query()
 # 'Temperature_isobaric' and 'Relative_humidity_isobaric'. This request will return all
 # vertical levels for a single point and single time. Note the string representation of
 # the query is a properly encoded query string.
-query.lonlat_point(-105, 40).time(datetime.utcnow())
+query.lonlat_point(-105, 40).time(datetime.now(timezone.utc))
 query.accept('netcdf4')
 query.variables('Temperature_isobaric', 'Relative_humidity_isobaric')
 
 ###########################################
 # We now request data from the server using this query. The `NCSS` class handles parsing
-# this NetCDF data (using the `netCDF4` module). If we print out the variable names,
+# this NetCDF data (using the ``netCDF4`` module). If we print out the variable names,
 # we see our requested variables, as well as a few others (more metadata information)
 data = ncss.get_data(query)
 list(data.variables)
