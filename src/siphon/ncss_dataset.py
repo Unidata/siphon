@@ -75,7 +75,10 @@ class _Types:
         """
         if value_type in ['byte', 'short', 'int', 'long']:
             try:
-                val = [int(v) for v in re.split('[ ,]', val) if v]
+                if val := val.strip('[]'):
+                    val = [int(v) for v in re.split('[ ,]', val) if v]
+                else:
+                    return [0]
             except ValueError:
                 log.warning('Cannot convert "%s" to int. Keeping type as str.', val)
         elif value_type in ['float', 'double']:

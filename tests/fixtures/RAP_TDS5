@@ -1,0 +1,1199 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.9.post518+gf913ddb3.d20241211)
+    method: GET
+    uri: https://thredds.ucar.edu/thredds/ncss/grid/grib/NCEP/RAP/CONUS_13km/RR_CONUS_13km_20241211_1900.grib2/dataset.xml
+  response:
+    body:
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<gridDataset location=\"/thredds/ncss/grid/grib/NCEP/RAP/CONUS_13km/RR_CONUS_13km_20241211_1900.grib2\"
+        path=\"path\">\r\n  <axis name=\"y\" shape=\"[337]\" type=\"float\" axisType=\"GeoY\">\r\n
+        \   <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"km\" />\r\n    <values spacing=\"regularPoint\" npts=\"337\"
+        start=\"-588.8927377703312\" end=\"3962.2272878644344\" resolution=\"13.545000076293945\"
+        />\r\n  </axis>\r\n  <axis name=\"x\" shape=\"[451]\" type=\"float\" axisType=\"GeoX\">\r\n
+        \   <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"km\" />\r\n    <values spacing=\"regularPoint\" npts=\"451\"
+        start=\"-3332.1553367171628\" end=\"2763.0946976151126\" resolution=\"13.545000076293945\"
+        />\r\n  </axis>\r\n  <axis name=\"reftime\" shape=\"[]\" type=\"double\" axisType=\"RunTime\">\r\n
+        \   <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Hour since 2024-12-11T19:00:00Z\" />\r\n    <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"standard_name\"
+        value=\"forecast_reference_time\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"GRIB reference time\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"calendar\" value=\"proleptic_gregorian\" />\r\n    <values spacing=\"regularPoint\"
+        npts=\"1\" start=\"0.0\" end=\"0.0\" />\r\n  </axis>\r\n  <axis name=\"time\"
+        shape=\"[21]\" type=\"double\" axisType=\"Time\">\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Hour\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"standard_name\" value=\"time\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"time\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"udunits\" value=\"Hour since 2024-12-11T19:00:00Z\" />\r\n    <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"_CoordinateAxisType\"
+        value=\"Time\" />\r\n    <values spacing=\"regularInterval\" npts=\"21\" start=\"0.0\"
+        end=\"21.0\" resolution=\"1.0\" />\r\n  </axis>\r\n  <axis name=\"pressure_difference_layer\"
+        shape=\"[1]\" type=\"double\" axisType=\"Pressure\">\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Pa\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"positive\" value=\"up\" />\r\n    <values spacing=\"contiguousInterval\"
+        npts=\"1\" start=\"25500.0\" end=\"0.0\" resolution=\"-25500.0\">12750.0</values>\r\n
+        \ </axis>\r\n  <axis name=\"height_above_ground\" shape=\"[1]\" type=\"double\"
+        axisType=\"Height\">\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"positive\" value=\"up\" />\r\n    <values spacing=\"regularPoint\"
+        npts=\"1\" start=\"10.0\" end=\"10.0\" />\r\n  </axis>\r\n  <axis name=\"pressure_difference_layer1\"
+        shape=\"[1]\" type=\"double\" axisType=\"Pressure\">\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Pa\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"positive\" value=\"up\" />\r\n    <values spacing=\"contiguousInterval\"
+        npts=\"1\" start=\"18000.0\" end=\"0.0\" resolution=\"-18000.0\">9000.0</values>\r\n
+        \ </axis>\r\n  <axis name=\"pressure_difference_layer2\" shape=\"[6]\" type=\"double\"
+        axisType=\"Pressure\">\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Pa\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"positive\" value=\"up\" />\r\n    <values spacing=\"discontiguousInterval\"
+        npts=\"6\" start=\"3000.0\" end=\"15000.0\" resolution=\"3000.0\">1500.0 4500.0
+        7500.0 10500.0 13500.0 16500.0</values>\r\n  </axis>\r\n  <axis name=\"time1\"
+        shape=\"[22]\" type=\"double\" axisType=\"Time\">\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Hour\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"standard_name\" value=\"time\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"time\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"udunits\" value=\"Hour since 2024-12-11T19:00:00Z\" />\r\n    <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"_CoordinateAxisType\"
+        value=\"Time\" />\r\n    <values spacing=\"regularPoint\" npts=\"22\" start=\"0.0\"
+        end=\"21.0\" resolution=\"1.0\" />\r\n  </axis>\r\n  <axis name=\"height_above_ground1\"
+        shape=\"[1]\" type=\"double\" axisType=\"Height\">\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"positive\" value=\"up\" />\r\n    <values spacing=\"regularPoint\"
+        npts=\"1\" start=\"2.0\" end=\"2.0\" />\r\n  </axis>\r\n  <axis name=\"isobaric_layer\"
+        shape=\"[1]\" type=\"double\" axisType=\"Pressure\">\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Pa\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"positive\" value=\"down\" />\r\n    <values spacing=\"contiguousInterval\"
+        npts=\"1\" start=\"50000.0\" end=\"100000.0\" resolution=\"50000.0\">75000.0</values>\r\n
+        \ </axis>\r\n  <axis name=\"height_above_ground_layer\" shape=\"[1]\" type=\"double\"
+        axisType=\"Height\">\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"positive\" value=\"up\" />\r\n    <values spacing=\"contiguousInterval\"
+        npts=\"1\" start=\"0.0\" end=\"6000.0\" resolution=\"6000.0\">3000.0</values>\r\n
+        \ </axis>\r\n  <axis name=\"isobaric\" shape=\"[37]\" type=\"double\" axisType=\"Pressure\">\r\n
+        \   <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Pa\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"positive\" value=\"down\" />\r\n    <values spacing=\"regularPoint\"
+        npts=\"37\" start=\"10000.0\" end=\"100000.0\" resolution=\"2500.0\" />\r\n
+        \ </axis>\r\n  <axis name=\"height_above_ground_layer1\" shape=\"[2]\" type=\"double\"
+        axisType=\"Height\">\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m\" />\r\n    <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"positive\" value=\"up\" />\r\n    <values spacing=\"discontiguousInterval\"
+        npts=\"2\" start=\"1000.0\" end=\"0.0\" resolution=\"2000.0\">500.0 1500.0</values>\r\n
+        \ </axis>\r\n  <gridSet name=\"reftime time y x\">\r\n    <projectionBox>\r\n
+        \     <minx>-3338.9278367553097</minx>\r\n      <maxx>2769.8671976532596</maxx>\r\n
+        \     <miny>-595.6652378084782</miny>\r\n      <maxy>3968.9997879025814</maxy>\r\n
+        \   </projectionBox>\r\n    <axisRef name=\"reftime\" />\r\n    <axisRef name=\"time\"
+        />\r\n    <axisRef name=\"y\" />\r\n    <axisRef name=\"x\" />\r\n    <coordTransRef
+        name=\"LambertConformal_337X451-40p02N-98p15W\" />\r\n    <grid name=\"Convective_precipitation_surface_1_Hour_Accumulation\"
+        desc=\"Convective precipitation (1_Hour Accumulation) @ Ground or water surface\"
+        type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Convective precipitation (1_Hour Accumulation)
+        @ Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"kg.m-2\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-10_L1_I1_Hour_S1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 1 10\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Convective precipitation\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"Accumulation\" />\r\n    </grid>\r\n    <grid name=\"Total_precipitation_surface_1_Hour_Accumulation\"
+        desc=\"Total precipitation (1_Hour Accumulation) @ Ground or water surface\"
+        type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Total precipitation (1_Hour Accumulation) @ Ground
+        or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"kg.m-2\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-8_L1_I1_Hour_S1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 1 8\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Total precipitation\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"Accumulation\" />\r\n    </grid>\r\n    <grid name=\"Water_equivalent_of_accumulated_snow_depth_surface_1_Hour_Accumulation\"
+        desc=\"Water equivalent of accumulated snow depth (1_Hour Accumulation) @
+        Ground or water surface\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Water equivalent of accumulated snow depth (1_Hour
+        Accumulation) @ Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"kg.m-2\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-13_L1_I1_Hour_S1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 1 13\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Water equivalent of accumulated snow depth\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Ground or water surface\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Generating_Process_Type\"
+        value=\"Forecast\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Statistical_Process_Type\" value=\"Accumulation\" />\r\n    </grid>\r\n
+        \ </gridSet>\r\n  <gridSet name=\"reftime time1 height_above_ground y x\">\r\n
+        \   <projectionBox>\r\n      <minx>-3338.9278367553097</minx>\r\n      <maxx>2769.8671976532596</maxx>\r\n
+        \     <miny>-595.6652378084782</miny>\r\n      <maxy>3968.9997879025814</maxy>\r\n
+        \   </projectionBox>\r\n    <axisRef name=\"reftime\" />\r\n    <axisRef name=\"time1\"
+        />\r\n    <axisRef name=\"height_above_ground\" />\r\n    <axisRef name=\"y\"
+        />\r\n    <axisRef name=\"x\" />\r\n    <coordTransRef name=\"LambertConformal_337X451-40p02N-98p15W\"
+        />\r\n    <grid name=\"u-component_of_wind_height_above_ground\" desc=\"u-component
+        of wind @ Specified height level above ground\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"u-component of wind @ Specified height level above ground\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m/s\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-2_L103\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 2 2\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"u-component of wind\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"103\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Specified height level above ground\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"v-component_of_wind_height_above_ground\"
+        desc=\"v-component of wind @ Specified height level above ground\" type=\"float\">\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"v-component of wind @ Specified height level above
+        ground\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m/s\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-3_L103\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 2 3\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"v-component of wind\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"103\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Specified height level above ground\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n  </gridSet>\r\n  <gridSet
+        name=\"reftime time1 height_above_ground1 y x\">\r\n    <projectionBox>\r\n
+        \     <minx>-3338.9278367553097</minx>\r\n      <maxx>2769.8671976532596</maxx>\r\n
+        \     <miny>-595.6652378084782</miny>\r\n      <maxy>3968.9997879025814</maxy>\r\n
+        \   </projectionBox>\r\n    <axisRef name=\"reftime\" />\r\n    <axisRef name=\"time1\"
+        />\r\n    <axisRef name=\"height_above_ground1\" />\r\n    <axisRef name=\"y\"
+        />\r\n    <axisRef name=\"x\" />\r\n    <coordTransRef name=\"LambertConformal_337X451-40p02N-98p15W\"
+        />\r\n    <grid name=\"Relative_humidity_height_above_ground\" desc=\"Relative
+        humidity @ Specified height level above ground\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Relative humidity @ Specified height level above ground\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"units\"
+        value=\"%\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-1_L103\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 1 1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Relative humidity\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"103\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Specified height level above ground\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Temperature_height_above_ground\"
+        desc=\"Temperature @ Specified height level above ground\" type=\"float\">\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Temperature @ Specified height level above ground\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"K\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-0-0_L103\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 0 0\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Temperature\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Temperature\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"103\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Specified height level above ground\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n  </gridSet>\r\n  <gridSet
+        name=\"reftime time1 height_above_ground_layer y x\">\r\n    <projectionBox>\r\n
+        \     <minx>-3338.9278367553097</minx>\r\n      <maxx>2769.8671976532596</maxx>\r\n
+        \     <miny>-595.6652378084782</miny>\r\n      <maxy>3968.9997879025814</maxy>\r\n
+        \   </projectionBox>\r\n    <axisRef name=\"reftime\" />\r\n    <axisRef name=\"time1\"
+        />\r\n    <axisRef name=\"height_above_ground_layer\" />\r\n    <axisRef name=\"y\"
+        />\r\n    <axisRef name=\"x\" />\r\n    <coordTransRef name=\"LambertConformal_337X451-40p02N-98p15W\"
+        />\r\n    <grid name=\"U-Component_Storm_Motion_height_above_ground_layer\"
+        desc=\"U-Component Storm Motion @ Specified height level above ground layer\"
+        type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"U-Component Storm Motion @ Specified height level
+        above ground layer\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m.s-1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-194_L103_layer\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 2 194\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"U-Component Storm Motion\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"103\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Specified height level above ground\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"V-Component_Storm_Motion_height_above_ground_layer\"
+        desc=\"V-Component Storm Motion @ Specified height level above ground layer\"
+        type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"V-Component Storm Motion @ Specified height level
+        above ground layer\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m.s-1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-195_L103_layer\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 2 195\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"V-Component Storm Motion\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"103\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Specified height level above ground\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n  </gridSet>\r\n  <gridSet
+        name=\"reftime time1 height_above_ground_layer1 y x\">\r\n    <projectionBox>\r\n
+        \     <minx>-3338.9278367553097</minx>\r\n      <maxx>2769.8671976532596</maxx>\r\n
+        \     <miny>-595.6652378084782</miny>\r\n      <maxy>3968.9997879025814</maxy>\r\n
+        \   </projectionBox>\r\n    <axisRef name=\"reftime\" />\r\n    <axisRef name=\"time1\"
+        />\r\n    <axisRef name=\"height_above_ground_layer1\" />\r\n    <axisRef
+        name=\"y\" />\r\n    <axisRef name=\"x\" />\r\n    <coordTransRef name=\"LambertConformal_337X451-40p02N-98p15W\"
+        />\r\n    <grid name=\"Storm_relative_helicity_height_above_ground_layer\"
+        desc=\"Storm relative helicity @ Specified height level above ground layer\"
+        type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Storm relative helicity @ Specified height level
+        above ground layer\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"J/kg\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-7-8_L103_layer\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 7 8\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Thermodynamic stability indices\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Storm relative helicity\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"103\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Specified height level above ground\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n  </gridSet>\r\n  <gridSet
+        name=\"reftime time1 isobaric y x\">\r\n    <projectionBox>\r\n      <minx>-3338.9278367553097</minx>\r\n
+        \     <maxx>2769.8671976532596</maxx>\r\n      <miny>-595.6652378084782</miny>\r\n
+        \     <maxy>3968.9997879025814</maxy>\r\n    </projectionBox>\r\n    <axisRef
+        name=\"reftime\" />\r\n    <axisRef name=\"time1\" />\r\n    <axisRef name=\"isobaric\"
+        />\r\n    <axisRef name=\"y\" />\r\n    <axisRef name=\"x\" />\r\n    <coordTransRef
+        name=\"LambertConformal_337X451-40p02N-98p15W\" />\r\n    <grid name=\"Geopotential_height_isobaric\"
+        desc=\"Geopotential height @ Isobaric surface\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Geopotential height @ Isobaric surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"gpm\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-3-5_L100\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 3 5\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Mass\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Geopotential height\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"100\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Isobaric surface\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Generating_Process_Type\"
+        value=\"Forecast\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Statistical_Process_Type\" value=\"UnknownStatType--1\" />\r\n
+        \   </grid>\r\n    <grid name=\"Relative_humidity_isobaric\" desc=\"Relative
+        humidity @ Isobaric surface\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Relative humidity @ Isobaric surface\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"units\"
+        value=\"%\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-1_L100\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 1 1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Relative humidity\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"100\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Isobaric surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Temperature_isobaric\"
+        desc=\"Temperature @ Isobaric surface\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Temperature @ Isobaric surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"K\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-0-0_L100\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 0 0\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Temperature\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Temperature\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"100\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Isobaric surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Vertical_velocity_pressure_isobaric\"
+        desc=\"Vertical velocity (pressure) @ Isobaric surface\" type=\"float\">\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Vertical velocity (pressure) @ Isobaric surface\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Pa/s\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-8_L100\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 2 8\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Vertical velocity (pressure)\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"100\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Isobaric surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"u-component_of_wind_isobaric\"
+        desc=\"u-component of wind @ Isobaric surface\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"u-component of wind @ Isobaric surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m/s\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-2_L100\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 2 2\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"u-component of wind\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"100\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Isobaric surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"v-component_of_wind_isobaric\"
+        desc=\"v-component of wind @ Isobaric surface\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"v-component of wind @ Isobaric surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m/s\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-3_L100\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 2 3\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"v-component of wind\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"100\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Isobaric surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n  </gridSet>\r\n  <gridSet
+        name=\"reftime time1 isobaric_layer y x\">\r\n    <projectionBox>\r\n      <minx>-3338.9278367553097</minx>\r\n
+        \     <maxx>2769.8671976532596</maxx>\r\n      <miny>-595.6652378084782</miny>\r\n
+        \     <maxy>3968.9997879025814</maxy>\r\n    </projectionBox>\r\n    <axisRef
+        name=\"reftime\" />\r\n    <axisRef name=\"time1\" />\r\n    <axisRef name=\"isobaric_layer\"
+        />\r\n    <axisRef name=\"y\" />\r\n    <axisRef name=\"x\" />\r\n    <coordTransRef
+        name=\"LambertConformal_337X451-40p02N-98p15W\" />\r\n    <grid name=\"Surface_Lifted_Index_isobaric_layer\"
+        desc=\"Surface Lifted Index @ Isobaric surface layer\" type=\"float\">\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Surface Lifted Index @ Isobaric surface layer\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"K\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-7-192_L100_layer\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 7 192\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Thermodynamic stability indices\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Surface Lifted Index\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"100\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Isobaric surface\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Generating_Process_Type\"
+        value=\"Forecast\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Statistical_Process_Type\" value=\"UnknownStatType--1\" />\r\n
+        \   </grid>\r\n  </gridSet>\r\n  <gridSet name=\"reftime time1 pressure_difference_layer
+        y x\">\r\n    <projectionBox>\r\n      <minx>-3338.9278367553097</minx>\r\n
+        \     <maxx>2769.8671976532596</maxx>\r\n      <miny>-595.6652378084782</miny>\r\n
+        \     <maxy>3968.9997879025814</maxy>\r\n    </projectionBox>\r\n    <axisRef
+        name=\"reftime\" />\r\n    <axisRef name=\"time1\" />\r\n    <axisRef name=\"pressure_difference_layer\"
+        />\r\n    <axisRef name=\"y\" />\r\n    <axisRef name=\"x\" />\r\n    <coordTransRef
+        name=\"LambertConformal_337X451-40p02N-98p15W\" />\r\n    <grid name=\"Convective_available_potential_energy_pressure_difference_layer\"
+        desc=\"Convective available potential energy @ Level at specified pressure
+        difference from ground to level layer\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Convective available potential energy @ Level at specified pressure
+        difference from ground to level layer\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"J/kg\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-7-6_L108_layer\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 7 6\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Thermodynamic stability indices\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Convective available potential energy\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"108\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Level at specified pressure difference from ground to level\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Convective_inhibition_pressure_difference_layer\"
+        desc=\"Convective inhibition @ Level at specified pressure difference from
+        ground to level layer\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Convective inhibition @ Level at specified pressure
+        difference from ground to level layer\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"J/kg\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-7-7_L108_layer\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 7 7\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Thermodynamic stability indices\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Convective inhibition\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"108\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Level at specified pressure difference from
+        ground to level\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n  </gridSet>\r\n  <gridSet
+        name=\"reftime time1 pressure_difference_layer1 y x\">\r\n    <projectionBox>\r\n
+        \     <minx>-3338.9278367553097</minx>\r\n      <maxx>2769.8671976532596</maxx>\r\n
+        \     <miny>-595.6652378084782</miny>\r\n      <maxy>3968.9997879025814</maxy>\r\n
+        \   </projectionBox>\r\n    <axisRef name=\"reftime\" />\r\n    <axisRef name=\"time1\"
+        />\r\n    <axisRef name=\"pressure_difference_layer1\" />\r\n    <axisRef
+        name=\"y\" />\r\n    <axisRef name=\"x\" />\r\n    <coordTransRef name=\"LambertConformal_337X451-40p02N-98p15W\"
+        />\r\n    <grid name=\"Best_4_layer_Lifted_Index_pressure_difference_layer\"
+        desc=\"Best (4 layer) Lifted Index @ Level at specified pressure difference
+        from ground to level layer\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Best (4 layer) Lifted Index @ Level at specified
+        pressure difference from ground to level layer\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"K\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-7-193_L108_layer\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 7 193\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Thermodynamic stability indices\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Best (4 layer) Lifted Index\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"108\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Level at specified pressure difference from ground to level\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n  </gridSet>\r\n  <gridSet
+        name=\"reftime time1 pressure_difference_layer2 y x\">\r\n    <projectionBox>\r\n
+        \     <minx>-3338.9278367553097</minx>\r\n      <maxx>2769.8671976532596</maxx>\r\n
+        \     <miny>-595.6652378084782</miny>\r\n      <maxy>3968.9997879025814</maxy>\r\n
+        \   </projectionBox>\r\n    <axisRef name=\"reftime\" />\r\n    <axisRef name=\"time1\"
+        />\r\n    <axisRef name=\"pressure_difference_layer2\" />\r\n    <axisRef
+        name=\"y\" />\r\n    <axisRef name=\"x\" />\r\n    <coordTransRef name=\"LambertConformal_337X451-40p02N-98p15W\"
+        />\r\n    <grid name=\"Relative_humidity_pressure_difference_layer\" desc=\"Relative
+        humidity @ Level at specified pressure difference from ground to level layer\"
+        type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Relative humidity @ Level at specified pressure
+        difference from ground to level layer\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"%\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-1_L108_layer\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 1 1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Relative humidity\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"108\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Level at specified pressure difference from ground to level\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Temperature_pressure_difference_layer\"
+        desc=\"Temperature @ Level at specified pressure difference from ground to
+        level layer\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Temperature @ Level at specified pressure difference
+        from ground to level layer\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"K\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-0-0_L108_layer\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 0 0\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Temperature\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Temperature\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"108\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Level at specified pressure difference from ground to level\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"u-component_of_wind_pressure_difference_layer\"
+        desc=\"u-component of wind @ Level at specified pressure difference from ground
+        to level layer\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"u-component of wind @ Level at specified pressure
+        difference from ground to level layer\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m/s\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-2_L108_layer\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 2 2\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"u-component of wind\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"108\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Level at specified pressure difference from ground to level\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"v-component_of_wind_pressure_difference_layer\"
+        desc=\"v-component of wind @ Level at specified pressure difference from ground
+        to level layer\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"v-component of wind @ Level at specified pressure
+        difference from ground to level layer\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m/s\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-3_L108_layer\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 2 3\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"v-component of wind\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"108\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Level at specified pressure difference from ground to level\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n  </gridSet>\r\n  <gridSet
+        name=\"reftime time1 y x\">\r\n    <projectionBox>\r\n      <minx>-3338.9278367553097</minx>\r\n
+        \     <maxx>2769.8671976532596</maxx>\r\n      <miny>-595.6652378084782</miny>\r\n
+        \     <maxy>3968.9997879025814</maxy>\r\n    </projectionBox>\r\n    <axisRef
+        name=\"reftime\" />\r\n    <axisRef name=\"time1\" />\r\n    <axisRef name=\"y\"
+        />\r\n    <axisRef name=\"x\" />\r\n    <coordTransRef name=\"LambertConformal_337X451-40p02N-98p15W\"
+        />\r\n    <grid name=\"Categorical_Freezing_Rain_surface\" desc=\"Categorical
+        Freezing Rain @ Ground or water surface\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Categorical Freezing Rain @ Ground or water surface\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"units\"
+        value=\"Code table 4.222\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-193_L1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 1 193\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Categorical Freezing Rain\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Categorical_Ice_Pellets_surface\"
+        desc=\"Categorical Ice Pellets @ Ground or water surface\" type=\"float\">\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Categorical Ice Pellets @ Ground or water surface\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Code table 4.222\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-194_L1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 1 194\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Categorical Ice Pellets\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Categorical_Rain_surface\"
+        desc=\"Categorical Rain @ Ground or water surface\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Categorical Rain @ Ground or water surface\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"units\"
+        value=\"Code table 4.222\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-192_L1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 1 192\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Categorical Rain\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Categorical_Snow_surface\"
+        desc=\"Categorical Snow @ Ground or water surface\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Categorical Snow @ Ground or water surface\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"units\"
+        value=\"Code table 4.222\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-195_L1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 1 195\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Categorical Snow\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Composite_reflectivity_entire_atmosphere\"
+        desc=\"Composite reflectivity @ Entire atmosphere\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Composite reflectivity @ Entire atmosphere\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"units\"
+        value=\"dB\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-16-196_L10\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 16 196\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Forecast Radar Imagery\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Composite reflectivity\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"10\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Entire atmosphere\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Generating_Process_Type\"
+        value=\"Forecast\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Statistical_Process_Type\" value=\"UnknownStatType--1\" />\r\n
+        \   </grid>\r\n    <grid name=\"Convective_available_potential_energy_surface\"
+        desc=\"Convective available potential energy @ Ground or water surface\" type=\"float\">\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Convective available potential energy @ Ground
+        or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"J/kg\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-7-6_L1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 7 6\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Thermodynamic stability indices\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Convective available potential energy\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Convective_inhibition_surface\"
+        desc=\"Convective inhibition @ Ground or water surface\" type=\"float\">\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Convective inhibition @ Ground or water surface\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"J/kg\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-7-7_L1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 7 7\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Thermodynamic stability indices\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Convective inhibition\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Ground or water surface\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Generating_Process_Type\"
+        value=\"Forecast\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Statistical_Process_Type\" value=\"UnknownStatType--1\" />\r\n
+        \   </grid>\r\n    <grid name=\"Geopotential_height_cloud_base\" desc=\"Geopotential
+        height @ Cloud base level\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Geopotential height @ Cloud base level\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"gpm\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-3-5_L2\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 3 5\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Mass\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Geopotential height\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"2\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Cloud base level\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Generating_Process_Type\"
+        value=\"Forecast\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Statistical_Process_Type\" value=\"UnknownStatType--1\" />\r\n
+        \   </grid>\r\n    <grid name=\"Geopotential_height_cloud_tops\" desc=\"Geopotential
+        height @ Level of cloud tops\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Geopotential height @ Level of cloud tops\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"gpm\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-3-5_L3\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 3 5\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Mass\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Geopotential height\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"3\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Level of cloud tops\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Generating_Process_Type\"
+        value=\"Forecast\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Statistical_Process_Type\" value=\"UnknownStatType--1\" />\r\n
+        \   </grid>\r\n    <grid name=\"Geopotential_height_convective_cloud_top\"
+        desc=\"Geopotential height @ Convective cloud top level\" type=\"float\">\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Geopotential height @ Convective cloud top level\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"gpm\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-3-5_L243\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 3 5\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Mass\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Geopotential height\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"243\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Convective cloud top level\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Generating_Process_Type\"
+        value=\"Forecast\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Statistical_Process_Type\" value=\"UnknownStatType--1\" />\r\n
+        \   </grid>\r\n    <grid name=\"Geopotential_height_equilibrium\" desc=\"Geopotential
+        height @ Equilibrium level\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Geopotential height @ Equilibrium level\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"gpm\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-3-5_L247\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 3 5\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Mass\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Geopotential height\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"247\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Equilibrium level\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Generating_Process_Type\"
+        value=\"Forecast\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Statistical_Process_Type\" value=\"UnknownStatType--1\" />\r\n
+        \   </grid>\r\n    <grid name=\"Geopotential_height_zeroDegC_isotherm\" desc=\"Geopotential
+        height @ Level of 0 \xB0C isotherm\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Geopotential height @ Level of 0 \xB0C isotherm\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"gpm\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-3-5_L4\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 3 5\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Mass\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Geopotential height\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"4\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Level of 0 \xB0C isotherm\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Generating_Process_Type\"
+        value=\"Forecast\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Statistical_Process_Type\" value=\"UnknownStatType--1\" />\r\n
+        \   </grid>\r\n    <grid name=\"MSLP_MAPS_System_Reduction_msl\" desc=\"MSLP
+        (MAPS System Reduction) @ Mean sea level\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"MSLP (MAPS System Reduction) @ Mean sea level\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"units\"
+        value=\"Pa\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-3-198_L101\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 3 198\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Mass\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"MSLP (MAPS System Reduction)\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"101\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Mean sea level\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Planetary_Boundary_Layer_Height_surface\"
+        desc=\"Planetary Boundary Layer Height @ Ground or water surface\" type=\"float\">\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Planetary Boundary Layer Height @ Ground or water
+        surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-3-196_L1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 3 196\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Mass\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Planetary Boundary Layer Height\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Precipitable_water_entire_atmosphere_single_layer\"
+        desc=\"Precipitable water @ Entire atmosphere layer\" type=\"float\">\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Precipitable water @ Entire atmosphere layer\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"kg.m-2\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-3_L200\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter\"
+        type=\"int\" value=\"0 1 3\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Discipline\" value=\"Meteorological products\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Precipitable water\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"200\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Entire atmosphere layer\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Precipitation_rate_surface\"
+        desc=\"Precipitation rate @ Ground or water surface\" type=\"float\">\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Precipitation rate @ Ground or water surface\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"kg.m-2.s-1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-7_L1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 1 7\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Precipitation rate\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Pressure_maximum_wind\"
+        desc=\"Pressure @ Maximum wind level\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Pressure @ Maximum wind level\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Pa\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-3-0_L6\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 3 0\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Mass\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Pressure\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"6\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Maximum wind level\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Pressure_surface\"
+        desc=\"Pressure @ Ground or water surface\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Pressure @ Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Pa\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-3-0_L1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 3 0\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Mass\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Pressure\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Pressure_tropopause\"
+        desc=\"Pressure @ Tropopause\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Pressure @ Tropopause\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"units\"
+        value=\"Pa\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-3-0_L7\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 3 0\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Mass\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Pressure\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"7\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Tropopause\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Pressure_zeroDegC_isotherm\"
+        desc=\"Pressure @ Level of 0 \xB0C isotherm\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Pressure @ Level of 0 \xB0C isotherm\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"Pa\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-3-0_L4\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 3 0\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Mass\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Pressure\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"4\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Level of 0 \xB0C isotherm\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Relative_humidity_zeroDegC_isotherm\"
+        desc=\"Relative humidity @ Level of 0 \xB0C isotherm\" type=\"float\">\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Relative humidity @ Level of 0 \xB0C isotherm\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"%\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-1_L4\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 1 1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Relative humidity\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"4\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Level of 0 \xB0C isotherm\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Snow_depth_surface\"
+        desc=\"Snow depth @ Ground or water surface\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Snow depth @ Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-1-11_L1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 1 11\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Moisture\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Snow depth\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Temperature_tropopause\"
+        desc=\"Temperature @ Tropopause\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Temperature @ Tropopause\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"units\"
+        value=\"K\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-0-0_L7\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 0 0\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Temperature\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Temperature\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"7\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Tropopause\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"Visibility_surface\"
+        desc=\"Visibility @ Ground or water surface\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"Visibility @ Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-19-0_L1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 19 0\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Physical atmospheric Properties\"
+        />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Name\" value=\"Visibility\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Type\"
+        type=\"int\" value=\"1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Desc\" value=\"Ground or water surface\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Generating_Process_Type\"
+        value=\"Forecast\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Statistical_Process_Type\" value=\"UnknownStatType--1\" />\r\n
+        \   </grid>\r\n    <grid name=\"Wind_speed_gust_surface\" desc=\"Wind speed
+        (gust) @ Ground or water surface\" type=\"float\">\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"long_name\" value=\"Wind speed (gust) @ Ground or water surface\" />\r\n
+        \     <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m/s\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-22_L1\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 2 22\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"Wind speed (gust)\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"1\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Ground or water surface\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"u-component_of_wind_maximum_wind\"
+        desc=\"u-component of wind @ Maximum wind level\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"u-component of wind @ Maximum wind level\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"units\"
+        value=\"m/s\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-2_L6\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 2 2\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"u-component of wind\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"6\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Maximum wind level\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"u-component_of_wind_tropopause\"
+        desc=\"u-component of wind @ Tropopause\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"u-component of wind @ Tropopause\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m/s\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-2_L7\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 2 2\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"u-component of wind\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"7\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Tropopause\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"v-component_of_wind_maximum_wind\"
+        desc=\"v-component of wind @ Maximum wind level\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"v-component of wind @ Maximum wind level\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"units\"
+        value=\"m/s\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-3_L6\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 2 3\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"v-component of wind\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"6\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Maximum wind level\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n    <grid name=\"v-component_of_wind_tropopause\"
+        desc=\"v-component of wind @ Tropopause\" type=\"float\">\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"long_name\"
+        value=\"v-component of wind @ Tropopause\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"units\" value=\"m/s\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib_Variable_Id\" value=\"VAR_0-2-3_L7\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter\" type=\"int\" value=\"0 2 3\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Discipline\"
+        value=\"Meteorological products\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Parameter_Category\" value=\"Momentum\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Parameter_Name\"
+        value=\"v-component of wind\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Level_Type\" type=\"int\" value=\"7\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Level_Desc\"
+        value=\"Tropopause\" />\r\n      <attribute xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"Grib2_Generating_Process_Type\" value=\"Forecast\" />\r\n      <attribute
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"Grib2_Statistical_Process_Type\"
+        value=\"UnknownStatType--1\" />\r\n    </grid>\r\n  </gridSet>\r\n  <coordTransform
+        name=\"LambertConformal_337X451-40p02N-98p15W\" transformType=\"Projection\">\r\n
+        \   <parameter xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"grid_mapping_name\" value=\"lambert_conformal_conic\" />\r\n    <parameter
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"latitude_of_projection_origin\"
+        type=\"double\" value=\"25.0\" />\r\n    <parameter xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"longitude_of_central_meridian\" type=\"double\" value=\"265.0\" />\r\n
+        \   <parameter xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\"
+        name=\"standard_parallel\" type=\"double\" value=\"25.0\" />\r\n    <parameter
+        xmlns=\"http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2\" name=\"earth_radius\"
+        type=\"double\" value=\"6371229.0\" />\r\n  </coordTransform>\r\n  <LatLonBox>\r\n
+        \   <west>-139.9699</west>\r\n    <east>-57.2685</east>\r\n    <south>16.2086</south>\r\n
+        \   <north>58.4149</north>\r\n  </LatLonBox>\r\n  <TimeSpan>\r\n    <begin>2024-12-11T19:00:00Z</begin>\r\n
+        \   <end>2024-12-12T16:00:00Z</end>\r\n  </TimeSpan>\r\n  <AcceptList>\r\n
+        \   <accept displayName=\"netcdf3\">netcdf3</accept>\r\n    <accept displayName=\"netcdf4-classic\">netcdf4-classic</accept>\r\n
+        \   <accept displayName=\"netcdf4ext\">netcdf4ext</accept>\r\n  </AcceptList>\r\n</gridDataset>\r\n"
+    headers:
+      Connection:
+      - Keep-Alive
+      Content-Encoding:
+      - gzip
+      Content-Language:
+      - en-US
+      Content-Security-Policy:
+      - 'default-src ''none''; base-uri ''self'' https://www.opendap.org; form-action
+        ''self''; frame-ancestors ''self''; frame-src ''self''; object-src ''none'';
+        img-src ''self'' data: https://a.tile.openstreetmap.org https://b.tile.openstreetmap.org
+        https://c.tile.openstreetmap.org https://www.unidata.ucar.edu https://ahocevar.com;
+        style-src ''self'' ''unsafe-inline'' https://necolas.github.io https://cdnjs.cloudflare.com;
+        font-src ''self''; connect-src ''self''; media-src ''self''; manifest-src
+        ''self''; worker-src ''self''; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
+        https://cdnjs.cloudflare.com https://cdn.rawgit.com https://cdn.jsdelivr.net'
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Date:
+      - Wed, 11 Dec 2024 21:51:16 GMT
+      Keep-Alive:
+      - timeout=5, max=100
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubdomains;
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: '200'
+version: 1

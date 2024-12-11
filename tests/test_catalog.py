@@ -121,7 +121,7 @@ def test_simple_point_feature_collection_xml():
 
 
 @recorder.use_cassette('html_then_xml_catalog')
-def test_html_link(recwarn):
+def test_html_link():
     """Test that we fall-back when given an HTML catalog page."""
     url = ('http://thredds-test.unidata.ucar.edu/thredds/catalog/'
            'grib/NCEP/RAP/CONUS_13km/catalog.html')
