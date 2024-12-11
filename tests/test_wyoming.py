@@ -6,6 +6,7 @@
 from datetime import datetime
 
 from numpy.testing import assert_almost_equal
+import pandas as pd
 import pytest
 
 from siphon.simplewebservice.wyoming import WyomingUpperAir
@@ -140,3 +141,14 @@ def test_wyoming_heights():
 
     assert_almost_equal(df['height'][140], 10336.0, 2)
     assert_almost_equal(df['direction'][1], 145.0, 1)
+
+
+# GH #749
+@recorder.use_cassette('wyoming_missing_station_info')
+def test_missing_station():
+    """Test that we can still return data for stations missing from the Wyoming archive."""
+    df = WyomingUpperAir.request_data(datetime(2012, 1, 1, 0),  '82244')
+    assert df['station'][0] == ''
+    assert all(pd.isna(df['latitude']))
+    assert all(pd.isna(df['longitude']))
+    assert all(pd.isna(df['elevation']))
