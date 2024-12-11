@@ -583,3 +583,15 @@ def test_dataset_parsing_tds5(caplog):
     element = ET.fromstring(session_manager.urlopen(url).read())
     NCSSDataset(element)
     assert len(caplog.records) == 0
+
+
+@recorder.use_cassette('RAP_TDS5')
+def test_dataset_parsing_rap_tds5(caplog):
+    """Test parsing the dataset for RAP from TDS5."""
+    url = ('https://thredds.ucar.edu/thredds/ncss/grid/grib/NCEP/RAP/CONUS_13km/'
+           'RR_CONUS_13km_20241211_1900.grib2/dataset.xml')
+    element = ET.fromstring(session_manager.urlopen(url).read())
+    ds = NCSSDataset(element)
+    assert len(caplog.records) == 0
+    assert ds.axes['y']['shape'] == [337]
+    assert ds.axes['reftime']['shape'] == [0]
