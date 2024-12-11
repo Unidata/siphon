@@ -576,10 +576,10 @@ def test_dataset_elements_full_ncss_grid():
 
 
 @recorder.use_cassette('GFS_TDS5')
-def test_dataset_parsing_tds5(recwarn):
+def test_dataset_parsing_tds5(caplog):
     """Test parsing the dataset from TDS 5."""
     url = ('http://thredds-test.unidata.ucar.edu/thredds/ncss/grid/casestudies/irma/model/'
            'gfs/GFS_Global_0p5deg_20170903_1200.grib2/dataset.xml')
     element = ET.fromstring(session_manager.urlopen(url).read())
     NCSSDataset(element)
-    assert len(recwarn) == 0
+    assert len(caplog.records) == 0
