@@ -17,8 +17,8 @@ from siphon.simplewebservice.wyoming import WyomingUpperAir
 
 ####################################################
 # Create a datetime object for the sounding and string of the station identifier.
-date = datetime(2017, 9, 10, 6)
-station = 'MFL'
+date = datetime(2024, 9, 27, 0)
+station = 'GSO'
 
 ####################################################
 # Make the request (a pandas dataframe is returned).
