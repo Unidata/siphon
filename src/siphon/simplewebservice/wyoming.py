@@ -15,6 +15,11 @@ from .._tools import get_wind_components
 from ..http_util import HTTPEndPoint
 
 
+def _safe_float(s):
+    """Convert to float, handling ****** as a string for missing."""
+    return pd.NA if all(c == '*' for c in s) or s == '-9999.0' else float(s)
+
+
 class WyomingUpperAir(HTTPEndPoint):
     """Download and parse data from the University of Wyoming's upper air archive."""
 
@@ -83,18 +88,16 @@ class WyomingUpperAir(HTTPEndPoint):
         meta_data = soup.find_all('pre')[1].contents[0]
         lines = meta_data.splitlines()
 
-        # If the station doesn't have a name identified we need to insert a
-        # record showing this for parsing to proceed.
-        if 'Station number' in lines[1]:
-            lines.insert(1, 'Station identifier: ')
+        # Convert values after table into key, value pairs using the name to the left of the :
+        post_values = dict(tuple(map(str.strip, line.split(': '))) for line in lines[1:])
 
-        station = lines[1].split(':')[1].strip()
-        station_number = int(lines[2].split(':')[1].strip())
-        sounding_time = datetime.strptime(lines[3].split(':')[1].strip(), '%y%m%d/%H%M')
-        latitude = float(lines[4].split(':')[1].strip())
-        longitude = float(lines[5].split(':')[1].strip())
-        elevation = float(lines[6].split(':')[1].strip())
-        pw = float(lines[-1].split(':')[1].strip())
+        station = post_values.get('Station identifier', '')
+        station_number = int(post_values['Station number'])
+        sounding_time = datetime.strptime(post_values['Observation time'], '%y%m%d/%H%M')
+        latitude = _safe_float(post_values.get('Station latitude', '******'))
+        longitude = _safe_float(post_values.get('Station longitude', '******'))
+        elevation = _safe_float(post_values.get('Station elevation', '******'))
+        pw = float(post_values['Precipitable water [mm] for entire sounding'])
 
         df['station'] = station
         df['station_number'] = station_number
