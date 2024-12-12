@@ -143,3 +143,13 @@ def test_igra2_nonexistent():
         IGRAUpperAir.request_data(datetime.now(), 'NOSUCHSTATION')
 
     assert 'No data' in str(err.value)
+
+
+@recorder.use_cassette('igra2_sounding',
+                       before_record_response=subset_date(datetime(2010, 6, 1)))
+def test_igra2_bad_time_range():
+    """Test that we are properly parsing data from the IGRA2 archive."""
+    with pytest.raises(ValueError) as err:
+        IGRAUpperAir.request_data(datetime(2012, 6, 1, 12), 'USM00070026')
+
+    assert '2010-06-01 00:00:00' in str(err.value)
