@@ -130,6 +130,9 @@ class IGRAUpperAir(HTTPEndPoint):
         num_lev = []
         dates = []
 
+        min_date = None
+        max_date = None
+
         # Get indices of headers, and make a list of dates and num_lev
         for idx, line in enumerate(lines):
             if line[0] == '#':
@@ -141,18 +144,18 @@ class IGRAUpperAir(HTTPEndPoint):
                 except ValueError:
                     date = datetime.datetime(year, month, day)
 
+                min_date = min(date, min_date) if min_date else date
+                max_date = min(date, max_date) if max_date else date
+
                 # Check date
                 if self.begin_date <= date <= self.end_date:
                     headers.append(idx)
                     num_lev.append(int(line[32:36]))
                     dates.append(date)
-                if date > self.end_date:
-                    break
 
-        if len(dates) == 0:
-            # Break if no matched dates.
-            # Could improve this later by showing the date range for the station.
-            raise ValueError('No dates match selection.')
+        if not dates:
+            raise ValueError('No dates match selection. This selection has data from '
+                             f'{min_date} to {max_date}.')
 
         # Compress body of data into a string
         begin_idx = min(headers)
