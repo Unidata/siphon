@@ -53,6 +53,45 @@ def test_wyoming():
     assert df.units['time'] is None
 
 
+@recorder.use_cassette('wyoming_sounding_recalculate')
+def test_wyoming_recalculate():
+    """Test that recalculation request returns the same data."""
+    df = WyomingUpperAir.request_data(
+        datetime(1999, 5, 4, 0), 'OUN', recalc=True)
+
+    assert df['time'][0] == datetime(1999, 5, 4, 0)
+    assert df['station'][0] == 'OUN'
+    assert df['station_number'][0] == 72357
+    assert df['latitude'][0] == 35.18
+    assert df['longitude'][0] == -97.44
+    assert df['elevation'][0] == 345.0
+
+    assert_almost_equal(df['pressure'][5], 867.9, 2)
+    assert_almost_equal(df['height'][5], 1219., 2)
+    assert_almost_equal(df['height'][30], 10505., 2)
+    assert_almost_equal(df['temperature'][5], 17.4, 2)
+    assert_almost_equal(df['dewpoint'][5], 14.3, 2)
+    assert_almost_equal(df['u_wind'][5], 6.60, 2)
+    assert_almost_equal(df['v_wind'][5], 37.42, 2)
+    assert_almost_equal(df['speed'][5], 38.0, 1)
+    assert_almost_equal(df['direction'][5], 190.0, 1)
+
+    assert df.units['pressure'] == 'hPa'
+    assert df.units['height'] == 'meter'
+    assert df.units['temperature'] == 'degC'
+    assert df.units['dewpoint'] == 'degC'
+    assert df.units['u_wind'] == 'knot'
+    assert df.units['v_wind'] == 'knot'
+    assert df.units['speed'] == 'knot'
+    assert df.units['direction'] == 'degrees'
+    assert df.units['latitude'] == 'degrees'
+    assert df.units['longitude'] == 'degrees'
+    assert df.units['elevation'] == 'meter'
+    assert df.units['station'] is None
+    assert df.units['station_number'] is None
+    assert df.units['time'] is None
+
+
 @recorder.use_cassette('wyoming_sounding_no_station')
 def test_wyoming_no_station():
     """Test that we handle stations with no ID from the Wyoming archive."""
