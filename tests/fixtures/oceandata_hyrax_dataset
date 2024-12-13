@@ -1,0 +1,892 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Siphon (0.9.post533+g337f5813.d20241213)
+    method: GET
+    uri: https://oceandata.sci.gsfc.nasa.gov/opendap/SeaWiFS/L3SMI/2000/0101/catalog.xml
+  response:
+    body:
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n    <thredds:catalog xmlns:thredds=\"http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0\"\n
+        \                xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n                 xmlns:bes=\"http://xml.opendap.org/ns/bes/1.0#\">\n
+        \  <thredds:service name=\"dap\" serviceType=\"OPeNDAP\" base=\"/opendap/hyrax\"/>\n
+        \  <thredds:service name=\"file\" serviceType=\"HTTPServer\" base=\"/opendap/hyrax\"/>\n
+        \ <thredds:service name=\"WCS-coads\" serviceType=\"WCS\" base=\"/opendap/wcs\"/>\n\n
+        \       <thredds:dataset name=\"/SeaWiFS/L3SMI/2000/0101\" ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/\">\n
+        \           <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.CHL.chlor_a.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.CHL.chlor_a.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3728708</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:47:18Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.CHL.chlor_a.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1931087</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:06:47Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1919890</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:06:50Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1846663</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:06:53Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1789900</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:06:55Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1643482</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:06:58Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1745482</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:00Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.a_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.adg_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.adg_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1802348</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:04Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.adg_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.adg_s.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.adg_s.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1812766</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:06Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.adg_s.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.adg_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.adg_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1607377</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:09Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.adg_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.aph_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.aph_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1890453</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:11Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.aph_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.aph_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.aph_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1709468</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:14Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.aph_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2083147</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:17Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2070814</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:20Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2058951</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:22Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2034497</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:25Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2027980</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:28Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1966353</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:31Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bb_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bbp_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bbp_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2078822</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:34Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bbp_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bbp_s.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bbp_s.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3395815</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:37Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bbp_s.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bbp_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bbp_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1800362</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T23:07:40Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.IOP.bbp_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.KD.Kd_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.KD.Kd_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1917894</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:21:06Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.KD.Kd_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.PAR.par.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.PAR.par.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7344059</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:36:09Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.PAR.par.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.PIC.pic.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.PIC.pic.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1708291</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:28:41Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.PIC.pic.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.POC.poc.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.POC.poc.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">1962064</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:32:49Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.POC.poc.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2290685</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:11:49Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2268807</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:11:55Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2217774</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:11:59Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2195779</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:12:05Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2143753</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:12:09Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2039783</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:12:12Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.Rrs_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.angstrom.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.angstrom.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2481178</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:12:22Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.angstrom.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.aot_865.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.aot_865.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2168398</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-04T22:12:27Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.RRS.aot_865.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.CHL.chlor_a.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.CHL.chlor_a.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10796062</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T11:51:08Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.CHL.chlor_a.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4323003</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:13:24Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4265601</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:13:29Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3955670</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:13:36Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3723653</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:13:41Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3108628</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:13:49Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3524833</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:13:55Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.a_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.adg_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.adg_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3784124</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:14:01Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.adg_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.adg_s.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.adg_s.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3123824</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:14:04Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.adg_s.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.adg_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.adg_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">2968690</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:14:08Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.adg_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.aph_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.aph_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4127822</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:14:11Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.aph_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.aph_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.aph_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3384370</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:14:17Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.aph_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4946588</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:14:20Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4899348</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:14:32Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4852876</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:14:37Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4746106</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:14:43Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4727215</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:14:52Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4456685</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:14:58Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bb_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bbp_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bbp_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4938222</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:15:02Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bbp_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bbp_s.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bbp_s.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9471463</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:15:09Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bbp_s.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bbp_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bbp_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3751818</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:15:14Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.IOP.bbp_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.KD.Kd_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.KD.Kd_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4221762</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:17:26Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.KD.Kd_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.PAR.par.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.PAR.par.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9717921</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:14:14Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.PAR.par.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.PIC.pic.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.PIC.pic.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3713392</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:36:29Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.PIC.pic.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.POC.poc.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.POC.poc.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4408015</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T12:08:00Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.POC.poc.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5751759</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T11:49:34Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5655196</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T11:49:41Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5448510</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T11:49:45Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5361909</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T11:49:51Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5152373</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T11:49:55Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4744451</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T11:49:58Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.Rrs_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.angstrom.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.angstrom.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6646967</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T11:50:04Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.angstrom.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.aot_865.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.aot_865.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5387775</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-05T11:50:10Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000108.L3m.8D.RRS.aot_865.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.CHL.chlor_a.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.CHL.chlor_a.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">15089342</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:18:49Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.CHL.chlor_a.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5535613</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:25:59Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5419321</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:25:12Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4911691</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:25:21Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4574914</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:25:46Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3586035</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:26:47Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4231469</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:27:17Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.a_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.adg_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.adg_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4668109</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:27:08Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.adg_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.adg_s.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.adg_s.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3096437</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:27:53Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.adg_s.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.adg_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.adg_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3345324</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:25:16Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.adg_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.aph_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.aph_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5190928</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:25:30Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.aph_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.aph_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.aph_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3970471</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:25:19Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.aph_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6387009</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:26:14Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6316826</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:27:32Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6260153</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:28:27Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6050672</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:26:59Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6057893</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:28:32Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5606347</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:29:21Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bb_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bbp_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bbp_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6453829</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:29:45Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bbp_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bbp_s.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bbp_s.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">13063214</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:26:14Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bbp_s.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bbp_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bbp_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4490112</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:25:30Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.IOP.bbp_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.KD.Kd_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.KD.Kd_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5260134</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:18:26Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.KD.Kd_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.PAR.par.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.PAR.par.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9533924</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:20:03Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.PAR.par.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.PIC.pic.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.PIC.pic.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4997467</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:19:09Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.PIC.pic.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.POC.poc.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.POC.poc.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5587864</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:19:44Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.POC.poc.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7755808</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:22:27Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7584550</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:22:33Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7239140</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:22:35Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7076329</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:22:38Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6742329</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:22:40Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6030495</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:22:43Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.Rrs_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.angstrom.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.angstrom.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9267593</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:22:46Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.angstrom.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.aot_865.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.aot_865.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7215843</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T12:22:48Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000131.L3m.MO.RRS.aot_865.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.CHL.chlor_a.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.CHL.chlor_a.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">15143611</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:42:05Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.CHL.chlor_a.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5548350</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:07Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5431715</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:09Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4920743</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:12Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4581798</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:15Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3588065</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:17Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4236891</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:20Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.a_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.adg_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.adg_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4676588</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:22Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.adg_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.adg_s.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.adg_s.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3080761</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:25Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.adg_s.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.adg_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.adg_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3345488</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:30Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.adg_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.aph_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.aph_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5201364</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:35Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.aph_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.aph_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.aph_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3972980</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:38Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.aph_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6399228</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:45Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6329534</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:48Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6271798</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:36:53Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6061706</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:37:01Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6068418</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:37:06Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5616151</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:37:08Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bb_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bbp_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bbp_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6467426</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:37:16Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bbp_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bbp_s.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bbp_s.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">13109856</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:37:21Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bbp_s.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bbp_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bbp_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4494736</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:37:26Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.IOP.bbp_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.KD.Kd_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.KD.Kd_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5268910</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:41:36Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.KD.Kd_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.PAR.par.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.PAR.par.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9529453</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:54:30Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.PAR.par.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.PIC.pic.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.PIC.pic.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5014905</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:45:59Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.PIC.pic.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.POC.poc.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.POC.poc.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5599460</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:44:44Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.POC.poc.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7778012</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:28:47Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7605471</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:28:50Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7257501</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:28:53Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7093678</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:28:56Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6756756</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:28:59Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6039337</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:29:02Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.Rrs_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.angstrom.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.angstrom.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">9299511</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:29:05Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.angstrom.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.aot_865.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.aot_865.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7233572</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T14:29:08Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20000201.L3m.R32.RRS.aot_865.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.CHL.chlor_a.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.CHL.chlor_a.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">17799629</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:06:44Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.CHL.chlor_a.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6207121</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:56Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6022423</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:21:00Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5394860</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:21:05Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4989818</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:21:09Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3878159</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:21:13Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4603881</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:21:18Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.a_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.adg_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.adg_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5129781</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:21:23Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.adg_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.adg_s.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.adg_s.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3160524</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:21:25Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.adg_s.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.adg_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.adg_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">3512697</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:00Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.adg_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.aph_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.aph_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5649834</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:12Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.aph_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.aph_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.aph_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4218767</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:22Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.aph_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6605850</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:27Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6529578</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:30Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6439563</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:34Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6292493</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:38Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6111013</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:43Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5904949</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:46Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bb_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bbp_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bbp_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6704603</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:51Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bbp_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bbp_s.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bbp_s.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">15318612</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:54Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bbp_s.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bbp_unc_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bbp_unc_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">4552207</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:20:57Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.IOP.bbp_unc_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.KD.Kd_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.KD.Kd_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5651883</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:08:48Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.KD.Kd_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.PAR.par.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.PAR.par.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10098100</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:09:03Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.PAR.par.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.PIC.pic.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.PIC.pic.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5573566</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:06:37Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.PIC.pic.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.POC.poc.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.POC.poc.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6247387</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:07:48Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.POC.poc.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_412.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_412.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8466764</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:12:54Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_412.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_443.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_443.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">8222832</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:12:58Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_443.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_490.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_490.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7796791</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:13:02Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_490.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_510.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_510.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7447093</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:13:05Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_510.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_555.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_555.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">6898201</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:13:10Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_555.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_670.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_670.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">5999057</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:13:16Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.Rrs_670.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.angstrom.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.angstrom.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">10278280</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:13:19Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.angstrom.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n            <thredds:dataset name=\"SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.aot_865.9km.nc\"\n
+        \                      ID=\"/opendap/hyrax/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.aot_865.9km.nc\">\n
+        \        <thredds:dataSize units=\"bytes\">7534867</thredds:dataSize>\n         <thredds:date
+        type=\"modified\">2022-10-06T22:13:23Z</thredds:date>\n         <thredds:access
+        serviceName=\"dap\"\n                         urlPath=\"/SeaWiFS/L3SMI/2000/0101/SEASTAR_SEAWIFS_GAC.20000101_20001231.L3m.YR.RRS.aot_865.9km.nc\"/>\n
+        \ \n      </thredds:dataset>\n        </thredds:dataset>\n    </thredds:catalog>\n"
+    headers:
+      Connection:
+      - keep-alive
+      Content-Description:
+      - thredds_catalog
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests; default-src ''self'' image-src ''self'' blob:
+        ''unsafe-inline'' ''unsafe-eval'' data: oceancolor.gsfc.nasa.gov *.earthdata.nasa.gov
+        *.google.com *.gstatic.com *.googleapis.com www.googletagmanager.com www.google-analytics.com
+        www.youtube.com s.ytimg.com stats.g.doubleclick.net dap.digitalgov.gov cdn.earthdata.nasa.gov
+        api.ipify.org *.cloudflare.com maxcdn.bootstrapcdn.com platform.twitter.com
+        cdn.bokeh.org cdn.holoviz.org;'
+      Content-Type:
+      - text/xml
+      Date:
+      - Fri, 13 Dec 2024 20:09:34 GMT
+      Last-Modified:
+      - Fri, 13 Dec 2024 20:09:34 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000; includesubdomains; preload
+      Transfer-Encoding:
+      - chunked
+      X-DAP:
+      - '3.2'
+      X-FRAME-OPTIONS:
+      - DENY
+      - SAMEORIGIN
+      XDODS-Server:
+      - dods/3.2
+      XOPeNDAP-Server:
+      - asciival/, bes/, builddmrpp_module/, csv_handler/, dapreader_module/, dmrpp_module/,
+        fileout_covjson/, fileout_json/, fileout_netcdf/, freeform_handler/, functions/,
+        gateway/, gdal_module/, hdf4_handler/, hdf5_handler/, libdap/, ncml_moddule/,
+        netcdf_handler/, ngap_module/, s3_reader/, usage/, w10n_handler/, xml_data_handler/
+      vary:
+      - accept-encoding
+    status:
+      code: 200
+      message: ''
+version: 1

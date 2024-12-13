@@ -582,18 +582,18 @@ class Dataset:
                 if isinstance(service, CompoundService):
                     for subservice in service.services:
                         server_base = urljoin(server_url, subservice.base)
-                        access_urls[subservice.service_type] = urljoin(server_base,
-                                                                       self.url_path)
+                        access_urls[subservice.service_type] = server_base + self.url_path
                 else:
                     server_base = urljoin(server_url, service.base)
-                    access_urls[service.service_type] = urljoin(server_base, self.url_path)
+                    access_urls[service.service_type] = server_base + self.url_path
 
         # process access children of dataset elements
-        for service_type in self.access_element_info:
-            url_path = self.access_element_info[service_type]
-            if service_type in all_service_dict:
-                server_base = urljoin(server_url, all_service_dict[service_type].base)
-                access_urls[service_type] = urljoin(server_base, url_path)
+        for sname in self.access_element_info:
+            if sname in all_service_dict:
+                service = all_service_dict[sname]
+                url_path = self.access_element_info[sname]
+                server_base = urljoin(server_url, service.base)
+                access_urls[service.service_type] = server_base + url_path
 
         self.access_urls = access_urls
 
@@ -670,7 +670,8 @@ class Dataset:
         if service is None:
             service = 'CdmRemote' if 'CdmRemote' in self.access_urls else 'OPENDAP'
 
-        if service not in (CaseInsensitiveStr('CdmRemote'), CaseInsensitiveStr('OPENDAP')):
+        if service not in (CaseInsensitiveStr('CdmRemote'), CaseInsensitiveStr('OPENDAP'),
+                           CaseInsensitiveStr('DODS')):
             raise ValueError(service + ' is not a valid service for remote_access')
 
         return self.access_with_service(service, use_xarray)
@@ -735,7 +736,7 @@ class Dataset:
             else:
                 from .cdmr import Dataset as CDMRDataset
                 provider = CDMRDataset
-        elif service == 'OPENDAP':
+        elif service == 'OPENDAP' or service == 'DODS':
             if use_xarray:
                 try:
                     import xarray as xr
@@ -753,7 +754,7 @@ class Dataset:
         elif service in self.ncss_service_names:
             from .ncss import NCSS
             provider = NCSS
-        elif service == 'HTTPServer':
+        elif service == 'HTTPServer' or service == CaseInsensitiveStr('http'):
             provider = session_manager.urlopen
         else:
             raise ValueError(service + ' is not an access method supported by Siphon')
@@ -851,11 +852,8 @@ def _find_base_tds_url(catalog_url):
 
     Will retain URL scheme, host, port and username/password when present.
     """
-    url_components = urlparse(catalog_url)
-    if url_components.path:
-        return catalog_url.split(url_components.path)[0]
-    else:
-        return catalog_url
+    scheme, netloc, *_ = urlparse(catalog_url)
+    return scheme + '://' + netloc
 
 
 def get_latest_access_url(catalog_url, access_method):

@@ -350,7 +350,7 @@ def test_ramadda_access_urls():
     cat = (TDSCatalog(url).catalog_refs[0].follow().catalog_refs[0].follow()
                           .catalog_refs[0].follow())
 
-    ds = cat.datasets[3]
+    ds = cat.datasets['dynamo_basic_v2b_2011all.nc']
     assert ds.access_urls['opendap'] == ('http://weather.rsmas.miami.edu/repository/opendap/'
                                          'synth:a43c1cc4-1cf2-4365-97b9-6768b8201407:L3YyYl91c'
                                          '2VzRUNPQS9keW5hbW9fYmFzaWNfdjJiXzIwMTFhbGwubmM='
@@ -405,3 +405,15 @@ def test_nasa_hyrax_dataset():
     # Checks #gh-759
     assert len(cat.datasets) == 161
     assert 'epic_1b_20240413222222_03.h5' in cat.datasets
+
+
+# Fixes #724
+@recorder.use_cassette('oceandata_hyrax_dataset')
+def test_oceandata_hyrax_dataset():
+    """Test that dap urls from the Oceandata Hyrax server are properly generated."""
+    cat = TDSCatalog('https://oceandata.sci.gsfc.nasa.gov/opendap/SeaWiFS/L3SMI/2000/0101/'
+                     'catalog.xml')
+    dap_url = cat.datasets[0].access_urls['opendap']
+    assert dap_url == ('https://oceandata.sci.gsfc.nasa.gov/opendap/hyrax/SeaWiFS/L3SMI/2000/'
+                       '0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.CHL.chlor_a.9km.nc')
+    assert cat.datasets[0].remote_access()
