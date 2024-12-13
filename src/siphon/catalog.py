@@ -588,11 +588,12 @@ class Dataset:
                     access_urls[service.service_type] = server_base + self.url_path
 
         # process access children of dataset elements
-        for service_type in self.access_element_info:
-            url_path = self.access_element_info[service_type]
-            if service_type in all_service_dict:
-                server_base = urljoin(server_url, all_service_dict[service_type].base)
-                access_urls[service_type] = server_base + url_path
+        for sname in self.access_element_info:
+            if sname in all_service_dict:
+                service = all_service_dict[sname]
+                url_path = self.access_element_info[sname]
+                server_base = urljoin(server_url, service.base)
+                access_urls[service.service_type] = server_base + url_path
 
         self.access_urls = access_urls
 

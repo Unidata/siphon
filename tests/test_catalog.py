@@ -413,6 +413,7 @@ def test_oceandata_hyrax_dataset():
     """Test that dap urls from the Oceandata Hyrax server are properly generated."""
     cat = TDSCatalog('https://oceandata.sci.gsfc.nasa.gov/opendap/SeaWiFS/L3SMI/2000/0101/'
                      'catalog.xml')
-    dap_url = cat.datasets[0].access_urls['dap']
+    dap_url = cat.datasets[0].access_urls['opendap']
     assert dap_url == ('https://oceandata.sci.gsfc.nasa.gov/opendap/hyrax/SeaWiFS/L3SMI/2000/'
                        '0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.CHL.chlor_a.9km.nc')
+    assert cat.datasets[0].remote_access()
