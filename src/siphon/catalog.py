@@ -670,7 +670,8 @@ class Dataset:
         if service is None:
             service = 'CdmRemote' if 'CdmRemote' in self.access_urls else 'OPENDAP'
 
-        if service not in (CaseInsensitiveStr('CdmRemote'), CaseInsensitiveStr('OPENDAP')):
+        if service not in (CaseInsensitiveStr('CdmRemote'), CaseInsensitiveStr('OPENDAP'),
+                           CaseInsensitiveStr('DODS')):
             raise ValueError(service + ' is not a valid service for remote_access')
 
         return self.access_with_service(service, use_xarray)
@@ -735,7 +736,7 @@ class Dataset:
             else:
                 from .cdmr import Dataset as CDMRDataset
                 provider = CDMRDataset
-        elif service == 'OPENDAP':
+        elif service == 'OPENDAP' or service == 'DODS':
             if use_xarray:
                 try:
                     import xarray as xr
@@ -753,7 +754,7 @@ class Dataset:
         elif service in self.ncss_service_names:
             from .ncss import NCSS
             provider = NCSS
-        elif service == 'HTTPServer':
+        elif service == 'HTTPServer' or service == CaseInsensitiveStr('http'):
             provider = session_manager.urlopen
         else:
             raise ValueError(service + ' is not an access method supported by Siphon')
