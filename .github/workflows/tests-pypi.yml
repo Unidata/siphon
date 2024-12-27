@@ -65,6 +65,9 @@ jobs:
               dep = dep.split(';')[0]
               if 'siphon' not in dep:
                 out.write(dep.replace('>=', '==') + '\n')
+            # Needed until vcrpy >=6.0.2 comes out with support for urllib3>=2.3
+            if fname == 'requirements.txt':
+              out.write('urllib3==2.2.3\n')
         EOF
 
     - name: Install from PyPI
