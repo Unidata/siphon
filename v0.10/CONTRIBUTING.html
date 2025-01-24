@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributing &mdash; Siphon 0.10dev</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="_static/theme_override.css?v=4e1f738f" />
+
+  
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/CONTRIBUTING.html"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=82662543"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Citing Siphon" href="citing.html" />
+    <link rel="prev" title="Developer’s Guide" href="developerguide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Siphon
+              <img src="_static/siphon_150x150.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installguide.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">The Siphon API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Siphon Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developerguide.html">Developer’s Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-can-i-do">What Can I Do?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-can-i-talk-to-you">How Can I Talk to You?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ground-rules">Ground Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reporting-a-bug">Reporting a bug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pull-requests">Pull Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-review">Code Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-channels">Other Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing Siphon</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Siphon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+<div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Contributing</li>
+    <li class="source-link">
+        
+            
+                <a href="https://github.com/Unidata/siphon/edit/main/docs/CONTRIBUTING"
+                   class="fa fa-github"> Improve this page</a>
+            
+        
+    </li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>First off, thank you for considering contributing to Siphon. Siphon is community-driven
+project, so it’s people like you that make Siphon useful and successful.</p>
+<p>Following these guidelines helps to communicate that you respect the time of the
+developers managing and developing this open source project. In return, they
+should reciprocate that respect in addressing your issue, assessing changes, and
+helping you finalize your pull requests.</p>
+<p>We love contributions from community members, just like you! There are many ways
+to contribute, from writing tutorials or example Jupyter notebooks, improvements
+to the documentation, submitting bug report and feature requests, or even writing
+code which can be incorporated into Siphon for everyone to use. If you get stuck at
+any point you can create an <a class="reference external" href="https://github.com/Unidata/Siphon/issues">issue on GitHub</a>
+or contact us at one of the other channels mentioned below.</p>
+<p>For more information on contributing to open source projects,
+<a class="reference external" href="https://opensource.guide/how-to-contribute/">this guide</a> is a great starting point.</p>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<p>Interested in helping build Siphon? Have code from your research that you believe others will
+find useful? Have a few minutes to tackle an issue? In this guide we will get you setup and
+integrated into contributing to Siphon!</p>
+</section>
+<section id="what-can-i-do">
+<h2>What Can I Do?<a class="headerlink" href="#what-can-i-do" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Tackle any <a class="reference external" href="https://github.com/Unidata/Siphon/issues">issues</a> you wish! We have a special
+label for issues that beginners might want to try. Have a look at our
+<a class="reference external" href="https://github.com/unidata/Siphon/issues?q=is%3Aopen+is%3Aissue+label%3A%22Difficulty%3A+Beginner%22">current beginner issues.</a></p></li>
+<li><p>Contribute code you already have. It doesn’t need to be perfect! We will help you clean
+things up, test it, etc.</p></li>
+<li><p>Make a tutorial or example of how to do something.</p></li>
+</ul>
+</section>
+<section id="how-can-i-talk-to-you">
+<h2>How Can I Talk to You?<a class="headerlink" href="#how-can-i-talk-to-you" title="Link to this heading"></a></h2>
+<p>Discussion of Siphon development often happens in the issue tracker and in pull requests.
+In addition, the developers monitor the
+<a class="reference external" href="https://gitter.im/Unidata/siphon?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge">gitter chat room</a>
+for the project as well.</p>
+</section>
+<section id="ground-rules">
+<h2>Ground Rules<a class="headerlink" href="#ground-rules" title="Link to this heading"></a></h2>
+<p>The goal is to maintain a diverse community that’s pleasant for everyone. Please
+be considerate and respectful of others. Other items:</p>
+<ul class="simple">
+<li><p>Each pull request should consist of a logical collection of changes. You can
+include multiple bug fixes in a single pull request, but they should be related.
+For unrelated changes, please submit multiple pull requests.</p></li>
+<li><p>Do not commit changes to files that are irrelevant to your feature or bugfix
+(eg: .gitignore).</p></li>
+<li><p>Be willing to accept criticism and work on improving your code; we don’t want
+to break other users’ code, so care must be taken not to introduce bugs.</p></li>
+<li><p>Be aware that the pull request review process is not immediate, and is
+generally proportional to the size of the pull request.</p></li>
+</ul>
+</section>
+<section id="reporting-a-bug">
+<h2>Reporting a bug<a class="headerlink" href="#reporting-a-bug" title="Link to this heading"></a></h2>
+<p>When creating a new issue, please be as specific as possible. Include the version
+of the code you were using, as well as what operating system you are running.
+If possible, include complete, minimal example code that reproduces the problem.</p>
+</section>
+<section id="pull-requests">
+<h2>Pull Requests<a class="headerlink" href="#pull-requests" title="Link to this heading"></a></h2>
+<p><strong>Working on your first Pull Request?</strong> You can learn how from this <em>free</em> video series <a class="reference external" href="https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github">How to Contribute to an Open Source Project on GitHub</a>, Aaron Meurer’s <a class="reference external" href="https://www.asmeurer.com/git-workflow/">tutorial on the git workflow</a>, or the guide <a class="reference external" href="https://opensource.guide/how-to-contribute/">“How to Contribute to Open Source”</a>.
+We love pull requests from everyone. Fork, then clone the repo:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:your-username/siphon.git
+</pre></div>
+</div>
+<p>Navigate into the <code class="docutils literal notranslate"><span class="pre">siphon</span></code> folder by executing <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">siphon</span></code>. Create the development conda environment
+with the command <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span></code> and activate the environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">devel</span></code>.</p>
+<p>Then install the development version of siphon:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install .
+</pre></div>
+</div>
+<p>Install py.test (at least version 2.4) and make sure the tests pass:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install pytest
+py.test
+</pre></div>
+</div>
+<p>Create a new branch within your local repository and make your change(s).
+Add tests for your change(s). Make the tests pass:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>py.test
+</pre></div>
+</div>
+<p>Commit the changes you made. Chris Beams has written a <a class="reference external" href="https://cbea.ms/git-commit/">guide</a> on how to write good commit messages.</p>
+<p>Push to your fork and <a class="reference external" href="https://github.com/Unidata/Siphon/compare/">submit a pull request</a>.</p>
+<p>For the Pull Request to be accepted, you need to agree to the
+Unidata Contributor License Agreement (CLA). This will be handled automatically
+upon submission of a Pull Request.
+See <a class="reference external" href="https://github.com/Unidata/siphon/blob/main/CLA.md">here</a> for more
+explanation and rationale behind Unidata’s CLA.</p>
+<p>As part of the Pull Request, be sure to add yourself to the
+<a class="reference external" href="https://github.com/Unidata/Siphon/blob/main/AUTHORS.txt">list of contributors</a>.
+We want to make sure we acknowledge the hard work you’ve generously contributed
+here.</p>
+</section>
+<section id="code-review">
+<h2>Code Review<a class="headerlink" href="#code-review" title="Link to this heading"></a></h2>
+<p>Once you’ve submitted a Pull Request, at this point you’re waiting on us. You
+should expect to hear at least a comment within a couple of days.
+We may suggest some changes or improvements or alternatives.</p>
+<p>Some things that will increase the chance that your pull request is accepted:</p>
+<ul class="simple">
+<li><p>Write tests.</p></li>
+<li><p>Follow <a class="reference external" href="https://pep8.org">PEP8</a> for style. (The <code class="docutils literal notranslate"><span class="pre">flake8</span></code> utility can help with this.)</p></li>
+<li><p>Write a <a class="reference external" href="https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">good commit message</a>.</p></li>
+</ul>
+<p>Pull requests will automatically have tests run by GitHub Actions. This includes
+running both the unit tests as well as the <code class="docutils literal notranslate"><span class="pre">flake8</span></code> and <code class="docutils literal notranslate"><span class="pre">ruff</span></code> code linters.</p>
+</section>
+<section id="other-channels">
+<h2>Other Channels<a class="headerlink" href="#other-channels" title="Link to this heading"></a></h2>
+<p>If you’re interested in contacting us or being a part of the community in
+other ways, feel free to contact us in
+<a class="reference external" href="https://gitter.im/Unidata/siphon">Siphon’s Gitter Channel</a> or through Unidata’s
+<a class="reference external" href="https://www.unidata.ucar.edu/support/#mailinglists">python-users</a> mailing list.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="developerguide.html" class="btn btn-neutral float-left" title="Developer’s Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="citing.html" class="btn btn-neutral float-right" title="Citing Siphon" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
+      <span class="lastupdated">Last updated on Jan 24, 2025 at 20:07:40.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

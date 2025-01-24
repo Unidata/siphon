@@ -1,0 +1,185 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siphon &mdash; Siphon 0.10dev</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="_static/theme_override.css?v=4e1f738f" />
+
+  
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/index.html"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=82662543"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation Guide" href="installguide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Siphon
+              <img src="_static/siphon_150x150.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="installguide.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">The Siphon API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Siphon Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developerguide.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing Siphon</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Siphon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+<div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Siphon</li>
+    <li class="source-link">
+        
+            
+                <a href="https://github.com/Unidata/siphon/edit/main/docs/index"
+                   class="fa fa-github"> Improve this page</a>
+            
+        
+    </li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound">
+</div>
+<section id="siphon">
+<h1>Siphon<a class="headerlink" href="#siphon" title="Link to this heading"></a></h1>
+<p>Siphon is a collection of Python utilities for downloading data from remote
+data services. Much of Siphon’s current functionality focuses on access to
+data hosted on a <a class="reference external" href="https://www.unidata.ucar.edu/software/tds/">THREDDS Data Server</a>. It also provides clients to a variety
+of simple web services.</p>
+<p>Siphon follows <a class="reference external" href="https://semver.org">semantic versioning</a> in its version number. With our
+current 0.x version, that implies that Siphon’s APIs (application programming interfaces) are
+still evolving (we won’t break things just for fun, but many things are still changing as we
+work through design issues). Also, for a version <em class="xref py py-obj">0.x.y</em>, we change <em class="xref py py-obj">x</em> when we
+release new features, and <em class="xref py py-obj">y</em> when we make a release with only bug fixes.</p>
+<p>We support Python &gt;= 3.7.</p>
+<section id="contact-us">
+<h2>Contact Us<a class="headerlink" href="#contact-us" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>For questions about Siphon, please ask them using the “python-siphon” tag on <a class="reference external" href="https://stackoverflow.com/questions/tagged/python-siphon">StackOverflow</a>.
+Our developers are actively monitoring for questions there.</p></li>
+<li><p>You can also email <a class="reference external" href="mailto:support-python&#37;&#52;&#48;unidata&#46;ucar&#46;edu">Unidata’s
+python support email address</a></p></li>
+<li><p>The source code is available on <a class="reference external" href="https://github.com/Unidata/siphon">GitHub</a></p></li>
+<li><p>Bug reports and feature requests should be directed to the
+<a class="reference external" href="https://github.com/Unidata/siphon/issues">GitHub issue tracker</a></p></li>
+<li><p>Siphon has a <a class="reference external" href="https://gitter.im/Unidata/siphon">Gitter</a> chatroom for more “live” communication</p></li>
+<li><p>If you use Siphon in a publication, please see <a class="reference internal" href="citing.html#citing-siphon"><span class="std std-ref">Citing Siphon</span></a>.</p></li>
+<li><p>For release announcements, join Unidata’s <a class="reference external" href="https://www.unidata.ucar.edu/support/#mailinglists">python-users</a> mailing list</p></li>
+</ul>
+</section>
+<section id="other-resources">
+<h2>Other Resources<a class="headerlink" href="#other-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Unidata’s Python <a class="reference external" href="https://unidata.github.io/python-gallery">gallery</a> contains many examples using Siphon to access remote data</p></li>
+<li><p>The <a class="reference external" href="https://unidata.github.io/python-workshop">materials</a> for Unidata’s annual Python training workshop includes some tutorials on
+using Siphon.</p></li>
+</ul>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>Siphon is available under the terms of the open source <a class="reference external" href="https://raw.githubusercontent.com/Unidata/siphon/main/LICENSE">BSD 3-Clause license</a>.</p>
+</section>
+<section id="related-projects">
+<h2>Related Projects<a class="headerlink" href="#related-projects" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://unidata.github.io/netcdf4-python/">netCDF4-python</a> is the officially blessed Python API for <a class="reference external" href="https://www.unidata.ucar.edu/software/netcdf/">netCDF</a></p></li>
+<li><p><a class="reference external" href="https://unidata.github.io/MetPy/">metpy</a> is toolkit for using Python in meteorology applications</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installguide.html" class="btn btn-neutral float-right" title="Installation Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
+      <span class="lastupdated">Last updated on Jan 24, 2025 at 20:07:40.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

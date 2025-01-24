@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>siphon.simplewebservice.igra2 &mdash; Siphon 0.10dev</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=4e1f738f" />
+
+  
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/_modules/siphon/simplewebservice/igra2.html"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=82662543"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Siphon
+              <img src="../../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installguide.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html">The Siphon API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Siphon Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developerguide.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Citing Siphon</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Siphon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+<div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">siphon.simplewebservice.igra2</li>
+    <li class="source-link">
+        
+    </li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for siphon.simplewebservice.igra2</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) 2018,2019 Siphon Contributors.</span>
+<span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="sd">&quot;&quot;&quot;Read upper air data from the Integrated Global Radiosonde Archive version 2.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span><span class="p">,</span> <span class="n">StringIO</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">zipfile</span><span class="w"> </span><span class="kn">import</span> <span class="n">ZipFile</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.._tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_wind_components</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..http_util</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPEndPoint</span><span class="p">,</span> <span class="n">HTTPError</span>
+
+
+<div class="viewcode-block" id="IGRAUpperAir">
+<a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">IGRAUpperAir</span><span class="p">(</span><span class="n">HTTPEndPoint</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Download and parse data from NCEI&#39;s Integrated Radiosonde Archive version 2.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="IGRAUpperAir.__init__">
+<a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set http site address and file suffix based on desired dataset.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">suffix</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">begin_date</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">site_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;https://www1.ncdc.noaa.gov/pub/data/igra/&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="IGRAUpperAir.request_data">
+<a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir.request_data">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">request_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">derived</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve IGRA version 2 data for one station.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        site_id : str</span>
+<span class="sd">            11-character IGRA2 station identifier.</span>
+
+<span class="sd">        time : datetime.datetime</span>
+<span class="sd">           The date and time of the desired observation. If list of two times is given,</span>
+<span class="sd">           dataframes for all dates within the two dates will be returned.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            :class: `pandas.DataFrame` containing the data.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">igra2</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+
+        <span class="c1"># Set parameters for data query</span>
+        <span class="k">if</span> <span class="n">derived</span><span class="p">:</span>
+            <span class="n">igra2</span><span class="o">.</span><span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;derived/derived-por/&#39;</span>
+            <span class="n">igra2</span><span class="o">.</span><span class="n">suffix</span> <span class="o">=</span> <span class="n">igra2</span><span class="o">.</span><span class="n">suffix</span> <span class="o">+</span> <span class="s1">&#39;-drvd.txt&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">igra2</span><span class="o">.</span><span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;data/data-por/&#39;</span>
+            <span class="n">igra2</span><span class="o">.</span><span class="n">suffix</span> <span class="o">=</span> <span class="n">igra2</span><span class="o">.</span><span class="n">suffix</span> <span class="o">+</span> <span class="s1">&#39;-data.txt&#39;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">):</span>
+            <span class="n">igra2</span><span class="o">.</span><span class="n">begin_date</span> <span class="o">=</span> <span class="n">time</span>
+            <span class="n">igra2</span><span class="o">.</span><span class="n">end_date</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">igra2</span><span class="o">.</span><span class="n">begin_date</span><span class="p">,</span> <span class="n">igra2</span><span class="o">.</span><span class="n">end_date</span> <span class="o">=</span> <span class="n">time</span>
+
+        <span class="n">igra2</span><span class="o">.</span><span class="n">site_id</span> <span class="o">=</span> <span class="n">site_id</span>
+
+        <span class="n">df</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">igra2</span><span class="o">.</span><span class="n">_get_data</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">headers</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process the IGRA2 text file for observations at site_id matching time.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            :class: `pandas.DataFrame` containing the body data.</span>
+<span class="sd">            :class: `pandas.DataFrame` containing the header data.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Split the list of times into begin and end dates. If only</span>
+        <span class="c1"># one date is supplied, set both begin and end dates equal to that date.</span>
+
+        <span class="n">body</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">dates_long</span><span class="p">,</span> <span class="n">dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_data_raw</span><span class="p">()</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_fwf_params</span><span class="p">()</span>
+
+        <span class="n">df_body</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_fwf</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">body</span><span class="p">),</span> <span class="o">**</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">])</span>
+        <span class="n">df_header</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_fwf</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">header</span><span class="p">),</span> <span class="o">**</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">])</span>
+        <span class="n">df_body</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dates_long</span>
+
+        <span class="n">df_body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_body_df</span><span class="p">(</span><span class="n">df_body</span><span class="p">)</span>
+        <span class="n">df_header</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_header_df</span><span class="p">(</span><span class="n">df_header</span><span class="p">)</span>
+        <span class="n">df_header</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dates</span>
+
+        <span class="k">return</span> <span class="n">df_body</span><span class="p">,</span> <span class="n">df_header</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_data_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Download observations matching the time range.</span>
+
+<span class="sd">        Returns a tuple with a string for the body, string for the headers,</span>
+<span class="sd">        and a list of dates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">folder</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">site_id</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">suffix</span> <span class="o">+</span> <span class="s1">&#39;.zip&#39;</span>
+
+        <span class="c1"># Get the data and handle if there is none matching what was requested</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No data available for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">begin_date</span><span class="si">:</span><span class="s1">%Y-%m-%d %HZ</span><span class="si">}</span><span class="s1"> &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;for station </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">site_id</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+        <span class="n">file_info</span> <span class="o">=</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">))</span><span class="o">.</span><span class="n">infolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">))</span> <span class="k">as</span> <span class="n">zf</span><span class="p">:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">zf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file_info</span><span class="p">)</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+            <span class="n">body</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">dates_long</span><span class="p">,</span> <span class="n">dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_select_date_range</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">body</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">dates_long</span><span class="p">,</span> <span class="n">dates</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_select_date_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lines</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Identify lines containing headers within the range begin_date to end_date.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        lines: list</span>
+<span class="sd">            list of lines from the IGRA2 data file.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_lev</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dates</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">min_date</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">max_date</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Get indices of headers, and make a list of dates and num_lev</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>
+                <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">hour</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">line</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">26</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+                <span class="c1"># All soundings have YMD, most have hour</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">hour</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
+
+                <span class="n">min_date</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">min_date</span><span class="p">)</span> <span class="k">if</span> <span class="n">min_date</span> <span class="k">else</span> <span class="n">date</span>
+                <span class="n">max_date</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">max_date</span><span class="p">)</span> <span class="k">if</span> <span class="n">max_date</span> <span class="k">else</span> <span class="n">date</span>
+
+                <span class="c1"># Check date</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">begin_date</span> <span class="o">&lt;=</span> <span class="n">date</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="p">:</span>
+                    <span class="n">headers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+                    <span class="n">num_lev</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">32</span><span class="p">:</span><span class="mi">36</span><span class="p">]))</span>
+                    <span class="n">dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dates</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No dates match selection. This selection has data from &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">min_date</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">max_date</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Compress body of data into a string</span>
+        <span class="n">begin_idx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>
+        <span class="n">end_idx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span> <span class="o">+</span> <span class="n">num_lev</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># Make a boolean vector that selects only list indices within the time range</span>
+        <span class="n">selector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="n">selector</span><span class="p">[</span><span class="n">begin_idx</span><span class="p">:</span><span class="n">end_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">selector</span><span class="p">[</span><span class="n">headers</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">selector</span><span class="p">))</span>
+
+        <span class="n">selector</span><span class="p">[</span><span class="n">begin_idx</span><span class="p">:</span><span class="n">end_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">~</span><span class="n">selector</span><span class="p">[</span><span class="n">begin_idx</span><span class="p">:</span><span class="n">end_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">selector</span><span class="p">))</span>
+
+        <span class="c1"># expand date vector to match length of the body dataframe.</span>
+        <span class="n">dates_long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">num_lev</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">body</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">dates_long</span><span class="p">,</span> <span class="n">dates</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_fwf_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Produce a dictionary with names, colspecs, and dtype for IGRA2 data.</span>
+
+<span class="sd">        Returns a dict with entries &#39;body&#39; and &#39;header&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Make a function to convert string &#39;value*10^power&#39; to float.&quot;&quot;&quot;</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">_cdec_power</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">val</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;-9999&#39;</span><span class="p">,</span> <span class="s1">&#39;-8888&#39;</span><span class="p">,</span> <span class="s1">&#39;-99999&#39;</span><span class="p">]:</span>
+                    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="n">power</span>
+            <span class="k">return</span> <span class="n">_cdec_power</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_cflag</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Replace alphabetic flags A and B with numeric.&quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">2</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">0</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_ctime</span><span class="p">(</span><span class="n">strformat</span><span class="o">=</span><span class="s1">&#39;MMMSS&#39;</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Return a function converting a string from MMMSS or HHMM to seconds.&quot;&quot;&quot;</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">_ctime_strformat</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+                <span class="n">time</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9999</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">strformat</span> <span class="o">==</span> <span class="s1">&#39;MMMSS&#39;</span><span class="p">:</span>
+                        <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+                        <span class="n">seconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+                        <span class="n">time_seconds</span> <span class="o">=</span> <span class="n">minutes</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="n">seconds</span>
+                    <span class="k">elif</span> <span class="n">strformat</span> <span class="o">==</span> <span class="s1">&#39;HHMM&#39;</span><span class="p">:</span>
+                        <span class="n">hours</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+                        <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+                        <span class="n">time_seconds</span> <span class="o">=</span> <span class="n">hours</span> <span class="o">*</span> <span class="mi">3600</span> <span class="o">+</span> <span class="n">minutes</span> <span class="o">*</span> <span class="mi">60</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s1">&#39;Unrecognized time format&#39;</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">time_seconds</span>
+            <span class="k">return</span> <span class="n">_ctime_strformat</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_clatlon</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">deg</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span> <span class="o">-</span> <span class="mi">4</span><span class="p">]</span>
+            <span class="n">dec</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">4</span><span class="p">:]</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">deg</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">dec</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s1">&#39;-drvd.txt&#39;</span><span class="p">:</span>
+            <span class="n">names_body</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;reported_height&#39;</span><span class="p">,</span> <span class="s1">&#39;calculated_height&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature_gradient&#39;</span><span class="p">,</span> <span class="s1">&#39;potential_temperature&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;potential_temperature_gradient&#39;</span><span class="p">,</span> <span class="s1">&#39;virtual_temperature&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;virtual_potential_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;vapor_pressure&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;saturation_vapor_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;reported_relative_humidity&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;calculated_relative_humidity&#39;</span><span class="p">,</span> <span class="s1">&#39;relative_humidity_gradient&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;u_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;u_wind_gradient&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind_gradient&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;refractive_index&#39;</span><span class="p">]</span>
+
+            <span class="n">colspecs_body</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span> <span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">39</span><span class="p">),</span>
+                             <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">47</span><span class="p">),</span> <span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="mi">55</span><span class="p">),</span> <span class="p">(</span><span class="mi">56</span><span class="p">,</span> <span class="mi">63</span><span class="p">),</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">71</span><span class="p">),</span> <span class="p">(</span><span class="mi">72</span><span class="p">,</span> <span class="mi">79</span><span class="p">),</span>
+                             <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">87</span><span class="p">),</span> <span class="p">(</span><span class="mi">88</span><span class="p">,</span> <span class="mi">95</span><span class="p">),</span> <span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">103</span><span class="p">),</span> <span class="p">(</span><span class="mi">104</span><span class="p">,</span> <span class="mi">111</span><span class="p">),</span> <span class="p">(</span><span class="mi">112</span><span class="p">,</span> <span class="mi">119</span><span class="p">),</span>
+                             <span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">127</span><span class="p">),</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">135</span><span class="p">),</span> <span class="p">(</span><span class="mi">137</span><span class="p">,</span> <span class="mi">143</span><span class="p">),</span> <span class="p">(</span><span class="mi">144</span><span class="p">,</span> <span class="mi">151</span><span class="p">)]</span>
+
+            <span class="n">conv_body</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                         <span class="s1">&#39;reported_height&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                         <span class="s1">&#39;calculated_height&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                         <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;temperature_gradient&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;potential_temperature&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;potential_temperature_gradient&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;virtual_temperature&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;virtual_potential_temperature&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;vapor_pressure&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+                         <span class="s1">&#39;saturation_vapor_pressure&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+                         <span class="s1">&#39;reported_relative_humidity&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;calculated_relative_humidity&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;relative_humidity_gradient&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;u_wind&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;u_wind_gradient&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;v_wind&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;v_wind_gradient&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;refractive_index&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}</span>
+
+            <span class="n">names_header</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;site_id&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;release_time&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;number_levels&#39;</span><span class="p">,</span> <span class="s1">&#39;precipitable_water&#39;</span><span class="p">,</span> <span class="s1">&#39;inv_pressure&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;inv_height&#39;</span><span class="p">,</span> <span class="s1">&#39;inv_strength&#39;</span><span class="p">,</span> <span class="s1">&#39;mixed_layer_pressure&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;mixed_layer_height&#39;</span><span class="p">,</span> <span class="s1">&#39;freezing_point_pressure&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;freezing_point_height&#39;</span><span class="p">,</span> <span class="s1">&#39;lcl_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;lcl_height&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;lfc_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;lfc_height&#39;</span><span class="p">,</span> <span class="s1">&#39;lnb_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;lnb_height&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;lifted_index&#39;</span><span class="p">,</span> <span class="s1">&#39;showalter_index&#39;</span><span class="p">,</span> <span class="s1">&#39;k_index&#39;</span><span class="p">,</span> <span class="s1">&#39;total_totals_index&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;cape&#39;</span><span class="p">,</span> <span class="s1">&#39;convective_inhibition&#39;</span><span class="p">]</span>
+
+            <span class="n">colspecs_header</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span> <span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">26</span><span class="p">),</span>
+                               <span class="p">(</span><span class="mi">27</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="mi">31</span><span class="p">,</span> <span class="mi">36</span><span class="p">),</span> <span class="p">(</span><span class="mi">37</span><span class="p">,</span> <span class="mi">43</span><span class="p">),</span> <span class="p">(</span><span class="mi">43</span><span class="p">,</span> <span class="mi">48</span><span class="p">),</span> <span class="p">(</span><span class="mi">49</span><span class="p">,</span> <span class="mi">55</span><span class="p">),</span>
+                               <span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">61</span><span class="p">),</span> <span class="p">(</span><span class="mi">61</span><span class="p">,</span> <span class="mi">67</span><span class="p">),</span> <span class="p">(</span><span class="mi">67</span><span class="p">,</span> <span class="mi">73</span><span class="p">),</span> <span class="p">(</span><span class="mi">73</span><span class="p">,</span> <span class="mi">79</span><span class="p">),</span> <span class="p">(</span><span class="mi">79</span><span class="p">,</span> <span class="mi">85</span><span class="p">),</span>
+                               <span class="p">(</span><span class="mi">85</span><span class="p">,</span> <span class="mi">91</span><span class="p">),</span> <span class="p">(</span><span class="mi">91</span><span class="p">,</span> <span class="mi">97</span><span class="p">),</span> <span class="p">(</span><span class="mi">97</span><span class="p">,</span> <span class="mi">103</span><span class="p">),</span> <span class="p">(</span><span class="mi">103</span><span class="p">,</span> <span class="mi">109</span><span class="p">),</span> <span class="p">(</span><span class="mi">109</span><span class="p">,</span> <span class="mi">115</span><span class="p">),</span>
+                               <span class="p">(</span><span class="mi">115</span><span class="p">,</span> <span class="mi">121</span><span class="p">),</span> <span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="mi">127</span><span class="p">),</span> <span class="p">(</span><span class="mi">127</span><span class="p">,</span> <span class="mi">133</span><span class="p">),</span> <span class="p">(</span><span class="mi">133</span><span class="p">,</span> <span class="mi">139</span><span class="p">),</span>
+                               <span class="p">(</span><span class="mi">139</span><span class="p">,</span> <span class="mi">145</span><span class="p">),</span> <span class="p">(</span><span class="mi">145</span><span class="p">,</span> <span class="mi">151</span><span class="p">),</span> <span class="p">(</span><span class="mi">151</span><span class="p">,</span> <span class="mi">157</span><span class="p">)]</span>
+
+            <span class="n">conv_header</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;site_id&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                           <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;month&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;day&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;hour&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;release_time&#39;</span><span class="p">:</span> <span class="n">_ctime</span><span class="p">(</span><span class="n">strformat</span><span class="o">=</span><span class="s1">&#39;HHMM&#39;</span><span class="p">),</span>
+                           <span class="s1">&#39;number_levels&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;precipitable_water&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                           <span class="s1">&#39;inv_pressure&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                           <span class="s1">&#39;inv_height&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;inv_strength&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                           <span class="s1">&#39;mixed_layer_pressure&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                           <span class="s1">&#39;mixed_layer_height&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;freezing_point_pressure&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                           <span class="s1">&#39;freezing_point_height&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;lcl_pressure&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                           <span class="s1">&#39;lcl_height&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;lfc_pressure&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                           <span class="s1">&#39;lfc_height&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;lnb_pressure&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                           <span class="s1">&#39;lnb_height&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;lifted_index&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;showalter_index&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;k_index&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;total_totals_index&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;cape&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;convective_inhibition&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">}</span>
+
+            <span class="n">na_vals</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-99999&#39;</span><span class="p">]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">names_body</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lvltyp1&#39;</span><span class="p">,</span> <span class="s1">&#39;lvltyp2&#39;</span><span class="p">,</span> <span class="s1">&#39;etime&#39;</span><span class="p">,</span> <span class="s1">&#39;pressure&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;pflag&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;zflag&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;tflag&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;relative_humidity&#39;</span><span class="p">,</span> <span class="s1">&#39;dewpoint_depression&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;direction&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">]</span>
+
+            <span class="n">colspecs_body</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+                             <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">21</span><span class="p">),</span> <span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">27</span><span class="p">),</span> <span class="p">(</span><span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span>
+                             <span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">33</span><span class="p">),</span> <span class="p">(</span><span class="mi">34</span><span class="p">,</span> <span class="mi">39</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="mi">46</span><span class="p">,</span> <span class="mi">51</span><span class="p">)]</span>
+
+            <span class="n">conv_body</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lvltyp1&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                         <span class="s1">&#39;lvltyp2&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                         <span class="s1">&#39;etime&#39;</span><span class="p">:</span> <span class="n">_ctime</span><span class="p">(</span><span class="n">strformat</span><span class="o">=</span><span class="s1">&#39;MMMSS&#39;</span><span class="p">),</span>
+                         <span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                         <span class="s1">&#39;pflag&#39;</span><span class="p">:</span> <span class="n">_cflag</span><span class="p">,</span>
+                         <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                         <span class="s1">&#39;zflag&#39;</span><span class="p">:</span> <span class="n">_cflag</span><span class="p">,</span>
+                         <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;tflag&#39;</span><span class="p">:</span> <span class="n">_cflag</span><span class="p">,</span>
+                         <span class="s1">&#39;relative_humidity&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;dewpoint_depression&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">(),</span>
+                         <span class="s1">&#39;direction&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                         <span class="s1">&#39;speed&#39;</span><span class="p">:</span> <span class="n">_cdec</span><span class="p">()}</span>
+
+            <span class="n">names_header</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;site_id&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;release_time&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;number_levels&#39;</span><span class="p">,</span> <span class="s1">&#39;pressure_source_code&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;non_pressure_source_code&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+
+            <span class="n">colspecs_header</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span> <span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">26</span><span class="p">),</span>
+                               <span class="p">(</span><span class="mi">27</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">36</span><span class="p">),</span> <span class="p">(</span><span class="mi">37</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="mi">46</span><span class="p">,</span> <span class="mi">54</span><span class="p">),</span> <span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">62</span><span class="p">),</span> <span class="p">(</span><span class="mi">63</span><span class="p">,</span> <span class="mi">71</span><span class="p">)]</span>
+
+            <span class="n">na_vals</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-8888&#39;</span><span class="p">,</span> <span class="s1">&#39;-9999&#39;</span><span class="p">]</span>
+
+            <span class="n">conv_header</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;release_time&#39;</span><span class="p">:</span> <span class="n">_ctime</span><span class="p">(</span><span class="n">strformat</span><span class="o">=</span><span class="s1">&#39;HHMM&#39;</span><span class="p">),</span>
+                           <span class="s1">&#39;number_levels&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                           <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="n">_clatlon</span><span class="p">,</span>
+                           <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="n">_clatlon</span><span class="p">}</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="n">names_body</span><span class="p">,</span>
+                         <span class="s1">&#39;colspecs&#39;</span><span class="p">:</span> <span class="n">colspecs_body</span><span class="p">,</span>
+                         <span class="s1">&#39;converters&#39;</span><span class="p">:</span> <span class="n">conv_body</span><span class="p">,</span>
+                         <span class="s1">&#39;na_values&#39;</span><span class="p">:</span> <span class="n">na_vals</span><span class="p">,</span>
+                         <span class="s1">&#39;index_col&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+                <span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="n">names_header</span><span class="p">,</span>
+                           <span class="s1">&#39;colspecs&#39;</span><span class="p">:</span> <span class="n">colspecs_header</span><span class="p">,</span>
+                           <span class="s1">&#39;converters&#39;</span><span class="p">:</span> <span class="n">conv_header</span><span class="p">,</span>
+                           <span class="s1">&#39;na_values&#39;</span><span class="p">:</span> <span class="n">na_vals</span><span class="p">,</span>
+                           <span class="s1">&#39;index_col&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_clean_body_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Format the dataframe, remove empty rows, and add units attribute.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s1">&#39;-drvd.txt&#39;</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;reported_relative_humidity&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;u_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind&#39;</span><span class="p">),</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;reported_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;calculated_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;Kelvin&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;temperature_gradient&#39;</span><span class="p">:</span> <span class="s1">&#39;Kelvin / kilometer&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;potential_temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;Kelvin&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;potential_temperature_gradient&#39;</span><span class="p">:</span> <span class="s1">&#39;Kelvin / kilometer&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;virtual_temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;Kelvin&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;virtual_potential_temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;Kelvin&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;vapor_pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;Pascal&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;saturation_vapor_pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;Pascal&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;reported_relative_humidity&#39;</span><span class="p">:</span> <span class="s1">&#39;percent&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;calculated_relative_humidity&#39;</span><span class="p">:</span> <span class="s1">&#39;percent&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;relative_humidity_gradient&#39;</span><span class="p">:</span> <span class="s1">&#39;percent / kilometer&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;u_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;meter / second&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;u_wind_gradient&#39;</span><span class="p">:</span> <span class="s1">&#39;(meter / second) / kilometer)&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;v_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;meter / second&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;v_wind_gradient&#39;</span><span class="p">:</span> <span class="s1">&#39;(meter / second) / kilometer)&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;refractive_index&#39;</span><span class="p">:</span> <span class="s1">&#39;unitless&#39;</span><span class="p">}</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;u_wind&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;v_wind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_wind_components</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">],</span>
+                                                             <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;direction&#39;</span><span class="p">]))</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;u_wind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;u_wind&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;v_wind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;v_wind&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;dewpoint_depression&#39;</span><span class="p">,</span> <span class="s1">&#39;u_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind&#39;</span><span class="p">),</span>
+                           <span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dewpoint_depression&#39;</span><span class="p">]</span>
+
+            <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;dewpoint_depression&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;etime&#39;</span><span class="p">:</span> <span class="s1">&#39;second&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;dewpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;speed&#39;</span><span class="p">:</span> <span class="s1">&#39;meter / second&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;u_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;meter / second&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;v_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;meter / second&#39;</span><span class="p">}</span>
+
+        <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+                                    <span class="ne">UserWarning</span><span class="p">)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">units</span>
+
+        <span class="k">return</span> <span class="n">df</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_clean_header_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Format the header dataframe and add units.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s1">&#39;-drvd.txt&#39;</span><span class="p">:</span>
+            <span class="n">units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;release_time&#39;</span><span class="p">:</span> <span class="s1">&#39;second&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;precipitable_water&#39;</span><span class="p">:</span> <span class="s1">&#39;millimeter&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;inv_pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;inv_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;inv_strength&#39;</span><span class="p">:</span> <span class="s1">&#39;Kelvin&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;mixed_layer_pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;mixed_layer_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;freezing_point_pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;freezing_point_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;lcl_pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;lcl_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;lfc_pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;lfc_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;lnb_pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;lnb_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;lifted_index&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;showalter_index&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;k_index&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;total_totals_index&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;cape&#39;</span><span class="p">:</span> <span class="s1">&#39;Joule / kilogram&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;convective_inhibition&#39;</span><span class="p">:</span> <span class="s1">&#39;Joule / kilogram&#39;</span><span class="p">}</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;release_time&#39;</span><span class="p">:</span> <span class="s1">&#39;second&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">}</span>
+
+        <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+                                    <span class="ne">UserWarning</span><span class="p">)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">units</span>
+
+        <span class="k">return</span> <span class="n">df</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
+      <span class="lastupdated">Last updated on Jan 24, 2025 at 20:07:40.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TDS Radar Query Service &mdash; Siphon 0.10dev</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=4e1f738f" />
+
+  
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/examples/Radar_Server_Level_3.html"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=82662543"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ACIS Web Services" href="acis/index.html" />
+    <link rel="prev" title="THREDDS Catalog" href="Basic_Usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Siphon
+              <img src="../_static/siphon_150x150.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installguide.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">The Siphon API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Siphon Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#general-examples">General Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Basic_Usage.html">THREDDS Catalog</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">TDS Radar Query Service</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#acis-web-services">ACIS Web Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#ncss">NCSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#national-data-buoy-center-ndbc">National Data Buoy Center (NDBC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#upper-air">Upper Air</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developerguide.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing Siphon</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Siphon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+<div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Siphon Examples</a></li>
+      <li class="breadcrumb-item active">TDS Radar Query Service</li>
+    <li class="source-link">
+        
+            
+                
+                
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20examples/Radar_Server_Level_3&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
+        
+    </li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-radar-server-level-3-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="tds-radar-query-service">
+<span id="sphx-glr-examples-radar-server-level-3-py"></span><h1>TDS Radar Query Service<a class="headerlink" href="#tds-radar-query-service" title="Link to this heading"></a></h1>
+<p>Use Siphon to get NEXRAD Level 3 data from a TDS.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">siphon.cdmr</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">siphon.radarserver</span><span class="w"> </span><span class="kn">import</span> <a href="../api/radarserver.html#siphon.radarserver.get_radarserver_datasets" title="siphon.radarserver.get_radarserver_datasets" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-function"><span class="n">get_radarserver_datasets</span></a><span class="p">,</span> <a href="../api/radarserver.html#siphon.radarserver.RadarServer" title="siphon.radarserver.RadarServer" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-class"><span class="n">RadarServer</span></a>
+</pre></div>
+</div>
+<p>First, point to the top-level thredds radar server accessor to find what datasets are
+available.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="../api/catalog.html#siphon.catalog.Dataset" title="siphon.catalog.Dataset" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ds</span></a> <span class="o">=</span> <a href="../api/radarserver.html#siphon.radarserver.get_radarserver_datasets" title="siphon.radarserver.get_radarserver_datasets" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-function"><span class="n">get_radarserver_datasets</span></a><span class="p">(</span><span class="s1">&#39;http://thredds.ucar.edu/thredds/&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><a href="../api/catalog.html#siphon.catalog.Dataset" title="siphon.catalog.Dataset" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ds</span></a><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;NEXRAD Level II Radar for Case Study CCS039&#39;, &#39;NEXRAD Level II Radar from IDD&#39;, &#39;NEXRAD Level III Radar for Case Study CCS039&#39;, &#39;NEXRAD Level III Radar from IDD&#39;, &#39;TDWR Level III Radar from IDD&#39;]
+</pre></div>
+</div>
+<p>Now create an instance of RadarServer to point to the appropriate
+radar server access URL. This is pulled from the catalog reference url.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">url</span></a> <span class="o">=</span> <a href="../api/catalog.html#siphon.catalog.Dataset" title="siphon.catalog.Dataset" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ds</span></a><span class="p">[</span><span class="s1">&#39;NEXRAD Level III Radar from IDD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">follow</span><span class="p">()</span><span class="o">.</span><span class="n">catalog_url</span>
+<a href="../api/radarserver.html#siphon.radarserver.RadarServer" title="siphon.radarserver.RadarServer" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rs</span></a> <span class="o">=</span> <a href="../api/radarserver.html#siphon.radarserver.RadarServer" title="siphon.radarserver.RadarServer" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-class"><span class="n">RadarServer</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">url</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>Look at the variables available in this dataset</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#set" title="builtins.set" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rs</span><span class="o">.</span><span class="n">variables</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;NBC&#39;, &#39;NXG&#39;, &#39;NVL&#39;, &#39;N3B&#39;, &#39;N3K&#39;, &#39;N1S&#39;, &#39;NAG&#39;, &#39;NAK&#39;, &#39;NYK&#39;, &#39;N3Q&#39;, &#39;N3U&#39;, &#39;NZQ&#39;, &#39;NBH&#39;, &#39;NZX&#39;, &#39;DOD&#39;, &#39;NTP&#39;, &#39;N1Q&#39;, &#39;NMD&#39;, &#39;DTA&#39;, &#39;NXB&#39;, &#39;NBB&#39;, &#39;DHR&#39;, &#39;N0R&#39;, &#39;N0S&#39;, &#39;DSP&#39;, &#39;N0X&#39;, &#39;PTA&#39;, &#39;N1P&#39;, &#39;NVW&#39;, &#39;NXH&#39;, &#39;NCR&#39;, &#39;N1U&#39;, &#39;N1H&#39;, &#39;NAU&#39;, &#39;DU6&#39;, &#39;NET&#39;, &#39;NXU&#39;, &#39;N3S&#39;, &#39;N1M&#39;, &#39;NZG&#39;, &#39;N0G&#39;, &#39;N2K&#39;, &#39;DAA&#39;, &#39;NXM&#39;, &#39;N1K&#39;, &#39;NAH&#39;, &#39;NAC&#39;, &#39;NZM&#39;, &#39;NYU&#39;, &#39;N0U&#39;, &#39;NXQ&#39;, &#39;NYG&#39;, &#39;NYC&#39;, &#39;EET&#39;, &#39;DVL&#39;, &#39;N1G&#39;, &#39;N1X&#39;, &#39;NYB&#39;, &#39;NST&#39;, &#39;NZB&#39;, &#39;N3H&#39;, &#39;NBM&#39;, &#39;DU3&#39;, &#39;N0V&#39;, &#39;NYH&#39;, &#39;N2Q&#39;, &#39;DSD&#39;, &#39;N0M&#39;, &#39;N0Q&#39;, &#39;N1C&#39;, &#39;N3M&#39;, &#39;N0B&#39;, &#39;NAX&#39;, &#39;N2C&#39;, &#39;NBQ&#39;, &#39;NZU&#39;, &#39;NBK&#39;, &#39;N2S&#39;, &#39;NZK&#39;, &#39;NXX&#39;, &#39;N2B&#39;, &#39;N0K&#39;, &#39;N0Z&#39;, &#39;N0C&#39;, &#39;NZC&#39;, &#39;NAQ&#39;, &#39;NAM&#39;, &#39;N2M&#39;, &#39;HHC&#39;, &#39;NYM&#39;, &#39;NAB&#39;, &#39;NYX&#39;, &#39;NBX&#39;, &#39;NXK&#39;, &#39;N3X&#39;, &#39;N2U&#39;, &#39;N2X&#39;, &#39;N2H&#39;, &#39;NYQ&#39;, &#39;N0H&#39;, &#39;N1B&#39;, &#39;DPR&#39;, &#39;DPA&#39;, &#39;OHA&#39;, &#39;NZH&#39;, &#39;N3C&#39;, &#39;NBU&#39;, &#39;NXC&#39;}
+</pre></div>
+</div>
+<p>Create a new query object to help request the data. Using the chaining
+methods, ask for data from radar CYS (Cheyenne) for now for the product
+N0B, which is reflectivity data for the lowest tilt. We see that when the query
+is represented as a string, it shows the encoded URL.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="../api/radarserver.html#siphon.radarserver.RadarQuery" title="siphon.radarserver.RadarQuery" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">query</span></a> <span class="o">=</span> <a href="../api/radarserver.html#siphon.radarserver.RadarServer.query" title="siphon.radarserver.RadarServer.query" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-method"><span class="n">rs</span><span class="o">.</span><span class="n">query</span></a><span class="p">()</span>
+<a href="../api/radarserver.html#siphon.radarserver.RadarQuery.stations" title="siphon.radarserver.RadarQuery.stations" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">stations</span></a><span class="p">(</span><span class="s1">&#39;CYS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime.now" title="datetime.datetime.now" class="sphx-glr-backref-module-datetime-datetime sphx-glr-backref-type-py-method"><span class="n">datetime</span><span class="o">.</span><span class="n">now</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.timezone" title="datetime.timezone" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span></a><span class="p">))</span><span class="o">.</span><span class="n">variables</span><span class="p">(</span><span class="s1">&#39;N0B&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=N0B&amp;time=2025-01-24T20%3A05%3A55.564916%2B00%3A00&amp;stn=CYS
+</pre></div>
+</div>
+<p>We can use the RadarServer instance to check our query, to make
+sure we have required parameters and that we have chosen valid
+station(s) and variable(s)</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="../api/radarserver.html#siphon.radarserver.RadarServer.validate_query" title="siphon.radarserver.RadarServer.validate_query" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-method"><span class="n">rs</span><span class="o">.</span><span class="n">validate_query</span></a><span class="p">(</span><a href="../api/radarserver.html#siphon.radarserver.RadarQuery" title="siphon.radarserver.RadarQuery" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">query</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+<p>Make the request, which returns an instance of TDSCatalog. This
+handles parsing the catalog</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="../api/catalog.html#siphon.catalog.TDSCatalog" title="siphon.catalog.TDSCatalog" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catalog</span></a> <span class="o">=</span> <a href="../api/radarserver.html#siphon.radarserver.RadarServer.get_catalog" title="siphon.radarserver.RadarServer.get_catalog" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-method"><span class="n">rs</span><span class="o">.</span><span class="n">get_catalog</span></a><span class="p">(</span><a href="../api/radarserver.html#siphon.radarserver.RadarQuery" title="siphon.radarserver.RadarQuery" class="sphx-glr-backref-module-siphon-radarserver sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">query</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can look at the datasets on the catalog to see what data we found by the query. We
+find one NIDS file in the return.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="../api/catalog.html#siphon.catalog.DatasetCollection" title="siphon.catalog.DatasetCollection" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catalog</span><span class="o">.</span><span class="n">datasets</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;Level3_CYS_N0B_20250124_2000.nids&#39;]
+</pre></div>
+</div>
+<p>We can pull that dataset out of the dictionary and look at the available access URLs.
+We see URLs for OPeNDAP, CDMRemote, and HTTPServer (direct download).</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="../api/catalog.html#siphon.catalog.Dataset" title="siphon.catalog.Dataset" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ds</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><a href="../api/catalog.html#siphon.catalog.DatasetCollection" title="siphon.catalog.DatasetCollection" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catalog</span><span class="o">.</span><span class="n">datasets</span></a><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><a href="../api/catalog.html#siphon.catalog.CaseInsensitiveDict" title="siphon.catalog.CaseInsensitiveDict" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ds</span><span class="o">.</span><span class="n">access_urls</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;OPENDAP&#39;: &#39;https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0B/CYS/20250124/Level3_CYS_N0B_20250124_2000.nids&#39;, &#39;HTTPServer&#39;: &#39;https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0B/CYS/20250124/Level3_CYS_N0B_20250124_2000.nids&#39;, &#39;CdmRemote&#39;: &#39;https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0B/CYS/20250124/Level3_CYS_N0B_20250124_2000.nids&#39;}
+</pre></div>
+</div>
+<p>We’ll use the CDMRemote reader in Siphon and pass it the appropriate access URL.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><a href="../api/catalog.html#siphon.catalog.CaseInsensitiveDict" title="siphon.catalog.CaseInsensitiveDict" class="sphx-glr-backref-module-siphon-catalog sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ds</span><span class="o">.</span><span class="n">access_urls</span></a><span class="p">[</span><span class="s1">&#39;CdmRemote&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The CDMRemote reader provides an interface that is almost identical to the usual python
+NetCDF interface. We pull out the variables we need for azimuth and range, as well as
+the data itself.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rng</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="collections.OrderedDict" class="sphx-glr-backref-module-collections sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span><span class="o">.</span><span class="n">variables</span></a><span class="p">[</span><span class="s1">&#39;gate&#39;</span><span class="p">][:]</span> <span class="o">/</span> <span class="mf">1000.</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">az</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="collections.OrderedDict" class="sphx-glr-backref-module-collections sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span><span class="o">.</span><span class="n">variables</span></a><span class="p">[</span><span class="s1">&#39;azimuth&#39;</span><span class="p">][:]</span>
+<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ref</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="collections.OrderedDict" class="sphx-glr-backref-module-collections sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span><span class="o">.</span><span class="n">variables</span></a><span class="p">[</span><span class="s1">&#39;BaseReflectivityDR&#39;</span><span class="p">][:]</span>
+</pre></div>
+</div>
+<p>Need to adjust range and azimuth so that they bound the range gates rather than having
+a single point at the start of the gate.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rng</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.append.html#numpy.append" title="numpy.append" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">append</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rng</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rng</span></a><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rng</span></a><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">diff</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.diff.html#numpy.diff" title="numpy.diff" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">diff</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">az</span></a><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">diff</span></a><span class="p">[</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">diff</span></a> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">360.</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">diff</span></a><span class="p">[</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">diff</span></a> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">180</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">360.</span>
+<a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float32" title="numpy.float32" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">avg_spacing</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">diff</span></a><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">az</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.append.html#numpy.append" title="numpy.append" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">append</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">az</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">az</span></a><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float32" title="numpy.float32" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">avg_spacing</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then convert the polar coordinates to Cartesian</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">x</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rng</span></a> <span class="o">*</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">sin</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">az</span></a><span class="p">))[:,</span> <span class="kc">None</span><span class="p">]</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rng</span></a> <span class="o">*</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">cos</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">az</span></a><span class="p">))[:,</span> <span class="kc">None</span><span class="p">]</span>
+<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ref</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.array.html#numpy.ma.array" title="numpy.ma.array" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ref</span></a><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">isnan</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ref</span></a><span class="p">))</span>
+</pre></div>
+</div>
+<p>Finally, we plot them up using matplotlib.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a><span class="p">,</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots" title="matplotlib.pyplot.subplots" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span></a><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.pcolormesh.html#matplotlib.axes.Axes.pcolormesh" title="matplotlib.axes.Axes.pcolormesh" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">x</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ref</span></a><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_aspect.html#matplotlib.axes.Axes.set_aspect" title="matplotlib.axes.Axes.set_aspect" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span></a><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="s1">&#39;datalim&#39;</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlim.html#matplotlib.axes.Axes.set_xlim" title="matplotlib.axes.Axes.set_xlim" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span></a><span class="p">(</span><span class="o">-</span><span class="mi">460</span><span class="p">,</span> <span class="mi">460</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylim.html#matplotlib.axes.Axes.set_ylim" title="matplotlib.axes.Axes.set_ylim" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span></a><span class="p">(</span><span class="o">-</span><span class="mi">460</span><span class="p">,</span> <span class="mi">460</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_Radar_Server_Level_3_001.png" srcset="../_images/sphx_glr_Radar_Server_Level_3_001.png" alt="Radar Server Level 3" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.492 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-radar-server-level-3-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/d71b8770f0ded0321b58e90012eebb8a/Radar_Server_Level_3.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">Radar_Server_Level_3.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/25562a94000614f3ccf6cc96912b0ab1/Radar_Server_Level_3.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Radar_Server_Level_3.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/83d68008cf039379665311672e3680aa/Radar_Server_Level_3.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">Radar_Server_Level_3.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Basic_Usage.html" class="btn btn-neutral float-left" title="THREDDS Catalog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="acis/index.html" class="btn btn-neutral float-right" title="ACIS Web Services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
+      <span class="lastupdated">Last updated on Jan 24, 2025 at 20:07:40.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,485 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>siphon.simplewebservice &mdash; Siphon 0.10dev</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=4e1f738f" />
+
+  
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/api/simplewebservice.html"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=82662543"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Siphon Examples" href="../examples/index.html" />
+    <link rel="prev" title="siphon.radarserver" href="radarserver.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Siphon
+              <img src="../_static/siphon_150x150.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installguide.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The Siphon API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="catalog.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.catalog</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.metadata</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncssdataset.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss_dataset</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="http_util.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.http_util</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncss.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.ncss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="radarserver.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.radarserver</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.simplewebservice.wyoming.WyomingUpperAir"><code class="docutils literal notranslate"><span class="pre">WyomingUpperAir</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.__init__"><code class="docutils literal notranslate"><span class="pre">WyomingUpperAir.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data"><code class="docutils literal notranslate"><span class="pre">WyomingUpperAir.request_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-siphon.simplewebservice.iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.simplewebservice.iastate.IAStateUpperAir"><code class="docutils literal notranslate"><span class="pre">IAStateUpperAir</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.iastate.IAStateUpperAir.__init__"><code class="docutils literal notranslate"><span class="pre">IAStateUpperAir.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.iastate.IAStateUpperAir.request_all_data"><code class="docutils literal notranslate"><span class="pre">IAStateUpperAir.request_all_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.iastate.IAStateUpperAir.request_data"><code class="docutils literal notranslate"><span class="pre">IAStateUpperAir.request_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-siphon.simplewebservice.igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.simplewebservice.igra2.IGRAUpperAir"><code class="docutils literal notranslate"><span class="pre">IGRAUpperAir</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.igra2.IGRAUpperAir.__init__"><code class="docutils literal notranslate"><span class="pre">IGRAUpperAir.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.igra2.IGRAUpperAir.request_data"><code class="docutils literal notranslate"><span class="pre">IGRAUpperAir.request_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-siphon.simplewebservice.acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.simplewebservice.acis.AcisApiException"><code class="docutils literal notranslate"><span class="pre">AcisApiException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.simplewebservice.acis.acis_request"><code class="docutils literal notranslate"><span class="pre">acis_request()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-siphon.simplewebservice.ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siphon.simplewebservice.ndbc.NDBC"><code class="docutils literal notranslate"><span class="pre">NDBC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.ndbc.NDBC.__init__"><code class="docutils literal notranslate"><span class="pre">NDBC.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.ndbc.NDBC.buoy_data_types"><code class="docutils literal notranslate"><span class="pre">NDBC.buoy_data_types()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.ndbc.NDBC.latest_observations"><code class="docutils literal notranslate"><span class="pre">NDBC.latest_observations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.ndbc.NDBC.raw_buoy_data"><code class="docutils literal notranslate"><span class="pre">NDBC.raw_buoy_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#siphon.simplewebservice.ndbc.NDBC.realtime_observations"><code class="docutils literal notranslate"><span class="pre">NDBC.realtime_observations()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Siphon Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developerguide.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing Siphon</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Siphon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+<div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">The Siphon API</a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></li>
+    <li class="source-link">
+        
+            
+                
+                
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20api/simplewebservice&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
+        
+    </li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-siphon.simplewebservice">
+<span id="siphon-simplewebservice"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice" title="siphon.simplewebservice"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice" title="Link to this heading"></a></h1>
+<p>Contains functionality for retrieving simple web service data.</p>
+</section>
+<section id="module-siphon.simplewebservice.wyoming">
+<span id="siphon-simplewebservice-wyoming"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.wyoming" title="siphon.simplewebservice.wyoming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.wyoming</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.wyoming" title="Link to this heading"></a></h1>
+<p>Read upper air data from the Wyoming archives.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="siphon.simplewebservice.wyoming.WyomingUpperAir">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.simplewebservice.wyoming.</span></span><span class="sig-name descname"><span class="pre">WyomingUpperAir</span></span><a class="reference internal" href="../_modules/siphon/simplewebservice/wyoming.html#WyomingUpperAir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir" title="Link to this definition"></a></dt>
+<dd><p>Download and parse data from the University of Wyoming’s upper air archive.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="siphon.simplewebservice.wyoming.WyomingUpperAir.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/wyoming.html#WyomingUpperAir.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.__init__" title="Link to this definition"></a></dt>
+<dd><p>Set up endpoint.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="siphon.simplewebservice.wyoming.WyomingUpperAir.request_data">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">request_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recalc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/wyoming.html#WyomingUpperAir.request_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data" title="Link to this definition"></a></dt>
+<dd><p>Retrieve upper air observations from the Wyoming archive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.13)"><em>datetime.datetime</em></a>) – The date and time of the desired observation.</p></li>
+<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The three letter ICAO identifier of the station for which data should be
+downloaded.</p></li>
+<li><p><strong>recalc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether to request the server recalculate the data (i.e. ignore its cache) before
+returning it. Defaults to False. NOTE: This should be used sparingly because it
+will increase the load on the service.</p></li>
+<li><p><strong>kwargs</strong> – Arbitrary keyword arguments to use to initialize source</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Parsed data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-siphon.simplewebservice.iastate">
+<span id="siphon-simplewebservice-iastate"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.iastate" title="siphon.simplewebservice.iastate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.iastate</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.iastate" title="Link to this heading"></a></h1>
+<p>Read upper air data from the IA State archives.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="siphon.simplewebservice.iastate.IAStateUpperAir">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.simplewebservice.iastate.</span></span><span class="sig-name descname"><span class="pre">IAStateUpperAir</span></span><a class="reference internal" href="../_modules/siphon/simplewebservice/iastate.html#IAStateUpperAir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.iastate.IAStateUpperAir" title="Link to this definition"></a></dt>
+<dd><p>Download and parse data from the Iowa State’s upper air archive.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="siphon.simplewebservice.iastate.IAStateUpperAir.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/iastate.html#IAStateUpperAir.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.iastate.IAStateUpperAir.__init__" title="Link to this definition"></a></dt>
+<dd><p>Set up endpoint.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="siphon.simplewebservice.iastate.IAStateUpperAir.request_all_data">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">request_all_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pressure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/iastate.html#IAStateUpperAir.request_all_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.iastate.IAStateUpperAir.request_all_data" title="Link to this definition"></a></dt>
+<dd><p>Retrieve upper air observations from Iowa State’s archive for all stations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.13)"><em>datetime.datetime</em></a>) – The date and time of the desired observation.</p></li>
+<li><p><strong>pressure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>optional</em>) – The mandatory pressure level at which to request data (in hPa). If none is given,
+all the available data in the profiles is returned.</p></li>
+<li><p><strong>kwargs</strong> – Arbitrary keyword arguments to use to initialize source</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> containing the data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="siphon.simplewebservice.iastate.IAStateUpperAir.request_data">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">request_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interp_nans</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/iastate.html#IAStateUpperAir.request_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.iastate.IAStateUpperAir.request_data" title="Link to this definition"></a></dt>
+<dd><p>Retrieve upper air observations from Iowa State’s archive for a single station.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.13)"><em>datetime.datetime</em></a>) – The date and time of the desired observation.</p></li>
+<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The three letter ICAO identifier of the station for which data should be
+downloaded.</p></li>
+<li><p><strong>interp_nans</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Flag to interpolate temperature and dewpoint at significant wind levels,
+which will otherwise be NaNs. Default is False.</p></li>
+<li><p><strong>kwargs</strong> – Arbitrary keyword arguments to use to initialize source</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> containing the data</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-siphon.simplewebservice.igra2">
+<span id="siphon-simplewebservice-igra2"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.igra2" title="siphon.simplewebservice.igra2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.igra2</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.igra2" title="Link to this heading"></a></h1>
+<p>Read upper air data from the Integrated Global Radiosonde Archive version 2.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="siphon.simplewebservice.igra2.IGRAUpperAir">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.simplewebservice.igra2.</span></span><span class="sig-name descname"><span class="pre">IGRAUpperAir</span></span><a class="reference internal" href="../_modules/siphon/simplewebservice/igra2.html#IGRAUpperAir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.igra2.IGRAUpperAir" title="Link to this definition"></a></dt>
+<dd><p>Download and parse data from NCEI’s Integrated Radiosonde Archive version 2.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="siphon.simplewebservice.igra2.IGRAUpperAir.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/igra2.html#IGRAUpperAir.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.igra2.IGRAUpperAir.__init__" title="Link to this definition"></a></dt>
+<dd><p>Set http site address and file suffix based on desired dataset.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="siphon.simplewebservice.igra2.IGRAUpperAir.request_data">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">request_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">derived</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/igra2.html#IGRAUpperAir.request_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.igra2.IGRAUpperAir.request_data" title="Link to this definition"></a></dt>
+<dd><p>Retrieve IGRA version 2 data for one station.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>site_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – 11-character IGRA2 station identifier.</p></li>
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.13)"><em>datetime.datetime</em></a>) – The date and time of the desired observation. If list of two times is given,
+dataframes for all dates within the two dates will be returned.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>class: <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> containing the data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-siphon.simplewebservice.acis">
+<span id="siphon-simplewebservice-acis"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.acis" title="siphon.simplewebservice.acis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.acis</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.acis" title="Link to this heading"></a></h1>
+<p>Requests data from the ACIS Web Services API.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="siphon.simplewebservice.acis.AcisApiException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.simplewebservice.acis.</span></span><span class="sig-name descname"><span class="pre">AcisApiException</span></span><a class="reference internal" href="../_modules/siphon/simplewebservice/acis.html#AcisApiException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.acis.AcisApiException" title="Link to this definition"></a></dt>
+<dd><p>Handle exceptions raised by the acis_request function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="siphon.simplewebservice.acis.acis_request">
+<span class="sig-prename descclassname"><span class="pre">siphon.simplewebservice.acis.</span></span><span class="sig-name descname"><span class="pre">acis_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/acis.html#acis_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.acis.acis_request" title="Link to this definition"></a></dt>
+<dd><p>Request data from the ACIS Web Services API.</p>
+<p>Makes a request from the ACIS Web Services API for data
+based on a given method (StnMeta,StnData,MultiStnData,GridData,General)
+and parameters string. Information about the parameters can be obtained at:
+<a class="reference external" href="http://www.rcc-acis.org/docs_webservices.html">http://www.rcc-acis.org/docs_webservices.html</a></p>
+<p>If a connection to the API fails, then it will raise an exception. Some bad
+calls will also return empty dictionaries.</p>
+<p>ACIS Web Services is a distributed system! A call to the main URL can be
+delivered to any climate center running a public instance of the service.
+This makes the calls efficient, but also occasionally results in failed
+calls when a server you are directed to is having problems. Generally,
+reconnecting after waiting a few seconds will resolve a problem. If problems
+are persistent, contact ACIS developers at the High Plains Regional Climate
+Center or Northeast Regional Climate Center who will look into server
+issues.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The Web Services request method (StnMeta, StnData, MultiStnData, GridData, General)</p></li>
+<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – A JSON array of parameters (See Web Services API)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary of data based on the JSON parameters</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, Any]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#siphon.simplewebservice.acis.AcisApiException" title="siphon.simplewebservice.acis.AcisApiException"><strong>AcisApiException</strong></a> – When the API is unable to establish a connection or returns
+    unparsable data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-siphon.simplewebservice.ndbc">
+<span id="siphon-simplewebservice-ndbc"></span><h1><a class="reference internal" href="#module-siphon.simplewebservice.ndbc" title="siphon.simplewebservice.ndbc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">siphon.simplewebservice.ndbc</span></code></a><a class="headerlink" href="#module-siphon.simplewebservice.ndbc" title="Link to this heading"></a></h1>
+<p>Read data from the National Data Buoy Center.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="siphon.simplewebservice.ndbc.NDBC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.simplewebservice.ndbc.</span></span><span class="sig-name descname"><span class="pre">NDBC</span></span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC" title="Link to this definition"></a></dt>
+<dd><p>Download and parse data from the National Data Buoy Center.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="siphon.simplewebservice.ndbc.NDBC.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.__init__" title="Link to this definition"></a></dt>
+<dd><p>Set up endpoint.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="siphon.simplewebservice.ndbc.NDBC.buoy_data_types">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">buoy_data_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buoy</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.buoy_data_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.buoy_data_types" title="Link to this definition"></a></dt>
+<dd><p>Determine which types of data are available for a given buoy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Buoy name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict of valid file extensions and their descriptions</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="siphon.simplewebservice.ndbc.NDBC.latest_observations">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">latest_observations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.latest_observations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.latest_observations" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the latest observations for all buoys from NDBC.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> containing the data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="siphon.simplewebservice.ndbc.NDBC.raw_buoy_data">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_buoy_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buoy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'txt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.raw_buoy_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.raw_buoy_data" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the raw buoy data contents from NDBC.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of buoy</p></li>
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Type of data requested, must be one of
+‘txt’ standard meteorological data
+‘drift’ meteorological data from drifting buoys and limited moored buoy data
+mainly from international partners
+‘cwind’ continuous winds data (10 minute average)
+‘spec’ spectral wave summaries
+‘data_spec’ raw spectral wave data
+‘swdir’ spectral wave data (alpha1)
+‘swdir2’ spectral wave data (alpha2)
+‘swr1’ spectral wave data (r1)
+‘swr2’ spectral wave data (r2)
+‘adcp’ acoustic doppler current profiler
+‘ocean’ oceanographic data
+‘tide’ tide data
+‘srad’ solar radiation data
+‘dart’ water column height
+‘supl’ supplemental measurements data
+‘rain’ hourly rain data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Raw data string</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="siphon.simplewebservice.ndbc.NDBC.realtime_observations">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">realtime_observations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buoy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'txt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/simplewebservice/ndbc.html#NDBC.realtime_observations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.simplewebservice.ndbc.NDBC.realtime_observations" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the realtime buoy data from NDBC.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buoy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of buoy</p></li>
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Type of data requested, must be one of
+‘txt’ standard meteorological data
+‘drift’ meteorological data from drifting buoys and limited moored buoy data
+mainly from international partners
+‘cwind’ continuous winds data (10 minute average)
+‘spec’ spectral wave summaries
+‘ocean’ oceanographic data
+‘srad’ solar radiation data
+‘dart’ water column height
+‘supl’ supplemental measurements data
+‘rain’ hourly rain data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Parsed data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="radarserver.html" class="btn btn-neutral float-left" title="siphon.radarserver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Siphon Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
+      <span class="lastupdated">Last updated on Jan 24, 2025 at 20:07:40.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
