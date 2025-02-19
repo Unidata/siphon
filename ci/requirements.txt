@@ -1,6 +1,6 @@
 beautifulsoup4==4.13.3
 numpy==2.2.3
 pandas==2.2.3
-protobuf==5.28.3
+protobuf==5.29.3
 requests==2.32.3
 urllib3==2.3.0
