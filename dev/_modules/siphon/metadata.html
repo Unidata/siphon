@@ -1,27 +1,26 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>siphon.metadata &mdash; Siphon 0.0</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
-    <link rel="canonical" href="https://unidata.github.io/siphon/latest/_modules/siphon/metadata.html"/>
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>siphon.metadata &mdash; Siphon 0.10dev</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_override.css?v=4e1f738f" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/_modules/siphon/metadata.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=82662543"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -32,15 +31,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> Siphon
-            <img src="../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Siphon
+              <img src="../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -49,6 +49,7 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The Siphon API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Siphon Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Siphon</a></li>
@@ -68,9 +69,9 @@
           
 <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>siphon.metadata</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">siphon.metadata</li>
     <li class="source-link">
         
     </li>
@@ -87,7 +88,7 @@
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
 <span class="sd">&quot;&quot;&quot;Helps support reading and parsing metadata elements from a TDS client catalog.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
@@ -96,14 +97,14 @@
 <span class="n">xlink_title_attr</span> <span class="o">=</span> <span class="s1">&#39;{http://www.w3.org/1999/xlink}title&#39;</span>
 
 
-<span class="k">class</span> <span class="nc">_SimpleTypes</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_SimpleTypes</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_valid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dataFormat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_valid_data_format_types</span><span class="p">(),</span>
                        <span class="s1">&#39;upOrDown&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_valid_up_or_down</span><span class="p">(),</span>
                        <span class="s1">&#39;dataType&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_valid_data_types</span><span class="p">()}</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_load_valid_data_types</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_valid_data_types</span><span class="p">():</span>
         <span class="n">valid</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;grid&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;image&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;point&#39;</span><span class="p">,</span>
@@ -114,8 +115,8 @@
         <span class="k">return</span> <span class="n">valid</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_load_valid_data_format_types</span><span class="p">():</span>
-        <span class="kn">import</span> <span class="nn">mimetypes</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_valid_data_format_types</span><span class="p">():</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">mimetypes</span>
         <span class="n">valid</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BUFR&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;ESML&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;GEMPAK&#39;</span><span class="p">,</span>
@@ -147,10 +148,10 @@
         <span class="k">return</span> <span class="n">valid</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_load_valid_up_or_down</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_valid_up_or_down</span><span class="p">():</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;up&#39;</span><span class="p">,</span> <span class="s1">&#39;down&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">handle_upOrDown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_upOrDown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="c1"># name=&quot;upOrDown&quot;</span>
         <span class="c1">#   &lt;xsd:restriction base=&quot;xsd:token&quot;&gt;</span>
         <span class="c1">#    &lt;xsd:enumeration value=&quot;up&quot;/&gt;</span>
@@ -167,7 +168,7 @@
                             <span class="n">val</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">valid</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">attr</span><span class="p">:</span> <span class="n">val</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">handle_dataFormat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_dataFormat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="c1"># name=&quot;dataFormatTypes&quot;</span>
         <span class="c1">#   &lt;xsd:union memberTypes=&quot;xsd:token mimeType&quot;&gt;</span>
         <span class="c1">#     &lt;xsd:simpleType&gt;</span>
@@ -221,7 +222,7 @@
                         <span class="n">val</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">valid</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">type_name</span><span class="p">:</span> <span class="n">val</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">handle_dataType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_dataType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="c1"># name=&quot;dataTypes&quot;</span>
         <span class="c1">#   &lt;xsd:union memberTypes=&quot;xsd:token&quot;&gt;</span>
         <span class="c1">#     &lt;xsd:simpleType&gt;</span>
@@ -247,51 +248,48 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">type_name</span><span class="p">:</span> <span class="n">val</span><span class="p">}</span>
 
 
-<span class="k">class</span> <span class="nc">_ComplexTypes</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_ComplexTypes</span><span class="p">:</span>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_get_tag_name</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
-        <span class="k">if</span> <span class="s1">&#39;}&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="p">:</span>
-            <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_tag_name</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+        <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;}&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span> <span class="k">else</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span>
         <span class="k">return</span> <span class="n">element_name</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_spatial_range_req_children</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_spatial_range_req_children</span><span class="p">():</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_spatial_range_opt_children</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_spatial_range_opt_children</span><span class="p">():</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;resolution&#39;</span><span class="p">,</span> <span class="s1">&#39;units&#39;</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_date_type_formatted_valid_attrs</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_date_type_formatted_valid_attrs</span><span class="p">():</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;format&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_controlled_vocatulary_opt_attrs</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_controlled_vocatulary_opt_attrs</span><span class="p">():</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;vocabulary&#39;</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_variable_opt_attrs</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_variable_opt_attrs</span><span class="p">():</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;vocabulary_name&#39;</span><span class="p">,</span> <span class="s1">&#39;units&#39;</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_variable_req_attrs</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_variable_req_attrs</span><span class="p">():</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_variables_opt_attrs</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_variables_opt_attrs</span><span class="p">():</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;vocabulary&#39;</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_data_size_req_attrs</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_data_size_req_attrs</span><span class="p">():</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span>
 
     <span class="c1">#</span>
     <span class="c1"># complex types:</span>
     <span class="c1"># ==============</span>
-    <span class="k">def</span> <span class="nf">handle_spatialRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_spatialRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="c1"># name=&quot;spatialRange&quot;&gt;</span>
         <span class="c1">#   &lt;xsd:sequence&gt;</span>
         <span class="c1">#    &lt;xsd:element name=&quot;start&quot; type=&quot;xsd:double&quot;  /&gt;</span>
@@ -318,7 +316,7 @@
                             <span class="n">child_name</span><span class="p">,</span> <span class="n">type_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">spatial_range</span>
 
-    <span class="k">def</span> <span class="nf">handle_controlledVocabulary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_controlledVocabulary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="c1">#</span>
         <span class="c1"># type=&quot;controlledVocabulary&quot;</span>
         <span class="c1">#   &lt;xsd:simpleContent&gt;</span>
@@ -344,7 +342,7 @@
             <span class="n">tmp</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">tmp</span>
 
-    <span class="k">def</span> <span class="nf">handle_dateTypeFormatted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_dateTypeFormatted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="c1"># name=&quot;dateTypeFormatted&quot;</span>
         <span class="c1">#   &lt;xsd:simpleContent&gt;</span>
         <span class="c1">#     &lt;xsd:extension base=&quot;dateType&quot;&gt;</span>
@@ -367,7 +365,7 @@
 
         <span class="k">return</span> <span class="n">val</span>
 
-    <span class="k">def</span> <span class="nf">handle_sourceType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_sourceType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="c1"># name=&quot;sourceType&quot;</span>
         <span class="c1">#   &lt;xsd:sequence&gt;</span>
         <span class="c1">#     &lt;xsd:element name=&quot;name&quot; type=&quot;controlledVocabulary&quot;/&gt;</span>
@@ -396,7 +394,7 @@
                 <span class="n">parsed</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">parsed</span>
 
-    <span class="k">def</span> <span class="nf">handle_timeCoverageType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_timeCoverageType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="c1"># name=&quot;timeCoverageType&quot;&gt;</span>
         <span class="c1">#   &lt;xsd:sequence&gt;</span>
         <span class="c1">#     &lt;xsd:choice minOccurs=&quot;2&quot; maxOccurs=&quot;3&quot; &gt;</span>
@@ -425,7 +423,7 @@
 
         <span class="k">return</span> <span class="n">parsed</span>
 
-    <span class="k">def</span> <span class="nf">handle_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="c1"># element_name=&quot;variable&quot;</span>
         <span class="c1">#   &lt;xsd:complexType mixed=&quot;true&quot;&gt;</span>
         <span class="c1">#     &lt;xsd:attribute name=&quot;name&quot; type=&quot;xsd:string&quot; use=&quot;required&quot;/&gt;</span>
@@ -454,7 +452,7 @@
         <span class="k">return</span> <span class="n">variable</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">handle_variableMap</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_variableMap</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="c1"># element_name=&quot;variableMap&quot;</span>
         <span class="c1">#   &lt;xsd:complexType&gt;</span>
         <span class="c1">#     &lt;xsd:attributeGroup ref=&quot;XLink&quot;/&gt;</span>
@@ -466,7 +464,7 @@
 
         <span class="k">return</span> <span class="n">var_map</span>
 
-    <span class="k">def</span> <span class="nf">handle_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="c1"># element_name=&quot;variables&quot;</span>
         <span class="c1">#   &lt;xsd:complexType&gt;</span>
         <span class="c1">#     &lt;xsd:choice&gt;</span>
@@ -504,7 +502,7 @@
             <span class="n">variables</span><span class="p">[</span><span class="s1">&#39;variableMaps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_map_list</span>
         <span class="k">return</span> <span class="n">variables</span>
 
-    <span class="k">def</span> <span class="nf">handle_dataSize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_dataSize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="c1">#   &lt;xsd:complexType&gt;</span>
         <span class="c1">#     &lt;xsd:simpleContent&gt;</span>
         <span class="c1">#     &lt;xsd:extension base=&quot;xsd:string&quot;&gt;</span>
@@ -523,7 +521,9 @@
         <span class="k">return</span> <span class="n">data_size</span>
 
 
-<div class="viewcode-block" id="TDSCatalogMetadata"><a class="viewcode-back" href="../../api/metadata.html#siphon.metadata.TDSCatalogMetadata">[docs]</a><span class="k">class</span> <span class="nc">TDSCatalogMetadata</span><span class="p">:</span>
+<div class="viewcode-block" id="TDSCatalogMetadata">
+<a class="viewcode-back" href="../../api/metadata.html#siphon.metadata.TDSCatalogMetadata">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TDSCatalogMetadata</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Hold information contained in the catalog Metadata tag.</span>
 
 <span class="sd">    Attributes</span>
@@ -533,7 +533,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TDSCatalogMetadata.__init__"><a class="viewcode-back" href="../../api/metadata.html#siphon.metadata.TDSCatalogMetadata.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">metadata_in</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="TDSCatalogMetadata.__init__">
+<a class="viewcode-back" href="../../api/metadata.html#siphon.metadata.TDSCatalogMetadata.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">metadata_in</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a :class:`TDSCatalogMetadata` object.</span>
 
 <span class="sd">        Parameters</span>
@@ -552,10 +554,7 @@
         <span class="n">inherited</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="s1">&#39;inherited&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
             <span class="n">inherited</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;inherited&#39;</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">inherited</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span><span class="p">:</span>
-                <span class="n">inherited</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">inherited</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">inherited</span> <span class="o">=</span> <span class="n">inherited</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span>
 
         <span class="k">if</span> <span class="n">metadata_in</span> <span class="ow">and</span> <span class="p">(</span><span class="n">inherited</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_external_metadata_doc</span><span class="p">(</span><span class="n">element</span><span class="p">)):</span>
             <span class="c1"># only inherit metadata passed in if the new metadata</span>
@@ -573,22 +572,20 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parse_element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span></div>
 
+
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_get_tag_name</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
-        <span class="k">if</span> <span class="s1">&#39;}&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="p">:</span>
-            <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_tag_name</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+        <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;}&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span> <span class="k">else</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span>
         <span class="k">return</span> <span class="n">element_name</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_is_external_metadata_doc</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_external_metadata_doc</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
         <span class="n">attributes</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span>
         <span class="n">has_xlink_title</span> <span class="o">=</span> <span class="n">xlink_title_attr</span> <span class="ow">in</span> <span class="n">attributes</span>
         <span class="n">has_xlink_href</span> <span class="o">=</span> <span class="n">xlink_href_attr</span> <span class="ow">in</span> <span class="n">attributes</span>
         <span class="k">return</span> <span class="n">has_xlink_title</span> <span class="ow">and</span> <span class="n">has_xlink_href</span>
 
-    <span class="k">def</span> <span class="nf">_get_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">):</span>
         <span class="n">handler_name</span> <span class="o">=</span> <span class="s1">&#39;handle_&#39;</span> <span class="o">+</span> <span class="n">handler_name</span>
         <span class="k">if</span> <span class="n">handler_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cts</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">)</span>
@@ -596,8 +593,9 @@
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_st</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;cannot find handler for element </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">_parse_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
 
         <span class="n">element_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tag_name</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
 
@@ -624,7 +622,7 @@
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No parser found for element </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">element_name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_documentation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_documentation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="c1"># &lt;xsd:simpleType name=&quot;documentationEnumTypes&quot;&gt;</span>
         <span class="c1">#  &lt;xsd:union memberTypes=&quot;xsd:token&quot;&gt;</span>
         <span class="c1">#   &lt;xsd:simpleType&gt;</span>
@@ -656,10 +654,7 @@
         <span class="n">md</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span>
         <span class="n">md</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;documentation&#39;</span><span class="p">,</span> <span class="p">{})</span>
         <span class="k">if</span> <span class="n">known</span> <span class="ow">or</span> <span class="n">plain_doc</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">known</span><span class="p">:</span>
-                <span class="n">doc_type</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">doc_type</span> <span class="o">=</span> <span class="s1">&#39;generic&#39;</span>
+            <span class="n">doc_type</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">known</span> <span class="k">else</span> <span class="s1">&#39;generic&#39;</span>
             <span class="n">md</span><span class="p">[</span><span class="s1">&#39;documentation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">doc_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">xlink_href_attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
             <span class="n">title</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">xlink_title_attr</span><span class="p">]</span>
@@ -668,7 +663,7 @@
             <span class="n">md</span><span class="p">[</span><span class="s1">&#39;documentation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;xlink&#39;</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xlink</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">md</span>
 
-    <span class="k">def</span> <span class="nf">_parse_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="c1"># &lt;xsd:element name=&quot;property&quot;&gt;</span>
         <span class="c1">#  &lt;xsd:complexType&gt;</span>
         <span class="c1">#   &lt;xsd:attribute name=&quot;name&quot; type=&quot;xsd:string&quot;/&gt;</span>
@@ -679,7 +674,7 @@
         <span class="n">value</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;property&#39;</span><span class="p">,</span> <span class="p">{})[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
-    <span class="k">def</span> <span class="nf">_parse_contributor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_contributor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="c1"># &lt;xsd:element name=&quot;contributor&quot;&gt;</span>
         <span class="c1">#   &lt;xsd:complexType&gt;</span>
         <span class="c1">#     &lt;xsd:simpleContent&gt;</span>
@@ -695,7 +690,7 @@
         <span class="n">name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_geospatial_coverage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_geospatial_coverage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;geospatialCoverage&#39;</span>
         <span class="n">md</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="c1"># &lt;xsd:element name=&quot;geospatialCoverage&quot;&gt;</span>
@@ -741,61 +736,61 @@
                 <span class="n">md</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_service_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_service_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="c1"># can only have one serviceName</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;serviceName&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">element_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
 
-    <span class="k">def</span> <span class="nf">_parse_authority</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_authority</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;authority&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_publisher</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_publisher</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;publisher&#39;</span>
         <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_sourceType</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;creator&#39;</span>
         <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_sourceType</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_keyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_keyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;keyword&#39;</span>
         <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_controlledVocabulary</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;project&#39;</span>
         <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_controlledVocabulary</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_data_format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_data_format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;dataFormat&#39;</span>  <span class="c1"># noqa</span>
         <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_st</span><span class="o">.</span><span class="n">handle_dataFormat</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_data_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_data_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;dataType&#39;</span>  <span class="c1"># noqa</span>
         <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_st</span><span class="o">.</span><span class="n">handle_dataType</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
         <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_dateTypeFormatted</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_timeCoverage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_timeCoverage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;timeCoverage&#39;</span>
         <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_timeCoverageType</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_variableMap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_variableMap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;variableMap&#39;</span>
         <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_variableMap</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_parse_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;variables&#39;</span>
         <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct</span><span class="o">.</span><span class="n">handle_variables</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">parsed</span><span class="p">[</span><span class="s1">&#39;variables&#39;</span><span class="p">]:</span>
@@ -803,7 +798,7 @@
             <span class="n">variable</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">element_type</span><span class="p">,</span> <span class="p">{})[</span><span class="n">var_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable</span>
 
-    <span class="k">def</span> <span class="nf">_parse_embedded_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_embedded_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_type</span> <span class="o">=</span> <span class="s1">&#39;external_metadata&#39;</span>
         <span class="k">if</span> <span class="n">xlink_href_attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
             <span class="n">title</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">xlink_title_attr</span><span class="p">]</span>
@@ -813,6 +808,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Cannot parse embedded metadata element </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
                         <span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">)</span></div>
+
 </pre></div>
 
            </div>
@@ -822,8 +818,8 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Oct 31, 2024 at 20:04:14.
+    <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
+      <span class="lastupdated">Last updated on Mar 11, 2025 at 16:53:02.
       </span></p>
   </div>
 

@@ -1,28 +1,27 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Siphon &mdash; Siphon 0.0</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/theme_override.css" type="text/css" />
-      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
-      <link rel="stylesheet" href="_static/sg_gallery-binder.css" type="text/css" />
-      <link rel="stylesheet" href="_static/sg_gallery-dataframe.css" type="text/css" />
-      <link rel="stylesheet" href="_static/sg_gallery-rendered-html.css" type="text/css" />
-    <link rel="canonical" href="https://unidata.github.io/siphon/latest/index.html"/>
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Siphon &mdash; Siphon 0.10dev</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="_static/theme_override.css?v=4e1f738f" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/index.html"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=82662543"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -34,15 +33,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="#" class="icon icon-home"> Siphon
-            <img src="_static/siphon_150x150.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Siphon
+              <img src="_static/siphon_150x150.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -51,6 +51,7 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="installguide.html">Installation Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">The Siphon API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Siphon Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developerguide.html">Developer’s Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citing.html">Citing Siphon</a></li>
@@ -70,8 +71,8 @@
           
 <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>Siphon</li>
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Siphon</li>
     <li class="source-link">
         
             
@@ -90,7 +91,7 @@
   <div class="toctree-wrapper compound">
 </div>
 <section id="siphon">
-<h1>Siphon<a class="headerlink" href="#siphon" title="Permalink to this heading">¶</a></h1>
+<h1>Siphon<a class="headerlink" href="#siphon" title="Link to this heading"></a></h1>
 <p>Siphon is a collection of Python utilities for downloading data from remote
 data services. Much of Siphon’s current functionality focuses on access to
 data hosted on a <a class="reference external" href="https://www.unidata.ucar.edu/software/tds/">THREDDS Data Server</a>. It also provides clients to a variety
@@ -102,7 +103,7 @@ work through design issues). Also, for a version <em class="xref py py-obj">0.x.
 release new features, and <em class="xref py py-obj">y</em> when we make a release with only bug fixes.</p>
 <p>We support Python &gt;= 3.7.</p>
 <section id="contact-us">
-<h2>Contact Us<a class="headerlink" href="#contact-us" title="Permalink to this heading">¶</a></h2>
+<h2>Contact Us<a class="headerlink" href="#contact-us" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>For questions about Siphon, please ask them using the “python-siphon” tag on <a class="reference external" href="https://stackoverflow.com/questions/tagged/python-siphon">StackOverflow</a>.
 Our developers are actively monitoring for questions there.</p></li>
@@ -117,7 +118,7 @@ python support email address</a></p></li>
 </ul>
 </section>
 <section id="other-resources">
-<h2>Other Resources<a class="headerlink" href="#other-resources" title="Permalink to this heading">¶</a></h2>
+<h2>Other Resources<a class="headerlink" href="#other-resources" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Unidata’s Python <a class="reference external" href="https://unidata.github.io/python-gallery">gallery</a> contains many examples using Siphon to access remote data</p></li>
 <li><p>The <a class="reference external" href="https://unidata.github.io/python-workshop">materials</a> for Unidata’s annual Python training workshop includes some tutorials on
@@ -125,11 +126,11 @@ using Siphon.</p></li>
 </ul>
 </section>
 <section id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
 <p>Siphon is available under the terms of the open source <a class="reference external" href="https://raw.githubusercontent.com/Unidata/siphon/main/LICENSE">BSD 3-Clause license</a>.</p>
 </section>
 <section id="related-projects">
-<h2>Related Projects<a class="headerlink" href="#related-projects" title="Permalink to this heading">¶</a></h2>
+<h2>Related Projects<a class="headerlink" href="#related-projects" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://unidata.github.io/netcdf4-python/">netCDF4-python</a> is the officially blessed Python API for <a class="reference external" href="https://www.unidata.ucar.edu/software/netcdf/">netCDF</a></p></li>
 <li><p><a class="reference external" href="https://unidata.github.io/MetPy/">metpy</a> is toolkit for using Python in meteorology applications</p></li>
@@ -147,8 +148,8 @@ using Siphon.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Oct 31, 2024 at 20:04:14.
+    <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
+      <span class="lastupdated">Last updated on Mar 11, 2025 at 16:53:02.
       </span></p>
   </div>
 

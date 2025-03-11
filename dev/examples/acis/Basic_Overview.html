@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic ACIS Web Services Usage &mdash; Siphon 0.10dev</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_override.css?v=4e1f738f" />
+
+  
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/examples/acis/Basic_Overview.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=82662543"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Multi Station Calls and Mapping" href="Mapping_Example.html" />
+    <link rel="prev" title="ACIS Web Services" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Siphon
+              <img src="../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installguide.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The Siphon API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Siphon Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#general-examples">General Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acis-web-services">ACIS Web Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ncss">NCSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#national-data-buoy-center-ndbc">National Data Buoy Center (NDBC)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#upper-air">Upper Air</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">ACIS Web Services</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Basic ACIS Web Services Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Mapping_Example.html">Multi Station Calls and Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ncss/index.html">NCSS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ndbc/index.html">National Data Buoy Center (NDBC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upperair/index.html">Upper Air</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Siphon</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Siphon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+<div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Siphon Examples</a></li>
+          <li class="breadcrumb-item"><a href="index.html">ACIS Web Services</a></li>
+      <li class="breadcrumb-item active">Basic ACIS Web Services Usage</li>
+    <li class="source-link">
+        
+            
+                
+                
+                <a href="https://github.com/Unidata/siphon/issues/new?title=Suggested%20improvement%20for%20examples/acis/Basic_Overview&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
+        
+    </li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-acis-basic-overview-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="basic-acis-web-services-usage">
+<span id="sphx-glr-examples-acis-basic-overview-py"></span><h1>Basic ACIS Web Services Usage<a class="headerlink" href="#basic-acis-web-services-usage" title="Link to this heading"></a></h1>
+<p>Siphon’s simplewebservice support also includes the ability to query the
+Regional Climate Centers’ ACIS data servers. ACIS data provides daily records
+for most station networks in the U.S. and is updated hourly.</p>
+<p>In this example we will be querying the service for 20 years of temperature data
+from Denver International Airport.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">siphon.simplewebservice.acis</span><span class="w"> </span><span class="kn">import</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.acis.acis_request" title="siphon.simplewebservice.acis.acis_request" class="sphx-glr-backref-module-siphon-simplewebservice-acis sphx-glr-backref-type-py-function"><span class="n">acis_request</span></a>
+</pre></div>
+</div>
+<p>First, we need to assemble a dictionary containing the information we want.
+For this example we want the average temperature at Denver International (KDEN)
+from January 1, 1997 to December 1, 2017. While we could get the daily data,
+we will instead request the monthly averages, which the remote service will
+find for us.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">parameters</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;sid&#39;</span><span class="p">:</span> <span class="s1">&#39;KDEN&#39;</span><span class="p">,</span> <span class="s1">&#39;sdate&#39;</span><span class="p">:</span> <span class="s1">&#39;19970101&#39;</span><span class="p">,</span> <span class="s1">&#39;edate&#39;</span><span class="p">:</span> <span class="s1">&#39;20171231&#39;</span><span class="p">,</span> <span class="s1">&#39;elems&#39;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;avgt&#39;</span><span class="p">,</span> <span class="s1">&#39;interval&#39;</span><span class="p">:</span> <span class="s1">&#39;mly&#39;</span><span class="p">,</span> <span class="s1">&#39;duration&#39;</span><span class="p">:</span> <span class="s1">&#39;mly&#39;</span><span class="p">,</span> <span class="s1">&#39;reduce&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">}]}</span>
+</pre></div>
+</div>
+<p>These parameters are used to specify what kind of data we want. We are
+formatting this as a dictionary, the acis_request function will handle the
+conversion of this into a JSON string for us!</p>
+<p>As we explain how this dictionary is formatted, feel free to follow along
+using the API documentation here :<a class="reference external" href="http://www.rcc-acis.org/docs_webservices.html">http://www.rcc-acis.org/docs_webservices.html</a></p>
+<p>The first section of the parameters dictionary is focused on the station and
+period of interest. We have a ‘sid’ element where the airport identifier is,
+and sdate/edate which correspond to the starting and ending dates of the
+period of interest.</p>
+<p>The ‘elems’ list contains individual dictionaries of elements (variables) of
+interest. In this example we are requesting the average monthly temperature.
+If we also wanted the minimum temperature, we would simply add an additional
+dictionary to the ‘elems’ list.</p>
+<p>Now that we have assembled our dictionary, we need to decide what type of
+request we are making. You can request meta data (information about the
+station), station data (data from an individual station), data from multiple
+stations, or even images of pre-prepared data.</p>
+<p>In this case we are interested in a single station, so we will be using the
+method set aside for this called, ‘StnData’.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">method</span></a> <span class="o">=</span> <span class="s1">&#39;StnData&#39;</span>
+</pre></div>
+</div>
+<p>Now that we have our request information ready, we can call the acis_request
+function and receive our data!</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">my_data</span></a> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.acis.acis_request" title="siphon.simplewebservice.acis.acis_request" class="sphx-glr-backref-module-siphon-simplewebservice-acis sphx-glr-backref-type-py-function"><span class="n">acis_request</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">method</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">parameters</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>The data is also returned in a dictionary format, decoded from a JSON string.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">my_data</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;meta&#39;: {&#39;uid&#39;: 137, &#39;ll&#39;: [-104.65623, 39.84657], &#39;sids&#39;: [&#39;03017 1&#39;, &#39;052211 2&#39;, &#39;DEN 3&#39;, &#39;72565 4&#39;, &#39;KDEN 5&#39;, &#39;USW00003017 6&#39;, &#39;DEN 7&#39;, &#39;USW00003017 32&#39;], &#39;state&#39;: &#39;CO&#39;, &#39;elev&#39;: 5404.0, &#39;name&#39;: &#39;DENVER INTL AP&#39;}, &#39;data&#39;: [[&#39;1997-01&#39;, &#39;27.85&#39;], [&#39;1997-02&#39;, &#39;29.91&#39;], [&#39;1997-03&#39;, &#39;42.13&#39;], [&#39;1997-04&#39;, &#39;40.48&#39;], [&#39;1997-05&#39;, &#39;56.60&#39;], [&#39;1997-06&#39;, &#39;67.82&#39;], [&#39;1997-07&#39;, &#39;73.05&#39;], [&#39;1997-08&#39;, &#39;69.63&#39;], [&#39;1997-09&#39;, &#39;64.23&#39;], [&#39;1997-10&#39;, &#39;49.63&#39;], [&#39;1997-11&#39;, &#39;34.82&#39;], [&#39;1997-12&#39;, &#39;27.90&#39;], [&#39;1998-01&#39;, &#39;32.66&#39;], [&#39;1998-02&#39;, &#39;33.91&#39;], [&#39;1998-03&#39;, &#39;36.87&#39;], [&#39;1998-04&#39;, &#39;44.77&#39;], [&#39;1998-05&#39;, &#39;59.13&#39;], [&#39;1998-06&#39;, &#39;63.02&#39;], [&#39;1998-07&#39;, &#39;74.31&#39;], [&#39;1998-08&#39;, &#39;71.73&#39;], [&#39;1998-09&#39;, &#39;67.98&#39;], [&#39;1998-10&#39;, &#39;50.18&#39;], [&#39;1998-11&#39;, &#39;42.08&#39;], [&#39;1998-12&#39;, &#39;28.85&#39;], [&#39;1999-01&#39;, &#39;33.71&#39;], [&#39;1999-02&#39;, &#39;38.62&#39;], [&#39;1999-03&#39;, &#39;43.73&#39;], [&#39;1999-04&#39;, &#39;42.52&#39;], [&#39;1999-05&#39;, &#39;54.81&#39;], [&#39;1999-06&#39;, &#39;64.22&#39;], [&#39;1999-07&#39;, &#39;73.90&#39;], [&#39;1999-08&#39;, &#39;71.19&#39;], [&#39;1999-09&#39;, &#39;59.23&#39;], [&#39;1999-10&#39;, &#39;52.45&#39;], [&#39;1999-11&#39;, &#39;47.22&#39;], [&#39;1999-12&#39;, &#39;33.74&#39;], [&#39;2000-01&#39;, &#39;32.98&#39;], [&#39;2000-02&#39;, &#39;39.14&#39;], [&#39;2000-03&#39;, &#39;40.39&#39;], [&#39;2000-04&#39;, &#39;49.78&#39;], [&#39;2000-05&#39;, &#39;59.19&#39;], [&#39;2000-06&#39;, &#39;66.93&#39;], [&#39;2000-07&#39;, &#39;76.68&#39;], [&#39;2000-08&#39;, &#39;74.47&#39;], [&#39;2000-09&#39;, &#39;63.57&#39;], [&#39;2000-10&#39;, &#39;50.50&#39;], [&#39;2000-11&#39;, &#39;28.90&#39;], [&#39;2000-12&#39;, &#39;28.24&#39;], [&#39;2001-01&#39;, &#39;30.00&#39;], [&#39;2001-02&#39;, &#39;28.27&#39;], [&#39;2001-03&#39;, &#39;39.73&#39;], [&#39;2001-04&#39;, &#39;49.55&#39;], [&#39;2001-05&#39;, &#39;57.03&#39;], [&#39;2001-06&#39;, &#39;69.33&#39;], [&#39;2001-07&#39;, &#39;76.69&#39;], [&#39;2001-08&#39;, &#39;73.45&#39;], [&#39;2001-09&#39;, &#39;66.77&#39;], [&#39;2001-10&#39;, &#39;51.45&#39;], [&#39;2001-11&#39;, &#39;40.87&#39;], [&#39;2001-12&#39;, &#39;31.68&#39;], [&#39;2002-01&#39;, &#39;29.27&#39;], [&#39;2002-02&#39;, &#39;33.57&#39;], [&#39;2002-03&#39;, &#39;33.79&#39;], [&#39;2002-04&#39;, &#39;50.02&#39;], [&#39;2002-05&#39;, &#39;56.13&#39;], [&#39;2002-06&#39;, &#39;71.13&#39;], [&#39;2002-07&#39;, &#39;76.23&#39;], [&#39;2002-08&#39;, &#39;71.50&#39;], [&#39;2002-09&#39;, &#39;63.63&#39;], [&#39;2002-10&#39;, &#39;43.90&#39;], [&#39;2002-11&#39;, &#39;37.48&#39;], [&#39;2002-12&#39;, &#39;33.61&#39;], [&#39;2003-01&#39;, &#39;36.89&#39;], [&#39;2003-02&#39;, &#39;27.55&#39;], [&#39;2003-03&#39;, &#39;39.87&#39;], [&#39;2003-04&#39;, &#39;50.42&#39;], [&#39;2003-05&#39;, &#39;57.52&#39;], [&#39;2003-06&#39;, &#39;62.12&#39;], [&#39;2003-07&#39;, &#39;76.89&#39;], [&#39;2003-08&#39;, &#39;73.69&#39;], [&#39;2003-09&#39;, &#39;59.30&#39;], [&#39;2003-10&#39;, &#39;55.08&#39;], [&#39;2003-11&#39;, &#39;36.18&#39;], [&#39;2003-12&#39;, &#39;32.55&#39;], [&#39;2004-01&#39;, &#39;31.82&#39;], [&#39;2004-02&#39;, &#39;30.84&#39;], [&#39;2004-03&#39;, &#39;46.35&#39;], [&#39;2004-04&#39;, &#39;47.47&#39;], [&#39;2004-05&#39;, &#39;59.32&#39;], [&#39;2004-06&#39;, &#39;63.72&#39;], [&#39;2004-07&#39;, &#39;70.82&#39;], [&#39;2004-08&#39;, &#39;68.21&#39;], [&#39;2004-09&#39;, &#39;62.67&#39;], [&#39;2004-10&#39;, &#39;50.82&#39;], [&#39;2004-11&#39;, &#39;37.17&#39;], [&#39;2004-12&#39;, &#39;34.84&#39;], [&#39;2005-01&#39;, &#39;32.45&#39;], [&#39;2005-02&#39;, &#39;35.75&#39;], [&#39;2005-03&#39;, &#39;39.42&#39;], [&#39;2005-04&#39;, &#39;46.38&#39;], [&#39;2005-05&#39;, &#39;56.98&#39;], [&#39;2005-06&#39;, &#39;65.98&#39;], [&#39;2005-07&#39;, &#39;77.66&#39;], [&#39;2005-08&#39;, &#39;71.56&#39;], [&#39;2005-09&#39;, &#39;67.15&#39;], [&#39;2005-10&#39;, &#39;51.95&#39;], [&#39;2005-11&#39;, &#39;42.48&#39;], [&#39;2005-12&#39;, &#39;30.15&#39;], [&#39;2006-01&#39;, &#39;37.42&#39;], [&#39;2006-02&#39;, &#39;30.89&#39;], [&#39;2006-03&#39;, &#39;38.39&#39;], [&#39;2006-04&#39;, &#39;51.50&#39;], [&#39;2006-05&#39;, &#39;60.32&#39;], [&#39;2006-06&#39;, &#39;72.80&#39;], [&#39;2006-07&#39;, &#39;76.23&#39;], [&#39;2006-08&#39;, &#39;72.82&#39;], [&#39;2006-09&#39;, &#39;58.90&#39;], [&#39;2006-10&#39;, &#39;49.47&#39;], [&#39;2006-11&#39;, &#39;40.47&#39;], [&#39;2006-12&#39;, &#39;31.66&#39;], [&#39;2007-01&#39;, &#39;20.81&#39;], [&#39;2007-02&#39;, &#39;29.02&#39;], [&#39;2007-03&#39;, &#39;46.05&#39;], [&#39;2007-04&#39;, &#39;46.77&#39;], [&#39;2007-05&#39;, &#39;58.00&#39;], [&#39;2007-06&#39;, &#39;68.83&#39;], [&#39;2007-07&#39;, &#39;76.32&#39;], [&#39;2007-08&#39;, &#39;75.39&#39;], [&#39;2007-09&#39;, &#39;65.07&#39;], [&#39;2007-10&#39;, &#39;53.50&#39;], [&#39;2007-11&#39;, &#39;41.37&#39;], [&#39;2007-12&#39;, &#39;26.66&#39;], [&#39;2008-01&#39;, &#39;27.90&#39;], [&#39;2008-02&#39;, &#39;33.91&#39;], [&#39;2008-03&#39;, &#39;39.53&#39;], [&#39;2008-04&#39;, &#39;46.12&#39;], [&#39;2008-05&#39;, &#39;55.84&#39;], [&#39;2008-06&#39;, &#39;67.42&#39;], [&#39;2008-07&#39;, &#39;77.60&#39;], [&#39;2008-08&#39;, &#39;71.42&#39;], [&#39;2008-09&#39;, &#39;61.75&#39;], [&#39;2008-10&#39;, &#39;52.08&#39;], [&#39;2008-11&#39;, &#39;43.05&#39;], [&#39;2008-12&#39;, &#39;26.65&#39;], [&#39;2009-01&#39;, &#39;34.89&#39;], [&#39;2009-02&#39;, &#39;37.32&#39;], [&#39;2009-03&#39;, &#39;41.81&#39;], [&#39;2009-04&#39;, &#39;45.92&#39;], [&#39;2009-05&#39;, &#39;58.98&#39;], [&#39;2009-06&#39;, &#39;64.42&#39;], [&#39;2009-07&#39;, &#39;70.21&#39;], [&#39;2009-08&#39;, &#39;70.31&#39;], [&#39;2009-09&#39;, &#39;63.45&#39;], [&#39;2009-10&#39;, &#39;42.90&#39;], [&#39;2009-11&#39;, &#39;42.60&#39;], [&#39;2009-12&#39;, &#39;24.13&#39;], [&#39;2010-01&#39;, &#39;30.31&#39;], [&#39;2010-02&#39;, &#39;29.11&#39;], [&#39;2010-03&#39;, &#39;40.98&#39;], [&#39;2010-04&#39;, &#39;47.77&#39;], [&#39;2010-05&#39;, &#39;54.00&#39;], [&#39;2010-06&#39;, &#39;68.85&#39;], [&#39;2010-07&#39;, &#39;74.42&#39;], [&#39;2010-08&#39;, &#39;73.81&#39;], [&#39;2010-09&#39;, &#39;66.97&#39;], [&#39;2010-10&#39;, &#39;55.29&#39;], [&#39;2010-11&#39;, &#39;38.27&#39;], [&#39;2010-12&#39;, &#39;34.26&#39;], [&#39;2011-01&#39;, &#39;29.94&#39;], [&#39;2011-02&#39;, &#39;29.02&#39;], [&#39;2011-03&#39;, &#39;43.26&#39;], [&#39;2011-04&#39;, &#39;48.37&#39;], [&#39;2011-05&#39;, &#39;53.06&#39;], [&#39;2011-06&#39;, &#39;68.17&#39;], [&#39;2011-07&#39;, &#39;75.90&#39;], [&#39;2011-08&#39;, &#39;77.00&#39;], [&#39;2011-09&#39;, &#39;64.23&#39;], [&#39;2011-10&#39;, &#39;52.58&#39;], [&#39;2011-11&#39;, &#39;39.48&#39;], [&#39;2011-12&#39;, &#39;26.65&#39;], [&#39;2012-01&#39;, &#39;35.98&#39;], [&#39;2012-02&#39;, &#39;28.41&#39;], [&#39;2012-03&#39;, &#39;49.18&#39;], [&#39;2012-04&#39;, &#39;53.28&#39;], [&#39;2012-05&#39;, &#39;60.48&#39;], [&#39;2012-06&#39;, &#39;75.02&#39;], [&#39;2012-07&#39;, &#39;78.89&#39;], [&#39;2012-08&#39;, &#39;74.97&#39;], [&#39;2012-09&#39;, &#39;66.28&#39;], [&#39;2012-10&#39;, &#39;49.03&#39;], [&#39;2012-11&#39;, &#39;43.48&#39;], [&#39;2012-12&#39;, &#39;31.50&#39;], [&#39;2013-01&#39;, &#39;30.34&#39;], [&#39;2013-02&#39;, &#39;30.07&#39;], [&#39;2013-03&#39;, &#39;37.69&#39;], [&#39;2013-04&#39;, &#39;41.70&#39;], [&#39;2013-05&#39;, &#39;57.92&#39;], [&#39;2013-06&#39;, &#39;71.08&#39;], [&#39;2013-07&#39;, &#39;74.29&#39;], [&#39;2013-08&#39;, &#39;74.56&#39;], [&#39;2013-09&#39;, &#39;66.40&#39;], [&#39;2013-10&#39;, &#39;47.74&#39;], [&#39;2013-11&#39;, &#39;40.90&#39;], [&#39;2013-12&#39;, &#39;28.42&#39;], [&#39;2014-01&#39;, &#39;31.08&#39;], [&#39;2014-02&#39;, &#39;28.20&#39;], [&#39;2014-03&#39;, &#39;40.87&#39;], [&#39;2014-04&#39;, &#39;49.02&#39;], [&#39;2014-05&#39;, &#39;57.53&#39;], [&#39;2014-06&#39;, &#39;67.28&#39;], [&#39;2014-07&#39;, &#39;74.47&#39;], [&#39;2014-08&#39;, &#39;70.58&#39;], [&#39;2014-09&#39;, &#39;64.75&#39;], [&#39;2014-10&#39;, &#39;55.10&#39;], [&#39;2014-11&#39;, &#39;36.20&#39;], [&#39;2014-12&#39;, &#39;31.32&#39;], [&#39;2015-01&#39;, &#39;33.87&#39;], [&#39;2015-02&#39;, &#39;33.80&#39;], [&#39;2015-03&#39;, &#39;45.03&#39;], [&#39;2015-04&#39;, &#39;48.72&#39;], [&#39;2015-05&#39;, &#39;53.02&#39;], [&#39;2015-06&#39;, &#39;69.50&#39;], [&#39;2015-07&#39;, &#39;72.76&#39;], [&#39;2015-08&#39;, &#39;74.05&#39;], [&#39;2015-09&#39;, &#39;69.38&#39;], [&#39;2015-10&#39;, &#39;56.45&#39;], [&#39;2015-11&#39;, &#39;38.45&#39;], [&#39;2015-12&#39;, &#39;29.40&#39;], [&#39;2016-01&#39;, &#39;31.79&#39;], [&#39;2016-02&#39;, &#39;37.84&#39;], [&#39;2016-03&#39;, &#39;41.60&#39;], [&#39;2016-04&#39;, &#39;47.22&#39;], [&#39;2016-05&#39;, &#39;54.39&#39;], [&#39;2016-06&#39;, &#39;70.82&#39;], [&#39;2016-07&#39;, &#39;76.24&#39;], [&#39;2016-08&#39;, &#39;71.24&#39;], [&#39;2016-09&#39;, &#39;65.97&#39;], [&#39;2016-10&#39;, &#39;57.81&#39;], [&#39;2016-11&#39;, &#39;45.13&#39;], [&#39;2016-12&#39;, &#39;27.79&#39;], [&#39;2017-01&#39;, &#39;30.02&#39;], [&#39;2017-02&#39;, &#39;40.25&#39;], [&#39;2017-03&#39;, &#39;47.94&#39;], [&#39;2017-04&#39;, &#39;48.87&#39;], [&#39;2017-05&#39;, &#39;55.94&#39;], [&#39;2017-06&#39;, &#39;69.52&#39;], [&#39;2017-07&#39;, &#39;76.40&#39;], [&#39;2017-08&#39;, &#39;71.47&#39;], [&#39;2017-09&#39;, &#39;65.12&#39;], [&#39;2017-10&#39;, &#39;50.11&#39;], [&#39;2017-11&#39;, &#39;45.27&#39;], [&#39;2017-12&#39;, &#39;33.16&#39;]]}
+</pre></div>
+</div>
+<p>We can see there are two parts to this data: The metadata, and the data. The
+metadata can be useful in mapping the observations (We’ll do this in a later
+example).</p>
+<p>To wrap this example up, we are going to do a simple line graph of this 30
+year temperature data using MatPlotLib! Notice that the data is decoded as
+a string, so you should convert those back into numbers before use.</p>
+<ul class="simple">
+<li><p>Note: Missing data is recorded as M!</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">stn_name</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">my_data</span></a><span class="p">[</span><span class="s1">&#39;meta&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">avgt</span></a> <span class="o">=</span> <span class="p">[]</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dates</span></a> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">obs</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">my_data</span></a><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]:</span>
+    <span class="k">if</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">obs</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;01&#39;</span><span class="p">):</span>
+        <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dates</span></a><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">obs</span></a><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dates</span></a><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">avgt</span></a><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">obs</span></a><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">avgt</span></a><span class="p">)))</span>
+
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.title.html#matplotlib.pyplot.title" title="matplotlib.pyplot.title" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">title</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">stn_name</span></a><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.ylabel.html#matplotlib.pyplot.ylabel" title="matplotlib.pyplot.ylabel" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span></a><span class="p">(</span><span class="s1">&#39;Average Temperature (F)&#39;</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot" title="matplotlib.pyplot.plot" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">avgt</span></a><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xticks.html#matplotlib.pyplot.xticks" title="matplotlib.pyplot.xticks" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dates</span></a><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_Basic_Overview_001.png" srcset="../../_images/sphx_glr_Basic_Overview_001.png" alt="DENVER INTL AP" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.787 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-acis-basic-overview-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/e1ce259efe29e6e605503762ef39e1cb/Basic_Overview.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">Basic_Overview.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/804d5395cca8c51df1c26f34a811b911/Basic_Overview.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Basic_Overview.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/61b7edbd09b4cf5d6d211eb9320e014b/Basic_Overview.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">Basic_Overview.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="ACIS Web Services" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Mapping_Example.html" class="btn btn-neutral float-right" title="Multi Station Calls and Mapping" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
+      <span class="lastupdated">Last updated on Mar 11, 2025 at 16:53:02.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92978945-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

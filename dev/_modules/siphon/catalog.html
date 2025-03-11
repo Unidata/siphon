@@ -1,27 +1,26 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>siphon.catalog &mdash; Siphon 0.0</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
-    <link rel="canonical" href="https://unidata.github.io/siphon/latest/_modules/siphon/catalog.html"/>
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>siphon.catalog &mdash; Siphon 0.10dev</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_override.css?v=4e1f738f" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/_modules/siphon/catalog.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=82662543"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -32,15 +31,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> Siphon
-            <img src="../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Siphon
+              <img src="../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -49,6 +49,7 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/index.html">The Siphon API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Siphon Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../developerguide.html">Developer’s Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Siphon</a></li>
@@ -68,9 +69,9 @@
           
 <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>siphon.catalog</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">siphon.catalog</li>
     <li class="source-link">
         
     </li>
@@ -91,29 +92,27 @@
 <span class="sd">They help identifying the latest dataset and finding proper URLs to access the data.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>  <span class="c1"># noqa:N814</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">urlparse</span> <span class="kn">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">urlparse</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="c1"># Python 3</span>
-    <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">urlparse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="kn">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">urlparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xml.etree.ElementTree</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ET</span>  <span class="c1"># noqa:N814</span>
 
-<span class="kn">from</span> <span class="nn">.http_util</span> <span class="kn">import</span> <span class="n">session_manager</span>
-<span class="kn">from</span> <span class="nn">.metadata</span> <span class="kn">import</span> <span class="n">TDSCatalogMetadata</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.http_util</span><span class="w"> </span><span class="kn">import</span> <span class="n">session_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.metadata</span><span class="w"> </span><span class="kn">import</span> <span class="n">TDSCatalogMetadata</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="IndexableMapping"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.IndexableMapping">[docs]</a><span class="k">class</span> <span class="nc">IndexableMapping</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">):</span>
+<div class="viewcode-block" id="IndexableMapping">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.IndexableMapping">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">IndexableMapping</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extend ``OrderedDict`` to allow index-based access to values.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return an item either by index or name.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">item</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># Raises if item not a string</span>
@@ -122,19 +121,31 @@
             <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="n">item</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="DatasetCollection"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection">[docs]</a><span class="k">class</span> <span class="nc">DatasetCollection</span><span class="p">(</span><span class="n">IndexableMapping</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extend ``IndexableMapping`` to allow datetime-based filter queries.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="DatasetCollection">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DatasetCollection</span><span class="p">(</span><span class="n">IndexableMapping</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Extend ``IndexableMapping`` to allow datetime-based filter queries.</span>
+
+<span class="sd">    Indexing works like a dictionary. The dataset name (&#39;my_data.nc&#39;, a string) is the key,</span>
+<span class="sd">    and the value returned is an instance of ``Dataset``. Positional indexing</span>
+<span class="sd">    (e.g., [0]) is another valid method of indexing.</span>
+
+<span class="sd">    ``DatasetCollection`` is commonly encountered as the ``datasets`` attribute of a</span>
+<span class="sd">    ``TDSCatalog``. If a ``regex`` in ``filter_time_nearest`` or ```filter_time_range` does not</span>
+<span class="sd">    provide sufficient flexibility, or the ``TDSCatalog`` does not provide accurate times,</span>
+<span class="sd">    iterating over ``datasets`` can be useful as part implementing a custom filter. For</span>
+<span class="sd">    example, in ``for ds in catalog.datasets: print(ds)``, ``ds`` will be the dataset name, and</span>
+<span class="sd">    ``ds`` can be used to implement further filtering logic.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">default_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?P&lt;year&gt;\d</span><span class="si">{4}</span><span class="s1">)(?P&lt;month&gt;[01]\d)(?P&lt;day&gt;[0123]\d)_&#39;</span>
                                <span class="sa">r</span><span class="s1">&#39;(?P&lt;hour&gt;[012]\d)(?P&lt;minute&gt;[0-5]\d)&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_datasets_with_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="n">strptime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_datasets_with_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="n">strptime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># Set the default regex if we don&#39;t have one</span>
         <span class="c1"># If strptime is provided, pass the regex group named &#39;strptime&#39; to strptime</span>
-        <span class="k">if</span> <span class="n">regex</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">regex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_regex</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span>
+        <span class="n">regex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_regex</span> <span class="k">if</span> <span class="n">regex</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span>
 
         <span class="c1"># Loop over the collection looking for keys that match our regex</span>
         <span class="n">found_date</span> <span class="o">=</span> <span class="kc">False</span>
@@ -163,7 +174,9 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">found_date</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No datasets with times found.&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DatasetCollection.filter_time_nearest"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection.filter_time_nearest">[docs]</a>    <span class="k">def</span> <span class="nf">filter_time_nearest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">strptime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="DatasetCollection.filter_time_nearest">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection.filter_time_nearest">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">filter_time_nearest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">strptime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Filter keys for an item closest to the desired time.</span>
 
 <span class="sd">        Loops over all keys in the collection and uses `regex` to extract and build</span>
@@ -192,13 +205,17 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
+<span class="sd">        Dataset</span>
 <span class="sd">            The value with a time closest to that desired</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_datasets_with_times</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">strptime</span><span class="p">),</span>
                    <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="nb">abs</span><span class="p">((</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()))[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="DatasetCollection.filter_time_range"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection.filter_time_range">[docs]</a>    <span class="k">def</span> <span class="nf">filter_time_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">strptime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="DatasetCollection.filter_time_range">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.DatasetCollection.filter_time_range">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">filter_time_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">strptime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Filter keys for all items within the desired time range.</span>
 
 <span class="sd">        Loops over all keys in the collection and uses `regex` to extract and build</span>
@@ -228,23 +245,26 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
+<span class="sd">        List[Dataset]</span>
 <span class="sd">            All values corresponding to times within the specified range</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The provided start time comes after the end time. No data will &#39;</span>
-                          <span class="s1">&#39;be returned.&#39;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
+                          <span class="s1">&#39;be returned.&#39;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_datasets_with_times</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">strptime</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">]</span></div>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the collection.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
 
     <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span></div>
 
 
-<span class="k">def</span> <span class="nf">_try_lower</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_try_lower</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">arg</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
@@ -252,75 +272,89 @@
     <span class="k">return</span> <span class="n">arg</span>
 
 
-<div class="viewcode-block" id="CaseInsensitiveStr"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveStr">[docs]</a><span class="k">class</span> <span class="nc">CaseInsensitiveStr</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="CaseInsensitiveStr">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveStr">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CaseInsensitiveStr</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extend ``str`` to use case-insensitive comparison and lookup.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="CaseInsensitiveStr.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveStr.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<div class="viewcode-block" id="CaseInsensitiveStr.__init__">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveStr.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create str with a _lowered property.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span> <span class="o">=</span> <span class="n">_try_lower</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Hash str using _lowered property.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive equal to self.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">,</span> <span class="n">_try_lower</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive greater than self.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">,</span> <span class="n">_try_lower</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive greater than or equal to self.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">,</span> <span class="n">_try_lower</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive less than self.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">,</span> <span class="n">_try_lower</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive less than or equal to to self.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">,</span> <span class="n">_try_lower</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive unequal to self.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lowered</span><span class="p">,</span> <span class="n">_try_lower</span><span class="p">(</span><span class="n">other</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="CaseInsensitiveDict"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveDict">[docs]</a><span class="k">class</span> <span class="nc">CaseInsensitiveDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+
+<div class="viewcode-block" id="CaseInsensitiveDict">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveDict">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CaseInsensitiveDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extend ``dict`` to use a case-insensitive key set.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="CaseInsensitiveDict.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveDict.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="CaseInsensitiveDict.__init__">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveDict.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a dict with a set of lowercase keys.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_keys_to_lower</span><span class="p">()</span></div>
 
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return true if other is case-insensitive equal to self.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">CaseInsensitiveDict</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return value from case-insensitive lookup of ``key``.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set value with lowercase ``key``.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">value</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete value associated with case-insensitive lookup of ``key``.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__delitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return true if key set includes case-insensitive ``key``.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
 
-<div class="viewcode-block" id="CaseInsensitiveDict.pop"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveDict.pop">[docs]</a>    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="CaseInsensitiveDict.pop">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CaseInsensitiveDict.pop">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove and return the value associated with case-insensitive ``key``.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">key</span><span class="p">))</span></div>
 
-    <span class="k">def</span> <span class="nf">_keys_to_lower</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_keys_to_lower</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert key set to lowercase.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
             <span class="n">val</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
@@ -328,7 +362,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">val</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TDSCatalog"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.TDSCatalog">[docs]</a><span class="k">class</span> <span class="nc">TDSCatalog</span><span class="p">:</span>
+
+<div class="viewcode-block" id="TDSCatalog">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.TDSCatalog">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TDSCatalog</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parse information from a THREDDS Client Catalog.</span>
 
@@ -349,7 +386,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TDSCatalog.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.TDSCatalog.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalog_url</span><span class="p">):</span>
+<div class="viewcode-block" id="TDSCatalog.__init__">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.TDSCatalog.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalog_url</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the TDSCatalog object.</span>
 
@@ -371,10 +410,10 @@
 
         <span class="c1"># If we were given an HTML link, warn about it and try to fix to xml</span>
         <span class="k">if</span> <span class="s1">&#39;html&#39;</span> <span class="ow">in</span> <span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;content-type&#39;</span><span class="p">]:</span>
-            <span class="kn">import</span> <span class="nn">warnings</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
             <span class="n">new_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;xml&#39;</span><span class="p">)</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;URL </span><span class="si">{}</span><span class="s1"> returned HTML. Changing to: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="p">,</span>
-                                                                         <span class="n">new_url</span><span class="p">))</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;URL </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="si">}</span><span class="s1"> returned HTML. Changing to: </span><span class="si">{</span><span class="n">new_url</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                          <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span> <span class="o">=</span> <span class="n">new_url</span>
             <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="p">)</span>
             <span class="n">resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
@@ -436,33 +475,33 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_process_datasets</span><span class="p">()</span></div>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the catalog name.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;When TDSCatalog is deleted, close any open sessions.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_process_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">catalog_url</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="k">if</span> <span class="s1">&#39;urlPath&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;urlPath&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;latest.xml&#39;</span><span class="p">:</span>
-                <span class="n">catalog_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span>
+        <span class="k">if</span> <span class="s1">&#39;urlPath&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span> <span class="ow">and</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;urlPath&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;latest.xml&#39;</span><span class="p">:</span>
+            <span class="n">catalog_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span>
 
         <span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">catalog_url</span><span class="o">=</span><span class="n">catalog_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">ds</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span>
 
-    <span class="k">def</span> <span class="nf">_process_catalog_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_catalog_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">catalog_ref</span> <span class="o">=</span> <span class="n">CatalogRef</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_url</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">catalog_refs</span><span class="p">[</span><span class="n">catalog_ref</span><span class="o">.</span><span class="n">title</span><span class="p">]</span> <span class="o">=</span> <span class="n">catalog_ref</span>
 
-    <span class="k">def</span> <span class="nf">_process_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">tag_type</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">tag_type</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Trying empty tag type as metadata&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">TDSCatalogMetadata</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span><span class="o">.</span><span class="n">metadata</span>
 
-    <span class="k">def</span> <span class="nf">_process_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Need to use list (of keys) because we modify the dict while iterating</span>
         <span class="k">for</span> <span class="n">ds_name</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">):</span>
             <span class="c1"># check to see if dataset needs to have access urls created, if not,</span>
@@ -478,7 +517,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ds_name</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">latest</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">latest</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the latest dataset, if available.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">services</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">service</span><span class="o">.</span><span class="n">is_resolver</span><span class="p">():</span>
@@ -489,7 +528,10 @@
     <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span></div>
 
 
-<div class="viewcode-block" id="CatalogRef"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CatalogRef">[docs]</a><span class="k">class</span> <span class="nc">CatalogRef</span><span class="p">:</span>
+
+<div class="viewcode-block" id="CatalogRef">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CatalogRef">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CatalogRef</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An object for holding catalog references obtained from a THREDDS Client Catalog.</span>
 
@@ -504,7 +546,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="CatalogRef.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CatalogRef.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">element_node</span><span class="p">):</span>
+<div class="viewcode-block" id="CatalogRef.__init__">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CatalogRef.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">element_node</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the catalogRef object.</span>
 
@@ -523,11 +567,14 @@
         <span class="n">href</span> <span class="o">=</span> <span class="n">element_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;{http://www.w3.org/1999/xlink}href&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">href</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">href</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the catalog reference.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
 
-<div class="viewcode-block" id="CatalogRef.follow"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CatalogRef.follow">[docs]</a>    <span class="k">def</span> <span class="nf">follow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CatalogRef.follow">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CatalogRef.follow">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">follow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Follow the catalog reference and return a new :class:`TDSCatalog`.</span>
 
 <span class="sd">        Returns</span>
@@ -538,10 +585,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">TDSCatalog</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">href</span><span class="p">)</span></div>
 
+
     <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span></div>
 
 
-<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Dataset">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An object for holding Datasets obtained from a THREDDS Client Catalog.</span>
 
@@ -561,7 +612,9 @@
     <span class="n">ncss_service_names</span> <span class="o">=</span> <span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;NetcdfSubset&#39;</span><span class="p">),</span>
                           <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;NetcdfServer&#39;</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Dataset.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_node</span><span class="p">,</span> <span class="n">catalog_url</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.__init__">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_node</span><span class="p">,</span> <span class="n">catalog_url</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the Dataset object.</span>
 
 <span class="sd">        Parameters</span>
@@ -589,11 +642,14 @@
                 <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Must pass along the catalog URL to resolve &#39;</span>
                             <span class="s1">&#39;the latest.xml dataset!&#39;</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the dataset.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Dataset.resolve_url"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.resolve_url">[docs]</a>    <span class="k">def</span> <span class="nf">resolve_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalog_url</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.resolve_url">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.resolve_url">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resolve_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalog_url</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve the url of the dataset when reading latest.xml.</span>
 
 <span class="sd">        Parameters</span>
@@ -608,26 +664,26 @@
             <span class="n">resolver_xml</span> <span class="o">=</span> <span class="n">session_manager</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">resolver_url</span><span class="p">)</span>
             <span class="n">tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">resolver_xml</span><span class="p">)</span>
             <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
-            <span class="k">if</span> <span class="s1">&#39;name&#39;</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">catalog_name</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">catalog_name</span> <span class="o">=</span> <span class="s1">&#39;No name found&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">catalog_name</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;No name found&#39;</span><span class="p">)</span>
             <span class="n">resolved_url</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
             <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">iter</span><span class="p">():</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
                     <span class="n">tag_type</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;dataset&#39;</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="s1">&#39;urlPath&#39;</span> <span class="ow">in</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
-                            <span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
-                            <span class="n">resolved_url</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">url_path</span>
-                            <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">if</span> <span class="n">tag_type</span> <span class="o">==</span> <span class="s1">&#39;dataset&#39;</span> <span class="ow">and</span> <span class="s1">&#39;urlPath&#39;</span> <span class="ow">in</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+                        <span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+                        <span class="n">resolved_url</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">url_path</span>
+                        <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">resolved_url</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;no dataset url path found in latest.xml!&#39;</span><span class="p">)</span></div>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;no dataset url path found in latest.xml!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="Dataset.make_access_urls"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.make_access_urls">[docs]</a>    <span class="k">def</span> <span class="nf">make_access_urls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalog_url</span><span class="p">,</span> <span class="n">all_services</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Dataset.make_access_urls">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.make_access_urls">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_access_urls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalog_url</span><span class="p">,</span> <span class="n">all_services</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Make fully qualified urls for the access methods enabled on the dataset.</span>
 
 <span class="sd">        Parameters</span>
@@ -663,28 +719,34 @@
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">CompoundService</span><span class="p">):</span>
                     <span class="k">for</span> <span class="n">subservice</span> <span class="ow">in</span> <span class="n">service</span><span class="o">.</span><span class="n">services</span><span class="p">:</span>
                         <span class="n">server_base</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="n">subservice</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
-                        <span class="n">access_urls</span><span class="p">[</span><span class="n">subservice</span><span class="o">.</span><span class="n">service_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_base</span><span class="p">,</span>
-                                                                       <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span><span class="p">)</span>
+                        <span class="n">access_urls</span><span class="p">[</span><span class="n">subservice</span><span class="o">.</span><span class="n">service_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">server_base</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">server_base</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="n">service</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
-                    <span class="n">access_urls</span><span class="p">[</span><span class="n">service</span><span class="o">.</span><span class="n">service_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_base</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span><span class="p">)</span>
+                    <span class="n">access_urls</span><span class="p">[</span><span class="n">service</span><span class="o">.</span><span class="n">service_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">server_base</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span>
 
         <span class="c1"># process access children of dataset elements</span>
-        <span class="k">for</span> <span class="n">service_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_element_info</span><span class="p">:</span>
-            <span class="n">url_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_element_info</span><span class="p">[</span><span class="n">service_type</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">service_type</span> <span class="ow">in</span> <span class="n">all_service_dict</span><span class="p">:</span>
-                <span class="n">server_base</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="n">all_service_dict</span><span class="p">[</span><span class="n">service_type</span><span class="p">]</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
-                <span class="n">access_urls</span><span class="p">[</span><span class="n">service_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_base</span><span class="p">,</span> <span class="n">url_path</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">sname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_element_info</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sname</span> <span class="ow">in</span> <span class="n">all_service_dict</span><span class="p">:</span>
+                <span class="n">service</span> <span class="o">=</span> <span class="n">all_service_dict</span><span class="p">[</span><span class="n">sname</span><span class="p">]</span>
+                <span class="n">url_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_element_info</span><span class="p">[</span><span class="n">sname</span><span class="p">]</span>
+                <span class="n">server_base</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="n">service</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+                <span class="n">access_urls</span><span class="p">[</span><span class="n">service</span><span class="o">.</span><span class="n">service_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">server_base</span> <span class="o">+</span> <span class="n">url_path</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span> <span class="o">=</span> <span class="n">access_urls</span></div>
 
-<div class="viewcode-block" id="Dataset.add_access_element_info"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.add_access_element_info">[docs]</a>    <span class="k">def</span> <span class="nf">add_access_element_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">access_element</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Dataset.add_access_element_info">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.add_access_element_info">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_access_element_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">access_element</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an access method from a catalog element.&quot;&quot;&quot;</span>
         <span class="n">service_name</span> <span class="o">=</span> <span class="n">access_element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;serviceName&#39;</span><span class="p">]</span>
         <span class="n">url_path</span> <span class="o">=</span> <span class="n">access_element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;urlPath&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">access_element_info</span><span class="p">[</span><span class="n">service_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">url_path</span></div>
 
-<div class="viewcode-block" id="Dataset.download"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.download">[docs]</a>    <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Dataset.download">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.download">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">download</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Download the dataset to a local file.</span>
 
 <span class="sd">        Parameters</span>
@@ -695,11 +757,13 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote_open</span><span class="p">()</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
-                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">())</span></div>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote_open</span><span class="p">()</span> <span class="k">as</span> <span class="n">infile</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="Dataset.remote_open"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.remote_open">[docs]</a>    <span class="k">def</span> <span class="nf">remote_open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Dataset.remote_open">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.remote_open">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remote_open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Open the remote dataset for random access.</span>
 
 <span class="sd">        Get a file-like object for reading from the remote dataset, providing random access,</span>
@@ -707,7 +771,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        mode : &#39;b&#39; or &#39;t&#39;, optional</span>
+<span class="sd">        mode : `&#39;b&#39;` or `&#39;t&#39;`, optional</span>
 <span class="sd">            Mode with which to open the remote data; &#39;b&#39; for binary, &#39;t&#39; for text. Defaults</span>
 <span class="sd">            to &#39;b&#39;.</span>
 
@@ -721,16 +785,20 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A random access, file-like object</span>
+<span class="sd">        fobj : file-like object</span>
+<span class="sd">            A random access, file-like object for reading data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fobj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="s1">&#39;HTTPServer&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span>
             <span class="n">fobj</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">fobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="p">,</span> <span class="n">errors</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">fobj</span></div>
 
-<div class="viewcode-block" id="Dataset.remote_access"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.remote_access">[docs]</a>    <span class="k">def</span> <span class="nf">remote_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_xarray</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Dataset.remote_access">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.remote_access">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remote_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_xarray</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Access the remote dataset.</span>
 
 <span class="sd">        Open the remote dataset and get a netCDF4-compatible `Dataset` object providing</span>
@@ -751,12 +819,16 @@
         <span class="k">if</span> <span class="n">service</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">service</span> <span class="o">=</span> <span class="s1">&#39;CdmRemote&#39;</span> <span class="k">if</span> <span class="s1">&#39;CdmRemote&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span> <span class="k">else</span> <span class="s1">&#39;OPENDAP&#39;</span>
 
-        <span class="k">if</span> <span class="n">service</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;CdmRemote&#39;</span><span class="p">),</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;OPENDAP&#39;</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">service</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;CdmRemote&#39;</span><span class="p">),</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;OPENDAP&#39;</span><span class="p">),</span>
+                           <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;DODS&#39;</span><span class="p">)):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not a valid service for remote_access&#39;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">use_xarray</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Dataset.subset"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.subset">[docs]</a>    <span class="k">def</span> <span class="nf">subset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Dataset.subset">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.subset">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">subset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Subset the dataset.</span>
 
 <span class="sd">        Open the remote dataset and get a client for talking to ``service``.</span>
@@ -786,7 +858,10 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_with_service</span><span class="p">(</span><span class="n">service</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Dataset.access_with_service"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.access_with_service">[docs]</a>    <span class="k">def</span> <span class="nf">access_with_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">use_xarray</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Dataset.access_with_service">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.Dataset.access_with_service">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">access_with_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">use_xarray</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Access the dataset using a particular service.</span>
 
 <span class="sd">        Return an Python object capable of communicating with the server using the particular</span>
@@ -806,32 +881,35 @@
         <span class="n">service</span> <span class="o">=</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;CdmRemote&#39;</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">use_xarray</span><span class="p">:</span>
-                <span class="kn">from</span> <span class="nn">.cdmr.xarray_support</span> <span class="kn">import</span> <span class="n">CDMRemoteStore</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">.cdmr.xarray_support</span><span class="w"> </span><span class="kn">import</span> <span class="n">CDMRemoteStore</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+                    <span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
                     <span class="n">provider</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">url</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">CDMRemoteStore</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>  <span class="c1"># noqa: E731</span>
                 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;CdmRemote access needs xarray to be installed.&#39;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;CdmRemote access needs xarray&#39;</span>
+                                      <span class="s1">&#39;to be installed.&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="kn">from</span> <span class="nn">.cdmr</span> <span class="kn">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">CDMRDataset</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">.cdmr</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">CDMRDataset</span>
                 <span class="n">provider</span> <span class="o">=</span> <span class="n">CDMRDataset</span>
-        <span class="k">elif</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;OPENDAP&#39;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;OPENDAP&#39;</span> <span class="ow">or</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;DODS&#39;</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">use_xarray</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+                    <span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
                     <span class="n">provider</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span>
                 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;xarray needs to be installed if `use_xarray` is True.&#39;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;xarray needs to be installed if &#39;</span>
+                                      <span class="s1">&#39;`use_xarray` is True.&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">NC4Dataset</span>
+                    <span class="kn">from</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span> <span class="k">as</span> <span class="n">NC4Dataset</span>
                     <span class="n">provider</span> <span class="o">=</span> <span class="n">NC4Dataset</span>
                 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;OPENDAP access needs netCDF4-python to be installed.&#39;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;OPENDAP access needs netCDF4-python&#39;</span>
+                                      <span class="s1">&#39;to be installed.&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
         <span class="k">elif</span> <span class="n">service</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncss_service_names</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">.ncss</span> <span class="kn">import</span> <span class="n">NCSS</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">.ncss</span><span class="w"> </span><span class="kn">import</span> <span class="n">NCSS</span>
             <span class="n">provider</span> <span class="o">=</span> <span class="n">NCSS</span>
-        <span class="k">elif</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;HTTPServer&#39;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">service</span> <span class="o">==</span> <span class="s1">&#39;HTTPServer&#39;</span> <span class="ow">or</span> <span class="n">service</span> <span class="o">==</span> <span class="n">CaseInsensitiveStr</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">):</span>
             <span class="n">provider</span> <span class="o">=</span> <span class="n">session_manager</span><span class="o">.</span><span class="n">urlopen</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not an access method supported by Siphon&#39;</span><span class="p">)</span>
@@ -839,12 +917,16 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">provider</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span><span class="p">[</span><span class="n">service</span><span class="p">])</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not available for this dataset&#39;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">service</span> <span class="o">+</span> <span class="s1">&#39; is not available for this dataset&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span></div>
+
 
     <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span></div>
 
 
-<div class="viewcode-block" id="SimpleService"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.SimpleService">[docs]</a><span class="k">class</span> <span class="nc">SimpleService</span><span class="p">:</span>
+
+<div class="viewcode-block" id="SimpleService">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.SimpleService">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SimpleService</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Hold information about an access service enabled on a dataset.</span>
 
 <span class="sd">    Attributes</span>
@@ -860,7 +942,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SimpleService.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.SimpleService.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_node</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleService.__init__">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.SimpleService.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_node</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the Dataset object.</span>
 
 <span class="sd">        Parameters</span>
@@ -874,12 +958,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">service_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;base&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">access_urls</span> <span class="o">=</span> <span class="p">{}</span></div>
 
-<div class="viewcode-block" id="SimpleService.is_resolver"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.SimpleService.is_resolver">[docs]</a>    <span class="k">def</span> <span class="nf">is_resolver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="SimpleService.is_resolver">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.SimpleService.is_resolver">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_resolver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the service is a resolver service.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_type</span> <span class="o">==</span> <span class="s1">&#39;Resolver&#39;</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_type</span> <span class="o">==</span> <span class="s1">&#39;Resolver&#39;</span></div>
+</div>
 
 
-<div class="viewcode-block" id="CompoundService"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CompoundService">[docs]</a><span class="k">class</span> <span class="nc">CompoundService</span><span class="p">:</span>
+
+<div class="viewcode-block" id="CompoundService">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CompoundService">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CompoundService</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Hold information about compound services.</span>
 
 <span class="sd">    Attributes</span>
@@ -894,7 +985,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="CompoundService.__init__"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CompoundService.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_node</span><span class="p">):</span>
+<div class="viewcode-block" id="CompoundService.__init__">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CompoundService.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_node</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a :class:`CompoundService` object.</span>
 
 <span class="sd">        Parameters</span>
@@ -915,28 +1008,32 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">services</span> <span class="o">=</span> <span class="n">services</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">number_of_subservices</span> <span class="o">=</span> <span class="n">subservices</span></div>
 
-<div class="viewcode-block" id="CompoundService.is_resolver"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CompoundService.is_resolver">[docs]</a>    <span class="k">def</span> <span class="nf">is_resolver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="CompoundService.is_resolver">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.CompoundService.is_resolver">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_resolver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the service is a resolver service.</span>
 
 <span class="sd">        For a compound service, this is always False because it will never be</span>
 <span class="sd">        a resolver.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="kc">False</span></div></div>
+        <span class="k">return</span> <span class="kc">False</span></div>
+</div>
 
 
-<span class="k">def</span> <span class="nf">_find_base_tds_url</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">):</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_find_base_tds_url</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Identify the base URL of the THREDDS server from the catalog URL.</span>
 
 <span class="sd">    Will retain URL scheme, host, port and username/password when present.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url_components</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">url_components</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">catalog_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">url_components</span><span class="o">.</span><span class="n">path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">catalog_url</span>
+    <span class="n">scheme</span><span class="p">,</span> <span class="n">netloc</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">scheme</span> <span class="o">+</span> <span class="s1">&#39;://&#39;</span> <span class="o">+</span> <span class="n">netloc</span>
 
 
-<div class="viewcode-block" id="get_latest_access_url"><a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.get_latest_access_url">[docs]</a><span class="k">def</span> <span class="nf">get_latest_access_url</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">,</span> <span class="n">access_method</span><span class="p">):</span>
+<div class="viewcode-block" id="get_latest_access_url">
+<a class="viewcode-back" href="../../api/catalog.html#siphon.catalog.get_latest_access_url">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_latest_access_url</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">,</span> <span class="n">access_method</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the data access url to the latest data using a specified access method.</span>
 
 <span class="sd">    These are available for a data available from a top level dataset catalog (url).</span>
@@ -958,6 +1055,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">TDSCatalog</span><span class="p">(</span><span class="n">catalog_url</span><span class="p">)</span><span class="o">.</span><span class="n">latest</span><span class="o">.</span><span class="n">access_urls</span><span class="p">[</span><span class="n">access_method</span><span class="p">]</span></div>
+
 </pre></div>
 
            </div>
@@ -967,8 +1065,8 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Oct 31, 2024 at 20:04:14.
+    <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
+      <span class="lastupdated">Last updated on Mar 11, 2025 at 16:53:02.
       </span></p>
   </div>
 

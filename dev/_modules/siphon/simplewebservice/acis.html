@@ -1,27 +1,26 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>siphon.simplewebservice.acis &mdash; Siphon 0.0</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
-    <link rel="canonical" href="https://unidata.github.io/siphon/latest/_modules/siphon/simplewebservice/acis.html"/>
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>siphon.simplewebservice.acis &mdash; Siphon 0.10dev</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=4e1f738f" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://unidata.github.io/siphon/latest/_modules/siphon/simplewebservice/acis.html"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=82662543"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -32,15 +31,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> Siphon
-            <img src="../../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Siphon
+              <img src="../../../_static/siphon_150x150.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -49,6 +49,7 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installguide.html">Installation Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/index.html">The Siphon API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Siphon Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../developerguide.html">Developer’s Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CONTRIBUTING.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Citing Siphon</a></li>
@@ -68,9 +69,9 @@
           
 <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>siphon.simplewebservice.acis</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">siphon.simplewebservice.acis</li>
     <li class="source-link">
         
     </li>
@@ -87,12 +88,14 @@
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
 <span class="sd">&quot;&quot;&quot;Requests data from the ACIS Web Services API.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
-<span class="kn">from</span> <span class="nn">..http_util</span> <span class="kn">import</span> <span class="n">session_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..http_util</span><span class="w"> </span><span class="kn">import</span> <span class="n">session_manager</span>
 
 
-<div class="viewcode-block" id="acis_request"><a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.acis.acis_request">[docs]</a><span class="k">def</span> <span class="nf">acis_request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+<div class="viewcode-block" id="acis_request">
+<a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.acis.acis_request">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">acis_request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Request data from the ACIS Web Services API.</span>
 
 <span class="sd">    Makes a request from the ACIS Web Services API for data</span>
@@ -105,7 +108,7 @@
 
 <span class="sd">    ACIS Web Services is a distributed system! A call to the main URL can be</span>
 <span class="sd">    delivered to any climate center running a public instance of the service.</span>
-<span class="sd">    This makes the calls efficient, but also occasionaly results in failed</span>
+<span class="sd">    This makes the calls efficient, but also occasionally results in failed</span>
 <span class="sd">    calls when a server you are directed to is having problems. Generally,</span>
 <span class="sd">    reconnecting after waiting a few seconds will resolve a problem. If problems</span>
 <span class="sd">    are persistent, contact ACIS developers at the High Plains Regional Climate</span>
@@ -121,11 +124,12 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    A dictionary of data based on the JSON parameters</span>
+<span class="sd">    dict[str, Any]</span>
+<span class="sd">        A dictionary of data based on the JSON parameters</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
-<span class="sd">    :class: `ACIS_API_Exception`</span>
+<span class="sd">    `AcisApiException`</span>
 <span class="sd">        When the API is unable to establish a connection or returns</span>
 <span class="sd">        unparsable data.</span>
 
@@ -138,19 +142,22 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">session_manager</span><span class="o">.</span><span class="n">create_session</span><span class="p">()</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="n">method</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
                                                          <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">AcisApiException</span><span class="p">(</span><span class="s1">&#39;Connection Timeout&#39;</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">TooManyRedirects</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">AcisApiException</span><span class="p">(</span><span class="s1">&#39;Bad URL. Check your ACIS connection method string.&#39;</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AcisApiException</span><span class="p">(</span><span class="s1">&#39;Connection Timeout&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">TooManyRedirects</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AcisApiException</span><span class="p">(</span><span class="s1">&#39;Bad URL. Check your ACIS connection method string.&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">AcisApiException</span><span class="p">(</span><span class="s1">&#39;No data returned! The ACIS parameter dictionary&#39;</span>
-                               <span class="s1">&#39;may be incorrectly formatted&#39;</span><span class="p">)</span></div>
+                               <span class="s1">&#39;may be incorrectly formatted&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span></div>
 
 
-<div class="viewcode-block" id="AcisApiException"><a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.acis.AcisApiException">[docs]</a><span class="k">class</span> <span class="nc">AcisApiException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Handle exceptions raised by the acis_request function.&quot;&quot;&quot;</span>
 
-    <span class="k">pass</span></div>
+<div class="viewcode-block" id="AcisApiException">
+<a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.acis.AcisApiException">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AcisApiException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>  <span class="c1"># noqa: N818</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Handle exceptions raised by the acis_request function.&quot;&quot;&quot;</span></div>
+
+
 </pre></div>
 
            </div>
@@ -160,8 +167,8 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018, Siphon Contributors.
-      <span class="lastupdated">Last updated on Oct 31, 2024 at 20:04:14.
+    <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
+      <span class="lastupdated">Last updated on Mar 11, 2025 at 16:53:02.
       </span></p>
   </div>
 
