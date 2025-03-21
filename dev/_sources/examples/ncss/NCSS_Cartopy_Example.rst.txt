@@ -140,7 +140,7 @@ query string.
  .. code-block:: none
 
 
-    var=Temperature_surface&time=2025-03-11T16%3A52%3A22.032371%2B00%3A00&west=-111&east=-100&south=35&north=43&accept=netcdf4
+    var=Temperature_surface&time=2025-03-21T21%3A27%3A19.308920%2B00%3A00&west=-111&east=-100&south=35&north=43&accept=netcdf4
 
 
 
@@ -166,7 +166,7 @@ the data).
 
  .. code-block:: none
 
-    ['time1', 'latitude', 'reftime1', 'longitude', 'Temperature_surface', 'LatLon_721X1440-0p13S-180p00E-2']
+    ['reftime', 'latitude', 'time', 'longitude', 'Temperature_surface', 'LatLon_721X1440-0p13S-180p00E-2']
 
 
 
@@ -263,7 +263,7 @@ Now we can plot these up using matplotlib and cartopy.
 
 
 .. image-sg:: /examples/ncss/images/sphx_glr_NCSS_Cartopy_Example_001.png
-   :alt: Temperature forecast (°F) for  11 March 2025 1800Z
+   :alt: Temperature forecast (°F) for  21 March 2025 2100Z
    :srcset: /examples/ncss/images/sphx_glr_NCSS_Cartopy_Example_001.png
    :class: sphx-glr-single-img
 
@@ -273,14 +273,14 @@ Now we can plot these up using matplotlib and cartopy.
  .. code-block:: none
 
 
-    [<matplotlib.lines.Line2D object at 0x7fc84b2ca290>]
+    [<matplotlib.lines.Line2D object at 0x7f5f3c3f5810>]
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.850 seconds)
+   **Total running time of the script:** (0 minutes 0.770 seconds)
 
 
 .. _sphx_glr_download_examples_ncss_NCSS_Cartopy_Example.py:
