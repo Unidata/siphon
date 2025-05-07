@@ -312,6 +312,11 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
 
+linkcheck_ignore = [
+    # For some reason GHA gets a 403 from Stack Overflow
+    r'https://stackoverflow.com/questions/tagged/python-siphon'
+    ]
+
 # Dictionary of URL redirects allowed
 linkcheck_allowed_redirects = {
     r'https://doi.org/.*': r'https://.*',
