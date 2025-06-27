@@ -43,16 +43,16 @@ doc = [
 examples = [
     "matplotlib>=3.5",
     "cartopy>=0.21",
-    "netCDF4",
     "metpy",
 ]
 test = [
+    "netCDF4",
     "pytest>=7.0",
-    "netCDF4>=1.5.8",
     "vcrpy>=4.3.1",
     "siphon[extras]"
 ]
 extras = [
+    "netCDF4>=1.5.8",
     "xarray>=2022.6.0"
 ]
 
