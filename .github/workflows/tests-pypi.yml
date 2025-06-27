@@ -58,15 +58,16 @@ jobs:
         opt_deps = config['optional-dependencies']
 
         # Generate a Minimum dependency file
-        for src, fname in [(config['dependencies'], 'requirements.txt'),
-                           (opt_deps['test'], 'test_requirements.txt'), (opt_deps['extras'], 'extra_requirements.txt')]:
-          with (Path('ci') / fname).open('wt') as out:
+        for src, fname in [(config['dependencies'], 'ci/requirements.txt'),
+                           (opt_deps['test'], 'ci-dev/test_requirements.txt'),
+                           (opt_deps['extras'], 'ci/extra_requirements.txt')]:
+          with Path(fname).open('wt') as out:
             for dep in src:
               dep = dep.split(';')[0]
               if 'siphon' not in dep:
                 out.write(dep.replace('>=', '==') + '\n')
             # Needed until minium vcrpy is >=7.0.0 for urllib3>=2.3
-            if fname == 'requirements.txt':
+            if fname == 'ci/requirements.txt':
               out.write('urllib3==2.2.3\n')
         EOF
 
