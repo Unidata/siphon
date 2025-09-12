@@ -106,9 +106,10 @@ class TestComplexTypes:
 
     def test_spatial_range_valid(self):
         """Test parsing of valid spatial range."""
-        xml = '<northsouth><start>44.1</start>' \
-              '<size>20.6</size><units>degrees_north</units>' \
-              '</northsouth>'
+        xml = (
+            '<northsouth><start>44.1</start><size>20.6</size>'
+            '<units>degrees_north</units></northsouth>'
+        )
         expected = {'start': 44.1,
                     'size': 20.6,
                     'units': 'degrees_north'}
@@ -119,8 +120,7 @@ class TestComplexTypes:
 
     def test_controlled_vocabulary(self):
         """Test parsing of vocabulary tag."""
-        xml = '<name vocabulary="MyVocabName">' \
-              'NOAA and NCEP</name>'
+        xml = '<name vocabulary="MyVocabName">NOAA and NCEP</name>'
         expected = {'vocabulary': 'MyVocabName',
                     'name': 'NOAA and NCEP'}
         element = ET.fromstring(xml)
@@ -139,9 +139,11 @@ class TestComplexTypes:
 
     def test_source_type(self):
         """Test parsing of source."""
-        xml = '<publisher><name vocabulary="DIF">UCAR/NCAR/CDP</name>' \
-              '<contact url="http://dataportal.ucar.edu" ' \
-              'email="cdp@ucar.edu"/></publisher>'
+        xml = (
+            '<publisher><name vocabulary="DIF">UCAR/NCAR/CDP</name>'
+            '<contact url="http://dataportal.ucar.edu" '
+            'email="cdp@ucar.edu"/></publisher>'
+        )
 
         element = ET.fromstring(xml)
         expected = {'vocabulary': 'DIF',
@@ -153,8 +155,10 @@ class TestComplexTypes:
 
     def test_time_coverage_type1(self):
         """Test parsing of one form of timeCoverage tag."""
-        xml = '<timeCoverage><end>present</end><duration>10 days</duration>' \
+        xml = (
+            '<timeCoverage><end>present</end><duration>10 days</duration>'
             '<resolution>15 minutes</resolution></timeCoverage>'
+        )
         element = ET.fromstring(xml)
         expected = {'end': 'present',
                     'duration': '10 days',
@@ -164,8 +168,10 @@ class TestComplexTypes:
 
     def test_time_coverage_type2(self):
         """Test parsing of a second form of timeCoverage tag."""
-        xml = '<timeCoverage><start>1999-11-16T12:00:00</start>' \
+        xml = (
+            '<timeCoverage><start>1999-11-16T12:00:00</start>'
             '<end>present</end></timeCoverage>'
+        )
         element = ET.fromstring(xml)
         expected = {'end': 'present',
                     'start': '1999-11-16T12:00:00'}
@@ -174,8 +180,10 @@ class TestComplexTypes:
 
     def test_time_coverage_type3(self):
         """Test parsing of a third type of timeCoverage tag."""
-        xml = '<timeCoverage><start>1999-11-16T12:00:00</start>' \
+        xml = (
+            '<timeCoverage><start>1999-11-16T12:00:00</start>'
             '<duration>P3M</duration></timeCoverage>'
+        )
         element = ET.fromstring(xml)
         expected = {'duration': 'P3M',
                     'start': '1999-11-16T12:00:00'}
@@ -184,8 +192,10 @@ class TestComplexTypes:
 
     def test_variable(self):
         """Test parsing of variable tags."""
-        xml = '<variable name="wdir" vocabulary_name="Wind Direction" ' \
-              'units= "degrees">Wind Direction @ surface</variable>'
+        xml = (
+            '<variable name="wdir" vocabulary_name="Wind Direction" '
+            'units= "degrees">Wind Direction @ surface</variable>'
+        )
         element = ET.fromstring(xml)
         expected = {'name': 'wdir',
                     'vocabulary_name': 'Wind Direction',
@@ -213,8 +223,10 @@ class TestComplexTypes:
 
     def test_variable_map(self):
         """Test parsing a variableMap tag."""
-        xml = '<variableMap xmlns:xlink="http://www.w3.org/1999/xlink" ' \
-              'xlink:href="../standardQ/Eta.xml" />'
+        xml = (
+            '<variableMap xmlns:xlink="http://www.w3.org/1999/xlink" '
+            'xlink:href="../standardQ/Eta.xml" />'
+        )
         element = ET.fromstring(xml)
         expected = {
             '{http://www.w3.org/1999/xlink}href': '../standardQ/Eta.xml'}
@@ -223,8 +235,10 @@ class TestComplexTypes:
 
     def test_variable_map2(self):
         """Test parsing another form of VariableMap tag."""
-        xml = '<variableMap xmlns:xlink="http://www.w3.org/1999/xlink" ' \
-              'xlink:href="../standardQ/Eta.xml" xlink:title="variables"/>'
+        xml = (
+            '<variableMap xmlns:xlink="http://www.w3.org/1999/xlink" '
+            'xlink:href="../standardQ/Eta.xml" xlink:title="variables"/>'
+        )
         element = ET.fromstring(xml)
         expected = {'{http://www.w3.org/1999/xlink}href':
                     '../standardQ/Eta.xml',
@@ -235,14 +249,16 @@ class TestComplexTypes:
 
     def test_variables(self):
         """Test parsing multiple variables."""
-        xml = '<variables vocabulary="CF-1.0">' \
-              '<variable name="wv" vocabulary_name="Wind Speed" ' \
-              'units="m/s">Wind Speed @ surface</variable>' \
-              '<variable name="wdir" vocabulary_name="Wind Direction" ' \
-              'units= "degrees">Wind Direction @ surface</variable>' \
-              '<variable name="o3c" vocabulary_name="Ozone Concentration"' \
-              ' units="g/g">Ozone Concentration @ surface</variable>' \
-              '</variables>'
+        xml = (
+            '<variables vocabulary="CF-1.0">'
+            '<variable name="wv" vocabulary_name="Wind Speed" '
+            'units="m/s">Wind Speed @ surface</variable>'
+            '<variable name="wdir" vocabulary_name="Wind Direction" '
+            'units= "degrees">Wind Direction @ surface</variable>'
+            '<variable name="o3c" vocabulary_name="Ozone Concentration"'
+            ' units="g/g">Ozone Concentration @ surface</variable>'
+            '</variables>'
+        )
         element = ET.fromstring(xml)
         actual = self.st.handle_variables(element)
         assert 'vocabulary' in actual
@@ -253,11 +269,13 @@ class TestComplexTypes:
 
     def test_variables2(self):
         """Test parsing multiple variables from a variableMap."""
-        xml = '<variables vocabulary="GRIB-NCEP" ' \
-              ' xmlns:xlink="http://www.w3.org/1999/xlink" ' \
-              'xlink:href="http://www.unidata.ucar.edu/GRIB-NCEPtable2.xml">' \
-              '<variableMap xlink:href="../standardQ/Eta.xml" />' \
-              '</variables>'
+        xml = (
+            '<variables vocabulary="GRIB-NCEP" '
+            ' xmlns:xlink="http://www.w3.org/1999/xlink" '
+            'xlink:href="http://www.unidata.ucar.edu/GRIB-NCEPtable2.xml">'
+            '<variableMap xlink:href="../standardQ/Eta.xml" />'
+            '</variables>'
+        )
         element = ET.fromstring(xml)
         actual = self.st.handle_variables(element)
         assert 'vocabulary' in actual
@@ -326,35 +344,37 @@ class TestGeospatialCoverage:
         """Set up tests with a common set of xml."""
         cls.element_name = 'geospatialCoverage'
 
-        xml1 = '<geospatialCoverage zpositive="down">' \
-               '<northsouth>' \
-               '<start>10</start><size>80</size>' \
-               '<resolution>2</resolution>' \
-               '<units>degrees_north</units>' \
-               '</northsouth>' \
-               '<eastwest>' \
-               '<start>-130</start>' \
-               '<size>260</size>' \
-               '<resolution>2</resolution>' \
-               '<units>degrees_east</units>' \
-               '</eastwest>' \
-               '<updown>' \
-               '<start>0</start>' \
-               '<size>22</size>' \
-               '<resolution>0.5</resolution>' \
-               '<units>km</units>' \
-               '</updown>' \
-               '</geospatialCoverage>'
-
-        xml2 = '<geospatialCoverage>' \
-               '<name vocabulary="Thredds">global</name>' \
-               '</geospatialCoverage>'
-
-        cls.xml_warn1 = '<geospatialCoverage crazy="yep">' \
+        xml1 = (
+            '<geospatialCoverage zpositive="down">'
+            '<northsouth>'
+            '<start>10</start><size>80</size>'
+            '<resolution>2</resolution>'
+            '<units>degrees_north</units>'
+            '</northsouth>'
+            '<eastwest>'
+            '<start>-130</start>'
+            '<size>260</size>'
+            '<resolution>2</resolution>'
+            '<units>degrees_east</units>'
+            '</eastwest>'
+            '<updown>'
+            '<start>0</start>'
+            '<size>22</size>'
+            '<resolution>0.5</resolution>'
+            '<units>km</units>'
+            '</updown>'
             '</geospatialCoverage>'
+        )
 
-        cls.xml_warn2 = '<geospatialCoverage zpositive="waka-waka">' \
+        xml2 = (
+            '<geospatialCoverage>'
+            '<name vocabulary="Thredds">global</name>'
             '</geospatialCoverage>'
+        )
+
+        cls.xml_warn1 = '<geospatialCoverage crazy="yep"></geospatialCoverage>'
+
+        cls.xml_warn2 = '<geospatialCoverage zpositive="waka-waka"></geospatialCoverage>'
 
         cls.md1 = TDSCatalogMetadata(ET.fromstring(xml1)).metadata
         cls.md2 = TDSCatalogMetadata(ET.fromstring(xml2)).metadata
@@ -394,13 +414,15 @@ class TestMetadata:
 
     def test_documentation_element_summary(self):
         """Test parsing a summary element."""
-        xml = '<documentation type="summary"> The SAGE III Ozone Loss and ' \
-              'Validation Experiment (SOLVE) was a measurement campaign ' \
-              'designed to examine the processes controlling ozone levels ' \
-              'at mid- to high high latitudes. Measurements were made in ' \
-              'the Arctic high-latitude region in winter using the NASA ' \
-              'DC-8 and ER-2 aircraft,as well as balloon platforms and ' \
-              'ground-based instruments. </documentation>'
+        xml = (
+            '<documentation type="summary"> The SAGE III Ozone Loss and '
+            'Validation Experiment (SOLVE) was a measurement campaign '
+            'designed to examine the processes controlling ozone levels '
+            'at mid- to high high latitudes. Measurements were made in '
+            'the Arctic high-latitude region in winter using the NASA '
+            'DC-8 and ER-2 aircraft,as well as balloon platforms and '
+            'ground-based instruments. </documentation>'
+        )
 
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
@@ -412,11 +434,13 @@ class TestMetadata:
 
     def test_documentation_element_rights(self):
         """Test parsing rights documentation."""
-        xml = '<documentation type="rights"> Users of these data files are ' \
-              'expected  to follow the NASA ESPO Archive guidelines for ' \
-              'use of the SOLVE data, including consulting with the PIs ' \
-              'of the individual measurements  for interpretation and ' \
-              'credit.</documentation>'
+        xml = (
+            '<documentation type="rights"> Users of these data files are '
+            'expected  to follow the NASA ESPO Archive guidelines for '
+            'use of the SOLVE data, including consulting with the PIs '
+            'of the individual measurements  for interpretation and '
+            'credit.</documentation>'
+        )
 
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
@@ -428,8 +452,10 @@ class TestMetadata:
 
     def test_documentation_element_processing_level(self):
         """Test parsing processing_level documentation."""
-        xml = '<documentation type="processing_level"> Transmitted through ' \
-              'Unidata Internet Data Distribution.</documentation>'
+        xml = (
+            '<documentation type="processing_level"> Transmitted through '
+            'Unidata Internet Data Distribution.</documentation>'
+        )
 
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
@@ -441,8 +467,7 @@ class TestMetadata:
 
     def test_documentation_element_reference_time(self):
         """Test parsing reference time documentation."""
-        xml = '<documentation type="Reference Time">' \
-              '2015-05-28T12:00:00Z</documentation>'
+        xml = '<documentation type="Reference Time">2015-05-28T12:00:00Z</documentation>'
 
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
@@ -454,9 +479,11 @@ class TestMetadata:
 
     def test_documentation_element_xlink(self):
         """Test parsing xlink documentation."""
-        xml = '<documentation xmlns:xlink="http://www.w3.org/1999/xlink" ' \
-              'xlink:href="http://espoarchive.nasa.gov/archive/index.html" ' \
-              'xlink:title="Earth Science Project Office Archives"/>'
+        xml = (
+            '<documentation xmlns:xlink="http://www.w3.org/1999/xlink" '
+            'xlink:href="http://espoarchive.nasa.gov/archive/index.html" '
+            'xlink:title="Earth Science Project Office Archives"/>'
+        )
 
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
@@ -486,10 +513,12 @@ class TestMetadata:
 
     def test_publisher(self):
         """Test parsing publisher tags."""
-        xml = '<publisher><name vocabulary="DIF">UCAR/UNIDATA</name>' \
-              '<contact url="http://www.unidata.ucar.edu/" ' \
-              'email="support@unidata.ucar.edu"/>' \
-              '</publisher>'
+        xml = (
+            '<publisher><name vocabulary="DIF">UCAR/UNIDATA</name>'
+            '<contact url="http://www.unidata.ucar.edu/" '
+            'email="support@unidata.ucar.edu"/>'
+            '</publisher>'
+        )
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert 'publisher' in md
@@ -501,10 +530,12 @@ class TestMetadata:
 
     def test_creator(self):
         """Test parsing creator tags."""
-        xml = '<creator><name vocabulary="DIF">DOC/NOAA/NWS/NCEP</name>' \
-              '<contact url="http://www.ncep.noaa.gov/" ' \
-              'email="http://www.ncep.noaa.gov/mail_liaison.shtml"/>' \
-              '</creator>'
+        xml = (
+            '<creator><name vocabulary="DIF">DOC/NOAA/NWS/NCEP</name>'
+            '<contact url="http://www.ncep.noaa.gov/" '
+            'email="http://www.ncep.noaa.gov/mail_liaison.shtml"/>'
+            '</creator>'
+        )
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert 'creator' in md
@@ -525,15 +556,19 @@ class TestMetadata:
 
     def test_project(self):
         """Test parsing project tags."""
-        xml = '<project vocabulary="DIF">NASA Earth Science Project Office, ' \
-              'Ames Research Center</project>'
+        xml = (
+            '<project vocabulary="DIF">NASA Earth Science Project Office, '
+            'Ames Research Center</project>'
+        )
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert 'project' in md
         assert len(md['project']) == 1
         assert md['project'][0]['vocabulary'] == 'DIF'
-        assert md['project'][0]['name'] == 'NASA Earth Science Project Office, ' \
-                                           'Ames Research Center'
+        assert md['project'][0]['name'] == (
+            'NASA Earth Science Project Office, '
+            'Ames Research Center'
+        )
 
     def test_data_format(self):
         """Test parsing dataFormat tags."""
@@ -570,8 +605,7 @@ class TestMetadata:
 
     def test_time_coverage(self):
         """Test parsing a timeCoverage tag."""
-        xml = '<timeCoverage><end>present</end><duration>45 days</duration>' \
-              '</timeCoverage>'
+        xml = '<timeCoverage><end>present</end><duration>45 days</duration></timeCoverage>'
         element = self._make_element(xml)
         md = TDSCatalogMetadata(element).metadata
         assert 'timeCoverage' in md
@@ -581,33 +615,39 @@ class TestMetadata:
 
     def test_external_metadata(self):
         """Test an embedded metadata element that points to an external document."""
-        xml = '<metadata inherited="true">' \
-              '<serviceName>ALL</serviceName>' \
-              '<metadata xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=' \
-              '"http://gis.ncdc.noaa.gov/geoportal/rest/document?' \
-              'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}" ' \
-              'xlink:title="ISO 19115-2:2009(E) - Collection Level Metadata"/>' \
-              '</metadata>'
+        xml = (
+            '<metadata inherited="true">'
+            '<serviceName>ALL</serviceName>'
+            '<metadata xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href='
+            '"http://gis.ncdc.noaa.gov/geoportal/rest/document?'
+            'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}" '
+            'xlink:title="ISO 19115-2:2009(E) - Collection Level Metadata"/>'
+            '</metadata>'
+        )
         element = ET.fromstring(xml)
         md = TDSCatalogMetadata(element).metadata
         # make sure other metadata is still captured
         assert 'serviceName' in md
         # make sure the embedded metadata element gets processed and added
         expected_title = 'ISO 19115-2:2009(E) - Collection Level Metadata'
-        expected_href = 'http://gis.ncdc.noaa.gov/geoportal/rest/document?' \
-                        'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}'
+        expected_href = (
+            'http://gis.ncdc.noaa.gov/geoportal/rest/document?'
+            'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}'
+        )
         assert 'external_metadata' in md
         assert expected_title in md['external_metadata']
         assert md['external_metadata'][expected_title] == expected_href
 
     def test_external_metadata_non_xlink(self, caplog):
         """Test an non-xlink embedded external metadata element."""
-        xml = '<metadata inherited="true">' \
-              '<serviceName>ALL</serviceName>' \
-              '<metadata url="http://gis.ncdc.noaa.gov/geoportal/rest/document?' \
-              'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}" ' \
-              'name="ISO 19115-2:2009(E) - Collection Level Metadata"/>' \
-              '</metadata>'
+        xml = (
+            '<metadata inherited="true">'
+            '<serviceName>ALL</serviceName>'
+            '<metadata url="http://gis.ncdc.noaa.gov/geoportal/rest/document?'
+            'id={6439CC43-0208-4AD6-BF6F-48F586F7541D}" '
+            'name="ISO 19115-2:2009(E) - Collection Level Metadata"/>'
+            '</metadata>'
+        )
         element = ET.fromstring(xml)
         md = TDSCatalogMetadata(element).metadata
         assert 'serviceName' in md
