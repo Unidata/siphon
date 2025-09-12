@@ -181,8 +181,10 @@ class TestSimpleTypes:
 
     def test_attribute_string_explicit(self):
         """Test parsing a string attribute."""
-        xml = '<attribute name="long_name" type="String" ' \
-              'value="Specified height level above ground"/>'
+        xml = (
+            '<attribute name="long_name" type="String" '
+            'value="Specified height level above ground"/>'
+        )
         element = ET.fromstring(xml)
         expected = {'long_name': ['Specified height level above ground']}
         actual = self.types.handle_attribute(element)
@@ -252,12 +254,14 @@ class TestSimpleTypes:
 
     def test_projection_box(self):
         """Test parsing a projection box."""
-        xml = '<projectionBox>' \
-              '<minx>-2959.1533203125</minx>' \
-              '<maxx>2932.8466796875</maxx>' \
-              '<miny>-1827.929443359375</miny>' \
-              '<maxy>1808.070556640625</maxy>' \
-              '</projectionBox>'
+        xml = (
+            '<projectionBox>'
+            '<minx>-2959.1533203125</minx>'
+            '<maxx>2932.8466796875</maxx>'
+            '<miny>-1827.929443359375</miny>'
+            '<maxy>1808.070556640625</maxy>'
+            '</projectionBox>'
+        )
         element = ET.fromstring(xml)
         expected = {'projectionBox': {'minx': -2959.1533203125,
                                       'maxx': 2932.8466796875,
@@ -286,13 +290,15 @@ class TestSimpleTypes:
 
     def test_grid(self):
         """Test parsing a grid tag."""
-        xml = '<grid name="Temperature_isobaric" ' \
-              'desc="Temperature @ Isobaric surface" ' \
-              'shape="time1 isobaric3 y x" type="float">' \
-              '<attribute name="units" value="K"/>' \
-              '<attribute name="missing_value" type="float" value="-999.9"/>' \
-              '<attribute name="Grib2_Parameter" type="int" value="0 0 0"/>' \
-              '</grid>'
+        xml = (
+            '<grid name="Temperature_isobaric" '
+            'desc="Temperature @ Isobaric surface" '
+            'shape="time1 isobaric3 y x" type="float">'
+            '<attribute name="units" value="K"/>'
+            '<attribute name="missing_value" type="float" value="-999.9"/>'
+            '<attribute name="Grib2_Parameter" type="int" value="0 0 0"/>'
+            '</grid>'
+        )
         element = ET.fromstring(xml)
         expected = {'name': 'Temperature_isobaric',
                     'desc': 'Temperature @ Isobaric surface',
@@ -314,9 +320,11 @@ class TestSimpleTypes:
 
     def test_feature_type(self):
         """Test parsing a feature dataset tag."""
-        xml = '<featureDataset type="station" ' \
-              'url="/thredds/ncss/nws/metar/ncdecoded/' \
-              'Metar_Station_Data_fc.cdmr"/>'
+        xml = (
+            '<featureDataset type="station" '
+            'url="/thredds/ncss/nws/metar/ncdecoded/'
+            'Metar_Station_Data_fc.cdmr"/>'
+        )
         element = ET.fromstring(xml)
         expected = {'type': 'station',
                     'url': '/thredds/ncss/nws/metar/ncdecoded/'
@@ -326,14 +334,16 @@ class TestSimpleTypes:
 
     def test_variable(self):
         """Test parsing variable tags."""
-        xml = '<variable name="precipitation_amount_hourly" type="float">' \
-              '<attribute name="long_name" ' \
-              'value="Hourly precipitation amount"/>' \
-              '<attribute name="standard_name" ' \
-              'value="precipitation_amount"/>' \
-              '<attribute name="_FillValue" type="float" value="-99999.0"/>' \
-              '<attribute name="units" value=".01 inches"/>' \
-              '</variable>'
+        xml = (
+            '<variable name="precipitation_amount_hourly" type="float">'
+            '<attribute name="long_name" '
+            'value="Hourly precipitation amount"/>'
+            '<attribute name="standard_name" '
+            'value="precipitation_amount"/>'
+            '<attribute name="_FillValue" type="float" value="-99999.0"/>'
+            '<attribute name="units" value=".01 inches"/>'
+            '</variable>'
+        )
         element = ET.fromstring(xml)
         expected = {'name': 'precipitation_amount_hourly',
                     'type': 'float',
@@ -347,16 +357,18 @@ class TestSimpleTypes:
 
 def test_dataset_elements_axis():
     """Test parsing an axis from a dataset element."""
-    xml = '<axis name="height_above_ground" shape="1" type="float" ' \
-          'axisType="Height"><attribute name="units" value="m"/>' \
-          '<attribute name="long_name" ' \
-          'value="Specified height level above ground"/>' \
-          '<attribute name="positive" value="up"/><attribute ' \
-          'name="Grib_level_type" type="int" value="103"/>' \
-          '<attribute name="datum" value="ground"/>' \
-          '<attribute name="_CoordinateAxisType" value="Height"/>' \
-          '<attribute name="_CoordinateZisPositive" value="up"/>' \
-          '<values>2.0</values></axis>'
+    xml = (
+        '<axis name="height_above_ground" shape="1" type="float" '
+        'axisType="Height"><attribute name="units" value="m"/>'
+        '<attribute name="long_name" '
+        'value="Specified height level above ground"/>'
+        '<attribute name="positive" value="up"/><attribute '
+        'name="Grib_level_type" type="int" value="103"/>'
+        '<attribute name="datum" value="ground"/>'
+        '<attribute name="_CoordinateAxisType" value="Height"/>'
+        '<attribute name="_CoordinateZisPositive" value="up"/>'
+        '<values>2.0</values></axis>'
+    )
 
     element = ET.fromstring(xml)
     actual = NCSSDataset(element).axes
@@ -370,64 +382,66 @@ def test_dataset_elements_axis():
 
 def test_dataset_elements_grid_set():
     """Test parsing a gridSet from a dataset element."""
-    xml = '<gridSet name="time1 isobaric3 y x"><projectionBox>' \
-          '<minx>-2959.1533203125</minx>' \
-          '<maxx>2932.8466796875</maxx>' \
-          '<miny>-1827.929443359375</miny>' \
-          '<maxy>1808.070556640625</maxy>' \
-          '</projectionBox>' \
-          '<axisRef name="time1"/>' \
-          '<axisRef name="isobaric3"/>' \
-          '<axisRef name="y"/>' \
-          '<axisRef name="x"/>' \
-          '<coordTransRef name="LambertConformal_Projection"/>' \
-          '<grid name="Relative_humidity_isobaric" ' \
-          'desc="Relative humidity @ Isobaric surface" ' \
-          'shape="time1 isobaric3 y x" type="float">' \
-          '<attribute name="long_name" ' \
-          'value="Relative humidity @ Isobaric surface"/>' \
-          '<attribute name="units" value="%"/>' \
-          '<attribute name="abbreviation" value="RH"/>' \
-          '<attribute name="missing_value" type="float" value="NaN"/>' \
-          '<attribute name="grid_mapping" ' \
-          'value="LambertConformal_Projection"/>' \
-          '<attribute name="coordinates" ' \
-          'value="reftime time1 isobaric3 y x "/>' \
-          '<attribute name="Grib_Variable_Id" value="VAR_0-1-1_L100"/>' \
-          '<attribute name="Grib2_Parameter" type="int" value="0 1 1"/>' \
-          '<attribute name="Grib2_Parameter_Discipline" ' \
-          'value="Meteorological products"/>' \
-          '<attribute name="Grib2_Parameter_Category" value="Moisture"/>' \
-          '<attribute name="Grib2_Parameter_Name" ' \
-          'value="Relative humidity"/>' \
-          '<attribute name="Grib2_Level_Type" value="Isobaric surface"/>' \
-          '<attribute name="Grib2_Generating_Process_Type" ' \
-          'value="Forecast"/>' \
-          '</grid>' \
-          '<grid name="Temperature_isobaric" ' \
-          'desc="Temperature @ Isobaric surface" ' \
-          'shape="time1 isobaric3 y x" type="float">' \
-          '<attribute name="long_name" ' \
-          'value="Temperature @ Isobaric surface"/>' \
-          '<attribute name="units" value="K"/>' \
-          '<attribute name="abbreviation" value="TMP"/>' \
-          '<attribute name="missing_value" type="float" value="NaN"/>' \
-          '<attribute name="grid_mapping" ' \
-          'value="LambertConformal_Projection"/>' \
-          '<attribute name="coordinates" ' \
-          'value="reftime time1 isobaric3 y x "/>' \
-          '<attribute name="Grib_Variable_Id" value="VAR_0-0-0_L100"/>' \
-          '<attribute name="Grib2_Parameter" type="int" value="0 0 0"/>' \
-          '<attribute name="Grib2_Parameter_Discipline" ' \
-          'value="Meteorological products"/>' \
-          '<attribute name="Grib2_Parameter_Category" ' \
-          'value="Temperature"/>' \
-          '<attribute name="Grib2_Parameter_Name" value="Temperature"/>' \
-          '<attribute name="Grib2_Level_Type" value="Isobaric surface"/>' \
-          '<attribute name="Grib2_Generating_Process_Type" ' \
-          'value="Forecast"/>' \
-          '</grid>' \
-          '</gridSet>'
+    xml = (
+        '<gridSet name="time1 isobaric3 y x"><projectionBox>'
+        '<minx>-2959.1533203125</minx>'
+        '<maxx>2932.8466796875</maxx>'
+        '<miny>-1827.929443359375</miny>'
+        '<maxy>1808.070556640625</maxy>'
+        '</projectionBox>'
+        '<axisRef name="time1"/>'
+        '<axisRef name="isobaric3"/>'
+        '<axisRef name="y"/>'
+        '<axisRef name="x"/>'
+        '<coordTransRef name="LambertConformal_Projection"/>'
+        '<grid name="Relative_humidity_isobaric" '
+        'desc="Relative humidity @ Isobaric surface" '
+        'shape="time1 isobaric3 y x" type="float">'
+        '<attribute name="long_name" '
+        'value="Relative humidity @ Isobaric surface"/>'
+        '<attribute name="units" value="%"/>'
+        '<attribute name="abbreviation" value="RH"/>'
+        '<attribute name="missing_value" type="float" value="NaN"/>'
+        '<attribute name="grid_mapping" '
+        'value="LambertConformal_Projection"/>'
+        '<attribute name="coordinates" '
+        'value="reftime time1 isobaric3 y x "/>'
+        '<attribute name="Grib_Variable_Id" value="VAR_0-1-1_L100"/>'
+        '<attribute name="Grib2_Parameter" type="int" value="0 1 1"/>'
+        '<attribute name="Grib2_Parameter_Discipline" '
+        'value="Meteorological products"/>'
+        '<attribute name="Grib2_Parameter_Category" value="Moisture"/>'
+        '<attribute name="Grib2_Parameter_Name" '
+        'value="Relative humidity"/>'
+        '<attribute name="Grib2_Level_Type" value="Isobaric surface"/>'
+        '<attribute name="Grib2_Generating_Process_Type" '
+        'value="Forecast"/>'
+        '</grid>'
+        '<grid name="Temperature_isobaric" '
+        'desc="Temperature @ Isobaric surface" '
+        'shape="time1 isobaric3 y x" type="float">'
+        '<attribute name="long_name" '
+        'value="Temperature @ Isobaric surface"/>'
+        '<attribute name="units" value="K"/>'
+        '<attribute name="abbreviation" value="TMP"/>'
+        '<attribute name="missing_value" type="float" value="NaN"/>'
+        '<attribute name="grid_mapping" '
+        'value="LambertConformal_Projection"/>'
+        '<attribute name="coordinates" '
+        'value="reftime time1 isobaric3 y x "/>'
+        '<attribute name="Grib_Variable_Id" value="VAR_0-0-0_L100"/>'
+        '<attribute name="Grib2_Parameter" type="int" value="0 0 0"/>'
+        '<attribute name="Grib2_Parameter_Discipline" '
+        'value="Meteorological products"/>'
+        '<attribute name="Grib2_Parameter_Category" '
+        'value="Temperature"/>'
+        '<attribute name="Grib2_Parameter_Name" value="Temperature"/>'
+        '<attribute name="Grib2_Level_Type" value="Isobaric surface"/>'
+        '<attribute name="Grib2_Generating_Process_Type" '
+        'value="Forecast"/>'
+        '</grid>'
+        '</gridSet>'
+    )
     element = ET.fromstring(xml)
     actual = NCSSDataset(element).gridsets
     assert actual
@@ -452,17 +466,19 @@ def test_dataset_elements_grid_set():
 
 def test_dataset_elements_coord_transform_valid():
     """Test parsing a coordinate transformation from a dataset element."""
-    xml = '<coordTransform name="LambertConformal_Projection" ' \
-          'transformType="Projection">' \
-          '<parameter name="grid_mapping_name" ' \
-          'value="lambert_conformal_conic"/>' \
-          '<parameter name="latitude_of_projection_origin" ' \
-          'value="40.0 "/>' \
-          '<parameter name="longitude_of_central_meridian" ' \
-          'value="262.0 "/>' \
-          '<parameter name="standard_parallel" value="40.0 "/>' \
-          '<parameter name="earth_radius" value="6371229.0 "/>' \
-          '</coordTransform>'
+    xml = (
+        '<coordTransform name="LambertConformal_Projection" '
+        'transformType="Projection">'
+        '<parameter name="grid_mapping_name" '
+        'value="lambert_conformal_conic"/>'
+        '<parameter name="latitude_of_projection_origin" '
+        'value="40.0 "/>'
+        '<parameter name="longitude_of_central_meridian" '
+        'value="262.0 "/>'
+        '<parameter name="standard_parallel" value="40.0 "/>'
+        '<parameter name="earth_radius" value="6371229.0 "/>'
+        '</coordTransform>'
+    )
     element = ET.fromstring(xml)
     actual = NCSSDataset(element).coordinate_transforms
     assert actual
@@ -481,12 +497,14 @@ def test_dataset_elements_coord_transform_valid():
 
 def test_dataset_elements_lat_lon_box():
     """Test parsing a lat/lon box from a dataset element."""
-    xml = '<LatLonBox>' \
-          '<west>-140.1465</west>' \
-          '<east>-56.1753</east>' \
-          '<south>19.8791</south>' \
-          '<north>49.9041</north>' \
-          '</LatLonBox>'
+    xml = (
+        '<LatLonBox>'
+        '<west>-140.1465</west>'
+        '<east>-56.1753</east>'
+        '<south>19.8791</south>'
+        '<north>49.9041</north>'
+        '</LatLonBox>'
+    )
     element = ET.fromstring(xml)
     expected = {'west': -140.1465,
                 'east': -56.1753,
@@ -499,8 +517,10 @@ def test_dataset_elements_lat_lon_box():
 
 def test_dataset_elements_time_span():
     """Test parsing a TimeSpan."""
-    xml = '<TimeSpan><begin>2015-06-19T12:00:00Z</begin>' \
-          '<end>2015-06-23T18:00:00Z</end></TimeSpan>'
+    xml = (
+        '<TimeSpan><begin>2015-06-19T12:00:00Z</begin>'
+        '<end>2015-06-23T18:00:00Z</end></TimeSpan>'
+    )
     element = ET.fromstring(xml)
     expected = {'begin': '2015-06-19T12:00:00Z',
                 'end': '2015-06-23T18:00:00Z'}
@@ -511,19 +531,21 @@ def test_dataset_elements_time_span():
 
 def test_dataset_elements_accept_list():
     """Test parsing an AcceptList."""
-    xml = '<AcceptList><GridAsPoint>' \
-          '<accept displayName="xml">xml</accept>' \
-          '<accept displayName="xml (file)">xml_file</accept>' \
-          '<accept displayName="csv">csv</accept>' \
-          '<accept displayName="csv (file)">csv_file</accept>' \
-          '<accept displayName="netcdf">netcdf</accept>' \
-          '<accept displayName="netcdf4">netcdf4</accept>' \
-          '</GridAsPoint>' \
-          '<Grid>' \
-          '<accept displayName="netcdf">netcdf</accept>' \
-          '<accept displayName="netcdf4">netcdf4</accept>' \
-          '</Grid>' \
-          '</AcceptList>'
+    xml = (
+        '<AcceptList><GridAsPoint>'
+        '<accept displayName="xml">xml</accept>'
+        '<accept displayName="xml (file)">xml_file</accept>'
+        '<accept displayName="csv">csv</accept>'
+        '<accept displayName="csv (file)">csv_file</accept>'
+        '<accept displayName="netcdf">netcdf</accept>'
+        '<accept displayName="netcdf4">netcdf4</accept>'
+        '</GridAsPoint>'
+        '<Grid>'
+        '<accept displayName="netcdf">netcdf</accept>'
+        '<accept displayName="netcdf4">netcdf4</accept>'
+        '</Grid>'
+        '</AcceptList>'
+    )
     element = ET.fromstring(xml)
     expected = {'GridAsPoint': ['xml', 'xml_file',
                                 'csv', 'csv_file',
@@ -535,15 +557,17 @@ def test_dataset_elements_accept_list():
 
 def test_dataset_elements_station_accept_list():
     """Test parsing acceptList for stations."""
-    xml = '<AcceptList>' \
-          '<accept displayName="csv">csv</accept>' \
-          '<accept displayName="csv (file)">text/csv</accept>' \
-          '<accept displayName="xml">xml</accept>' \
-          '<accept displayName="xml (file)">text/xml</accept>' \
-          '<accept displayName="WaterML 2.0">waterml2</accept>' \
-          '<accept displayName="CF/NetCDF-3">netcdf</accept>' \
-          '<accept displayName="CF/NetCDF-4">netcdf4</accept>' \
-          '</AcceptList>'
+    xml = (
+        '<AcceptList>'
+        '<accept displayName="csv">csv</accept>'
+        '<accept displayName="csv (file)">text/csv</accept>'
+        '<accept displayName="xml">xml</accept>'
+        '<accept displayName="xml (file)">text/xml</accept>'
+        '<accept displayName="WaterML 2.0">waterml2</accept>'
+        '<accept displayName="CF/NetCDF-3">netcdf</accept>'
+        '<accept displayName="CF/NetCDF-4">netcdf4</accept>'
+        '</AcceptList>'
+    )
 
     element = ET.fromstring(xml)
     expected = {'PointFeatureCollection': ['csv', 'text/csv',
