@@ -38,7 +38,7 @@ print(rs.variables)
 # N0B, which is reflectivity data for the lowest tilt. We see that when the query
 # is represented as a string, it shows the encoded URL.
 query = rs.query()
-query.stations('CYS').time(datetime.now(timezone.utc)).variables('N0B')
+query.stations('FTG').time(datetime.now(timezone.utc)).variables('N0B')
 
 ###########################################
 # We can use the RadarServer instance to check our query, to make
