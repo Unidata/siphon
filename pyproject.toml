@@ -92,6 +92,8 @@ xfail_strict = true
 filterwarnings = [
     "error",
     "ignore:numpy.ndarray size changed:RuntimeWarning",
+    # Need vcrpy>7.0.0
+    "ignore:'asyncio.iscoroutinefunction' is deprecated:DeprecationWarning:vcr.cassette:116"
 ]
 
 [tool.ruff]
