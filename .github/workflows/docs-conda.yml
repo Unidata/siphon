@@ -28,6 +28,8 @@ jobs:
             os: Windows
           - python-version: 3.13
             os: macOS
+          - python-version: 3.14
+            os: Windows
 
     steps:
     - name: Checkout source
