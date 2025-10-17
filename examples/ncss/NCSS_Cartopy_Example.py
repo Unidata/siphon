@@ -11,7 +11,7 @@ Use Siphon to query the NetCDF Subset Service (NCSS) and plot on a map.
 This example uses Siphon's NCSS class to provide temperature data
 for contouring a basic map using CartoPy.
 """
-from datetime import datetime, timezone
+from datetime import datetime, UTC
 
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
@@ -49,7 +49,7 @@ query = ncss.query()
 # will return all surface temperatures for points in our bounding box for a single time,
 # nearest to that requested. Note the string representation of the query is a properly encoded
 # query string.
-query.lonlat_box(north=43, south=35, east=-100, west=-111).time(datetime.now(timezone.utc))
+query.lonlat_box(north=43, south=35, east=-100, west=-111).time(datetime.now(UTC))
 query.accept('netcdf4')
 query.variables('Temperature_surface')
 

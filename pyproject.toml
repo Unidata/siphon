@@ -13,22 +13,22 @@ keywords = ["meteorology", "weather"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Scientific/Engineering",
     "Topic :: Scientific/Engineering :: Atmospheric Science",
     "Intended Audience :: Science/Research",
     "Operating System :: OS Independent",
     "License :: OSI Approved :: BSD License"
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "beautifulsoup4>=4.9.1",
-    "numpy>=1.23.0",
-    "pandas>=1.4.3",
-    "protobuf>=3.20.0",
+    "numpy>=1.25.0",
+    "pandas>=2.1.0",
+    "protobuf>=4.24.3",
     "requests>=2.30.0",
 ]
 
@@ -46,13 +46,12 @@ examples = [
     "metpy",
 ]
 test = [
-    "netCDF4",
     "pytest>=7.0",
     "vcrpy>=4.3.1",
     "siphon[extras]"
 ]
 extras = [
-    "netCDF4>=1.5.8",
+    "netCDF4>=1.6.4",
     "xarray>=2022.6.0"
 ]
 
@@ -92,6 +91,8 @@ xfail_strict = true
 filterwarnings = [
     "error",
     "ignore:numpy.ndarray size changed:RuntimeWarning",
+    # Need vcrpy>7.0.0
+    "ignore:'asyncio.iscoroutinefunction' is deprecated:DeprecationWarning:vcr.cassette:116"
 ]
 
 [tool.ruff]
