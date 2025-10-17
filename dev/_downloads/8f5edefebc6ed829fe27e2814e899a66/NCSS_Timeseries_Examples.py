@@ -8,7 +8,7 @@ NCSS Time Series
 
 Use Siphon to query the NetCDF Subset Service for a timeseries.
 """
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, UTC
 
 import matplotlib.pyplot as plt
 from netCDF4 import num2date
@@ -39,7 +39,7 @@ query = ncss.query()
 # 'Temperature_isobaric', at the vertical level of 100000 Pa (approximately surface).
 # This request will return all times in the range for a single point. Note the string
 # representation of the query is a properly encoded query string.
-now = datetime.now(timezone.utc)
+now = datetime.now(UTC)
 query.lonlat_point(-105, 40).vertical_level(100000).time_range(now, now + timedelta(days=7))
 query.variables('Temperature_isobaric').accept('netcdf')
 

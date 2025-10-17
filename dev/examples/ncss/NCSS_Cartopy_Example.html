@@ -121,7 +121,7 @@ to download the full example code.</p>
 <p>Use Siphon to query the NetCDF Subset Service (NCSS) and plot on a map.</p>
 <p>This example uses Siphon’s NCSS class to provide temperature data
 for contouring a basic map using CartoPy.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <a href="https://docs.python.org/3/library/datetime.html#datetime.timezone" title="datetime.timezone" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">UTC</span></a>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.feature</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cfeature</span>
@@ -161,12 +161,12 @@ and -100 is the eastern extent. We request the data for the current time.</p>
 will return all surface temperatures for points in our bounding box for a single time,
 nearest to that requested. Note the string representation of the query is a properly encoded
 query string.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="../../api/ncss.html#siphon.ncss.NCSSQuery.lonlat_box" title="siphon.ncss.NCSSQuery.lonlat_box" class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">lonlat_box</span></a><span class="p">(</span><span class="n">north</span><span class="o">=</span><span class="mi">43</span><span class="p">,</span> <span class="n">south</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">east</span><span class="o">=-</span><span class="mi">100</span><span class="p">,</span> <span class="n">west</span><span class="o">=-</span><span class="mi">111</span><span class="p">)</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime.now" title="datetime.datetime.now" class="sphx-glr-backref-module-datetime-datetime sphx-glr-backref-type-py-method"><span class="n">datetime</span><span class="o">.</span><span class="n">now</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.timezone" title="datetime.timezone" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span></a><span class="p">))</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="../../api/ncss.html#siphon.ncss.NCSSQuery.lonlat_box" title="siphon.ncss.NCSSQuery.lonlat_box" class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">lonlat_box</span></a><span class="p">(</span><span class="n">north</span><span class="o">=</span><span class="mi">43</span><span class="p">,</span> <span class="n">south</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">east</span><span class="o">=-</span><span class="mi">100</span><span class="p">,</span> <span class="n">west</span><span class="o">=-</span><span class="mi">111</span><span class="p">)</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime.now" title="datetime.datetime.now" class="sphx-glr-backref-module-datetime-datetime sphx-glr-backref-type-py-method"><span class="n">datetime</span><span class="o">.</span><span class="n">now</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.timezone" title="datetime.timezone" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">UTC</span></a><span class="p">))</span>
 <a href="../../api/ncss.html#siphon.ncss.NCSSQuery.accept" title="siphon.ncss.NCSSQuery.accept" class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">accept</span></a><span class="p">(</span><span class="s1">&#39;netcdf4&#39;</span><span class="p">)</span>
 <a href="../../api/ncss.html#siphon.ncss.NCSSQuery.variables" title="siphon.ncss.NCSSQuery.variables" class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">variables</span></a><span class="p">(</span><span class="s1">&#39;Temperature_surface&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_surface&amp;time=2025-09-12T19%3A48%3A21.348816%2B00%3A00&amp;west=-111&amp;east=-100&amp;south=35&amp;north=43&amp;accept=netcdf4
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_surface&amp;time=2025-10-17T18%3A10%3A28.793187%2B00%3A00&amp;west=-111&amp;east=-100&amp;south=35&amp;north=43&amp;accept=netcdf4
 </pre></div>
 </div>
 <p>We now request data from the server using this query. The <em class="xref py py-obj">NCSS</em> class handles parsing
@@ -235,10 +235,10 @@ the data).</p>
         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" srcset="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" alt="Temperature forecast (°F) for  12 September 2025 2100Z" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D object at 0x7f8a1329be10&gt;]
+<img src="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" srcset="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" alt="Temperature forecast (°F) for  17 October 2025 1800Z" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D object at 0x7fb4980006e0&gt;]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.301 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.882 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ncss-ncss-cartopy-example-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/73666370fca72abb527bc687fbb3c37f/NCSS_Cartopy_Example.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">NCSS_Cartopy_Example.ipynb</span></code></a></p>
@@ -265,7 +265,7 @@ the data).</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Sep 12, 2025 at 19:48:54.
+      <span class="lastupdated">Last updated on Oct 17, 2025 at 18:11:02.
       </span></p>
   </div>
 

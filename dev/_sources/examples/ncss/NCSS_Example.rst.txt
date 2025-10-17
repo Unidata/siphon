@@ -28,7 +28,7 @@ Use Siphon to query the NetCDF Subset Service (NCSS).
 
 .. code-block:: Python
 
-    from datetime import datetime, timezone
+    from datetime import datetime, UTC
 
     import matplotlib.pyplot as plt
 
@@ -116,7 +116,7 @@ the query is a properly encoded query string.
 
 .. code-block:: Python
 
-    query.lonlat_point(-105, 40).time(datetime.now(timezone.utc))
+    query.lonlat_point(-105, 40).time(datetime.now(UTC))
     query.accept('netcdf4')
     query.variables('Temperature_isobaric', 'Relative_humidity_isobaric')
 
@@ -129,7 +129,7 @@ the query is a properly encoded query string.
  .. code-block:: none
 
 
-    var=Temperature_isobaric&var=Relative_humidity_isobaric&time=2025-09-12T19%3A48%3A19.323537%2B00%3A00&longitude=-105&latitude=40&accept=netcdf4
+    var=Temperature_isobaric&var=Relative_humidity_isobaric&time=2025-10-17T18%3A10%3A27.750837%2B00%3A00&longitude=-105&latitude=40&accept=netcdf4
 
 
 
@@ -221,7 +221,7 @@ Now we can plot these up using matplotlib.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.969 seconds)
+   **Total running time of the script:** (0 minutes 1.043 seconds)
 
 
 .. _sphx_glr_download_examples_ncss_NCSS_Example.py:

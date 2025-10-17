@@ -119,7 +119,7 @@ to download the full example code.</p>
 <section class="sphx-glr-example-title" id="basic-ncss">
 <span id="sphx-glr-examples-ncss-ncss-example-py"></span><h1>Basic NCSS<a class="headerlink" href="#basic-ncss" title="Link to this heading"></a></h1>
 <p>Use Siphon to query the NetCDF Subset Service (NCSS).</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <a href="https://docs.python.org/3/library/datetime.html#datetime.timezone" title="datetime.timezone" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">UTC</span></a>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
@@ -152,12 +152,12 @@ for the current time. We also ask for NetCDF version 4 data, for the variables
 ‘Temperature_isobaric’ and ‘Relative_humidity_isobaric’. This request will return all
 vertical levels for a single point and single time. Note the string representation of
 the query is a properly encoded query string.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="../../api/ncss.html#siphon.ncss.NCSSQuery.lonlat_point" title="siphon.ncss.NCSSQuery.lonlat_point" class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">lonlat_point</span></a><span class="p">(</span><span class="o">-</span><span class="mi">105</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime.now" title="datetime.datetime.now" class="sphx-glr-backref-module-datetime-datetime sphx-glr-backref-type-py-method"><span class="n">datetime</span><span class="o">.</span><span class="n">now</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.timezone" title="datetime.timezone" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span></a><span class="p">))</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="../../api/ncss.html#siphon.ncss.NCSSQuery.lonlat_point" title="siphon.ncss.NCSSQuery.lonlat_point" class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">lonlat_point</span></a><span class="p">(</span><span class="o">-</span><span class="mi">105</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime.now" title="datetime.datetime.now" class="sphx-glr-backref-module-datetime-datetime sphx-glr-backref-type-py-method"><span class="n">datetime</span><span class="o">.</span><span class="n">now</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.timezone" title="datetime.timezone" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">UTC</span></a><span class="p">))</span>
 <a href="../../api/ncss.html#siphon.ncss.NCSSQuery.accept" title="siphon.ncss.NCSSQuery.accept" class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">accept</span></a><span class="p">(</span><span class="s1">&#39;netcdf4&#39;</span><span class="p">)</span>
 <a href="../../api/ncss.html#siphon.ncss.NCSSQuery.variables" title="siphon.ncss.NCSSQuery.variables" class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method"><span class="n">query</span><span class="o">.</span><span class="n">variables</span></a><span class="p">(</span><span class="s1">&#39;Temperature_isobaric&#39;</span><span class="p">,</span> <span class="s1">&#39;Relative_humidity_isobaric&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_isobaric&amp;var=Relative_humidity_isobaric&amp;time=2025-09-12T19%3A48%3A19.323537%2B00%3A00&amp;longitude=-105&amp;latitude=40&amp;accept=netcdf4
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_isobaric&amp;var=Relative_humidity_isobaric&amp;time=2025-10-17T18%3A10%3A27.750837%2B00%3A00&amp;longitude=-105&amp;latitude=40&amp;accept=netcdf4
 </pre></div>
 </div>
 <p>We now request data from the server using this query. The <em class="xref py py-obj">NCSS</em> class handles parsing
@@ -199,7 +199,7 @@ listed in <em class="xref py py-obj">coordinates</em> is the pressure dimension.
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_NCSS_Example_001.png" srcset="../../_images/sphx_glr_NCSS_Example_001.png" alt="NCSS Example" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.969 seconds)</p>
+<img src="../../_images/sphx_glr_NCSS_Example_001.png" srcset="../../_images/sphx_glr_NCSS_Example_001.png" alt="NCSS Example" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.043 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ncss-ncss-example-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/70750d30e625b0cc715a662247de4777/NCSS_Example.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">NCSS_Example.ipynb</span></code></a></p>
@@ -226,7 +226,7 @@ listed in <em class="xref py py-obj">coordinates</em> is the pressure dimension.
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Sep 12, 2025 at 19:48:54.
+      <span class="lastupdated">Last updated on Oct 17, 2025 at 18:11:02.
       </span></p>
   </div>
 

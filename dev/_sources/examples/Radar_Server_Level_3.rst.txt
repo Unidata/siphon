@@ -28,7 +28,7 @@ Use Siphon to get NEXRAD Level 3 data from a TDS.
 
 .. code-block:: Python
 
-    from datetime import datetime, timezone
+    from datetime import datetime, UTC
 
     import matplotlib.pyplot as plt
     import numpy as np
@@ -105,7 +105,7 @@ Look at the variables available in this dataset
 
  .. code-block:: none
 
-    {'NXH', 'NYQ', 'NZH', 'NAU', 'N3K', 'NBC', 'N1C', 'NAC', 'NXQ', 'NYC', 'NAB', 'OHA', 'N0V', 'N3H', 'NZX', 'NZC', 'N1B', 'N0U', 'N1S', 'N3B', 'N3U', 'N0H', 'N1X', 'N2U', 'NXC', 'NYM', 'NZB', 'N0K', 'N0X', 'N2X', 'DSP', 'DVL', 'NXM', 'N2B', 'NZQ', 'N3Q', 'N3C', 'NXK', 'DHR', 'N0S', 'NXB', 'NZM', 'N1H', 'NST', 'N2K', 'NZU', 'NAM', 'NYG', 'NXU', 'EET', 'N2H', 'N0C', 'N1G', 'NYX', 'NCR', 'DTA', 'N0G', 'N3S', 'NET', 'NBK', 'DU6', 'NAX', 'DPA', 'NMD', 'N0B', 'N1K', 'DAA', 'DPR', 'NAQ', 'NAG', 'N1U', 'NYK', 'N2M', 'NTP', 'NBU', 'NBX', 'PTA', 'N2S', 'NVL', 'N3X', 'NAK', 'NZK', 'N0Z', 'NVW', 'NBH', 'NBQ', 'NZG', 'N2C', 'N1Q', 'NXG', 'NYU', 'N0R', 'DU3', 'DSD', 'DOD', 'N3M', 'NAH', 'NXX', 'NYB', 'N1M', 'NYH', 'N0M', 'NBB', 'N1P', 'N0Q', 'N2Q', 'HHC', 'NBM'}
+    {'DAA', 'NAQ', 'NBC', 'N1K', 'N3U', 'NBQ', 'NAX', 'NXX', 'NYB', 'N1B', 'N1U', 'N2X', 'N0R', 'N1P', 'N3M', 'N2C', 'N0U', 'N0Z', 'NBU', 'NZX', 'NXG', 'NXB', 'NYG', 'DPA', 'NZG', 'DSP', 'N3B', 'NVL', 'NYC', 'NZQ', 'N1H', 'NZK', 'DSD', 'DTA', 'N0S', 'HHC', 'NBH', 'N1S', 'N0X', 'N3H', 'NAG', 'NYU', 'NXM', 'NBK', 'NXK', 'NXC', 'N2Q', 'PTA', 'NXQ', 'N0M', 'NBM', 'N1X', 'NZM', 'DU3', 'N1M', 'NZH', 'DHR', 'DPR', 'NCR', 'NET', 'NYH', 'NVW', 'N3Q', 'N1C', 'NXU', 'N3X', 'OHA', 'NZU', 'N2H', 'DOD', 'EET', 'N0G', 'NAB', 'NBX', 'NYQ', 'N1Q', 'NZB', 'NAC', 'NMD', 'N3C', 'NYX', 'N0C', 'N2K', 'N2B', 'N0H', 'N3S', 'NZC', 'N2U', 'NYK', 'N2S', 'N0Q', 'N0K', 'DU6', 'N0B', 'N0V', 'N2M', 'NAM', 'NXH', 'NAK', 'NTP', 'NAH', 'NYM', 'N3K', 'NAU', 'N1G', 'DVL', 'NBB', 'NST'}
 
 
 
@@ -122,7 +122,7 @@ is represented as a string, it shows the encoded URL.
 .. code-block:: Python
 
     query = rs.query()
-    query.stations('CYS').time(datetime.now(timezone.utc)).variables('N0B')
+    query.stations('FTG').time(datetime.now(UTC)).variables('N0B')
 
 
 
@@ -133,7 +133,7 @@ is represented as a string, it shows the encoded URL.
  .. code-block:: none
 
 
-    var=N0B&time=2025-09-12T19%3A47%3A38.721753%2B00%3A00&stn=CYS
+    var=N0B&time=2025-10-17T18%3A09%3A46.990499%2B00%3A00&stn=FTG
 
 
 
@@ -199,7 +199,7 @@ find one NIDS file in the return.
 
  .. code-block:: none
 
-    ['Level3_CYS_N0B_20250912_1946.nids']
+    ['Level3_FTG_N0B_20251017_1803.nids']
 
 
 
@@ -224,7 +224,7 @@ We see URLs for OPeNDAP, CDMRemote, and HTTPServer (direct download).
 
  .. code-block:: none
 
-    {'OPENDAP': 'https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0B/CYS/20250912/Level3_CYS_N0B_20250912_1946.nids', 'HTTPServer': 'https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0B/CYS/20250912/Level3_CYS_N0B_20250912_1946.nids', 'CdmRemote': 'https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0B/CYS/20250912/Level3_CYS_N0B_20250912_1946.nids'}
+    {'OPENDAP': 'https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0B/FTG/20251017/Level3_FTG_N0B_20251017_1803.nids', 'HTTPServer': 'https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0B/FTG/20251017/Level3_FTG_N0B_20251017_1803.nids', 'CdmRemote': 'https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0B/FTG/20251017/Level3_FTG_N0B_20251017_1803.nids'}
 
 
 
@@ -338,7 +338,7 @@ Finally, we plot them up using matplotlib.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.985 seconds)
+   **Total running time of the script:** (0 minutes 2.876 seconds)
 
 
 .. _sphx_glr_download_examples_Radar_Server_Level_3.py:
