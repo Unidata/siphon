@@ -70,7 +70,7 @@ jobs:
 
     steps:
     - name: Download doc build
-      uses: actions/download-artifact@v5
+      uses: actions/download-artifact@v6
       with:
         name: Linux-3.14-docs
         path: ./docs/build/html
