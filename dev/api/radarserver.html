@@ -155,7 +155,7 @@
 <p>This includes forming proper queries as well as parsing the returned catalog.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="siphon.radarserver.RadarQuery">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></span><span class="sig-name descname"><span class="pre">RadarQuery</span></span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarQuery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarQuery" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></span><span class="sig-name descname"><span class="pre">RadarQuery</span></span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarQuery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarQuery" title="Link to this definition"></a></dt>
 <dd><p>Represent a query to the THREDDS radar server.</p>
 <p>Expands on the queries supported by <a class="reference internal" href="http_util.html#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataQuery</span></code></a> to add queries
 specific to the radar data query service.</p>
@@ -354,7 +354,7 @@ queries can be chained together on one line.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="siphon.radarserver.RadarServer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></span><span class="sig-name descname"><span class="pre">RadarServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarServer" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></span><span class="sig-name descname"><span class="pre">RadarServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/radarserver.html#RadarServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.radarserver.RadarServer" title="Link to this definition"></a></dt>
 <dd><p>Wrap access to the THREDDS radar query service (radar server).</p>
 <p>Simplifies access via HTTP to the radar server endpoint. Parses the metadata, provides
 query catalog results download and parsing based on the appropriate query.</p>
@@ -589,10 +589,10 @@ required parameters, as well as checking parameters for valid values.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="siphon.radarserver.Station">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></span><span class="sig-name descname"><span class="pre">Station</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elevation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.Station" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.radarserver.</span></span><span class="sig-name descname"><span class="pre">Station</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elevation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.Station" title="Link to this definition"></a></dt>
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="siphon.radarserver.Station.count">
-<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.Station.count" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.Station.count" title="Link to this definition"></a></dt>
 <dd><p>Return number of occurrences of value.</p>
 </dd></dl>
 
@@ -610,7 +610,7 @@ required parameters, as well as checking parameters for valid values.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="siphon.radarserver.Station.index">
-<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9223372036854775807</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.Station.index" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9223372036854775807</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#siphon.radarserver.Station.index" title="Link to this definition"></a></dt>
 <dd><p>Return first index of value.</p>
 <p>Raises ValueError if the value is not present.</p>
 </dd></dl>
@@ -680,7 +680,7 @@ server URL, fetch the catalog, and return the contained catalog references.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Oct 17, 2025 at 18:11:02.
+      <span class="lastupdated">Last updated on Oct 28, 2025 at 17:35:48.
       </span></p>
   </div>
 

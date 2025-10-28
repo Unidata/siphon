@@ -164,7 +164,7 @@
 <p>This includes forming proper queries as well as parsing the returned data.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="siphon.ncss.NCSS">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.ncss.</span></span><span class="sig-name descname"><span class="pre">NCSS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.ncss.NCSS" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.ncss.</span></span><span class="sig-name descname"><span class="pre">NCSS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.ncss.NCSS" title="Link to this definition"></a></dt>
 <dd><p>Wrap access to the NetCDF Subset Service (NCSS) on a THREDDS server.</p>
 <p>Simplifies access via HTTP to the NCSS endpoint. Parses the metadata, provides
 data download and parsing based on the appropriate query.</p>
@@ -399,7 +399,7 @@ required parameters, as well as checking parameters for valid values.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="siphon.ncss.NCSSQuery">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.ncss.</span></span><span class="sig-name descname"><span class="pre">NCSSQuery</span></span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.ncss.</span></span><span class="sig-name descname"><span class="pre">NCSSQuery</span></span><a class="reference internal" href="../_modules/siphon/ncss.html#NCSSQuery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.ncss.NCSSQuery" title="Link to this definition"></a></dt>
 <dd><p>Represent a query to the NetCDF Subset Service (NCSS).</p>
 <p>Expands on the queries supported by <a class="reference internal" href="http_util.html#siphon.http_util.DataQuery" title="siphon.http_util.DataQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataQuery</span></code></a> to add queries
 specific to NCSS.</p>
@@ -688,7 +688,7 @@ can be chained together on one line.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="siphon.ncss.ResponseRegistry">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.ncss.</span></span><span class="sig-name descname"><span class="pre">ResponseRegistry</span></span><a class="reference internal" href="../_modules/siphon/ncss.html#ResponseRegistry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.ncss.ResponseRegistry" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">siphon.ncss.</span></span><span class="sig-name descname"><span class="pre">ResponseRegistry</span></span><a class="reference internal" href="../_modules/siphon/ncss.html#ResponseRegistry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.ncss.ResponseRegistry" title="Link to this definition"></a></dt>
 <dd><p>Register functions to be called based on the mimetype in the response headers.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="siphon.ncss.ResponseRegistry.__init__">
@@ -698,7 +698,7 @@ can be chained together on one line.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="siphon.ncss.ResponseRegistry.default">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#ResponseRegistry.default"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.ncss.ResponseRegistry.default" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/ncss.html#ResponseRegistry.default"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.ncss.ResponseRegistry.default" title="Link to this definition"></a></dt>
 <dd><p>Handle a mimetype when no function is registered.</p>
 </dd></dl>
 
@@ -798,7 +798,7 @@ can be chained together on one line.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2025, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Oct 17, 2025 at 18:11:02.
+      <span class="lastupdated">Last updated on Oct 28, 2025 at 17:35:48.
       </span></p>
   </div>
 
