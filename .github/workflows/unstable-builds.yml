@@ -72,7 +72,7 @@ jobs:
       with:
         type: doc
         version-file: Prerelease
-        python-version: 3.12
+        python-version: 3.14
 
     - name: Build docs
       id: build

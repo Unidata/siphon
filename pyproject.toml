@@ -44,6 +44,7 @@ examples = [
     "matplotlib>=3.5",
     "cartopy>=0.21",
     "metpy",
+    "siphon[extras]"
 ]
 test = [
     "pytest>=7.0",
