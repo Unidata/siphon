@@ -14,7 +14,7 @@ Need some help using Siphon to solve your problem?
   Unidata's Python support email address.
 * [Gitter](https://gitter.im/Unidata/siphon): text-based chat with the developers; sign in
   using GitHub or Twitter.
-* [Unidata Python User’s Mailing List](https://www.unidata.ucar.edu/support/#mailinglists)
+* [Unidata Python User’s Mailing List](https://mailinglists.unidata.ucar.edu/?software)
 
 ## Issues
 Find a problem with Siphon? Looking for a feature we don't have? File an issue!

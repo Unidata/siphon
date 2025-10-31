@@ -121,4 +121,4 @@ running both the unit tests as well as the `flake8` and `ruff` code linters.
 If you're interested in contacting us or being a part of the community in
 other ways, feel free to contact us in
 [Siphon's Gitter Channel](https://gitter.im/Unidata/siphon) or through Unidata's
-[python-users](https://www.unidata.ucar.edu/support/#mailinglists) mailing list.
+[python-users](https://mailinglists.unidata.ucar.edu/?software) mailing list.

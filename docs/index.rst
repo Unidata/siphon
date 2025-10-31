@@ -43,7 +43,7 @@ Contact Us
 * If you use Siphon in a publication, please see :ref:`Citing_Siphon`.
 * For release announcements, join Unidata's python-users_ mailing list
 
-.. _python-users: https://www.unidata.ucar.edu/support/#mailinglists
+.. _python-users: https://mailinglists.unidata.ucar.edu/?software
 .. _GitHub: https://github.com/Unidata/siphon
 .. _Gitter: https://gitter.im/Unidata/siphon
 .. _StackOverflow: https://stackoverflow.com/questions/tagged/python-siphon
