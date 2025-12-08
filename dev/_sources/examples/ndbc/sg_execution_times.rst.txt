@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:07.705** total execution time for 3 files **from examples/ndbc**:
+**00:08.537** total execution time for 3 files **from examples/ndbc**:
 
 .. container::
 
@@ -33,11 +33,11 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_ndbc_latest_request.py` (``latest_request.py``)
-     - 00:06.094
+     - 00:06.085
      - 0.0
    * - :ref:`sphx_glr_examples_ndbc_buoy_type_request.py` (``buoy_type_request.py``)
-     - 00:01.111
+     - 00:01.878
      - 0.0
    * - :ref:`sphx_glr_examples_ndbc_buoy_met_request.py` (``buoy_met_request.py``)
-     - 00:00.501
+     - 00:00.574
      - 0.0
