@@ -26,7 +26,7 @@ data sources.
   .. image:: /examples/ndbc/images/thumb/sphx_glr_buoy_type_request_thumb.png
     :alt:
 
-  :ref:`sphx_glr_examples_ndbc_buoy_type_request.py`
+  :doc:`/examples/ndbc/buoy_type_request`
 
 .. raw:: html
 
@@ -43,7 +43,7 @@ data sources.
   .. image:: /examples/ndbc/images/thumb/sphx_glr_buoy_met_request_thumb.png
     :alt:
 
-  :ref:`sphx_glr_examples_ndbc_buoy_met_request.py`
+  :doc:`/examples/ndbc/buoy_met_request`
 
 .. raw:: html
 
@@ -60,7 +60,7 @@ data sources.
   .. image:: /examples/ndbc/images/thumb/sphx_glr_latest_request_thumb.png
     :alt:
 
-  :ref:`sphx_glr_examples_ndbc_latest_request.py`
+  :doc:`/examples/ndbc/latest_request`
 
 .. raw:: html
 

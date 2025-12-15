@@ -27,7 +27,7 @@ subsets of remote datasets in netCDF format.
   .. image:: /examples/ncss/images/thumb/sphx_glr_NCSS_Timeseries_Examples_thumb.png
     :alt:
 
-  :ref:`sphx_glr_examples_ncss_NCSS_Timeseries_Examples.py`
+  :doc:`/examples/ncss/NCSS_Timeseries_Examples`
 
 .. raw:: html
 
@@ -44,7 +44,7 @@ subsets of remote datasets in netCDF format.
   .. image:: /examples/ncss/images/thumb/sphx_glr_NCSS_Example_thumb.png
     :alt:
 
-  :ref:`sphx_glr_examples_ncss_NCSS_Example.py`
+  :doc:`/examples/ncss/NCSS_Example`
 
 .. raw:: html
 
@@ -61,7 +61,7 @@ subsets of remote datasets in netCDF format.
   .. image:: /examples/ncss/images/thumb/sphx_glr_NCSS_Cartopy_Example_thumb.png
     :alt:
 
-  :ref:`sphx_glr_examples_ncss_NCSS_Cartopy_Example.py`
+  :doc:`/examples/ncss/NCSS_Cartopy_Example`
 
 .. raw:: html
 

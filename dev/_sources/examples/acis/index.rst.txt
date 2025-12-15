@@ -47,7 +47,7 @@ http://builder.rcc-acis.org/
   .. image:: /examples/acis/images/thumb/sphx_glr_Basic_Overview_thumb.png
     :alt:
 
-  :ref:`sphx_glr_examples_acis_Basic_Overview.py`
+  :doc:`/examples/acis/Basic_Overview`
 
 .. raw:: html
 
@@ -64,7 +64,7 @@ http://builder.rcc-acis.org/
   .. image:: /examples/acis/images/thumb/sphx_glr_Mapping_Example_thumb.png
     :alt:
 
-  :ref:`sphx_glr_examples_acis_Mapping_Example.py`
+  :doc:`/examples/acis/Mapping_Example`
 
 .. raw:: html
 

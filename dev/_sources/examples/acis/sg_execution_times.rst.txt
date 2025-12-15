@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:44.562** total execution time for 2 files **from examples/acis**:
+**00:41.864** total execution time for 2 files **from examples/acis**:
 
 .. container::
 
@@ -33,8 +33,8 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_acis_Mapping_Example.py` (``Mapping_Example.py``)
-     - 00:43.738
+     - 00:40.854
      - 0.0
    * - :ref:`sphx_glr_examples_acis_Basic_Overview.py` (``Basic_Overview.py``)
-     - 00:00.824
+     - 00:01.010
      - 0.0

@@ -26,7 +26,7 @@ Examples of requesting upper air (balloon) data from the Wyoming data service an
   .. image:: /examples/upperair/images/thumb/sphx_glr_Wyoming_Request_thumb.png
     :alt:
 
-  :ref:`sphx_glr_examples_upperair_Wyoming_Request.py`
+  :doc:`/examples/upperair/Wyoming_Request`
 
 .. raw:: html
 
@@ -43,7 +43,7 @@ Examples of requesting upper air (balloon) data from the Wyoming data service an
   .. image:: /examples/upperair/images/thumb/sphx_glr_IGRA2_Request_thumb.png
     :alt:
 
-  :ref:`sphx_glr_examples_upperair_IGRA2_Request.py`
+  :doc:`/examples/upperair/IGRA2_Request`
 
 .. raw:: html
 
