@@ -105,7 +105,7 @@ Look at the variables available in this dataset
 
  .. code-block:: none
 
-    {'NXM', 'NYK', 'NAG', 'DOD', 'N3X', 'NST', 'NBB', 'NVW', 'DSD', 'N3Q', 'NYH', 'NYX', 'NBC', 'NBQ', 'OHA', 'N1K', 'N0U', 'N3K', 'NXB', 'DVL', 'N2C', 'NBH', 'N3H', 'N2X', 'NAH', 'NBX', 'N1U', 'NZH', 'N2U', 'DSP', 'NYC', 'N0K', 'NXK', 'N1P', 'NXX', 'NZK', 'N1H', 'N0G', 'NBK', 'NXQ', 'DAA', 'NAX', 'NAQ', 'NXC', 'N1S', 'N2H', 'N0C', 'NAC', 'NAM', 'NET', 'NXG', 'N0H', 'NVL', 'N2B', 'NZC', 'PTA', 'NZX', 'N1B', 'NXU', 'DU6', 'DPA', 'DPR', 'NYM', 'N0V', 'NZB', 'DTA', 'N0M', 'N0R', 'N2S', 'N2K', 'NYQ', 'N1M', 'N0X', 'NTP', 'N1C', 'DHR', 'N3S', 'NCR', 'N2M', 'NYG', 'NXH', 'NYB', 'N0S', 'N0Z', 'N1Q', 'N0B', 'N2Q', 'EET', 'NZM', 'NZU', 'NZG', 'HHC', 'N3C', 'N3B', 'NBU', 'NAU', 'N1G', 'DU3', 'N3U', 'N0Q', 'NAB', 'NBM', 'NZQ', 'N1X', 'N3M', 'NAK', 'NYU', 'NMD'}
+    {'DVL', 'DSD', 'NAQ', 'NXG', 'NYC', 'N2M', 'N0R', 'N1P', 'N1K', 'PTA', 'NBC', 'NXX', 'N1B', 'NBM', 'N3U', 'NZB', 'DPR', 'N3S', 'NAB', 'NXU', 'NMD', 'DSP', 'N1G', 'NZG', 'NAG', 'DHR', 'NAX', 'N2U', 'NAC', 'N0Q', 'NAU', 'NBU', 'HHC', 'N0H', 'N0S', 'N3K', 'NBB', 'N2X', 'NZX', 'N2Q', 'N0K', 'NYH', 'NYM', 'DTA', 'N3C', 'N1Q', 'NXC', 'NBX', 'N2K', 'NBH', 'NZU', 'NZM', 'N1H', 'N3Q', 'N2H', 'NAM', 'N0C', 'NXB', 'NXH', 'NYQ', 'OHA', 'NVW', 'DAA', 'DU3', 'N0U', 'NZQ', 'NXK', 'NBK', 'NYB', 'NXQ', 'NTP', 'NVL', 'N3H', 'N0B', 'NAK', 'NZK', 'NZC', 'N2B', 'NYX', 'NYG', 'N2S', 'N0X', 'NZH', 'NCR', 'N3B', 'DOD', 'NST', 'NBQ', 'N2C', 'NYK', 'EET', 'N1U', 'N1C', 'NXM', 'N3X', 'N1M', 'N0Z', 'N3M', 'NET', 'N0G', 'DPA', 'N1X', 'N0M', 'DU6', 'NAH', 'N0V', 'NYU', 'N1S'}
 
 
 
@@ -133,7 +133,7 @@ is represented as a string, it shows the encoded URL.
  .. code-block:: none
 
 
-    var=N0B&time=2025-12-22T08%3A08%3A16.412955%2B00%3A00&stn=FTG
+    var=N0B&time=2026-01-15T21%3A08%3A17.479924%2B00%3A00&stn=FTG
 
 
 
@@ -199,7 +199,7 @@ find one NIDS file in the return.
 
  .. code-block:: none
 
-    ['Level3_FTG_N0B_20251222_0806.nids']
+    ['Level3_FTG_N0B_20260115_2102.nids']
 
 
 
@@ -224,7 +224,7 @@ We see URLs for OPeNDAP, CDMRemote, and HTTPServer (direct download).
 
  .. code-block:: none
 
-    {'OPENDAP': 'https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0B/FTG/20251222/Level3_FTG_N0B_20251222_0806.nids', 'HTTPServer': 'https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0B/FTG/20251222/Level3_FTG_N0B_20251222_0806.nids', 'CdmRemote': 'https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0B/FTG/20251222/Level3_FTG_N0B_20251222_0806.nids'}
+    {'OPENDAP': 'https://thredds.ucar.edu/thredds/dodsC/nexrad/level3/IDD/N0B/FTG/20260115/Level3_FTG_N0B_20260115_2102.nids', 'HTTPServer': 'https://thredds.ucar.edu/thredds/fileServer/nexrad/level3/IDD/N0B/FTG/20260115/Level3_FTG_N0B_20260115_2102.nids', 'CdmRemote': 'https://thredds.ucar.edu/thredds/cdmremote/nexrad/level3/IDD/N0B/FTG/20260115/Level3_FTG_N0B_20260115_2102.nids'}
 
 
 
@@ -338,7 +338,7 @@ Finally, we plot them up using matplotlib.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 4.324 seconds)
+   **Total running time of the script:** (0 minutes 3.878 seconds)
 
 
 .. _sphx_glr_download_examples_Radar_Server_Level_3.py:
