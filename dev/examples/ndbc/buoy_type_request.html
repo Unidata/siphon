@@ -133,7 +133,7 @@ the other types of data available for a buoy.</p>
 </div>
 <p>Get a pandas data frame of all of the observations, meteorological data is the default
 observation set to query.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.core.frame.DataFrame" class="sphx-glr-backref-module-pandas-core-frame sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span></a> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.realtime_observations" title="siphon.simplewebservice.ndbc.NDBC.realtime_observations" class="sphx-glr-backref-module-siphon-simplewebservice-ndbc sphx-glr-backref-type-py-method"><span class="n">NDBC</span><span class="o">.</span><span class="n">realtime_observations</span></a><span class="p">(</span><span class="s1">&#39;42012&#39;</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;supl&#39;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span></a> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.realtime_observations" title="siphon.simplewebservice.ndbc.NDBC.realtime_observations" class="sphx-glr-backref-module-siphon-simplewebservice-ndbc sphx-glr-backref-type-py-method"><span class="n">NDBC</span><span class="o">.</span><span class="n">realtime_observations</span></a><span class="p">(</span><span class="s1">&#39;42012&#39;</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;supl&#39;</span><span class="p">)</span>
 <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html#pandas.DataFrame.head" title="pandas.DataFrame.head" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-method"><span class="n">df</span><span class="o">.</span><span class="n">head</span></a><span class="p">()</span>
 </pre></div>
 </div>
@@ -167,55 +167,55 @@ observation set to query.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>1017.5</td>
-      <td>2026-01-15 20:39:00+00:00</td>
-      <td>9.0</td>
-      <td>310.0</td>
-      <td>2026-01-15 20:39:00+00:00</td>
-      <td>2026-01-15 20:40:00+00:00</td>
+      <td>1022.8</td>
+      <td>2026-01-21 23:19:00+00:00</td>
+      <td>8.0</td>
+      <td>140.0</td>
+      <td>2026-01-21 23:13:00+00:00</td>
+      <td>2026-01-21 23:20:00+00:00</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1017.7</td>
-      <td>2026-01-15 20:25:00+00:00</td>
+      <td>1022.8</td>
+      <td>2026-01-21 23:09:00+00:00</td>
       <td>8.0</td>
-      <td>330.0</td>
-      <td>2026-01-15 20:25:00+00:00</td>
-      <td>2026-01-15 20:30:00+00:00</td>
+      <td>140.0</td>
+      <td>2026-01-21 23:08:00+00:00</td>
+      <td>2026-01-21 23:10:00+00:00</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1017.7</td>
-      <td>2026-01-15 20:15:00+00:00</td>
+      <td>1023.0</td>
+      <td>2026-01-21 22:54:00+00:00</td>
       <td>8.0</td>
-      <td>310.0</td>
-      <td>2026-01-15 20:15:00+00:00</td>
-      <td>2026-01-15 20:20:00+00:00</td>
+      <td>140.0</td>
+      <td>2026-01-21 23:00:00+00:00</td>
+      <td>2026-01-21 23:00:00+00:00</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1017.8</td>
-      <td>2026-01-15 20:07:00+00:00</td>
+      <td>1023.0</td>
+      <td>2026-01-21 22:49:00+00:00</td>
       <td>8.0</td>
-      <td>320.0</td>
-      <td>2026-01-15 20:06:00+00:00</td>
-      <td>2026-01-15 20:10:00+00:00</td>
+      <td>140.0</td>
+      <td>2026-01-21 22:42:00+00:00</td>
+      <td>2026-01-21 22:50:00+00:00</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1018.0</td>
-      <td>2026-01-15 19:51:00+00:00</td>
-      <td>10.0</td>
-      <td>320.0</td>
-      <td>2026-01-15 19:51:00+00:00</td>
-      <td>2026-01-15 20:00:00+00:00</td>
+      <td>1022.9</td>
+      <td>2026-01-21 22:36:00+00:00</td>
+      <td>9.0</td>
+      <td>130.0</td>
+      <td>2026-01-21 22:36:00+00:00</td>
+      <td>2026-01-21 22:40:00+00:00</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.907 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 3.615 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ndbc-buoy-type-request-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/baeb25415637899441803ce7ad5a6161/buoy_type_request.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">buoy_type_request.ipynb</span></code></a></p>
@@ -242,7 +242,7 @@ observation set to query.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2026, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Jan 15, 2026 at 21:10:29.
+      <span class="lastupdated">Last updated on Jan 21, 2026 at 23:42:47.
       </span></p>
   </div>
 
