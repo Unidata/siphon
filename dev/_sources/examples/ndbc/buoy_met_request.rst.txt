@@ -98,93 +98,93 @@ observation set to query.
       <tbody>
         <tr>
           <th>0</th>
-          <td>90.0</td>
+          <td>160.0</td>
           <td>3.0</td>
-          <td>5.0</td>
+          <td>4.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>1000.9</td>
+          <td>4.2</td>
+          <td>4.1</td>
+          <td>NaN</td>
+          <td>NaN</td>
           <td>1.5</td>
-          <td>12.0</td>
-          <td>8.4</td>
-          <td>234.0</td>
-          <td>1023.3</td>
-          <td>3.0</td>
-          <td>3.9</td>
-          <td>3.0</td>
           <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2026-01-21 23:20:00+00:00</td>
+          <td>2026-01-30 23:00:00+00:00</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>90.0</td>
+          <td>160.0</td>
           <td>3.0</td>
           <td>4.0</td>
+          <td>2.9</td>
+          <td>11.0</td>
+          <td>8.4</td>
+          <td>177.0</td>
+          <td>1000.9</td>
+          <td>4.2</td>
+          <td>4.1</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1023.3</td>
-          <td>3.0</td>
-          <td>3.9</td>
-          <td>3.0</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2026-01-21 23:10:00+00:00</td>
+          <td>2026-01-30 22:50:00+00:00</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>60.0</td>
-          <td>3.0</td>
+          <td>150.0</td>
+          <td>4.0</td>
           <td>4.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1023.4</td>
-          <td>2.9</td>
-          <td>3.9</td>
-          <td>2.9</td>
+          <td>1000.9</td>
+          <td>4.2</td>
+          <td>4.1</td>
           <td>NaN</td>
-          <td>-0.8</td>
           <td>NaN</td>
-          <td>2026-01-21 23:00:00+00:00</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2026-01-30 22:40:00+00:00</td>
         </tr>
         <tr>
           <th>3</th>
-          <td>90.0</td>
-          <td>3.0</td>
+          <td>150.0</td>
           <td>4.0</td>
-          <td>1.5</td>
-          <td>11.0</td>
-          <td>8.1</td>
-          <td>229.0</td>
-          <td>1023.5</td>
-          <td>2.9</td>
-          <td>3.9</td>
-          <td>2.9</td>
+          <td>5.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2026-01-21 22:50:00+00:00</td>
+          <td>NaN</td>
+          <td>1000.9</td>
+          <td>4.2</td>
+          <td>4.1</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2026-01-30 22:30:00+00:00</td>
         </tr>
         <tr>
           <th>4</th>
-          <td>110.0</td>
-          <td>3.0</td>
+          <td>150.0</td>
           <td>4.0</td>
-          <td>1.5</td>
-          <td>NaN</td>
-          <td>8.1</td>
-          <td>229.0</td>
-          <td>1023.6</td>
+          <td>5.0</td>
           <td>2.9</td>
-          <td>3.9</td>
-          <td>2.9</td>
+          <td>11.0</td>
+          <td>8.6</td>
+          <td>186.0</td>
+          <td>1000.7</td>
+          <td>4.3</td>
+          <td>4.1</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2026-01-21 22:40:00+00:00</td>
+          <td>NaN</td>
+          <td>2026-01-30 22:20:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -235,7 +235,7 @@ Let's make a simple time series plot to checkout what the data look like.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.001 seconds)
+   **Total running time of the script:** (0 minutes 0.518 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_met_request.py:
