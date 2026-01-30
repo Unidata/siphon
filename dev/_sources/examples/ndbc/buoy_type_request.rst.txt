@@ -110,6 +110,24 @@ observation set to query.
       <tbody>
         <tr>
           <th>0</th>
+          <td>1016.7</td>
+          <td>2026-01-30 23:19:00+00:00</td>
+          <td>5.0</td>
+          <td>280.0</td>
+          <td>2026-01-30 23:15:00+00:00</td>
+          <td>2026-01-30 23:20:00+00:00</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>1016.8</td>
+          <td>2026-01-30 23:06:00+00:00</td>
+          <td>5.0</td>
+          <td>280.0</td>
+          <td>2026-01-30 23:01:00+00:00</td>
+          <td>2026-01-30 23:10:00+00:00</td>
+        </tr>
+        <tr>
+          <th>2</th>
           <td>1016.8</td>
           <td>2026-01-30 22:55:00+00:00</td>
           <td>6.0</td>
@@ -118,7 +136,7 @@ observation set to query.
           <td>2026-01-30 23:00:00+00:00</td>
         </tr>
         <tr>
-          <th>1</th>
+          <th>3</th>
           <td>1016.6</td>
           <td>2026-01-30 22:45:00+00:00</td>
           <td>5.0</td>
@@ -127,31 +145,13 @@ observation set to query.
           <td>2026-01-30 22:50:00+00:00</td>
         </tr>
         <tr>
-          <th>2</th>
+          <th>4</th>
           <td>1016.8</td>
           <td>2026-01-30 22:40:00+00:00</td>
           <td>5.0</td>
           <td>290.0</td>
           <td>2026-01-30 22:38:00+00:00</td>
           <td>2026-01-30 22:40:00+00:00</td>
-        </tr>
-        <tr>
-          <th>3</th>
-          <td>1017.0</td>
-          <td>2026-01-30 22:30:00+00:00</td>
-          <td>4.0</td>
-          <td>270.0</td>
-          <td>2026-01-30 22:26:00+00:00</td>
-          <td>2026-01-30 22:30:00+00:00</td>
-        </tr>
-        <tr>
-          <th>4</th>
-          <td>1017.0</td>
-          <td>2026-01-30 22:20:00+00:00</td>
-          <td>5.0</td>
-          <td>280.0</td>
-          <td>2026-01-30 22:19:00+00:00</td>
-          <td>2026-01-30 22:20:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -163,7 +163,7 @@ observation set to query.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.548 seconds)
+   **Total running time of the script:** (0 minutes 4.559 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_buoy_type_request.py:
