@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:03.366** total execution time for 3 files **from examples/ncss**:
+**00:04.021** total execution time for 3 files **from examples/ncss**:
 
 .. container::
 
@@ -32,12 +32,12 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_examples_ncss_NCSS_Example.py` (``NCSS_Example.py``)
-     - 00:01.275
-     - 0.0
    * - :ref:`sphx_glr_examples_ncss_NCSS_Cartopy_Example.py` (``NCSS_Cartopy_Example.py``)
-     - 00:01.175
+     - 00:01.580
+     - 0.0
+   * - :ref:`sphx_glr_examples_ncss_NCSS_Example.py` (``NCSS_Example.py``)
+     - 00:01.288
      - 0.0
    * - :ref:`sphx_glr_examples_ncss_NCSS_Timeseries_Examples.py` (``NCSS_Timeseries_Examples.py``)
-     - 00:00.916
+     - 00:01.152
      - 0.0
