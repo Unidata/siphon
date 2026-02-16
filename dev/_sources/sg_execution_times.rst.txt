@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**01:24.748** total execution time for 12 files **from all galleries**:
+**01:17.759** total execution time for 12 files **from all galleries**:
 
 .. container::
 
@@ -32,39 +32,39 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_examples_acis_Mapping_Example.py` (``../examples/acis/Mapping_Example.py``)
-     - 00:41.925
-     - 0.0
    * - :ref:`sphx_glr_examples_upperair_IGRA2_Request.py` (``../examples/upperair/IGRA2_Request.py``)
-     - 00:23.892
+     - 00:32.637
+     - 0.0
+   * - :ref:`sphx_glr_examples_acis_Mapping_Example.py` (``../examples/acis/Mapping_Example.py``)
+     - 00:30.298
      - 0.0
    * - :ref:`sphx_glr_examples_ndbc_latest_request.py` (``../examples/ndbc/latest_request.py``)
-     - 00:05.749
+     - 00:05.524
      - 0.0
    * - :ref:`sphx_glr_examples_Radar_Server_Level_3.py` (``../examples/Radar_Server_Level_3.py``)
-     - 00:03.903
-     - 0.0
-   * - :ref:`sphx_glr_examples_ndbc_buoy_type_request.py` (``../examples/ndbc/buoy_type_request.py``)
-     - 00:02.085
-     - 0.0
-   * - :ref:`sphx_glr_examples_Basic_Usage.py` (``../examples/Basic_Usage.py``)
-     - 00:01.498
-     - 0.0
-   * - :ref:`sphx_glr_examples_ncss_NCSS_Example.py` (``../examples/ncss/NCSS_Example.py``)
-     - 00:01.235
+     - 00:02.924
      - 0.0
    * - :ref:`sphx_glr_examples_upperair_Wyoming_Request.py` (``../examples/upperair/Wyoming_Request.py``)
-     - 00:01.188
+     - 00:01.054
      - 0.0
    * - :ref:`sphx_glr_examples_ncss_NCSS_Cartopy_Example.py` (``../examples/ncss/NCSS_Cartopy_Example.py``)
-     - 00:01.007
-     - 0.0
-   * - :ref:`sphx_glr_examples_ncss_NCSS_Timeseries_Examples.py` (``../examples/ncss/NCSS_Timeseries_Examples.py``)
-     - 00:00.904
+     - 00:00.913
      - 0.0
    * - :ref:`sphx_glr_examples_acis_Basic_Overview.py` (``../examples/acis/Basic_Overview.py``)
-     - 00:00.808
+     - 00:00.874
+     - 0.0
+   * - :ref:`sphx_glr_examples_ncss_NCSS_Example.py` (``../examples/ncss/NCSS_Example.py``)
+     - 00:00.867
+     - 0.0
+   * - :ref:`sphx_glr_examples_ncss_NCSS_Timeseries_Examples.py` (``../examples/ncss/NCSS_Timeseries_Examples.py``)
+     - 00:00.848
+     - 0.0
+   * - :ref:`sphx_glr_examples_ndbc_buoy_type_request.py` (``../examples/ndbc/buoy_type_request.py``)
+     - 00:00.688
+     - 0.0
+   * - :ref:`sphx_glr_examples_Basic_Usage.py` (``../examples/Basic_Usage.py``)
+     - 00:00.651
      - 0.0
    * - :ref:`sphx_glr_examples_ndbc_buoy_met_request.py` (``../examples/ndbc/buoy_met_request.py``)
-     - 00:00.554
+     - 00:00.480
      - 0.0

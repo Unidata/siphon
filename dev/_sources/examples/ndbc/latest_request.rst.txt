@@ -104,7 +104,7 @@ Get a pandas data frame of all of the observations
           <th>0</th>
           <td>13002</td>
           <td>21.0</td>
-          <td>-23.000</td>
+          <td>-23.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
@@ -114,96 +114,96 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>20.1</td>
+          <td>19.6</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2026-02-09 07:00:00+00:00</td>
+          <td>2026-02-16 07:00:00+00:00</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>14049</td>
-          <td>-12.0</td>
-          <td>65.000</td>
-          <td>147.0</td>
-          <td>3.7</td>
-          <td>4.9</td>
+          <td>13008</td>
+          <td>15.0</td>
+          <td>-38.0</td>
+          <td>83.0</td>
+          <td>7.1</td>
+          <td>8.3</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1011.9</td>
+          <td>1017.2</td>
           <td>NaN</td>
-          <td>23.3</td>
-          <td>29.5</td>
+          <td>23.7</td>
+          <td>24.4</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2026-02-09 07:00:00+00:00</td>
+          <td>2026-02-16 07:00:00+00:00</td>
         </tr>
         <tr>
           <th>2</th>
+          <td>14049</td>
+          <td>-12.0</td>
+          <td>65.0</td>
+          <td>102.0</td>
+          <td>6.1</td>
+          <td>7.6</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>1010.0</td>
+          <td>NaN</td>
+          <td>22.7</td>
+          <td>29.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2026-02-16 07:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>3</th>
           <td>15001</td>
           <td>-10.0</td>
-          <td>-10.000</td>
-          <td>144.0</td>
-          <td>8.6</td>
-          <td>9.8</td>
+          <td>-10.0</td>
+          <td>140.0</td>
+          <td>3.3</td>
+          <td>4.1</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>1014.6</td>
           <td>NaN</td>
-          <td>24.5</td>
+          <td>25.9</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2026-02-09 07:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>3</th>
-          <td>15002</td>
-          <td>0.0</td>
-          <td>-10.000</td>
-          <td>191.0</td>
-          <td>5.1</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>1012.0</td>
-          <td>NaN</td>
-          <td>27.4</td>
-          <td>28.5</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2026-02-09 07:00:00+00:00</td>
+          <td>2026-02-16 07:00:00+00:00</td>
         </tr>
         <tr>
           <th>4</th>
-          <td>15009</td>
+          <td>15002</td>
           <td>0.0</td>
-          <td>-3.051</td>
-          <td>177.0</td>
-          <td>0.4</td>
+          <td>-10.0</td>
+          <td>161.0</td>
+          <td>5.6</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1010.4</td>
+          <td>1012.3</td>
           <td>NaN</td>
-          <td>29.6</td>
-          <td>29.8</td>
+          <td>27.8</td>
+          <td>28.8</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2026-02-09 06:00:00+00:00</td>
+          <td>2026-02-16 07:00:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -266,7 +266,7 @@ Let's make a simple plot of the buoy positions and color by water temperature
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 5.749 seconds)
+   **Total running time of the script:** (0 minutes 5.524 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_latest_request.py:

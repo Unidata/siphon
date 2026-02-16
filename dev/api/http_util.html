@@ -350,10 +350,10 @@ validate them, parse metadata as appropriate, and parse returns from requests.</
 <dd class="field-even"><p><strong>resp</strong> – The server’s response to the request</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Response" title="(in Requests v2.32.5)">requests.Response</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Response" title="(in Requests v2.33.0.dev1)">requests.Response</a></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.HTTPError" title="(in Requests v2.32.5)"><strong>HTTPError</strong></a> – If the server returns anything other than a 200 (OK) code</p>
+<dd class="field-even"><p><a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.HTTPError" title="(in Requests v2.33.0.dev1)"><strong>HTTPError</strong></a> – If the server returns anything other than a 200 (OK) code</p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -379,7 +379,7 @@ assigned to the endpoint.</p>
 <dd class="field-even"><p><strong>resp</strong> – The server’s response to the request</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Response" title="(in Requests v2.32.5)">requests.Response</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Response" title="(in Requests v2.33.0.dev1)">requests.Response</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -401,7 +401,7 @@ assigned to the endpoint.</p>
 <dd class="field-even"><p><strong>resp</strong> – The server’s response to the request</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Response" title="(in Requests v2.32.5)">requests.Response</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Response" title="(in Requests v2.33.0.dev1)">requests.Response</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -485,7 +485,7 @@ implement this to do more detailed checking as appropriate.</p>
 <dd class="field-odd"><p><strong>session</strong> – The created session</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Session" title="(in Requests v2.32.5)">requests.Session</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Session" title="(in Requests v2.33.0.dev1)">requests.Session</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -499,7 +499,7 @@ implement this to do more detailed checking as appropriate.</p>
 <span class="sig-name descname"><span class="pre">set_session_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPSessionManager.set_session_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPSessionManager.set_session_options" title="Link to this definition"></a></dt>
 <dd><p>Set options for created session instances.</p>
 <p>Takes keyword arguments and sets them as attributes on the returned
-<a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Session" title="(in Requests v2.32.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">requests.Session</span></code></a> instance.</p>
+<a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Session" title="(in Requests v2.33.0.dev1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">requests.Session</span></code></a> instance.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="#siphon.http_util.HTTPSessionManager.create_session" title="siphon.http_util.HTTPSessionManager.create_session"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_session</span></code></a></p>
@@ -510,13 +510,13 @@ implement this to do more detailed checking as appropriate.</p>
 <dt class="sig sig-object py" id="siphon.http_util.HTTPSessionManager.urlopen">
 <span class="sig-name descname"><span class="pre">urlopen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decompress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/siphon/http_util.html#HTTPSessionManager.urlopen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#siphon.http_util.HTTPSessionManager.urlopen" title="Link to this definition"></a></dt>
 <dd><p>GET a file-like object for a URL using HTTP.</p>
-<p>This is a thin wrapper around <a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Session.get" title="(in Requests v2.32.5)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">requests.Session.get()</span></code></a> that returns a file-like
+<p>This is a thin wrapper around <a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Session.get" title="(in Requests v2.33.0.dev1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">requests.Session.get()</span></code></a> that returns a file-like
 object wrapped around the resulting content.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The URL to request</p></li>
-<li><p><strong>kwargs</strong> – Additional keyword arguments to pass to <a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Session.get" title="(in Requests v2.32.5)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">requests.Session.get()</span></code></a>.</p></li>
+<li><p><strong>kwargs</strong> – Additional keyword arguments to pass to <a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Session.get" title="(in Requests v2.33.0.dev1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">requests.Session.get()</span></code></a>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -528,7 +528,7 @@ object wrapped around the resulting content.</p>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Session.get" title="(in Requests v2.32.5)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">requests.Session.get()</span></code></a></p>
+<p><a class="reference external" href="https://requests.kennethreitz.org/en/latest/api/#requests.Session.get" title="(in Requests v2.33.0.dev1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">requests.Session.get()</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -589,7 +589,7 @@ object wrapped around the resulting content.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2026, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Feb 09, 2026 at 08:57:40.
+      <span class="lastupdated">Last updated on Feb 16, 2026 at 08:40:10.
       </span></p>
   </div>
 
