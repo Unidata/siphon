@@ -7,6 +7,7 @@ from datetime import datetime
 
 import numpy as np
 from numpy.testing import assert_almost_equal, assert_equal
+import pandas as pd
 import pytest
 
 from siphon.http_util import utc
@@ -93,6 +94,7 @@ def test_ndbc_realtime_cwind():
     assert_almost_equal(df['wind_gust'][0], 9.0, 1)
     assert df['gust_time'][0] == datetime(2018, 8, 1, 14, 49, 0, tzinfo=utc)
     assert df['time'][0] == datetime(2018, 8, 1, 14, 50, 0, tzinfo=utc)
+    assert pd.isna(df['gust_time'][1])
 
     assert df.units['wind_direction'] == 'degrees'
     assert df.units['wind_speed'] == 'meters/second'
