@@ -187,12 +187,11 @@ class NDBC(HTTPEndPoint):
         df['gust_direction'] = df['gust_direction'].replace(999, np.nan)
         df['wind_gust'] = df['wind_gust'].replace(99.0, np.nan)
         df['time'] = pd.to_datetime(df[['year', 'month', 'day', 'hour', 'minute']], utc=True)
-        df['hours'] = np.floor(df['gust_time'] / 100)
+        df['hours'] = df['gust_time'] // 100
         df['minutes'] = df['gust_time'] - df['hours'] * 100
-        df['hours'] = df['hours'].replace(99, np.nan)
-        df['minutes'] = df['minutes'].replace(99, np.nan)
         df['gust_time'] = pd.to_datetime(df[['year', 'month', 'day', 'hours', 'minutes']],
                                          utc=True)
+        df['gust_time'] = df['gust_time'].where(df['hours'] != 99, pd.NaT)
         df = df.drop(columns=['year', 'month', 'day', 'hour', 'minute',
                               'hours', 'minutes'])
         with warnings.catch_warnings():
