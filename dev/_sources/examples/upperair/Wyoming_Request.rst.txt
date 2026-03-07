@@ -98,7 +98,7 @@ Inspect data columns in the dataframe.
     Index(['pressure', 'height', 'temperature', 'dewpoint', 'direction', 'speed',
            'u_wind', 'v_wind', 'station', 'station_number', 'time', 'latitude',
            'longitude', 'elevation', 'pw'],
-          dtype='object')
+          dtype='str')
 
 
 
@@ -203,7 +203,7 @@ Units can then be attached to the values from the dataframe.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.008 seconds)
+   **Total running time of the script:** (0 minutes 1.500 seconds)
 
 
 .. _sphx_glr_download_examples_upperair_Wyoming_Request.py:

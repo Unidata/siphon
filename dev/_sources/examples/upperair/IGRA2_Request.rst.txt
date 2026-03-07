@@ -100,11 +100,11 @@ Inspect data columns in the dataframe.
     Index(['lvltyp1', 'lvltyp2', 'etime', 'pressure', 'pflag', 'height', 'zflag',
            'temperature', 'tflag', 'relative_humidity', 'direction', 'speed',
            'date', 'u_wind', 'v_wind', 'dewpoint'],
-          dtype='object')
+          dtype='str')
     Index(['site_id', 'year', 'month', 'day', 'hour', 'release_time',
            'number_levels', 'pressure_source_code', 'non_pressure_source_code',
            'latitude', 'longitude', 'date'],
-          dtype='object')
+          dtype='str')
 
 
 
@@ -278,7 +278,7 @@ Inspect data columns in the dataframe.
            'calculated_relative_humidity', 'relative_humidity_gradient', 'u_wind',
            'u_wind_gradient', 'v_wind', 'v_wind_gradient', 'refractive_index',
            'date'],
-          dtype='object')
+          dtype='str')
     Index(['site_id', 'year', 'month', 'day', 'hour', 'release_time',
            'number_levels', 'precipitable_water', 'inv_pressure', 'inv_height',
            'inv_strength', 'mixed_layer_pressure', 'mixed_layer_height',
@@ -286,7 +286,7 @@ Inspect data columns in the dataframe.
            'lcl_height', 'lfc_pressure', 'lfc_height', 'lnb_pressure',
            'lnb_height', 'lifted_index', 'showalter_index', 'k_index',
            'total_totals_index', 'cape', 'convective_inhibition', 'date'],
-          dtype='object')
+          dtype='str')
 
 
 
@@ -294,7 +294,7 @@ Inspect data columns in the dataframe.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 25.435 seconds)
+   **Total running time of the script:** (0 minutes 21.337 seconds)
 
 
 .. _sphx_glr_download_examples_upperair_IGRA2_Request.py:
