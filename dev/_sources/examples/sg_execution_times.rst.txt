@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:09.362** total execution time for 2 files **from examples**:
+**00:03.164** total execution time for 2 files **from examples**:
 
 .. container::
 
@@ -32,9 +32,9 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_examples_Basic_Usage.py` (``Basic_Usage.py``)
-     - 00:06.057
-     - 0.0
    * - :ref:`sphx_glr_examples_Radar_Server_Level_3.py` (``Radar_Server_Level_3.py``)
-     - 00:03.305
+     - 00:02.034
+     - 0.0
+   * - :ref:`sphx_glr_examples_Basic_Usage.py` (``Basic_Usage.py``)
+     - 00:01.130
      - 0.0
