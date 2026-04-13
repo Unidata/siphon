@@ -23,7 +23,7 @@ jobs:
 
     steps:
     - name: Check Dependabot metadata
-      uses: dependabot/fetch-metadata@v2
+      uses: dependabot/fetch-metadata@v3
 
     - name: Create App Token
       uses: actions/create-github-app-token@v3
