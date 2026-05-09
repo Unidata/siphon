@@ -14,6 +14,10 @@ General Examples
 Examples of using Siphon's functionality
 
 
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
 
 .. raw:: html
 
@@ -96,6 +100,10 @@ A useful web tool for constructing query parameters is available here:
 http://builder.rcc-acis.org/
 
 
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
 
 .. raw:: html
 
@@ -150,6 +158,10 @@ NCSS
 Examples of using the netCDF Subset Service (NCSS) to download
 subsets of remote datasets in netCDF format.
 
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
 
 
 .. raw:: html
@@ -222,6 +234,10 @@ National Data Buoy Center (NDBC)
 Examples of requesting data from the National Data Buoy Center latest and realtime
 data sources.
 
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
 
 .. raw:: html
 
@@ -292,6 +308,10 @@ Upper Air
 
 Examples of requesting upper air (balloon) data from the Wyoming data service and from the Integrated Global Radiosonde Archive.
 
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
 
 
 .. raw:: html

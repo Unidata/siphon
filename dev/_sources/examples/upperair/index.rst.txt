@@ -10,6 +10,10 @@ Upper Air
 Examples of requesting upper air (balloon) data from the Wyoming data service and from the Integrated Global Radiosonde Archive.
 
 
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
 
 .. raw:: html
 

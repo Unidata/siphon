@@ -10,6 +10,10 @@ National Data Buoy Center (NDBC)
 Examples of requesting data from the National Data Buoy Center latest and realtime
 data sources.
 
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
 
 .. raw:: html
 

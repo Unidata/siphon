@@ -31,6 +31,10 @@ A useful web tool for constructing query parameters is available here:
 http://builder.rcc-acis.org/
 
 
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
 
 .. raw:: html
 
