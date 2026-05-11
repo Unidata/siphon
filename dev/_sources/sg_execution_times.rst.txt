@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**01:08.969** total execution time for 12 files **from all galleries**:
+**01:14.677** total execution time for 12 files **from all galleries**:
 
 .. container::
 
@@ -33,38 +33,38 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_acis_Mapping_Example.py` (``../examples/acis/Mapping_Example.py``)
-     - 00:29.707
+     - 00:32.635
      - 0.0
    * - :ref:`sphx_glr_examples_upperair_IGRA2_Request.py` (``../examples/upperair/IGRA2_Request.py``)
-     - 00:23.448
+     - 00:22.154
      - 0.0
    * - :ref:`sphx_glr_examples_ndbc_latest_request.py` (``../examples/ndbc/latest_request.py``)
-     - 00:05.636
+     - 00:05.649
      - 0.0
    * - :ref:`sphx_glr_examples_Radar_Server_Level_3.py` (``../examples/Radar_Server_Level_3.py``)
-     - 00:03.274
+     - 00:03.971
      - 0.0
    * - :ref:`sphx_glr_examples_ncss_NCSS_Timeseries_Examples.py` (``../examples/ncss/NCSS_Timeseries_Examples.py``)
-     - 00:01.058
-     - 0.0
-   * - :ref:`sphx_glr_examples_ncss_NCSS_Example.py` (``../examples/ncss/NCSS_Example.py``)
-     - 00:01.035
-     - 0.0
-   * - :ref:`sphx_glr_examples_upperair_Wyoming_Request.py` (``../examples/upperair/Wyoming_Request.py``)
-     - 00:01.016
-     - 0.0
-   * - :ref:`sphx_glr_examples_Basic_Usage.py` (``../examples/Basic_Usage.py``)
-     - 00:00.964
+     - 00:01.742
      - 0.0
    * - :ref:`sphx_glr_examples_ncss_NCSS_Cartopy_Example.py` (``../examples/ncss/NCSS_Cartopy_Example.py``)
-     - 00:00.901
+     - 00:01.731
      - 0.0
-   * - :ref:`sphx_glr_examples_acis_Basic_Overview.py` (``../examples/acis/Basic_Overview.py``)
-     - 00:00.726
+   * - :ref:`sphx_glr_examples_ncss_NCSS_Example.py` (``../examples/ncss/NCSS_Example.py``)
+     - 00:01.589
+     - 0.0
+   * - :ref:`sphx_glr_examples_Basic_Usage.py` (``../examples/Basic_Usage.py``)
+     - 00:01.527
+     - 0.0
+   * - :ref:`sphx_glr_examples_upperair_Wyoming_Request.py` (``../examples/upperair/Wyoming_Request.py``)
+     - 00:01.407
      - 0.0
    * - :ref:`sphx_glr_examples_ndbc_buoy_type_request.py` (``../examples/ndbc/buoy_type_request.py``)
-     - 00:00.665
+     - 00:01.003
+     - 0.0
+   * - :ref:`sphx_glr_examples_acis_Basic_Overview.py` (``../examples/acis/Basic_Overview.py``)
+     - 00:00.716
      - 0.0
    * - :ref:`sphx_glr_examples_ndbc_buoy_met_request.py` (``../examples/ndbc/buoy_met_request.py``)
-     - 00:00.540
+     - 00:00.553
      - 0.0
