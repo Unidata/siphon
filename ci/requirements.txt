@@ -1,5 +1,5 @@
 beautifulsoup4==4.15.0
-numpy==2.4.6
+numpy==2.5.0
 pandas==3.0.3
 protobuf==7.35.1
 requests==2.34.2
