@@ -49,7 +49,7 @@ still evolving (we won't break things just for fun, but many things are still ch
 work through design issues). Also, for a version `0.x.y`, we change `x` when we
 release new features, and `y` when we make a release with only bug fixes.
 
-We support Python >= 3.7.
+We support Python >= 3.11.
 
 Important Links
 ---------------
@@ -64,11 +64,10 @@ Important Links
 Dependencies
 ------------
 
-- requests>=1.2
-- numpy>=1.8
-- protobuf>=3.0.0a3
-- beautifulsoup4>=4.6
-- pandas
+- numpy>=1.25.0
+- pandas>=2.1.0
+- protobuf>=4.24.3
+- requests>=2.30.0
 
 Developer Dependencies
 ----------------------
