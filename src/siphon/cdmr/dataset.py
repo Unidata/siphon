@@ -206,7 +206,7 @@ class Variable(AttributeContainer):
             elif arr.dtype.fields and arr.dtype.fields == dt.fields:
                 pass
             else:
-                arr.dtype = dt
+                arr = arr.view(dt)
 
             # Need to handle removing dimensions that have had an index
             # applied -- the protocol returns them with size 1, but numpy
