@@ -11,7 +11,7 @@ years. For Python itself, that means supporting the last two minor releases.
 Siphon currently supports the following versions of required dependencies:
 
 .. literalinclude:: ../pyproject.toml
-   :start-at: beautifulsoup4
+   :start-at: numpy
    :end-at: requests
 
 Installation Instructions for NumPy can be found at:

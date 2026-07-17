@@ -95,9 +95,10 @@ Inspect data columns in the dataframe.
 
  .. code-block:: none
 
-    Index(['pressure', 'height', 'temperature', 'dewpoint', 'direction', 'speed',
-           'u_wind', 'v_wind', 'station', 'station_number', 'time', 'latitude',
-           'longitude', 'elevation', 'pw'],
+    Index(['time', 'longitude', 'latitude', 'pressure', 'height', 'temperature',
+           'dewpoint', 'ice_point_temperature', 'relative_humidity',
+           'humidity_wrt_ice', 'mixing_ratio', 'direction', 'speed', 'u_wind',
+           'v_wind', 'station'],
           dtype='str')
 
 
@@ -156,7 +157,7 @@ of the dataframe.
 
  .. code-block:: none
 
-    {'pressure': 'hPa', 'height': 'meter', 'temperature': 'degC', 'dewpoint': 'degC', 'direction': 'degrees', 'speed': 'knot', 'u_wind': 'knot', 'v_wind': 'knot', 'station': None, 'station_number': None, 'time': None, 'latitude': 'degrees', 'longitude': 'degrees', 'elevation': 'meter', 'pw': 'millimeter'}
+    {'pressure': 'hPa', 'height': 'meter', 'temperature': 'degC', 'dewpoint': 'degC', 'direction': 'degrees', 'speed': 'm/s', 'u_wind': 'm/s', 'v_wind': 'm/s', 'station': None, 'time': None, 'latitude': 'degrees', 'longitude': 'degrees'}
 
 
 
@@ -203,7 +204,7 @@ Units can then be attached to the values from the dataframe.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 2.433 seconds)
+   **Total running time of the script:** (0 minutes 5.085 seconds)
 
 
 .. _sphx_glr_download_examples_upperair_Wyoming_Request.py:
