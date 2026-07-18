@@ -102,52 +102,31 @@ Get a pandas data frame of all of the observations
       <tbody>
         <tr>
           <th>0</th>
-          <td>15002</td>
-          <td>0.00</td>
-          <td>-10.000</td>
-          <td>147.0</td>
-          <td>4.2</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>22.6</td>
-          <td>22.8</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>2026-07-17 21:00:00+00:00</td>
-        </tr>
-        <tr>
-          <th>1</th>
           <td>15009</td>
           <td>0.00</td>
           <td>-3.051</td>
-          <td>204.0</td>
-          <td>4.1</td>
+          <td>212.0</td>
+          <td>6.7</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>1017.1</td>
+          <td>1016.5</td>
           <td>NaN</td>
-          <td>23.9</td>
-          <td>25.9</td>
+          <td>23.8</td>
+          <td>26.0</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2026-07-17 21:00:00+00:00</td>
+          <td>2026-07-18 00:00:00+00:00</td>
         </tr>
         <tr>
-          <th>2</th>
+          <th>1</th>
           <td>22101</td>
           <td>37.24</td>
           <td>126.020</td>
-          <td>70.0</td>
+          <td>50.0</td>
           <td>6.0</td>
           <td>NaN</td>
           <td>0.5</td>
@@ -156,20 +135,20 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>21.5</td>
-          <td>21.6</td>
+          <td>21.0</td>
+          <td>21.4</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2026-07-17 21:00:00+00:00</td>
+          <td>2026-07-18 00:00:00+00:00</td>
         </tr>
         <tr>
-          <th>3</th>
+          <th>2</th>
           <td>22102</td>
           <td>34.79</td>
           <td>125.780</td>
-          <td>190.0</td>
-          <td>7.0</td>
+          <td>170.0</td>
+          <td>3.0</td>
           <td>NaN</td>
           <td>0.5</td>
           <td>0.0</td>
@@ -177,20 +156,20 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>21.9</td>
-          <td>18.4</td>
+          <td>20.7</td>
+          <td>20.1</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2026-07-17 21:00:00+00:00</td>
+          <td>2026-07-18 00:00:00+00:00</td>
         </tr>
         <tr>
-          <th>4</th>
+          <th>3</th>
           <td>22103</td>
           <td>34.00</td>
           <td>127.500</td>
           <td>220.0</td>
-          <td>4.0</td>
+          <td>5.0</td>
           <td>NaN</td>
           <td>0.5</td>
           <td>0.0</td>
@@ -198,12 +177,33 @@ Get a pandas data frame of all of the observations
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>24.4</td>
-          <td>23.5</td>
+          <td>24.3</td>
+          <td>23.3</td>
           <td>NaN</td>
           <td>NaN</td>
           <td>NaN</td>
-          <td>2026-07-17 21:00:00+00:00</td>
+          <td>2026-07-18 00:00:00+00:00</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>22104</td>
+          <td>34.77</td>
+          <td>128.900</td>
+          <td>230.0</td>
+          <td>3.0</td>
+          <td>NaN</td>
+          <td>0.5</td>
+          <td>0.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>24.8</td>
+          <td>24.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>2026-07-17 23:00:00+00:00</td>
         </tr>
       </tbody>
     </table>
@@ -266,7 +266,7 @@ Let's make a simple plot of the buoy positions and color by water temperature
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 5.771 seconds)
+   **Total running time of the script:** (0 minutes 4.633 seconds)
 
 
 .. _sphx_glr_download_examples_ndbc_latest_request.py:
