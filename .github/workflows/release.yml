@@ -46,11 +46,10 @@ jobs:
     steps:
     - name: Download packages
       uses: actions/download-artifact@v8
-
-    - name: Consolidate packages for upload
-      run: |
-        mkdir dist
-        cp packages-*/* dist/
+      with:
+        path: dist/
+        pattern: packages-*
+        merge-multiple: 'true'
 
     - name: Publish Package
       uses: pypa/gh-action-pypi-publish@v1.14.0
