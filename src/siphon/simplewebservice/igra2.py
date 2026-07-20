@@ -201,7 +201,7 @@ class IGRAUpperAir(HTTPEndPoint):
         def _ctime(strformat='MMMSS'):
             """Return a function converting a string from MMMSS or HHMM to seconds."""
             def _ctime_strformat(val):
-                time = val.strip().zfill(5)
+                time = val.strip().zfill(5 if strformat == 'MMMSS' else 4)
 
                 if int(time) < 0 or int(time) == 9999:
                     return np.nan
