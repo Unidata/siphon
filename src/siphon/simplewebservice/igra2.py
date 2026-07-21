@@ -6,7 +6,6 @@
 import datetime
 from io import BytesIO, StringIO
 import itertools
-import sys
 import warnings
 from zipfile import ZipFile
 
@@ -215,7 +214,7 @@ class IGRAUpperAir(HTTPEndPoint):
                         minutes = int(time[2:4])
                         time_seconds = hours * 3600 + minutes * 60
                     else:
-                        sys.exit('Unrecognized time format')
+                        raise ValueError(f'Unrecognized time format "{strformat}"')
 
                 return time_seconds
             return _ctime_strformat
