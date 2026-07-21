@@ -6,7 +6,6 @@
 import datetime
 from io import BytesIO, StringIO
 import itertools
-import sys
 import warnings
 from zipfile import ZipFile
 
@@ -201,7 +200,7 @@ class IGRAUpperAir(HTTPEndPoint):
         def _ctime(strformat='MMMSS'):
             """Return a function converting a string from MMMSS or HHMM to seconds."""
             def _ctime_strformat(val):
-                time = val.strip().zfill(5)
+                time = val.strip().zfill(5 if strformat == 'MMMSS' else 4)
 
                 if int(time) < 0 or int(time) == 9999:
                     return np.nan
@@ -215,7 +214,7 @@ class IGRAUpperAir(HTTPEndPoint):
                         minutes = int(time[2:4])
                         time_seconds = hours * 3600 + minutes * 60
                     else:
-                        sys.exit('Unrecognized time format')
+                        raise ValueError(f'Unrecognized time format "{strformat}"')
 
                 return time_seconds
             return _ctime_strformat
