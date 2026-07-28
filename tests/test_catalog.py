@@ -5,6 +5,7 @@
 
 from datetime import datetime
 import logging
+from unittest.mock import patch
 
 import pytest
 
@@ -416,4 +417,8 @@ def test_oceandata_hyrax_dataset():
     dap_url = cat.datasets[0].access_urls['opendap']
     assert dap_url == ('https://oceandata.sci.gsfc.nasa.gov/opendap/hyrax/SeaWiFS/L3SMI/2000/'
                        '0101/SEASTAR_SEAWIFS_GAC.20000101.L3m.DAY.CHL.chlor_a.9km.nc')
-    assert cat.datasets[0].remote_access()
+
+    # Traffic through netCDF4 isn't captured/stubbed by vcrpy
+    with patch('netCDF4.Dataset') as mocked_dataset:
+        assert cat.datasets[0].remote_access() is not None
+        mocked_dataset.assert_called_once_with(dap_url)
