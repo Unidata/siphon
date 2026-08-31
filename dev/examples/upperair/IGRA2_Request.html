@@ -127,7 +127,7 @@ query to the Integrated Global Radiosonde Archive version 2.</p>
 </div>
 <p>Create a datetime object for the sounding and string of the station identifier.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">date</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class"><span class="n">datetime</span></a><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">station</span></a> <span class="o">=</span> <span class="s1">&#39;USM00070026&#39;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">station</span></a> <span class="o">=</span> <span class="s1">'USM00070026'</span>
 </pre></div>
 </div>
 <p>Make the request. IGRAUpperAir returns a dataframe containing the sounding data and
@@ -142,19 +142,19 @@ a dataframe with station metadata from the sounding header.</p>
 <span class="nb">print</span><span class="p">(</span><a href="https://pandas.pydata.org/docs/reference/api/pandas.Index.html#pandas.Index" title="pandas.Index" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">header</span><span class="o">.</span><span class="n">columns</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Index([&#39;lvltyp1&#39;, &#39;lvltyp2&#39;, &#39;etime&#39;, &#39;pressure&#39;, &#39;pflag&#39;, &#39;height&#39;, &#39;zflag&#39;,
-       &#39;temperature&#39;, &#39;tflag&#39;, &#39;relative_humidity&#39;, &#39;direction&#39;, &#39;speed&#39;,
-       &#39;date&#39;, &#39;u_wind&#39;, &#39;v_wind&#39;, &#39;dewpoint&#39;],
-      dtype=&#39;str&#39;)
-Index([&#39;site_id&#39;, &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;hour&#39;, &#39;release_time&#39;,
-       &#39;number_levels&#39;, &#39;pressure_source_code&#39;, &#39;non_pressure_source_code&#39;,
-       &#39;latitude&#39;, &#39;longitude&#39;, &#39;date&#39;],
-      dtype=&#39;str&#39;)
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Index(['lvltyp1', 'lvltyp2', 'etime', 'pressure', 'pflag', 'height', 'zflag',
+       'temperature', 'tflag', 'relative_humidity', 'direction', 'speed',
+       'date', 'u_wind', 'v_wind', 'dewpoint'],
+      dtype='str')
+Index(['site_id', 'year', 'month', 'day', 'hour', 'release_time',
+       'number_levels', 'pressure_source_code', 'non_pressure_source_code',
+       'latitude', 'longitude', 'date'],
+      dtype='str')
 </pre></div>
 </div>
 <p>Pull out a specific column of data.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span></a><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">header</span></a><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span></a><span class="p">[</span><span class="s1">'pressure'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">header</span></a><span class="p">[</span><span class="s1">'latitude'</span><span class="p">])</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>0      1020.95
@@ -179,11 +179,11 @@ attribute of the dataframe.</p>
 <span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">header</span><span class="o">.</span><span class="n">units</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;etime&#39;: &#39;second&#39;, &#39;pressure&#39;: &#39;hPa&#39;, &#39;height&#39;: &#39;meter&#39;, &#39;temperature&#39;: &#39;degC&#39;, &#39;dewpoint&#39;: &#39;degC&#39;, &#39;direction&#39;: &#39;degrees&#39;, &#39;speed&#39;: &#39;meter / second&#39;, &#39;u_wind&#39;: &#39;meter / second&#39;, &#39;v_wind&#39;: &#39;meter / second&#39;}
-{&#39;release_time&#39;: &#39;second&#39;, &#39;latitude&#39;: &#39;degrees&#39;, &#39;longitude&#39;: &#39;degrees&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{'etime': 'second', 'pressure': 'hPa', 'height': 'meter', 'temperature': 'degC', 'dewpoint': 'degC', 'direction': 'degrees', 'speed': 'meter / second', 'u_wind': 'meter / second', 'v_wind': 'meter / second'}
+{'release_time': 'second', 'latitude': 'degrees', 'longitude': 'degrees'}
 </pre></div>
 </div>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span><span class="o">.</span><span class="n">units</span></a><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">])</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span><span class="o">.</span><span class="n">units</span></a><span class="p">[</span><span class="s1">'pressure'</span><span class="p">])</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>hPa
@@ -191,7 +191,7 @@ attribute of the dataframe.</p>
 </div>
 <p>Multiple records can be extracted simultaneously:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">date</span></a> <span class="o">=</span> <span class="p">[</span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class"><span class="n">datetime</span></a><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class"><span class="n">datetime</span></a><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">)]</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">station</span></a> <span class="o">=</span> <span class="s1">&#39;USM00070026&#39;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">station</span></a> <span class="o">=</span> <span class="s1">'USM00070026'</span>
 <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span></a><span class="p">,</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">header</span></a> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.igra2.IGRAUpperAir.request_data" title="siphon.simplewebservice.igra2.IGRAUpperAir.request_data" class="sphx-glr-backref-module-siphon-simplewebservice-igra2 sphx-glr-backref-type-py-method"><span class="n">IGRAUpperAir</span><span class="o">.</span><span class="n">request_data</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">date</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">station</span></a><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html#pandas.DataFrame.head" title="pandas.DataFrame.head" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-method"><span class="n">df</span><span class="o">.</span><span class="n">head</span></a><span class="p">())</span>
@@ -226,26 +226,26 @@ This data has much more information in the headers.</p>
 <span class="nb">print</span><span class="p">(</span><a href="https://pandas.pydata.org/docs/reference/api/pandas.Index.html#pandas.Index" title="pandas.Index" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">header</span><span class="o">.</span><span class="n">columns</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Index([&#39;pressure&#39;, &#39;reported_height&#39;, &#39;calculated_height&#39;, &#39;temperature&#39;,
-       &#39;temperature_gradient&#39;, &#39;potential_temperature&#39;,
-       &#39;potential_temperature_gradient&#39;, &#39;virtual_temperature&#39;,
-       &#39;virtual_potential_temperature&#39;, &#39;vapor_pressure&#39;,
-       &#39;saturation_vapor_pressure&#39;, &#39;reported_relative_humidity&#39;,
-       &#39;calculated_relative_humidity&#39;, &#39;relative_humidity_gradient&#39;, &#39;u_wind&#39;,
-       &#39;u_wind_gradient&#39;, &#39;v_wind&#39;, &#39;v_wind_gradient&#39;, &#39;refractive_index&#39;,
-       &#39;date&#39;],
-      dtype=&#39;str&#39;)
-Index([&#39;site_id&#39;, &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;hour&#39;, &#39;release_time&#39;,
-       &#39;number_levels&#39;, &#39;precipitable_water&#39;, &#39;inv_pressure&#39;, &#39;inv_height&#39;,
-       &#39;inv_strength&#39;, &#39;mixed_layer_pressure&#39;, &#39;mixed_layer_height&#39;,
-       &#39;freezing_point_pressure&#39;, &#39;freezing_point_height&#39;, &#39;lcl_pressure&#39;,
-       &#39;lcl_height&#39;, &#39;lfc_pressure&#39;, &#39;lfc_height&#39;, &#39;lnb_pressure&#39;,
-       &#39;lnb_height&#39;, &#39;lifted_index&#39;, &#39;showalter_index&#39;, &#39;k_index&#39;,
-       &#39;total_totals_index&#39;, &#39;cape&#39;, &#39;convective_inhibition&#39;, &#39;date&#39;],
-      dtype=&#39;str&#39;)
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Index(['pressure', 'reported_height', 'calculated_height', 'temperature',
+       'temperature_gradient', 'potential_temperature',
+       'potential_temperature_gradient', 'virtual_temperature',
+       'virtual_potential_temperature', 'vapor_pressure',
+       'saturation_vapor_pressure', 'reported_relative_humidity',
+       'calculated_relative_humidity', 'relative_humidity_gradient', 'u_wind',
+       'u_wind_gradient', 'v_wind', 'v_wind_gradient', 'refractive_index',
+       'date'],
+      dtype='str')
+Index(['site_id', 'year', 'month', 'day', 'hour', 'release_time',
+       'number_levels', 'precipitable_water', 'inv_pressure', 'inv_height',
+       'inv_strength', 'mixed_layer_pressure', 'mixed_layer_height',
+       'freezing_point_pressure', 'freezing_point_height', 'lcl_pressure',
+       'lcl_height', 'lfc_pressure', 'lfc_height', 'lnb_pressure',
+       'lnb_height', 'lifted_index', 'showalter_index', 'k_index',
+       'total_totals_index', 'cape', 'convective_inhibition', 'date'],
+      dtype='str')
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 29.563 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (2 minutes 12.759 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-upperair-igra2-request-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/89540eec19f4fc19c962d5996fe3c896/IGRA2_Request.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">IGRA2_Request.ipynb</span></code></a></p>
@@ -272,7 +272,7 @@ Index([&#39;site_id&#39;, &#39;year&#39;, &#39;month&#39;, &#39;day&#39;, &#39;h
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2026, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Aug 03, 2026 at 08:52:33.
+      <span class="lastupdated">Last updated on Aug 31, 2026 at 19:54:58.
       </span></p>
   </div>
 

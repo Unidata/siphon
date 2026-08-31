@@ -87,7 +87,7 @@
 <span></span><span class="c1"># Copyright (c) 2013-2019 Siphon Contributors.</span>
 <span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
-<span class="sd">&quot;&quot;&quot;Read upper air data from the IA State archives.&quot;&quot;&quot;</span>
+<span class="sd">"""Read upper air data from the IA State archives."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
@@ -104,20 +104,20 @@
 <div class="viewcode-block" id="IAStateUpperAir">
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.iastate.IAStateUpperAir">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">IAStateUpperAir</span><span class="p">(</span><span class="n">HTTPEndPoint</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Download and parse data from the Iowa State&#39;s upper air archive.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Download and parse data from the Iowa State's upper air archive."""</span>
 
 <div class="viewcode-block" id="IAStateUpperAir.__init__">
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.iastate.IAStateUpperAir.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up endpoint.&quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;http://mesonet.agron.iastate.edu/json&#39;</span><span class="p">)</span></div>
+<span class="w">        </span><span class="sd">"""Set up endpoint."""</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">'http://mesonet.agron.iastate.edu/json'</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="IAStateUpperAir.request_data">
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.iastate.IAStateUpperAir.request_data">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">request_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">interp_nans</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve upper air observations from Iowa State&#39;s archive for a single station.</span>
+<span class="w">        </span><span class="sd">"""Retrieve upper air observations from Iowa State's archive for a single station.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -139,12 +139,12 @@
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_get_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">interp_nans</span><span class="p">:</span>
-            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
-            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">'temperature'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'temperature'</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">'dewpoint'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'dewpoint'</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">df</span></div>
 
@@ -153,7 +153,7 @@
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.iastate.IAStateUpperAir.request_all_data">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">request_all_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">pressure</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve upper air observations from Iowa State&#39;s archive for all stations.</span>
+<span class="w">        </span><span class="sd">"""Retrieve upper air observations from Iowa State's archive for all stations.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -171,14 +171,14 @@
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_get_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">pressure</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">df</span></div>
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">pressure</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Download data from Iowa State&#39;s upper air archive.</span>
+<span class="w">        </span><span class="sd">"""Download data from Iowa State's upper air archive.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -193,60 +193,60 @@
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">json_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_data_raw</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">pressure</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">profile</span> <span class="ow">in</span> <span class="n">json_data</span><span class="p">[</span><span class="s1">&#39;profiles&#39;</span><span class="p">]:</span>
-            <span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">profile</span><span class="p">[</span><span class="s1">&#39;profile&#39;</span><span class="p">]:</span>
-                <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;drct&#39;</span><span class="p">,</span> <span class="s1">&#39;dwpc&#39;</span><span class="p">,</span> <span class="s1">&#39;hght&#39;</span><span class="p">,</span> <span class="s1">&#39;pres&#39;</span><span class="p">,</span> <span class="s1">&#39;sknt&#39;</span><span class="p">,</span> <span class="s1">&#39;tmpc&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">profile</span> <span class="ow">in</span> <span class="n">json_data</span><span class="p">[</span><span class="s1">'profiles'</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">profile</span><span class="p">[</span><span class="s1">'profile'</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">'drct'</span><span class="p">,</span> <span class="s1">'dwpc'</span><span class="p">,</span> <span class="s1">'hght'</span><span class="p">,</span> <span class="s1">'pres'</span><span class="p">,</span> <span class="s1">'sknt'</span><span class="p">,</span> <span class="s1">'tmpc'</span><span class="p">):</span>
                     <span class="n">data</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">if</span> <span class="n">pt</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span>
                                                       <span class="k">else</span> <span class="n">pt</span><span class="p">[</span><span class="n">field</span><span class="p">])</span>
-                <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;station&#39;</span><span class="p">,</span> <span class="s1">&#39;valid&#39;</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">'station'</span><span class="p">,</span> <span class="s1">'valid'</span><span class="p">):</span>
                     <span class="n">data</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">if</span> <span class="n">profile</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span>
                                                       <span class="k">else</span> <span class="n">profile</span><span class="p">[</span><span class="n">field</span><span class="p">])</span>
 
         <span class="c1"># Make sure that the first entry has a valid temperature and dewpoint</span>
-        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="o">~</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;tmpc&#39;</span><span class="p">])</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;dwpc&#39;</span><span class="p">])))</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="o">~</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'tmpc'</span><span class="p">])</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'dwpc'</span><span class="p">])))</span>
 
         <span class="c1"># Stuff data into a pandas dataframe</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pres&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">:])</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hght&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">:])</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;tmpc&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">:])</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;dwpc&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">:])</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;drct&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">:])</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sknt&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">:])</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;station&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;station&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">:]</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">valid</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%SZ&#39;</span><span class="p">)</span>
-                      <span class="k">for</span> <span class="n">valid</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;valid&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">:]]</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'pressure'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'pres'</span><span class="p">][</span><span class="n">idx</span><span class="p">:])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'height'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'hght'</span><span class="p">][</span><span class="n">idx</span><span class="p">:])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'temperature'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'tmpc'</span><span class="p">][</span><span class="n">idx</span><span class="p">:])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'dewpoint'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'dwpc'</span><span class="p">][</span><span class="n">idx</span><span class="p">:])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'direction'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'drct'</span><span class="p">][</span><span class="n">idx</span><span class="p">:])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'speed'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'sknt'</span><span class="p">][</span><span class="n">idx</span><span class="p">:])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'station'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'station'</span><span class="p">][</span><span class="n">idx</span><span class="p">:]</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">valid</span><span class="p">,</span> <span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%SZ'</span><span class="p">)</span>
+                      <span class="k">for</span> <span class="n">valid</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">'valid'</span><span class="p">][</span><span class="n">idx</span><span class="p">:]]</span>
 
         <span class="c1"># Calculate the u and v winds</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;u_wind&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;v_wind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_wind_components</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">],</span>
-                                                         <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;direction&#39;</span><span class="p">]))</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'u_wind'</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">'v_wind'</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_wind_components</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'speed'</span><span class="p">],</span>
+                                                         <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'direction'</span><span class="p">]))</span>
 
         <span class="c1"># Drop any rows with all NaN values for T, Td, winds</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;dewpoint&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">,</span>
-                               <span class="s1">&#39;u_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;v_wind&#39;</span><span class="p">),</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">(</span><span class="s1">'temperature'</span><span class="p">,</span> <span class="s1">'dewpoint'</span><span class="p">,</span> <span class="s1">'direction'</span><span class="p">,</span> <span class="s1">'speed'</span><span class="p">,</span>
+                               <span class="s1">'u_wind'</span><span class="p">,</span> <span class="s1">'v_wind'</span><span class="p">),</span> <span class="n">how</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="c1"># Add unit dictionary</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">,</span> <span class="s2">"Pandas doesn't allow columns to be created"</span><span class="p">,</span>
                                     <span class="ne">UserWarning</span><span class="p">)</span>
-            <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;dewpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;speed&#39;</span><span class="p">:</span> <span class="s1">&#39;knot&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;u_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;knot&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;v_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;knot&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;station&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                        <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'pressure'</span><span class="p">:</span> <span class="s1">'hPa'</span><span class="p">,</span>
+                        <span class="s1">'height'</span><span class="p">:</span> <span class="s1">'meter'</span><span class="p">,</span>
+                        <span class="s1">'temperature'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                        <span class="s1">'dewpoint'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                        <span class="s1">'direction'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                        <span class="s1">'speed'</span><span class="p">:</span> <span class="s1">'knot'</span><span class="p">,</span>
+                        <span class="s1">'u_wind'</span><span class="p">:</span> <span class="s1">'knot'</span><span class="p">,</span>
+                        <span class="s1">'v_wind'</span><span class="p">:</span> <span class="s1">'knot'</span><span class="p">,</span>
+                        <span class="s1">'station'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="s1">'time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
         <span class="k">return</span> <span class="n">df</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_data_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">pressure</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Download data from the Iowa State&#39;s upper air archive.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""Download data from the Iowa State's upper air archive.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -261,26 +261,26 @@
 <span class="sd">        -------</span>
 <span class="sd">        list of json data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ts&#39;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">%H00&#39;</span><span class="p">)}</span>
+<span class="sd">        """</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'ts'</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y%m</span><span class="si">%d</span><span class="s1">%H00'</span><span class="p">)}</span>
         <span class="k">if</span> <span class="n">site_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">query</span><span class="p">[</span><span class="s1">&#39;station&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">site_id</span>
+            <span class="n">query</span><span class="p">[</span><span class="s1">'station'</span><span class="p">]</span> <span class="o">=</span> <span class="n">site_id</span>
         <span class="k">if</span> <span class="n">pressure</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">query</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pressure</span>
+            <span class="n">query</span><span class="p">[</span><span class="s1">'pressure'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pressure</span>
 
-        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;raob.py&#39;</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">'raob.py'</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
         <span class="n">json_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
         <span class="c1"># See if the return is valid, but has no data</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">json_data</span><span class="p">[</span><span class="s1">&#39;profiles&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">json_data</span><span class="p">[</span><span class="s1">&#39;profiles&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;profile&#39;</span><span class="p">]):</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;No data available &#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">json_data</span><span class="p">[</span><span class="s1">'profiles'</span><span class="p">]</span> <span class="ow">and</span> <span class="n">json_data</span><span class="p">[</span><span class="s1">'profiles'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'profile'</span><span class="p">]):</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">'No data available '</span>
             <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;for </span><span class="si">{</span><span class="n">time</span><span class="si">:</span><span class="s1"> %Y-%m-%d %HZ</span><span class="si">}</span><span class="s1"> &#39;</span>
+                <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">'for </span><span class="si">{</span><span class="n">time</span><span class="si">:</span><span class="s1"> %Y-%m-%d %HZ</span><span class="si">}</span><span class="s1"> '</span>
             <span class="k">if</span> <span class="n">site_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;for station </span><span class="si">{</span><span class="n">site_id</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">'for station </span><span class="si">{</span><span class="n">site_id</span><span class="si">}</span><span class="s1">'</span>
             <span class="k">if</span> <span class="n">pressure</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;for pressure </span><span class="si">{</span><span class="n">pressure</span><span class="si">}</span><span class="s1">&#39;</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="n">message</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span>
+                <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">'for pressure </span><span class="si">{</span><span class="n">pressure</span><span class="si">}</span><span class="s1">'</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">message</span> <span class="o">+</span> <span class="s1">'.'</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">json_data</span></div>
 
@@ -294,7 +294,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2026, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Aug 03, 2026 at 08:52:33.
+      <span class="lastupdated">Last updated on Aug 31, 2026 at 19:54:58.
       </span></p>
   </div>
 

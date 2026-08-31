@@ -87,7 +87,7 @@
 <span></span><span class="c1"># Copyright (c) 2013-2015 Siphon Contributors.</span>
 <span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
-<span class="sd">&quot;&quot;&quot;Read upper air data from the Wyoming archives.&quot;&quot;&quot;</span>
+<span class="sd">"""Read upper air data from the Wyoming archives."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
@@ -103,20 +103,20 @@
 <div class="viewcode-block" id="WyomingUpperAir">
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.wyoming.WyomingUpperAir">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">WyomingUpperAir</span><span class="p">(</span><span class="n">HTTPEndPoint</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Download and parse data from the University of Wyoming&#39;s upper air archive.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Download and parse data from the University of Wyoming's upper air archive."""</span>
 
 <div class="viewcode-block" id="WyomingUpperAir.__init__">
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.wyoming.WyomingUpperAir.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up endpoint.&quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;http://weather.uwyo.edu/wsgi&#39;</span><span class="p">)</span></div>
+<span class="w">        </span><span class="sd">"""Set up endpoint."""</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">'http://weather.uwyo.edu/wsgi'</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="WyomingUpperAir.request_data">
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.wyoming.WyomingUpperAir.request_data">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">request_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">recalc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Retrieve upper air observations from the Wyoming archive.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""Retrieve upper air observations from the Wyoming archive.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -140,14 +140,14 @@
 <span class="sd">        `pandas.DataFrame`</span>
 <span class="sd">            Parsed data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_get_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">recalc</span><span class="o">=</span><span class="n">recalc</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">df</span></div>
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">recalc</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Download and parse upper air observations from an online archive.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""Download and parse upper air observations from an online archive.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -165,50 +165,50 @@
 <span class="sd">        -------</span>
 <span class="sd">        `pandas.DataFrame`</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">raw_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_data_raw</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">recalc</span><span class="o">=</span><span class="n">recalc</span><span class="p">)</span>
 
         <span class="c1"># Parse CSV. skipinitialspace is used to handle missing data being encoded by just</span>
         <span class="c1"># having spaces in the field</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">raw_data</span><span class="p">),</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
-                         <span class="n">date_format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">,</span> <span class="n">skipinitialspace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                         <span class="n">na_values</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;latitude&#39;</span><span class="p">:</span><span class="s1">&#39;-99.9900&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">:</span><span class="s1">&#39;-99.9900&#39;</span><span class="p">})</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">))</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;geopotential_height&#39;</span><span class="p">:</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span>
-                                <span class="s1">&#39;dew_point_temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;dewpoint&#39;</span><span class="p">,</span>
-                                <span class="s1">&#39;wind_direction&#39;</span><span class="p">:</span> <span class="s1">&#39;direction&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_speed&#39;</span><span class="p">:</span> <span class="s1">&#39;speed&#39;</span><span class="p">})</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">raw_data</span><span class="p">),</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">'time'</span><span class="p">],</span>
+                         <span class="n">date_format</span><span class="o">=</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S'</span><span class="p">,</span> <span class="n">skipinitialspace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                         <span class="n">na_values</span><span class="o">=</span><span class="p">{</span><span class="s1">'latitude'</span><span class="p">:</span><span class="s1">'-99.9900'</span><span class="p">,</span> <span class="s1">'longitude'</span><span class="p">:</span><span class="s1">'-99.9900'</span><span class="p">})</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'_'</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">))</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'geopotential_height'</span><span class="p">:</span> <span class="s1">'height'</span><span class="p">,</span>
+                                <span class="s1">'dew_point_temperature'</span><span class="p">:</span> <span class="s1">'dewpoint'</span><span class="p">,</span>
+                                <span class="s1">'wind_direction'</span><span class="p">:</span> <span class="s1">'direction'</span><span class="p">,</span> <span class="s1">'wind_speed'</span><span class="p">:</span> <span class="s1">'speed'</span><span class="p">})</span>
 
         <span class="c1"># Drop any rows with all NaN values for T, Td, winds</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;dewpoint&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">),</span>
-                       <span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">(</span><span class="s1">'temperature'</span><span class="p">,</span> <span class="s1">'dewpoint'</span><span class="p">,</span> <span class="s1">'direction'</span><span class="p">,</span> <span class="s1">'speed'</span><span class="p">),</span>
+                       <span class="n">how</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;u_wind&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;v_wind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_wind_components</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">],</span>
-                                                         <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;direction&#39;</span><span class="p">]))</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;station&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">site_id</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'u_wind'</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">'v_wind'</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_wind_components</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'speed'</span><span class="p">],</span>
+                                                         <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'direction'</span><span class="p">]))</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'station'</span><span class="p">]</span> <span class="o">=</span> <span class="n">site_id</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'height'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'height'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'float'</span><span class="p">)</span>
 
         <span class="c1"># Add unit dictionary</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">,</span> <span class="s2">"Pandas doesn't allow columns to be created"</span><span class="p">,</span>
                                     <span class="ne">UserWarning</span><span class="p">)</span>
-            <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;meter&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;dewpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;speed&#39;</span><span class="p">:</span> <span class="s1">&#39;m/s&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;u_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;m/s&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;v_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;m/s&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;station&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                        <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                        <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">}</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'pressure'</span><span class="p">:</span> <span class="s1">'hPa'</span><span class="p">,</span>
+                        <span class="s1">'height'</span><span class="p">:</span> <span class="s1">'meter'</span><span class="p">,</span>
+                        <span class="s1">'temperature'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                        <span class="s1">'dewpoint'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                        <span class="s1">'direction'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                        <span class="s1">'speed'</span><span class="p">:</span> <span class="s1">'m/s'</span><span class="p">,</span>
+                        <span class="s1">'u_wind'</span><span class="p">:</span> <span class="s1">'m/s'</span><span class="p">,</span>
+                        <span class="s1">'v_wind'</span><span class="p">:</span> <span class="s1">'m/s'</span><span class="p">,</span>
+                        <span class="s1">'station'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="s1">'time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="s1">'latitude'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                        <span class="s1">'longitude'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">}</span>
 
         <span class="k">return</span> <span class="n">df</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_data_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">recalc</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Download data from the University of Wyoming&#39;s upper air archive.</span>
+<span class="w">        </span><span class="sd">"""Download data from the University of Wyoming's upper air archive.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -224,10 +224,10 @@
 <span class="sd">        str</span>
 <span class="sd">            text of the server response</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;sounding?type=TEXT%3ACSV&amp;datetime=</span><span class="si">{</span><span class="n">time</span><span class="si">:</span><span class="s1">%Y-%m-%d %H:%M:%S</span><span class="si">}</span><span class="s1">&amp;id=</span><span class="si">{</span><span class="n">site_id</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="sd">        """</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'sounding?type=TEXT%3ACSV&amp;datetime=</span><span class="si">{</span><span class="n">time</span><span class="si">:</span><span class="s1">%Y-%m-%d %H:%M:%S</span><span class="si">}</span><span class="s1">&amp;id=</span><span class="si">{</span><span class="n">site_id</span><span class="si">}</span><span class="s1">'</span>
         <span class="k">if</span> <span class="n">recalc</span><span class="p">:</span>
-            <span class="n">path</span> <span class="o">+=</span> <span class="s1">&#39;&amp;REPLOT=1&#39;</span>
+            <span class="n">path</span> <span class="o">+=</span> <span class="s1">'&amp;REPLOT=1'</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
@@ -244,7 +244,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2026, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Aug 03, 2026 at 08:52:33.
+      <span class="lastupdated">Last updated on Aug 31, 2026 at 19:54:58.
       </span></p>
   </div>
 

@@ -125,16 +125,16 @@ the other types of data available for a buoy.</p>
 </pre></div>
 </div>
 <p>Request the types of data available from a given buoy.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data_aval</span></a> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.buoy_data_types" title="siphon.simplewebservice.ndbc.NDBC.buoy_data_types" class="sphx-glr-backref-module-siphon-simplewebservice-ndbc sphx-glr-backref-type-py-method"><span class="n">NDBC</span><span class="o">.</span><span class="n">buoy_data_types</span></a><span class="p">(</span><span class="s1">&#39;42012&#39;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data_aval</span></a> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.buoy_data_types" title="siphon.simplewebservice.ndbc.NDBC.buoy_data_types" class="sphx-glr-backref-module-siphon-simplewebservice-ndbc sphx-glr-backref-type-py-method"><span class="n">NDBC</span><span class="o">.</span><span class="n">buoy_data_types</span></a><span class="p">(</span><span class="s1">'42012'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data_aval</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;txt&#39;: &#39;standard meteorological data&#39;, &#39;spec&#39;: &#39;spectral wave summaries&#39;, &#39;data_spec&#39;: &#39;raw spectral wave data&#39;, &#39;swdir&#39;: &#39;spectral wave data (alpha1)&#39;, &#39;swdir2&#39;: &#39;spectral wave data (alpha2)&#39;, &#39;swr1&#39;: &#39;spectral wave data (r1)&#39;, &#39;swr2&#39;: &#39;spectral wave data (r2)&#39;, &#39;supl&#39;: &#39;supplemental measurements data&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{'txt': 'standard meteorological data', 'spec': 'spectral wave summaries', 'data_spec': 'raw spectral wave data', 'swdir': 'spectral wave data (alpha1)', 'swdir2': 'spectral wave data (alpha2)', 'swr1': 'spectral wave data (r1)', 'swr2': 'spectral wave data (r2)', 'supl': 'supplemental measurements data'}
 </pre></div>
 </div>
 <p>Get a pandas data frame of all of the observations, meteorological data is the default
 observation set to query.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span></a> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.realtime_observations" title="siphon.simplewebservice.ndbc.NDBC.realtime_observations" class="sphx-glr-backref-module-siphon-simplewebservice-ndbc sphx-glr-backref-type-py-method"><span class="n">NDBC</span><span class="o">.</span><span class="n">realtime_observations</span></a><span class="p">(</span><span class="s1">&#39;42012&#39;</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;supl&#39;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span></a> <span class="o">=</span> <a href="../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.realtime_observations" title="siphon.simplewebservice.ndbc.NDBC.realtime_observations" class="sphx-glr-backref-module-siphon-simplewebservice-ndbc sphx-glr-backref-type-py-method"><span class="n">NDBC</span><span class="o">.</span><span class="n">realtime_observations</span></a><span class="p">(</span><span class="s1">'42012'</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">'supl'</span><span class="p">)</span>
 <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html#pandas.DataFrame.head" title="pandas.DataFrame.head" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-method"><span class="n">df</span><span class="o">.</span><span class="n">head</span></a><span class="p">()</span>
 </pre></div>
 </div>
@@ -168,55 +168,55 @@ observation set to query.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>1010.5</td>
-      <td>2026-08-03 07:47:00+00:00</td>
+      <td>1017.6</td>
+      <td>2026-08-31 18:36:00+00:00</td>
       <td>6.0</td>
-      <td>350.0</td>
-      <td>2026-08-03 07:44:00+00:00</td>
-      <td>2026-08-03 07:50:00+00:00</td>
+      <td>70.0</td>
+      <td>2026-08-31 18:32:00+00:00</td>
+      <td>2026-08-31 18:40:00+00:00</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1010.4</td>
-      <td>2026-08-03 07:32:00+00:00</td>
+      <td>1017.7</td>
+      <td>2026-08-31 18:23:00+00:00</td>
       <td>6.0</td>
-      <td>340.0</td>
-      <td>2026-08-03 07:32:00+00:00</td>
-      <td>2026-08-03 07:40:00+00:00</td>
+      <td>70.0</td>
+      <td>2026-08-31 18:29:00+00:00</td>
+      <td>2026-08-31 18:30:00+00:00</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1010.4</td>
-      <td>2026-08-03 07:30:00+00:00</td>
+      <td>1017.7</td>
+      <td>2026-08-31 18:20:00+00:00</td>
       <td>6.0</td>
-      <td>340.0</td>
-      <td>2026-08-03 07:25:00+00:00</td>
-      <td>2026-08-03 07:30:00+00:00</td>
+      <td>80.0</td>
+      <td>2026-08-31 18:12:00+00:00</td>
+      <td>2026-08-31 18:20:00+00:00</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1010.5</td>
-      <td>2026-08-03 07:19:00+00:00</td>
-      <td>5.0</td>
-      <td>350.0</td>
-      <td>2026-08-03 07:14:00+00:00</td>
-      <td>2026-08-03 07:20:00+00:00</td>
+      <td>1017.8</td>
+      <td>2026-08-31 18:10:00+00:00</td>
+      <td>6.0</td>
+      <td>70.0</td>
+      <td>2026-08-31 18:01:00+00:00</td>
+      <td>2026-08-31 18:10:00+00:00</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1010.6</td>
-      <td>2026-08-03 07:03:00+00:00</td>
-      <td>6.0</td>
-      <td>340.0</td>
-      <td>2026-08-03 07:03:00+00:00</td>
-      <td>2026-08-03 07:10:00+00:00</td>
+      <td>1018.0</td>
+      <td>2026-08-31 18:00:00+00:00</td>
+      <td>7.0</td>
+      <td>70.0</td>
+      <td>2026-08-31 17:58:00+00:00</td>
+      <td>2026-08-31 18:00:00+00:00</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.430 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.388 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ndbc-buoy-type-request-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/baeb25415637899441803ce7ad5a6161/buoy_type_request.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">buoy_type_request.ipynb</span></code></a></p>
@@ -243,7 +243,7 @@ observation set to query.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2026, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Aug 03, 2026 at 08:52:33.
+      <span class="lastupdated">Last updated on Aug 31, 2026 at 19:54:58.
       </span></p>
   </div>
 

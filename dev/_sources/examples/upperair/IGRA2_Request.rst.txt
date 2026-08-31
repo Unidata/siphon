@@ -294,7 +294,7 @@ Inspect data columns in the dataframe.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (1 minutes 29.563 seconds)
+   **Total running time of the script:** (2 minutes 12.759 seconds)
 
 
 .. _sphx_glr_download_examples_upperair_IGRA2_Request.py:

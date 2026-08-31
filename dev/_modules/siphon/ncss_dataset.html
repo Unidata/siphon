@@ -87,7 +87,7 @@
 <span></span><span class="c1"># Copyright (c) 2013-2015 Siphon Contributors.</span>
 <span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
-<span class="sd">&quot;&quot;&quot;Support reading and parsing the dataset.xml documents from the netCDF Subset Service.&quot;&quot;&quot;</span>
+<span class="sd">"""Support reading and parsing the dataset.xml documents from the netCDF Subset Service."""</span>
 
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
@@ -100,16 +100,16 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_without_namespace</span><span class="p">(</span><span class="n">tagname</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove the xml namespace from a tag name.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="s1">&#39;}&#39;</span> <span class="ow">in</span> <span class="n">tagname</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">tagname</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">"""Remove the xml namespace from a tag name."""</span>
+    <span class="k">if</span> <span class="s1">'}'</span> <span class="ow">in</span> <span class="n">tagname</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">tagname</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">'}'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">tagname</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">_Types</span><span class="p">:</span>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">handle_typed_values</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">value_type</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Translate typed values into the appropriate python object.</span>
+<span class="w">        </span><span class="sd">"""Translate typed values into the appropriate python object.</span>
 
 <span class="sd">        Takes an element name, value, and type and returns a list</span>
 <span class="sd">        with the string value(s) properly converted to a python type.</span>
@@ -117,22 +117,22 @@
 <span class="sd">        TypedValues are handled in ucar.ma2.DataType in netcdfJava</span>
 <span class="sd">        in the DataType enum. Possibilities are:</span>
 
-<span class="sd">            &quot;boolean&quot;</span>
-<span class="sd">            &quot;byte&quot;</span>
-<span class="sd">            &quot;char&quot;</span>
-<span class="sd">            &quot;short&quot;</span>
-<span class="sd">            &quot;int&quot;</span>
-<span class="sd">            &quot;long&quot;</span>
-<span class="sd">            &quot;float&quot;</span>
-<span class="sd">            &quot;double&quot;</span>
-<span class="sd">            &quot;Sequence&quot;</span>
-<span class="sd">            &quot;String&quot;</span>
-<span class="sd">            &quot;Structure&quot;</span>
-<span class="sd">            &quot;enum1&quot;</span>
-<span class="sd">            &quot;enum2&quot;</span>
-<span class="sd">            &quot;enum4&quot;</span>
-<span class="sd">            &quot;opaque&quot;</span>
-<span class="sd">            &quot;object&quot;</span>
+<span class="sd">            "boolean"</span>
+<span class="sd">            "byte"</span>
+<span class="sd">            "char"</span>
+<span class="sd">            "short"</span>
+<span class="sd">            "int"</span>
+<span class="sd">            "long"</span>
+<span class="sd">            "float"</span>
+<span class="sd">            "double"</span>
+<span class="sd">            "Sequence"</span>
+<span class="sd">            "String"</span>
+<span class="sd">            "Structure"</span>
+<span class="sd">            "enum1"</span>
+<span class="sd">            "enum2"</span>
+<span class="sd">            "enum4"</span>
+<span class="sd">            "opaque"</span>
+<span class="sd">            "object"</span>
 
 <span class="sd">        All of these are values written as strings in the xml, so simply</span>
 <span class="sd">        applying int, float to the values will work in most cases (i.e.</span>
@@ -140,7 +140,7 @@
 
 <span class="sd">        Example XML element:</span>
 
-<span class="sd">        &lt;attribute name=&quot;scale_factor&quot; type=&quot;double&quot; value=&quot;0.0010000000474974513&quot;/&gt;</span>
+<span class="sd">        &lt;attribute name="scale_factor" type="double" value="0.0010000000474974513"/&gt;</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -158,34 +158,34 @@
 <span class="sd">        val : list</span>
 <span class="sd">            A list containing the properly typed python values.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">value_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;byte&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">]:</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">value_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'byte'</span><span class="p">,</span> <span class="s1">'short'</span><span class="p">,</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'long'</span><span class="p">]:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">val</span> <span class="o">:=</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;[]&#39;</span><span class="p">):</span>
-                    <span class="n">val</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;[ ,]&#39;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">val</span> <span class="o">:=</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">'[]'</span><span class="p">):</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'[ ,]'</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span><span class="p">]</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Cannot convert &quot;</span><span class="si">%s</span><span class="s1">&quot; to int. Keeping type as str.&#39;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">value_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">]:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'Cannot convert "</span><span class="si">%s</span><span class="s1">" to int. Keeping type as str.'</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">value_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'float'</span><span class="p">,</span> <span class="s1">'double'</span><span class="p">]:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">val</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;[ ,]&#39;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span><span class="p">]</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'[ ,]'</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span><span class="p">]</span>
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Cannot convert &quot;</span><span class="si">%s</span><span class="s1">&quot; to float. Keeping type as str.&#39;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">value_type</span> <span class="o">==</span> <span class="s1">&#39;boolean&#39;</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'Cannot convert "</span><span class="si">%s</span><span class="s1">" to float. Keeping type as str.'</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">value_type</span> <span class="o">==</span> <span class="s1">'boolean'</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="c1"># special case for boolean type</span>
                 <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
                 <span class="c1"># values must be either true or false</span>
                 <span class="k">for</span> <span class="n">potential_bool</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">potential_bool</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">potential_bool</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'true'</span><span class="p">,</span> <span class="s1">'false'</span><span class="p">]:</span>
                         <span class="k">raise</span> <span class="ne">ValueError</span>
-                <span class="n">val</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">val</span><span class="p">]</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="o">==</span> <span class="s1">'true'</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">val</span><span class="p">]</span>
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Cannot convert values </span><span class="si">%s</span><span class="s1"> to boolean.&#39;</span>
-                <span class="n">msg</span> <span class="o">+=</span> <span class="s1">&#39; Keeping type as str.&#39;</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s1">'Cannot convert values </span><span class="si">%s</span><span class="s1"> to boolean.'</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="s1">' Keeping type as str.'</span>
                 <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">value_type</span> <span class="o">==</span> <span class="s1">&#39;String&#39;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">value_type</span> <span class="o">==</span> <span class="s1">'String'</span><span class="p">:</span>
             <span class="c1"># nothing special for String type</span>
             <span class="k">pass</span>
         <span class="k">else</span><span class="p">:</span>
@@ -193,7 +193,7 @@
             <span class="c1"># and char.</span>
             <span class="c1"># Not sure how to handle these as I do not have an example</span>
             <span class="c1"># of how they would show up in dataset.xml</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> type </span><span class="si">%s</span><span class="s1"> not understood. Keeping as String.&#39;</span><span class="p">,</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'</span><span class="si">%s</span><span class="s1"> type </span><span class="si">%s</span><span class="s1"> not understood. Keeping as String.'</span><span class="p">,</span>
                         <span class="n">type_name</span><span class="p">,</span> <span class="n">value_type</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
@@ -202,20 +202,20 @@
         <span class="k">return</span> <span class="n">val</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">handle_attribute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
-        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">&#39;attribute&#39;</span>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">'attribute'</span>
         <span class="n">attribute_type</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="s1">&#39;type&#39;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
-            <span class="n">attribute_type</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">'type'</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
+            <span class="n">attribute_type</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span>
 
-        <span class="n">name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
-        <span class="n">val</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">attribute_type</span><span class="p">:</span>
             <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_typed_values</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">attribute_type</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">val</span><span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">handle_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">value_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># noqa</span>
-        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">'value'</span>
         <span class="n">val</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
         <span class="k">if</span> <span class="n">val</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">value_type</span><span class="p">:</span>
@@ -223,22 +223,22 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">increment_attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;increment&#39;</span><span class="p">,</span> <span class="s1">&#39;npts&#39;</span><span class="p">]</span>
+            <span class="n">increment_attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'start'</span><span class="p">,</span> <span class="s1">'increment'</span><span class="p">,</span> <span class="s1">'npts'</span><span class="p">]</span>
             <span class="n">element_attrs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">)</span>
             <span class="n">increment_attrs</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
             <span class="n">element_attrs</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">increment_attrs</span> <span class="o">==</span> <span class="n">element_attrs</span><span class="p">:</span>
-                <span class="n">start</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">])</span>
-                <span class="n">inc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;increment&#39;</span><span class="p">])</span>
-                <span class="n">npts</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;npts&#39;</span><span class="p">])</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'start'</span><span class="p">])</span>
+                <span class="n">inc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'increment'</span><span class="p">])</span>
+                <span class="n">npts</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'npts'</span><span class="p">])</span>
                 <span class="n">val</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">npts</span><span class="p">)</span> <span class="o">*</span> <span class="n">inc</span>
                 <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">val</span><span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'values'</span><span class="p">:</span> <span class="n">val</span><span class="p">}</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">handle_projectionBox</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
-        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">&#39;projectionBox&#39;</span>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="s1">'projectionBox'</span>
         <span class="n">pb</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">type_name</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
@@ -248,12 +248,12 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">handle_axisRef</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
-        <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">handle_coordTransRef</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
-        <span class="c1"># type_name = &quot;coordTransRef&quot;</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;coordTransRef&#39;</span><span class="p">:</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]}</span>
+        <span class="c1"># type_name = "coordTransRef"</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'coordTransRef'</span><span class="p">:</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">handle_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">grid</span> <span class="o">=</span> <span class="p">{}</span>
@@ -264,14 +264,14 @@
         <span class="k">for</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
             <span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handle_attribute</span><span class="p">(</span><span class="n">attribute</span><span class="p">))</span>
 
-        <span class="n">grid</span><span class="p">[</span><span class="s1">&#39;attributes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attrs</span>
+        <span class="n">grid</span><span class="p">[</span><span class="s1">'attributes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">attrs</span>
 
         <span class="k">return</span> <span class="n">grid</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">handle_parameter</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">value</span><span class="p">}</span>
 
     <span class="nd">@staticmethod</span>
@@ -285,18 +285,18 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_grid</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">lookup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">):</span>
-        <span class="n">handler_name</span> <span class="o">=</span> <span class="s1">&#39;handle_&#39;</span> <span class="o">+</span> <span class="n">_without_namespace</span><span class="p">(</span><span class="n">handler_name</span><span class="p">)</span>
+        <span class="n">handler_name</span> <span class="o">=</span> <span class="s1">'handle_'</span> <span class="o">+</span> <span class="n">_without_namespace</span><span class="p">(</span><span class="n">handler_name</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">handler_name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;cannot find handler for element </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'cannot find handler for element </span><span class="si">%s</span><span class="s1">'</span><span class="p">,</span> <span class="n">handler_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span>
 
 
 <div class="viewcode-block" id="NCSSDataset">
 <a class="viewcode-back" href="../../api/ncssdataset.html#siphon.ncss_dataset.NCSSDataset">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NCSSDataset</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Hold information contained in the dataset.xml NCSS document.</span>
+<span class="w">    </span><span class="sd">"""Hold information contained in the dataset.xml NCSS document.</span>
 
 <span class="sd">    In general, if a dataset.xml NCSS document is missing the information</span>
 <span class="sd">    needed to construct an attribute, that attribute will not show up as</span>
@@ -315,7 +315,7 @@
 <span class="sd">        define the temporal bounds of the dataset</span>
 
 <span class="sd">     featureDataset : dict[str, str]</span>
-<span class="sd">        A dictionary containing the type [&quot;grid&quot;, &quot;point&quot;] and location [&quot;url&quot;]</span>
+<span class="sd">        A dictionary containing the type ["grid", "point"] and location ["url"]</span>
 <span class="sd">        of the dataset</span>
 
 <span class="sd">    accept_list : dict[str, list[str]]</span>
@@ -335,12 +335,12 @@
 <span class="sd">        A dictionary holding the north, south, east, and west latitude and</span>
 <span class="sd">        longitude bounds of the dataset (in degree_east, degree_north)</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
 <div class="viewcode-block" id="NCSSDataset.__init__">
 <a class="viewcode-back" href="../../api/ncssdataset.html#siphon.ncss_dataset.NCSSDataset.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a NCSSDataset object.</span>
+<span class="w">        </span><span class="sd">"""Initialize a NCSSDataset object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -348,7 +348,7 @@
 <span class="sd">            An :class:`~xml.etree.ElementTree.Element` representing the top level</span>
 <span class="sd">            node of an NCSS dataset.xml doc</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_types</span> <span class="o">=</span> <span class="n">_Types</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">gridsets</span> <span class="o">=</span> <span class="p">{}</span>
@@ -363,10 +363,10 @@
 
         <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span>
 
-        <span class="k">if</span> <span class="n">element_name</span> <span class="o">==</span> <span class="s1">&#39;gridDataset&#39;</span> <span class="ow">or</span> <span class="n">element_name</span> <span class="o">==</span> <span class="s1">&#39;capabilities&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">element_name</span> <span class="o">==</span> <span class="s1">'gridDataset'</span> <span class="ow">or</span> <span class="n">element_name</span> <span class="o">==</span> <span class="s1">'capabilities'</span><span class="p">:</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">featureDataset</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">,</span>
-                                   <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">featureDataset</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'type'</span><span class="p">:</span> <span class="s1">'grid'</span><span class="p">,</span>
+                                   <span class="s1">'url'</span><span class="p">:</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'location'</span><span class="p">]}</span>
             <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_parse_element</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
 
@@ -375,7 +375,7 @@
 
         <span class="n">things_to_del</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">thing</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">thing</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;__&#39;</span><span class="p">)))</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thing</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">thing</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s1">'_'</span><span class="p">,</span> <span class="s1">'__'</span><span class="p">)))</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thing</span><span class="p">):</span>
                 <span class="n">things_to_del</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thing</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">thing</span> <span class="ow">in</span> <span class="n">things_to_del</span><span class="p">:</span>
@@ -388,51 +388,51 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span>
 
-        <span class="n">parser</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gridSet&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_gridset</span><span class="p">,</span> <span class="s1">&#39;axis&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_axis</span><span class="p">,</span>
-                  <span class="s1">&#39;coordTransform&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_coordTransform</span><span class="p">,</span>
-                  <span class="s1">&#39;LatLonBox&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_LatLonBox</span><span class="p">,</span> <span class="s1">&#39;TimeSpan&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_TimeSpan</span><span class="p">,</span>
-                  <span class="s1">&#39;AcceptList&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_AcceptList</span><span class="p">,</span>
-                  <span class="s1">&#39;featureDataset&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_featureDataset</span><span class="p">,</span>
-                  <span class="s1">&#39;variable&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_variable</span><span class="p">}</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'gridSet'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_gridset</span><span class="p">,</span> <span class="s1">'axis'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_axis</span><span class="p">,</span>
+                  <span class="s1">'coordTransform'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_coordTransform</span><span class="p">,</span>
+                  <span class="s1">'LatLonBox'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_LatLonBox</span><span class="p">,</span> <span class="s1">'TimeSpan'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_TimeSpan</span><span class="p">,</span>
+                  <span class="s1">'AcceptList'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_AcceptList</span><span class="p">,</span>
+                  <span class="s1">'featureDataset'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_featureDataset</span><span class="p">,</span>
+                  <span class="s1">'variable'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_variable</span><span class="p">}</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">parser</span><span class="p">[</span><span class="n">element_name</span><span class="p">](</span><span class="n">element</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No parser found for element </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">element_name</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'No parser found for element </span><span class="si">%s</span><span class="s1">'</span><span class="p">,</span> <span class="n">element_name</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_gridset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">element_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span>
-        <span class="n">gridset_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="n">gridset_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
         <span class="n">grid_set</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
             <span class="n">child_name</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span>
             <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_handler</span><span class="p">(</span><span class="n">child_name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">child_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;projectionBox&#39;</span><span class="p">,</span> <span class="s1">&#39;coordTransRef&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">child_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'projectionBox'</span><span class="p">,</span> <span class="s1">'coordTransRef'</span><span class="p">]:</span>
                 <span class="n">grid_set</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">handler</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">child_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;axisRef&#39;</span><span class="p">]:</span>
+            <span class="k">elif</span> <span class="n">child_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'axisRef'</span><span class="p">]:</span>
                 <span class="n">grid_set</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">child_name</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">handler</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">child_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;grid&#39;</span><span class="p">]:</span>
+            <span class="k">elif</span> <span class="n">child_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'grid'</span><span class="p">]:</span>
                 <span class="n">tmp</span> <span class="o">=</span> <span class="n">handler</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
-                <span class="n">grid_name</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
-                <span class="n">tmp</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="n">grid_name</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
+                <span class="n">tmp</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
                 <span class="n">grid_set</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">child_name</span><span class="p">,</span> <span class="p">{})[</span><span class="n">grid_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">grid_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Unknown child in </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">element_name</span><span class="p">,</span> <span class="n">child_name</span><span class="p">)</span>
-                <span class="n">grid_set</span><span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;not handled by _parse_gridset&#39;</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'Unknown child in </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">'</span><span class="p">,</span> <span class="n">element_name</span><span class="p">,</span> <span class="n">child_name</span><span class="p">)</span>
+                <span class="n">grid_set</span><span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'not handled by _parse_gridset'</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">gridsets</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">gridset_name</span><span class="p">:</span> <span class="n">grid_set</span><span class="p">})</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="c1"># element_name = element.tag</span>
-        <span class="n">axis_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="n">axis_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
         <span class="n">axis</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">attr</span> <span class="o">!=</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="o">!=</span> <span class="s1">'name'</span><span class="p">:</span>
                 <span class="n">axis</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s1">&#39;shape&#39;</span> <span class="ow">in</span> <span class="n">axis</span><span class="p">:</span>
-            <span class="n">typed_vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_types</span><span class="o">.</span><span class="n">handle_typed_values</span><span class="p">(</span><span class="n">axis</span><span class="p">[</span><span class="s1">&#39;shape&#39;</span><span class="p">],</span> <span class="s1">&#39;shape&#39;</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">)</span>
-            <span class="n">axis</span><span class="p">[</span><span class="s1">&#39;shape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">typed_vals</span>
+        <span class="k">if</span> <span class="s1">'shape'</span> <span class="ow">in</span> <span class="n">axis</span><span class="p">:</span>
+            <span class="n">typed_vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_types</span><span class="o">.</span><span class="n">handle_typed_values</span><span class="p">(</span><span class="n">axis</span><span class="p">[</span><span class="s1">'shape'</span><span class="p">],</span> <span class="s1">'shape'</span><span class="p">,</span> <span class="s1">'int'</span><span class="p">)</span>
+            <span class="n">axis</span><span class="p">[</span><span class="s1">'shape'</span><span class="p">]</span> <span class="o">=</span> <span class="n">typed_vals</span>
 
         <span class="n">attrs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
@@ -441,15 +441,15 @@
             <span class="n">attrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">handler</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">attrs</span><span class="p">:</span>
-            <span class="n">axis</span><span class="p">[</span><span class="s1">&#39;attributes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attrs</span>
+            <span class="n">axis</span><span class="p">[</span><span class="s1">'attributes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">attrs</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">axis_name</span><span class="p">:</span> <span class="n">axis</span><span class="p">})</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_coordTransform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="n">coord_trans</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">attr</span> <span class="o">!=</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="o">!=</span> <span class="s1">'name'</span><span class="p">:</span>
                 <span class="n">coord_trans</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
 
         <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
@@ -459,7 +459,7 @@
             <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">handler</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">params</span><span class="p">:</span>
-            <span class="n">coord_trans</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span>
+            <span class="n">coord_trans</span><span class="p">[</span><span class="s1">'parameters'</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">coordinate_transforms</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="n">coord_trans</span><span class="p">})</span>
 
@@ -477,7 +477,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">time_span</span> <span class="o">=</span> <span class="n">ts</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_AcceptList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
-        <span class="n">grid_req_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Grid&#39;</span><span class="p">,</span> <span class="s1">&#39;GridAsPoint&#39;</span><span class="p">]</span>
+        <span class="n">grid_req_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Grid'</span><span class="p">,</span> <span class="s1">'GridAsPoint'</span><span class="p">]</span>
         <span class="c1"># check if station (i.e.</span>
         <span class="n">check</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">grid</span> <span class="o">=</span> <span class="kc">False</span>
@@ -495,7 +495,7 @@
             <span class="k">if</span> <span class="n">point</span><span class="p">:</span>
                 <span class="c1"># this is a PointFeatureCollection ncss</span>
                 <span class="n">return_type</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">text</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">accept_list</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;PointFeatureCollection&#39;</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">accept_list</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">'PointFeatureCollection'</span><span class="p">,</span>
                                             <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">return_type</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">grid</span><span class="p">:</span>
                 <span class="c1"># this is a grid ncss</span>
@@ -504,7 +504,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">accept_list</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">request_type</span><span class="p">,</span>
                                                 <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">return_type</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Cannot have grid=</span><span class="si">%s</span><span class="s1"> and point=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'Cannot have grid=</span><span class="si">%s</span><span class="s1"> and point=</span><span class="si">%s</span><span class="s1">'</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_featureDataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>  <span class="c1"># noqa</span>
         <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_handler</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
@@ -513,8 +513,8 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_handler</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">handler</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
-        <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span></div>
 
 </pre></div>
@@ -527,7 +527,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2026, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Aug 03, 2026 at 08:52:33.
+      <span class="lastupdated">Last updated on Aug 31, 2026 at 19:54:58.
       </span></p>
   </div>
 

@@ -87,7 +87,7 @@
 <span></span><span class="c1"># Copyright (c) 2013-2015 Siphon Contributors.</span>
 <span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
-<span class="sd">&quot;&quot;&quot;Read data from the National Data Buoy Center.&quot;&quot;&quot;</span>
+<span class="sd">"""Read data from the National Data Buoy Center."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
@@ -102,20 +102,20 @@
 <div class="viewcode-block" id="NDBC">
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NDBC</span><span class="p">(</span><span class="n">HTTPEndPoint</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Download and parse data from the National Data Buoy Center.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Download and parse data from the National Data Buoy Center."""</span>
 
 <div class="viewcode-block" id="NDBC.__init__">
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up endpoint.&quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;https://www.ndbc.noaa.gov/&#39;</span><span class="p">)</span></div>
+<span class="w">        </span><span class="sd">"""Set up endpoint."""</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">'https://www.ndbc.noaa.gov/'</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="NDBC.realtime_observations">
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.realtime_observations">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">realtime_observations</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">buoy</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;txt&#39;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve the realtime buoy data from NDBC.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">realtime_observations</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">buoy</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">'txt'</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Retrieve the realtime buoy data from NDBC.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -123,37 +123,37 @@
 <span class="sd">            Name of buoy</span>
 <span class="sd">        data_type : str</span>
 <span class="sd">            Type of data requested, must be one of</span>
-<span class="sd">            &#39;txt&#39; standard meteorological data</span>
-<span class="sd">            &#39;drift&#39; meteorological data from drifting buoys and limited moored buoy data</span>
+<span class="sd">            'txt' standard meteorological data</span>
+<span class="sd">            'drift' meteorological data from drifting buoys and limited moored buoy data</span>
 <span class="sd">            mainly from international partners</span>
-<span class="sd">            &#39;cwind&#39; continuous winds data (10 minute average)</span>
-<span class="sd">            &#39;spec&#39; spectral wave summaries</span>
-<span class="sd">            &#39;ocean&#39; oceanographic data</span>
-<span class="sd">            &#39;srad&#39; solar radiation data</span>
-<span class="sd">            &#39;dart&#39; water column height</span>
-<span class="sd">            &#39;supl&#39; supplemental measurements data</span>
-<span class="sd">            &#39;rain&#39; hourly rain data</span>
+<span class="sd">            'cwind' continuous winds data (10 minute average)</span>
+<span class="sd">            'spec' spectral wave summaries</span>
+<span class="sd">            'ocean' oceanographic data</span>
+<span class="sd">            'srad' solar radiation data</span>
+<span class="sd">            'dart' water column height</span>
+<span class="sd">            'supl' supplemental measurements data</span>
+<span class="sd">            'rain' hourly rain data</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        `pandas.DataFrame`</span>
 <span class="sd">            Parsed data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
-        <span class="n">parsers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;txt&#39;</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_met</span><span class="p">,</span>
-                   <span class="s1">&#39;drift&#39;</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_drift</span><span class="p">,</span>
-                   <span class="s1">&#39;cwind&#39;</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_cwind</span><span class="p">,</span>
-                   <span class="s1">&#39;spec&#39;</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_spec</span><span class="p">,</span>
-                   <span class="s1">&#39;ocean&#39;</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_ocean</span><span class="p">,</span>
-                   <span class="s1">&#39;srad&#39;</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_srad</span><span class="p">,</span>
-                   <span class="s1">&#39;dart&#39;</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_dart</span><span class="p">,</span>
-                   <span class="s1">&#39;supl&#39;</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_supl</span><span class="p">,</span>
-                   <span class="s1">&#39;rain&#39;</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_rain</span><span class="p">}</span>
+        <span class="n">parsers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'txt'</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_met</span><span class="p">,</span>
+                   <span class="s1">'drift'</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_drift</span><span class="p">,</span>
+                   <span class="s1">'cwind'</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_cwind</span><span class="p">,</span>
+                   <span class="s1">'spec'</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_spec</span><span class="p">,</span>
+                   <span class="s1">'ocean'</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_ocean</span><span class="p">,</span>
+                   <span class="s1">'srad'</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_srad</span><span class="p">,</span>
+                   <span class="s1">'dart'</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_dart</span><span class="p">,</span>
+                   <span class="s1">'supl'</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_supl</span><span class="p">,</span>
+                   <span class="s1">'rain'</span><span class="p">:</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_parse_rain</span><span class="p">}</span>
 
         <span class="k">if</span> <span class="n">data_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">parsers</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;Data type must be txt, drift, cwind, spec, ocean, srad, dart,&#39;</span>
-                           <span class="s1">&#39;supl, or rain for parsed realtime data.&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">'Data type must be txt, drift, cwind, spec, ocean, srad, dart,'</span>
+                           <span class="s1">'supl, or rain for parsed realtime data.'</span><span class="p">)</span>
 
         <span class="n">raw_data</span> <span class="o">=</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">raw_buoy_data</span><span class="p">(</span><span class="n">buoy</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="n">data_type</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">parsers</span><span class="p">[</span><span class="n">data_type</span><span class="p">](</span><span class="n">raw_data</span><span class="p">)</span></div>
@@ -161,7 +161,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_met</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse standard meteorological data from NDBC buoys.</span>
+<span class="w">        </span><span class="sd">"""Parse standard meteorological data from NDBC buoys.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -172,36 +172,36 @@
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_direction&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_speed&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_gust&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wave_height&#39;</span><span class="p">,</span> <span class="s1">&#39;dominant_wave_period&#39;</span><span class="p">,</span> <span class="s1">&#39;average_wave_period&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;dominant_wave_direction&#39;</span><span class="p">,</span> <span class="s1">&#39;pressure&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;air_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;water_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;dewpoint&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;visibility&#39;</span><span class="p">,</span> <span class="s1">&#39;3hr_pressure_tendency&#39;</span><span class="p">,</span> <span class="s1">&#39;water_level_above_mean&#39;</span><span class="p">]</span>
+<span class="sd">        """</span>
+        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">,</span>
+                     <span class="s1">'wind_direction'</span><span class="p">,</span> <span class="s1">'wind_speed'</span><span class="p">,</span> <span class="s1">'wind_gust'</span><span class="p">,</span>
+                     <span class="s1">'wave_height'</span><span class="p">,</span> <span class="s1">'dominant_wave_period'</span><span class="p">,</span> <span class="s1">'average_wave_period'</span><span class="p">,</span>
+                     <span class="s1">'dominant_wave_direction'</span><span class="p">,</span> <span class="s1">'pressure'</span><span class="p">,</span>
+                     <span class="s1">'air_temperature'</span><span class="p">,</span> <span class="s1">'water_temperature'</span><span class="p">,</span> <span class="s1">'dewpoint'</span><span class="p">,</span>
+                     <span class="s1">'visibility'</span><span class="p">,</span> <span class="s1">'3hr_pressure_tendency'</span><span class="p">,</span> <span class="s1">'water_level_above_mean'</span><span class="p">]</span>
 
-        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;wind_direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_speed&#39;</span><span class="p">:</span> <span class="s1">&#39;meters/second&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_gust&#39;</span><span class="p">:</span> <span class="s1">&#39;meters/second&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wave_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meters&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;dominant_wave_period&#39;</span><span class="p">:</span> <span class="s1">&#39;seconds&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;average_wave_period&#39;</span><span class="p">:</span> <span class="s1">&#39;seconds&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;dominant_wave_direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;air_temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;water_temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;dewpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;visibility&#39;</span><span class="p">:</span> <span class="s1">&#39;nautical_mile&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;3hr_pressure_tendency&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;water_level_above_mean&#39;</span><span class="p">:</span> <span class="s1">&#39;feet&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'wind_direction'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'wind_speed'</span><span class="p">:</span> <span class="s1">'meters/second'</span><span class="p">,</span>
+                     <span class="s1">'wind_gust'</span><span class="p">:</span> <span class="s1">'meters/second'</span><span class="p">,</span>
+                     <span class="s1">'wave_height'</span><span class="p">:</span> <span class="s1">'meters'</span><span class="p">,</span>
+                     <span class="s1">'dominant_wave_period'</span><span class="p">:</span> <span class="s1">'seconds'</span><span class="p">,</span>
+                     <span class="s1">'average_wave_period'</span><span class="p">:</span> <span class="s1">'seconds'</span><span class="p">,</span>
+                     <span class="s1">'dominant_wave_direction'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'pressure'</span><span class="p">:</span> <span class="s1">'hPa'</span><span class="p">,</span>
+                     <span class="s1">'air_temperature'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                     <span class="s1">'water_temperature'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                     <span class="s1">'dewpoint'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                     <span class="s1">'visibility'</span><span class="p">:</span> <span class="s1">'nautical_mile'</span><span class="p">,</span>
+                     <span class="s1">'3hr_pressure_tendency'</span><span class="p">:</span> <span class="s1">'hPa'</span><span class="p">,</span>
+                     <span class="s1">'water_level_above_mean'</span><span class="p">:</span> <span class="s1">'feet'</span><span class="p">,</span>
+                     <span class="s1">'time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">&#39;MM&#39;</span><span class="p">,</span>
-                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">])</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">'#'</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">'MM'</span><span class="p">,</span>
+                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\s+'</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">])</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">,</span> <span class="s2">"Pandas doesn't allow columns to be created"</span><span class="p">,</span>
                                     <span class="ne">UserWarning</span><span class="p">)</span>
             <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">col_units</span>
 
@@ -209,7 +209,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_drift</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse meteorological data from drifting buoys and limited moored buoy data.</span>
+<span class="w">        </span><span class="sd">"""Parse meteorological data from drifting buoys and limited moored buoy data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -220,32 +220,32 @@
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour_minute&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_direction&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_speed&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_gust&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;3hr_pressure_tendency&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;air_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;water_temperature&#39;</span><span class="p">]</span>
+<span class="sd">        """</span>
+        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour_minute'</span><span class="p">,</span>
+                     <span class="s1">'latitude'</span><span class="p">,</span> <span class="s1">'longitude'</span><span class="p">,</span>
+                     <span class="s1">'wind_direction'</span><span class="p">,</span> <span class="s1">'wind_speed'</span><span class="p">,</span> <span class="s1">'wind_gust'</span><span class="p">,</span>
+                     <span class="s1">'pressure'</span><span class="p">,</span> <span class="s1">'3hr_pressure_tendency'</span><span class="p">,</span>
+                     <span class="s1">'air_temperature'</span><span class="p">,</span> <span class="s1">'water_temperature'</span><span class="p">]</span>
 
-        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_speed&#39;</span><span class="p">:</span> <span class="s1">&#39;meters/second&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_gust&#39;</span><span class="p">:</span> <span class="s1">&#39;meters/second&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;air_temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;water_temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;3hr_pressure_tendency&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'latitude'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'longitude'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'wind_direction'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'wind_speed'</span><span class="p">:</span> <span class="s1">'meters/second'</span><span class="p">,</span>
+                     <span class="s1">'wind_gust'</span><span class="p">:</span> <span class="s1">'meters/second'</span><span class="p">,</span>
+                     <span class="s1">'pressure'</span><span class="p">:</span> <span class="s1">'hPa'</span><span class="p">,</span>
+                     <span class="s1">'air_temperature'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                     <span class="s1">'water_temperature'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                     <span class="s1">'3hr_pressure_tendency'</span><span class="p">:</span> <span class="s1">'hPa'</span><span class="p">,</span>
+                     <span class="s1">'time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">&#39;MM&#39;</span><span class="p">,</span>
-                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour_minute&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;minute&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour_minute&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour_minute&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">])</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">'#'</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">'MM'</span><span class="p">,</span>
+                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\s+'</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'hour'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'hour_minute'</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'minute'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'hour_minute'</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">'hour'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour_minute'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">])</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">,</span> <span class="s2">"Pandas doesn't allow columns to be created"</span><span class="p">,</span>
                                     <span class="ne">UserWarning</span><span class="p">)</span>
             <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">col_units</span>
 
@@ -253,7 +253,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_cwind</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse continuous wind data (10 minute average).</span>
+<span class="w">        </span><span class="sd">"""Parse continuous wind data (10 minute average).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -264,32 +264,32 @@
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_direction&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_speed&#39;</span><span class="p">,</span> <span class="s1">&#39;gust_direction&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_gust&#39;</span><span class="p">,</span> <span class="s1">&#39;gust_time&#39;</span><span class="p">]</span>
+<span class="sd">        """</span>
+        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">,</span>
+                     <span class="s1">'wind_direction'</span><span class="p">,</span> <span class="s1">'wind_speed'</span><span class="p">,</span> <span class="s1">'gust_direction'</span><span class="p">,</span>
+                     <span class="s1">'wind_gust'</span><span class="p">,</span> <span class="s1">'gust_time'</span><span class="p">]</span>
 
-        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;wind_direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_speed&#39;</span><span class="p">:</span> <span class="s1">&#39;meters/second&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;gust_direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_gust&#39;</span><span class="p">:</span> <span class="s1">&#39;meters/second&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;gust_time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                     <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'wind_direction'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'wind_speed'</span><span class="p">:</span> <span class="s1">'meters/second'</span><span class="p">,</span>
+                     <span class="s1">'gust_direction'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'wind_gust'</span><span class="p">:</span> <span class="s1">'meters/second'</span><span class="p">,</span>
+                     <span class="s1">'gust_time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="s1">'time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">&#39;MM&#39;</span><span class="p">,</span>
-                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;gust_direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;gust_direction&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">999</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;wind_gust&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;wind_gust&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mf">99.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hours&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;gust_time&#39;</span><span class="p">]</span> <span class="o">//</span> <span class="mi">100</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;minutes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;gust_time&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hours&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;gust_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hours&#39;</span><span class="p">,</span> <span class="s1">&#39;minutes&#39;</span><span class="p">]],</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">'#'</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">'MM'</span><span class="p">,</span>
+                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\s+'</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'gust_direction'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'gust_direction'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">999</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'wind_gust'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'wind_gust'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mf">99.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'hours'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'gust_time'</span><span class="p">]</span> <span class="o">//</span> <span class="mi">100</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'minutes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'gust_time'</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">'hours'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'gust_time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hours'</span><span class="p">,</span> <span class="s1">'minutes'</span><span class="p">]],</span>
                                          <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;gust_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;gust_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;hours&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">99</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NaT</span><span class="p">)</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span>
-                              <span class="s1">&#39;hours&#39;</span><span class="p">,</span> <span class="s1">&#39;minutes&#39;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'gust_time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'gust_time'</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'hours'</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">99</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NaT</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">,</span>
+                              <span class="s1">'hours'</span><span class="p">,</span> <span class="s1">'minutes'</span><span class="p">])</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">,</span> <span class="s2">"Pandas doesn't allow columns to be created"</span><span class="p">,</span>
                                     <span class="ne">UserWarning</span><span class="p">)</span>
             <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">col_units</span>
 
@@ -297,7 +297,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_spec</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse spectral wave summaries.</span>
+<span class="w">        </span><span class="sd">"""Parse spectral wave summaries.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -308,31 +308,31 @@
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;significant_wave_height&#39;</span><span class="p">,</span> <span class="s1">&#39;swell_height&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;swell_period&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_wave_height&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_wave_period&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;swell_direction&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_wave_direction&#39;</span><span class="p">,</span> <span class="s1">&#39;steepness&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;average_wave_period&#39;</span><span class="p">,</span> <span class="s1">&#39;dominant_wave_direction&#39;</span><span class="p">]</span>
+<span class="sd">        """</span>
+        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">,</span>
+                     <span class="s1">'significant_wave_height'</span><span class="p">,</span> <span class="s1">'swell_height'</span><span class="p">,</span>
+                     <span class="s1">'swell_period'</span><span class="p">,</span> <span class="s1">'wind_wave_height'</span><span class="p">,</span> <span class="s1">'wind_wave_period'</span><span class="p">,</span>
+                     <span class="s1">'swell_direction'</span><span class="p">,</span> <span class="s1">'wind_wave_direction'</span><span class="p">,</span> <span class="s1">'steepness'</span><span class="p">,</span>
+                     <span class="s1">'average_wave_period'</span><span class="p">,</span> <span class="s1">'dominant_wave_direction'</span><span class="p">]</span>
 
-        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;significant_wave_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meters&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;swell_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meters&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;swell_period&#39;</span><span class="p">:</span> <span class="s1">&#39;seconds&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_wave_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meters&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_wave_period&#39;</span><span class="p">:</span> <span class="s1">&#39;seconds&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;swell_direction&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_wave_direction&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                     <span class="s1">&#39;steepness&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                     <span class="s1">&#39;average_wave_period&#39;</span><span class="p">:</span> <span class="s1">&#39;seconds&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;dominant_wave_direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'significant_wave_height'</span><span class="p">:</span> <span class="s1">'meters'</span><span class="p">,</span>
+                     <span class="s1">'swell_height'</span><span class="p">:</span> <span class="s1">'meters'</span><span class="p">,</span>
+                     <span class="s1">'swell_period'</span><span class="p">:</span> <span class="s1">'seconds'</span><span class="p">,</span>
+                     <span class="s1">'wind_wave_height'</span><span class="p">:</span> <span class="s1">'meters'</span><span class="p">,</span>
+                     <span class="s1">'wind_wave_period'</span><span class="p">:</span> <span class="s1">'seconds'</span><span class="p">,</span>
+                     <span class="s1">'swell_direction'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="s1">'wind_wave_direction'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="s1">'steepness'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="s1">'average_wave_period'</span><span class="p">:</span> <span class="s1">'seconds'</span><span class="p">,</span>
+                     <span class="s1">'dominant_wave_direction'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">&#39;MM&#39;</span><span class="p">,</span>
-                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">])</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">'#'</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">'MM'</span><span class="p">,</span>
+                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\s+'</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">])</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">,</span> <span class="s2">"Pandas doesn't allow columns to be created"</span><span class="p">,</span>
                                     <span class="ne">UserWarning</span><span class="p">)</span>
             <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">col_units</span>
 
@@ -340,7 +340,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_ocean</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse oceanographic data.</span>
+<span class="w">        </span><span class="sd">"""Parse oceanographic data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -351,31 +351,31 @@
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;measurement_depth&#39;</span><span class="p">,</span> <span class="s1">&#39;ocean_temperature&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;conductivity&#39;</span><span class="p">,</span> <span class="s1">&#39;salinity&#39;</span><span class="p">,</span> <span class="s1">&#39;oxygen_concentration&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;oxygen_concentration_ppm&#39;</span><span class="p">,</span> <span class="s1">&#39;chlorophyll_concentration&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;turbidity&#39;</span><span class="p">,</span> <span class="s1">&#39;pH&#39;</span><span class="p">,</span> <span class="s1">&#39;Eh&#39;</span><span class="p">]</span>
+<span class="sd">        """</span>
+        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">,</span>
+                     <span class="s1">'measurement_depth'</span><span class="p">,</span> <span class="s1">'ocean_temperature'</span><span class="p">,</span>
+                     <span class="s1">'conductivity'</span><span class="p">,</span> <span class="s1">'salinity'</span><span class="p">,</span> <span class="s1">'oxygen_concentration'</span><span class="p">,</span>
+                     <span class="s1">'oxygen_concentration_ppm'</span><span class="p">,</span> <span class="s1">'chlorophyll_concentration'</span><span class="p">,</span>
+                     <span class="s1">'turbidity'</span><span class="p">,</span> <span class="s1">'pH'</span><span class="p">,</span> <span class="s1">'Eh'</span><span class="p">]</span>
 
-        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;measurement_depth&#39;</span><span class="p">:</span> <span class="s1">&#39;meters&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;ocean_temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;conductivity&#39;</span><span class="p">:</span> <span class="s1">&#39;milliSiemens/centimeter&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;salinity&#39;</span><span class="p">:</span> <span class="s1">&#39;psu&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;oxygen_concentration&#39;</span><span class="p">:</span> <span class="s1">&#39;percent&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;oxygen_concentration_ppm&#39;</span><span class="p">:</span> <span class="s1">&#39;ppm&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;chlorophyll_concentration&#39;</span><span class="p">:</span> <span class="s1">&#39;micrograms/liter&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;turbidity&#39;</span><span class="p">:</span> <span class="s1">&#39;ftu&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;pH&#39;</span><span class="p">:</span> <span class="s1">&#39;dimensionless&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;Eh&#39;</span><span class="p">:</span> <span class="s1">&#39;millivolts&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'measurement_depth'</span><span class="p">:</span> <span class="s1">'meters'</span><span class="p">,</span>
+                     <span class="s1">'ocean_temperature'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                     <span class="s1">'conductivity'</span><span class="p">:</span> <span class="s1">'milliSiemens/centimeter'</span><span class="p">,</span>
+                     <span class="s1">'salinity'</span><span class="p">:</span> <span class="s1">'psu'</span><span class="p">,</span>
+                     <span class="s1">'oxygen_concentration'</span><span class="p">:</span> <span class="s1">'percent'</span><span class="p">,</span>
+                     <span class="s1">'oxygen_concentration_ppm'</span><span class="p">:</span> <span class="s1">'ppm'</span><span class="p">,</span>
+                     <span class="s1">'chlorophyll_concentration'</span><span class="p">:</span> <span class="s1">'micrograms/liter'</span><span class="p">,</span>
+                     <span class="s1">'turbidity'</span><span class="p">:</span> <span class="s1">'ftu'</span><span class="p">,</span>
+                     <span class="s1">'pH'</span><span class="p">:</span> <span class="s1">'dimensionless'</span><span class="p">,</span>
+                     <span class="s1">'Eh'</span><span class="p">:</span> <span class="s1">'millivolts'</span><span class="p">,</span>
+                     <span class="s1">'time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">&#39;MM&#39;</span><span class="p">,</span>
-                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">])</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">'#'</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">'MM'</span><span class="p">,</span>
+                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\s+'</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">])</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">,</span> <span class="s2">"Pandas doesn't allow columns to be created"</span><span class="p">,</span>
                                     <span class="ne">UserWarning</span><span class="p">)</span>
             <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">col_units</span>
 
@@ -383,7 +383,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_srad</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse solar radiation data.</span>
+<span class="w">        </span><span class="sd">"""Parse solar radiation data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -394,22 +394,22 @@
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;shortwave_radiation_licor&#39;</span><span class="p">,</span> <span class="s1">&#39;shortwave_radiation_eppley&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;longwave_radiation&#39;</span><span class="p">]</span>
+<span class="sd">        """</span>
+        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">,</span>
+                     <span class="s1">'shortwave_radiation_licor'</span><span class="p">,</span> <span class="s1">'shortwave_radiation_eppley'</span><span class="p">,</span>
+                     <span class="s1">'longwave_radiation'</span><span class="p">]</span>
 
-        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;shortwave_radiation_licor&#39;</span><span class="p">:</span> <span class="s1">&#39;watts/meter^2&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;shortwave_radiation_eppley&#39;</span><span class="p">:</span> <span class="s1">&#39;watts/meter^2&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;longwave_radiation&#39;</span><span class="p">:</span> <span class="s1">&#39;watts/meter^2&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'shortwave_radiation_licor'</span><span class="p">:</span> <span class="s1">'watts/meter^2'</span><span class="p">,</span>
+                     <span class="s1">'shortwave_radiation_eppley'</span><span class="p">:</span> <span class="s1">'watts/meter^2'</span><span class="p">,</span>
+                     <span class="s1">'longwave_radiation'</span><span class="p">:</span> <span class="s1">'watts/meter^2'</span><span class="p">,</span>
+                     <span class="s1">'time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">&#39;MM&#39;</span><span class="p">,</span>
-                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">])</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">'#'</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">'MM'</span><span class="p">,</span>
+                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\s+'</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">])</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">,</span> <span class="s2">"Pandas doesn't allow columns to be created"</span><span class="p">,</span>
                                     <span class="ne">UserWarning</span><span class="p">)</span>
             <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">col_units</span>
 
@@ -417,7 +417,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_dart</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse water column height data.</span>
+<span class="w">        </span><span class="sd">"""Parse water column height data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -428,30 +428,30 @@
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;measurement_type&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">]</span>
+<span class="sd">        """</span>
+        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">,</span> <span class="s1">'second'</span><span class="p">,</span>
+                     <span class="s1">'measurement_type'</span><span class="p">,</span> <span class="s1">'height'</span><span class="p">]</span>
 
-        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;measurement_type&#39;</span><span class="p">:</span> <span class="s1">&#39;minutes&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;meters&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'measurement_type'</span><span class="p">:</span> <span class="s1">'minutes'</span><span class="p">,</span>
+                     <span class="s1">'height'</span><span class="p">:</span> <span class="s1">'meters'</span><span class="p">,</span>
+                     <span class="s1">'time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">&#39;MM&#39;</span><span class="p">,</span>
-                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">'#'</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">'MM'</span><span class="p">,</span>
+                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\s+'</span><span class="p">)</span>
 
         <span class="c1"># Replace measurement type integer with minute value</span>
         <span class="c1"># 1 = 15-minute measurement</span>
         <span class="c1"># 2 = 1-minute measurement</span>
         <span class="c1"># 3 = 15-second measurement</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;measurement_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;measurement_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;measurement_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;measurement_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;measurement_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;measurement_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'measurement_type'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'measurement_type'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'measurement_type'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'measurement_type'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'measurement_type'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'measurement_type'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
 
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span>
-                                        <span class="s1">&#39;minute&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span>
+                                        <span class="s1">'minute'</span><span class="p">,</span> <span class="s1">'second'</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">,</span> <span class="s1">'second'</span><span class="p">])</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">,</span> <span class="s2">"Pandas doesn't allow columns to be created"</span><span class="p">,</span>
                                     <span class="ne">UserWarning</span><span class="p">)</span>
             <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">col_units</span>
 
@@ -459,7 +459,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_rain</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse hourly rain data.</span>
+<span class="w">        </span><span class="sd">"""Parse hourly rain data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -470,20 +470,20 @@
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;hourly_accumulation&#39;</span><span class="p">]</span>
+<span class="sd">        """</span>
+        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">,</span>
+                     <span class="s1">'hourly_accumulation'</span><span class="p">]</span>
 
-        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;hourly_accumulation&#39;</span><span class="p">:</span> <span class="s1">&#39;millimeters&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'hourly_accumulation'</span><span class="p">:</span> <span class="s1">'millimeters'</span><span class="p">,</span>
+                     <span class="s1">'time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">&#39;MM&#39;</span><span class="p">,</span>
-                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">'#'</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">'MM'</span><span class="p">,</span>
+                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\s+'</span><span class="p">)</span>
 
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">])</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">,</span> <span class="s2">"Pandas doesn't allow columns to be created"</span><span class="p">,</span>
                                     <span class="ne">UserWarning</span><span class="p">)</span>
             <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">col_units</span>
 
@@ -491,7 +491,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_supl</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse supplemental measurements data.</span>
+<span class="w">        </span><span class="sd">"""Parse supplemental measurements data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -502,40 +502,40 @@
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;hourly_low_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;hourly_low_pressure_time&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;hourly_high_wind&#39;</span><span class="p">,</span> <span class="s1">&#39;hourly_high_wind_direction&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;hourly_high_wind_time&#39;</span><span class="p">]</span>
+<span class="sd">        """</span>
+        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">,</span>
+                     <span class="s1">'hourly_low_pressure'</span><span class="p">,</span> <span class="s1">'hourly_low_pressure_time'</span><span class="p">,</span>
+                     <span class="s1">'hourly_high_wind'</span><span class="p">,</span> <span class="s1">'hourly_high_wind_direction'</span><span class="p">,</span>
+                     <span class="s1">'hourly_high_wind_time'</span><span class="p">]</span>
 
-        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;hourly_low_pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;hourly_low_pressure_time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                     <span class="s1">&#39;hourly_high_wind&#39;</span><span class="p">:</span> <span class="s1">&#39;meters/second&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;hourly_high_wind_direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;hourly_high_wind_time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                     <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'hourly_low_pressure'</span><span class="p">:</span> <span class="s1">'hPa'</span><span class="p">,</span>
+                     <span class="s1">'hourly_low_pressure_time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="s1">'hourly_high_wind'</span><span class="p">:</span> <span class="s1">'meters/second'</span><span class="p">,</span>
+                     <span class="s1">'hourly_high_wind_direction'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'hourly_high_wind_time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="s1">'time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">&#39;MM&#39;</span><span class="p">,</span>
-                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">'#'</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">'MM'</span><span class="p">,</span>
+                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\s+'</span><span class="p">)</span>
 
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hours&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;hourly_low_pressure_time&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;minutes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hourly_low_pressure_time&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hours&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hours&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hours&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;minutes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;minutes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hourly_low_pressure_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hours&#39;</span><span class="p">,</span>
-                                                            <span class="s1">&#39;minutes&#39;</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'hours'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'hourly_low_pressure_time'</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'minutes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'hourly_low_pressure_time'</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">'hours'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'hours'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'hours'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'minutes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'minutes'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'hourly_low_pressure_time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hours'</span><span class="p">,</span>
+                                                            <span class="s1">'minutes'</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hours&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;hourly_high_wind_time&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;minutes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hourly_high_wind_time&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hours&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hours&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hours&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;minutes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;minutes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hourly_high_wind_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span>
-                                                         <span class="s1">&#39;hours&#39;</span><span class="p">,</span> <span class="s1">&#39;minutes&#39;</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span> <span class="s1">&#39;hours&#39;</span><span class="p">,</span> <span class="s1">&#39;minutes&#39;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'hours'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'hourly_high_wind_time'</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'minutes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'hourly_high_wind_time'</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">'hours'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'hours'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'hours'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'minutes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'minutes'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'hourly_high_wind_time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span>
+                                                         <span class="s1">'hours'</span><span class="p">,</span> <span class="s1">'minutes'</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">,</span> <span class="s1">'hours'</span><span class="p">,</span> <span class="s1">'minutes'</span><span class="p">])</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">,</span> <span class="s2">"Pandas doesn't allow columns to be created"</span><span class="p">,</span>
                                     <span class="ne">UserWarning</span><span class="p">)</span>
             <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">col_units</span>
 
@@ -545,48 +545,48 @@
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.latest_observations">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">latest_observations</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve the latest observations for all buoys from NDBC.</span>
+<span class="w">        </span><span class="sd">"""Retrieve the latest observations for all buoys from NDBC.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            :class:`pandas.DataFrame` containing the data</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
-        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;station&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_direction&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_speed&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_gust&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wave_height&#39;</span><span class="p">,</span> <span class="s1">&#39;dominant_wave_period&#39;</span><span class="p">,</span> <span class="s1">&#39;average_wave_period&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;dominant_wave_direction&#39;</span><span class="p">,</span> <span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;3hr_pressure_tendency&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;air_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;water_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;dewpoint&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;visibility&#39;</span><span class="p">,</span> <span class="s1">&#39;water_level_above_mean&#39;</span><span class="p">]</span>
+        <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'station'</span><span class="p">,</span> <span class="s1">'latitude'</span><span class="p">,</span> <span class="s1">'longitude'</span><span class="p">,</span>
+                     <span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">,</span>
+                     <span class="s1">'wind_direction'</span><span class="p">,</span> <span class="s1">'wind_speed'</span><span class="p">,</span> <span class="s1">'wind_gust'</span><span class="p">,</span>
+                     <span class="s1">'wave_height'</span><span class="p">,</span> <span class="s1">'dominant_wave_period'</span><span class="p">,</span> <span class="s1">'average_wave_period'</span><span class="p">,</span>
+                     <span class="s1">'dominant_wave_direction'</span><span class="p">,</span> <span class="s1">'pressure'</span><span class="p">,</span> <span class="s1">'3hr_pressure_tendency'</span><span class="p">,</span>
+                     <span class="s1">'air_temperature'</span><span class="p">,</span> <span class="s1">'water_temperature'</span><span class="p">,</span> <span class="s1">'dewpoint'</span><span class="p">,</span>
+                     <span class="s1">'visibility'</span><span class="p">,</span> <span class="s1">'water_level_above_mean'</span><span class="p">]</span>
 
-        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;station&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                     <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_speed&#39;</span><span class="p">:</span> <span class="s1">&#39;meters/second&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wind_gust&#39;</span><span class="p">:</span> <span class="s1">&#39;meters/second&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;wave_height&#39;</span><span class="p">:</span> <span class="s1">&#39;meters&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;dominant_wave_period&#39;</span><span class="p">:</span> <span class="s1">&#39;seconds&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;average_wave_period&#39;</span><span class="p">:</span> <span class="s1">&#39;seconds&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;dominant_wave_direction&#39;</span><span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;air_temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;water_temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;dewpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;degC&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;visibility&#39;</span><span class="p">:</span> <span class="s1">&#39;nautical_mile&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;3hr_pressure_tendency&#39;</span><span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;water_level_above_mean&#39;</span><span class="p">:</span> <span class="s1">&#39;feet&#39;</span><span class="p">,</span>
-                     <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;data/latest_obs/latest_obs.txt&#39;</span><span class="p">)</span>
+        <span class="n">col_units</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'station'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                     <span class="s1">'latitude'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'longitude'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'wind_direction'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'wind_speed'</span><span class="p">:</span> <span class="s1">'meters/second'</span><span class="p">,</span>
+                     <span class="s1">'wind_gust'</span><span class="p">:</span> <span class="s1">'meters/second'</span><span class="p">,</span>
+                     <span class="s1">'wave_height'</span><span class="p">:</span> <span class="s1">'meters'</span><span class="p">,</span>
+                     <span class="s1">'dominant_wave_period'</span><span class="p">:</span> <span class="s1">'seconds'</span><span class="p">,</span>
+                     <span class="s1">'average_wave_period'</span><span class="p">:</span> <span class="s1">'seconds'</span><span class="p">,</span>
+                     <span class="s1">'dominant_wave_direction'</span><span class="p">:</span> <span class="s1">'degrees'</span><span class="p">,</span>
+                     <span class="s1">'pressure'</span><span class="p">:</span> <span class="s1">'hPa'</span><span class="p">,</span>
+                     <span class="s1">'air_temperature'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                     <span class="s1">'water_temperature'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                     <span class="s1">'dewpoint'</span><span class="p">:</span> <span class="s1">'degC'</span><span class="p">,</span>
+                     <span class="s1">'visibility'</span><span class="p">:</span> <span class="s1">'nautical_mile'</span><span class="p">,</span>
+                     <span class="s1">'3hr_pressure_tendency'</span><span class="p">:</span> <span class="s1">'hPa'</span><span class="p">,</span>
+                     <span class="s1">'water_level_above_mean'</span><span class="p">:</span> <span class="s1">'feet'</span><span class="p">,</span>
+                     <span class="s1">'time'</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">'data/latest_obs/latest_obs.txt'</span><span class="p">)</span>
 
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">&#39;MM&#39;</span><span class="p">,</span>
-                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;minute&#39;</span><span class="p">])</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">comment</span><span class="o">=</span><span class="s1">'#'</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">'MM'</span><span class="p">,</span>
+                         <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\s+'</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">]],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">,</span> <span class="s1">'minute'</span><span class="p">])</span>
         <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s2">&quot;Pandas doesn&#39;t allow columns to be created&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">,</span> <span class="s2">"Pandas doesn't allow columns to be created"</span><span class="p">,</span>
                                     <span class="ne">UserWarning</span><span class="p">)</span>
             <span class="n">df</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">col_units</span>
 
@@ -595,7 +595,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_check_if_url_valid</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if a url is valid (returns 200) or not.</span>
+<span class="w">        </span><span class="sd">"""Check if a url is valid (returns 200) or not.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -606,7 +606,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            bool if url is valid</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
 
@@ -614,7 +614,7 @@
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.buoy_data_types">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">buoy_data_types</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">buoy</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determine which types of data are available for a given buoy.</span>
+<span class="w">        </span><span class="sd">"""Determine which types of data are available for a given buoy.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -626,27 +626,27 @@
 <span class="sd">        dict[str, str]</span>
 <span class="sd">            dict of valid file extensions and their descriptions</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
-        <span class="n">file_types</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;txt&#39;</span><span class="p">:</span> <span class="s1">&#39;standard meteorological data&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;drift&#39;</span><span class="p">:</span> <span class="s1">&#39;meteorological data from drifting buoys and limited moored&#39;</span>
-                               <span class="s1">&#39;buoy data mainly from international partners&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;cwind&#39;</span><span class="p">:</span> <span class="s1">&#39;continuous wind data (10 minute average)&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;spec&#39;</span><span class="p">:</span> <span class="s1">&#39;spectral wave summaries&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;data_spec&#39;</span><span class="p">:</span> <span class="s1">&#39;raw spectral wave data&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;swdir&#39;</span><span class="p">:</span> <span class="s1">&#39;spectral wave data (alpha1)&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;swdir2&#39;</span><span class="p">:</span> <span class="s1">&#39;spectral wave data (alpha2)&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;swr1&#39;</span><span class="p">:</span> <span class="s1">&#39;spectral wave data (r1)&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;swr2&#39;</span><span class="p">:</span> <span class="s1">&#39;spectral wave data (r2)&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;adcp&#39;</span><span class="p">:</span> <span class="s1">&#39;acoustic doppler current profiler&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;ocean&#39;</span><span class="p">:</span> <span class="s1">&#39;oceanographic data&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;tide&#39;</span><span class="p">:</span> <span class="s1">&#39;tide data&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;srad&#39;</span><span class="p">:</span> <span class="s1">&#39;solar radiation data&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;dart&#39;</span><span class="p">:</span> <span class="s1">&#39;water column height&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;supl&#39;</span><span class="p">:</span> <span class="s1">&#39;supplemental measurements data&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;rain&#39;</span><span class="p">:</span> <span class="s1">&#39;hourly rain data&#39;</span><span class="p">}</span>
+        <span class="n">file_types</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'txt'</span><span class="p">:</span> <span class="s1">'standard meteorological data'</span><span class="p">,</span>
+                      <span class="s1">'drift'</span><span class="p">:</span> <span class="s1">'meteorological data from drifting buoys and limited moored'</span>
+                               <span class="s1">'buoy data mainly from international partners'</span><span class="p">,</span>
+                      <span class="s1">'cwind'</span><span class="p">:</span> <span class="s1">'continuous wind data (10 minute average)'</span><span class="p">,</span>
+                      <span class="s1">'spec'</span><span class="p">:</span> <span class="s1">'spectral wave summaries'</span><span class="p">,</span>
+                      <span class="s1">'data_spec'</span><span class="p">:</span> <span class="s1">'raw spectral wave data'</span><span class="p">,</span>
+                      <span class="s1">'swdir'</span><span class="p">:</span> <span class="s1">'spectral wave data (alpha1)'</span><span class="p">,</span>
+                      <span class="s1">'swdir2'</span><span class="p">:</span> <span class="s1">'spectral wave data (alpha2)'</span><span class="p">,</span>
+                      <span class="s1">'swr1'</span><span class="p">:</span> <span class="s1">'spectral wave data (r1)'</span><span class="p">,</span>
+                      <span class="s1">'swr2'</span><span class="p">:</span> <span class="s1">'spectral wave data (r2)'</span><span class="p">,</span>
+                      <span class="s1">'adcp'</span><span class="p">:</span> <span class="s1">'acoustic doppler current profiler'</span><span class="p">,</span>
+                      <span class="s1">'ocean'</span><span class="p">:</span> <span class="s1">'oceanographic data'</span><span class="p">,</span>
+                      <span class="s1">'tide'</span><span class="p">:</span> <span class="s1">'tide data'</span><span class="p">,</span>
+                      <span class="s1">'srad'</span><span class="p">:</span> <span class="s1">'solar radiation data'</span><span class="p">,</span>
+                      <span class="s1">'dart'</span><span class="p">:</span> <span class="s1">'water column height'</span><span class="p">,</span>
+                      <span class="s1">'supl'</span><span class="p">:</span> <span class="s1">'supplemental measurements data'</span><span class="p">,</span>
+                      <span class="s1">'rain'</span><span class="p">:</span> <span class="s1">'hourly rain data'</span><span class="p">}</span>
         <span class="n">available_data</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">buoy_url</span> <span class="o">=</span> <span class="s1">&#39;https://www.ndbc.noaa.gov/data/realtime2/&#39;</span> <span class="o">+</span> <span class="n">buoy</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span>
+        <span class="n">buoy_url</span> <span class="o">=</span> <span class="s1">'https://www.ndbc.noaa.gov/data/realtime2/'</span> <span class="o">+</span> <span class="n">buoy</span> <span class="o">+</span> <span class="s1">'.'</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">file_types</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">_check_if_url_valid</span><span class="p">(</span><span class="n">buoy_url</span> <span class="o">+</span> <span class="n">key</span><span class="p">):</span>
                 <span class="n">available_data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_types</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
@@ -656,8 +656,8 @@
 <div class="viewcode-block" id="NDBC.raw_buoy_data">
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.ndbc.NDBC.raw_buoy_data">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">raw_buoy_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">buoy</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;txt&#39;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve the raw buoy data contents from NDBC.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">raw_buoy_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">buoy</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">'txt'</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Retrieve the raw buoy data contents from NDBC.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -666,32 +666,32 @@
 
 <span class="sd">        data_type : str</span>
 <span class="sd">            Type of data requested, must be one of</span>
-<span class="sd">            &#39;txt&#39; standard meteorological data</span>
-<span class="sd">            &#39;drift&#39; meteorological data from drifting buoys and limited moored buoy data</span>
+<span class="sd">            'txt' standard meteorological data</span>
+<span class="sd">            'drift' meteorological data from drifting buoys and limited moored buoy data</span>
 <span class="sd">            mainly from international partners</span>
-<span class="sd">            &#39;cwind&#39; continuous winds data (10 minute average)</span>
-<span class="sd">            &#39;spec&#39; spectral wave summaries</span>
-<span class="sd">            &#39;data_spec&#39; raw spectral wave data</span>
-<span class="sd">            &#39;swdir&#39; spectral wave data (alpha1)</span>
-<span class="sd">            &#39;swdir2&#39; spectral wave data (alpha2)</span>
-<span class="sd">            &#39;swr1&#39; spectral wave data (r1)</span>
-<span class="sd">            &#39;swr2&#39; spectral wave data (r2)</span>
-<span class="sd">            &#39;adcp&#39; acoustic doppler current profiler</span>
-<span class="sd">            &#39;ocean&#39; oceanographic data</span>
-<span class="sd">            &#39;tide&#39; tide data</span>
-<span class="sd">            &#39;srad&#39; solar radiation data</span>
-<span class="sd">            &#39;dart&#39; water column height</span>
-<span class="sd">            &#39;supl&#39; supplemental measurements data</span>
-<span class="sd">            &#39;rain&#39; hourly rain data</span>
+<span class="sd">            'cwind' continuous winds data (10 minute average)</span>
+<span class="sd">            'spec' spectral wave summaries</span>
+<span class="sd">            'data_spec' raw spectral wave data</span>
+<span class="sd">            'swdir' spectral wave data (alpha1)</span>
+<span class="sd">            'swdir2' spectral wave data (alpha2)</span>
+<span class="sd">            'swr1' spectral wave data (r1)</span>
+<span class="sd">            'swr2' spectral wave data (r2)</span>
+<span class="sd">            'adcp' acoustic doppler current profiler</span>
+<span class="sd">            'ocean' oceanographic data</span>
+<span class="sd">            'tide' tide data</span>
+<span class="sd">            'srad' solar radiation data</span>
+<span class="sd">            'dart' water column height</span>
+<span class="sd">            'supl' supplemental measurements data</span>
+<span class="sd">            'rain' hourly rain data</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        str</span>
 <span class="sd">            Raw data string</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/realtime2/</span><span class="si">{</span><span class="n">buoy</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">data_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="sa">f</span><span class="s1">'data/realtime2/</span><span class="si">{</span><span class="n">buoy</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">data_type</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span></div>
 </div>
 
@@ -705,7 +705,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2026, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Aug 03, 2026 at 08:52:33.
+      <span class="lastupdated">Last updated on Aug 31, 2026 at 19:54:58.
       </span></p>
   </div>
 

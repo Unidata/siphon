@@ -87,7 +87,7 @@
 <span></span><span class="c1"># Copyright (c) 2018 Siphon Contributors.</span>
 <span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
-<span class="sd">&quot;&quot;&quot;Requests data from the ACIS Web Services API.&quot;&quot;&quot;</span>
+<span class="sd">"""Requests data from the ACIS Web Services API."""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
@@ -97,7 +97,7 @@
 <div class="viewcode-block" id="acis_request">
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.acis.acis_request">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">acis_request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Request data from the ACIS Web Services API.</span>
+<span class="w">    </span><span class="sd">"""Request data from the ACIS Web Services API.</span>
 
 <span class="sd">    Makes a request from the ACIS Web Services API for data</span>
 <span class="sd">    based on a given method (StnMeta,StnData,MultiStnData,GridData,General)</span>
@@ -134,29 +134,29 @@
 <span class="sd">        When the API is unable to establish a connection or returns</span>
 <span class="sd">        unparsable data.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;http://data.rcc-acis.org/&#39;</span>  <span class="c1"># ACIS Web API URL</span>
+<span class="sd">    """</span>
+    <span class="n">base_url</span> <span class="o">=</span> <span class="s1">'http://data.rcc-acis.org/'</span>  <span class="c1"># ACIS Web API URL</span>
 
-    <span class="n">timeout</span> <span class="o">=</span> <span class="mi">300</span> <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;MultiStnData&#39;</span> <span class="k">else</span> <span class="mi">60</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="mi">300</span> <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'MultiStnData'</span> <span class="k">else</span> <span class="mi">60</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">session_manager</span><span class="o">.</span><span class="n">create_session</span><span class="p">()</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="n">method</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
                                                          <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
     <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">AcisApiException</span><span class="p">(</span><span class="s1">&#39;Connection Timeout&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+        <span class="k">raise</span> <span class="n">AcisApiException</span><span class="p">(</span><span class="s1">'Connection Timeout'</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
     <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">TooManyRedirects</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">AcisApiException</span><span class="p">(</span><span class="s1">&#39;Bad URL. Check your ACIS connection method string.&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+        <span class="k">raise</span> <span class="n">AcisApiException</span><span class="p">(</span><span class="s1">'Bad URL. Check your ACIS connection method string.'</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">AcisApiException</span><span class="p">(</span><span class="s1">&#39;No data returned! The ACIS parameter dictionary&#39;</span>
-                               <span class="s1">&#39;may be incorrectly formatted&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span></div>
+        <span class="k">raise</span> <span class="n">AcisApiException</span><span class="p">(</span><span class="s1">'No data returned! The ACIS parameter dictionary'</span>
+                               <span class="s1">'may be incorrectly formatted'</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span></div>
 
 
 
 <div class="viewcode-block" id="AcisApiException">
 <a class="viewcode-back" href="../../../api/simplewebservice.html#siphon.simplewebservice.acis.AcisApiException">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">AcisApiException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>  <span class="c1"># noqa: N818</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Handle exceptions raised by the acis_request function.&quot;&quot;&quot;</span></div>
+<span class="w">    </span><span class="sd">"""Handle exceptions raised by the acis_request function."""</span></div>
 
 
 </pre></div>
@@ -169,7 +169,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2026, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Aug 03, 2026 at 08:52:33.
+      <span class="lastupdated">Last updated on Aug 31, 2026 at 19:54:58.
       </span></p>
   </div>
 

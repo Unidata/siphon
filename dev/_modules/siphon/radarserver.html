@@ -87,10 +87,10 @@
 <span></span><span class="c1"># Copyright (c) 2013-2015 Siphon Contributors.</span>
 <span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
-<span class="sd">&quot;&quot;&quot;Support making data requests to the radar data query service (radar server) on a TDS.</span>
+<span class="sd">"""Support making data requests to the radar data query service (radar server) on a TDS.</span>
 
 <span class="sd">This includes forming proper queries as well as parsing the returned catalog.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">namedtuple</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">xml.etree.ElementTree</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ET</span>  <span class="c1"># noqa:N814</span>
@@ -102,16 +102,16 @@
 <div class="viewcode-block" id="RadarQuery">
 <a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarQuery">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RadarQuery</span><span class="p">(</span><span class="n">DataQuery</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represent a query to the THREDDS radar server.</span>
+<span class="w">    </span><span class="sd">"""Represent a query to the THREDDS radar server.</span>
 
 <span class="sd">    Expands on the queries supported by :class:`~siphon.http_util.DataQuery` to add queries</span>
 <span class="sd">    specific to the radar data query service.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
 <div class="viewcode-block" id="RadarQuery.stations">
 <a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarQuery.stations">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">stations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">stns</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Specify one or more stations for the query.</span>
+<span class="w">        </span><span class="sd">"""Specify one or more stations for the query.</span>
 
 <span class="sd">        This modifies the query in-place, but returns `self` so that multiple</span>
 <span class="sd">        queries can be chained together on one line.</span>
@@ -128,7 +128,7 @@
 <span class="sd">        self : RadarQuery</span>
 <span class="sd">            Returns self for chaining calls</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spatial_query</span><span class="p">,</span> <span class="n">stn</span><span class="o">=</span><span class="n">stns</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 </div>
@@ -138,7 +138,7 @@
 <div class="viewcode-block" id="RadarServer">
 <a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarServer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RadarServer</span><span class="p">(</span><span class="n">HTTPEndPoint</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrap access to the THREDDS radar query service (radar server).</span>
+<span class="w">    </span><span class="sd">"""Wrap access to the THREDDS radar query service (radar server).</span>
 
 <span class="sd">    Simplifies access via HTTP to the radar server endpoint. Parses the metadata, provides</span>
 <span class="sd">    query catalog results download and parsing based on the appropriate query.</span>
@@ -146,62 +146,62 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    metadata : :class:`~siphon.metadata.TDSCatalogMetadata`</span>
-<span class="sd">        Contains the result of parsing the radar server endpoint&#39;s dataset.xml. This has</span>
+<span class="sd">        Contains the result of parsing the radar server endpoint's dataset.xml. This has</span>
 <span class="sd">        information about the time and space coverage, as well as full information</span>
 <span class="sd">        about all of the variables.</span>
 <span class="sd">    variables : set(str)</span>
 <span class="sd">        Names of all variables available in this dataset</span>
 <span class="sd">    stations : dict[str, Station]</span>
 <span class="sd">        Mapping of station ID to a :class:`Station`, which is a namedtuple containing the</span>
-<span class="sd">        station&#39;s id, name, latitude, longitude, and elevation.</span>
+<span class="sd">        station's id, name, latitude, longitude, and elevation.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
 <div class="viewcode-block" id="RadarServer.__init__">
 <a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarServer.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a RadarServer instance.</span>
+<span class="w">        </span><span class="sd">"""Create a RadarServer instance.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        url : str</span>
 <span class="sd">            The base URL for the endpoint</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">xmlfile</span> <span class="o">=</span> <span class="s1">&#39;/dataset.xml&#39;</span>
+<span class="sd">        """</span>
+        <span class="n">xmlfile</span> <span class="o">=</span> <span class="s1">'/dataset.xml'</span>
         <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">):</span>
             <span class="n">url</span> <span class="o">=</span> <span class="n">url</span><span class="p">[:</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">)]</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">ds_cat</span> <span class="o">=</span> <span class="n">TDSCatalog</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url_path</span><span class="p">(</span><span class="s1">&#39;dataset.xml&#39;</span><span class="p">))</span>
+        <span class="n">ds_cat</span> <span class="o">=</span> <span class="n">TDSCatalog</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url_path</span><span class="p">(</span><span class="s1">'dataset.xml'</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">ds_cat</span><span class="o">.</span><span class="n">metadata</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">variables</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;variables&#39;</span><span class="p">]}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variables</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">'variables'</span><span class="p">]}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_get_stations</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_get_stations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">station_file</span><span class="o">=</span><span class="s1">&#39;stations.xml&#39;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_stations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">station_file</span><span class="o">=</span><span class="s1">'stations.xml'</span><span class="p">):</span>
         <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="n">station_file</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stations</span> <span class="o">=</span> <span class="n">parse_station_table</span><span class="p">(</span><span class="n">ET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
 
 <div class="viewcode-block" id="RadarServer.query">
 <a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarServer.query">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a new query for the radar server.</span>
+<span class="w">        </span><span class="sd">"""Return a new query for the radar server.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        RadarQuery</span>
 <span class="sd">            The new query</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">RadarQuery</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="RadarServer.validate_query">
 <a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarServer.validate_query">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate a query.</span>
+<span class="w">        </span><span class="sd">"""Validate a query.</span>
 
 <span class="sd">        Determines whether `query` is well-formed. This includes checking for all</span>
 <span class="sd">        required parameters, as well as checking parameters for valid values.</span>
@@ -216,12 +216,12 @@
 <span class="sd">        valid : bool</span>
 <span class="sd">            Whether `query` is valid.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="c1"># Make sure all stations are in the table</span>
-        <span class="k">if</span> <span class="s1">&#39;stn&#39;</span> <span class="ow">in</span> <span class="n">query</span><span class="o">.</span><span class="n">spatial_query</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">'stn'</span> <span class="ow">in</span> <span class="n">query</span><span class="o">.</span><span class="n">spatial_query</span><span class="p">:</span>
             <span class="n">valid</span> <span class="o">=</span> <span class="n">valid</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">stid</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stations</span>
-                                  <span class="k">for</span> <span class="n">stid</span> <span class="ow">in</span> <span class="n">query</span><span class="o">.</span><span class="n">spatial_query</span><span class="p">[</span><span class="s1">&#39;stn&#39;</span><span class="p">])</span>
+                                  <span class="k">for</span> <span class="n">stid</span> <span class="ow">in</span> <span class="n">query</span><span class="o">.</span><span class="n">spatial_query</span><span class="p">[</span><span class="s1">'stn'</span><span class="p">])</span>
 
         <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">var</span><span class="p">:</span>
             <span class="n">valid</span> <span class="o">=</span> <span class="n">valid</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">var</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">query</span><span class="o">.</span><span class="n">var</span><span class="p">)</span>
@@ -232,7 +232,7 @@
 <div class="viewcode-block" id="RadarServer.get_catalog">
 <a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarServer.get_catalog">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch a parsed THREDDS catalog from the radar server.</span>
+<span class="w">        </span><span class="sd">"""Fetch a parsed THREDDS catalog from the radar server.</span>
 
 <span class="sd">        Requests a catalog of radar data files data from the radar server given the</span>
 <span class="sd">        parameters in `query` and returns a :class:`~siphon.catalog.TDSCatalog` instance.</span>
@@ -256,11 +256,11 @@
 <span class="sd">        --------</span>
 <span class="sd">        get_catalog_raw</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO: Refactor TDSCatalog so we don&#39;t need two requests, or to do URL munging</span>
+<span class="sd">        """</span>
+        <span class="c1"># TODO: Refactor TDSCatalog so we don't need two requests, or to do URL munging</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span>
-            <span class="n">url</span> <span class="o">+=</span> <span class="s1">&#39;?&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'/'</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span>
+            <span class="n">url</span> <span class="o">+=</span> <span class="s1">'?'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">TDSCatalog</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ET</span><span class="o">.</span><span class="n">ParseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">BadQueryError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_catalog_raw</span><span class="p">(</span><span class="n">query</span><span class="p">))</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span></div>
@@ -269,7 +269,7 @@
 <div class="viewcode-block" id="RadarServer.get_catalog_raw">
 <a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.RadarServer.get_catalog_raw">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_catalog_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch THREDDS catalog XML from the radar server.</span>
+<span class="w">        </span><span class="sd">"""Fetch THREDDS catalog XML from the radar server.</span>
 
 <span class="sd">        Requests a catalog of radar data files data from the radar server given the</span>
 <span class="sd">        parameters in `query` and returns the raw XML.</span>
@@ -288,7 +288,7 @@
 <span class="sd">        --------</span>
 <span class="sd">        get_catalog</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">content</span></div>
 </div>
 
@@ -297,7 +297,7 @@
 <div class="viewcode-block" id="get_radarserver_datasets">
 <a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.get_radarserver_datasets">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_radarserver_datasets</span><span class="p">(</span><span class="n">server</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get datasets from a THREDDS radar server&#39;s top-level catalog.</span>
+<span class="w">    </span><span class="sd">"""Get datasets from a THREDDS radar server's top-level catalog.</span>
 
 <span class="sd">    This is a helper function to construct the appropriate catalog URL from the</span>
 <span class="sd">    server URL, fetch the catalog, and return the contained catalog references.</span>
@@ -312,10 +312,10 @@
 <span class="sd">    datasets : dict[str, :class:`~siphon.catalog.CatalogRef`]</span>
 <span class="sd">        Mapping of dataset name to the catalog reference</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">server</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
-        <span class="n">server</span> <span class="o">+=</span> <span class="s1">&#39;/&#39;</span>
-    <span class="k">return</span> <span class="n">TDSCatalog</span><span class="p">(</span><span class="n">urljoin</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="s1">&#39;radarServer/catalog.xml&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">catalog_refs</span></div>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">server</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">'/'</span><span class="p">:</span>
+        <span class="n">server</span> <span class="o">+=</span> <span class="s1">'/'</span>
+    <span class="k">return</span> <span class="n">TDSCatalog</span><span class="p">(</span><span class="n">urljoin</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="s1">'radarServer/catalog.xml'</span><span class="p">))</span><span class="o">.</span><span class="n">catalog_refs</span></div>
 
 
 
@@ -324,14 +324,14 @@
 <span class="c1"># Use at your own risk!</span>
 <span class="c1">#</span>
 
-<span class="n">Station</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Station&#39;</span><span class="p">,</span> <span class="s1">&#39;id elevation latitude longitude name&#39;</span><span class="p">)</span>
+<span class="n">Station</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">'Station'</span><span class="p">,</span> <span class="s1">'id elevation latitude longitude name'</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="parse_station_table">
 <a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.parse_station_table">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">parse_station_table</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse station list XML file.&quot;&quot;&quot;</span>
-    <span class="n">stations</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_xml_station</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;station&#39;</span><span class="p">)]</span>
+<span class="w">    </span><span class="sd">"""Parse station list XML file."""</span>
+    <span class="n">stations</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_xml_station</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">'station'</span><span class="p">)]</span>
     <span class="k">return</span> <span class="p">{</span><span class="n">st</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">st</span> <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">stations</span><span class="p">}</span></div>
 
 
@@ -339,12 +339,12 @@
 <div class="viewcode-block" id="parse_xml_station">
 <a class="viewcode-back" href="../../api/radarserver.html#siphon.radarserver.parse_xml_station">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">parse_xml_station</span><span class="p">(</span><span class="n">elem</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a :class:`Station` instance from an XML tag.&quot;&quot;&quot;</span>
-    <span class="n">stid</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-    <span class="n">lat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;latitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">lon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">elev</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;elevation&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""Create a :class:`Station` instance from an XML tag."""</span>
+    <span class="n">stid</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'name'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'latitude'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'longitude'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">elev</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'elevation'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">Station</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">stid</span><span class="p">,</span> <span class="n">elevation</span><span class="o">=</span><span class="n">elev</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="n">lat</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="n">lon</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span></div>
 
 </pre></div>
@@ -357,7 +357,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2026, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Aug 03, 2026 at 08:52:33.
+      <span class="lastupdated">Last updated on Aug 31, 2026 at 19:54:58.
       </span></p>
   </div>
 
