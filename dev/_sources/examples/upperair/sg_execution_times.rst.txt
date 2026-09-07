@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**02:15.437** total execution time for 2 files **from examples/upperair**:
+**00:35.033** total execution time for 2 files **from examples/upperair**:
 
 .. container::
 
@@ -33,8 +33,8 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_upperair_IGRA2_Request.py` (``IGRA2_Request.py``)
-     - 02:12.759
+     - 00:32.923
      - 0.0
    * - :ref:`sphx_glr_examples_upperair_Wyoming_Request.py` (``Wyoming_Request.py``)
-     - 00:02.678
+     - 00:02.110
      - 0.0
