@@ -162,7 +162,7 @@ query string.</p>
 </span><a class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method reference internal" href="../../api/ncss.html#siphon.ncss.NCSSQuery.accept" title="siphon.ncss.NCSSQuery.accept"><span class="n">query</span><span class="o">.</span><span class="n">accept</span></a><span class="p">(</span><span class="s1">'</span><span class="s1">netcdf4</span><span class="s1">'</span><span class="p">)</span><span class="w">
 </span><a class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method reference internal" href="../../api/ncss.html#siphon.ncss.NCSSQuery.variables" title="siphon.ncss.NCSSQuery.variables"><span class="n">query</span><span class="o">.</span><span class="n">variables</span></a><span class="p">(</span><span class="s1">'</span><span class="s1">Temperature_surface</span><span class="s1">'</span><span class="p">)</span><span class="w">
 </span></pre></div></div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_surface&amp;time=2026-09-21T22%3A32%3A40.115903%2B00%3A00&amp;west=-111&amp;east=-100&amp;south=35&amp;north=43&amp;accept=netcdf4
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>var=Temperature_surface&amp;time=2026-09-28T08%3A31%3A56.804937%2B00%3A00&amp;west=-111&amp;east=-100&amp;south=35&amp;north=43&amp;accept=netcdf4
 </pre></div>
 </div>
 <p>We now request data from the server using this query. The <em class="xref py py-obj">NCSS</em> class handles parsing
@@ -172,7 +172,7 @@ the data).</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span class="n">data</span> <span class="o">=</span> <a class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-method reference internal" href="../../api/ncss.html#siphon.ncss.NCSS.get_data" title="siphon.ncss.NCSS.get_data"><span class="n">ncss</span><span class="o">.</span><span class="n">get_data</span></a><span class="p">(</span><a class="sphx-glr-backref-module-siphon-ncss sphx-glr-backref-type-py-class sphx-glr-backref-instance reference internal" href="../../api/ncss.html#siphon.ncss.NCSSQuery" title="siphon.ncss.NCSSQuery"><span class="n">query</span></a><span class="p">)</span><span class="w">
 </span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><a class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="dict"><span class="n">data</span><span class="o">.</span><span class="n">variables</span></a><span class="p">)</span><span class="p">)</span><span class="w">
 </span></pre></div></div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>['time1', 'latitude', 'reftime1', 'longitude', 'Temperature_surface', 'LatLon_721X1440-0p13S-180p00E-2']
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>['reftime', 'latitude', 'time', 'longitude', 'Temperature_surface', 'LatLon_721X1440-0p13S-180p00E-2']
 </pre></div>
 </div>
 <p>We’ll pull out the useful variables for temperature, latitude, and longitude, and time
@@ -227,10 +227,10 @@ the data).</p>
 </span><a class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot" title="matplotlib.axes.Axes.plot"><span class="n">ax</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><a class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-method reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ma.MaskedArray.flatten.html#numpy.ma.MaskedArray.flatten" title="numpy.ma.MaskedArray.flatten"><span class="n">lon_2d</span><span class="o">.</span><span class="n">flatten</span></a><span class="p">(</span><span class="p">)</span><span class="p">,</span> <a class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-method reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ma.MaskedArray.flatten.html#numpy.ma.MaskedArray.flatten" title="numpy.ma.MaskedArray.flatten"><span class="n">lat_2d</span><span class="o">.</span><span class="n">flatten</span></a><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'</span><span class="s1">o</span><span class="s1">'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'</span><span class="s1">black</span><span class="s1">'</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w">
 </span>        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'</span><span class="s1">none</span><span class="s1">'</span><span class="p">)</span><span class="w">
 </span></pre></div></div>
-<img src="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" srcset="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" alt="Temperature forecast (°F) for  22 September 2026 0000Z" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D object at 0x7fe060faa120&gt;]
+<img src="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" srcset="../../_images/sphx_glr_NCSS_Cartopy_Example_001.png" alt="Temperature forecast (°F) for  28 September 2026 0900Z" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D object at 0x7f7d82fd1d30&gt;]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.080 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.765 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ncss-ncss-cartopy-example-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/73666370fca72abb527bc687fbb3c37f/NCSS_Cartopy_Example.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">NCSS_Cartopy_Example.ipynb</span></code></a></p>
@@ -257,7 +257,7 @@ the data).</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2008–2026, Siphon Developers. Development is supported by NSF Unidata and the National Science Foundation.
-      <span class="lastupdated">Last updated on Sep 21, 2026 at 22:33:17.
+      <span class="lastupdated">Last updated on Sep 28, 2026 at 08:32:36.
       </span></p>
   </div>
 
