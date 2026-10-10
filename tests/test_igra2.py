@@ -56,6 +56,13 @@ def subset_date(dt):
     return subsetter
 
 
+def test_release_time_converter_uses_hhmm_width():
+    """Test that release times preserve both hour digits when converted."""
+    converter = IGRAUpperAir()._get_fwf_params()['header']['converters']['release_time']
+
+    assert converter('1142') == 11 * 3600 + 42 * 60
+
+
 @recorder.use_cassette('igra2_sounding',
                        before_record_response=subset_date(datetime(2010, 6, 1)))
 def test_igra2():
