@@ -1,0 +1,28 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      User-Agent: [Siphon (0.6.0+62.gadab176.dirty)]
+    method: POST
+    uri: http://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?&station=K&station=L&station=N&station=K&station=,&station=%20&station=K&station=G&station=S&station=O&station=,&station=%20&station=K&station=B&station=D&station=U&data=all&year1=2018&month1=1&day1=1&year2=2018&month2=1&day2=1&tz=Etc%2FUTC&format=onlycomma&latlon=yes&direct=no&report_type=1&report_type=2
+  response:
+    body: {string: 'station,valid,lon,lat,tmpf, dwpf, relh, drct, sknt, p01i, alti,
+        mslp, vsby, gust, skyc1, skyc2, skyc3, skyc4, skyl1, skyl2, skyl3, skyl4,
+        wxcodes, metar
+
+        '}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Connection: [Keep-Alive]
+      Content-Type: [text/plain; charset=UTF-8]
+      Date: ['Fri, 26 Oct 2018 15:01:31 GMT']
+      Keep-Alive: ['timeout=5, max=100']
+      Server: [Apache/2.4.6 (Red Hat Enterprise Linux) OpenSSL/1.0.2k-fips mod_fcgid/2.3.9
+          mod_wsgi/4.6.4 Python/3.6]
+      X-IEM-ServerID: [iemvs103.local]
+    status: {code: 200, message: OK}
+version: 1
