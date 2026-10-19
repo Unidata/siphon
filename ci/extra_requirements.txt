@@ -1,2 +1,2 @@
-netCDF4==1.7.4
+netCDF4==1.7.5
 xarray==2026.9.0
